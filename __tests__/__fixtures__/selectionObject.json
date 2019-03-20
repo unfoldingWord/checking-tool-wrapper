@@ -1,0 +1,17 @@
+{
+  "contextId":
+  {
+    "reference":
+      {"bookId": "tit", "chapter": 1, "verse": 6},
+    "tool": "translationWords",
+    "groupId": "accuse",
+    "quote": "κατηγορίᾳ",
+    "strong": ["G27240"],
+    "occurrence": 1
+  },
+  "selections": [{"text": "adad ", "occurrence": 1, "occurrences": 1}],
+  "userName": "royalsix",
+  "modifiedTimestamp": "2019-02-20T18:48:05.807Z",
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "accused"
+}
