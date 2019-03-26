@@ -4,10 +4,10 @@
   "version": "0.3.2",
   "main": "dist/bundle.js",
   "scripts": {
-    "test": "jest",
+    "test": "eslint ./src ./index.js && jest",
     "prebuild": "rm -rf ./dist",
     "build": "webpack -p",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm test && npm run build",
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "jest": {
