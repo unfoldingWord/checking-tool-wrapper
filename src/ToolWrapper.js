@@ -159,4 +159,4 @@ export const mapStateToProps = (state, ownProps) => {
 };
 
 
-export default connect(mapStateToProps)(ToolWrapper);
+export default ToolWrapper;
