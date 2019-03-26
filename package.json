@@ -1,10 +1,11 @@
 {
   "name": "tc-tool-wrapper",
   "description": "translationCore tool wrapper",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": "dist/bundle.js",
   "scripts": {
     "test": "eslint ./src ./index.js && jest",
+    "fix": "eslint ./src ./index.js --fix",
     "prebuild": "rm -rf ./dist",
     "build": "webpack -p",
     "prepublishOnly": "npm test && npm run build",
@@ -28,6 +29,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/plugin-transform-async-to-generator": "^7.4.0",
     "@babel/plugin-transform-regenerator": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/icons": "^3.0.2",
