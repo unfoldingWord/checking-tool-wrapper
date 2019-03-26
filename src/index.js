@@ -1,5 +1,5 @@
-export { default as Api } from './Api';
-export { default as ToolWrapper } from './ToolWrapper';
+import Api from './Api';
+import ToolWrapper from './ToolWrapper';
 // export { default as reducers } from './reducers';
 
 import {connectTool} from 'tc-tool';
