@@ -1,7 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 //selectors
 import {
   getContextId,
@@ -104,7 +103,7 @@ ToolWrapper.propTypes = {
   scripturePane: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = {currentToolName: ownProps.tc.selectedToolName};
   return {
     groupMenu: {
