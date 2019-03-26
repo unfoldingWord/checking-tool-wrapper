@@ -56,7 +56,7 @@ class CheckInfoCardWrapper extends React.Component {
         phrase = this.getPhraseFromTw(translationWords, contextId.groupId, translationHelps);
         break;
       case 'translationNotes':
-        phrase = getNote(occurrenceNote);
+        phrase = this.getNote(occurrenceNote);
         break;
       default:
         console.error('tool is undefined in contextId')
