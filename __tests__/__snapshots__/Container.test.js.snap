@@ -467,7 +467,9 @@ exports[`Container Tests Test Container 1`] = `
             class="MuiTypography-root-45 MuiTypography-body1-54 MuiListItemText-primary-42 g-text-128"
           >
             <span>
-              () =&gt; "gen" 2:5 
+              function () {
+          return "gen";
+        } 2:5 
             </span>
           </span>
         </div>
@@ -484,7 +486,9 @@ exports[`Container Tests Test Container 1`] = `
             class="MuiTypography-root-45 MuiTypography-body1-54 MuiListItemText-primary-42 g-text-128"
           >
             <span>
-              () =&gt; "gen" 3:2 
+              function () {
+          return "gen";
+        } 3:2 
             </span>
           </span>
         </div>

@@ -1,14 +1,17 @@
 /* eslint-env jest */
 import React from 'react';
-import Container from '../src/Container';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {connect} from 'react-redux';
 import renderer from 'react-test-renderer';
 import {shallow, mount, render} from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import toJson from 'enzyme-to-json';
-import TranslationHelpsContainer from '../src/containers/TranslationHelpsContainer';
+// containers
+import PlainContainer, { mapStateToProps } from '../src/Container';
+import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
+
+const Container = connect(mapStateToProps)(PlainContainer)
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -47,11 +50,9 @@ const store = mockStore({});
 describe.only('Container Tests', () => {
   it('Test Container', () => {
     const wrapper = render(
-      <MuiThemeProvider>
         <Provider store={store}>
           <Container {...props} />
         </Provider>
-      </MuiThemeProvider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -64,27 +65,11 @@ describe.only('Container Tests', () => {
       }
     };
     const wrapper = renderer.create(
-      <MuiThemeProvider>
         <Provider store={store}>
           <Container {...myProps} />
         </Provider>
-      </MuiThemeProvider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('Test Container.toggleHelps', () => {
-    const container = shallow(
-      <Provider store={store}>
-        <Container {...props} />
-      </Provider>)
-      //wierd stuff to get the inner component
-      .dive({context: {store}}).dive().instance();
-    expect(container.state.showHelps).toBeTruthy();
-    container.toggleHelps();
-    expect(container.state.showHelps).toBeFalsy();
-    container.toggleHelps();
-    expect(container.state.showHelps).toBeTruthy();
   });
 
   it('Test has ScripturePane Panes', () => {

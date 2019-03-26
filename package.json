@@ -4,11 +4,20 @@
   "version": "0.3.2",
   "main": "dist/bundle.js",
   "scripts": {
-    "test": "eslint ./src ./index.js && jest",
+    "test": "jest",
     "prebuild": "rm -rf ./dist",
     "build": "webpack -p",
     "prepublishOnly": "npm run build",
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "./__tests__/setup/"
+    ],
+    "setupFiles": [
+      "./__tests__/setup/shim.js",
+      "./__tests__/setup/enzyme.js"
+    ]
   },
   "author": "@unfoldingWord",
   "license": "MIT",
@@ -18,6 +27,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/plugin-transform-async-to-generator": "^7.4.0",
+    "@babel/plugin-transform-regenerator": "^7.4.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/icons": "^3.0.2",
