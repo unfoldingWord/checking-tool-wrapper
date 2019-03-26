@@ -21,7 +21,7 @@ import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 
-class ToolWrapper extends React.Component {
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,7 +70,7 @@ class ToolWrapper extends React.Component {
   }
 }
 
-ToolWrapper.propTypes = {
+Container.propTypes = {
   translationHelps: PropTypes.any,
   groupMenu: PropTypes.any,
   verseCheck: PropTypes.any,
@@ -159,4 +159,4 @@ export const mapStateToProps = (state, ownProps) => {
 };
 
 
-export default ToolWrapper;
+export default Container;
