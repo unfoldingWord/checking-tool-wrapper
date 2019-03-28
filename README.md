@@ -1,6 +1,6 @@
 # checking-tool-wrapper
 
-Checking tool wrapper for translationCore App
+Checking tool wrapper for translationCore App.
 
 ## Usage
 
