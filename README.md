@@ -1,13 +1,13 @@
-# tc-tool-wrapper
+# checking-tool-wrapper
 
 translationCore tool wrapper
 
 ## Usage
 
-- Install `tc-tool-wrapper` in tCore repo.
+- Install `checking-tool-wrapper` in tCore repo.
 
     ```bash
-    npm i tc-tool-wrapper
+    npm i checking-tool-wrapper
     ```
 
 - Write the following code in the tool's `index.js` file:
@@ -20,7 +20,7 @@ translationCore tool wrapper
       Api,
       Container,
       mapStateToProps
-    } from 'tc-tool-wrapper';
+    } from 'checking-tool-wrapper';
 
     export default connectTool('translationWords', {
       localeDir: path.join(__dirname, './src/locale'),
@@ -32,5 +32,5 @@ translationCore tool wrapper
 
 - Create your feature/bugfix/enhancement (my-feature-branch)branch off of master.
 - Make your changes in the new branch (my-feature-branch).
-- Push your chnages.
-- Run `npm i translationCoreApps/tc-tool-wrapper#my-feature-branch` in your translationCore root directory.
+- Push your changes.
+- Run `npm i translationCoreApps/checking-tool-wrapper#my-feature-branch` in your translationCore root directory.
