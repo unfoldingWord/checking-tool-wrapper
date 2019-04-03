@@ -4,20 +4,16 @@
   "version": "0.4.0",
   "main": "dist/bundle.js",
   "scripts": {
-    "test": "eslint ./src ./index.js && jest",
-    "fix": "eslint ./src ./index.js --fix",
+    "test": "eslint ./src && jest",
+    "fix": "eslint ./src --fix",
     "prebuild": "rm -rf ./dist",
     "build": "webpack -p",
     "prepublishOnly": "npm test && npm run build",
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "./__tests__/setup/"
-    ],
-    "setupFiles": [
-      "./__tests__/setup/shim.js",
-      "./__tests__/setup/enzyme.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
     ]
   },
   "author": "@unfoldingWord",
