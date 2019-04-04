@@ -1,23 +1,20 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "dist/bundle.js",
   "scripts": {
-    "test": "eslint ./src ./index.js && jest",
-    "fix": "eslint ./src ./index.js --fix",
+    "test": "eslint ./src && jest",
+    "fix": "eslint ./src --fix",
     "prebuild": "rm -rf ./dist",
     "build": "webpack -p",
+    "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run build",
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "./__tests__/setup/"
-    ],
-    "setupFiles": [
-      "./__tests__/setup/shim.js",
-      "./__tests__/setup/enzyme.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
     ]
   },
   "author": "@unfoldingWord",
@@ -59,7 +56,7 @@
     "selections": "^0.1.7",
     "style-loader": "^0.23.1",
     "tc-tool": "^2.1.0",
-    "tc-ui-toolkit": "^0.13.17",
+    "tc-ui-toolkit": "^0.14.0",
     "usfm-js": "^1.0.15",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"

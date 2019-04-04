@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CheckInfoCard} from 'tc-ui-toolkit';
+import {VerseObjectUtils} from 'word-aligner';
 
 class CheckInfoCardWrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getScriptureFromReference = this.getScriptureFromReference.bind(this);
+  }
+
   getPhraseFromTw(translationWords, articleId, translationHelps) {
     let currentFile = '';
     if (translationWords && translationWords[articleId]) {
@@ -33,7 +39,21 @@ class CheckInfoCardWrapper extends React.Component {
   }
 
   getNote(occurrenceNote) {
-    return occurrenceNote.replace(/\(See:.*/g,"");
+    return occurrenceNote.replace(/\(See:.*/g, "");
+  }
+
+  getScriptureFromReference(lang, id, book, chapter, verse) {
+    const chapterParsed = parseInt(chapter);
+    const verseParsed = parseInt(verse);
+    const currentBible = this.props.resourcesReducer.bibles[lang];
+    if (currentBible &&
+      currentBible[id] &&
+      currentBible[id][chapterParsed] &&
+      currentBible[id][chapterParsed][verseParsed]) {
+      const {verseObjects} = currentBible[id][chapterParsed][verseParsed];
+      const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
+      return verseText;
+    }
   }
 
   render() {
@@ -68,6 +88,7 @@ class CheckInfoCardWrapper extends React.Component {
       <CheckInfoCard
         title={title}
         phrase={phrase}
+        getScriptureFromReference={this.getScriptureFromReference}
         seeMoreLabel={translate('see_more')}
         showSeeMoreButton={!showHelps}
         onSeeMoreClick={toggleHelps} />
@@ -82,6 +103,7 @@ CheckInfoCardWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
+  resourcesReducer: PropTypes.object.isRequired,
 };
 
 export default CheckInfoCardWrapper;
