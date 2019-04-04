@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 //selectors
 import {
   getContextId,
@@ -43,26 +44,35 @@ class Container extends React.Component {
       contextIdReducer: {contextId}
     } = this.props;
 
+    const theme = createTcuiTheme({
+      typography: {
+        useNextVariants: true,
+      },
+      scrollbarThumb: {borderRadius: '10px'}
+    });
+
     if (contextId !== null) {
       return (
-        <div style={{display: 'flex', flexDirection: 'row', width: '100vw'}}>
-          <GroupMenuWrapper {...this.props.groupMenu} />
-          <div style={{display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto'}}>
-            <div style={{ height: '250px', paddingBottom: '20px' }}>
-              <ScripturePaneWrapper {...this.props.scripturePane} />
+        <TcuiThemeProvider theme={theme}>
+          <div style={{display: 'flex', flexDirection: 'row', width: '100vw'}}>
+            <GroupMenuWrapper {...this.props.groupMenu} />
+            <div style={{display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto'}}>
+              <div style={{ height: '250px', paddingBottom: '20px' }}>
+                <ScripturePaneWrapper {...this.props.scripturePane} />
+              </div>
+              <CheckInfoCardWrapper
+                toggleHelps={this.toggleHelps.bind(this)}
+                showHelps={this.state.showHelps}
+                {...this.props.checkInfoCard}
+              />
+              <VerseCheckWrapper {...this.props.verseCheck} />
             </div>
-            <CheckInfoCardWrapper
+            <TranslationHelpsWrapper
               toggleHelps={this.toggleHelps.bind(this)}
               showHelps={this.state.showHelps}
-              {...this.props.checkInfoCard}
-            />
-            <VerseCheckWrapper {...this.props.verseCheck} />
+              {...this.props.translationHelps} />
           </div>
-          <TranslationHelpsWrapper
-            toggleHelps={this.toggleHelps.bind(this)}
-            showHelps={this.state.showHelps}
-            {...this.props.translationHelps} />
-        </div>
+        </TcuiThemeProvider>
       );
     } else {
       return null;
@@ -138,7 +148,8 @@ export const mapStateToProps = (state, ownProps) => {
       translate: ownProps.translate,
       translationHelps: getResourceByName(ownProps, 'translationHelps'),
       groupsIndex: getGroupsIndex(ownProps),
-      contextId: getContextId(ownProps)
+      contextId: getContextId(ownProps),
+      resourcesReducer: ownProps.tc.resourcesReducer
     },
     scripturePane: {
       translate: ownProps.translate,
