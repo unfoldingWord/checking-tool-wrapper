@@ -27,12 +27,18 @@ export default class Api extends ToolApi {
   validateBook() {
     const {
       tc: {
-        targetBook
-      }
+        targetBook,
+        project: {
+          getGroupsData
+        }
+      },
+      tool: {name: toolName}
     } = this.props;
+    const groupsData = getGroupsData(toolName);
+
     for (const chapter of Object.keys(targetBook)) {
       if (isNaN(chapter) || parseInt(chapter) === -1) continue;
-      this.validateChapter(chapter);
+      this.validateChapter(chapter, groupsData);
     }
   }
 
@@ -42,17 +48,12 @@ export default class Api extends ToolApi {
  * Books are loaded when a project is selected.
  * @param {String} chapter
  */
-  validateChapter(chapter) {
+  validateChapter(chapter, groupsData) {
     const {
       tc: {
-        targetBook,
-        project: {
-          getGroupsData
-        }
+        targetBook
       },
-      tool: {name: toolName}
     } = this.props;
-    const groupsData = getGroupsData(toolName);
 
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
