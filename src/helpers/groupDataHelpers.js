@@ -2,12 +2,11 @@ import isEqual from 'deep-equal';
 
 /**
 * @description gets the group data for the current verse from groupsDataReducer
-* @param {Object} state
+* @param {Object} groupsData
 * @param {Object} contextId
 * @return {object} group data object.
 */
-export function getGroupDataForVerse(getGroupsData, contextId, toolName) {
-  const groupsData = getGroupsData(toolName);
+export function getGroupDataForVerse(groupsData, contextId) {
   const filteredGroupData = {};
   for (let groupItemKey of Object.keys(groupsData)) {
     const groupItem = groupsData[groupItemKey];

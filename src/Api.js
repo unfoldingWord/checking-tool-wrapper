@@ -45,15 +45,21 @@ export default class Api extends ToolApi {
   validateChapter(chapter) {
     const {
       tc: {
-        targetBook
-      }
+        targetBook,
+        project: {
+          getGroupsData
+        }
+      },
+      tool: {name: toolName}
     } = this.props;
+    const groupsData = getGroupsData(toolName);
+
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
       if (bibleChapter) {
         for (let verse of Object.keys(bibleChapter)) {
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse);
+          this._validateVerse(targetVerse, chapter, verse, groupsData);
         }
       }
     }
@@ -62,12 +68,17 @@ export default class Api extends ToolApi {
   validateVerse(chapter, verse) {
     const {
       tc: {
-        targetBook
-      }
+        targetBook,
+        project: {
+          getGroupsData
+        }
+      },
+      tool: {name: toolName}
     } = this.props;
+    const groupsData = getGroupsData(toolName);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse);
+    this._validateVerse(targetVerse, chapter, verse, groupsData);
   }
 
   /**
@@ -76,13 +87,12 @@ export default class Api extends ToolApi {
   * @param {number} verse
   * @return {Function}
   */
-  _validateVerse(targetVerse, chapter, verse) {
+  _validateVerse(targetVerse, chapter, verse, groupsData) {
     let {
       tc: {
         contextId: {reference: {bookId}},
         username: userName,
         project: {
-          getGroupsData,
           _projectPath: projectSaveLocation
         }
       },
@@ -95,7 +105,7 @@ export default class Api extends ToolApi {
         verse: parseInt(verse)
       }
     };
-    const groupsDataForVerse = getGroupDataForVerse(getGroupsData, contextId, name);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId, name);
     let filtered = null;
     let selectionsChanged = false;
     for (let groupItemKey of Object.keys(groupsDataForVerse)) {
