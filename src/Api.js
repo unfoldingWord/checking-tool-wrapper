@@ -27,12 +27,18 @@ export default class Api extends ToolApi {
   validateBook() {
     const {
       tc: {
-        targetBook
-      }
+        targetBook,
+        project: {
+          getGroupsData
+        }
+      },
+      tool: {name: toolName}
     } = this.props;
+    const groupsData = getGroupsData(toolName);
+
     for (const chapter of Object.keys(targetBook)) {
       if (isNaN(chapter) || parseInt(chapter) === -1) continue;
-      this.validateChapter(chapter);
+      this.validateChapter(chapter, groupsData);
     }
   }
 
@@ -42,18 +48,19 @@ export default class Api extends ToolApi {
  * Books are loaded when a project is selected.
  * @param {String} chapter
  */
-  validateChapter(chapter) {
+  validateChapter(chapter, groupsData) {
     const {
       tc: {
         targetBook
-      }
+      },
     } = this.props;
+
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
       if (bibleChapter) {
         for (let verse of Object.keys(bibleChapter)) {
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse);
+          this._validateVerse(targetVerse, chapter, verse, groupsData);
         }
       }
     }
@@ -62,12 +69,17 @@ export default class Api extends ToolApi {
   validateVerse(chapter, verse) {
     const {
       tc: {
-        targetBook
-      }
+        targetBook,
+        project: {
+          getGroupsData
+        }
+      },
+      tool: {name: toolName}
     } = this.props;
+    const groupsData = getGroupsData(toolName);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse);
+    this._validateVerse(targetVerse, chapter, verse, groupsData);
   }
 
   /**
@@ -76,13 +88,12 @@ export default class Api extends ToolApi {
   * @param {number} verse
   * @return {Function}
   */
-  _validateVerse(targetVerse, chapter, verse) {
+  _validateVerse(targetVerse, chapter, verse, groupsData) {
     let {
       tc: {
         contextId: {reference: {bookId}},
         username: userName,
         project: {
-          getGroupsData,
           _projectPath: projectSaveLocation
         }
       },
@@ -95,7 +106,7 @@ export default class Api extends ToolApi {
         verse: parseInt(verse)
       }
     };
-    const groupsDataForVerse = getGroupDataForVerse(getGroupsData, contextId, name);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId, name);
     let filtered = null;
     let selectionsChanged = false;
     for (let groupItemKey of Object.keys(groupsDataForVerse)) {
