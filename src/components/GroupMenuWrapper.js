@@ -135,8 +135,6 @@ class GroupMenuWrapper extends React.Component {
     const sorted = entries.sort((a, b) => {
       const aName = (a.title || a.id).toLowerCase();
       const bName = (b.title || b.id).toLowerCase();
-      console.log("a=" + aName);
-      console.log("b=" + bName);
       return (aName < bName) ? -1 : (aName > bName) ? 1 : 0;
     });
     return (
