@@ -132,10 +132,15 @@ class GroupMenuWrapper extends React.Component {
     );
 
     const activeEntry = generateMenuItem(contextId, this.onProcessItem);
+    const sorted = entries.sort((a, b) => {
+      const aName = (a.title || a.id).toLowerCase();
+      const bName = (b.title || b.id).toLowerCase();
+      return (aName < bName) ? -1 : (aName > bName) ? 1 : 0;
+    });
     return (
       <GroupedMenu
         filters={filters}
-        entries={entries}
+        entries={sorted}
         active={activeEntry}
         statusIcons={statusIcons}
         emptyNotice={translate('menu.no_results')}
