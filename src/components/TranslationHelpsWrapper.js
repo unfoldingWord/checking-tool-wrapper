@@ -23,7 +23,7 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {contextIdReducer, resourcesReducer} = this.props || {};
+    const {contextIdReducer, resourcesReducer, toolsReducer:{currentToolName}} = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
     if (contextIdReducer !== nextContextIDReducer) {
       this._reloadArticle(nextProps);
@@ -32,8 +32,8 @@ class TranslationHelpsWrapper extends React.Component {
     const {contextId} = contextIdReducer;
     const nextContextId = nextContextIDReducer.contextId;
 
-    const currentArticle = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId);
-    const nextArticle = tHelpsHelpers.getArticleFromState(nextProps.resourcesReducer, nextContextId);
+    const currentArticle = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
+    const nextArticle = tHelpsHelpers.getArticleFromState(nextProps.resourcesReducer, nextContextId, currentToolName);
     if (currentArticle !== nextArticle) {
       var page = document.getElementById("helpsbody");
       if (page) page.scrollTop = 0;
@@ -105,7 +105,7 @@ class TranslationHelpsWrapper extends React.Component {
       translate
     } = this.props;
     const languageId = currentProjectToolsSelectedGL[currentToolName];
-    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId);
+    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
     const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
     return (
