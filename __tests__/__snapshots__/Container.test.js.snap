@@ -52,10 +52,8 @@ exports[`Container Tests Test Container 1`] = `
         </span>
       </div>
     </li>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -131,11 +129,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -211,11 +207,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -291,11 +285,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -371,11 +363,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33 jss35 jss110"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32 jss35 jss110"
     >
       <div
         class="jss111"
@@ -451,20 +441,18 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
+    </li>
     <div
       class="jss4"
     >
-      <div
-        class="jss36 jss24 jss125 jss27 jss32 jss33 jss126 jss35 jss127"
-        role="button"
-        tabindex="0"
+      <li
+        class="jss24 jss125 jss27 jss32 jss35 jss126"
       >
         <div
-          class="jss39 jss128 jss40"
+          class="jss39 jss127 jss40"
         >
           <span
-            class="jss45 jss54 jss42 jss129"
+            class="jss45 jss54 jss42 jss128"
           >
             <span>
               function () {
@@ -473,17 +461,15 @@ exports[`Container Tests Test Container 1`] = `
             </span>
           </span>
         </div>
-      </div>
-      <div
-        class="jss36 jss24 jss125 jss27 jss32 jss33 jss126"
-        role="button"
-        tabindex="0"
+      </li>
+      <li
+        class="jss24 jss125 jss27 jss32"
       >
         <div
-          class="jss39 jss128 jss40"
+          class="jss39 jss127 jss40"
         >
           <span
-            class="jss45 jss54 jss42 jss129"
+            class="jss45 jss54 jss42 jss128"
           >
             <span>
               function () {
@@ -492,12 +478,10 @@ exports[`Container Tests Test Container 1`] = `
             </span>
           </span>
         </div>
-      </div>
+      </li>
     </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -573,11 +557,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -653,11 +635,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -733,11 +713,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -813,11 +791,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -893,11 +869,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -973,11 +947,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1053,11 +1025,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1133,11 +1103,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1213,11 +1181,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1293,11 +1259,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1373,11 +1337,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1453,11 +1415,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1533,11 +1493,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1613,11 +1571,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1693,11 +1649,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1773,11 +1727,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1853,11 +1805,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -1933,11 +1883,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2013,11 +1961,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2093,11 +2039,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2173,11 +2117,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2253,11 +2195,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2333,11 +2273,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2413,11 +2351,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2493,11 +2429,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2573,11 +2507,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2653,11 +2585,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2733,11 +2663,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2813,11 +2741,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2893,11 +2819,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -2973,11 +2897,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3053,11 +2975,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3133,11 +3053,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3213,11 +3131,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3293,11 +3209,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3373,11 +3287,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3453,11 +3365,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3533,11 +3443,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3613,11 +3521,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3693,11 +3599,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3773,11 +3677,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3853,11 +3755,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -3933,11 +3833,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4013,11 +3911,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4093,11 +3989,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4173,11 +4067,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4253,11 +4145,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4333,11 +4223,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4413,11 +4301,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4493,11 +4379,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4573,11 +4457,9 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
-    <div
-      class="jss36 jss24 jss109 jss27 jss32 jss33"
-      role="button"
-      tabindex="0"
+    </li>
+    <li
+      class="jss24 jss109 jss27 jss32"
     >
       <div
         class="jss111"
@@ -4653,7 +4535,7 @@ exports[`Container Tests Test Container 1`] = `
           fill="none"
         />
       </svg>
-    </div>
+    </li>
   </nav>
   <div
     style="display:flex;flex-direction:column;width:100%;overflow-x:auto"
