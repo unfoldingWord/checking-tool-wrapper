@@ -6,6 +6,21 @@ import ModeCommentIcon from '@material-ui/icons/ModeComment';
 import EditIcon from '@material-ui/icons/Edit';
 import {GroupedMenu, generateMenuData, generateMenuItem, InvalidatedIcon, CheckIcon} from 'tc-ui-toolkit';
 
+export function generateItemId(occurrence, bookId, chapter, verse, quote) {
+  let quoteId = "";
+  if (Array.isArray(quote)) { // is a bit more complicated
+    const parts = [];
+    for (let i = 0, l = quote.length; i < l; i++) {
+      const quotePart = quote[i];
+      parts.push(quotePart.occurrence + ":" + quotePart.word);
+    }
+    quoteId = parts.join(":");
+  } else {
+    quoteId = `${occurrence}:${quote}`;
+  }
+  return `${quoteId}:${verse}:${chapter}:${bookId}`;
+}
+
 class GroupMenuWrapper extends React.Component {
 
   /**
@@ -49,7 +64,7 @@ class GroupMenuWrapper extends React.Component {
     return {
       ...item,
       title: `${passageText} ${selectionText}`,
-      itemId: `${occurrence}:${bookId}:${chapter}:${verse}:${quote}`,
+      itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
       finished: !!item.selections && !item.invalidated,
       tooltip: selectionText
     };
