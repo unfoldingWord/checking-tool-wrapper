@@ -4862,7 +4862,9 @@ exports[`Container Tests Test Container 1`] = `
                         βλασφημῆται
                       </span>
                     </span>
-                    <span>
+                    <span
+                      style="background-color:var(--highlight-color)"
+                    >
                       .
 
 
