@@ -21,10 +21,10 @@ export default class Api extends ToolApi {
    * Lifecycle method
    */
   toolWillConnect() {
-    this.validateBook(this.props);
+    this.validateBook(true);
   }
 
-  validateBook() {
+  validateBook(silent) {
     const {
       tc: {
         targetBook,
@@ -38,7 +38,7 @@ export default class Api extends ToolApi {
 
     for (const chapter of Object.keys(targetBook)) {
       if (isNaN(chapter) || parseInt(chapter) === -1) continue;
-      this.validateChapter(chapter, groupsData);
+      this.validateChapter(chapter, groupsData, silent);
     }
   }
 
@@ -48,7 +48,7 @@ export default class Api extends ToolApi {
  * Books are loaded when a project is selected.
  * @param {String} chapter
  */
-  validateChapter(chapter, groupsData) {
+  validateChapter(chapter, groupsData, silent) {
     const {
       tc: {
         targetBook
@@ -60,13 +60,13 @@ export default class Api extends ToolApi {
       if (bibleChapter) {
         for (let verse of Object.keys(bibleChapter)) {
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse, groupsData);
+          this._validateVerse(targetVerse, chapter, verse, groupsData, silent);
         }
       }
     }
   }
 
-  validateVerse(chapter, verse) {
+  validateVerse(chapter, verse, silent = false, groupsData) {
     const {
       tc: {
         targetBook,
@@ -76,10 +76,10 @@ export default class Api extends ToolApi {
       },
       tool: {name: toolName}
     } = this.props;
-    const groupsData = getGroupsData(toolName);
+    const _groupsData = groupsData || getGroupsData(toolName);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse, groupsData);
+    this._validateVerse(targetVerse, chapter, verse, _groupsData, silent);
   }
 
   /**
@@ -88,7 +88,7 @@ export default class Api extends ToolApi {
   * @param {number} verse
   * @return {Function}
   */
-  _validateVerse(targetVerse, chapter, verse, groupsData) {
+  _validateVerse(targetVerse, chapter, verse, groupsData, silent) {
     let {
       tc: {
         contextId: {reference: {bookId}},
@@ -150,8 +150,7 @@ export default class Api extends ToolApi {
         }
       }
     }
-
-    if (selectionsChanged) {
+    if (selectionsChanged && !silent) {
       this._showResetDialog();
     }
   }
