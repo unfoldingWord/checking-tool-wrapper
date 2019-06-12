@@ -22,6 +22,7 @@ class VerseCheckWrapper extends React.Component {
       verseText: undefined,
       verseChanged: false,
       selections: [],
+      nothingToSelect: false,
       tags: [],
       dialogModalVisibility: false,
       goToNextOrPrevious: null,
@@ -267,6 +268,7 @@ class VerseCheckWrapper extends React.Component {
     let selections = optimizeSelections(verseText, this.state.selections);
     this.props.actions.changeSelections(selections, this.props.loginReducer.userdata.username);
     this.actions.changeMode('default');
+    this.props.actions.setNothingToSelect(this.state.nothingToSelect);
   }
 
   /**
@@ -324,9 +326,6 @@ class VerseCheckWrapper extends React.Component {
       toolsReducer,
       groupsDataReducer,
       remindersReducer,
-      actions: {
-        toggleNothingToSelect
-      }
     } = this.props;
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
@@ -335,7 +334,7 @@ class VerseCheckWrapper extends React.Component {
     return (
       <VerseCheck
         translate={translate}
-        toggleNothingToSelect={toggleNothingToSelect}
+        toggleNothingToSelect={nothingToSelect => this.setState({ nothingToSelect })}
         commentsReducer={commentsReducer}
         remindersReducer={remindersReducer}
         projectDetailsReducer={{currentProjectToolsSelectedGL, manifest, projectSaveLocation}}
@@ -384,6 +383,7 @@ VerseCheckWrapper.propTypes = {
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
+    setNothingToSelect: PropTypes.func.isRequired,
   }),
   projectDetailsReducer: PropTypes.object.isRequired
 };
