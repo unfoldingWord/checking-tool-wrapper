@@ -253,7 +253,8 @@ class VerseCheckWrapper extends React.Component {
 
 
   cancelSelection() {
-    this.setState({ nothingToSelect: false });
+    const { nothingToSelect } = this.props.selectionsReducer;
+    this.setState({ nothingToSelect });
     this.actions.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
     this.actions.changeMode('default');
   }
@@ -377,7 +378,8 @@ VerseCheckWrapper.propTypes = {
   commentsReducer: PropTypes.object,
   resourcesReducer: PropTypes.object,
   selectionsReducer: PropTypes.shape({
-    selections: PropTypes.array
+    selections: PropTypes.array,
+    nothingToSelect: PropTypes.bool,
   }),
   groupsDataReducer: PropTypes.object,
   loginReducer: PropTypes.object,
