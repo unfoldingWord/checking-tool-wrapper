@@ -253,6 +253,7 @@ class VerseCheckWrapper extends React.Component {
 
 
   cancelSelection() {
+    this.setState({ nothingToSelect: false });
     this.actions.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
     this.actions.changeMode('default');
   }
