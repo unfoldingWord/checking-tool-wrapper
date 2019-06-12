@@ -14,6 +14,7 @@ class VerseCheckWrapper extends React.Component {
     const mode = props.selectionsReducer &&
       props.selectionsReducer.selections &&
       props.selectionsReducer.selections.length > 0 || verseText.length === 0 ? 'default' : 'select';
+    const { nothingToSelect } = props.selectionsReducer;
 
     this.state = {
       mode: mode,
@@ -22,7 +23,7 @@ class VerseCheckWrapper extends React.Component {
       verseText: undefined,
       verseChanged: false,
       selections: [],
-      nothingToSelect: false,
+      nothingToSelect,
       tags: [],
       dialogModalVisibility: false,
       goToNextOrPrevious: null,
