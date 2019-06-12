@@ -319,7 +319,10 @@ class VerseCheckWrapper extends React.Component {
       currentToolName,
       projectDetailsReducer: {currentProjectToolsSelectedGL, manifest, projectSaveLocation},
       loginReducer,
-      selectionsReducer: {selections},
+      selectionsReducer: {
+        selections,
+        nothingToSelect,
+      },
       contextIdReducer: {contextId},
       resourcesReducer,
       commentsReducer,
@@ -340,7 +343,7 @@ class VerseCheckWrapper extends React.Component {
         projectDetailsReducer={{currentProjectToolsSelectedGL, manifest, projectSaveLocation}}
         contextIdReducer={{contextId}}
         resourcesReducer={resourcesReducer}
-        selectionsReducer={{selections}}
+        selectionsReducer={{selections, nothingToSelect}}
         loginReducer={loginReducer}
         toolsReducer={toolsReducer}
         groupsDataReducer={groupsDataReducer}
