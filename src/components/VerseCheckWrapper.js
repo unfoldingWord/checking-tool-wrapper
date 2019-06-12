@@ -323,7 +323,10 @@ class VerseCheckWrapper extends React.Component {
       commentsReducer,
       toolsReducer,
       groupsDataReducer,
-      remindersReducer
+      remindersReducer,
+      actions: {
+        toggleNothingToSelect
+      }
     } = this.props;
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
@@ -332,6 +335,7 @@ class VerseCheckWrapper extends React.Component {
     return (
       <VerseCheck
         translate={translate}
+        toggleNothingToSelect={toggleNothingToSelect}
         commentsReducer={commentsReducer}
         remindersReducer={remindersReducer}
         projectDetailsReducer={{currentProjectToolsSelectedGL, manifest, projectSaveLocation}}
