@@ -73,7 +73,11 @@ class VerseCheckWrapper extends React.Component {
       },
       changeSelectionsInLocalState(selections) {
         const { nothingToSelect } = _this.props.selectionsReducer;
-        _this.setState({ nothingToSelect });
+        if (selections.length > 0) {
+          _this.setState({ nothingToSelect: false });
+        } else {
+          _this.setState({ nothingToSelect });
+        }
         _this.setState({selections});
       },
       changeMode(mode) {
