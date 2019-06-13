@@ -13,7 +13,8 @@ class VerseCheckWrapper extends React.Component {
     let {verseText} = this.getVerseText();
     const mode = props.selectionsReducer &&
       props.selectionsReducer.selections &&
-      props.selectionsReducer.selections.length > 0 || verseText.length === 0 ? 'default' : 'select';
+      props.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
+      'default' : props.selectionsReducer.nothingToSelect ? 'default' : 'select';
     const { nothingToSelect } = props.selectionsReducer;
 
     this.state = {
@@ -225,7 +226,8 @@ class VerseCheckWrapper extends React.Component {
       if (Array.isArray(verseText)) verseText = verseText[0];
       // normalize whitespace in case selection has contiguous whitespace _this isn't captured
       verseText = normalizeString(verseText);
-      const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ? 'default' : 'select';
+      const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
+        'default' : nextProps.selectionsReducer.nothingToSelect ? 'default' : 'select';
       this.setState({
         mode: mode,
         comments: undefined,
