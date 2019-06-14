@@ -220,6 +220,7 @@ class VerseCheckWrapper extends React.Component {
     const nextContextIDReducer = nextProps.contextIdReducer;
     if (contextIdReducer !== nextContextIDReducer) {
       const selections = Array.from(nextProps.selectionsReducer.selections);
+      console.log('selectionsReducer', nextProps.selectionsReducer);
       const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
       const {chapter, verse} = nextContextIDReducer.contextId.reference || {};
       const {targetBible} = nextProps.resourcesReducer.bibles.targetLanguage || {};
