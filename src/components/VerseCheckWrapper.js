@@ -279,7 +279,8 @@ class VerseCheckWrapper extends React.Component {
     let {verseText} = this.getVerseText();
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
-    this.props.actions.changeSelections(selections, this.props.loginReducer.userdata.username);
+    const { username } = this.props.loginReducer.userdata;
+    this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
     this.actions.changeMode('default');
     // const { nothingToSelect } = this.props.selectionsReducer;
     // if (this.state.nothingToSelect !== nothingToSelect) {
