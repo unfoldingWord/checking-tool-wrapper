@@ -139,6 +139,9 @@ class GroupMenuWrapper extends React.Component {
       }
     ];
 
+    console.log('groupsIndex', groupsIndex);
+    console.log('groupsData', groupsData);
+
     const entries = generateMenuData(
       groupsIndex,
       groupsData,

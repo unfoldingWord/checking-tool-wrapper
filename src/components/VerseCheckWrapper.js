@@ -282,10 +282,6 @@ class VerseCheckWrapper extends React.Component {
     const { username } = this.props.loginReducer.userdata;
     this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
     this.actions.changeMode('default');
-    // const { nothingToSelect } = this.props.selectionsReducer;
-    // if (this.state.nothingToSelect !== nothingToSelect) {
-    //   this.props.actions.setNothingToSelect(this.state.nothingToSelect);
-    // }
   }
 
   /**
@@ -405,7 +401,6 @@ VerseCheckWrapper.propTypes = {
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
-    setNothingToSelect: PropTypes.func.isRequired,
   }),
   projectDetailsReducer: PropTypes.object.isRequired
 };
