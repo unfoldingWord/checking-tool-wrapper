@@ -219,7 +219,8 @@ class VerseCheckWrapper extends React.Component {
     const {contextIdReducer} = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
     if (contextIdReducer !== nextContextIDReducer) {
-      let selections = Array.from(nextProps.selectionsReducer.selections);
+      const selections = Array.from(nextProps.selectionsReducer.selections);
+      const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
       const {chapter, verse} = nextContextIDReducer.contextId.reference || {};
       const {targetBible} = nextProps.resourcesReducer.bibles.targetLanguage || {};
       let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : "";
@@ -233,6 +234,7 @@ class VerseCheckWrapper extends React.Component {
         comments: undefined,
         verseText: undefined,
         selections,
+        nothingToSelect,
         tags: []
       });
     }
