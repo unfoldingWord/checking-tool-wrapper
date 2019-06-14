@@ -220,7 +220,6 @@ class VerseCheckWrapper extends React.Component {
     const nextContextIDReducer = nextProps.contextIdReducer;
     if (contextIdReducer !== nextContextIDReducer) {
       const selections = Array.from(nextProps.selectionsReducer.selections);
-      console.log('selectionsReducer', nextProps.selectionsReducer);
       const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
       const {chapter, verse} = nextContextIDReducer.contextId.reference || {};
       const {targetBible} = nextProps.resourcesReducer.bibles.targetLanguage || {};
@@ -282,7 +281,10 @@ class VerseCheckWrapper extends React.Component {
     let selections = optimizeSelections(verseText, this.state.selections);
     this.props.actions.changeSelections(selections, this.props.loginReducer.userdata.username);
     this.actions.changeMode('default');
-    this.props.actions.setNothingToSelect(this.state.nothingToSelect);
+    // const { nothingToSelect } = this.props.selectionsReducer;
+    // if (this.state.nothingToSelect !== nothingToSelect) {
+    //   this.props.actions.setNothingToSelect(this.state.nothingToSelect);
+    // }
   }
 
   /**
