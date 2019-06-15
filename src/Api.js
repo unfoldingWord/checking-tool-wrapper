@@ -177,17 +177,14 @@ export default class Api extends ToolApi {
         const data = project.getGroupData(name, group);
         if (data && data.constructor === Array) {
           for (const check of data) {
-            console.log('check', check);
             totalChecks++;
-            completedChecks += check.selections ? 1 : check.nothingToSelect ? 1 : 0;
+            completedChecks += (check.selections || check.nothingToSelect) ? 1 : 0;
           }
         } else {
           console.warn(`Invalid group data found for "${group}"`);
         }
       }
     }
-
-    console.log('completedChecks', completedChecks);
 
     if (totalChecks === 0) {
       return 0;
