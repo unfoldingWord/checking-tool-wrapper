@@ -68,7 +68,8 @@ class GroupMenuWrapper extends React.Component {
       ...item,
       title: `${passageText} ${selectionText}`,
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
-      finished: !!item.nothingToSelect ? true : !!item.selections && !item.invalidated,
+      finished: !!item.selections && !item.invalidated,
+      nothingToSelect: !!item.nothingToSelect,
       tooltip: selectionText
     };
   };
@@ -130,6 +131,10 @@ class GroupMenuWrapper extends React.Component {
       },
       {
         key: 'finished',
+        icon: <CheckIcon style={{color: "#58c17a"}}/>
+      },
+      {
+        key: 'nothingToSelect',
         icon: <CheckIcon style={{color: "#58c17a"}}/>
       },
       {
