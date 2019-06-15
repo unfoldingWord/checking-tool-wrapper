@@ -187,7 +187,7 @@ export default class Api extends ToolApi {
       }
     }
 
-    console.log(completedChecks);
+    console.log('completedChecks', completedChecks);
 
     if (totalChecks === 0) {
       return 0;
