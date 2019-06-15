@@ -101,6 +101,11 @@ class GroupMenuWrapper extends React.Component {
         icon: <CheckIcon/>
       },
       {
+        label: translate('no_selection_needed'),
+        key: 'nothingToSelect',
+        icon: <CheckIcon/>
+      },
+      {
         label: translate('menu.no_selection'),
         id: 'not-finished',
         key: 'finished',
