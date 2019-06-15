@@ -147,14 +147,12 @@ class GroupMenuWrapper extends React.Component {
       }
     ];
 
-    console.log('groupsIndex', groupsIndex);
-    console.log('groupsData', groupsData);
-
     const entries = generateMenuData(
       groupsIndex,
       groupsData,
       'selections',
-      this.onProcessItem
+      this.onProcessItem,
+      'nothingToSelect'
     );
 
     const activeEntry = generateMenuItem(contextId, this.onProcessItem);
