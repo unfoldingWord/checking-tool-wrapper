@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import React from 'react';
 import PropTypes from 'prop-types';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
@@ -67,7 +68,7 @@ class GroupMenuWrapper extends React.Component {
       ...item,
       title: `${passageText} ${selectionText}`,
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
-      finished: !!item.selections && !item.invalidated,
+      finished: !!item.nothingToSelect ? true : !!item.selections && !item.invalidated,
       tooltip: selectionText
     };
   };
