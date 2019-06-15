@@ -178,7 +178,7 @@ export default class Api extends ToolApi {
         if (data && data.constructor === Array) {
           for (const check of data) {
             totalChecks++;
-            completedChecks += check.selections ? 1 : 0;
+            completedChecks += check.selections || check.nothingToSelect ? 1 : 0;
           }
         } else {
           console.warn(`Invalid group data found for "${group}"`);
