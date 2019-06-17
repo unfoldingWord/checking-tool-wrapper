@@ -62,8 +62,6 @@ class GroupMenuWrapper extends React.Component {
       passageText = `${bookId} ${chapter}:${verse}`;
     }
 
-    console.log('item', item);
-
     return {
       ...item,
       title: `${passageText} ${selectionText}`,
