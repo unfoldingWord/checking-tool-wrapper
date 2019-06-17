@@ -13,7 +13,9 @@ class VerseCheckWrapper extends React.Component {
     let {verseText} = this.getVerseText();
     const mode = props.selectionsReducer &&
       props.selectionsReducer.selections &&
-      props.selectionsReducer.selections.length > 0 || verseText.length === 0 ? 'default' : 'select';
+      props.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
+      'default' : props.selectionsReducer.nothingToSelect ? 'default' : 'select';
+    const { nothingToSelect } = props.selectionsReducer;
 
     this.state = {
       mode: mode,
@@ -22,6 +24,7 @@ class VerseCheckWrapper extends React.Component {
       verseText: undefined,
       verseChanged: false,
       selections: [],
+      nothingToSelect,
       tags: [],
       dialogModalVisibility: false,
       goToNextOrPrevious: null,
@@ -70,6 +73,12 @@ class VerseCheckWrapper extends React.Component {
         props.actions.goToPrevious();
       },
       changeSelectionsInLocalState(selections) {
+        const { nothingToSelect } = _this.props.selectionsReducer;
+        if (selections.length > 0) {
+          _this.setState({ nothingToSelect: false });
+        } else {
+          _this.setState({ nothingToSelect });
+        }
         _this.setState({selections});
       },
       changeMode(mode) {
@@ -210,19 +219,22 @@ class VerseCheckWrapper extends React.Component {
     const {contextIdReducer} = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
     if (contextIdReducer !== nextContextIDReducer) {
-      let selections = Array.from(nextProps.selectionsReducer.selections);
+      const selections = Array.from(nextProps.selectionsReducer.selections);
+      const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
       const {chapter, verse} = nextContextIDReducer.contextId.reference || {};
       const {targetBible} = nextProps.resourcesReducer.bibles.targetLanguage || {};
       let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : "";
       if (Array.isArray(verseText)) verseText = verseText[0];
       // normalize whitespace in case selection has contiguous whitespace _this isn't captured
       verseText = normalizeString(verseText);
-      const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ? 'default' : 'select';
+      const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
+        'default' : nextProps.selectionsReducer.nothingToSelect ? 'default' : 'select';
       this.setState({
         mode: mode,
         comments: undefined,
         verseText: undefined,
         selections,
+        nothingToSelect,
         tags: []
       });
     }
@@ -251,6 +263,8 @@ class VerseCheckWrapper extends React.Component {
 
 
   cancelSelection() {
+    const { nothingToSelect } = this.props.selectionsReducer;
+    this.setState({ nothingToSelect });
     this.actions.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
     this.actions.changeMode('default');
   }
@@ -265,7 +279,8 @@ class VerseCheckWrapper extends React.Component {
     let {verseText} = this.getVerseText();
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
-    this.props.actions.changeSelections(selections, this.props.loginReducer.userdata.username);
+    const { username } = this.props.loginReducer.userdata;
+    this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
     this.actions.changeMode('default');
   }
 
@@ -317,13 +332,16 @@ class VerseCheckWrapper extends React.Component {
       currentToolName,
       projectDetailsReducer: {currentProjectToolsSelectedGL, manifest, projectSaveLocation},
       loginReducer,
-      selectionsReducer: {selections},
+      selectionsReducer: {
+        selections,
+        nothingToSelect,
+      },
       contextIdReducer: {contextId},
       resourcesReducer,
       commentsReducer,
       toolsReducer,
       groupsDataReducer,
-      remindersReducer
+      remindersReducer,
     } = this.props;
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
@@ -332,12 +350,14 @@ class VerseCheckWrapper extends React.Component {
     return (
       <VerseCheck
         translate={translate}
+        toggleNothingToSelect={nothingToSelect => this.setState({ nothingToSelect })}
         commentsReducer={commentsReducer}
+        localNothingToSelect={this.state.nothingToSelect}
         remindersReducer={remindersReducer}
         projectDetailsReducer={{currentProjectToolsSelectedGL, manifest, projectSaveLocation}}
         contextIdReducer={{contextId}}
         resourcesReducer={resourcesReducer}
-        selectionsReducer={{selections}}
+        selectionsReducer={{selections, nothingToSelect}}
         loginReducer={loginReducer}
         toolsReducer={toolsReducer}
         groupsDataReducer={groupsDataReducer}
@@ -368,7 +388,8 @@ VerseCheckWrapper.propTypes = {
   commentsReducer: PropTypes.object,
   resourcesReducer: PropTypes.object,
   selectionsReducer: PropTypes.shape({
-    selections: PropTypes.array
+    selections: PropTypes.array,
+    nothingToSelect: PropTypes.bool,
   }),
   groupsDataReducer: PropTypes.object,
   loginReducer: PropTypes.object,

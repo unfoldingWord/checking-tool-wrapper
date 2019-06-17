@@ -5437,34 +5437,86 @@ exports[`Container Tests Test Container 1`] = `
             </div>
           </div>
           <div
-            class="actions-area"
+            class="selection-actions-area"
           >
-            <button
-              class="btn-second"
-              style="align-self:flex-start"
+            <div
+              data-class="selection-tooltip"
+              data-delay-hide="100"
+              data-effect="float"
+              data-place="top"
+              data-tip="nothing_to_select_description"
+              data-type="dark"
+              style="vertical-align:super;font-size:0.8em"
             >
-              cancel
-            </button>
-            <button
-              class="btn-second"
-              disabled=""
-            >
-              <span
-                class="glyphicon glyphicon-erase"
-                style="margin-right:10px"
+              <label
+                class="jss155 jss151"
+              >
+                <span
+                  class="jss177 jss171 jss167 jss161 jss153 jss165"
+                >
+                  <span
+                    class="jss176"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="jss180"
+                      focusable="false"
+                      role="presentation"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                    <input
+                      class="jss170"
+                      data-indeterminate="false"
+                      type="checkbox"
+                      value="nothingToSelect"
+                    />
+                  </span>
+                </span>
+                <span
+                  class="jss189 jss197 jss160 jss152"
+                >
+                  No selection needed
+                </span>
+              </label>
+              <div
+                class="__react_component_tooltip place-top type-dark "
+                data-id="tooltip"
               />
-              clear_selection
-            </button>
-            <button
-              class="btn-prime"
-              disabled=""
-            >
-              <span
-                class="glyphicon glyphicon-ok"
-                style="margin-right:10px"
-              />
-              save
-            </button>
+            </div>
+            <div>
+              <button
+                class="btn-second"
+                style="width:140px;margin-right:5px;align-self:flex-start"
+              >
+                cancel
+              </button>
+              <button
+                class="btn-second"
+                disabled=""
+                style="width:140px;margin-right:5px"
+              >
+                <span
+                  class="glyphicon glyphicon-erase"
+                  style="margin-right:10px"
+                />
+                clear_selection
+              </button>
+              <button
+                class="btn-prime"
+                disabled=""
+                style="width:140px;margin-right:5px"
+              >
+                <span
+                  class="glyphicon glyphicon-ok"
+                  style="margin-right:10px"
+                />
+                save
+              </button>
+            </div>
           </div>
         </div>
         <div />
