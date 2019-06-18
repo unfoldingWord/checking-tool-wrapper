@@ -2,6 +2,7 @@ import {ToolApi} from 'tc-tool';
 import path from 'path-extra';
 import usfm from "usfm-js";
 import fs from 'fs-extra';
+import isEqual from 'deep-equal';
 import {checkSelectionOccurrences} from 'selections';
 import {getGroupDataForVerse} from './helpers/groupDataHelpers';
 import {generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo} from './helpers/validationHelpers';
@@ -250,6 +251,7 @@ export default class Api extends ToolApi {
         return path.extname(file) === '.json';
       });
       let sortedRecords = files.sort().reverse();
+      const isQuoteArray = Array.isArray(quote);
 
       // load check data
       for (let i = 0, len = sortedRecords.length; i < len; i++) {
@@ -261,6 +263,7 @@ export default class Api extends ToolApi {
           // return first match
           if (recordData.contextId.groupId === groupId &&
             recordData.contextId.quote === quote &&
+            (isQuoteArray ? isEqual(recordData.contextId.quote, quote) : (recordData.contextId.quote === quote)) &&
             recordData.contextId.occurrence === occurrence) {
             return recordData;
           }
