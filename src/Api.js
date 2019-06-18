@@ -262,7 +262,6 @@ export default class Api extends ToolApi {
 
           // return first match
           if (recordData.contextId.groupId === groupId &&
-            recordData.contextId.quote === quote &&
             (isQuoteArray ? isEqual(recordData.contextId.quote, quote) : (recordData.contextId.quote === quote)) &&
             recordData.contextId.occurrence === occurrence) {
             return recordData;
