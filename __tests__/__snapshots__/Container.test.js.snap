@@ -5440,26 +5440,20 @@ exports[`Container Tests Test Container 1`] = `
             class="selection-actions-area"
           >
             <div
-              data-class="selection-tooltip"
-              data-delay-hide="100"
-              data-effect="float"
-              data-place="top"
-              data-tip="nothing_to_select_description"
-              data-type="dark"
-              style="vertical-align:super;font-size:0.8em"
+              class="flex-row"
             >
               <label
-                class="jss155 jss151"
+                class="jss156 jss151"
               >
                 <span
-                  class="jss177 jss171 jss167 jss161 jss153 jss165"
+                  class="jss178 jss172 jss168 jss162 jss153 jss166"
                 >
                   <span
-                    class="jss176"
+                    class="jss177"
                   >
                     <svg
                       aria-hidden="true"
-                      class="jss180"
+                      class="jss181"
                       focusable="false"
                       role="presentation"
                       viewBox="0 0 24 24"
@@ -5469,7 +5463,7 @@ exports[`Container Tests Test Container 1`] = `
                       />
                     </svg>
                     <input
-                      class="jss170"
+                      class="jss171"
                       data-indeterminate="false"
                       type="checkbox"
                       value="nothingToSelect"
@@ -5477,15 +5471,40 @@ exports[`Container Tests Test Container 1`] = `
                   </span>
                 </span>
                 <span
-                  class="jss189 jss197 jss160 jss152"
+                  class="jss190 jss198 jss161 jss152"
                 >
                   No selection needed
                 </span>
               </label>
               <div
-                class="__react_component_tooltip place-top type-dark "
-                data-id="tooltip"
-              />
+                data-class="selection-tooltip"
+                data-delay-hide="100"
+                data-effect="float"
+                data-place="top"
+                data-tip="nothing_to_select_description"
+                data-type="dark"
+                style="vertical-align:super;font-size:0.8em"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="jss181 jss155"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+                <div
+                  class="__react_component_tooltip place-top type-dark "
+                  data-id="tooltip"
+                />
+              </div>
             </div>
             <div>
               <button
