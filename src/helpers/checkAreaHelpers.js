@@ -20,7 +20,7 @@ export const getAlignedText = (verseObjects, wordsToMatch, occurrenceToMatch, is
     let lastMatch = false;
     if ((verseObject.type === 'milestone' || verseObject.type === 'word')) {
       // It is a milestone or a word...we want to handle all of them.
-      if ((wordsToMatch.indexOf(verseObject.content) >= 0 && verseObject.occurrence === occurrenceToMatch) || isMatch) {
+      if (isMatch || wordsToMatch.find(item => (verseObject.content === item.word) && (verseObject.occurrence === item.occurrence))) {
         lastMatch = true;
         // We have a match (or previoiusly had a match in the parent) so we want to include all text that we find,
         if (needsEllipsis) {
@@ -77,14 +77,10 @@ export const getAlignedText = (verseObjects, wordsToMatch, occurrenceToMatch, is
  * @return {Array}
  */
 export function getQuoteAsArray(contextId) {
-  let quoteArray = [];
-  if (Array.isArray(contextId.quote)) {
-    for (let i = 0, l = contextId.quote.length; i < l; i++) {
-      const wordItem = contextId.quote[i];
-      quoteArray.push(wordItem.word);
-    }
-  } else {
+  let quoteArray = contextId.quote;
+  if (!Array.isArray(contextId.quote)) { // should only be string in case of single word quote
     quoteArray = contextId.quote.split(' ');
+    quoteArray = quoteArray.map(word => ({word, occurrence: contextId.occurrence}));
   }
   return quoteArray;
 }
