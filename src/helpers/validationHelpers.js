@@ -52,11 +52,13 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
     if (quote) {
       sorted = sorted.filter((filename) => {
         const currentSelectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
-        return currentSelectionsObject.contextId.quote === quote;
+        return isEqual(currentSelectionsObject.contextId.quote, quote); // add support for quote arrays
       });
     }
-    const filename = sorted[0];
-    selectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
+    if (sorted.length) { // sanity check to prevent exception being thrown
+      const filename = sorted[0]; // get first item which will be latest match
+      selectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
+    }
   }
   return selectionsObject;
 }

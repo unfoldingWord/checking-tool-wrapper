@@ -128,7 +128,7 @@ export default class Api extends ToolApi {
                 projectSaveLocation,
                 checkingOccurrence.contextId.quote
               );
-              //If selections are changed, they need to be clearded
+              //If selections are changed, they need to be cleared
               selectionsChanged = true;
               const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
               const invalidatedPayload = {
