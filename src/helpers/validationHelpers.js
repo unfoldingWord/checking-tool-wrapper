@@ -52,7 +52,7 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
     if (quote) {
       sorted = sorted.filter((filename) => {
         const currentSelectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
-        return isEqual(currentSelectionsObject.contextId.quote, quote); // add support for arrays
+        return isEqual(currentSelectionsObject.contextId.quote, quote); // add support for quote arrays
       });
     }
     if (sorted.length) { // sanity check to prevent exception being thrown
