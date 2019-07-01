@@ -346,7 +346,7 @@ class VerseCheckWrapper extends React.Component {
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
     const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName);
+      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate);
     return (
       <VerseCheck
         translate={translate}

@@ -1,6 +1,6 @@
 import {getAlignedText} from 'tc-ui-toolkit';
 
-export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName) {
+export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, translate) {
   const selectedGL = currentProjectToolsSelectedGL[currentToolName];
   if(! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length)
     return contextId.quote;
@@ -15,7 +15,18 @@ export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bible
       }
     }
   }
-  return contextId.quote;
+  const origLangQuote = getQuoteAsString(contextId.quote);
+  const message = translate("quote_invalid", {quote: origLangQuote});
+  return message;
+}
+
+export function getQuoteAsString(quote) {
+  if (Array.isArray(quote)) {
+    return quote.map(({word}) => word).join(' ');
+  } else if (typeof quote === 'string') {
+    return quote;
+  }
+  return "";
 }
 
 export function bibleIdSort(a, b) {

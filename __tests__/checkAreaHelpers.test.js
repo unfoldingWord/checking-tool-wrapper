@@ -434,6 +434,48 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
   });
+
+  it('should return error message if original language quote string is not matched', () => {
+    // given
+    const currentProjectToolsSelectedGL = {
+      translationWords: 'en',
+      currentToolName: 'translationWords'
+    };
+    const contextId = {
+      groupId: 'blameless',
+      occurrence: 1,
+      quote: 'ἀνέγκλητο',
+      reference: {
+        bookId: 'tit',
+        chapter: 1,
+        verse: 6
+      },
+      strong: ['G04100'],
+      tool: 'translationWords'
+    };
+    const bibles = {
+      en: {
+        'ult': {
+          1: {
+            6: {
+              verseObjects: verseObjects
+            }
+          }
+        },
+        'ulb': []
+      }
+    };
+    const currentToolName = 'translationWords';
+    const expectedAlignedGLText = 'quote_invalid';
+
+    // when
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k);
+
+    // then
+    expect(alignedGLText).toEqual(expectedAlignedGLText);
+  });
+
+
 });
 
 describe('checkAreayHelpers.bibleIdSort', () => {
