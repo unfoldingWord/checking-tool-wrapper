@@ -21,12 +21,15 @@ export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bible
 }
 
 export function getQuoteAsString(quote) {
+  let text = "";
   if (Array.isArray(quote)) {
-    return quote.map(({word}) => word).join(' ');
+    text = quote.map(({word}) => word).join(' ');
   } else if (typeof quote === 'string') {
-    return quote;
+    text = quote;
   }
-  return "";
+  // remove space before any punctuation that is used in Greek except `...` and `…`
+  text = text.replace(/\s+(?!\.\.\.)(?!…)([.,;'’`?!"]+)/g, '$1');
+  return text;
 }
 
 export function bibleIdSort(a, b) {
