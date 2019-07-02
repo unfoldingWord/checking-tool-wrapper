@@ -476,7 +476,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
   });
 });
 
-describe('csvHelpers.flattenQuote', () => {
+describe('checkAreaHelpers.getQuoteAsString', () => {
   test('should return a quote as a string when given an array with lots of punctuation', () => {
     const quote = [
       {word: "εἰς", occurrence: 1},
