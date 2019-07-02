@@ -474,8 +474,36 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
   });
+});
 
+describe('csvHelpers.flattenQuote', () => {
+  test('should return a quote as a string when given an array with lots of punctuation', () => {
+    const quote = [
+      {word: "εἰς", occurrence: 1},
+      {word: "τὰς", occurrence: 1},
+      {word: ".", occurrence: 1},
+      {word: "ἀναγκαίας", occurrence: 1},
+      {word: "-", occurence: 1},
+      {word: "χρείας", occurrence: 1},
+      {word: ",", occurrence: 1},
+      {word: "ἵνα", occurrence: 1},
+      {word: "...", occurrence: 1},
+      {word: "μὴ", occurrence: 1},
+      {word: "ὦσιν", occurrence: 1},
+      {word: "…", occurrence: 1},
+      {word: "ἄκαρποι", occurrence: 1},
+      {word: "?", occurrence: 1},
+    ];
+    const flatQuote = checkAreaHelpers.getQuoteAsString(quote);
+    const expectedQuote = "εἰς τὰς. ἀναγκαίας - χρείας, ἵνα ... μὴ ὦσιν … ἄκαρποι?";
+    expect(flatQuote).toEqual(expectedQuote);
+  });
 
+  test('should return the same quote string if quote is a string', () => {
+    const quote = "ἄκαρποι";
+    const flatQuote = checkAreaHelpers.getQuoteAsString(quote);
+    expect(flatQuote).toEqual(quote);
+  });
 });
 
 describe('checkAreayHelpers.bibleIdSort', () => {
