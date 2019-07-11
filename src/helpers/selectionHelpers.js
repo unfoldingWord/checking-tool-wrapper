@@ -4,6 +4,11 @@ import _ from 'lodash';
 // helpers
 import * as stringHelpers from './stringHelpers';
 
+export const getMaximumSelections = toolName => {
+  const maxSelections = (toolName === 'translationNotes') ? 10 : 4;
+  return maxSelections;
+};
+
 /**
  * Splice string into array of ranges, flagging what is selected
  * @param {array} ranges - array of ranges [[int,int],...]
