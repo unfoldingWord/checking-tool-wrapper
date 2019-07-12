@@ -1,5 +1,7 @@
+import { TRANSLATION_ACADEMY, TRANSLATION_NOTES, TRANSLATION_WORDS } from './consts';
+
 /**
- * 
+ *
  * @param {String} src
  * @param {String} languageId
  * @param {String} articleCat - category of the given article. Ok if empty
@@ -25,17 +27,17 @@ export function convertMarkdownLinks(src, languageId, articleCat='') {
   src = src.replace(/\[([^\]]+)\]\((\.\.\/)*([^/)]+)\)/g, '<a style="cursor: pointer" onclick="return followLink(\''+languageId+'/ta/'+articleCat+'/$3\')">$1</a>');
   // tA: Convert all [<Title>](../[manual]/[articleId]) relative tA links to make a clickable link to call the followlink() function for 'ta'
   src = src.replace(/\[([^\]]+)\]\((\.\.\/)*([^/)]+)\/([^/)]+)\)/g, '<a style="cursor: pointer" onclick="return followLink(\''+languageId+'/ta/$3/$4\')">$1</a>');
-  return src;    
+  return src;
 }
 
 export function getResourceDirByType(type) {
   switch (type) {
     case 'ta':
-      return 'translationAcademy';
+      return TRANSLATION_ACADEMY;
     case 'tw':
-      return 'translationWords';
+      return TRANSLATION_WORDS;
     case 'tn':
-      return 'translationNotes';
+      return TRANSLATION_NOTES;
     default:
       return type;
   }

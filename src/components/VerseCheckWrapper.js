@@ -342,6 +342,7 @@ class VerseCheckWrapper extends React.Component {
       toolsReducer,
       groupsDataReducer,
       remindersReducer,
+      maximumSelections
     } = this.props;
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
@@ -376,7 +377,9 @@ class VerseCheckWrapper extends React.Component {
         saveSelection={this.saveSelection}
         cancelSelection={this.cancelSelection}
         clearSelection={this.clearSelection}
-        handleSkip={this.handleSkip} />
+        handleSkip={this.handleSkip}
+        maximumSelections={maximumSelections}
+      />
     );
   }
 }
@@ -402,7 +405,8 @@ VerseCheckWrapper.propTypes = {
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
   }),
-  projectDetailsReducer: PropTypes.object.isRequired
+  projectDetailsReducer: PropTypes.object.isRequired,
+  maximumSelections: PropTypes.number.isRequired,
 };
 
 export default VerseCheckWrapper;

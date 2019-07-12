@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {CheckInfoCard} from 'tc-ui-toolkit';
 import {VerseObjectUtils} from 'word-aligner';
+import {TRANSLATION_NOTES, TRANSLATION_WORDS} from "../helpers/consts";
 
 class CheckInfoCardWrapper extends React.Component {
   constructor(props) {
@@ -71,12 +72,12 @@ class CheckInfoCardWrapper extends React.Component {
     let phrase = '';
 
     switch (tool) {
-      case 'translationWords': {
+      case TRANSLATION_WORDS: {
         const {translationWords} = translationHelps ? translationHelps : {};
         phrase = this.getPhraseFromTw(translationWords, contextId.groupId, translationHelps);
         break;
       }
-      case 'translationNotes':
+      case TRANSLATION_NOTES:
         phrase = this.getNote(occurrenceNote);
         break;
       default:

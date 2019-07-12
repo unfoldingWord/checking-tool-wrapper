@@ -15,6 +15,7 @@ import {
 } from './selectors';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
+import * as selectionHelpers from './helpers/selectionHelpers';
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
@@ -134,7 +135,8 @@ export const mapStateToProps = (state, ownProps) => {
       toolsReducer: legacyToolsReducer,
       groupsDataReducer: ownProps.tc.groupsDataReducer,
       remindersReducer: ownProps.tc.remindersReducer,
-      actions: ownProps.tc.actions
+      actions: ownProps.tc.actions,
+      maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName)
     },
     translationHelps: {
       translate: ownProps.translate,

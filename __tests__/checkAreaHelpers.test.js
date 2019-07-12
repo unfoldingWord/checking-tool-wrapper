@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import * as checkAreaHelpers from '../src/helpers/checkAreaHelpers';
+import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
 describe('checkAreaHelpers.getAlignedGLText', () => {
   const verseObjects = [
@@ -360,7 +361,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     // given
     const currentProjectToolsSelectedGL = {
       translationWords: 'en',
-      currentToolName: 'translationWords'
+      currentToolName: TRANSLATION_WORDS
     };
     const contextId = {
       groupId: 'blameless',
@@ -372,7 +373,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         verse: 6
       },
       strong: ['G04100'],
-      tool: 'translationWords'
+      tool: TRANSLATION_WORDS
     };
     const bibles = {
       en: {
@@ -386,7 +387,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         'ulb': []
       }
     };
-    const currentToolName = 'translationWords';
+    const currentToolName = TRANSLATION_WORDS;
     const expectedAlignedGLText = 'without blame';
 
       // when
@@ -400,7 +401,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     // given
     const currentProjectToolsSelectedGL = {
       translationWords: 'en',
-      currentToolName: 'translationWords'
+      currentToolName: TRANSLATION_WORDS
     };
     const contextId = {
       groupId: 'blameless',
@@ -412,7 +413,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         verse: 6
       },
       strong: ['G04100'],
-      tool: 'translationWords'
+      tool: TRANSLATION_WORDS
     };
     const bibles = {
       en: {
@@ -425,7 +426,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         }
       }
     };
-    const currentToolName = 'translationWords';
+    const currentToolName = TRANSLATION_WORDS;
     const expectedAlignedGLText = 'without blame';
 
       // when
@@ -439,7 +440,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     // given
     const currentProjectToolsSelectedGL = {
       translationWords: 'en',
-      currentToolName: 'translationWords'
+      currentToolName: TRANSLATION_WORDS
     };
     const contextId = {
       groupId: 'blameless',
@@ -451,7 +452,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         verse: 6
       },
       strong: ['G04100'],
-      tool: 'translationWords'
+      tool: TRANSLATION_WORDS
     };
     const bibles = {
       en: {
@@ -465,7 +466,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         'ulb': []
       }
     };
-    const currentToolName = 'translationWords';
+    const currentToolName = TRANSLATION_WORDS;
     const expectedAlignedGLText = 'quote_invalid';
 
     // when
