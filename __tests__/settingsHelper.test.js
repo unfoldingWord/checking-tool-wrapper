@@ -1,4 +1,6 @@
+/* eslint-env jest */
 import * as settingsHelper from '../src/helpers/settingsHelper';
+import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
 const bibles = {
   hi: {
@@ -13,7 +15,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should change the pane settings to render English ULT if Enslish is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -47,7 +49,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should change the pane settings to render Hindi ULB if Hindi is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -91,7 +93,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
     ];
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -115,7 +117,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should render the English ULT if the pane settings is empty and English is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -148,7 +150,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should render the Hindi ULB if the pane settings is empty and Hindi is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -182,7 +184,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should render the English ULT if the pane settings is empty and English is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -215,7 +217,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should add the English ULT and target language in a fresh install if English is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {
@@ -244,7 +246,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should add the Hindi ULB and target language in a fresh install if Hindi is selected as the GL', () => {
     const props = {
       tc: {
-        selectedToolName: 'translationWords'
+        selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
         currentProjectToolsSelectedGL: {

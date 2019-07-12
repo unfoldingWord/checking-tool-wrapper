@@ -1,3 +1,6 @@
+/* eslint-env jest */
+import {TRANSLATION_WORDS} from "../src/helpers/consts";
+
 jest.mock('../src/helpers/validationHelpers', () => ({
   ...require.requireActual('../src/helpers/validationHelpers'),
   getSelectionsFromChapterAndVerseCombo: () => require('./__fixtures__/selectionObject.json')
@@ -16,7 +19,7 @@ describe('api.validateBook', () => {
   it('should find that a verse has invalidated checks', () => {
     const props = {
       tool: {
-        name: 'translationWords',
+        name: TRANSLATION_WORDS,
         translate: key => key
       },
       tc: {
@@ -33,7 +36,7 @@ describe('api.validateBook', () => {
           getCategoryGroupIds: jest.fn(() => {}),
           getGroupsData: jest.fn(() => ({
             accuse:
-              [{"priority": 1, "comments": false, "reminders": false, "selections": [{"text": "godlessness ", "occurrence": 1, "occurrences": 1}], "verseEdits": false, "contextId": {"reference": {"bookId": "tit", "chapter": 2, "verse": 12}, "tool": "translationWords", "groupId": "age", "quote": "αἰῶνι", "strong": ["G01650"], "occurrence": 1}, "invalidated": false}]
+              [{"priority": 1, "comments": false, "reminders": false, "selections": [{"text": "godlessness ", "occurrence": 1, "occurrences": 1}], "verseEdits": false, "contextId": {"reference": {"bookId": "tit", "chapter": 2, "verse": 12}, "tool": TRANSLATION_WORDS, "groupId": "age", "quote": "αἰῶνι", "strong": ["G01650"], "occurrence": 1}, "invalidated": false}]
           })),
         },
         showIgnorableDialog: jest.fn(() => {})
@@ -58,7 +61,7 @@ describe('api.validateBook', () => {
             verse: 6
           },
           strong: ["G27240"],
-          tool: "translationWords"
+          tool: TRANSLATION_WORDS
         },
         gatewayLanguageCode: "en",
         gatewayLanguageQuote: "accused",

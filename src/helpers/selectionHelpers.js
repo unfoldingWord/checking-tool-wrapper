@@ -3,10 +3,15 @@ import usfmjs from 'usfm-js';
 import _ from 'lodash';
 // helpers
 import * as stringHelpers from './stringHelpers';
+import { DEFAULT_MAX_SELECTIONS, TRANSLATION_NOTES, TN_MAX_SELECTIONS } from './consts';
 
+/**
+ * determine the maximum selections allowed based on tool name
+ * @param toolName
+ * @return {number}
+ */
 export const getMaximumSelections = toolName => {
-  const maxSelections = (toolName === 'translationNotes') ? 10 : 4;
-  return maxSelections;
+  return (toolName === TRANSLATION_NOTES) ? TN_MAX_SELECTIONS : DEFAULT_MAX_SELECTIONS;
 };
 
 /**

@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import * as GroupMenuWrapper from '../src/components/GroupMenuWrapper';
+import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
 describe('GroupMenuWrapper.generateItemId', () => {
 
@@ -7,7 +8,7 @@ describe('GroupMenuWrapper.generateItemId', () => {
     // given
     const contextID = {
       "reference": {"bookId": "luk", "chapter": 1, "verse": 5},
-      "tool": "translationWords",
+      "tool": TRANSLATION_WORDS,
       "groupId": "aaron",
       "quote": "Ἀαρών",
       "strong": ["G00020"],
@@ -27,7 +28,7 @@ describe('GroupMenuWrapper.generateItemId', () => {
     // given
     const contextID = {
       "reference":{"bookId":"luk","chapter":22,"verse":30},
-      "tool":"translationWords",
+      "tool":TRANSLATION_WORDS,
       "groupId":"12tribesofisrael",
       "quote":[
         {"word":"δώδεκα","occurrence":1},
