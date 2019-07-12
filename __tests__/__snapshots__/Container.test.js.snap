@@ -5399,7 +5399,9 @@ exports[`Container Tests Test Container 1`] = `
                   </span>
                 </div>
               </div>
-              <div>
+              <div
+                style="overflow:auto"
+              >
                 <div
                   class="ltr-content"
                 >
@@ -5506,10 +5508,12 @@ exports[`Container Tests Test Container 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              style="white-space:nowrap"
+            >
               <button
                 class="btn-second"
-                style="width:140px;margin-right:5px;align-self:flex-start"
+                style="margin-left:0px;width:140px;margin-right:5px;align-self:flex-start"
               >
                 cancel
               </button>
