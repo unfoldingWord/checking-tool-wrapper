@@ -10,8 +10,9 @@ import toJson from 'enzyme-to-json';
 // containers
 import PlainContainer, { mapStateToProps } from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
+import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
-const Container = connect(mapStateToProps)(PlainContainer)
+const Container = connect(mapStateToProps)(PlainContainer);
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -99,6 +100,6 @@ describe.only('Container Tests', () => {
         <Container {...props} />
       </Provider>)
       .find(TranslationHelpsContainer);
-      expect(props.tc.actions.loadResourceArticle).toHaveBeenCalledWith("translationWords", "blasphemy", "en");
+      expect(props.tc.actions.loadResourceArticle).toHaveBeenCalledWith(TRANSLATION_WORDS, "blasphemy", "en");
   });
 });
