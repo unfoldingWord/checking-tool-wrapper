@@ -109,7 +109,7 @@ Container.propTypes = {
       loadResourceArticle: PropTypes.func.isRequired,
       getGLQuote: PropTypes.func.isRequired,
       getSelectionsFromContextId: PropTypes.func.isRequired,
-      onInvalidQuote: PropTypes.func.isRequired
+      onInvalidCheck: PropTypes.func.isRequired
     })
   }),
   scripturePane: PropTypes.object.isRequired
