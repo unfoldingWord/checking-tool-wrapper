@@ -236,7 +236,8 @@ class VerseCheckWrapper extends React.Component {
         verseText: undefined,
         selections,
         nothingToSelect,
-        tags: []
+        tags: [],
+        lastContextId: undefined
       });
     }
   }
