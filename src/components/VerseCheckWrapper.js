@@ -330,7 +330,7 @@ class VerseCheckWrapper extends React.Component {
   onInvalidQuote(contextId, selectedGL) {
     // to prevent multiple alerts on current selection
     if (!isEqual(contextId, this.state.lastContextId)) {
-      this.actions.onInvalidQuote(contextId, selectedGL);
+      this.props.actions.onInvalidQuote(contextId, selectedGL);
       this.setState({
         lastContextId: contextId
       });
@@ -415,6 +415,7 @@ VerseCheckWrapper.propTypes = {
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
+    onInvalidQuote: PropTypes.func.isRequired
   }),
   projectDetailsReducer: PropTypes.object.isRequired,
   maximumSelections: PropTypes.number.isRequired,
