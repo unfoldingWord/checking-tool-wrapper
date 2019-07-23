@@ -36,6 +36,7 @@ class VerseCheckWrapper extends React.Component {
     this.handleSkip = this.handleSkip.bind(this);
     this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
     this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
+    this.onInvalidQuote = this.onInvalidQuote.bind(this);
 
     //TODO: factor out actions object to individual functions
     //Will require changes to the ui kit
