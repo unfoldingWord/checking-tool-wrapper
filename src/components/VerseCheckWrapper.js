@@ -326,6 +326,16 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
+  onInvalidQuote(contextId, selectedGL) {
+    // to prevent multiple alerts on current selection
+    if (!isEqual(contextId, this.state.lastContextId)) {
+      this.actions.onInvalidQuote(contextId, selectedGL);
+      this.setState({
+        lastContextId: contextId
+      });
+    }
+  }
+
   render() {
     const {
       translate,
@@ -347,7 +357,7 @@ class VerseCheckWrapper extends React.Component {
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
     const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate);
+      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate, this.onInvalidQuote);
     return (
       <VerseCheck
         translate={translate}

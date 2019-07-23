@@ -1,6 +1,6 @@
 import {getAlignedText} from 'tc-ui-toolkit';
 
-export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, translate) {
+export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, translate, onInvalidQuote) {
   const selectedGL = currentProjectToolsSelectedGL[currentToolName];
   if(! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length)
     return contextId.quote;
@@ -15,6 +15,7 @@ export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bible
       }
     }
   }
+  onInvalidQuote && onInvalidQuote(contextId, selectedGL);
   const origLangQuote = getQuoteAsString(contextId.quote);
   const message = translate("quote_invalid", {quote: origLangQuote});
   return message;
