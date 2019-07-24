@@ -397,7 +397,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'without blame';
 
       // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
@@ -437,7 +437,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'without blame';
 
       // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
