@@ -2,8 +2,6 @@
 import * as checkAreaHelpers from '../src/helpers/checkAreaHelpers';
 import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
-const mock_OnInvalidQuote = jest.fn();
-
 describe('checkAreaHelpers.getAlignedGLText', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -397,11 +395,10 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'without blame';
 
       // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, true);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).not.toHaveBeenCalled();
   });
 
   it('should return text from ulb', () => {
@@ -437,11 +434,10 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'without blame';
 
       // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, true);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).not.toHaveBeenCalled();
   });
 
   it('should return error message if original language quote string is not matched', () => {
@@ -478,11 +474,10 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'quote_invalid';
 
     // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, true);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).toHaveBeenCalledWith(contextId, currentProjectToolsSelectedGL.translationWords);
   });
 });
 
