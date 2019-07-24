@@ -6,11 +6,9 @@ import {getAlignedText} from 'tc-ui-toolkit';
  * @param {object} contextId
  * @param {object} bibles
  * @param {string} currentToolName
- * @param {Function} translate
- * @param {Function} onInvalidQuote - optional method to call if quote cannot be matched
- * @return {*}
+ * @return {String|null} aligned GL text or null if error
  */
-export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, translate, onInvalidQuote) {
+export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName) {
   const selectedGL = currentProjectToolsSelectedGL[currentToolName];
   if(! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length)
     return contextId.quote;
@@ -25,10 +23,7 @@ export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bible
       }
     }
   }
-  onInvalidQuote && onInvalidQuote(contextId, selectedGL);
-  const origLangQuote = getQuoteAsString(contextId.quote);
-  const message = translate("quote_invalid", {quote: origLangQuote});
-  return message;
+  return null;
 }
 
 export function getQuoteAsString(quote) {

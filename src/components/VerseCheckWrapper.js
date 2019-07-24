@@ -6,6 +6,19 @@ import {optimizeSelections, normalizeString} from '../helpers/selectionHelpers';
 import * as checkAreaHelpers from '../helpers/checkAreaHelpers';
 import {VerseCheck} from 'tc-ui-toolkit';
 
+export const getGlQuote = (currentProjectToolsSelectedGL, contextId, bibles,
+                           currentToolName, translate, onInvalidQuote) => {
+  let alignedGLText = checkAreaHelpers.getAlignedGLText(
+    currentProjectToolsSelectedGL, contextId, bibles, currentToolName);
+  if (!alignedGLText) {
+    const selectedGL = currentProjectToolsSelectedGL[currentToolName];
+    onInvalidQuote(contextId, selectedGL);
+    const origLangQuote = checkAreaHelpers.getQuoteAsString(contextId.quote);
+    alignedGLText= translate("quote_invalid", {quote: origLangQuote});
+  }
+  return alignedGLText;
+};
+
 class VerseCheckWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +50,7 @@ class VerseCheckWrapper extends React.Component {
     this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
     this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
     this.onInvalidQuote = this.onInvalidQuote.bind(this);
+    this.getGlQuote = this.getGlQuote.bind(this);
 
     //TODO: factor out actions object to individual functions
     //Will require changes to the ui kit
@@ -358,8 +372,8 @@ class VerseCheckWrapper extends React.Component {
     } = this.props;
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate, this.onInvalidQuote);
+    const alignedGLText = getGlQuote(currentProjectToolsSelectedGL, contextId,
+                                      resourcesReducer.bibles, currentToolName, translate, this.onInvalidQuote);
     return (
       <VerseCheck
         translate={translate}

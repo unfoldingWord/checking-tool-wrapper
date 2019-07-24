@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import * as checkAreaHelpers from '../src/helpers/checkAreaHelpers';
-import {TRANSLATION_WORDS} from "../src/helpers/consts";
+import * as VerseCheckWrapper from '../src/components/VerseCheckWrapper';
+import {TRANSLATION_NOTES} from "../src/helpers/consts";
 
-describe('checkAreaHelpers.getAlignedGLText', () => {
+describe('VerseCheckWrapper.getGlQuote', () => {
   const verseObjects = [
     {
       tag: 'zaln',
@@ -357,11 +357,11 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     }
   ];
 
-  it('should return text from ult and NOT the ulb', () => {
+  it('should handle GL string quote', () => {
     // given
     const currentProjectToolsSelectedGL = {
-      translationWords: 'en',
-      currentToolName: TRANSLATION_WORDS
+      translationNotes: 'en',
+      currentToolName: TRANSLATION_NOTES
     };
     const contextId = {
       groupId: 'blameless',
@@ -373,7 +373,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         verse: 6
       },
       strong: ['G04100'],
-      tool: TRANSLATION_WORDS
+      tool: TRANSLATION_NOTES
     };
     const bibles = {
       en: {
@@ -387,60 +387,23 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         'ulb': []
       }
     };
-    const currentToolName = TRANSLATION_WORDS;
-    const expectedAlignedGLText = 'without blame';
+    const currentToolName = TRANSLATION_NOTES;
+    const expectedAlignedGLText = "without blame";
+    const mock_OnInvalidQuote = jest.fn();
 
-      // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName);
-
-    // then
-    expect(alignedGLText).toEqual(expectedAlignedGLText);
-  });
-
-  it('should return text from ulb', () => {
-    // given
-    const currentProjectToolsSelectedGL = {
-      translationWords: 'en',
-      currentToolName: TRANSLATION_WORDS
-    };
-    const contextId = {
-      groupId: 'blameless',
-      occurrence: 1,
-      quote: 'ἀνέγκλητος',
-      reference: {
-        bookId: 'tit',
-        chapter: 1,
-        verse: 6
-      },
-      strong: ['G04100'],
-      tool: TRANSLATION_WORDS
-    };
-    const bibles = {
-      en: {
-        'ulb': {
-          1: {
-            6: {
-              verseObjects: verseObjects
-            }
-          }
-        }
-      }
-    };
-    const currentToolName = TRANSLATION_WORDS;
-    const expectedAlignedGLText = 'without blame';
-
-      // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName);
+    // when
+    const alignedGLText = VerseCheckWrapper.getGlQuote(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
+    expect(mock_OnInvalidQuote).not.toHaveBeenCalled();
   });
 
-  it('should return error message if original language quote string is not matched', () => {
+  it('should have GL string quote error', () => {
     // given
     const currentProjectToolsSelectedGL = {
-      translationWords: 'en',
-      currentToolName: TRANSLATION_WORDS
+      translationNotes: 'en',
+      currentToolName: TRANSLATION_NOTES
     };
     const contextId = {
       groupId: 'blameless',
@@ -452,7 +415,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         verse: 6
       },
       strong: ['G04100'],
-      tool: TRANSLATION_WORDS
+      tool: TRANSLATION_NOTES
     };
     const bibles = {
       en: {
@@ -466,57 +429,15 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
         'ulb': []
       }
     };
-    const currentToolName = TRANSLATION_WORDS;
-    const expectedAlignedGLText = null;
+    const currentToolName = TRANSLATION_NOTES;
+    const expectedAlignedGLText = "quote_invalid";
+    const mock_OnInvalidQuote = jest.fn();
 
     // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName);
+    const alignedGLText = VerseCheckWrapper.getGlQuote(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-  });
-});
-
-describe('checkAreaHelpers.getQuoteAsString', () => {
-  test('should return a quote as a string when given an array with lots of punctuation', () => {
-    const quote = [
-      {word: "εἰς", occurrence: 1},
-      {word: "τὰς", occurrence: 1},
-      {word: ".", occurrence: 1},
-      {word: "ἀναγκαίας", occurrence: 1},
-      {word: "-", occurence: 1},
-      {word: "χρείας", occurrence: 1},
-      {word: ",", occurrence: 1},
-      {word: "ἵνα", occurrence: 1},
-      {word: "...", occurrence: 1},
-      {word: "μὴ", occurrence: 1},
-      {word: "ὦσιν", occurrence: 1},
-      {word: "…", occurrence: 1},
-      {word: "ἄκαρποι", occurrence: 1},
-      {word: "?", occurrence: 1},
-    ];
-    const flatQuote = checkAreaHelpers.getQuoteAsString(quote);
-    const expectedQuote = "εἰς τὰς. ἀναγκαίας - χρείας, ἵνα ... μὴ ὦσιν … ἄκαρποι?";
-    expect(flatQuote).toEqual(expectedQuote);
-  });
-
-  test('should return the same quote string if quote is a string', () => {
-    const quote = "ἄκαρποι";
-    const flatQuote = checkAreaHelpers.getQuoteAsString(quote);
-    expect(flatQuote).toEqual(quote);
-  });
-});
-
-describe('checkAreayHelpers.bibleIdSort', () => {
-  it('Test ordering of Bible IDs', () => {
-    // given
-    const bibleIds = ['asv', 'esv', 'ulb', 'ust', 'ult', 'udb', 'irv', 'aaa', 'zzz'];
-    const expectedSortedBibleIds = ['irv', 'ult', 'ulb', 'ust', 'udb', 'aaa', 'asv', 'esv', 'zzz'];
-
-    // when
-    const sortedBibleIds = bibleIds.sort(checkAreaHelpers.bibleIdSort);
-
-    // then
-    expect(sortedBibleIds).toEqual(expectedSortedBibleIds);
+    expect(mock_OnInvalidQuote).toHaveBeenCalledWith(contextId, currentProjectToolsSelectedGL.translationNotes);
   });
 });
