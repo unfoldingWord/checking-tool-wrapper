@@ -108,7 +108,8 @@ Container.propTypes = {
       setToolSettings: PropTypes.func.isRequired,
       loadResourceArticle: PropTypes.func.isRequired,
       getGLQuote: PropTypes.func.isRequired,
-      getSelectionsFromContextId: PropTypes.func.isRequired
+      getSelectionsFromContextId: PropTypes.func.isRequired,
+      onInvalidCheck: PropTypes.func.isRequired
     })
   }),
   scripturePane: PropTypes.object.isRequired

@@ -44,6 +44,7 @@ props.tc.actions = {
   makeSureBiblesLoadedForTool: jest.fn(),
   groupMenuChangeGroup: jest.fn(),
   groupMenuExpandSubMenu: jest.fn(),
+  onInvalidCheck: jest.fn(),
   getSelectionsFromContextId: () => ''
 };
 

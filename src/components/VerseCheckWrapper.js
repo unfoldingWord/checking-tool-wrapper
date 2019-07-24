@@ -36,6 +36,7 @@ class VerseCheckWrapper extends React.Component {
     this.handleSkip = this.handleSkip.bind(this);
     this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
     this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
+    this.onInvalidQuote = this.onInvalidQuote.bind(this);
 
     //TODO: factor out actions object to individual functions
     //Will require changes to the ui kit
@@ -235,7 +236,8 @@ class VerseCheckWrapper extends React.Component {
         verseText: undefined,
         selections,
         nothingToSelect,
-        tags: []
+        tags: [],
+        lastContextId: undefined
       });
     }
   }
@@ -326,6 +328,16 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
+  onInvalidQuote(contextId, selectedGL) {
+    // to prevent multiple alerts on current selection
+    if (!isEqual(contextId, this.state.lastContextId)) {
+      this.props.actions.onInvalidCheck(contextId, selectedGL, true);
+      this.setState({
+        lastContextId: contextId
+      });
+    }
+  }
+
   render() {
     const {
       translate,
@@ -347,7 +359,7 @@ class VerseCheckWrapper extends React.Component {
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
     const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate);
+      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate, this.onInvalidQuote);
     return (
       <VerseCheck
         translate={translate}
@@ -404,6 +416,7 @@ VerseCheckWrapper.propTypes = {
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
+    onInvalidCheck: PropTypes.func.isRequired
   }),
   projectDetailsReducer: PropTypes.object.isRequired,
   maximumSelections: PropTypes.number.isRequired,
