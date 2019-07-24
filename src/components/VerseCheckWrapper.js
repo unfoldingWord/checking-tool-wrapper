@@ -331,9 +331,7 @@ class VerseCheckWrapper extends React.Component {
   onInvalidQuote(contextId, selectedGL) {
     // to prevent multiple alerts on current selection
     if (!isEqual(contextId, this.state.lastContextId)) {
-      this.props.actions.onInvalidCheck(contextId, selectedGL, (cancelled) => {
-        console.log("response to invalid check was " + (cancelled ? "cancelled" : "submitted"));
-      });
+      this.props.actions.onInvalidCheck(contextId, selectedGL, true);
       this.setState({
         lastContextId: contextId
       });
