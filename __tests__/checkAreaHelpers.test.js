@@ -3,10 +3,6 @@ import * as checkAreaHelpers from '../src/helpers/checkAreaHelpers';
 import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
 describe('checkAreaHelpers.getAlignedGLText', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   const verseObjects = [
     {
       tag: 'zaln',
