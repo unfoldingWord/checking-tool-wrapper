@@ -39,10 +39,6 @@ class CheckInfoCardWrapper extends React.Component {
     return finalString;
   }
 
-  getNote(occurrenceNote) {
-    return occurrenceNote.replace(/\(See:.*/g, "");
-  }
-
   getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
     const verseParsed = parseInt(verse);
@@ -78,7 +74,7 @@ class CheckInfoCardWrapper extends React.Component {
         break;
       }
       case TRANSLATION_NOTES:
-        phrase = this.getNote(occurrenceNote);
+        phrase = occurrenceNote;
         break;
       default:
         console.error('tool is undefined in contextId');
