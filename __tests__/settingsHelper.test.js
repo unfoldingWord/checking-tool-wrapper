@@ -266,7 +266,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
       projectDetailsReducer: {
         manifest: {
           toolsSelectedGLs: {
-            translationWords: 'en'
+            translationWords: 'hi'
           }
         }
       },
