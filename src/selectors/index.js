@@ -10,8 +10,8 @@ export function getContextId(state) {
   return state.contextIdReducer.contextId;
 }
 
-export function getCurrentProjectToolsSelectedGL(state) {
-  return state.projectDetailsReducer.currentProjectToolsSelectedGL;
+export function getToolsSelectedGLs(state) {
+  return state.projectDetailsReducer.manifest.toolsSelectedGLs;
 }
 
 export function getGroupsIndex(state) {

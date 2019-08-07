@@ -365,7 +365,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
 
   it('should return text from ult and NOT the ulb', () => {
     // given
-    const currentProjectToolsSelectedGL = {
+    const toolsSelectedGLs = {
       translationWords: 'en',
       currentToolName: TRANSLATION_WORDS
     };
@@ -397,7 +397,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'without blame';
 
       // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
@@ -406,7 +406,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
 
   it('should return text from ulb', () => {
     // given
-    const currentProjectToolsSelectedGL = {
+    const toolsSelectedGLs = {
       translationWords: 'en',
       currentToolName: TRANSLATION_WORDS
     };
@@ -437,7 +437,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'without blame';
 
       // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
@@ -446,7 +446,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
 
   it('should return error message if original language quote string is not matched', () => {
     // given
-    const currentProjectToolsSelectedGL = {
+    const toolsSelectedGLs = {
       translationWords: 'en',
       currentToolName: TRANSLATION_WORDS
     };
@@ -478,11 +478,11 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
     const expectedAlignedGLText = 'quote_invalid';
 
     // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).toHaveBeenCalledWith(contextId, currentProjectToolsSelectedGL.translationWords);
+    expect(mock_OnInvalidQuote).toHaveBeenCalledWith(contextId, toolsSelectedGLs.translationWords);
   });
 });
 
