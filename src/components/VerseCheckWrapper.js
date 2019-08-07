@@ -377,7 +377,7 @@ class VerseCheckWrapper extends React.Component {
         commentsReducer={commentsReducer}
         localNothingToSelect={this.state.nothingToSelect}
         remindersReducer={remindersReducer}
-        projectDetailsReducer={{toolsSelectedGLs, manifest, projectSaveLocation}}
+        projectDetailsReducer={{manifest, projectSaveLocation}}
         contextIdReducer={{contextId}}
         resourcesReducer={resourcesReducer}
         selectionsReducer={{selections, nothingToSelect}}
