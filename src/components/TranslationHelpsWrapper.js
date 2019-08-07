@@ -53,12 +53,12 @@ class TranslationHelpsWrapper extends React.Component {
    * @private
    */
   _reloadArticle(props) {
-    const {contextIdReducer, toolsReducer, currentProjectToolsSelectedGL, actions} = props;
+    const {contextIdReducer, toolsReducer, toolsSelectedGLs, actions} = props;
     const {contextId} = contextIdReducer;
     if (contextId) {
       const articleId = contextId.groupId;
       const {currentToolName} = toolsReducer;
-      const languageId = currentProjectToolsSelectedGL[currentToolName];
+      const languageId = toolsSelectedGLs[currentToolName];
       actions.loadResourceArticle(currentToolName, articleId, languageId);
     }
   }
@@ -96,7 +96,7 @@ class TranslationHelpsWrapper extends React.Component {
 
   render() {
     const {
-      currentProjectToolsSelectedGL,
+      toolsSelectedGLs,
       toolsReducer: {currentToolName},
       resourcesReducer,
       contextIdReducer: {contextId},
@@ -104,7 +104,7 @@ class TranslationHelpsWrapper extends React.Component {
       toggleHelps,
       translate
     } = this.props;
-    const languageId = currentProjectToolsSelectedGL[currentToolName];
+    const languageId = toolsSelectedGLs[currentToolName];
     const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
     const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
@@ -122,7 +122,7 @@ class TranslationHelpsWrapper extends React.Component {
 }
 
 TranslationHelpsWrapper.propTypes = {
-  currentProjectToolsSelectedGL: PropTypes.object,
+  toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,
   resourcesReducer: PropTypes.object,
   contextIdReducer: PropTypes.shape({

@@ -6,7 +6,7 @@ import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import {
   getContextId,
   getManifest,
-  getCurrentProjectToolsSelectedGL,
+  getToolsSelectedGLs,
   getGroupsIndex,
   getResourceByName,
   getSelections,
@@ -101,7 +101,7 @@ Container.propTypes = {
     groupsIndex: PropTypes.array
   }),
   projectDetailsReducer: PropTypes.shape({
-    currentProjectToolsSelectedGL: PropTypes.object.isRequired
+    manifest: PropTypes.object.isRequired
   }),
   tc: PropTypes.shape({
     actions: PropTypes.shape({
@@ -141,7 +141,7 @@ export const mapStateToProps = (state, ownProps) => {
     },
     translationHelps: {
       translate: ownProps.translate,
-      currentProjectToolsSelectedGL: getCurrentProjectToolsSelectedGL(ownProps),
+      toolsSelectedGLs: getToolsSelectedGLs(ownProps),
       toolsReducer: legacyToolsReducer,
       resourcesReducer: ownProps.tc.resourcesReducer,
       contextIdReducer: ownProps.tc.contextIdReducer,

@@ -2,7 +2,7 @@ import {getAlignedText} from 'tc-ui-toolkit';
 
 /**
  * looks up the GL text from an aligned GL bible using the Original Language
- * @param {object} currentProjectToolsSelectedGL
+ * @param {object} toolsSelectedGLs
  * @param {object} contextId
  * @param {object} bibles
  * @param {string} currentToolName
@@ -10,8 +10,8 @@ import {getAlignedText} from 'tc-ui-toolkit';
  * @param {Function} onInvalidQuote - optional method to call if quote cannot be matched
  * @return {*}
  */
-export function getAlignedGLText(currentProjectToolsSelectedGL, contextId, bibles, currentToolName, translate, onInvalidQuote) {
-  const selectedGL = currentProjectToolsSelectedGL[currentToolName];
+export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate, onInvalidQuote) {
+  const selectedGL = toolsSelectedGLs[currentToolName];
   if(! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length)
     return contextId.quote;
   const sortedBibleIds = Object.keys(bibles[selectedGL]).sort(bibleIdSort);
