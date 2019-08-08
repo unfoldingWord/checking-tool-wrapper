@@ -18,8 +18,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'en'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'en'
+          }
         }
       },
       settingsReducer: {
@@ -52,8 +54,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'en'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'en'
+          }
         }
       },
       settingsReducer: {
@@ -96,8 +100,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'en'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'en'
+          }
         }
       },
       settingsReducer: {
@@ -120,8 +126,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'en'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'en'
+          }
         }
       },
       settingsReducer: {
@@ -153,8 +161,11 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'hi'
+
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'hi'
+          }
         }
       },
       settingsReducer: {
@@ -187,8 +198,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'en'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'en'
+          }
         }
       },
       settingsReducer: {
@@ -220,8 +233,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'en'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'en'
+          }
         }
       },
       settingsReducer: {
@@ -249,8 +264,10 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
         selectedToolName: TRANSLATION_WORDS
       },
       projectDetailsReducer: {
-        currentProjectToolsSelectedGL: {
-          translationWords: 'hi'
+        manifest: {
+          toolsSelectedGLs: {
+            translationWords: 'hi'
+          }
         }
       },
       settingsReducer: {

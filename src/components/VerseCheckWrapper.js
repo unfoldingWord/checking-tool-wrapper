@@ -342,7 +342,10 @@ class VerseCheckWrapper extends React.Component {
     const {
       translate,
       currentToolName,
-      projectDetailsReducer: {currentProjectToolsSelectedGL, manifest, projectSaveLocation},
+      projectDetailsReducer: {
+        manifest,
+        projectSaveLocation
+      },
       loginReducer,
       selectionsReducer: {
         selections,
@@ -358,8 +361,15 @@ class VerseCheckWrapper extends React.Component {
     } = this.props;
     let {unfilteredVerseText, verseText} = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
+    const {toolsSelectedGLs} = manifest;
     const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      currentProjectToolsSelectedGL, contextId, resourcesReducer.bibles, currentToolName, translate, this.onInvalidQuote);
+      toolsSelectedGLs,
+      contextId,
+      resourcesReducer.bibles,
+      currentToolName,
+      translate,
+      this.onInvalidQuote
+    );
     return (
       <VerseCheck
         translate={translate}
@@ -367,7 +377,7 @@ class VerseCheckWrapper extends React.Component {
         commentsReducer={commentsReducer}
         localNothingToSelect={this.state.nothingToSelect}
         remindersReducer={remindersReducer}
-        projectDetailsReducer={{currentProjectToolsSelectedGL, manifest, projectSaveLocation}}
+        projectDetailsReducer={{manifest, projectSaveLocation}}
         contextIdReducer={{contextId}}
         resourcesReducer={resourcesReducer}
         selectionsReducer={{selections, nothingToSelect}}
