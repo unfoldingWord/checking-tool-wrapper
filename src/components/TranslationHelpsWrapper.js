@@ -26,7 +26,10 @@ class TranslationHelpsWrapper extends React.Component {
     const {contextIdReducer, resourcesReducer, toolsReducer:{currentToolName, tHelpsLink}} = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
     const nextTHelpsLink = nextProps.tHelpsLink;
-    if (contextIdReducer !== nextContextIDReducer || nextTHelpsLink !== tHelpsLink) {
+
+    if (tHelpsLink !== nextTHelpsLink) {
+      this.followTHelpsLink(nextTHelpsLink)
+    } else if (contextIdReducer !== nextContextIDReducer) {
       this._reloadArticle(nextProps);
     }
 
@@ -58,13 +61,7 @@ class TranslationHelpsWrapper extends React.Component {
     const {contextId} = contextIdReducer;
     let articleId, category;
 
-    alert(tHelpsLink);
-    if(tHelpsLink) {
-      alert("FOLLOWING "+tHelpsLink);
-      this.followTHelpsLink(tHelpsLink);
-    }
-    else if(contextId) {
-      alert("Loading contextID "+contextId.groupId);
+    if(contextId) {
       articleId = contextId.groupId;
       const {currentToolName} = toolsReducer;
       const languageId = toolsSelectedGLs[currentToolName];
