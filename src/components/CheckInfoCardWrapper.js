@@ -40,7 +40,10 @@ class CheckInfoCardWrapper extends React.Component {
   }
 
   getNote(occurrenceNote) {
-    return occurrenceNote.replace(/\(See:.*/g, "");
+    // Removes any rc:// links and the text around it, where everything is between ( and )
+    // Ex: Paul speaks of God’s message as if it were an object (See: [Idiom](rc://en/ta/man/translate/figs-idiom) and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) =>
+    //     Paul speaks of God’s message as if it were an object
+    return occurrenceNote.replace(/\s*\([^\)]*((\[[^\[\]]+\])*(\[\[|\()+rc:\/\/[^\)\]]+(\]\]|\))[^\(\[\)\]]*)+[^\)]*\)/g, "");
   }
 
   getScriptureFromReference(lang, id, book, chapter, verse) {
