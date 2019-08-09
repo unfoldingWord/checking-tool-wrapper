@@ -39,12 +39,10 @@ class Container extends React.Component {
   }
 
   toggleHelps() {
-    alert('1');
     this.setState({showHelps: !this.state.showHelps});
   }
 
   onTHelpsLinkClick(link) {
-    alert(link);
     this.setState({showHelps: true, tHelpsLink: link});
   }
 
