@@ -53,13 +53,18 @@ class TranslationHelpsWrapper extends React.Component {
    * @private
    */
   _reloadArticle(props) {
-    const {contextIdReducer, toolsReducer, toolsSelectedGLs, actions} = props;
+    const {contextIdReducer, toolsReducer, toolsSelectedGLs, actions, tHelpsLink} = props;
     const {contextId} = contextIdReducer;
-    if (contextId) {
-      const articleId = contextId.groupId;
+    let articleId, category;
+
+    if(tHelpsLink) {
+      this.followTHelpsLink(tHelpsLink);
+    }
+    else if(contextId) {
+      articleId = contextId.groupId;
       const {currentToolName} = toolsReducer;
       const languageId = toolsSelectedGLs[currentToolName];
-      actions.loadResourceArticle(currentToolName, articleId, languageId);
+      actions.loadResourceArticle(currentToolName, articleId, languageId, category);
     }
   }
 
@@ -134,6 +139,7 @@ TranslationHelpsWrapper.propTypes = {
   }),
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
+  tHelpsLink: PropTypes.string,
 };
 
 export default TranslationHelpsWrapper;

@@ -27,9 +27,11 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showHelps: true
+      showHelps: true,
+      tHelpsLink: null,
     };
     this.toggleHelps = this.toggleHelps.bind(this);
+    this.onThelpsLinkClick = this.onThelpsLinkClick.bind(this);
   }
   componentWillMount() {
     const { bibles } = this.props.scripturePane;
@@ -38,6 +40,10 @@ class Container extends React.Component {
 
   toggleHelps() {
     this.setState({showHelps: !this.state.showHelps});
+  }
+
+  onThelpsLinkClick(link) {
+    this.setState({showHelps: true, tHelpsLink: link});
   }
 
   render() {
@@ -64,6 +70,7 @@ class Container extends React.Component {
               <CheckInfoCardWrapper
                 toggleHelps={this.toggleHelps.bind(this)}
                 showHelps={this.state.showHelps}
+                onThelpsLinkClink={this.onThelpsLinkClick.bind(this)}
                 {...this.props.checkInfoCard}
               />
               <VerseCheckWrapper {...this.props.verseCheck} />
@@ -71,6 +78,7 @@ class Container extends React.Component {
             <TranslationHelpsWrapper
               toggleHelps={this.toggleHelps.bind(this)}
               showHelps={this.state.showHelps}
+              tHelpsLink={this.state.tHelpsLink}
               {...this.props.translationHelps} />
           </div>
         </TcuiThemeProvider>
