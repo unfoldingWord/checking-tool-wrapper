@@ -124,7 +124,7 @@ describe.only('Container Tests', () => {
     expect(note).toEqual(expectedNote);
   });
 
-  it('Test CheckInfoCardWrapper.getNote() where Bible verse at the end does NOT get removed', () => {
+  it('Test CheckInfoCardWrapper.getNote() where Bible verse at the end does NOT get removed, nothing should change', () => {
     const props = {
       showHelps: true,
       toggleHelps: jest.fn(),
@@ -139,7 +139,6 @@ describe.only('Container Tests', () => {
     }
     const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
     const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
-    const expectedNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11))';
-    expect(note).toEqual(expectedNote);
+    expect(note).toEqual(props.contextId.occurrenceNote);
   });
 });
