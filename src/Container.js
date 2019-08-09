@@ -31,7 +31,7 @@ class Container extends React.Component {
       tHelpsLink: null,
     };
     this.toggleHelps = this.toggleHelps.bind(this);
-    this.onThelpsLinkClick = this.onThelpsLinkClick.bind(this);
+    this.onTHelpsLinkClick = this.onTHelpsLinkClick.bind(this);
   }
   componentWillMount() {
     const { bibles } = this.props.scripturePane;
@@ -42,7 +42,7 @@ class Container extends React.Component {
     this.setState({showHelps: !this.state.showHelps});
   }
 
-  onThelpsLinkClick(link) {
+  onTHelpsLinkClick(link) {
     alert(link);
     this.setState({showHelps: true, tHelpsLink: link});
   }
@@ -71,7 +71,7 @@ class Container extends React.Component {
               <CheckInfoCardWrapper
                 toggleHelps={this.toggleHelps.bind(this)}
                 showHelps={this.state.showHelps}
-                onThelpsLinkClink={this.onThelpsLinkClick.bind(this)}
+                onTHelpsLinkClink={this.onTHelpsLinkClick.bind(this)}
                 {...this.props.checkInfoCard}
               />
               <VerseCheckWrapper {...this.props.verseCheck} />

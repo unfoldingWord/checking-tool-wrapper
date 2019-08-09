@@ -61,7 +61,7 @@ class CheckInfoCardWrapper extends React.Component {
       contextId,
       showHelps,
       toggleHelps,
-      onThelpsLinkClick,
+      onTHelpsLinkClick,
     } = this.props;
 
     const {groupId, occurrenceNote, tool} = contextId;
@@ -90,7 +90,7 @@ class CheckInfoCardWrapper extends React.Component {
         seeMoreLabel={translate('see_more')}
         showSeeMoreButton={!showHelps}
         onSeeMoreClick={toggleHelps}
-        onThelpsLinkClick={onThelpsLinkClick} />
+        onTHelpsLinkClick={onTHelpsLinkClick} />
     );
   }
 }
@@ -102,7 +102,7 @@ CheckInfoCardWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
-  onThelpsLinkClick: PropTypes.func.isRequired,
+  onTHelpsLinkClick: PropTypes.func.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
 };
 
