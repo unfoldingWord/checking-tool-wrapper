@@ -23,9 +23,10 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {contextIdReducer, resourcesReducer, toolsReducer:{currentToolName}} = this.props || {};
+    const {contextIdReducer, resourcesReducer, toolsReducer:{currentToolName, tHelpsLink}} = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
-    if (contextIdReducer !== nextContextIDReducer) {
+    const nextTHelpsLink = nextProps.tHelpsLink;
+    if (contextIdReducer !== nextContextIDReducer || nextTHelpsLink !== tHelpsLink) {
       this._reloadArticle(nextProps);
     }
 
