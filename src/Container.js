@@ -43,6 +43,7 @@ class Container extends React.Component {
   }
 
   onThelpsLinkClick(link) {
+    alert(link);
     this.setState({showHelps: true, tHelpsLink: link});
   }
 
