@@ -10,6 +10,7 @@ import toJson from 'enzyme-to-json';
 // containers
 import PlainContainer, { mapStateToProps } from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
+import CheckInfoCardWrapper from '../src/components/CheckInfoCardWrapper';
 import {TRANSLATION_WORDS} from "../src/helpers/consts";
 
 const Container = connect(mapStateToProps)(PlainContainer);
@@ -102,5 +103,24 @@ describe.only('Container Tests', () => {
       </Provider>)
       .find(TranslationHelpsContainer);
       expect(props.tc.actions.loadResourceArticle).toHaveBeenCalledWith(TRANSLATION_WORDS, "blasphemy", "en");
+  });
+
+  it('Test CheckInfoCardWrapper.getNote() to remove (See: ...)', () => {
+    const props = {
+      showHelps: true,
+      toggleHelps: jest.fn(),
+      groupsIndex: [{id: 'figs-metaphor', name: 'Metaphor'}],
+      contextId: {
+        groupId: 'figs-metaphor',
+        occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) that could be visibly shown to people. Alternate translation: “He caused me to understand his message” (See: [Idiom](rc://en/ta/man/translate/figs-idiom), [[rc://some/unknown/link]] and [Metaphor](rc://en/ta/man/translate/figs-metaphor))',
+        tool: 'translationNotes',
+      },
+      resourcesReducer: {},
+      translate: k => k,
+    }
+    const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
+    const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
+    const expectedNote = "Paul speaks of God’s message as if it were an object (not abstract) that could be visibly shown to people. Alternate translation: “He caused me to understand his message”";
+    expect(note).toEqual(expectedNote);
   });
 });
