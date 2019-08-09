@@ -112,7 +112,7 @@ describe.only('Container Tests', () => {
       groupsIndex: [{id: 'figs-metaphor', name: 'Metaphor'}],
       contextId: {
         groupId: 'figs-metaphor',
-        occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) that could be visibly shown to people. Alternate translation: “He caused me to understand his message” (See: [Idiom](rc://en/ta/man/translate/figs-idiom), [[rc://some/unknown/link]] and [Metaphor](rc://en/ta/man/translate/figs-metaphor))',
+        occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message” (See: [Idiom](rc://en/ta/man/translate/figs-idiom), [[rc://some/unknown/link]] and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) ',
         tool: 'translationNotes',
       },
       resourcesReducer: {},
@@ -120,7 +120,26 @@ describe.only('Container Tests', () => {
     }
     const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
     const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
-    const expectedNote = "Paul speaks of God’s message as if it were an object (not abstract) that could be visibly shown to people. Alternate translation: “He caused me to understand his message”";
+    const expectedNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message”';
+    expect(note).toEqual(expectedNote);
+  });
+
+  it('Test CheckInfoCardWrapper.getNote() where Bible verse at the end does NOT get removed', () => {
+    const props = {
+      showHelps: true,
+      toggleHelps: jest.fn(),
+      groupsIndex: [{id: 'figs-metaphor', name: 'Metaphor'}],
+      contextId: {
+        groupId: 'figs-metaphor',
+        occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11))',
+        tool: 'translationNotes',
+      },
+      resourcesReducer: {},
+      translate: k => k,
+    }
+    const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
+    const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
+    const expectedNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11))';
     expect(note).toEqual(expectedNote);
   });
 });
