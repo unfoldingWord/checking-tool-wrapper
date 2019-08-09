@@ -131,7 +131,7 @@ describe.only('Container Tests', () => {
       groupsIndex: [{id: 'figs-metaphor', name: 'Metaphor'}],
       contextId: {
         groupId: 'figs-metaphor',
-        occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11))',
+        occurrenceNote: 'Paul said this in another verse ([Titus 1:5](rc://en/ult/book/tit/01/05))',
         tool: 'translationNotes',
       },
       resourcesReducer: {},
