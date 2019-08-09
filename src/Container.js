@@ -72,7 +72,7 @@ class Container extends React.Component {
               <CheckInfoCardWrapper
                 toggleHelps={this.toggleHelps.bind(this)}
                 showHelps={this.state.showHelps}
-                onTHelpsLinkClink={this.onTHelpsLinkClick}
+                onTHelpsLinkClick={this.onTHelpsLinkClick.bind(this)}
                 {...this.props.checkInfoCard}
               />
               <VerseCheckWrapper {...this.props.verseCheck} />
