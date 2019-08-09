@@ -39,6 +39,7 @@ class Container extends React.Component {
   }
 
   toggleHelps() {
+    alert('1');
     this.setState({showHelps: !this.state.showHelps});
   }
 
@@ -71,7 +72,7 @@ class Container extends React.Component {
               <CheckInfoCardWrapper
                 toggleHelps={this.toggleHelps.bind(this)}
                 showHelps={this.state.showHelps}
-                onTHelpsLinkClink={this.onTHelpsLinkClick.bind(this)}
+                onTHelpsLinkClink={this.onTHelpsLinkClick}
                 {...this.props.checkInfoCard}
               />
               <VerseCheckWrapper {...this.props.verseCheck} />
