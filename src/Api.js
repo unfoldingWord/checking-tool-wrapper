@@ -6,6 +6,7 @@ import isEqual from 'deep-equal';
 import {checkSelectionOccurrences} from 'selections';
 import {getGroupDataForVerse} from './helpers/groupDataHelpers';
 import {generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo} from './helpers/validationHelpers';
+import {getQuoteAsString} from "./helpers/checkAreaHelpers";
 
 export default class Api extends ToolApi {
   constructor() {
@@ -316,7 +317,13 @@ export default class Api extends ToolApi {
       for (const verse of Object.keys(selections[chapter])) {
         for (const selection of selections[chapter][verse]) {
           if (selection.selections.length === 0) continue;
-          const sourceText = selection.contextId.quoteString || selection.contextId.quote;
+          let sourceText = null;
+          if (Array.isArray(selection.contextId.quote)) {
+            sourceText = selection.contextId.quoteString || // in tN quoteString is present
+              getQuoteAsString(selection.contextId.quote); // if not such as for tW then we build quote
+          } else {
+            sourceText = selection.contextId.quote;
+          }
           const targetText = selection.selections.map(s => s.text).join(' ');
           alignmentMemory.push({
             sourceText,
