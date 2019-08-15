@@ -316,7 +316,7 @@ export default class Api extends ToolApi {
       for (const verse of Object.keys(selections[chapter])) {
         for (const selection of selections[chapter][verse]) {
           if (selection.selections.length === 0) continue;
-          const sourceText = Array.isArray(selection.contextId.quote) ? selection.contextId.quote.map(q => (q.word || "")).join(' '): selection.contextId.quote;
+          const sourceText = selection.contextId.quoteString || selection.contextId.quote;
           const targetText = selection.selections.map(s => s.text).join(' ');
           alignmentMemory.push({
             sourceText,
