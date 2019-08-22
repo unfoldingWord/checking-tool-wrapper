@@ -23,7 +23,6 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("componentWillReceiveProps() - start");
     const {contextIdReducer, resourcesReducer, toolsReducer:{currentToolName}} = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
     if (contextIdReducer !== nextContextIDReducer) {
@@ -33,16 +32,12 @@ class TranslationHelpsWrapper extends React.Component {
     const {contextId} = contextIdReducer;
     const nextContextId = nextContextIDReducer.contextId;
 
-    console.log("componentWillReceiveProps() - get currentArticle");
     const currentArticle = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-    console.log("componentWillReceiveProps() - get nextArticle");
     const nextArticle = tHelpsHelpers.getArticleFromState(nextProps.resourcesReducer, nextContextId, currentToolName);
     if (currentArticle !== nextArticle) {
-      console.log("componentWillReceiveProps() - scroll");
       var page = document.getElementById("helpsbody");
       if (page) page.scrollTop = 0;
     }
-    console.log("componentWillReceiveProps() - finished");
   }
 
   toggleHelpsModal() {
