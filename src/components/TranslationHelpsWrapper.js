@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {TranslationHelps} from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
+import isEqual from "deep-equal";
 
 class TranslationHelpsWrapper extends React.Component {
   constructor(props) {
@@ -22,20 +23,12 @@ class TranslationHelpsWrapper extends React.Component {
     this._reloadArticle(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {contextIdReducer, resourcesReducer, toolsReducer:{currentToolName}} = this.props || {};
-    const nextContextIDReducer = nextProps.contextIdReducer;
-    if (contextIdReducer !== nextContextIDReducer) {
-      this._reloadArticle(nextProps);
-    }
-
-    const {contextId} = contextIdReducer;
-    const nextContextId = nextContextIDReducer.contextId;
-
-    const currentArticle = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-    const nextArticle = tHelpsHelpers.getArticleFromState(nextProps.resourcesReducer, nextContextId, currentToolName);
-    if (currentArticle !== nextArticle) {
-      var page = document.getElementById("helpsbody");
+  componentDidUpdate(prevProps) {
+    const {contextIdReducer} = this.props || {};
+    const prevContextIdReducer = prevProps.contextIdReducer;
+    if (!isEqual(contextIdReducer, prevContextIdReducer)) {
+      this._reloadArticle(this.props);
+      const page = document.getElementById("helpsbody");
       if (page) page.scrollTop = 0;
     }
   }
@@ -54,7 +47,7 @@ class TranslationHelpsWrapper extends React.Component {
    */
   _reloadArticle(props) {
     const {contextIdReducer, toolsReducer, toolsSelectedGLs, actions} = props;
-    const {contextId} = contextIdReducer;
+    const contextId = contextIdReducer && contextIdReducer.contextId;
     if (contextId) {
       const articleId = contextId.groupId;
       const {currentToolName} = toolsReducer;
