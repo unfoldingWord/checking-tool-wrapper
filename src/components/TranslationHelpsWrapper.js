@@ -38,7 +38,7 @@ class TranslationHelpsWrapper extends React.Component {
    * @param {Object} contextIdReducer
    * @return {String}
    */
-  static getGroupId(contextIdReducer) {
+  getGroupId(contextIdReducer) {
     return contextIdReducer && contextIdReducer.contextId && contextIdReducer.contextId.groupId;
   }
 
