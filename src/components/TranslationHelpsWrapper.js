@@ -26,11 +26,20 @@ class TranslationHelpsWrapper extends React.Component {
   componentDidUpdate(prevProps) {
     const {contextIdReducer} = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
-    if (!isEqual(contextIdReducer, prevContextIdReducer)) {
+    if (this.getGroupId(contextIdReducer) !==  this.getGroupId(prevContextIdReducer)) {
       this._reloadArticle(this.props);
       const page = document.getElementById("helpsbody");
       if (page) page.scrollTop = 0;
     }
+  }
+
+  /**
+   * safely get groupId from contextIdReducer
+   * @param {Object} contextIdReducer
+   * @return {String}
+   */
+  static getGroupId(contextIdReducer) {
+    return contextIdReducer && contextIdReducer.contextId && contextIdReducer.contextId.groupId;
   }
 
   toggleHelpsModal() {
