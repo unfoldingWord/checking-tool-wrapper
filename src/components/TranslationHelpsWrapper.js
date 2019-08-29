@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from "deep-equal";
 import {TranslationHelps} from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
-import isEqual from "deep-equal";
 
 class TranslationHelpsWrapper extends React.Component {
   constructor(props) {
@@ -26,8 +26,10 @@ class TranslationHelpsWrapper extends React.Component {
   componentDidUpdate(prevProps) {
     const {contextIdReducer} = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
-    if (this.getGroupId(contextIdReducer) !==  this.getGroupId(prevContextIdReducer)) {
+    if (this.getGroupId(contextIdReducer) !==  this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
       this._reloadArticle(this.props);
+    }
+    if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
       const page = document.getElementById("helpsbody");
       if (page) page.scrollTop = 0;
     }
