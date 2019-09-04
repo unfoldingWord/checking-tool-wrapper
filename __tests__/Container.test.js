@@ -96,7 +96,7 @@ describe.only('Container Tests', () => {
     expect(container).toBe(0);
   });
 
-  it('Test TranslationHelps componentWillReceiveProps', () => {
+  it('Test TranslationHelpsContainer', () => {
     const root = render(
       <Provider store={store}>
         <Container {...props} />
