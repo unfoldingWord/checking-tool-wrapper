@@ -96,13 +96,13 @@ describe.only('Container Tests', () => {
     expect(container).toBe(0);
   });
 
-  it('Test TranslationHelps componentWillReceiveProps', () => {
+  it('Test TranslationHelpsContainer', () => {
     const root = render(
       <Provider store={store}>
         <Container {...props} />
       </Provider>)
       .find(TranslationHelpsContainer);
-      expect(props.tc.actions.loadResourceArticle).toHaveBeenCalledWith(TRANSLATION_WORDS, "blasphemy", "en");
+      expect(root).toBeTruthy();
   });
 
   it('Test CheckInfoCardWrapper.getNote() to remove (See: ...)', () => {
