@@ -19,10 +19,6 @@ class TranslationHelpsWrapper extends React.Component {
     window.followLink = this.followTHelpsLink;
   }
 
-  componentWillMount() {
-    this._reloadArticle(this.props);
-  }
-
   componentDidUpdate(prevProps) {
     const {contextIdReducer} = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
