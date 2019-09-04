@@ -96,6 +96,15 @@ describe.only('Container Tests', () => {
     expect(container).toBe(0);
   });
 
+  it('Test TranslationHelps componentWillReceiveProps', () => {
+    const root = render(
+      <Provider store={store}>
+        <Container {...props} />
+      </Provider>)
+      .find(TranslationHelpsContainer);
+      expect(root).toBeTruthy();
+  });
+
   it('Test CheckInfoCardWrapper.getNote() to remove (See: ...)', () => {
     const props = {
       showHelps: true,
