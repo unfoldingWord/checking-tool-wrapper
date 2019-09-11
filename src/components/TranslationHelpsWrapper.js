@@ -11,8 +11,7 @@ class TranslationHelpsWrapper extends React.Component {
     this.state = {
       showHelpsModal: false,
       modalArticle: '',
-      articleCategory: '',
-      primaryArticle: ''
+      articleCategory: ''
     };
 
     this.toggleHelpsModal = this.toggleHelpsModal.bind(this);
@@ -24,27 +23,10 @@ class TranslationHelpsWrapper extends React.Component {
     this._reloadArticle(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      resourcesReducer,
-      contextIdReducer: {contextId},
-      toolsReducer: {currentToolName},
-    } = nextProps;
-    // see if helps article has updated
-    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-    if (currentFile !== this.state.primaryArticle) {
-      this.setState({
-        primaryArticle: currentFile
-      });
-    }
-  }
-
   componentDidUpdate(prevProps) {
     const {contextIdReducer} = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
-    // reload article when groupId changes or need article
-    if ((this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) ||
-        !this.state.primaryArticle) {
+    if (this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
       this._reloadArticle(this.props);
     }
     if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
@@ -120,12 +102,15 @@ class TranslationHelpsWrapper extends React.Component {
     const {
       toolsSelectedGLs,
       toolsReducer: {currentToolName},
+      resourcesReducer,
+      contextIdReducer: {contextId},
       showHelps,
       toggleHelps,
       translate
     } = this.props;
     const languageId = toolsSelectedGLs[currentToolName];
-    const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.primaryArticle, languageId);
+    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
+    const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
     return (
       <TranslationHelps
