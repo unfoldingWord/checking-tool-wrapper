@@ -19,11 +19,15 @@ class TranslationHelpsWrapper extends React.Component {
     window.followLink = this.followTHelpsLink;
   }
 
+  componentDidMount() {
+    this.loadArticle(this.props);
+  }
+
   componentDidUpdate(prevProps) {
     const {contextIdReducer} = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
-    if (this.getGroupId(contextIdReducer) !==  this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
-      this._reloadArticle(this.props);
+    if (this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
+      this.loadArticle(this.props);
     }
     if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
       const page = document.getElementById("helpsbody");
@@ -52,7 +56,7 @@ class TranslationHelpsWrapper extends React.Component {
    * @param props
    * @private
    */
-  _reloadArticle(props) {
+  loadArticle(props) {
     const {contextIdReducer, toolsReducer, toolsSelectedGLs, actions} = props;
     const contextId = contextIdReducer && contextIdReducer.contextId;
     if (contextId) {
