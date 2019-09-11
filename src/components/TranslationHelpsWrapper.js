@@ -20,10 +20,31 @@ class TranslationHelpsWrapper extends React.Component {
     window.followLink = this.followTHelpsLink;
   }
 
+  componentDidMount() {
+    this._reloadArticle(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      resourcesReducer,
+      contextIdReducer: {contextId},
+      toolsReducer: {currentToolName},
+    } = nextProps;
+    // see if helps article has updated
+    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
+    if (currentFile !== this.state.primaryArticle) {
+      this.setState({
+        primaryArticle: currentFile
+      });
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const {contextIdReducer} = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
-    if (this.getGroupId(contextIdReducer) !==  this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
+    // reload article when groupId changes or need article
+    if ((this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) ||
+        !this.state.primaryArticle) {
       this._reloadArticle(this.props);
     }
     if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
@@ -48,7 +69,6 @@ class TranslationHelpsWrapper extends React.Component {
     });
   }
 
-
   /**
    * Loads the resource article
    * @param props
@@ -61,21 +81,9 @@ class TranslationHelpsWrapper extends React.Component {
       const articleId = contextId.groupId;
       const {currentToolName} = toolsReducer;
       const languageId = toolsSelectedGLs[currentToolName];
-      this.getArticle(actions, currentToolName, articleId, languageId);
+      actions.loadResourceArticle(currentToolName, articleId, languageId);
     }
   }
-
-  getArticle = async (actions, currentToolName, articleId, languageId) => {
-    await actions.loadResourceArticle(currentToolName, articleId, languageId);
-    const {
-      resourcesReducer,
-      contextIdReducer: {contextId},
-    } = this.props;
-    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-    this.setState({
-      primaryArticle: currentFile
-    });
-  };
 
   followTHelpsLink(link) {
     let linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
