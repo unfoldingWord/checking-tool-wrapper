@@ -11,7 +11,8 @@ class TranslationHelpsWrapper extends React.Component {
     this.state = {
       showHelpsModal: false,
       modalArticle: '',
-      articleCategory: ''
+      articleCategory: '',
+      primaryArticle: ''
     };
 
     this.toggleHelpsModal = this.toggleHelpsModal.bind(this);
@@ -47,6 +48,7 @@ class TranslationHelpsWrapper extends React.Component {
     });
   }
 
+
   /**
    * Loads the resource article
    * @param props
@@ -59,9 +61,21 @@ class TranslationHelpsWrapper extends React.Component {
       const articleId = contextId.groupId;
       const {currentToolName} = toolsReducer;
       const languageId = toolsSelectedGLs[currentToolName];
-      actions.loadResourceArticle(currentToolName, articleId, languageId);
+      this.getArticle(actions, currentToolName, articleId, languageId);
     }
   }
+
+  getArticle = async (actions, currentToolName, articleId, languageId) => {
+    await actions.loadResourceArticle(currentToolName, articleId, languageId);
+    const {
+      resourcesReducer,
+      contextIdReducer: {contextId},
+    } = this.props;
+    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
+    this.setState({
+      primaryArticle: currentFile
+    });
+  };
 
   followTHelpsLink(link) {
     let linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
@@ -98,15 +112,12 @@ class TranslationHelpsWrapper extends React.Component {
     const {
       toolsSelectedGLs,
       toolsReducer: {currentToolName},
-      resourcesReducer,
-      contextIdReducer: {contextId},
       showHelps,
       toggleHelps,
       translate
     } = this.props;
     const languageId = toolsSelectedGLs[currentToolName];
-    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-    const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
+    const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.primaryArticle, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
     return (
       <TranslationHelps
