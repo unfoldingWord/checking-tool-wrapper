@@ -3,16 +3,16 @@ import usfmjs from 'usfm-js';
 import _ from 'lodash';
 // helpers
 import * as stringHelpers from './stringHelpers';
-import { DEFAULT_MAX_SELECTIONS, TRANSLATION_NOTES, TN_MAX_SELECTIONS } from './consts';
+import {
+  DEFAULT_MAX_SELECTIONS, TRANSLATION_NOTES, TN_MAX_SELECTIONS,
+} from './consts';
 
 /**
  * determine the maximum selections allowed based on tool name
  * @param toolName
  * @return {number}
  */
-export const getMaximumSelections = toolName => {
-  return (toolName === TRANSLATION_NOTES) ? TN_MAX_SELECTIONS : DEFAULT_MAX_SELECTIONS;
-};
+export const getMaximumSelections = toolName => (toolName === TRANSLATION_NOTES) ? TN_MAX_SELECTIONS : DEFAULT_MAX_SELECTIONS;
 
 /**
  * Splice string into array of ranges, flagging what is selected
@@ -20,40 +20,41 @@ export const getMaximumSelections = toolName => {
  * @returns {array} - array of objects [obj,...]
  */
 export const spliceStringOnRanges = (string, ranges) => {
-    let selectionArray = []; // response
-    // sort ranges - this ensures we build the string correctly and don't miss selections
-    // concat overlaps - should not be a concern here but might help rendering bugs
-    let remainingString = string;
-    // shift the range since the loop is destructive
-    // by working on the remainingString and not original string
-    let rangeShift = 0;
-    ranges.forEach(function (rangeObject) {
-        let range = rangeObject.range;
-        // save all the text before the selection
-        let beforeSelection = remainingString.slice(0, range[0] - rangeShift);
-        // console.log('beforeSelection: ', beforeSelection)
-        // save the text in the selection
-        let selection = remainingString.slice(range[0] - rangeShift, range[1] + 1 - rangeShift);
-        // console.log('subString: ', selection)
-        // save all the text after the selection
-        let afterSelection = remainingString.slice(range[1] - rangeShift + 1);
-        // console.log('afterSelection: ', afterSelection)
-        selectionArray.push({text: beforeSelection, selected: false});
-        selectionArray.push({
-            text: selection,
-            selected: true,
-            occurrence: rangeObject.occurrence,
-            occurrences: rangeObject.occurrences
-        });
-        // next iteration is using remaining string
-        remainingString = afterSelection;
-        // shift the range up to last char of substring (before+sub)
-        rangeShift += beforeSelection.length;
-        rangeShift += selection.length;
+  let selectionArray = []; // response
+  // sort ranges - this ensures we build the string correctly and don't miss selections
+  // concat overlaps - should not be a concern here but might help rendering bugs
+  let remainingString = string;
+  // shift the range since the loop is destructive
+  // by working on the remainingString and not original string
+  let rangeShift = 0;
+
+  ranges.forEach(function (rangeObject) {
+    let range = rangeObject.range;
+    // save all the text before the selection
+    let beforeSelection = remainingString.slice(0, range[0] - rangeShift);
+    // console.log('beforeSelection: ', beforeSelection)
+    // save the text in the selection
+    let selection = remainingString.slice(range[0] - rangeShift, range[1] + 1 - rangeShift);
+    // console.log('subString: ', selection)
+    // save all the text after the selection
+    let afterSelection = remainingString.slice(range[1] - rangeShift + 1);
+    // console.log('afterSelection: ', afterSelection)
+    selectionArray.push({ text: beforeSelection, selected: false });
+    selectionArray.push({
+      text: selection,
+      selected: true,
+      occurrence: rangeObject.occurrence,
+      occurrences: rangeObject.occurrences,
     });
-    selectionArray.push({text: remainingString, selected: false});
-    // remove empty text from selectionArray
-    return selectionArray;
+    // next iteration is using remaining string
+    remainingString = afterSelection;
+    // shift the range up to last char of substring (before+sub)
+    rangeShift += beforeSelection.length;
+    rangeShift += selection.length;
+  });
+  selectionArray.push({ text: remainingString, selected: false });
+  // remove empty text from selectionArray
+  return selectionArray;
 };
 //
 // Use the following lines to test the previous function
@@ -68,22 +69,23 @@ export const spliceStringOnRanges = (string, ranges) => {
  * @returns {array} - array of range objects
  */
 export const selectionsToRanges = (string, selections) => {
-    let ranges = [];
-    selections.forEach(function (selection) {
-        if (string !== undefined && string.includes(selection.text)) {
-            let splitArray = string.split(selection.text);
-            let beforeSelection = splitArray.slice(0, selection.occurrence).join(selection.text);
-            let start = beforeSelection.length;
-            let end = start + selection.text.length - 1;
-            let rangesObject = {
-                range: [start, end],
-                occurrence: selection.occurrence,
-                occurrences: selection.occurrences
-            };
-            ranges.push(rangesObject);
-        }
-    });
-    return ranges;
+  let ranges = [];
+
+  selections.forEach(function (selection) {
+    if (string !== undefined && string.includes(selection.text)) {
+      let splitArray = string.split(selection.text);
+      let beforeSelection = splitArray.slice(0, selection.occurrence).join(selection.text);
+      let start = beforeSelection.length;
+      let end = start + selection.text.length - 1;
+      let rangesObject = {
+        range: [start, end],
+        occurrence: selection.occurrence,
+        occurrences: selection.occurrences,
+      };
+      ranges.push(rangesObject);
+    }
+  });
+  return ranges;
 };
 //
 // Use the following lines to test the previous function
@@ -100,10 +102,10 @@ export const selectionsToRanges = (string, selections) => {
  * @returns {array} - array of objects
  */
 export const selectionArray = (string, selections) => {
-    let selectionArray = [];
-    let ranges = selectionsToRanges(string, selections);
-    selectionArray = spliceStringOnRanges(string, ranges);
-    return selectionArray;
+  let selectionArray = [];
+  let ranges = selectionsToRanges(string, selections);
+  selectionArray = spliceStringOnRanges(string, ranges);
+  return selectionArray;
 };
 //
 // Use the following lines to test the previous function
@@ -120,32 +122,37 @@ export const selectionArray = (string, selections) => {
  * @returns {array} - array of optimized ranges [[int,int],...]
  */
 export const optimizeRanges = (ranges) => {
-    let optimizedRanges = []; // response
-    ranges = _.sortBy(ranges, function (range) {
-        return range[1];
-    });// order ranges by end char index as secondary
-    ranges = _.sortBy(ranges, function (range) {
-        return range[0];
-    });// order ranges by start char index as primary
-    ranges = _.uniq(ranges); // remove duplicates
-    // combine overlapping and contiguous ranges
-    let _range = [];
-    ranges.forEach(function (range, index) {
-        if (range[0] >= _range[0] && range[0] <= _range[1] + 1) { // the start occurs in the running range and +1 handles contiguous
-            if (range[1] >= _range[0] && range[1] <= _range[1]) { // if the start occurs inside running range then let's check the end
-                // if the end occurs inside the running range then it's inside it and doesn't matter
-            } else { // it doesn't occur inside the running range
-                _range[1] = range[1]; // extend running range
-            }
-        } else { // the start does not occur in the running range
-            if (_range.length != 0) optimizedRanges.push(_range); // the running range is closed push it to optimizedRanges
-            _range = range; // reset the running range to this one
-        }
-        if (ranges.length === index + 1 && _range[1] - _range[0] >= 0) { // this is the last one and it isn't blank
-            optimizedRanges.push(_range); // push the last one to optimizedRanges
-        }
-    });
-    return optimizedRanges;
+  let optimizedRanges = []; // response
+
+  ranges = _.sortBy(ranges, function (range) {
+    return range[1];
+  });// order ranges by end char index as secondary
+  ranges = _.sortBy(ranges, function (range) {
+    return range[0];
+  });// order ranges by start char index as primary
+  ranges = _.uniq(ranges); // remove duplicates
+  // combine overlapping and contiguous ranges
+  let _range = [];
+
+  ranges.forEach(function (range, index) {
+    if (range[0] >= _range[0] && range[0] <= _range[1] + 1) { // the start occurs in the running range and +1 handles contiguous
+      if (range[1] >= _range[0] && range[1] <= _range[1]) { // if the start occurs inside running range then let's check the end
+        // if the end occurs inside the running range then it's inside it and doesn't matter
+      } else { // it doesn't occur inside the running range
+        _range[1] = range[1]; // extend running range
+      }
+    } else { // the start does not occur in the running range
+      if (_range.length != 0) {
+        optimizedRanges.push(_range);
+      } // the running range is closed push it to optimizedRanges
+      _range = range; // reset the running range to this one
+    }
+
+    if (ranges.length === index + 1 && _range[1] - _range[0] >= 0) { // this is the last one and it isn't blank
+      optimizedRanges.push(_range); // push the last one to optimizedRanges
+    }
+  });
+  return optimizedRanges;
 };
 //
 // Use the following lines to test the previous function
@@ -161,6 +168,7 @@ export const optimizeRanges = (ranges) => {
  */
 export const rangesToSelections = (string, ranges) => {
   let selections = [];
+
   ranges.forEach( range => {
     const start = range[0], end = range[1]; // set the start and end point
     const length = end - start + 1; // get the length of the sub string
@@ -172,8 +180,9 @@ export const rangesToSelections = (string, ranges) => {
     const selection = {
       text: subString,
       occurrence: occurrence,
-      occurrences: occurrences
+      occurrences: occurrences,
     };
+
     if (occurrences > 0) { // there are some edge cases where empty strings get through but don't have occurrences
       selections.push(selection);
     }
@@ -238,15 +247,22 @@ export const optimizeSelections = (string, selections) => {
  * modified to fit our use cases, return zero for '' substring, and no use case for overlapping.
  */
 export const occurrencesInString = (string, subString) => {
-    if (subString.length <= 0) return 0;
-    let n = 0, pos = 0, step = subString.length;
-    while (true) {
-        pos = string.indexOf(subString, pos);
-        if (pos === -1) break;
-        ++n;
-        pos += step;
+  if (subString.length <= 0) {
+    return 0;
+  }
+
+  let n = 0, pos = 0, step = subString.length;
+
+  while (true) {
+    pos = string.indexOf(subString, pos);
+
+    if (pos === -1) {
+      break;
     }
-    return n;
+    ++n;
+    pos += step;
+  }
+  return n;
 };
 /**
  * @description Function that normalizes a string including whitespace
@@ -254,8 +270,8 @@ export const occurrencesInString = (string, subString) => {
  * @preturns {String} - The returned normalized string
  */
 export const normalizeString = (string) => {
-    string = string.replace(/\s+/g, ' ');
-    return string;
+  string = string.replace(/\s+/g, ' ');
+  return string;
 };
 
 

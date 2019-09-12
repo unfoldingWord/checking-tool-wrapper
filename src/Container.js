@@ -11,7 +11,7 @@ import {
   getResourceByName,
   getSelections,
   getCurrentPaneSettings,
-  getBibles
+  getBibles,
 } from './selectors';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
@@ -26,9 +26,7 @@ import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 class Container extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showHelps: true
-    };
+    this.state = { showHelps: true };
     this.toggleHelps = this.toggleHelps.bind(this);
   }
   componentWillMount() {
@@ -37,27 +35,27 @@ class Container extends React.Component {
   }
 
   toggleHelps() {
-    this.setState({showHelps: !this.state.showHelps});
+    this.setState({ showHelps: !this.state.showHelps });
   }
 
   render() {
-    const {
-      contextIdReducer: {contextId}
-    } = this.props;
+    const { contextIdReducer: { contextId } } = this.props;
 
     const theme = createTcuiTheme({
-      typography: {
-        useNextVariants: true,
-      },
-      scrollbarThumb: {borderRadius: '10px'}
+      typography: { useNextVariants: true },
+      scrollbarThumb: { borderRadius: '10px' },
     });
 
     if (contextId !== null) {
       return (
         <TcuiThemeProvider theme={theme}>
-          <div style={{display: 'flex', flexDirection: 'row', width: '100vw'}}>
+          <div style={{
+            display: 'flex', flexDirection: 'row', width: '100vw',
+          }}>
             <GroupMenuWrapper {...this.props.groupMenu} />
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto'}}>
+            <div style={{
+              display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
+            }}>
               <div style={{ height: '250px', paddingBottom: '20px' }}>
                 <ScripturePaneWrapper {...this.props.scripturePane} />
               </div>
@@ -87,42 +85,30 @@ Container.propTypes = {
   verseCheck: PropTypes.any,
   checkInfoCard: PropTypes.any,
   translate: PropTypes.func,
-  settingsReducer: PropTypes.shape({
-    toolsSettings: PropTypes.shape({
-      ScripturePane: PropTypes.object
-    })
-  }),
-  contextIdReducer: PropTypes.shape({
-    contextId: PropTypes.shape({
-      groupId: PropTypes.any
-    })
-  }),
-  groupsIndexReducer: PropTypes.shape({
-    groupsIndex: PropTypes.array
-  }),
-  projectDetailsReducer: PropTypes.shape({
-    manifest: PropTypes.object.isRequired
-  }),
+  settingsReducer: PropTypes.shape({ toolsSettings: PropTypes.shape({ ScripturePane: PropTypes.object }) }),
+  contextIdReducer: PropTypes.shape({ contextId: PropTypes.shape({ groupId: PropTypes.any }) }),
+  groupsIndexReducer: PropTypes.shape({ groupsIndex: PropTypes.array }),
+  projectDetailsReducer: PropTypes.shape({ manifest: PropTypes.object.isRequired }),
   tc: PropTypes.shape({
     actions: PropTypes.shape({
       setToolSettings: PropTypes.func.isRequired,
       loadResourceArticle: PropTypes.func.isRequired,
       getGLQuote: PropTypes.func.isRequired,
       getSelectionsFromContextId: PropTypes.func.isRequired,
-      onInvalidCheck: PropTypes.func.isRequired
-    })
+      onInvalidCheck: PropTypes.func.isRequired,
+    }),
   }),
-  scripturePane: PropTypes.object.isRequired
+  scripturePane: PropTypes.object.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
-  const legacyToolsReducer = {currentToolName: ownProps.tc.selectedToolName};
+  const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
   return {
     groupMenu: {
       tc: ownProps.tc,
       groupsDataReducer: ownProps.tc.groupsDataReducer,
       groupsIndexReducer: ownProps.tc.groupsIndexReducer,
-      translate: ownProps.translate
+      translate: ownProps.translate,
     },
     verseCheck: {
       translate: ownProps.translate,
@@ -137,7 +123,7 @@ export const mapStateToProps = (state, ownProps) => {
       groupsDataReducer: ownProps.tc.groupsDataReducer,
       remindersReducer: ownProps.tc.remindersReducer,
       actions: ownProps.tc.actions,
-      maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName)
+      maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName),
     },
     translationHelps: {
       translate: ownProps.translate,
@@ -145,14 +131,14 @@ export const mapStateToProps = (state, ownProps) => {
       toolsReducer: legacyToolsReducer,
       resourcesReducer: ownProps.tc.resourcesReducer,
       contextIdReducer: ownProps.tc.contextIdReducer,
-      actions: ownProps.tc.actions
+      actions: ownProps.tc.actions,
     },
     checkInfoCard: {
       translate: ownProps.translate,
       translationHelps: getResourceByName(ownProps, 'translationHelps'),
       groupsIndex: getGroupsIndex(ownProps),
       contextId: getContextId(ownProps),
-      resourcesReducer: ownProps.tc.resourcesReducer
+      resourcesReducer: ownProps.tc.resourcesReducer,
     },
     scripturePane: {
       translate: ownProps.translate,
@@ -167,8 +153,8 @@ export const mapStateToProps = (state, ownProps) => {
       getLexiconData: ownProps.tc.actions.getLexiconData,
       setToolSettings: ownProps.tc.actions.setToolSettings,
       getAvailableScripturePaneSelections: ownProps.tc.actions.getAvailableScripturePaneSelections,
-      makeSureBiblesLoadedForTool: ownProps.tc.actions.makeSureBiblesLoadedForTool
-    }
+      makeSureBiblesLoadedForTool: ownProps.tc.actions.makeSureBiblesLoadedForTool,
+    },
   };
 };
 

@@ -1,16 +1,17 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import usfmjs from 'usfm-js';
 import isEqual from 'deep-equal';
-import {optimizeSelections, normalizeString} from '../helpers/selectionHelpers';
+import { VerseCheck } from 'tc-ui-toolkit';
+import { optimizeSelections, normalizeString } from '../helpers/selectionHelpers';
 import * as checkAreaHelpers from '../helpers/checkAreaHelpers';
-import {VerseCheck} from 'tc-ui-toolkit';
 
 class VerseCheckWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    let {verseText} = this.getVerseText();
+    let { verseText } = this.getVerseText();
     const mode = props.selectionsReducer &&
       props.selectionsReducer.selections &&
       props.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
@@ -41,11 +42,12 @@ class VerseCheckWrapper extends React.Component {
     //TODO: factor out actions object to individual functions
     //Will require changes to the ui kit
     const _this = this;
+
     this.actions = {
       handleGoToNext() {
         if (!_this.props.loginReducer.loggedInUser) {
           _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog("You must be logged in to save progress");
+          _this.props.actions.openAlertDialog('You must be logged in to save progress');
           return;
         }
         props.actions.goToNext();
@@ -53,66 +55,65 @@ class VerseCheckWrapper extends React.Component {
       handleGoToPrevious() {
         if (!_this.props.loginReducer.loggedInUser) {
           _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog("You must be logged in to save progress");
+          _this.props.actions.openAlertDialog('You must be logged in to save progress');
           return;
         }
         props.actions.goToPrevious();
       },
       handleOpenDialog(goToNextOrPrevious) {
-        _this.setState({goToNextOrPrevious});
-        _this.setState({dialogModalVisibility: true});
+        _this.setState({ goToNextOrPrevious });
+        _this.setState({ dialogModalVisibility: true });
       },
       handleCloseDialog() {
-        _this.setState({dialogModalVisibility: false});
+        _this.setState({ dialogModalVisibility: false });
       },
       skipToNext() {
-        _this.setState({dialogModalVisibility: false});
+        _this.setState({ dialogModalVisibility: false });
         props.actions.goToNext();
       },
       skipToPrevious() {
-        _this.setState({dialogModalVisibility: false});
+        _this.setState({ dialogModalVisibility: false });
         props.actions.goToPrevious();
       },
       changeSelectionsInLocalState(selections) {
         const { nothingToSelect } = _this.props.selectionsReducer;
+
         if (selections.length > 0) {
           _this.setState({ nothingToSelect: false });
         } else {
           _this.setState({ nothingToSelect });
         }
-        _this.setState({selections});
+        _this.setState({ selections });
       },
       changeMode(mode) {
         _this.setState({
           mode: mode,
-          selections: _this.props.selectionsReducer.selections
+          selections: _this.props.selectionsReducer.selections,
         });
       },
       handleComment(e) {
         const comment = e.target.value;
-        _this.setState({
-          comment: comment
-        });
+
+        _this.setState({ comment: comment });
       },
       checkComment(e) {
-        const newcomment = e.target.value || "";
-        const oldcomment = _this.props.commentsReducer.text || "";
-        _this.setState({
-          commentChanged: newcomment !== oldcomment
-        });
+        const newcomment = e.target.value || '';
+        const oldcomment = _this.props.commentsReducer.text || '';
+
+        _this.setState({ commentChanged: newcomment !== oldcomment });
       },
       cancelComment() {
         _this.setState({
           mode: 'default',
           selections: _this.props.selectionsReducer.selections,
           comment: undefined,
-          commentChanged: false
+          commentChanged: false,
         });
       },
       saveComment() {
         if (!_this.props.loginReducer.loggedInUser) {
           _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog("You must be logged in to leave a comment", 5);
+          _this.props.actions.openAlertDialog('You must be logged in to leave a comment', 5);
           return;
         }
         _this.props.actions.addComment(_this.state.comment, _this.props.loginReducer.userdata.username);
@@ -120,12 +121,16 @@ class VerseCheckWrapper extends React.Component {
           mode: 'default',
           selections: _this.props.selectionsReducer.selections,
           comment: undefined,
-          commentChanged: false
+          commentChanged: false,
         });
       },
       handleTagsCheckbox(tag) {
         let newState = _this.state;
-        if (newState.tags === undefined) newState.tags = [];
+
+        if (newState.tags === undefined) {
+          newState.tags = [];
+        }
+
         if (!newState.tags.includes(tag)) {
           newState.tags.push(tag);
         } else {
@@ -135,23 +140,21 @@ class VerseCheckWrapper extends React.Component {
       },
       handleEditVerse(e) {
         const verseText = e.target.value;
-        _this.setState({
-          verseText: verseText
-        });
+
+        _this.setState({ verseText: verseText });
       },
       checkVerse(e) {
-        let {chapter, verse} = _this.props.contextIdReducer.contextId.reference;
-        const newverse = e.target.value || "";
-        const oldverse = _this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || "";
+        let { chapter, verse } = _this.props.contextIdReducer.contextId.reference;
+        const newverse = e.target.value || '';
+        const oldverse = _this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || '';
+
         if (newverse === oldverse) {
           _this.setState({
             verseChanged: false,
-            tags: []
+            tags: [],
           });
         } else {
-          _this.setState({
-            verseChanged: true
-          });
+          _this.setState({ verseChanged: true });
         }
       },
       cancelEditVerse() {
@@ -160,18 +163,21 @@ class VerseCheckWrapper extends React.Component {
           selections: _this.props.selectionsReducer.selections,
           verseText: undefined,
           verseChanged: false,
-          tags: []
+          tags: [],
         });
       },
       saveEditVerse() {
-        let {loginReducer, actions, contextIdReducer, resourcesReducer} = _this.props;
-        let {chapter, verse} = contextIdReducer.contextId.reference;
+        let {
+          loginReducer, actions, contextIdReducer, resourcesReducer,
+        } = _this.props;
+        let { chapter, verse } = contextIdReducer.contextId.reference;
         let before = resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse];
         let username = loginReducer.userdata.username;
+
         // verseText state is undefined if no changes are made in the text box.
         if (!loginReducer.loggedInUser) {
           _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog("You must be logged in to edit a verse");
+          _this.props.actions.openAlertDialog('You must be logged in to edit a verse');
           return;
         }
 
@@ -182,18 +188,22 @@ class VerseCheckWrapper extends React.Component {
             selections: _this.props.selectionsReducer.selections,
             verseText: undefined,
             verseChanged: false,
-            tags: []
+            tags: [],
           });
         };
+
         if (_this.state.verseText) {
           save();
         } else {
           // alert the user if the text is blank
           let message = 'You are saving a blank verse. Please confirm.';
+
           _this.props.actions.openOptionDialog(message, (option) => {
-            if (option !== "Cancel") save();
+            if (option !== 'Cancel') {
+              save();
+            }
             _this.props.actions.closeAlertDialog();
-          }, "Save Blank Verse", "Cancel");
+          }, 'Save Blank Verse', 'Cancel');
         }
       },
       validateSelections(verseText) {
@@ -207,29 +217,34 @@ class VerseCheckWrapper extends React.Component {
       },
       selectModalTab(tab, section, vis) {
         _this.props.actions.selectModalTab(tab, section, vis);
-      }
+      },
     };
   }
 
   componentWillMount() {
     let selections = [...this.props.selectionsReducer.selections];
-    this.setState({selections});
+    this.setState({ selections });
   }
 
   componentWillReceiveProps(nextProps) {
-    const {contextIdReducer} = this.props || {};
+    const { contextIdReducer } = this.props || {};
     const nextContextIDReducer = nextProps.contextIdReducer;
+
     if (contextIdReducer !== nextContextIDReducer) {
       const selections = Array.from(nextProps.selectionsReducer.selections);
       const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
-      const {chapter, verse} = nextContextIDReducer.contextId.reference || {};
-      const {targetBible} = nextProps.resourcesReducer.bibles.targetLanguage || {};
-      let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : "";
-      if (Array.isArray(verseText)) verseText = verseText[0];
+      const { chapter, verse } = nextContextIDReducer.contextId.reference || {};
+      const { targetBible } = nextProps.resourcesReducer.bibles.targetLanguage || {};
+      let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
+
+      if (Array.isArray(verseText)) {
+        verseText = verseText[0];
+      }
       // normalize whitespace in case selection has contiguous whitespace _this isn't captured
       verseText = normalizeString(verseText);
       const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
         'default' : nextProps.selectionsReducer.nothingToSelect ? 'default' : 'select';
+
       this.setState({
         mode: mode,
         comments: undefined,
@@ -237,7 +252,7 @@ class VerseCheckWrapper extends React.Component {
         selections,
         nothingToSelect,
         tags: [],
-        lastContextId: undefined
+        lastContextId: undefined,
       });
     }
   }
@@ -247,20 +262,27 @@ class VerseCheckWrapper extends React.Component {
    * @return {{verseText: string, unfilteredVerseText: string}}
    */
   getVerseText() {
-    let unfilteredVerseText = "";
-    let verseText = "";
+    let unfilteredVerseText = '';
+    let verseText = '';
+
     if (this.props.contextIdReducer && this.props.contextIdReducer.contextId) {
-      const {chapter, verse, bookId} = this.props.contextIdReducer.contextId.reference;
+      const {
+        chapter, verse, bookId,
+      } = this.props.contextIdReducer.contextId.reference;
       const bookAbbr = this.props.projectDetailsReducer.manifest.project.id;
-      const {targetBible} = this.props.resourcesReducer.bibles.targetLanguage;
+      const { targetBible } = this.props.resourcesReducer.bibles.targetLanguage;
+
       if (targetBible && targetBible[chapter] && bookId === bookAbbr) {
-        unfilteredVerseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : "";
-        if (Array.isArray(unfilteredVerseText)) unfilteredVerseText = unfilteredVerseText[0];
+        unfilteredVerseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
+
+        if (Array.isArray(unfilteredVerseText)) {
+          unfilteredVerseText = unfilteredVerseText[0];
+        }
         // normalize whitespace in case selection has contiguous whitespace _this isn't captured
         verseText = normalizeString(unfilteredVerseText);
       }
     }
-    return {unfilteredVerseText, verseText};
+    return { unfilteredVerseText, verseText };
   }
 
 
@@ -272,13 +294,11 @@ class VerseCheckWrapper extends React.Component {
   }
 
   clearSelection() {
-    this.setState({
-      selections: []
-    });
+    this.setState({ selections: [] });
   }
 
   saveSelection() {
-    let {verseText} = this.getVerseText();
+    let { verseText } = this.getVerseText();
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
     const { username } = this.props.loginReducer.userdata;
@@ -309,21 +329,21 @@ class VerseCheckWrapper extends React.Component {
    * @return {*}
    */
   getGroupDatumForCurrentContext() {
-    const {contextIdReducer: {contextId}, groupsDataReducer: {groupsData}} = this.props;
+    const { contextIdReducer: { contextId }, groupsDataReducer: { groupsData } } = this.props;
     let groupItem = null;
+
     if (groupsData[contextId.groupId]) {
-      groupItem = groupsData[contextId.groupId].find(groupData => {
-        return isEqual(groupData.contextId, contextId);
-      });
+      groupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
     }
     return groupItem;
   }
 
   handleSkip(e) {
     e.preventDefault();
-    if (this.state.goToNextOrPrevious == "next") {
+
+    if (this.state.goToNextOrPrevious == 'next') {
       this.actions.skipToNext();
-    } else if (this.state.goToNextOrPrevious == "previous") {
+    } else if (this.state.goToNextOrPrevious == 'previous') {
       this.actions.skipToPrevious();
     }
   }
@@ -332,9 +352,7 @@ class VerseCheckWrapper extends React.Component {
     // to prevent multiple alerts on current selection
     if (!isEqual(contextId, this.state.lastContextId)) {
       this.props.actions.onInvalidCheck(contextId, selectedGL, true);
-      this.setState({
-        lastContextId: contextId
-      });
+      this.setState({ lastContextId: contextId });
     }
   }
 
@@ -344,24 +362,24 @@ class VerseCheckWrapper extends React.Component {
       currentToolName,
       projectDetailsReducer: {
         manifest,
-        projectSaveLocation
+        projectSaveLocation,
       },
       loginReducer,
       selectionsReducer: {
         selections,
         nothingToSelect,
       },
-      contextIdReducer: {contextId},
+      contextIdReducer: { contextId },
       resourcesReducer,
       commentsReducer,
       toolsReducer,
       groupsDataReducer,
       remindersReducer,
-      maximumSelections
+      maximumSelections,
     } = this.props;
-    let {unfilteredVerseText, verseText} = this.getVerseText();
+    let { unfilteredVerseText, verseText } = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
-    const {toolsSelectedGLs} = manifest;
+    const { toolsSelectedGLs } = manifest;
     const alignedGLText = checkAreaHelpers.getAlignedGLText(
       toolsSelectedGLs,
       contextId,
@@ -377,10 +395,10 @@ class VerseCheckWrapper extends React.Component {
         commentsReducer={commentsReducer}
         localNothingToSelect={this.state.nothingToSelect}
         remindersReducer={remindersReducer}
-        projectDetailsReducer={{manifest, projectSaveLocation}}
-        contextIdReducer={{contextId}}
+        projectDetailsReducer={{ manifest, projectSaveLocation }}
+        contextIdReducer={{ contextId }}
         resourcesReducer={resourcesReducer}
-        selectionsReducer={{selections, nothingToSelect}}
+        selectionsReducer={{ selections, nothingToSelect }}
         loginReducer={loginReducer}
         toolsReducer={toolsReducer}
         groupsDataReducer={groupsDataReducer}
@@ -418,15 +436,13 @@ VerseCheckWrapper.propTypes = {
   }),
   groupsDataReducer: PropTypes.object,
   loginReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({
-    contextId: PropTypes.object.isRequired
-  }),
+  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
   toolsReducer: PropTypes.object,
   actions: PropTypes.shape({
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
-    onInvalidCheck: PropTypes.func.isRequired
+    onInvalidCheck: PropTypes.func.isRequired,
   }),
   projectDetailsReducer: PropTypes.object.isRequired,
   maximumSelections: PropTypes.number.isRequired,

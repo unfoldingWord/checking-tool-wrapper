@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ScripturePane} from 'tc-ui-toolkit';
+import { ScripturePane } from 'tc-ui-toolkit';
 
 class ScripturePaneWrapper extends React.Component {
   makeTitle(manifest) {
-    const {target_language, project} = manifest;
+    const { target_language, project } = manifest;
+
     if (target_language && target_language.book && target_language.book.name) {
       return target_language.book.name;
     } else {
@@ -26,7 +27,7 @@ class ScripturePaneWrapper extends React.Component {
       translate,
       currentPaneSettings,
       getAvailableScripturePaneSelections,
-      makeSureBiblesLoadedForTool
+      makeSureBiblesLoadedForTool,
     } = this.props;
 
     const expandedScripturePaneTitle = this.makeTitle(manifest);
@@ -62,9 +63,7 @@ ScripturePaneWrapper.propTypes = {
   currentPaneSettings: PropTypes.array,
   groupsDataReducer: PropTypes.object,
   loginReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({
-    contextId: PropTypes.object.isRequired
-  }),
+  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
   toolsReducer: PropTypes.object,
   actions: PropTypes.shape({
     changeSelections: PropTypes.func.isRequired,

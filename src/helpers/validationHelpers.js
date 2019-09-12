@@ -32,29 +32,33 @@ export function generateTimestamp(str) {
   }
 }
 
-export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, projectSaveLocation, quote = "") {
+export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, projectSaveLocation, quote = '') {
   let selectionsObject = {};
   const contextId = {
     reference: {
       bookId,
       chapter,
-      verse
-    }
+      verse,
+    },
   };
   const selectionsPath = generateLoadPath(projectSaveLocation, contextId, 'selections');
 
   if (fs.existsSync(selectionsPath)) {
     let files = fs.readdirSync(selectionsPath);
-    files = files.filter(file => { // filter the filenames to only use .json
-      return path.extname(file) === '.json';
-    });
+
+    files = files.filter(file => // filter the filenames to only use .json
+      path.extname(file) === '.json'
+    );
+
     let sorted = files.sort().reverse(); // sort the files to use latest
+
     if (quote) {
       sorted = sorted.filter((filename) => {
         const currentSelectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
         return isEqual(currentSelectionsObject.contextId.quote, quote); // add support for quote arrays
       });
     }
+
     if (sorted.length) { // sanity check to prevent exception being thrown
       const filename = sorted[0]; // get first item which will be latest match
       selectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
@@ -82,6 +86,7 @@ export function generateLoadPath(projectSaveLocation, contextId, checkDataName) 
   * @example verse - /3
   */
   const PROJECT_SAVE_LOCATION = projectSaveLocation;
+
   if (PROJECT_SAVE_LOCATION) {
     let bookAbbreviation = contextId.reference.bookId;
     let chapter = contextId.reference.chapter.toString();

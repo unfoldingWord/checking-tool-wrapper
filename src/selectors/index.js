@@ -27,7 +27,7 @@ export function getSelections(state) {
 }
 
 export function getCurrentPaneSettings(state) {
-  const {ScripturePane} = state.settingsReducer.toolsSettings;
+  const { ScripturePane } = state.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 }
 

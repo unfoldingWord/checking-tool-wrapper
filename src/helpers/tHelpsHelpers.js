@@ -1,4 +1,6 @@
-import { TRANSLATION_ACADEMY, TRANSLATION_NOTES, TRANSLATION_WORDS } from './consts';
+import {
+  TRANSLATION_ACADEMY, TRANSLATION_NOTES, TRANSLATION_WORDS,
+} from './consts';
 
 /**
  *
@@ -7,7 +9,9 @@ import { TRANSLATION_ACADEMY, TRANSLATION_NOTES, TRANSLATION_WORDS } from './con
  * @param {String} articleCat - category of the given article. Ok if empty
  */
 export function convertMarkdownLinks(src, languageId, articleCat='') {
-  if (!src) return src;
+  if (!src) {
+    return src;
+  }
 
   // OBS tN: Convert all [<Title>](rc://<lang>/tn/help/obs/*) links to just show "Open Bible Stories - <Title>"
   src = src.replace(/\[([^\]]+)\]\(rc:\/\/[^/]+\/tn\/help\/obs[^)]+\)/g, 'Open Bible Stories - $1');
@@ -32,14 +36,14 @@ export function convertMarkdownLinks(src, languageId, articleCat='') {
 
 export function getResourceDirByType(type) {
   switch (type) {
-    case 'ta':
-      return TRANSLATION_ACADEMY;
-    case 'tw':
-      return TRANSLATION_WORDS;
-    case 'tn':
-      return TRANSLATION_NOTES;
-    default:
-      return type;
+  case 'ta':
+    return TRANSLATION_ACADEMY;
+  case 'tw':
+    return TRANSLATION_WORDS;
+  case 'tn':
+    return TRANSLATION_NOTES;
+  default:
+    return type;
   }
 }
 
@@ -47,6 +51,6 @@ export function getResourceDirByType(type) {
 export function getArticleFromState(resourcesReducer = {}, contextId = {}, toolName) {
   const translationHelps = resourcesReducer.translationHelps || {};
   const article = translationHelps[toolName];
-  const {groupId} = contextId;
+  const { groupId } = contextId;
   return article && groupId ? article[groupId] : '';
 }

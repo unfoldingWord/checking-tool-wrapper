@@ -1,12 +1,15 @@
-import {ToolApi} from 'tc-tool';
+/* eslint-disable no-unused-vars */
+import { ToolApi } from 'tc-tool';
 import path from 'path-extra';
-import usfm from "usfm-js";
+import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
-import {checkSelectionOccurrences} from 'selections';
-import {getGroupDataForVerse} from './helpers/groupDataHelpers';
-import {generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo} from './helpers/validationHelpers';
-import {getQuoteAsString} from "./helpers/checkAreaHelpers";
+import { checkSelectionOccurrences } from 'selections';
+import { getGroupDataForVerse } from './helpers/groupDataHelpers';
+import {
+  generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo,
+} from './helpers/validationHelpers';
+import { getQuoteAsString } from './helpers/checkAreaHelpers';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -30,16 +33,16 @@ export default class Api extends ToolApi {
     const {
       tc: {
         targetBook,
-        project: {
-          getGroupsData
-        }
+        project: { getGroupsData },
       },
-      tool: {name: toolName}
+      tool: { name: toolName },
     } = this.props;
     const groupsData = getGroupsData(toolName);
 
     for (const chapter of Object.keys(targetBook)) {
-      if (isNaN(chapter) || parseInt(chapter) === -1) continue;
+      if (isNaN(chapter) || parseInt(chapter) === -1) {
+        continue;
+      }
       this.validateChapter(chapter, groupsData, silent);
     }
   }
@@ -51,14 +54,11 @@ export default class Api extends ToolApi {
  * @param {String} chapter
  */
   validateChapter(chapter, groupsData, silent) {
-    const {
-      tc: {
-        targetBook
-      },
-    } = this.props;
+    const { tc: { targetBook } } = this.props;
 
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
+
       if (bibleChapter) {
         for (let verse of Object.keys(bibleChapter)) {
           const targetVerse = bibleChapter[verse];
@@ -72,11 +72,9 @@ export default class Api extends ToolApi {
     const {
       tc: {
         targetBook,
-        project: {
-          getGroupsData
-        }
+        project: { getGroupsData },
       },
-      tool: {name: toolName}
+      tool: { name: toolName },
     } = this.props;
     const _groupsData = groupsData || getGroupsData(toolName);
     const bibleChapter = targetBook[chapter];
@@ -93,34 +91,37 @@ export default class Api extends ToolApi {
   _validateVerse(targetVerse, chapter, verse, groupsData, silent) {
     let {
       tc: {
-        contextId: {reference: {bookId}},
+        contextId: { reference: { bookId } },
         username: userName,
-        project: {
-          _projectPath: projectSaveLocation
-        }
+        project: { _projectPath: projectSaveLocation },
       },
-      tool: {name}
+      tool: { name },
     } = this.props;
     const contextId = {
       reference: {
         bookId,
         chapter: parseInt(chapter),
-        verse: parseInt(verse)
-      }
+        verse: parseInt(verse),
+      },
     };
     const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId, name);
     let filtered = null;
     let selectionsChanged = false;
+
     for (let groupItemKey of Object.keys(groupsDataForVerse)) {
       const groupItem = groupsDataForVerse[groupItemKey];
+
       for (let checkingOccurrence of groupItem) {
         const selections = checkingOccurrence.selections;
+
         if (!sameContext(contextId, checkingOccurrence.contextId)) {
           if (selections && selections.length) {
-            if (!filtered) {  // for performance, we filter the verse only once and only if there is a selection
+            if (!filtered) { // for performance, we filter the verse only once and only if there is a selection
               filtered = usfm.removeMarker(targetVerse); // remove USFM markers
             }
+
             const validSelections = checkSelectionOccurrences(filtered, selections);
+
             if (selections.length !== validSelections.length) {
               const selectionsObject = getSelectionsFromChapterAndVerseCombo(
                 bookId,
@@ -136,7 +137,7 @@ export default class Api extends ToolApi {
                 ...selectionsObject,
                 invalidated: true,
                 selections: [],
-                userName
+                userName,
               };
               this.writeCheckData(invalidatedPayload, invalidatedCheckPath);
 
@@ -144,7 +145,7 @@ export default class Api extends ToolApi {
               const selectionsPayload = {
                 ...selectionsObject,
                 selections: [],
-                userName
+                userName,
               };
               this.writeCheckData(selectionsPayload, selectionsCheckPath);
             }
@@ -152,6 +153,7 @@ export default class Api extends ToolApi {
         }
       }
     }
+
     if (selectionsChanged && !silent) {
       this._showResetDialog();
     }
@@ -169,14 +171,17 @@ export default class Api extends ToolApi {
    * @returns {number} - a value between 0 and 1
    */
   getProgress() {
-    const {tc: {project}, tool: {name}} = this.props;
+    const { tc: { project }, tool: { name } } = this.props;
     let totalChecks = 0;
     let completedChecks = 0;
     const selectedCategories = project.getSelectedCategories(name, true);
+
     for (const categoryName in selectedCategories) {
       const groups = selectedCategories[categoryName];
+
       for (const group of groups) {
         const data = project.getGroupData(name, group);
+
         if (data && data.constructor === Array) {
           for (const check of data) {
             totalChecks++;
@@ -241,16 +246,18 @@ export default class Api extends ToolApi {
    * @private
    */
   _loadCheckData(check, contextId) {
-    const {tc: {project}} = this.props;
-    const {reference: {bookId, chapter, verse}, groupId, quote, occurrence} = contextId;
+    const { tc: { project } } = this.props;
+    const {
+      reference: {
+        bookId, chapter, verse,
+      }, groupId, quote, occurrence,
+    } = contextId;
     const loadPath = path.join('checkData', check, bookId, `${chapter}`,
       `${verse}`);
 
     if (project.dataPathExistsSync(loadPath)) {
       // sort and filter check records
-      const files = project.readDataDirSync(loadPath).filter(file => {
-        return path.extname(file) === '.json';
-      });
+      const files = project.readDataDirSync(loadPath).filter(file => path.extname(file) === '.json');
       let sortedRecords = files.sort().reverse();
       const isQuoteArray = Array.isArray(quote);
 
@@ -258,6 +265,7 @@ export default class Api extends ToolApi {
       for (let i = 0, len = sortedRecords.length; i < len; i++) {
         const record = sortedRecords[i];
         const recordPath = path.join(loadPath, record);
+
         try {
           const recordData = JSON.parse(project.readDataFileSync(recordPath));
 
@@ -283,14 +291,17 @@ export default class Api extends ToolApi {
    * @returns {number} - the number of invalid checks
    */
   getInvalidChecks(groups) {
-    const {tc: {project}, tool: {name}} = this.props;
+    const { tc: { project }, tool: { name } } = this.props;
     let invalidChecks = 0;
+
     for (const group of groups) {
       const data = project.getGroupData(name, group);
+
       if (data && data.constructor === Array) {
         for (const check of data) {
           const checkData = this._loadCheckData('invalidated',
             check.contextId);
+
           if (checkData && checkData.invalidated === true) {
             invalidChecks++;
           }
@@ -316,18 +327,24 @@ export default class Api extends ToolApi {
     for (const chapter of Object.keys(selections)) {
       for (const verse of Object.keys(selections[chapter])) {
         for (const selection of selections[chapter][verse]) {
-          if (selection.selections.length === 0) continue;
+          if (selection.selections.length === 0) {
+            continue;
+          }
+
           let sourceText = null;
+
           if (Array.isArray(selection.contextId.quote)) {
             sourceText = selection.contextId.quoteString || // in tN quoteString is present
               getQuoteAsString(selection.contextId.quote); // if not such as for tW then we build quote
           } else {
             sourceText = selection.contextId.quote;
           }
+
           const targetText = selection.selections.map(s => s.text).join(' ');
+
           alignmentMemory.push({
             sourceText,
-            targetText
+            targetText,
           });
         }
       }
@@ -342,17 +359,15 @@ export default class Api extends ToolApi {
    * @private
    */
   _loadBookSelections(props) {
-    const {
-      tc: {
-        targetBook
-      }
-    } = props;
+    const { tc: { targetBook } } = props;
 
     const selections = {};
+
     for (const chapter of Object.keys(targetBook)) {
       for (const verse of Object.keys(targetBook[chapter])) {
         const verseSelections = this._loadVerseSelections(chapter, verse,
           props);
+
         if (verseSelections.length > 0) {
           if (!selections[chapter]) {
             selections[chapter] = {};
@@ -376,25 +391,27 @@ export default class Api extends ToolApi {
   _loadVerseSelections(chapter, verse, props) {
     const {
       tc: {
-        contextId: {reference: {bookId}},
+        contextId: { reference: { bookId } },
         projectDataPathExistsSync,
         readProjectDataSync,
-        readProjectDataDirSync
-      }
+        readProjectDataDirSync,
+      },
     } = props;
 
     const verseDir = path.join('checkData/selections/', bookId, chapter, verse);
     const selections = [];
     const foundSelections = [];
-    if (projectDataPathExistsSync(verseDir)) {
 
+    if (projectDataPathExistsSync(verseDir)) {
       let files = readProjectDataDirSync(verseDir);
       files = files.filter(f => path.extname(f) === '.json');
       files = files.sort().reverse();
+
       for (let i = 0; i < files.length; i++) {
         let filePath = path.join(verseDir, files[i]);
 
         let data;
+
         try {
           data = JSON.parse(readProjectDataSync(filePath));
         } catch (err) {
@@ -404,6 +421,7 @@ export default class Api extends ToolApi {
 
         if (data && data.contextId) {
           const id = `${data.contextId.groupId}:${data.contextId.quote}`;
+
           if (foundSelections.indexOf(id) === -1) {
             foundSelections.push(id);
             selections.push(data);
@@ -415,11 +433,7 @@ export default class Api extends ToolApi {
   }
 
   _showResetDialog() {
-    const {
-      tool: {
-        translate
-      }
-    } = this.props;
+    const { tool: { translate } } = this.props;
     this.props.tc.showIgnorableDialog('selections_invalidated', translate('selections_invalidated'));
   }
 }
