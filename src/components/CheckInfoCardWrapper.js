@@ -1,8 +1,9 @@
+/* eslint-disable no-useless-escape */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CheckInfoCard} from 'tc-ui-toolkit';
-import {VerseObjectUtils} from 'word-aligner';
-import {TRANSLATION_NOTES, TRANSLATION_WORDS} from "../helpers/consts";
+import { CheckInfoCard } from 'tc-ui-toolkit';
+import { VerseObjectUtils } from 'word-aligner';
+import { TRANSLATION_NOTES, TRANSLATION_WORDS } from '../helpers/consts';
 
 class CheckInfoCardWrapper extends React.Component {
   constructor(props) {
@@ -12,22 +13,30 @@ class CheckInfoCardWrapper extends React.Component {
 
   getPhraseFromTw(translationWords, articleId, translationHelps) {
     let currentFile = '';
+
     if (translationWords && translationWords[articleId]) {
       currentFile = translationHelps.translationWords[articleId];
     }
 
     let splitLine = currentFile.split('\n');
-    if (splitLine.length === 1 && splitLine[0] === "") return "";
+
+    if (splitLine.length === 1 && splitLine[0] === '') {
+      return '';
+    }
+
     let finalArray = [];
+
     for (let i = 0; i < splitLine.length; i++) {
-      if (splitLine[i] !== '' && !~splitLine[i].indexOf("#")) {
+      if (splitLine[i] !== '' && !~splitLine[i].indexOf('#')) {
         finalArray.push(splitLine[i]);
       }
     }
+
     let maxLength = 225;
-    let finalString = "";
+    let finalString = '';
     let chosenString = finalArray[0];
     let splitString = chosenString.split(' ');
+
     for (let word of splitString) {
       if ((finalString + ' ' + word).length >= maxLength) {
         finalString += '...';
@@ -43,18 +52,19 @@ class CheckInfoCardWrapper extends React.Component {
     // Removes the (See: [...](rc://...)) links at the end of an occurrenceNote
     // Ex: Paul speaks of God’s message as if it were an object (See: [Idiom](rc://en/ta/man/translate/figs-idiom) and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) =>
     //     Paul speaks of God’s message as if it were an object
-    return occurrenceNote.replace(/\s*\([^\(\)\[\]]+((\[[^\[\]]+\])*(\[\[|\()+rc:\/\/[^\)\]]+(\]\]|\))[^\(\[\)\]]*)+[^\(\)\[\]]*\)\s*$/g, "");
+    return occurrenceNote.replace(/\s*\([^\(\)\[\]]+((\[[^\[\]]+\])*(\[\[|\()+rc:\/\/[^\)\]]+(\]\]|\))[^\(\[\)\]]*)+[^\(\)\[\]]*\)\s*$/g, '');
   }
 
   getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
     const verseParsed = parseInt(verse);
     const currentBible = this.props.resourcesReducer.bibles[lang];
+
     if (currentBible &&
       currentBible[id] &&
       currentBible[id][chapterParsed] &&
       currentBible[id][chapterParsed][verseParsed]) {
-      const {verseObjects} = currentBible[id][chapterParsed][verseParsed];
+      const { verseObjects } = currentBible[id][chapterParsed][verseParsed];
       const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
       return verseText;
     }
@@ -67,25 +77,27 @@ class CheckInfoCardWrapper extends React.Component {
       groupsIndex,
       contextId,
       showHelps,
-      toggleHelps
+      toggleHelps,
     } = this.props;
 
-    const {groupId, occurrenceNote, tool} = contextId;
+    const {
+      groupId, occurrenceNote, tool,
+    } = contextId;
     const title = groupsIndex.filter(item => item.id === groupId)[0].name;
     let phrase = '';
 
     switch (tool) {
-      case TRANSLATION_WORDS: {
-        const {translationWords} = translationHelps ? translationHelps : {};
-        phrase = this.getPhraseFromTw(translationWords, contextId.groupId, translationHelps);
-        break;
-      }
-      case TRANSLATION_NOTES:
-        phrase = this.getNote(occurrenceNote);
-        break;
-      default:
-        console.error('tool is undefined in contextId');
-        break;
+    case TRANSLATION_WORDS: {
+      const { translationWords } = translationHelps ? translationHelps : {};
+      phrase = this.getPhraseFromTw(translationWords, contextId.groupId, translationHelps);
+      break;
+    }
+    case TRANSLATION_NOTES:
+      phrase = this.getNote(occurrenceNote);
+      break;
+    default:
+      console.error('tool is undefined in contextId');
+      break;
     }
 
     return (

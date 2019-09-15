@@ -1,21 +1,26 @@
 /* eslint-disable no-extra-boolean-cast */
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BlockIcon from '@material-ui/icons/Block';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
 import EditIcon from '@material-ui/icons/Edit';
-import {GroupedMenu, generateMenuData, generateMenuItem, InvalidatedIcon, CheckIcon} from 'tc-ui-toolkit';
+import {
+  GroupedMenu, generateMenuData, generateMenuItem, InvalidatedIcon, CheckIcon,
+} from 'tc-ui-toolkit';
 
 export function generateItemId(occurrence, bookId, chapter, verse, quote) {
-  let quoteId = "";
+  let quoteId = '';
+
   if (Array.isArray(quote)) { // is a bit more complicated
     const parts = [];
+
     for (let i = 0, l = quote.length; i < l; i++) {
       const quotePart = quote[i];
-      parts.push(quotePart.occurrence + ":" + quotePart.word);
+      parts.push(quotePart.occurrence + ':' + quotePart.word);
     }
-    quoteId = parts.join(":");
+    quoteId = parts.join(':');
   } else {
     quoteId = `${occurrence}:${quote}`;
   }
@@ -23,13 +28,12 @@ export function generateItemId(occurrence, bookId, chapter, verse, quote) {
 }
 
 class GroupMenuWrapper extends React.Component {
-
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
    */
-  handleClick = ({contextId}) => {
-    const {tc: {actions: {changeCurrentContextId}}} = this.props;
+  handleClick = ({ contextId }) => {
+    const { tc: { actions: { changeCurrentContextId } } } = this.props;
     changeCurrentContextId(contextId);
   };
 
@@ -39,26 +43,30 @@ class GroupMenuWrapper extends React.Component {
    * @returns {object} the updated item
    */
   onProcessItem = item => {
-    const {tc: {project}} = this.props;
+    const { tc: { project } } = this.props;
     const bookName = project.getBookName();
 
     const {
       contextId: {
         quote,
         occurrence,
-        reference: {bookId, chapter, verse}
-      }
+        reference: {
+          bookId, chapter, verse,
+        },
+      },
     } = item;
 
     // build selection preview
-    let selectionText = "";
-    if(item.selections) {
-      selectionText = item.selections.map(s => s.text).join(" ");
+    let selectionText = '';
+
+    if (item.selections) {
+      selectionText = item.selections.map(s => s.text).join(' ');
     }
 
     // build passage title
     let passageText = `${bookName} ${chapter}:${verse}`;
-    if(selectionText) {
+
+    if (selectionText) {
       passageText = `${bookId} ${chapter}:${verse}`;
     }
 
@@ -68,7 +76,7 @@ class GroupMenuWrapper extends React.Component {
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
       finished: !!item.selections && !item.invalidated,
       nothingToSelect: !!item.nothingToSelect,
-      tooltip: selectionText
+      tooltip: selectionText,
     };
   };
 
@@ -77,31 +85,31 @@ class GroupMenuWrapper extends React.Component {
       translate,
       tc: {
         contextId,
-        groupsDataReducer: {groupsData},
-        groupsIndexReducer: {groupsIndex}
-      }
+        groupsDataReducer: { groupsData },
+        groupsIndexReducer: { groupsIndex },
+      },
     } = this.props;
     const filters = [
       {
         label: translate('menu.invalidated'),
         key: 'invalidated',
-        icon: <InvalidatedIcon/>
+        icon: <InvalidatedIcon/>,
       },
       {
         label: translate('menu.bookmarks'),
         key: 'reminders',
-        icon: <BookmarkIcon/>
+        icon: <BookmarkIcon/>,
       },
       {
         label: translate('menu.selected'),
         key: 'finished',
         disables: ['not-finished'],
-        icon: <CheckIcon/>
+        icon: <CheckIcon/>,
       },
       {
         label: translate('no_selection_needed'),
         key: 'nothingToSelect',
-        icon: <CheckIcon/>
+        icon: <CheckIcon/>,
       },
       {
         label: translate('menu.no_selection'),
@@ -109,45 +117,45 @@ class GroupMenuWrapper extends React.Component {
         key: 'finished',
         value: false,
         disables: ['finished'],
-        icon: <BlockIcon/>
+        icon: <BlockIcon/>,
       },
       {
         label: translate('menu.verse_edit'),
         key: 'verseEdits',
-        icon: <EditIcon/>
+        icon: <EditIcon/>,
       },
       {
         label: translate('menu.comments'),
         key: 'comments',
-        icon: <ModeCommentIcon/>
-      }
+        icon: <ModeCommentIcon/>,
+      },
     ];
 
     const statusIcons = [
       {
         key: 'invalidated',
-        icon: <InvalidatedIcon style={{color: "white"}}/>
+        icon: <InvalidatedIcon style={{ color: 'white' }}/>,
       },
       {
         key: 'reminders',
-        icon: <BookmarkIcon style={{color: "white"}}/>
+        icon: <BookmarkIcon style={{ color: 'white' }}/>,
       },
       {
         key: 'finished',
-        icon: <CheckIcon style={{color: "#58c17a"}}/>
+        icon: <CheckIcon style={{ color: '#58c17a' }}/>,
       },
       {
         key: 'nothingToSelect',
-        icon: <CheckIcon style={{color: "#58c17a"}}/>
+        icon: <CheckIcon style={{ color: '#58c17a' }}/>,
       },
       {
         key: 'verseEdits',
-        icon: <EditIcon style={{color: "white"}}/>
+        icon: <EditIcon style={{ color: 'white' }}/>,
       },
       {
         key: 'comments',
-        icon: <ModeCommentIcon style={{color: "white"}}/>
-      }
+        icon: <ModeCommentIcon style={{ color: 'white' }}/>,
+      },
     ];
 
     const entries = generateMenuData(
@@ -182,7 +190,7 @@ GroupMenuWrapper.propTypes = {
   tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   groupsIndexReducer: PropTypes.object,
-  groupsDataReducer: PropTypes.object
+  groupsDataReducer: PropTypes.object,
 };
 
 export default GroupMenuWrapper;

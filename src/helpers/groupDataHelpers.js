@@ -8,8 +8,10 @@ import isEqual from 'deep-equal';
 */
 export function getGroupDataForVerse(groupsData, contextId) {
   const filteredGroupData = {};
+
   for (let groupItemKey of Object.keys(groupsData)) {
     const groupItem = groupsData[groupItemKey];
+
     if (groupItem) {
       for (let check of groupItem) {
         try {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEqual from "deep-equal";
-import {TranslationHelps} from 'tc-ui-toolkit';
+import isEqual from 'deep-equal';
+import { TranslationHelps } from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 
@@ -11,7 +11,7 @@ class TranslationHelpsWrapper extends React.Component {
     this.state = {
       showHelpsModal: false,
       modalArticle: '',
-      articleCategory: ''
+      articleCategory: '',
     };
 
     this.toggleHelpsModal = this.toggleHelpsModal.bind(this);
@@ -24,14 +24,19 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {contextIdReducer} = this.props || {};
+    const { contextIdReducer } = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
+
     if (this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
       this.loadArticle(this.props);
     }
+
     if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
-      const page = document.getElementById("helpsbody");
-      if (page) page.scrollTop = 0;
+      const page = document.getElementById('helpsbody');
+
+      if (page) {
+        page.scrollTop = 0;
+      }
     }
   }
 
@@ -47,7 +52,7 @@ class TranslationHelpsWrapper extends React.Component {
   toggleHelpsModal() {
     this.setState({
       showHelpsModal: !this.state.showHelpsModal,
-      modalArticle: ''
+      modalArticle: '',
     });
   }
 
@@ -57,11 +62,14 @@ class TranslationHelpsWrapper extends React.Component {
    * @private
    */
   loadArticle(props) {
-    const {contextIdReducer, toolsReducer, toolsSelectedGLs, actions} = props;
+    const {
+      contextIdReducer, toolsReducer, toolsSelectedGLs, actions,
+    } = props;
     const contextId = contextIdReducer && contextIdReducer.contextId;
+
     if (contextId) {
       const articleId = contextId.groupId;
-      const {currentToolName} = toolsReducer;
+      const { currentToolName } = toolsReducer;
       const languageId = toolsSelectedGLs[currentToolName];
       actions.loadResourceArticle(currentToolName, articleId, languageId);
     }
@@ -79,17 +87,18 @@ class TranslationHelpsWrapper extends React.Component {
     let newState;
     const showHelpsModal = true;
     const articleCategory = category;
+
     if (articleData) {
       newState = {
         showHelpsModal,
         articleCategory,
-        modalArticle: articleData
+        modalArticle: articleData,
       };
     } else {
       newState = {
         showHelpsModal,
         articleCategory,
-        modalArticle: 'Cannot find an article for ' + link
+        modalArticle: 'Cannot find an article for ' + link,
       };
     }
     //todo: Shouldn't need to to set state and return state in the same function
@@ -101,12 +110,12 @@ class TranslationHelpsWrapper extends React.Component {
   render() {
     const {
       toolsSelectedGLs,
-      toolsReducer: {currentToolName},
+      toolsReducer: { currentToolName },
       resourcesReducer,
-      contextIdReducer: {contextId},
+      contextIdReducer: { contextId },
       showHelps,
       toggleHelps,
-      translate
+      translate,
     } = this.props;
     const languageId = toolsSelectedGLs[currentToolName];
     const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
@@ -129,13 +138,9 @@ TranslationHelpsWrapper.propTypes = {
   toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,
   resourcesReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({
-    contextId: PropTypes.object.isRequired
-  }),
+  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
   toolsReducer: PropTypes.object,
-  actions: PropTypes.shape({
-    loadResourceArticle: PropTypes.func.isRequired,
-  }),
+  actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
 };
