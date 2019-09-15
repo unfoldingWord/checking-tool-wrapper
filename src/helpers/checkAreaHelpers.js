@@ -32,8 +32,10 @@ export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToo
     }
   }
 
-  /* eslint-disable-next-line no-unused-expressions */ //TODO: ask Bruce why is the line below needed
-  onInvalidQuote && onInvalidQuote(contextId, selectedGL);
+  if (onInvalidQuote) {
+    onInvalidQuote(contextId, selectedGL);
+  }
+
   const origLangQuote = getQuoteAsString(contextId.quote);
   const message = translate('quote_invalid', { quote: origLangQuote });
   return message;
