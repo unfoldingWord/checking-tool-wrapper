@@ -39,6 +39,7 @@ module.exports = {
     "no-async-promise-executor": "error",
     "no-throw-literal": "warn",
     "no-nested-ternary": "error",
+    "no-async-promise-executor": "off",
     "no-duplicate-imports": ["error", {"includeExports": false}],
     "import/order": "error",
     "import/first": "error",
