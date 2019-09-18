@@ -34,5 +34,4 @@ module.exports = {
   },
   node: { __dirname: true },
   externals: { 'react': 'commonjs react' },
-  resolve: { alias: { 'react-redux': path.resolve('./node_modules/react-redux') } },
 };
