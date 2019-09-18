@@ -1,8 +1,11 @@
 /* eslint-env jest */
+import path from 'path';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
+import { connectTool } from 'tc-tool';
+import Api from './Api';
 //selectors
 import {
   getContextId,
@@ -159,4 +162,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Container);
+export default connectTool('translationNotes', {
+  localeDir: path.join(__dirname, './src/locale'),
+  api: new Api(),
+})(connect(mapStateToProps)(Container));
