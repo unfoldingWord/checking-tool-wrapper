@@ -1,3 +1,4 @@
+/* eslint-disable  no-prototype-builtins */
 /**
  * takes props object and
  * @param {Object} props
