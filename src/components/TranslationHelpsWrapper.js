@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 function TranslationHelpsWrapper() {
-  const [greeting, setGreeting] = useState('hello');
+  const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    setGreeting('hello2');
-  }, [greeting]);
+    setGreeting('hello');
+  }, []);
 
   return <div onClick={() => setGreeting('Hey')}>
     <span>{greeting} world!</span>
