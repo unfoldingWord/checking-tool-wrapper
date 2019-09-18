@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
+import { connect } from 'react-redux';
 //selectors
 import {
   getContextId,
@@ -101,7 +102,7 @@ Container.propTypes = {
   scripturePane: PropTypes.object.isRequired,
 };
 
-export const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
   return {
     groupMenu: {
@@ -158,5 +159,4 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 
-
-export default Container;
+export default connect(mapStateToProps)(Container);
