@@ -43,9 +43,6 @@ function TranslationHelpsWrapper({
     articleCategory,
     setThState,
   } = useTnArticleState(initialState);
-  // const [showHelpsModal, setShowHelpsModal] = useState(false);
-  // const [modalArticle, setModalArticle] = useState('');
-  // const [articleCategory, setArticleCategory] = useState('');
   const groupId = contextId.groupId;
   const languageId = toolsSelectedGLs[currentToolName];
   window.followLink = followTHelpsLink;
@@ -85,7 +82,7 @@ function TranslationHelpsWrapper({
       modalArticle: articleData || `Cannot find an article for ${link}`,
       articleCategory: category,
     });
-    //todo: Shouldn't need to to set state and return state in the same function
+    // TODO: Shouldn't need to to set state and return state in the same function
     // Seems like an anti pattern
     return true;
   }
