@@ -163,6 +163,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connectTool('translationNotes', {
-  // localeDir: path.join(__dirname, './locale'),
+  localeDir: path.join(__dirname, './locale'),
   api: new Api(),
 })(connect(mapStateToProps)(Container));
