@@ -37,45 +37,54 @@ export default class Api extends ToolApi {
       },
       tool: { name: toolName },
     } = this.props;
-    console.log (`validateBook: getGroupsData(${toolName})`);
     const groupsData = getGroupsData(toolName);
-
+    const groupsDataKeys = Object.keys(groupsData);
     const chapters = Object.keys(targetBook);
+
     for (let i = 0, l = chapters.length; i < l; i++) {
       const chapter = chapters[i];
+
       if (isNaN(chapter) || parseInt(chapter) === -1) {
         continue;
       }
-      console.log (`validateBook: validateChapter(${chapter})`);
-      this.validateChapter(chapter, groupsData, silent);
+      this.validateChapter(chapter, groupsData, groupsDataKeys, silent);
     }
-    console.log (`validateBook: done`);
   }
 
   /**
- * verifies all the selections for chapter to make sure they are still valid.
- * This expects the book resources to have already been loaded.
- * Books are loaded when a project is selected.
- * @param {String} chapter
- */
-  validateChapter(chapter, groupsData, silent) {
+   * verifies all the selections for chapter to make sure they are still valid.
+   * This expects the book resources to have already been loaded.
+   * Books are loaded when a project is selected.
+   * @param {String} chapter
+   * @param {Object} groupsData
+   * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
+   * @param {boolean} silent - if true then don't show alerts
+   */
+  validateChapter(chapter, groupsData, groupsDataKeys, silent) {
     const { tc: { targetBook } } = this.props;
-    const groupItemKeys = Object.keys(groupsData);
 
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
 
       if (bibleChapter) {
         const verses = Object.keys(bibleChapter);
+
         for (let i = 0, l = verses.length; i < l; i++) {
           const verse = verses[i];
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse, groupsData, groupItemKeys, silent);
+          this._validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent);
         }
       }
     }
   }
 
+  /**
+   * validateVerse that can be called by main app
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {boolean} silent - if true then don't show alerts
+   * @param {Object} groupsData
+   */
   validateVerse(chapter, verse, silent = false, groupsData) {
     const {
       tc: {
@@ -85,25 +94,28 @@ export default class Api extends ToolApi {
       tool: { name: toolName },
     } = this.props;
     const _groupsData = groupsData || getGroupsData(toolName);
+    const groupsDataKeys = Object.keys(groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse, _groupsData, silent);
+    this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
   }
 
   /**
-  * verify all selections for current verse
-  * @param {number} chapter
-  * @param {number} verse
-  * @return {Function}
-  */
-  _validateVerse(targetVerse, chapter, verse, groupsData, groupItemKeys, silent) {
+   * verify all selections for current verse
+   * @param {Object} targetVerse
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {Object} groupsData
+   * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
+   * @param {boolean} silent - if true then don't show alerts
+   */
+  _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent) {
     let {
       tc: {
         contextId: { reference: { bookId } },
         username: userName,
         project: { _projectPath: projectSaveLocation },
       },
-      tool: { name },
     } = this.props;
     const contextId = {
       reference: {
@@ -112,15 +124,11 @@ export default class Api extends ToolApi {
         verse: parseInt(verse),
       },
     };
-    const start = performance.now();
-    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupItemKeys, contextId, name);
-    const end = performance.now();
-    console.log(`_validateVerse(${verse}) took ${end-start}ms to get verse data`);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupsDataKeys, contextId);
     let filtered = null;
     let selectionsChanged = false;
-
-    const start2 = performance.now();
     const groupItems = Object.keys(groupsDataForVerse);
+
     for (let i = groupItems.length - 1; i >= 0; i--) {
       const groupItem = groupsDataForVerse[groupItems[i]];
 
@@ -167,9 +175,6 @@ export default class Api extends ToolApi {
         }
       }
     }
-
-    const end2 = performance.now();
-    console.log(`_validateVerse(${verse}) took ${end2-start2}ms to validate verse data`);
 
     if (selectionsChanged && !silent) {
       this._showResetDialog();
