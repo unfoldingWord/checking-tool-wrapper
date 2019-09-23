@@ -60,6 +60,7 @@ export default class Api extends ToolApi {
  */
   validateChapter(chapter, groupsData, silent) {
     const { tc: { targetBook } } = this.props;
+    const groupItemKeys = Object.keys(groupsData);
 
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
@@ -69,7 +70,7 @@ export default class Api extends ToolApi {
         for (let i = 0, l = verses.length; i < l; i++) {
           const verse = verses[i];
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse, groupsData, silent);
+          this._validateVerse(targetVerse, chapter, verse, groupsData, groupItemKeys, silent);
         }
       }
     }
@@ -95,7 +96,7 @@ export default class Api extends ToolApi {
   * @param {number} verse
   * @return {Function}
   */
-  _validateVerse(targetVerse, chapter, verse, groupsData, silent) {
+  _validateVerse(targetVerse, chapter, verse, groupsData, groupItemKeys, silent) {
     let {
       tc: {
         contextId: { reference: { bookId } },
@@ -112,7 +113,7 @@ export default class Api extends ToolApi {
       },
     };
     const start = performance.now();
-    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId, name);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupItemKeys, contextId, name);
     const end = performance.now();
     console.log(`_validateVerse(${verse}) took ${end-start}ms to get verse data`);
     let filtered = null;
@@ -120,10 +121,10 @@ export default class Api extends ToolApi {
 
     const start2 = performance.now();
     const groupItems = Object.keys(groupsDataForVerse);
-    for (let i = 0, l = groupItems.length; i < l; i++) {
+    for (let i = groupItems.length - 1; i >= 0; i--) {
       const groupItem = groupsDataForVerse[groupItems[i]];
 
-      for (let j = 0, l2 = groupItem.length; j < l2; j++) {
+      for (let j = groupItem.length - 1; j >= 0; j--) {
         const checkingOccurrence = groupItem[j];
         const selections = checkingOccurrence.selections;
 

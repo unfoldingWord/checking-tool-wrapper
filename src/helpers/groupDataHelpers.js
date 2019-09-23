@@ -1,4 +1,7 @@
-import isEqual from 'deep-equal';
+function isVerseMatch(checkRef, contextIdRef) {
+  return (checkRef.chapter === contextIdRef.chapter) &&
+    (checkRef.verse === contextIdRef.verse);
+}
 
 /**
 * @description gets the group data for the current verse from groupsDataReducer
@@ -6,19 +9,18 @@ import isEqual from 'deep-equal';
 * @param {Object} contextId
 * @return {object} group data object.
 */
-export function getGroupDataForVerse(groupsData, contextId) {
+export function getGroupDataForVerse(groupsData, groupItemKeys, contextId) {
   const filteredGroupData = {};
 
-  const groupItems = Object.keys(groupsData);
-  for (let i = 0, l = groupItems.length; i < l; i++) {
-    const groupItemKey = groupItems[i];
+  for (let i = groupItemKeys.length - 1; i >= 0; i--) {
+    const groupItemKey = groupItemKeys[i];
     const groupItem = groupsData[groupItemKey];
 
     if (groupItem) {
-      for (let j = 0, l2 = groupItem.length; j < l2; j++) {
+      for (let j = groupItem.length - 1; j >= 0; j--) {
         const check = groupItem[j];
         try {
-          if (isEqual(check.contextId.reference, contextId.reference)) {
+          if (isVerseMatch(check.contextId.reference, contextId.reference)) {
             if (!filteredGroupData[groupItemKey]) {
               filteredGroupData[groupItemKey] = [];
             }
