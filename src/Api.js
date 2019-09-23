@@ -37,14 +37,19 @@ export default class Api extends ToolApi {
       },
       tool: { name: toolName },
     } = this.props;
+    console.log (`validateBook: getGroupsData(${toolName})`);
     const groupsData = getGroupsData(toolName);
 
-    for (const chapter of Object.keys(targetBook)) {
+    const chapters = Object.keys(targetBook);
+    for (let i = 0, l = chapters.length; i < l; i++) {
+      const chapter = chapters[i];
       if (isNaN(chapter) || parseInt(chapter) === -1) {
         continue;
       }
+      console.log (`validateBook: validateChapter(${chapter})`);
       this.validateChapter(chapter, groupsData, silent);
     }
+    console.log (`validateBook: done`);
   }
 
   /**
@@ -60,7 +65,9 @@ export default class Api extends ToolApi {
       const bibleChapter = targetBook[chapter];
 
       if (bibleChapter) {
-        for (let verse of Object.keys(bibleChapter)) {
+        const verses = Object.keys(bibleChapter);
+        for (let i = 0, l = verses.length; i < l; i++) {
+          const verse = verses[i];
           const targetVerse = bibleChapter[verse];
           this._validateVerse(targetVerse, chapter, verse, groupsData, silent);
         }
@@ -104,14 +111,20 @@ export default class Api extends ToolApi {
         verse: parseInt(verse),
       },
     };
+    const start = performance.now();
     const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId, name);
+    const end = performance.now();
+    console.log(`_validateVerse(${verse}) took ${end-start}ms to get verse data`);
     let filtered = null;
     let selectionsChanged = false;
 
-    for (let groupItemKey of Object.keys(groupsDataForVerse)) {
-      const groupItem = groupsDataForVerse[groupItemKey];
+    const start2 = performance.now();
+    const groupItems = Object.keys(groupsDataForVerse);
+    for (let i = 0, l = groupItems.length; i < l; i++) {
+      const groupItem = groupsDataForVerse[groupItems[i]];
 
-      for (let checkingOccurrence of groupItem) {
+      for (let j = 0, l2 = groupItem.length; j < l2; j++) {
+        const checkingOccurrence = groupItem[j];
         const selections = checkingOccurrence.selections;
 
         if (!sameContext(contextId, checkingOccurrence.contextId)) {
@@ -153,6 +166,9 @@ export default class Api extends ToolApi {
         }
       }
     }
+
+    const end2 = performance.now();
+    console.log(`_validateVerse(${verse}) took ${end2-start2}ms to validate verse data`);
 
     if (selectionsChanged && !silent) {
       this._showResetDialog();

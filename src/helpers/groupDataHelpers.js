@@ -9,11 +9,14 @@ import isEqual from 'deep-equal';
 export function getGroupDataForVerse(groupsData, contextId) {
   const filteredGroupData = {};
 
-  for (let groupItemKey of Object.keys(groupsData)) {
+  const groupItems = Object.keys(groupsData);
+  for (let i = 0, l = groupItems.length; i < l; i++) {
+    const groupItemKey = groupItems[i];
     const groupItem = groupsData[groupItemKey];
 
     if (groupItem) {
-      for (let check of groupItem) {
+      for (let j = 0, l2 = groupItem.length; j < l2; j++) {
+        const check = groupItem[j];
         try {
           if (isEqual(check.contextId.reference, contextId.reference)) {
             if (!filteredGroupData[groupItemKey]) {
