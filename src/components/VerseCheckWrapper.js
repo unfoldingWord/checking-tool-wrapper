@@ -96,7 +96,7 @@ class VerseCheckWrapper extends React.Component {
 
         _this.setState({ comment: comment });
       },
-      checkComment(e) {
+      handleCheckComment(e) {
         const newcomment = e.target.value || '';
         const oldcomment = _this.props.commentsReducer.text || '';
 
@@ -143,7 +143,7 @@ class VerseCheckWrapper extends React.Component {
 
         _this.setState({ verseText: verseText });
       },
-      checkVerse(e) {
+      handleCheckVerse(e) {
         let { chapter, verse } = _this.props.contextIdReducer.contextId.reference;
         const newverse = e.target.value || '';
         const oldverse = _this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || '';
@@ -356,69 +356,70 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
+  toggleNothingToSelect = (nothingToSelect) => {
+    this.setState({ nothingToSelect });
+  }
+
   render() {
     const {
       translate,
       currentToolName,
-      projectDetailsReducer: {
-        manifest,
-        projectSaveLocation,
-      },
-      loginReducer,
+      projectDetailsReducer: { manifest },
       selectionsReducer: {
         selections,
         nothingToSelect,
       },
       contextIdReducer: { contextId },
-      resourcesReducer,
-      commentsReducer,
-      toolsReducer,
-      groupsDataReducer,
-      remindersReducer,
+      resourcesReducer: { bibles },
+      commentsReducer: { text: commentText },
+      remindersReducer: { enabled: bookmarkEnabled },
       maximumSelections,
     } = this.props;
+
     let { unfilteredVerseText, verseText } = this.getVerseText();
     verseText = usfmjs.removeMarker(verseText);
     const { toolsSelectedGLs } = manifest;
     const alignedGLText = checkAreaHelpers.getAlignedGLText(
       toolsSelectedGLs,
       contextId,
-      resourcesReducer.bibles,
+      bibles,
       currentToolName,
       translate,
       this.onInvalidQuote
     );
+    const verseEdited = this.findIfVerseEdited();
+    const isVerseInvalidated = this.findIfVerseInvalidated();
+
     return (
       <VerseCheck
         translate={translate}
-        toggleNothingToSelect={nothingToSelect => this.setState({ nothingToSelect })}
-        commentsReducer={commentsReducer}
-        localNothingToSelect={this.state.nothingToSelect}
-        remindersReducer={remindersReducer}
-        projectDetailsReducer={{ manifest, projectSaveLocation }}
-        contextIdReducer={{ contextId }}
-        resourcesReducer={resourcesReducer}
-        selectionsReducer={{ selections, nothingToSelect }}
-        loginReducer={loginReducer}
-        toolsReducer={toolsReducer}
-        groupsDataReducer={groupsDataReducer}
-        alignedGLText={alignedGLText}
+        mode={this.state.mode}
+        tags={this.state.tags}
+        bibles={bibles}
         verseText={verseText}
         unfilteredVerseText={unfilteredVerseText}
-        mode={this.state.mode}
-        actions={this.actions}
+        contextId={contextId}
+        selections={selections}
+        verseEdited={verseEdited}
+        commentText={commentText}
+        alignedGLText={alignedGLText}
+        nothingToSelect={nothingToSelect}
+        bookmarkEnabled={bookmarkEnabled}
+        maximumSelections={maximumSelections}
+        isVerseInvalidated={isVerseInvalidated}
+        bookDetails={manifest.project}
+        targetLanguageDetails={manifest.target_language}
+        newSelections={this.state.selections}
+        verseChanged={this.state.verseChanged}
+        localNothingToSelect={this.state.nothingToSelect}
         dialogModalVisibility={this.state.dialogModalVisibility}
         commentChanged={this.state.commentChanged}
-        findIfVerseEdited={this.findIfVerseEdited}
-        findIfVerseInvalidated={this.findIfVerseInvalidated}
-        tags={this.state.tags}
-        verseChanged={this.state.verseChanged}
-        selections={this.state.selections}
+        toggleNothingToSelect={this.toggleNothingToSelect}
         saveSelection={this.saveSelection}
         cancelSelection={this.cancelSelection}
         clearSelection={this.clearSelection}
         handleSkip={this.handleSkip}
-        maximumSelections={maximumSelections}
+        {...this.actions}//TODO: After refactoring the actions object pass methods explicitly.
       />
     );
   }
@@ -447,5 +448,11 @@ VerseCheckWrapper.propTypes = {
   projectDetailsReducer: PropTypes.object.isRequired,
   maximumSelections: PropTypes.number.isRequired,
 };
+
+/*TODO: Remove the following reducers
+  toolsReducer
+  groupsDataReducer
+  loginReducer
+*/
 
 export default VerseCheckWrapper;
