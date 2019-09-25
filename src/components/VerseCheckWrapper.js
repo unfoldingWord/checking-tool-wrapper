@@ -221,6 +221,11 @@ class VerseCheckWrapper extends React.Component {
     };
   }
 
+  componentDidCatch(error, info) {
+    console.error(error);
+    console.warn(info);
+  }
+
   componentWillMount() {
     let selections = [...this.props.selectionsReducer.selections];
     this.setState({ selections });
