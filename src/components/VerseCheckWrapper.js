@@ -395,18 +395,22 @@ class VerseCheckWrapper extends React.Component {
     const verseEdited = this.findIfVerseEdited();
     const isVerseInvalidated = this.findIfVerseInvalidated();
 
+    console.log('verseText', verseText);
+    console.log('unfilteredVerseText', unfilteredVerseText);
+    console.log('commentText', commentText);
+
     return (
       <VerseCheck
         translate={translate}
         mode={this.state.mode}
         tags={this.state.tags}
         bibles={bibles}
-        verseText={verseText}
-        unfilteredVerseText={unfilteredVerseText}
+        verseText={verseText || ''}
+        unfilteredVerseText={unfilteredVerseText || ''}
         contextId={contextId}
         selections={selections}
         verseEdited={verseEdited}
-        commentText={commentText}
+        commentText={commentText || ''}
         alignedGLText={alignedGLText}
         nothingToSelect={nothingToSelect}
         bookmarkEnabled={bookmarkEnabled}
