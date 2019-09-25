@@ -412,11 +412,6 @@ class VerseCheckWrapper extends React.Component {
     const verseEdited = this.findIfVerseEdited();
     const isVerseInvalidated = this.findIfVerseInvalidated();
 
-    console.log('verseText', verseText);
-    console.log('unfilteredVerseText', unfilteredVerseText);
-    console.log('commentText', commentText);
-    console.log('alignedGLText', alignedGLText);
-
     return (
       <VerseCheck
         translate={translate}
@@ -441,15 +436,29 @@ class VerseCheckWrapper extends React.Component {
         localNothingToSelect={this.state.nothingToSelect}
         dialogModalVisibility={this.state.dialogModalVisibility}
         commentChanged={this.state.commentChanged}
-        toggleNothingToSelect={this.toggleNothingToSelect}
+        handleSkip={this.handleSkip}
+        handleGoToNext={this.handleGoToNext}
+        handleGoToPrevious={this.handleGoToPrevious}
+        handleOpenDialog={this.handleOpenDialog}
+        handleCloseDialog={this.handleCloseDialog}
+        openAlertDialog={this.openAlertDialog}
+        toggleReminder={this.toggleReminder}
+        changeMode={this.changeMode}
+        cancelEditVerse={this.cancelEditVerse}
+        saveEditVerse={this.saveEditVerse}
+        handleComment={this.handleComment}
+        cancelComment={this.cancelComment}
+        saveComment={this.saveComment}
         saveSelection={this.saveSelection}
         cancelSelection={this.cancelSelection}
         clearSelection={this.clearSelection}
-        handleSkip={this.handleSkip}
-        {...this.actions}//TODO: After refactoring the actions object pass methods explicitly.
-        handleGoToNext={this.actions.handleGoToNext}
-        handleGoToPrevious={this.actions.handleGoToPrevious}
-        handleOpenDialog={this.actions.handleOpenDialog}
+        handleEditVerse={this.handleEditVerse}
+        handleCheckVerse={this.handleCheckVerse}
+        handleCheckComment={this.handleCheckComment}
+        validateSelections={this.validateSelections}
+        handleTagsCheckbox={this.handleTagsCheckbox}
+        toggleNothingToSelect={this.toggleNothingToSelect}
+        changeSelectionsInLocalState={this.changeSelectionsInLocalState}
       />
     );
   }
