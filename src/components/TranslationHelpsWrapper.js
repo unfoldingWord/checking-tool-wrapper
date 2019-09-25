@@ -128,8 +128,8 @@ class TranslationHelpsWrapper extends React.Component {
     return (
       <TranslationHelps
         translate={translate}
-        article={currentFileMarkdown}
-        modalArticle={tHelpsModalMarkdown}
+        article={currentFileMarkdown || ''}
+        modalArticle={tHelpsModalMarkdown || ''}
         openExpandedHelpsModal={() => this.toggleHelpsModal()}
         isShowHelpsSidebar={showHelps}
         sidebarToggle={toggleHelps}
