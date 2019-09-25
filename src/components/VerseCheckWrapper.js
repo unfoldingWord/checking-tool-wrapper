@@ -30,195 +30,17 @@ class VerseCheckWrapper extends React.Component {
       dialogModalVisibility: false,
       goToNextOrPrevious: null,
     };
-    this.getVerseText = this.getVerseText.bind(this);
-    this.saveSelection = this.saveSelection.bind(this);
-    this.cancelSelection = this.cancelSelection.bind(this);
-    this.clearSelection = this.clearSelection.bind(this);
-    this.handleSkip = this.handleSkip.bind(this);
-    this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
-    this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
-    this.onInvalidQuote = this.onInvalidQuote.bind(this);
+    // this.getVerseText = this.getVerseText.bind(this);
+    // this.saveSelection = this.saveSelection.bind(this);
+    // this.cancelSelection = this.cancelSelection.bind(this);
+    // this.clearSelection = this.clearSelection.bind(this);
+    // this.handleSkip = this.handleSkip.bind(this);
+    // this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
+    // this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
+    // this.onInvalidQuote = this.onInvalidQuote.bind(this);
 
     //TODO: factor out actions object to individual functions
     //Will require changes to the ui kit
-    const _this = this;
-
-    this.actions = {
-      handleGoToNext() {
-        if (!_this.props.loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to save progress');
-          return;
-        }
-        props.actions.goToNext();
-      },
-      handleGoToPrevious() {
-        if (!_this.props.loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to save progress');
-          return;
-        }
-        props.actions.goToPrevious();
-      },
-      handleOpenDialog(goToNextOrPrevious) {
-        _this.setState({ goToNextOrPrevious });
-        _this.setState({ dialogModalVisibility: true });
-      },
-      handleCloseDialog() {
-        _this.setState({ dialogModalVisibility: false });
-      },
-      skipToNext() {
-        _this.setState({ dialogModalVisibility: false });
-        props.actions.goToNext();
-      },
-      skipToPrevious() {
-        _this.setState({ dialogModalVisibility: false });
-        props.actions.goToPrevious();
-      },
-      changeSelectionsInLocalState(selections) {
-        const { nothingToSelect } = _this.props.selectionsReducer;
-
-        if (selections.length > 0) {
-          _this.setState({ nothingToSelect: false });
-        } else {
-          _this.setState({ nothingToSelect });
-        }
-        _this.setState({ selections });
-      },
-      changeMode(mode) {
-        _this.setState({
-          mode: mode,
-          selections: _this.props.selectionsReducer.selections,
-        });
-      },
-      handleComment(e) {
-        const comment = e.target.value;
-
-        _this.setState({ comment: comment });
-      },
-      handleCheckComment(e) {
-        const newcomment = e.target.value || '';
-        const oldcomment = _this.props.commentsReducer.text || '';
-
-        _this.setState({ commentChanged: newcomment !== oldcomment });
-      },
-      cancelComment() {
-        _this.setState({
-          mode: 'default',
-          selections: _this.props.selectionsReducer.selections,
-          comment: undefined,
-          commentChanged: false,
-        });
-      },
-      saveComment() {
-        if (!_this.props.loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to leave a comment', 5);
-          return;
-        }
-        _this.props.actions.addComment(_this.state.comment, _this.props.loginReducer.userdata.username);
-        _this.setState({
-          mode: 'default',
-          selections: _this.props.selectionsReducer.selections,
-          comment: undefined,
-          commentChanged: false,
-        });
-      },
-      handleTagsCheckbox(tag) {
-        let newState = _this.state;
-
-        if (newState.tags === undefined) {
-          newState.tags = [];
-        }
-
-        if (!newState.tags.includes(tag)) {
-          newState.tags.push(tag);
-        } else {
-          newState.tags = newState.tags.filter(_tag => _tag !== tag);
-        }
-        _this.setState(newState);
-      },
-      handleEditVerse(e) {
-        const verseText = e.target.value;
-
-        _this.setState({ verseText: verseText });
-      },
-      handleCheckVerse(e) {
-        let { chapter, verse } = _this.props.contextIdReducer.contextId.reference;
-        const newverse = e.target.value || '';
-        const oldverse = _this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || '';
-
-        if (newverse === oldverse) {
-          _this.setState({
-            verseChanged: false,
-            tags: [],
-          });
-        } else {
-          _this.setState({ verseChanged: true });
-        }
-      },
-      cancelEditVerse() {
-        _this.setState({
-          mode: 'default',
-          selections: _this.props.selectionsReducer.selections,
-          verseText: undefined,
-          verseChanged: false,
-          tags: [],
-        });
-      },
-      saveEditVerse() {
-        let {
-          loginReducer, actions, contextIdReducer, resourcesReducer,
-        } = _this.props;
-        let { chapter, verse } = contextIdReducer.contextId.reference;
-        let before = resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse];
-        let username = loginReducer.userdata.username;
-
-        // verseText state is undefined if no changes are made in the text box.
-        if (!loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to edit a verse');
-          return;
-        }
-
-        const save = () => {
-          actions.editTargetVerse(chapter, verse, before, _this.state.verseText, _this.state.tags, username);
-          _this.setState({
-            mode: 'default',
-            selections: _this.props.selectionsReducer.selections,
-            verseText: undefined,
-            verseChanged: false,
-            tags: [],
-          });
-        };
-
-        if (_this.state.verseText) {
-          save();
-        } else {
-          // alert the user if the text is blank
-          let message = 'You are saving a blank verse. Please confirm.';
-
-          _this.props.actions.openOptionDialog(message, (option) => {
-            if (option !== 'Cancel') {
-              save();
-            }
-            _this.props.actions.closeAlertDialog();
-          }, 'Save Blank Verse', 'Cancel');
-        }
-      },
-      validateSelections(verseText) {
-        _this.props.actions.validateSelections(verseText);
-      },
-      toggleReminder() {
-        _this.props.actions.toggleReminder(_this.props.loginReducer.userdata.username);
-      },
-      openAlertDialog(message) {
-        _this.props.actions.openAlertDialog(message);
-      },
-      selectModalTab(tab, section, vis) {
-        _this.props.actions.selectModalTab(tab, section, vis);
-      },
-    };
   }
 
   componentDidCatch(error, info) {
@@ -262,11 +84,206 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
+  handleGoToNext = () => {
+    if (!this.props.loginReducer.loggedInUser) {
+      this.props.actions.selectModalTab(1, 1, true);
+      this.props.actions.openAlertDialog('You must be logged in to save progress');
+      return;
+    }
+    this.props.actions.goToNext();
+  }
+
+  handleGoToPrevious = () => {
+    if (!this.props.loginReducer.loggedInUser) {
+      this.props.actions.selectModalTab(1, 1, true);
+      this.props.actions.openAlertDialog('You must be logged in to save progress');
+      return;
+    }
+    this.props.actions.goToPrevious();
+  }
+
+  handleOpenDialog = (goToNextOrPrevious) => {
+    this.setState({ goToNextOrPrevious });
+    this.setState({ dialogModalVisibility: true });
+  }
+
+  handleCloseDialog = () => {
+    this.setState({ dialogModalVisibility: false });
+  }
+
+  skipToNext = () => {
+    this.setState({ dialogModalVisibility: false });
+    this.props.actions.goToNext();
+  }
+
+  skipToPrevious = () => {
+    this.setState({ dialogModalVisibility: false });
+    this.props.actions.goToPrevious();
+  }
+
+  changeSelectionsInLocalState = (selections) => {
+    const { nothingToSelect } = this.props.selectionsReducer;
+
+    if (selections.length > 0) {
+      this.setState({ nothingToSelect: false });
+    } else {
+      this.setState({ nothingToSelect });
+    }
+    this.setState({ selections });
+  }
+
+  changeMode = (mode) => {
+    this.setState({
+      mode: mode,
+      selections: this.props.selectionsReducer.selections,
+    });
+  }
+
+  handleComment = (e) => {
+    const comment = e.target.value;
+
+    this.setState({ comment: comment });
+  }
+
+  handleCheckComment = (e) => {
+    const newcomment = e.target.value || '';
+    const oldcomment = this.props.commentsReducer.text || '';
+
+    this.setState({ commentChanged: newcomment !== oldcomment });
+  }
+
+  cancelComment = () => {
+    this.setState({
+      mode: 'default',
+      selections: this.props.selectionsReducer.selections,
+      comment: undefined,
+      commentChanged: false,
+    });
+  }
+
+  saveComment = () => {
+    if (!this.props.loginReducer.loggedInUser) {
+      this.props.actions.selectModalTab(1, 1, true);
+      this.props.actions.openAlertDialog('You must be logged in to leave a comment', 5);
+      return;
+    }
+    this.props.actions.addComment(this.state.comment, this.props.loginReducer.userdata.username);
+    this.setState({
+      mode: 'default',
+      selections: this.props.selectionsReducer.selections,
+      comment: undefined,
+      commentChanged: false,
+    });
+  }
+
+  handleTagsCheckbox = (tag) => {
+    let newState = this.state;
+
+    if (newState.tags === undefined) {
+      newState.tags = [];
+    }
+
+    if (!newState.tags.includes(tag)) {
+      newState.tags.push(tag);
+    } else {
+      newState.tags = newState.tags.filter(_tag => _tag !== tag);
+    }
+    this.setState(newState);
+  }
+
+  handleEditVerse = (e) => {
+    const verseText = e.target.value;
+
+    this.setState({ verseText: verseText });
+  }
+
+  handleCheckVerse = (e) => {
+    let { chapter, verse } = this.props.contextIdReducer.contextId.reference;
+    const newverse = e.target.value || '';
+    const oldverse = this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || '';
+
+    if (newverse === oldverse) {
+      this.setState({
+        verseChanged: false,
+        tags: [],
+      });
+    } else {
+      this.setState({ verseChanged: true });
+    }
+  }
+
+  cancelEditVerse = () => {
+    this.setState({
+      mode: 'default',
+      selections: this.props.selectionsReducer.selections,
+      verseText: undefined,
+      verseChanged: false,
+      tags: [],
+    });
+  }
+
+  saveEditVerse = () => {
+    let {
+      loginReducer, actions, contextIdReducer, resourcesReducer,
+    } = this.props;
+    let { chapter, verse } = contextIdReducer.contextId.reference;
+    let before = resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse];
+    let username = loginReducer.userdata.username;
+
+    // verseText state is undefined if no changes are made in the text box.
+    if (!loginReducer.loggedInUser) {
+      this.props.actions.selectModalTab(1, 1, true);
+      this.props.actions.openAlertDialog('You must be logged in to edit a verse');
+      return;
+    }
+
+    const save = () => {
+      actions.editTargetVerse(chapter, verse, before, this.state.verseText, this.state.tags, username);
+      this.setState({
+        mode: 'default',
+        selections: this.props.selectionsReducer.selections,
+        verseText: undefined,
+        verseChanged: false,
+        tags: [],
+      });
+    };
+
+    if (this.state.verseText) {
+      save();
+    } else {
+      // alert the user if the text is blank
+      let message = 'You are saving a blank verse. Please confirm.';
+
+      this.props.actions.openOptionDialog(message, (option) => {
+        if (option !== 'Cancel') {
+          save();
+        }
+        this.props.actions.closeAlertDialog();
+      }, 'Save Blank Verse', 'Cancel');
+    }
+  }
+
+  validateSelections = (verseText) => {
+    this.props.actions.validateSelections(verseText);
+  }
+
+  toggleReminder = () => {
+    this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
+  }
+
+  openAlertDialog = (message) => {
+    this.props.actions.openAlertDialog(message);
+  }
+
+  selectModalTab = (tab, section, vis) => {
+    this.props.actions.selectModalTab(tab, section, vis);
+  }
+
   /**
    * get filtered and unfiltered verse text
    * @return {{verseText: string, unfilteredVerseText: string}}
    */
-  getVerseText() {
+  getVerseText = () => {
     let unfilteredVerseText = '';
     let verseText = '';
 
@@ -291,18 +308,18 @@ class VerseCheckWrapper extends React.Component {
   }
 
 
-  cancelSelection() {
+  cancelSelection = () => {
     const { nothingToSelect } = this.props.selectionsReducer;
     this.setState({ nothingToSelect });
     this.actions.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
     this.actions.changeMode('default');
   }
 
-  clearSelection() {
+  clearSelection = () => {
     this.setState({ selections: [] });
   }
 
-  saveSelection() {
+  saveSelection = () => {
     let { verseText } = this.getVerseText();
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
@@ -315,7 +332,7 @@ class VerseCheckWrapper extends React.Component {
    * returns true if current verse has been edited
    * @return {boolean}
    */
-  findIfVerseEdited() {
+  findIfVerseEdited = () => {
     const groupItem = this.getGroupDatumForCurrentContext();
     return !!(groupItem && groupItem.verseEdits);
   }
@@ -324,7 +341,7 @@ class VerseCheckWrapper extends React.Component {
    * returns true if current verse has been invalidated
    * @return {boolean}
    */
-  findIfVerseInvalidated() {
+  findIfVerseInvalidated = () => {
     const groupItem = this.getGroupDatumForCurrentContext();
     return !!(groupItem && groupItem.invalidated);
   }
@@ -333,7 +350,7 @@ class VerseCheckWrapper extends React.Component {
    * finds group data for current context (verse)
    * @return {*}
    */
-  getGroupDatumForCurrentContext() {
+  getGroupDatumForCurrentContext = () => {
     const { contextIdReducer: { contextId }, groupsDataReducer: { groupsData } } = this.props;
     let groupItem = null;
 
@@ -343,7 +360,7 @@ class VerseCheckWrapper extends React.Component {
     return groupItem;
   }
 
-  handleSkip(e) {
+  handleSkip = (e) => {
     e.preventDefault();
 
     if (this.state.goToNextOrPrevious == 'next') {
@@ -353,7 +370,7 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
-  onInvalidQuote(contextId, selectedGL) {
+  onInvalidQuote = (contextId, selectedGL) => {
     // to prevent multiple alerts on current selection
     if (!isEqual(contextId, this.state.lastContextId)) {
       this.props.actions.onInvalidCheck(contextId, selectedGL, true);
