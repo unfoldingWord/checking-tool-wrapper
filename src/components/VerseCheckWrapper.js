@@ -30,17 +30,6 @@ class VerseCheckWrapper extends React.Component {
       dialogModalVisibility: false,
       goToNextOrPrevious: null,
     };
-    // this.getVerseText = this.getVerseText.bind(this);
-    // this.saveSelection = this.saveSelection.bind(this);
-    // this.cancelSelection = this.cancelSelection.bind(this);
-    // this.clearSelection = this.clearSelection.bind(this);
-    // this.handleSkip = this.handleSkip.bind(this);
-    // this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
-    // this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
-    // this.onInvalidQuote = this.onInvalidQuote.bind(this);
-
-    //TODO: factor out actions object to individual functions
-    //Will require changes to the ui kit
   }
 
   componentDidCatch(error, info) {
@@ -232,8 +221,8 @@ class VerseCheckWrapper extends React.Component {
 
     // verseText state is undefined if no changes are made in the text box.
     if (!loginReducer.loggedInUser) {
-      this.props.actions.selectModalTab(1, 1, true);
-      this.props.actions.openAlertDialog('You must be logged in to edit a verse');
+      actions.selectModalTab(1, 1, true);
+      actions.openAlertDialog('You must be logged in to edit a verse');
       return;
     }
 
@@ -254,11 +243,11 @@ class VerseCheckWrapper extends React.Component {
       // alert the user if the text is blank
       let message = 'You are saving a blank verse. Please confirm.';
 
-      this.props.actions.openOptionDialog(message, (option) => {
+      actions.openOptionDialog(message, (option) => {
         if (option !== 'Cancel') {
           save();
         }
-        this.props.actions.closeAlertDialog();
+        actions.closeAlertDialog();
       }, 'Save Blank Verse', 'Cancel');
     }
   }
@@ -492,6 +481,10 @@ VerseCheckWrapper.propTypes = {
   toolsReducer
   groupsDataReducer
   loginReducer
+
+  Remove username as parameter from toggleReminder action
+    this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
+
 */
 
 export default VerseCheckWrapper;
