@@ -412,6 +412,13 @@ class VerseCheckWrapper extends React.Component {
     const verseEdited = this.findIfVerseEdited();
     const isVerseInvalidated = this.findIfVerseInvalidated();
 
+    console.log('contextId', contextId);
+    console.log('selections', selections);
+    console.log('manifest', manifest);
+    console.log('bookmarkEnabled', bookmarkEnabled);
+    console.log('commentText', '_'+commentText+'_');
+    console.log('nothingToSelect', nothingToSelect);
+
     return (
       <VerseCheck
         translate={translate}
