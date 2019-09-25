@@ -121,15 +121,12 @@ class TranslationHelpsWrapper extends React.Component {
     const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
     const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
-    console.log('currentFileMarkdown', currentFileMarkdown);
-    console.log('resourcesReducer contextId, currentToolName', resourcesReducer, contextId, currentToolName);
-    console.log('currentFile, languageId', currentFile, languageId);
 
     return (
       <TranslationHelps
         translate={translate}
-        article={currentFileMarkdown || ''}
-        modalArticle={tHelpsModalMarkdown || ''}
+        article={currentFileMarkdown}
+        modalArticle={tHelpsModalMarkdown}
         openExpandedHelpsModal={() => this.toggleHelpsModal()}
         isShowHelpsSidebar={showHelps}
         sidebarToggle={toggleHelps}
