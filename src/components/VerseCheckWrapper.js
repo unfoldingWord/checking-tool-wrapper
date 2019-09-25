@@ -296,7 +296,6 @@ class VerseCheckWrapper extends React.Component {
     return { unfilteredVerseText, verseText };
   }
 
-
   cancelSelection = () => {
     const { nothingToSelect } = this.props.selectionsReducer;
     this.setState({ nothingToSelect });
@@ -321,23 +320,18 @@ class VerseCheckWrapper extends React.Component {
    * returns true if current verse has been edited
    * @return {boolean}
    */
-  findIfVerseEdited = () => {
-    const groupItem = this.getGroupDatumForCurrentContext();
-    return !!(groupItem && groupItem.verseEdits);
-  }
+  findIfVerseEdited = (groupItem) => !!(groupItem && groupItem.verseEdits)
 
   /**
    * returns true if current verse has been invalidated
    * @return {boolean}
    */
-  findIfVerseInvalidated = () => {
-    const groupItem = this.getGroupDatumForCurrentContext();
-    return !!(groupItem && groupItem.invalidated);
-  }
+  findIfVerseInvalidated = (groupItem) => !!(groupItem && groupItem.invalidated)
 
   /**
    * finds group data for current context (verse)
    * @return {*}
+   * TODO: We should remove the need to loop trough groupsdata to find the current groupData. This may be slowing down the app. This could be done once in a higher level component or even better in the groupData reducer
    */
   getGroupDatumForCurrentContext = () => {
     const { contextIdReducer: { contextId }, groupsDataReducer: { groupsData } } = this.props;
@@ -398,8 +392,9 @@ class VerseCheckWrapper extends React.Component {
       translate,
       this.onInvalidQuote
     );
-    const verseEdited = this.findIfVerseEdited();
-    const isVerseInvalidated = this.findIfVerseInvalidated();
+    const groupItem = this.getGroupDatumForCurrentContext();
+    const verseEdited = this.findIfVerseEdited(groupItem);
+    const isVerseInvalidated = this.findIfVerseInvalidated(groupItem);
 
     return (
       <VerseCheck
