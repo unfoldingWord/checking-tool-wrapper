@@ -398,6 +398,7 @@ class VerseCheckWrapper extends React.Component {
     console.log('verseText', verseText);
     console.log('unfilteredVerseText', unfilteredVerseText);
     console.log('commentText', commentText);
+    console.log('alignedGLText', alignedGLText);
 
     return (
       <VerseCheck
@@ -423,11 +424,11 @@ class VerseCheckWrapper extends React.Component {
         localNothingToSelect={this.state.nothingToSelect}
         dialogModalVisibility={this.state.dialogModalVisibility}
         commentChanged={this.state.commentChanged}
-        toggleNothingToSelect={this.toggleNothingToSelect}
-        saveSelection={this.saveSelection}
-        cancelSelection={this.cancelSelection}
-        clearSelection={this.clearSelection}
-        handleSkip={this.handleSkip}
+        toggleNothingToSelect={() => this.toggleNothingToSelect()}
+        saveSelection={() => this.saveSelection()}
+        cancelSelection={() => this.cancelSelection()}
+        clearSelection={() => this.clearSelection()}
+        handleSkip={() => this.handleSkip()}
         {...this.actions}//TODO: After refactoring the actions object pass methods explicitly.
       />
     );
