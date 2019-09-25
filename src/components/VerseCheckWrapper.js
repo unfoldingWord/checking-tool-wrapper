@@ -311,8 +311,8 @@ class VerseCheckWrapper extends React.Component {
   cancelSelection = () => {
     const { nothingToSelect } = this.props.selectionsReducer;
     this.setState({ nothingToSelect });
-    this.actions.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
-    this.actions.changeMode('default');
+    this.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
+    this.changeMode('default');
   }
 
   clearSelection = () => {
@@ -325,7 +325,7 @@ class VerseCheckWrapper extends React.Component {
     let selections = optimizeSelections(verseText, this.state.selections);
     const { username } = this.props.loginReducer.userdata;
     this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
-    this.actions.changeMode('default');
+    this.changeMode('default');
   }
 
   /**
@@ -364,9 +364,9 @@ class VerseCheckWrapper extends React.Component {
     e.preventDefault();
 
     if (this.state.goToNextOrPrevious == 'next') {
-      this.actions.skipToNext();
+      this.skipToNext();
     } else if (this.state.goToNextOrPrevious == 'previous') {
-      this.actions.skipToPrevious();
+      this.skipToPrevious();
     }
   }
 
