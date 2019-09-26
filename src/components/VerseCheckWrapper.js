@@ -364,12 +364,12 @@ class VerseCheckWrapper extends React.Component {
         mode={this.state.mode}
         tags={this.state.tags}
         targetBible={targetBible}
-        verseText={verseText || ''}
-        unfilteredVerseText={unfilteredVerseText || ''}
+        verseText={verseText}
+        unfilteredVerseText={unfilteredVerseText}
         contextId={contextId}
         selections={selections}
         verseEdited={verseEdited}
-        commentText={commentText || ''}
+        commentText={commentText}
         alignedGLText={'alignedGLText'}
         nothingToSelect={nothingToSelect}
         bookmarkEnabled={bookmarkEnabled}
