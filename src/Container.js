@@ -16,6 +16,7 @@ import {
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
 import * as selectionHelpers from './helpers/selectionHelpers';
+import * as verseHelpers from './helpers/verseHelpers';
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
@@ -103,6 +104,11 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
+
+  const { targetBible } = ownProps.tc.resourcesReducer.bibles.targetLanguage;
+  const { contextId } = ownProps.tc.contextIdReducer;
+  const { verseText, unfilteredVerseText } = verseHelpers.getVerseText(targetBible, contextId);
+
   return {
     groupMenu: {
       tc: ownProps.tc,
@@ -113,16 +119,18 @@ export const mapStateToProps = (state, ownProps) => {
     verseCheck: {
       translate: ownProps.translate,
       currentToolName: ownProps.tc.selectedToolName,
-      projectDetailsReducer: ownProps.tc.projectDetailsReducer,
+      manifest: ownProps.tc.projectDetailsReducer.manifest,
       loginReducer: ownProps.tc.loginReducer,
-      resourcesReducer: ownProps.tc.resourcesReducer,
+      targetBible,
       commentsReducer: ownProps.tc.commentsReducer,
       selectionsReducer: ownProps.tc.selectionsReducer,
-      contextIdReducer: ownProps.tc.contextIdReducer,
+      contextId,
       toolsReducer: legacyToolsReducer,
       groupsDataReducer: ownProps.tc.groupsDataReducer,
       remindersReducer: ownProps.tc.remindersReducer,
       actions: ownProps.tc.actions,
+      verseText,
+      unfilteredVerseText,
       maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName),
     },
     translationHelps: {

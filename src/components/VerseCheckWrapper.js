@@ -1,24 +1,22 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
-import usfmjs from 'usfm-js';
 import isEqual from 'deep-equal';
 import { VerseCheck } from 'tc-ui-toolkit';
 import { optimizeSelections, normalizeString } from '../helpers/selectionHelpers';
-import * as checkAreaHelpers from '../helpers/checkAreaHelpers';
 
 class VerseCheckWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    let { verseText } = this.getVerseText();
+    let { verseText } = this.props;
     const mode = props.selectionsReducer &&
       props.selectionsReducer.selections &&
       props.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
       'default' : props.selectionsReducer.nothingToSelect ? 'default' : 'select';
-    const { nothingToSelect } = props.selectionsReducer;
+    const { nothingToSelect } = props.selectionsReducer;//✅
 
-    this.state = {
+    this.state = { //✅
       mode: mode,
       comment: undefined,
       commentChanged: false,
@@ -37,27 +35,28 @@ class VerseCheckWrapper extends React.Component {
     console.warn(info);
   }
 
-  componentWillMount() {
+  componentWillMount() {//✅
     let selections = [...this.props.selectionsReducer.selections];
     this.setState({ selections });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { contextIdReducer } = this.props || {};
-    const nextContextIDReducer = nextProps.contextIdReducer;
+  componentWillReceiveProps(nextProps) {//✅👀
+    const { contextId } = this.props || {};//✅
+    const nextContextId = nextProps;//✅
 
-    if (contextIdReducer !== nextContextIDReducer) {
-      const selections = Array.from(nextProps.selectionsReducer.selections);
-      const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
-      const { chapter, verse } = nextContextIDReducer.contextId.reference || {};
-      const { targetBible } = nextProps.resourcesReducer.bibles.targetLanguage || {};
-      let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
+    if (contextId !== nextContextId) {//✅
+      const selections = Array.from(nextProps.selectionsReducer.selections);//✅
+      const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;//✅
 
-      if (Array.isArray(verseText)) {
-        verseText = verseText[0];
-      }
+      const { chapter, verse } = nextContextId.reference || {};//✅
+      const targetBible = nextProps.targetBible || {};//✅
+      let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';//✅
+
+      if (Array.isArray(verseText)) {//✅
+        verseText = verseText[0];//✅
+      }//✅
       // normalize whitespace in case selection has contiguous whitespace _this isn't captured
-      verseText = normalizeString(verseText);
+      verseText = normalizeString(verseText);//✅
       const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
         'default' : nextProps.selectionsReducer.nothingToSelect ? 'default' : 'select';
 
@@ -134,7 +133,7 @@ class VerseCheckWrapper extends React.Component {
     this.setState({ comment: comment });
   }
 
-  handleCheckComment = (e) => {
+  handleCheckComment = (e) => {//👀 tc-ui-toolkit why is it needed?
     const newcomment = e.target.value || '';
     const oldcomment = this.props.commentsReducer.text || '';
 
@@ -187,9 +186,9 @@ class VerseCheckWrapper extends React.Component {
   }
 
   handleCheckVerse = (e) => {
-    let { chapter, verse } = this.props.contextIdReducer.contextId.reference;
+    const { chapter, verse } = this.props.contextId.reference;
     const newverse = e.target.value || '';
-    const oldverse = this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || '';
+    const oldverse = this.props.targetBible[chapter][verse] || '';
 
     if (newverse === oldverse) {
       this.setState({
@@ -212,11 +211,11 @@ class VerseCheckWrapper extends React.Component {
   }
 
   saveEditVerse = () => {
-    let {
-      loginReducer, actions, contextIdReducer, resourcesReducer,
+    const {
+      loginReducer, actions, contextId, targetBible,
     } = this.props;
-    let { chapter, verse } = contextIdReducer.contextId.reference;
-    let before = resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse];
+    const { chapter, verse } = contextId.reference;
+    let before = targetBible[chapter][verse];
     let username = loginReducer.userdata.username;
 
     // verseText state is undefined if no changes are made in the text box.
@@ -268,34 +267,6 @@ class VerseCheckWrapper extends React.Component {
     this.props.actions.selectModalTab(tab, section, vis);
   }
 
-  /**
-   * get filtered and unfiltered verse text
-   * @return {{verseText: string, unfilteredVerseText: string}}
-   */
-  getVerseText = () => {
-    let unfilteredVerseText = '';
-    let verseText = '';
-
-    if (this.props.contextIdReducer && this.props.contextIdReducer.contextId) {
-      const {
-        chapter, verse, bookId,
-      } = this.props.contextIdReducer.contextId.reference;
-      const bookAbbr = this.props.projectDetailsReducer.manifest.project.id;
-      const { targetBible } = this.props.resourcesReducer.bibles.targetLanguage;
-
-      if (targetBible && targetBible[chapter] && bookId === bookAbbr) {
-        unfilteredVerseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
-
-        if (Array.isArray(unfilteredVerseText)) {
-          unfilteredVerseText = unfilteredVerseText[0];
-        }
-        // normalize whitespace in case selection has contiguous whitespace _this isn't captured
-        verseText = normalizeString(unfilteredVerseText);
-      }
-    }
-    return { unfilteredVerseText, verseText };
-  }
-
   cancelSelection = () => {
     const { nothingToSelect } = this.props.selectionsReducer;
     this.setState({ nothingToSelect });
@@ -308,7 +279,7 @@ class VerseCheckWrapper extends React.Component {
   }
 
   saveSelection = () => {
-    let { verseText } = this.getVerseText();
+    let { verseText } = this.props;
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
     const { username } = this.props.loginReducer.userdata;
@@ -331,10 +302,10 @@ class VerseCheckWrapper extends React.Component {
   /**
    * finds group data for current context (verse)
    * @return {*}
-   * TODO: We should remove the need to loop trough groupsdata to find the current groupData. This may be slowing down the app. This could be done once in a higher level component or even better in the groupData reducer
+   * TODO: Remove the need to loop trough groupsdata to find the current groupData item. This may be slowing down the app. This could be done once in a higher level component or even better in the groupData reducer
    */
   getGroupDatumForCurrentContext = () => {
-    const { contextIdReducer: { contextId }, groupsDataReducer: { groupsData } } = this.props;
+    const { contextId, groupsDataReducer: { groupsData } } = this.props;
     let groupItem = null;
 
     if (groupsData[contextId.groupId]) {
@@ -368,30 +339,21 @@ class VerseCheckWrapper extends React.Component {
   render() {
     const {
       translate,
-      currentToolName,
-      projectDetailsReducer: { manifest },
+      manifest,
       selectionsReducer: {
         selections,
         nothingToSelect,
       },
-      contextIdReducer: { contextId },
-      resourcesReducer: { bibles },
+      contextId,
+      targetBible,
+      verseText,
+      unfilteredVerseText,
       commentsReducer: { text: commentText },
       remindersReducer: { enabled: bookmarkEnabled },
       maximumSelections,
     } = this.props;
 
-    let { unfilteredVerseText, verseText } = this.getVerseText();
-    verseText = usfmjs.removeMarker(verseText);
-    const { toolsSelectedGLs } = manifest;
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      toolsSelectedGLs,
-      contextId,
-      bibles,
-      currentToolName,
-      translate,
-      this.onInvalidQuote
-    );
+
     const groupItem = this.getGroupDatumForCurrentContext();
     const verseEdited = this.findIfVerseEdited(groupItem);
     const isVerseInvalidated = this.findIfVerseInvalidated(groupItem);
@@ -401,14 +363,14 @@ class VerseCheckWrapper extends React.Component {
         translate={translate}
         mode={this.state.mode}
         tags={this.state.tags}
-        bibles={bibles}
+        targetBible={targetBible}
         verseText={verseText || ''}
         unfilteredVerseText={unfilteredVerseText || ''}
         contextId={contextId}
         selections={selections}
         verseEdited={verseEdited}
         commentText={commentText || ''}
-        alignedGLText={alignedGLText}
+        alignedGLText={'alignedGLText'}
         nothingToSelect={nothingToSelect}
         bookmarkEnabled={bookmarkEnabled}
         maximumSelections={maximumSelections}
@@ -449,37 +411,59 @@ class VerseCheckWrapper extends React.Component {
 }
 
 VerseCheckWrapper.propTypes = {
-  translate: PropTypes.func,
-  currentToolName: PropTypes.string,
+  translate: PropTypes.func.isRequired,
   remindersReducer: PropTypes.object,
   commentsReducer: PropTypes.object,
-  resourcesReducer: PropTypes.object,
+  targetBible: PropTypes.object.isRequired,
+  groupsDataReducer: PropTypes.object,
+  loginReducer: PropTypes.object,
+  contextId: PropTypes.object.isRequired,
+  verseText: PropTypes.string.isRequired,
+  unfilteredVerseText: PropTypes.string.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array,
     nothingToSelect: PropTypes.bool,
   }),
-  groupsDataReducer: PropTypes.object,
-  loginReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
-  toolsReducer: PropTypes.object,
   actions: PropTypes.shape({
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
     onInvalidCheck: PropTypes.func.isRequired,
+    selectModalTab: PropTypes.func.isRequired,
+    openAlertDialog: PropTypes.func.isRequired,
+    addComment: PropTypes.func.isRequired,
+    editTargetVerse: PropTypes.func.isRequired,
+    openOptionDialog: PropTypes.func.isRequired,
+    closeAlertDialog: PropTypes.func.isRequired,
+    validateSelections: PropTypes.func.isRequired,
+    toggleReminder: PropTypes.func.isRequired,
   }),
-  projectDetailsReducer: PropTypes.object.isRequired,
+  manifest: PropTypes.object.isRequired,
   maximumSelections: PropTypes.number.isRequired,
 };
 
 /*TODO: Remove the following reducers
-  toolsReducer
   groupsDataReducer
   loginReducer
 
   Remove username as parameter from toggleReminder action
     this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
 
+  Removed the bibles prop and only pass targetBible since it is the only one needed.
+
+  verseText should be calculated in the highest level compoennt and passed down so we dont have to process getting it multiple times
+
+  Rework alignedGLText
+      const { toolsSelectedGLs } = manifest;
+
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(
+      toolsSelectedGLs,
+      contextId,
+      bibles,
+      currentToolName,
+      translate,
+      this.onInvalidQuote
+    );
 */
 
 export default VerseCheckWrapper;
