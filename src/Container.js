@@ -104,7 +104,6 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
-
   const { targetBible } = ownProps.tc.resourcesReducer.bibles.targetLanguage;
   const { contextId } = ownProps.tc.contextIdReducer;
   const { verseText, unfilteredVerseText } = verseHelpers.getVerseText(targetBible, contextId);
@@ -125,7 +124,6 @@ export const mapStateToProps = (state, ownProps) => {
       commentsReducer: ownProps.tc.commentsReducer,
       selectionsReducer: ownProps.tc.selectionsReducer,
       contextId,
-      toolsReducer: legacyToolsReducer,
       groupsDataReducer: ownProps.tc.groupsDataReducer,
       remindersReducer: ownProps.tc.remindersReducer,
       actions: ownProps.tc.actions,
