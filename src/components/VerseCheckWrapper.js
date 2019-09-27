@@ -341,6 +341,8 @@ class VerseCheckWrapper extends React.Component {
       this.onInvalidQuote
     );
 
+    console.log('alignedGLText', alignedGLText);
+
     return (
       <VerseCheck
         translate={translate}
