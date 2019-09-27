@@ -5338,7 +5338,7 @@ exports[`Container Tests Test Container 1`] = `
       class="verse-check"
     >
       <div
-        style="display:flex;flex-direction:column;height:100%;width:100%"
+        class="verse-check-flex"
       >
         <div
           class="verse-check-card"
@@ -5378,7 +5378,7 @@ exports[`Container Tests Test Container 1`] = `
             class="check-area"
           >
             <div
-              style="flex:1;display:flex;flex-direction:column"
+              class="selection-area-root"
             >
               <div
                 class="verse-title"
@@ -5430,7 +5430,7 @@ exports[`Container Tests Test Container 1`] = `
                     <strong
                       style="color:var(--accent-color)"
                     >
-                      "be insulted"
+                      "alignedGLText"
                     </strong>
                   </span>
                   <br />
@@ -5567,7 +5567,6 @@ exports[`Container Tests Test Container 1`] = `
         <span
           class="glyphicon glyphicon-fullscreen"
           style="cursor:pointer"
-          title="Click to show expanded help pane"
         />
       </div>
       <div
