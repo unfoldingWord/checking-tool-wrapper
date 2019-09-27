@@ -348,10 +348,10 @@ class VerseCheckWrapper extends React.Component {
         bookDetails={manifest.project}
         targetLanguageDetails={manifest.target_language}
         newSelections={this.state.selections}
-        verseChanged={this.state.verseChanged}
+        hasVerseChanged={this.state.verseChanged}
         localNothingToSelect={this.state.nothingToSelect}
         dialogModalVisibility={this.state.dialogModalVisibility}
-        commentChanged={this.state.commentChanged}
+        hasCommentChanged={this.state.commentChanged}
         handleSkip={this.handleSkip}
         handleGoToNext={this.handleGoToNext}
         handleGoToPrevious={this.handleGoToPrevious}
