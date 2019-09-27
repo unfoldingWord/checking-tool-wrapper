@@ -68,19 +68,19 @@ function VerseCheckWrapper({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {//? Do we even need this anymore?👀
-  // // componentWillReceiveProps not fully completed yet
-  //   setLocalState({
-  //     mode: initialMode,
-  //     newComment: null,
-  //     newVerseText: null,
-  //     selections,
-  //     nothingToSelect,
-  //     newTags: [],
-  //     lastContextId: null,
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [contextId]);
+  useEffect(() => {//? Do we even need this anymore?👀
+  // componentWillReceiveProps not fully completed yet
+    setLocalState({
+      // mode: initialMode,
+      newComment: null,
+      // newVerseText: null,
+      // selections,
+      // nothingToSelect,
+      // newTags: [],
+      lastContextId: null,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contextId]);
 
   function handleOpenDialog(goToNextOrPrevious) {
     setLocalState({ goToNextOrPrevious, isDialogOpen: true });
