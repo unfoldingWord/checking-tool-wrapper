@@ -43,8 +43,8 @@ function VerseCheckWrapper({
     newVerseText,
     newSelections,
     newNothingToSelect,
-    commentChanged,
-    verseChanged,
+    isCommentChanged,
+    isVerseChanged,
     newTags,
     isDialogOpen,
     goToNextOrPrevious,
@@ -55,8 +55,8 @@ function VerseCheckWrapper({
     newVerseText: null,// renamed verseText -> newVerseText
     newSelections: selections,// renamed selections -> newSelections
     newNothingToSelect: nothingToSelect,// renamed nothingToSelect -> newNothingToSelect
-    commentChanged: false,
-    verseChanged: false,
+    isCommentChanged: false,
+    isVerseChanged: false,
     newTags: [],// renamed tags -> newTags
     isDialogOpen: false,// renamed dialogModalVisibility -> isDialogOpen
     goToNextOrPrevious: null,
@@ -113,11 +113,11 @@ function VerseCheckWrapper({
     setLocalState({ newComment: e.target.value });
   }
 
-  function hasCommentChanged(e) {
+  function checkIfCommentChanged(e) {
     const newcomment = e.target.value || '';
     const oldcomment = commentText || '';
 
-    setLocalState({ commentChanged: newcomment !== oldcomment });
+    setLocalState({ isCommentChanged: newcomment !== oldcomment });
   }
 
   function cancelComment() {
@@ -125,7 +125,7 @@ function VerseCheckWrapper({
       mode: 'default',
       newSelections: selections,
       newComment: null,
-      commentChanged: false,
+      isCommentChanged: false,
     });
   }
 
@@ -135,7 +135,7 @@ function VerseCheckWrapper({
       mode: 'default',
       newSelections: selections,
       newComment: null,
-      commentChanged: false,
+      isCommentChanged: false,
     });
   }
 
@@ -155,18 +155,18 @@ function VerseCheckWrapper({
     setLocalState({ newVerseText: e.target.value });
   }
 
-  function hasVerseChanged(e) {
+  function checkIfVerseChanged(e) {
     const { chapter, verse } = contextId.reference;
     const newverse = e.target.value || '';
     const oldverse = targetBible[chapter][verse] || '';
 
     if (newverse === oldverse) {
       setLocalState({
-        verseChanged: false,
+        isVerseChanged: false,
         newTags: [],
       });
     } else {
-      setLocalState({ verseChanged: true });
+      setLocalState({ isVerseChanged: true });
     }
   }
 
@@ -175,7 +175,7 @@ function VerseCheckWrapper({
       mode: 'default',
       newSelections: selections,
       newVerseText: null,
-      verseChanged: false,
+      isVerseChanged: false,
       newTags: [],
     });
   }
@@ -188,7 +188,7 @@ function VerseCheckWrapper({
       mode: 'default',
       newSelections: selections,
       newVerseText: null,
-      verseChanged: false,
+      isVerseChanged: false,
       newTags: [],
     });
     actions.editTargetVerse(chapter, verse, before, newVerseText, newTags);
@@ -250,10 +250,10 @@ function VerseCheckWrapper({
       bookDetails={manifest.project}
       targetLanguageDetails={manifest.target_language}
       newSelections={newSelections}
-      verseChanged={verseChanged}
       localNothingToSelect={newNothingToSelect}
       dialogModalVisibility={isDialogOpen}
-      commentChanged={commentChanged}
+      isVerseChanged={isVerseChanged}
+      isCommentChanged={isCommentChanged}
       handleSkip={handleSkip}
       handleGoToNext={actions.goToNext}
       handleGoToPrevious={actions.goToPrevious}
@@ -271,8 +271,8 @@ function VerseCheckWrapper({
       cancelSelection={cancelSelection}
       clearSelection={clearSelection}
       handleEditVerse={handleEditVerse}
-      hasVerseChanged={hasVerseChanged}
-      hasCommentChanged={hasCommentChanged}
+      checkIfVerseChanged={checkIfVerseChanged}
+      checkIfCommentChanged={checkIfCommentChanged}
       validateSelections={actions.validateSelections}
       handleTagsCheckbox={handleTagsCheckbox}
       toggleNothingToSelect={toggleNothingToSelect}

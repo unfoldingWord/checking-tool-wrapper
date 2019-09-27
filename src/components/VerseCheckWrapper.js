@@ -348,10 +348,10 @@ class VerseCheckWrapper extends React.Component {
         bookDetails={manifest.project}
         targetLanguageDetails={manifest.target_language}
         newSelections={this.state.selections}
-        hasVerseChanged={this.state.verseChanged}
+        isVerseChanged={this.state.verseChanged}
+        isCommentChanged={this.state.commentChanged}
         localNothingToSelect={this.state.nothingToSelect}
         dialogModalVisibility={this.state.dialogModalVisibility}
-        hasCommentChanged={this.state.commentChanged}
         handleSkip={this.handleSkip}
         handleGoToNext={this.handleGoToNext}
         handleGoToPrevious={this.handleGoToPrevious}
@@ -369,8 +369,8 @@ class VerseCheckWrapper extends React.Component {
         cancelSelection={this.cancelSelection}
         clearSelection={this.clearSelection}
         handleEditVerse={this.handleEditVerse}
-        handleCheckVerse={this.handleCheckVerse}
-        handleCheckComment={this.handleCheckComment}
+        checkIfVerseChanged={this.handleCheckVerse}
+        checkIfCommentChanged={this.handleCheckComment}
         validateSelections={this.validateSelections}
         handleTagsCheckbox={this.handleTagsCheckbox}
         toggleNothingToSelect={this.toggleNothingToSelect}
