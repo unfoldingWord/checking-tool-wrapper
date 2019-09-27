@@ -136,7 +136,7 @@ class VerseCheckWrapper extends React.Component {
   handleCheckComment = (e) => {//✅
     const newcomment = e.target.value || '';
     const oldcomment = this.props.commentsReducer.text || '';
-
+    console.log('handleCheckComment() --> commentChanged');
     this.setState({ commentChanged: newcomment !== oldcomment });
   }//✅
 
@@ -328,6 +328,7 @@ class VerseCheckWrapper extends React.Component {
       isVerseInvalidated,
     } = this.props;//✅
 
+    console.log('this.state.commentChanged', this.state.commentChanged);
     return (
       <VerseCheck
         translate={translate}
