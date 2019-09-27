@@ -194,9 +194,8 @@ function VerseCheckWrapper({
     actions.editTargetVerse(chapter, verse, before, newVerseText, newTags);
   }
 
-
-  function changeSelectionsInLocalState(selections) {
-    if (selections.length > 0) {
+  function changeSelectionsInLocalState(newSelections) {
+    if (newSelections.length > 0) {
       setLocalState({ newNothingToSelect: false });
     } else {
       setLocalState({ newNothingToSelect: nothingToSelect });
