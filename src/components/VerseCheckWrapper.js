@@ -6,14 +6,14 @@ import { VerseCheck } from 'tc-ui-toolkit';
 import { optimizeSelections, normalizeString } from '../helpers/selectionHelpers';
 
 class VerseCheckWrapper extends React.Component {
-  constructor(props) {
+  constructor(props) {//✅
     super(props);
 
-    let { verseText } = this.props;
+    let { verseText } = this.props;//✅
     const mode = props.selectionsReducer &&
       props.selectionsReducer.selections &&
       props.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
-      'default' : props.selectionsReducer.nothingToSelect ? 'default' : 'select';
+      'default' : props.selectionsReducer.nothingToSelect ? 'default' : 'select';//✅
     const { nothingToSelect } = props.selectionsReducer;//✅
 
     this.state = { //✅
@@ -28,7 +28,7 @@ class VerseCheckWrapper extends React.Component {
       dialogModalVisibility: false,
       goToNextOrPrevious: null,
     };
-  }
+  }//✅
 
   componentDidCatch(error, info) {
     console.error(error);
@@ -38,7 +38,7 @@ class VerseCheckWrapper extends React.Component {
   componentWillMount() {//✅
     let selections = [...this.props.selectionsReducer.selections];
     this.setState({ selections });
-  }
+  }//✅
 
   componentWillReceiveProps(nextProps) {//✅👀
     const { contextId } = this.props || {};//✅
@@ -72,44 +72,44 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
-  handleGoToNext = () => {
+  handleGoToNext = () => {//✅
     if (!this.props.loginReducer.loggedInUser) {
       this.props.actions.selectModalTab(1, 1, true);
       this.props.actions.openAlertDialog('You must be logged in to save progress');
       return;
     }
     this.props.actions.goToNext();
-  }
+  }//✅
 
-  handleGoToPrevious = () => {
+  handleGoToPrevious = () => {//✅
     if (!this.props.loginReducer.loggedInUser) {
       this.props.actions.selectModalTab(1, 1, true);
       this.props.actions.openAlertDialog('You must be logged in to save progress');
       return;
     }
     this.props.actions.goToPrevious();
-  }
+  }//✅
 
-  handleOpenDialog = (goToNextOrPrevious) => {
+  handleOpenDialog = (goToNextOrPrevious) => {//✅
     this.setState({ goToNextOrPrevious });
     this.setState({ dialogModalVisibility: true });
-  }
+  }//✅
 
-  handleCloseDialog = () => {
+  handleCloseDialog = () => {//✅
     this.setState({ dialogModalVisibility: false });
-  }
+  }//✅
 
-  skipToNext = () => {
+  skipToNext = () => {//✅
     this.setState({ dialogModalVisibility: false });
     this.props.actions.goToNext();
-  }
+  }//✅
 
-  skipToPrevious = () => {
+  skipToPrevious = () => {//✅
     this.setState({ dialogModalVisibility: false });
     this.props.actions.goToPrevious();
-  }
+  }//✅
 
-  changeSelectionsInLocalState = (selections) => {
+  changeSelectionsInLocalState = (selections) => {//✅
     const { nothingToSelect } = this.props.selectionsReducer;
 
     if (selections.length > 0) {
@@ -118,38 +118,38 @@ class VerseCheckWrapper extends React.Component {
       this.setState({ nothingToSelect });
     }
     this.setState({ selections });
-  }
+  }//✅
 
-  changeMode = (mode) => {
+  changeMode = (mode) => {//✅
     this.setState({
       mode: mode,
       selections: this.props.selectionsReducer.selections,
     });
-  }
+  }//✅
 
-  handleComment = (e) => {
+  handleComment = (e) => {//✅
     const comment = e.target.value;
 
     this.setState({ comment: comment });
-  }
+  }//✅
 
-  handleCheckComment = (e) => {//👀 tc-ui-toolkit why is it needed?
+  handleCheckComment = (e) => {//✅
     const newcomment = e.target.value || '';
     const oldcomment = this.props.commentsReducer.text || '';
 
     this.setState({ commentChanged: newcomment !== oldcomment });
-  }
+  }//✅
 
-  cancelComment = () => {
+  cancelComment = () => {//✅
     this.setState({
       mode: 'default',
       selections: this.props.selectionsReducer.selections,
       comment: undefined,
       commentChanged: false,
     });
-  }
+  }//✅
 
-  saveComment = () => {
+  saveComment = () => {//✅
     if (!this.props.loginReducer.loggedInUser) {
       this.props.actions.selectModalTab(1, 1, true);
       this.props.actions.openAlertDialog('You must be logged in to leave a comment', 5);
@@ -162,9 +162,9 @@ class VerseCheckWrapper extends React.Component {
       comment: undefined,
       commentChanged: false,
     });
-  }
+  }//✅
 
-  handleTagsCheckbox = (tag) => {
+  handleTagsCheckbox = (tag) => {//✅
     let newState = this.state;
 
     if (newState.tags === undefined) {
@@ -177,15 +177,15 @@ class VerseCheckWrapper extends React.Component {
       newState.tags = newState.tags.filter(_tag => _tag !== tag);
     }
     this.setState(newState);
-  }
+  }//✅
 
-  handleEditVerse = (e) => {
+  handleEditVerse = (e) => {//✅
     const verseText = e.target.value;
 
     this.setState({ verseText: verseText });
-  }
+  }//✅
 
-  handleCheckVerse = (e) => {
+  handleCheckVerse = (e) => {//✅
     const { chapter, verse } = this.props.contextId.reference;
     const newverse = e.target.value || '';
     const oldverse = this.props.targetBible[chapter][verse] || '';
@@ -198,9 +198,9 @@ class VerseCheckWrapper extends React.Component {
     } else {
       this.setState({ verseChanged: true });
     }
-  }
+  }//✅
 
-  cancelEditVerse = () => {
+  cancelEditVerse = () => {//✅
     this.setState({
       mode: 'default',
       selections: this.props.selectionsReducer.selections,
@@ -208,9 +208,9 @@ class VerseCheckWrapper extends React.Component {
       verseChanged: false,
       tags: [],
     });
-  }
+  }//✅
 
-  saveEditVerse = () => {
+  saveEditVerse = () => {//✅
     const {
       loginReducer, actions, contextId, targetBible,
     } = this.props;
@@ -249,72 +249,45 @@ class VerseCheckWrapper extends React.Component {
         actions.closeAlertDialog();
       }, 'Save Blank Verse', 'Cancel');
     }
-  }
+  }//✅
 
-  validateSelections = (verseText) => {
+  validateSelections = (verseText) => {//✅
     this.props.actions.validateSelections(verseText);
-  }
+  }//✅
 
-  toggleReminder = () => {
+  toggleReminder = () => {//✅
     this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
-  }
+  }//✅
 
-  openAlertDialog = (message) => {
+  openAlertDialog = (message) => {//✅
     this.props.actions.openAlertDialog(message);
-  }
+  }//✅
 
-  selectModalTab = (tab, section, vis) => {
+  selectModalTab = (tab, section, vis) => {//✅
     this.props.actions.selectModalTab(tab, section, vis);
-  }
+  }//✅
 
-  cancelSelection = () => {
+  cancelSelection = () => {//✅
     const { nothingToSelect } = this.props.selectionsReducer;
     this.setState({ nothingToSelect });
     this.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
     this.changeMode('default');
-  }
+  }//✅
 
-  clearSelection = () => {
+  clearSelection = () => {//✅
     this.setState({ selections: [] });
-  }
+  }//✅
 
-  saveSelection = () => {
+  saveSelection = () => {//✅
     let { verseText } = this.props;
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
     const { username } = this.props.loginReducer.userdata;
     this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
     this.changeMode('default');
-  }
+  }//✅
 
-  /**
-   * returns true if current verse has been edited
-   * @return {boolean}
-   */
-  findIfVerseEdited = (groupItem) => !!(groupItem && groupItem.verseEdits)
-
-  /**
-   * returns true if current verse has been invalidated
-   * @return {boolean}
-   */
-  findIfVerseInvalidated = (groupItem) => !!(groupItem && groupItem.invalidated)
-
-  /**
-   * finds group data for current context (verse)
-   * @return {*}
-   * TODO: Remove the need to loop trough groupsdata to find the current groupData item. This may be slowing down the app. This could be done once in a higher level component or even better in the groupData reducer
-   */
-  getGroupDatumForCurrentContext = () => {
-    const { contextId, groupsDataReducer: { groupsData } } = this.props;
-    let groupItem = null;
-
-    if (groupsData[contextId.groupId]) {
-      groupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
-    }
-    return groupItem;
-  }
-
-  handleSkip = (e) => {
+  handleSkip = (e) => {//✅
     e.preventDefault();
 
     if (this.state.goToNextOrPrevious == 'next') {
@@ -322,7 +295,7 @@ class VerseCheckWrapper extends React.Component {
     } else if (this.state.goToNextOrPrevious == 'previous') {
       this.skipToPrevious();
     }
-  }
+  }//✅
 
   onInvalidQuote = (contextId, selectedGL) => {
     // to prevent multiple alerts on current selection
@@ -332,12 +305,12 @@ class VerseCheckWrapper extends React.Component {
     }
   }
 
-  toggleNothingToSelect = (nothingToSelect) => {
+  toggleNothingToSelect = (nothingToSelect) => {//✅
     this.setState({ nothingToSelect });
-  }
+  }//✅
 
   render() {
-    const {
+    const { //✅
       translate,
       manifest,
       selectionsReducer: {
@@ -351,12 +324,9 @@ class VerseCheckWrapper extends React.Component {
       commentsReducer: { text: commentText },
       remindersReducer: { enabled: bookmarkEnabled },
       maximumSelections,
-    } = this.props;
-
-
-    const groupItem = this.getGroupDatumForCurrentContext();
-    const verseEdited = this.findIfVerseEdited(groupItem);
-    const isVerseInvalidated = this.findIfVerseInvalidated(groupItem);
+      isVerseEdited,
+      isVerseInvalidated,
+    } = this.props;//✅
 
     return (
       <VerseCheck
@@ -368,7 +338,7 @@ class VerseCheckWrapper extends React.Component {
         unfilteredVerseText={unfilteredVerseText}
         contextId={contextId}
         selections={selections}
-        verseEdited={verseEdited}
+        isVerseEdited={isVerseEdited}
         commentText={commentText}
         alignedGLText={'alignedGLText'}
         nothingToSelect={nothingToSelect}
@@ -420,6 +390,10 @@ VerseCheckWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   verseText: PropTypes.string.isRequired,
   unfilteredVerseText: PropTypes.string.isRequired,
+  manifest: PropTypes.object.isRequired,
+  maximumSelections: PropTypes.number.isRequired,
+  isVerseEdited: PropTypes.bool.isRequired,
+  isVerseInvalidated: PropTypes.bool.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array,
     nothingToSelect: PropTypes.bool,
@@ -438,20 +412,27 @@ VerseCheckWrapper.propTypes = {
     validateSelections: PropTypes.func.isRequired,
     toggleReminder: PropTypes.func.isRequired,
   }),
-  manifest: PropTypes.object.isRequired,
-  maximumSelections: PropTypes.number.isRequired,
 };
 
 /*TODO: Remove the following reducers
   groupsDataReducer
   loginReducer
-
+  // !
+  Change addComment to not need username as argument
+    ?  actions.addComment(newComment, loginReducer.userdata.username);
   Remove username as parameter from toggleReminder action
     this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
+    Same for actions.editTargetVerse
+        this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
+            this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
+
+ // !
+
 
   Removed the bibles prop and only pass targetBible since it is the only one needed.
 
   verseText should be calculated in the highest level compoennt and passed down so we dont have to process getting it multiple times
+
 
   Rework alignedGLText
       const { toolsSelectedGLs } = manifest;

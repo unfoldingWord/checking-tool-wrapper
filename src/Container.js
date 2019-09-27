@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'deep-equal';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 //selectors
 import {
@@ -104,9 +105,21 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
+  // TODO: Move this code to selectors once we have reducers w/ tools.
   const { targetBible } = ownProps.tc.resourcesReducer.bibles.targetLanguage;
   const { contextId } = ownProps.tc.contextIdReducer;
   const { verseText, unfilteredVerseText } = verseHelpers.getVerseText(targetBible, contextId);
+  const { groupsData } = ownProps.tc.groupsDataReducer;
+  let currentGroupItem;
+
+  if (groupsData[contextId.groupId]) {
+    currentGroupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
+  } else {
+    currentGroupItem = null;
+  }
+
+  const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
+  const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
 
   return {
     groupMenu: {
@@ -129,6 +142,8 @@ export const mapStateToProps = (state, ownProps) => {
       actions: ownProps.tc.actions,
       verseText,
       unfilteredVerseText,
+      isVerseEdited,
+      isVerseInvalidated,
       maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName),
     },
     translationHelps: {
