@@ -15,7 +15,6 @@ function useLocalState(initialState) {
   };
 }
 
-
 function VerseCheckWrapper({
   manifest,
   translate,
@@ -51,14 +50,14 @@ function VerseCheckWrapper({
     setLocalState,
   } = useLocalState({
     mode: initialMode,
-    newComment: null,// renamed comment -> newComment
-    newVerseText: null,// renamed verseText -> newVerseText
-    newSelections: selections,// renamed selections -> newSelections
-    newNothingToSelect: nothingToSelect,// renamed nothingToSelect -> newNothingToSelect
+    newComment: null,
+    newVerseText: null,
+    newSelections: selections,
+    newNothingToSelect: nothingToSelect,
     isCommentChanged: false,
     isVerseChanged: false,
-    newTags: [],// renamed tags -> newTags
-    isDialogOpen: false,// renamed dialogModalVisibility -> isDialogOpen
+    newTags: [],
+    isDialogOpen: false,
     goToNextOrPrevious: null,
     lastContextId: null,
   });
@@ -70,8 +69,7 @@ function VerseCheckWrapper({
 
   console.log('contextId', contextId);
 
-  useEffect(() => {//? Do we even need this anymore?👀
-  // componentWillReceiveProps not fully completed yet
+  useEffect(() => {
     setLocalState({
       mode: initialMode,
       newComment: null,
@@ -227,7 +225,6 @@ function VerseCheckWrapper({
   function toggleNothingToSelect(nothingToSelect) {
     setLocalState({ nothingToSelect });
   }
-
 
   const alignedGLText = 'alignedGLText';// TODO:
 

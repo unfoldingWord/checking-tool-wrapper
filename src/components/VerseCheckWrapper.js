@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'deep-equal';
 import { VerseCheck } from 'tc-ui-toolkit';
 import { optimizeSelections, normalizeString } from '../helpers/selectionHelpers';
-
+import * as checkAreaHelpers from '../helpers/checkAreaHelpers';
 class VerseCheckWrapper extends React.Component {
   constructor(props) {//✅
     super(props);
@@ -326,7 +326,20 @@ class VerseCheckWrapper extends React.Component {
       maximumSelections,
       isVerseEdited,
       isVerseInvalidated,
+      currentToolName,
+      bibles,
     } = this.props;//✅
+
+    const { toolsSelectedGLs } = manifest;
+
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(
+      toolsSelectedGLs,
+      contextId,
+      bibles,
+      currentToolName,
+      translate,
+      this.onInvalidQuote
+    );
 
     return (
       <VerseCheck
@@ -340,7 +353,7 @@ class VerseCheckWrapper extends React.Component {
         selections={selections}
         isVerseEdited={isVerseEdited}
         commentText={commentText}
-        alignedGLText={'alignedGLText'}
+        alignedGLText={alignedGLText}
         nothingToSelect={nothingToSelect}
         bookmarkEnabled={bookmarkEnabled}
         maximumSelections={maximumSelections}

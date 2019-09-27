@@ -20,7 +20,7 @@ import * as selectionHelpers from './helpers/selectionHelpers';
 import * as verseHelpers from './helpers/verseHelpers';
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
-import VerseCheckWrapper from './components/VerseCheckWrapperHooks';
+import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
@@ -130,7 +130,8 @@ export const mapStateToProps = (state, ownProps) => {
     },
     verseCheck: {
       translate: ownProps.translate,
-      currentToolName: ownProps.tc.selectedToolName,
+      currentToolName: ownProps.tc.selectedToolName,// is it needed?
+      bibles: getBibles(ownProps),
       manifest: ownProps.tc.projectDetailsReducer.manifest,
       loginReducer: ownProps.tc.loginReducer,
       targetBible,
