@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'deep-equal';
 import { VerseCheck } from 'tc-ui-toolkit';
 import { optimizeSelections, normalizeString } from '../helpers/selectionHelpers';
-import * as checkAreaHelpers from '../helpers/checkAreaHelpers';
+
 class VerseCheckWrapper extends React.Component {
   constructor(props) {//✅
     super(props);
@@ -73,20 +73,10 @@ class VerseCheckWrapper extends React.Component {
   }
 
   handleGoToNext = () => {//✅
-    if (!this.props.loginReducer.loggedInUser) {
-      this.props.actions.selectModalTab(1, 1, true);
-      this.props.actions.openAlertDialog('You must be logged in to save progress');
-      return;
-    }
     this.props.actions.goToNext();
   }//✅
 
   handleGoToPrevious = () => {//✅
-    if (!this.props.loginReducer.loggedInUser) {
-      this.props.actions.selectModalTab(1, 1, true);
-      this.props.actions.openAlertDialog('You must be logged in to save progress');
-      return;
-    }
     this.props.actions.goToPrevious();
   }//✅
 
@@ -150,12 +140,7 @@ class VerseCheckWrapper extends React.Component {
   }//✅
 
   saveComment = () => {//✅
-    if (!this.props.loginReducer.loggedInUser) {
-      this.props.actions.selectModalTab(1, 1, true);
-      this.props.actions.openAlertDialog('You must be logged in to leave a comment', 5);
-      return;
-    }
-    this.props.actions.addComment(this.state.comment, this.props.loginReducer.userdata.username);
+    this.props.actions.addComment(this.state.comment);
     this.setState({
       mode: 'default',
       selections: this.props.selectionsReducer.selections,
@@ -212,21 +197,13 @@ class VerseCheckWrapper extends React.Component {
 
   saveEditVerse = () => {//✅
     const {
-      loginReducer, actions, contextId, targetBible,
+      actions, contextId, targetBible,
     } = this.props;
     const { chapter, verse } = contextId.reference;
     let before = targetBible[chapter][verse];
-    let username = loginReducer.userdata.username;
-
-    // verseText state is undefined if no changes are made in the text box.
-    if (!loginReducer.loggedInUser) {
-      actions.selectModalTab(1, 1, true);
-      actions.openAlertDialog('You must be logged in to edit a verse');
-      return;
-    }
 
     const save = () => {
-      actions.editTargetVerse(chapter, verse, before, this.state.verseText, this.state.tags, username);
+      actions.editTargetVerse(chapter, verse, before, this.state.verseText, this.state.tags);
       this.setState({
         mode: 'default',
         selections: this.props.selectionsReducer.selections,
@@ -256,7 +233,7 @@ class VerseCheckWrapper extends React.Component {
   }//✅
 
   toggleReminder = () => {//✅
-    this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
+    this.props.actions.toggleReminder();
   }//✅
 
   openAlertDialog = (message) => {//✅
@@ -282,8 +259,7 @@ class VerseCheckWrapper extends React.Component {
     let { verseText } = this.props;
     // optimize the selections to address potential issues and save
     let selections = optimizeSelections(verseText, this.state.selections);
-    const { username } = this.props.loginReducer.userdata;
-    this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
+    this.props.actions.changeSelections(selections, this.state.nothingToSelect);
     this.changeMode('default');
   }//✅
 
@@ -297,13 +273,13 @@ class VerseCheckWrapper extends React.Component {
     }
   }//✅
 
-  onInvalidQuote = (contextId, selectedGL) => {
+  onInvalidQuote = (contextId, selectedGL) => {// !
     // to prevent multiple alerts on current selection
     if (!isEqual(contextId, this.state.lastContextId)) {
       this.props.actions.onInvalidCheck(contextId, selectedGL, true);
       this.setState({ lastContextId: contextId });
     }
-  }
+  }// !
 
   toggleNothingToSelect = (nothingToSelect) => {//✅
     this.setState({ nothingToSelect });
@@ -326,22 +302,8 @@ class VerseCheckWrapper extends React.Component {
       maximumSelections,
       isVerseEdited,
       isVerseInvalidated,
-      currentToolName,
-      bibles,
+      alignedGLText,
     } = this.props;//✅
-
-    const { toolsSelectedGLs } = manifest;
-
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      toolsSelectedGLs,
-      contextId,
-      bibles,
-      currentToolName,
-      translate,
-      this.onInvalidQuote
-    );
-
-    console.log('alignedGLText', alignedGLText);
 
     return (
       <VerseCheck
@@ -400,8 +362,6 @@ VerseCheckWrapper.propTypes = {
   remindersReducer: PropTypes.object,
   commentsReducer: PropTypes.object,
   targetBible: PropTypes.object.isRequired,
-  groupsDataReducer: PropTypes.object,
-  loginReducer: PropTypes.object,
   contextId: PropTypes.object.isRequired,
   verseText: PropTypes.string.isRequired,
   unfilteredVerseText: PropTypes.string.isRequired,
@@ -409,6 +369,7 @@ VerseCheckWrapper.propTypes = {
   maximumSelections: PropTypes.number.isRequired,
   isVerseEdited: PropTypes.bool.isRequired,
   isVerseInvalidated: PropTypes.bool.isRequired,
+  alignedGLText: PropTypes.string.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array,
     nothingToSelect: PropTypes.bool,
@@ -430,26 +391,22 @@ VerseCheckWrapper.propTypes = {
 };
 
 /*TODO: Remove the following reducers
-  groupsDataReducer
-  loginReducer
-  // !
-  Change addComment to not need username as argument
+  removed groupsDataReducer
+  removed loginReducer
+
+  Changed addComment to not need username as argument
     ?  actions.addComment(newComment, loginReducer.userdata.username);
-  Remove username as parameter from toggleReminder action
+  Removed username as parameter from toggleReminder action
     this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
     Same for actions.editTargetVerse
         this.props.actions.toggleReminder(this.props.loginReducer.userdata.username);
             this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
 
- // !
-
-
   Removed the bibles prop and only pass targetBible since it is the only one needed.
 
-  verseText should be calculated in the highest level compoennt and passed down so we dont have to process getting it multiple times
+  verseText is now calculated in the highest level component and passed down so we dont have to process getting it multiple times
 
-
-  Rework alignedGLText
+  Reworked alignedGLText
       const { toolsSelectedGLs } = manifest;
 
     const alignedGLText = checkAreaHelpers.getAlignedGLText(

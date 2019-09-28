@@ -26,6 +26,7 @@ function VerseCheckWrapper({
   unfilteredVerseText,
   maximumSelections,
   actions,
+  alignedGLText,
   commentsReducer: { text: commentText },
   remindersReducer: { enabled: bookmarkEnabled },
   selectionsReducer: {
@@ -226,8 +227,6 @@ function VerseCheckWrapper({
     setLocalState({ nothingToSelect });
   }
 
-  const alignedGLText = 'alignedGLText';// TODO:
-
   return (
     <VerseCheck
       translate={translate}
@@ -281,11 +280,7 @@ function VerseCheckWrapper({
 
 VerseCheckWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
-  remindersReducer: PropTypes.object,
-  commentsReducer: PropTypes.object,
   targetBible: PropTypes.object.isRequired,
-  groupsDataReducer: PropTypes.object,
-  loginReducer: PropTypes.object,
   contextId: PropTypes.object.isRequired,
   manifest: PropTypes.object.isRequired,
   maximumSelections: PropTypes.number.isRequired,
@@ -293,10 +288,13 @@ VerseCheckWrapper.propTypes = {
   unfilteredVerseText: PropTypes.string.isRequired,
   isVerseEdited: PropTypes.bool.isRequired,
   isVerseInvalidated: PropTypes.bool.isRequired,
+  alignedGLText: PropTypes.string.isRequired,
+  remindersReducer: PropTypes.object.isRequired,
+  commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({
-    selections: PropTypes.array,
-    nothingToSelect: PropTypes.bool,
-  }),
+    selections: PropTypes.array.isRequired,
+    nothingToSelect: PropTypes.bool.isRequired,
+  }).isRequired,
   actions: PropTypes.shape({
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,

@@ -7,10 +7,9 @@ import { getAlignedText } from 'tc-ui-toolkit';
  * @param {object} bibles
  * @param {string} currentToolName
  * @param {Function} translate
- * @param {Function} onInvalidQuote - optional method to call if quote cannot be matched
- * @return {*}
+ * @return {string}
  */
-export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate, onInvalidQuote) {
+export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate) {
   const selectedGL = toolsSelectedGLs[currentToolName];
 
   if (! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length) {
@@ -19,27 +18,17 @@ export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToo
 
   const sortedBibleIds = Object.keys(bibles[selectedGL]).sort(bibleIdSort);
 
-  console.log('sortedBibleIds', sortedBibleIds);
-
   for (let i = 0; i < sortedBibleIds.length; ++i) {
-    console.log(i);
     const bible = bibles[selectedGL][sortedBibleIds[i]];
-    console.log('bible', bible);
 
     if (bible && bible[contextId.reference.chapter] && bible[contextId.reference.chapter][contextId.reference.verse] && bible[contextId.reference.chapter][contextId.reference.verse].verseObjects) {
-      console.log('contion is true');
       const verseObjects = bible[contextId.reference.chapter][contextId.reference.verse].verseObjects;
       const alignedText = getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
-      console.log('alignedText', alignedText);
 
       if (alignedText) {
         return alignedText;
       }
     }
-  }
-
-  if (onInvalidQuote) {
-    onInvalidQuote(contextId, selectedGL);
   }
 
   const origLangQuote = getQuoteAsString(contextId.quote);

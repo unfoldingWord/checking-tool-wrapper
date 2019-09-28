@@ -18,6 +18,8 @@ import {
 import * as settingsHelper from './helpers/settingsHelper';
 import * as selectionHelpers from './helpers/selectionHelpers';
 import * as verseHelpers from './helpers/verseHelpers';
+import * as checkAreaHelpers from './helpers/checkAreaHelpers';
+
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
@@ -105,7 +107,7 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
-  // TODO: Move this code to selectors once we have reducers w/ tools.
+  // TODO: Move code below to selectors once we have reducers w/ tools.
   const { targetBible } = ownProps.tc.resourcesReducer.bibles.targetLanguage;
   const { contextId } = ownProps.tc.contextIdReducer;
   const { verseText, unfilteredVerseText } = verseHelpers.getVerseText(targetBible, contextId);
@@ -120,6 +122,18 @@ export const mapStateToProps = (state, ownProps) => {
 
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
+  const currentToolName = ownProps.tc.selectedToolName;
+  const manifest = ownProps.tc.projectDetailsReducer.manifest;
+  const { toolsSelectedGLs } = manifest;
+  const bibles = getBibles(ownProps);
+
+  const alignedGLText = checkAreaHelpers.getAlignedGLText(
+    toolsSelectedGLs,
+    contextId,
+    bibles,
+    currentToolName,
+    ownProps.translate,
+  );
 
   return {
     groupMenu: {
@@ -130,22 +144,19 @@ export const mapStateToProps = (state, ownProps) => {
     },
     verseCheck: {
       translate: ownProps.translate,
-      currentToolName: ownProps.tc.selectedToolName,// is it needed?
-      bibles: getBibles(ownProps),
-      manifest: ownProps.tc.projectDetailsReducer.manifest,
-      loginReducer: ownProps.tc.loginReducer,
+      manifest,
       targetBible,
-      commentsReducer: ownProps.tc.commentsReducer,
-      selectionsReducer: ownProps.tc.selectionsReducer,
       contextId,
-      groupsDataReducer: ownProps.tc.groupsDataReducer,
-      remindersReducer: ownProps.tc.remindersReducer,
-      actions: ownProps.tc.actions,
       verseText,
       unfilteredVerseText,
       isVerseEdited,
       isVerseInvalidated,
+      alignedGLText,
       maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName),
+      actions: ownProps.tc.actions,
+      commentsReducer: ownProps.tc.commentsReducer,
+      selectionsReducer: ownProps.tc.selectionsReducer,
+      remindersReducer: ownProps.tc.remindersReducer,
     },
     translationHelps: {
       translate: ownProps.translate,
