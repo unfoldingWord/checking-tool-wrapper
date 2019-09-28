@@ -73,8 +73,8 @@ function VerseCheckWrapper({
       mode: initialMode,
       newComment: null,
       newVerseText: null,
-      selections,
-      nothingToSelect,
+      newSelections: selections,
+      newNothingToSelect: nothingToSelect,
       newTags: [],
       lastContextId: null,
     });
