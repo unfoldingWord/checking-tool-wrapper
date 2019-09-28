@@ -21,10 +21,13 @@ export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToo
 
   for (let i = 0; i < sortedBibleIds.length; ++i) {
     const bible = bibles[selectedGL][sortedBibleIds[i]];
+    console.log('bible', bible);
 
     if (bible && bible[contextId.reference.chapter] && bible[contextId.reference.chapter][contextId.reference.verse] && bible[contextId.reference.chapter][contextId.reference.verse].verseObjects) {
+      console.log('contion is true');
       const verseObjects = bible[contextId.reference.chapter][contextId.reference.verse].verseObjects;
       const alignedText = getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
+      console.log('alignedText', alignedText);
 
       if (alignedText) {
         return alignedText;
