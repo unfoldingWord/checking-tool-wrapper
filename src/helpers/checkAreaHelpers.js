@@ -19,6 +19,8 @@ export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToo
 
   const sortedBibleIds = Object.keys(bibles[selectedGL]).sort(bibleIdSort);
 
+  console.log('sortedBibleIds', sortedBibleIds);
+
   for (let i = 0; i < sortedBibleIds.length; ++i) {
     const bible = bibles[selectedGL][sortedBibleIds[i]];
     console.log('bible', bible);
