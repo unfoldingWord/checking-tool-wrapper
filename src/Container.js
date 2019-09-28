@@ -22,7 +22,7 @@ import * as checkAreaHelpers from './helpers/checkAreaHelpers';
 
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
-import VerseCheckWrapper from './components/VerseCheckWrapper';
+import VerseCheckWrapper from './components/VerseCheckWrapperHooks';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
