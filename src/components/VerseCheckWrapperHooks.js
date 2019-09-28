@@ -68,8 +68,6 @@ function VerseCheckWrapper({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log('contextId', contextId);
-
   useEffect(() => {
     setLocalState({
       mode: initialMode,
@@ -223,8 +221,8 @@ function VerseCheckWrapper({
     changeMode('default');
   }
 
-  function toggleNothingToSelect(nothingToSelect) {
-    setLocalState({ nothingToSelect });
+  function toggleNothingToSelect(newNothingToSelect) {
+    setLocalState({ newNothingToSelect });
   }
 
   return (
