@@ -51,6 +51,7 @@
     "file-loader": "3.0.1",
     "fs-extra": "7.0.1",
     "jest": "24.9.0",
+    "moment": "^2.24.0",
     "prettier": "1.18.2",
     "prop-types": "15.7.2",
     "react": "16.8.6",
@@ -63,13 +64,10 @@
     "redux-thunk": "2.3.0",
     "selections": "0.1.7",
     "style-loader": "0.23.1",
-    "tc-tool": "github:translationCoreApps/tc-tool#feature-jay-react-localize-3",
+    "tc-tool": "2.1.0",
     "tc-ui-toolkit": "0.14.37",
     "usfm-js": "2.0.1",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0"
-  },
-  "dependencies": {
-    "moment": "^2.24.0"
   }
 }
