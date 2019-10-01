@@ -195,6 +195,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+export { getQuoteAsString } from './helpers/checkAreaHelpers';
 export default connectTool('translationNotes', {
   localeDir: path.join(__dirname, '/locale'),
   api: new Api(),
