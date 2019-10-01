@@ -5,10 +5,9 @@ import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
+import moment from 'moment';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
-import {
-  generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo,
-} from './helpers/validationHelpers';
+import { sameContext, getSelectionsFromChapterAndVerseCombo } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 
 export default class Api extends ToolApi {
@@ -182,7 +181,7 @@ export default class Api extends ToolApi {
   }
 
   writeCheckData(payload = {}, checkPath) {
-    const modifiedTimestamp = generateTimestamp();
+    const modifiedTimestamp = moment().toJSON();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
     fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload);
