@@ -1,3 +1,2 @@
-import Container from './Container';
-export default Container;
+export { default as Container } from './Container';
 export { getQuoteAsString } from './helpers/checkAreaHelpers';
