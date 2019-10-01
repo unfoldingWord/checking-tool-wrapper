@@ -1,8 +1,7 @@
 /* eslint-env jest */
 import * as checkAreaHelpers from '../src/helpers/checkAreaHelpers';
-import {TRANSLATION_WORDS} from "../src/helpers/consts";
+import { TRANSLATION_WORDS } from '../src/helpers/consts';
 
-const mock_OnInvalidQuote = jest.fn();
 
 describe('checkAreaHelpers.getAlignedGLText', () => {
   beforeEach(() => {
@@ -35,18 +34,18 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
               tag: 'w',
               type: 'word',
               occurrence: 1,
-              occurrences: 1
+              occurrences: 1,
             },
             {
               text: 'elder',
               tag: 'w',
               type: 'word',
               occurrence: 1,
-              occurrences: 1
-            }
-          ]
-        }
-      ]
+              occurrences: 1,
+            },
+          ],
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -63,16 +62,16 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
+          occurrences: 1,
         },
         {
           text: 'be',
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -89,20 +88,20 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
+          occurrences: 1,
         },
         {
           text: 'blame',
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       type: 'text',
-      text: ','
+      text: ',',
     },
     {
       tag: 'zaln',
@@ -119,16 +118,16 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
+          occurrences: 1,
         },
         {
           text: 'husband',
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -145,16 +144,16 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 2
+          occurrences: 2,
         },
         {
           text: 'one',
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -171,13 +170,13 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       type: 'text',
-      text: ','
+      text: ',',
     },
     {
       tag: 'zaln',
@@ -194,9 +193,9 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -213,9 +212,9 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -232,9 +231,9 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -251,9 +250,9 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -280,11 +279,11 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
               tag: 'w',
               type: 'word',
               occurrence: 1,
-              occurrences: 1
-            }
-          ]
-        }
-      ]
+              occurrences: 1,
+            },
+          ],
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -301,23 +300,23 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 2,
-          occurrences: 2
+          occurrences: 2,
         },
         {
           text: 'reckless',
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
+          occurrences: 1,
         },
         {
           text: 'behavior',
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -334,9 +333,9 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       tag: 'zaln',
@@ -353,21 +352,21 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
           tag: 'w',
           type: 'word',
           occurrence: 1,
-          occurrences: 1
-        }
-      ]
+          occurrences: 1,
+        },
+      ],
     },
     {
       type: 'text',
-      text: '. \n'
-    }
+      text: '. \n',
+    },
   ];
 
   it('should return text from ult and NOT the ulb', () => {
     // given
     const toolsSelectedGLs = {
       translationWords: 'en',
-      currentToolName: TRANSLATION_WORDS
+      currentToolName: TRANSLATION_WORDS,
     };
     const contextId = {
       groupId: 'blameless',
@@ -376,39 +375,32 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
       reference: {
         bookId: 'tit',
         chapter: 1,
-        verse: 6
+        verse: 6,
       },
       strong: ['G04100'],
-      tool: TRANSLATION_WORDS
+      tool: TRANSLATION_WORDS,
     };
     const bibles = {
       en: {
-        'ult': {
-          1: {
-            6: {
-              verseObjects: verseObjects
-            }
-          }
-        },
-        'ulb': []
-      }
+        'ult': { 1: { 6: { verseObjects: verseObjects } } },
+        'ulb': [],
+      },
     };
     const currentToolName = TRANSLATION_WORDS;
     const expectedAlignedGLText = 'without blame';
 
-      // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    // when
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).not.toHaveBeenCalled();
   });
 
   it('should return text from ulb', () => {
     // given
     const toolsSelectedGLs = {
       translationWords: 'en',
-      currentToolName: TRANSLATION_WORDS
+      currentToolName: TRANSLATION_WORDS,
     };
     const contextId = {
       groupId: 'blameless',
@@ -417,38 +409,27 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
       reference: {
         bookId: 'tit',
         chapter: 1,
-        verse: 6
+        verse: 6,
       },
       strong: ['G04100'],
-      tool: TRANSLATION_WORDS
+      tool: TRANSLATION_WORDS,
     };
-    const bibles = {
-      en: {
-        'ulb': {
-          1: {
-            6: {
-              verseObjects: verseObjects
-            }
-          }
-        }
-      }
-    };
+    const bibles = { en: { 'ulb': { 1: { 6: { verseObjects: verseObjects } } } } };
     const currentToolName = TRANSLATION_WORDS;
     const expectedAlignedGLText = 'without blame';
 
-      // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    // when
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).not.toHaveBeenCalled();
   });
 
   it('should return error message if original language quote string is not matched', () => {
     // given
     const toolsSelectedGLs = {
       translationWords: 'en',
-      currentToolName: TRANSLATION_WORDS
+      currentToolName: TRANSLATION_WORDS,
     };
     const contextId = {
       groupId: 'blameless',
@@ -457,60 +438,53 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
       reference: {
         bookId: 'tit',
         chapter: 1,
-        verse: 6
+        verse: 6,
       },
       strong: ['G04100'],
-      tool: TRANSLATION_WORDS
+      tool: TRANSLATION_WORDS,
     };
     const bibles = {
       en: {
-        'ult': {
-          1: {
-            6: {
-              verseObjects: verseObjects
-            }
-          }
-        },
-        'ulb': []
-      }
+        'ult': { 1: { 6: { verseObjects: verseObjects } } },
+        'ulb': [],
+      },
     };
     const currentToolName = TRANSLATION_WORDS;
     const expectedAlignedGLText = 'quote_invalid';
 
     // when
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k, mock_OnInvalidQuote);
+    const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k);
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
-    expect(mock_OnInvalidQuote).toHaveBeenCalledWith(contextId, toolsSelectedGLs.translationWords);
   });
 });
 
 describe('checkAreaHelpers.getQuoteAsString', () => {
   test('should return a quote as a string when given an array with lots of punctuation', () => {
     const quote = [
-      {word: "εἰς", occurrence: 1},
-      {word: "τὰς", occurrence: 1},
-      {word: ".", occurrence: 1},
-      {word: "ἀναγκαίας", occurrence: 1},
-      {word: "-", occurence: 1},
-      {word: "χρείας", occurrence: 1},
-      {word: ",", occurrence: 1},
-      {word: "ἵνα", occurrence: 1},
-      {word: "...", occurrence: 1},
-      {word: "μὴ", occurrence: 1},
-      {word: "ὦσιν", occurrence: 1},
-      {word: "…", occurrence: 1},
-      {word: "ἄκαρποι", occurrence: 1},
-      {word: "?", occurrence: 1},
+      { word: 'εἰς', occurrence: 1 },
+      { word: 'τὰς', occurrence: 1 },
+      { word: '.', occurrence: 1 },
+      { word: 'ἀναγκαίας', occurrence: 1 },
+      { word: '-', occurence: 1 },
+      { word: 'χρείας', occurrence: 1 },
+      { word: ',', occurrence: 1 },
+      { word: 'ἵνα', occurrence: 1 },
+      { word: '...', occurrence: 1 },
+      { word: 'μὴ', occurrence: 1 },
+      { word: 'ὦσιν', occurrence: 1 },
+      { word: '…', occurrence: 1 },
+      { word: 'ἄκαρποι', occurrence: 1 },
+      { word: '?', occurrence: 1 },
     ];
     const flatQuote = checkAreaHelpers.getQuoteAsString(quote);
-    const expectedQuote = "εἰς τὰς. ἀναγκαίας - χρείας, ἵνα ... μὴ ὦσιν … ἄκαρποι?";
+    const expectedQuote = 'εἰς τὰς. ἀναγκαίας - χρείας, ἵνα ... μὴ ὦσιν … ἄκαρποι?';
     expect(flatQuote).toEqual(expectedQuote);
   });
 
   test('should return the same quote string if quote is a string', () => {
-    const quote = "ἄκαρποι";
+    const quote = 'ἄκαρποι';
     const flatQuote = checkAreaHelpers.getQuoteAsString(quote);
     expect(flatQuote).toEqual(quote);
   });

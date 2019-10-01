@@ -121,6 +121,7 @@ class TranslationHelpsWrapper extends React.Component {
     const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
     const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
+
     return (
       <TranslationHelps
         translate={translate}
