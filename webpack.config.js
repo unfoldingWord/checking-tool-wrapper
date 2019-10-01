@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'none',
-  entry: './src/Container.js',
+  entry: './src/index.js',
   target: 'node',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -32,6 +32,6 @@ module.exports = {
       },
     ],
   },
-  node: { __dirname: true },
+  node: { __dirname: false },
   externals: { 'react': 'commonjs react' },
 };
