@@ -40,6 +40,7 @@ export default class Api extends ToolApi {
     const groupsData = getGroupsData(toolName);
     const groupsDataKeys = Object.keys(groupsData);
     const chapters = Object.keys(targetBook);
+    const modifiedTimestamp = generateTimestamp();
 
     for (let i = 0, l = chapters.length; i < l; i++) {
       const chapter = chapters[i];
@@ -47,7 +48,7 @@ export default class Api extends ToolApi {
       if (isNaN(chapter) || parseInt(chapter) === -1) {
         continue;
       }
-      this.validateChapter(chapter, groupsData, groupsDataKeys, silent);
+      this.validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp);
     }
   }
 
@@ -60,7 +61,7 @@ export default class Api extends ToolApi {
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
    */
-  validateChapter(chapter, groupsData, groupsDataKeys, silent) {
+  validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     const { tc: { targetBook } } = this.props;
 
     if (targetBook[chapter]) {
@@ -72,7 +73,7 @@ export default class Api extends ToolApi {
         for (let i = 0, l = verses.length; i < l; i++) {
           const verse = verses[i];
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent);
+          this._validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp);
         }
       }
     }
@@ -109,7 +110,7 @@ export default class Api extends ToolApi {
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
    */
-  _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent) {
+  _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
       tc: {
         contextId: { reference: { bookId } },
@@ -161,7 +162,7 @@ export default class Api extends ToolApi {
                 selections: [],
                 userName,
               };
-              this.writeCheckData(invalidatedPayload, invalidatedCheckPath);
+              this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
 
               const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
               const selectionsPayload = {
@@ -169,7 +170,7 @@ export default class Api extends ToolApi {
                 selections: [],
                 userName,
               };
-              this.writeCheckData(selectionsPayload, selectionsCheckPath);
+              this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
             }
           }
         }
@@ -181,8 +182,8 @@ export default class Api extends ToolApi {
     }
   }
 
-  writeCheckData(payload = {}, checkPath) {
-    const modifiedTimestamp = generateTimestamp();
+  writeCheckData(payload = {}, checkPath, modifiedTimestamp) {
+    modifiedTimestamp = modifiedTimestamp || generateTimestamp();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
     fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload);
