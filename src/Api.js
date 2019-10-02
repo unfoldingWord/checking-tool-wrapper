@@ -7,7 +7,7 @@ import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import {
-  generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo,
+  sameContext, getSelectionsFromChapterAndVerseCombo, generateTimestamp,
 } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 
