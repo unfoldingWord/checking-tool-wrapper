@@ -2,16 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScripturePane } from 'tc-ui-toolkit';
 
-function makeTitle(manifest) {
-  const { target_language, project } = manifest;
-
-  if (target_language && target_language.book && target_language.book.name) {
-    return target_language.book.name;
-  } else {
-    return project.name;
-  }
-}
-
 function ScripturePaneWrapper({
   manifest,
   showPopover,
@@ -27,6 +17,16 @@ function ScripturePaneWrapper({
   getAvailableScripturePaneSelections,
   makeSureBiblesLoadedForTool,
 }) {
+  function makeTitle(manifest) {
+    const { target_language, project } = manifest;
+
+    if (target_language && target_language.book && target_language.book.name) {
+      return target_language.book.name;
+    } else {
+      return project.name;
+    }
+  }
+
   const expandedScripturePaneTitle = makeTitle(manifest);
 
   return (
