@@ -13,14 +13,16 @@ import {
   InvalidatedIcon,
   CheckIcon,
 } from 'tc-ui-toolkit';
-import { generateItemId } from '../helpers/groupMenuHelpers'
+import { generateItemId } from '../helpers/groupMenuHelpers';
 
 function GroupMenuWrapper({
   translate,
   tc: {
+    project,
     contextId,
     groupsDataReducer: { groupsData },
     groupsIndexReducer: { groupsIndex },
+    actions: { changeCurrentContextId },
   },
 }) {
   /**
@@ -28,7 +30,6 @@ function GroupMenuWrapper({
    * @param {object} contextId - the menu item's context id
    */
   function handleClick({ contextId }) {
-    const { tc: { actions: { changeCurrentContextId } } } = this.props;
     changeCurrentContextId(contextId);
   };
 
@@ -38,7 +39,6 @@ function GroupMenuWrapper({
    * @returns {object} the updated item
    */
   function onProcessItem(item) {
-    const { tc: { project } } = this.props;
     const bookName = project.getBookName();
 
     const {
@@ -156,11 +156,11 @@ function GroupMenuWrapper({
     groupsIndex,
     groupsData,
     'selections',
-    this.onProcessItem,
+    onProcessItem,
     'nothingToSelect'
   );
 
-  const activeEntry = generateMenuItem(contextId, this.onProcessItem);
+  const activeEntry = generateMenuItem(contextId, onProcessItem);
   const sorted = sortEntries(entries);
 
   return (
@@ -171,7 +171,7 @@ function GroupMenuWrapper({
       statusIcons={statusIcons}
       emptyNotice={translate('menu.no_results')}
       title={translate('menu.menu')}
-      onItemClick={this.handleClick}
+      onItemClick={handleClick}
     />
   );
 }
