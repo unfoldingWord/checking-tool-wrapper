@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import * as GroupMenuWrapper from '../src/components/GroupMenuWrapper';
-import {TRANSLATION_WORDS} from "../src/helpers/consts";
+import { generateItemId } from '../src/helpers/groupMenuHelpers'
+import { TRANSLATION_WORDS } from "../src/helpers/consts";
 
-describe('GroupMenuWrapper.generateItemId', () => {
+describe('groupMenuHelpers.generateItemId', () => {
 
   it('should handle string quote', () => {
     // given
@@ -17,7 +17,7 @@ describe('GroupMenuWrapper.generateItemId', () => {
     const expectedAlignedGLText = "1:Ἀαρών:5:1:luk";
 
     // when
-    const alignedGLText = GroupMenuWrapper.generateItemId(contextID.occurrence, contextID.reference.bookId,
+    const alignedGLText = generateItemId(contextID.occurrence, contextID.reference.bookId,
       contextID.reference.chapter, contextID.reference.verse, contextID.quote);
 
     // then
@@ -42,7 +42,7 @@ describe('GroupMenuWrapper.generateItemId', () => {
     const expectedAlignedGLText = "1:δώδεκα:1:φυλὰς:1:κρίνοντες:1:τοῦ:1:Ἰσραήλ:30:22:luk";
 
     // when
-    const alignedGLText = GroupMenuWrapper.generateItemId(contextID.occurrence, contextID.reference.bookId,
+    const alignedGLText = generateItemId(contextID.occurrence, contextID.reference.bookId,
       contextID.reference.chapter, contextID.reference.verse, contextID.quote);
 
     // then

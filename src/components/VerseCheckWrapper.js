@@ -1,451 +1,309 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import usfmjs from 'usfm-js';
-import isEqual from 'deep-equal';
 import { VerseCheck } from 'tc-ui-toolkit';
-import { optimizeSelections, normalizeString } from '../helpers/selectionHelpers';
-import * as checkAreaHelpers from '../helpers/checkAreaHelpers';
+import { optimizeSelections } from '../helpers/selectionHelpers';
 
-class VerseCheckWrapper extends React.Component {
-  constructor(props) {
-    super(props);
+function useLocalState(initialState) {
+  const [localState, setLocalState] = useState(initialState);
 
-    let { verseText } = this.getVerseText();
-    const mode = props.selectionsReducer &&
-      props.selectionsReducer.selections &&
-      props.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
-      'default' : props.selectionsReducer.nothingToSelect ? 'default' : 'select';
-    const { nothingToSelect } = props.selectionsReducer;
+  return {
+    ...localState,
+    setLocalState(newState) {
+      setLocalState(prevState => ({ ...prevState, ...newState }));
+    },
+  };
+}
 
-    this.state = {
-      mode: mode,
-      comment: undefined,
-      commentChanged: false,
-      verseText: undefined,
-      verseChanged: false,
-      selections: [],
-      nothingToSelect,
-      tags: [],
-      dialogModalVisibility: false,
-      goToNextOrPrevious: null,
-    };
-    this.getVerseText = this.getVerseText.bind(this);
-    this.saveSelection = this.saveSelection.bind(this);
-    this.cancelSelection = this.cancelSelection.bind(this);
-    this.clearSelection = this.clearSelection.bind(this);
-    this.handleSkip = this.handleSkip.bind(this);
-    this.findIfVerseEdited = this.findIfVerseEdited.bind(this);
-    this.findIfVerseInvalidated = this.findIfVerseInvalidated.bind(this);
-    this.onInvalidQuote = this.onInvalidQuote.bind(this);
+function VerseCheckWrapper({
+  manifest,
+  translate,
+  contextId,
+  verseText,
+  targetBible,
+  isVerseEdited,
+  isVerseInvalidated,
+  unfilteredVerseText,
+  maximumSelections,
+  actions,
+  alignedGLText,
+  commentsReducer: { text: commentText },
+  remindersReducer: { enabled: bookmarkEnabled },
+  selectionsReducer: {
+    selections,
+    nothingToSelect,
+  },
+}) {
+  // Determine screen mode
+  const initialMode = selections && selections.length || verseText.length === 0 ?
+    'default' : nothingToSelect ? 'default' : 'select';
+  const {
+    mode,
+    newComment,
+    newVerseText,
+    newSelections,
+    newNothingToSelect,
+    isCommentChanged,
+    isVerseChanged,
+    newTags,
+    isDialogOpen,
+    goToNextOrPrevious,
+    setLocalState,
+  } = useLocalState({
+    mode: initialMode,
+    newComment: null,
+    newVerseText: null,
+    newSelections: selections,
+    newNothingToSelect: nothingToSelect,
+    isCommentChanged: false,
+    isVerseChanged: false,
+    newTags: [],
+    isDialogOpen: false,
+    goToNextOrPrevious: null,
+    lastContextId: null,
+  });
 
-    //TODO: factor out actions object to individual functions
-    //Will require changes to the ui kit
-    const _this = this;
+  useEffect(() => {
+    setLocalState({ selections });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    this.actions = {
-      handleGoToNext() {
-        if (!_this.props.loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to save progress');
-          return;
-        }
-        props.actions.goToNext();
-      },
-      handleGoToPrevious() {
-        if (!_this.props.loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to save progress');
-          return;
-        }
-        props.actions.goToPrevious();
-      },
-      handleOpenDialog(goToNextOrPrevious) {
-        _this.setState({ goToNextOrPrevious });
-        _this.setState({ dialogModalVisibility: true });
-      },
-      handleCloseDialog() {
-        _this.setState({ dialogModalVisibility: false });
-      },
-      skipToNext() {
-        _this.setState({ dialogModalVisibility: false });
-        props.actions.goToNext();
-      },
-      skipToPrevious() {
-        _this.setState({ dialogModalVisibility: false });
-        props.actions.goToPrevious();
-      },
-      changeSelectionsInLocalState(selections) {
-        const { nothingToSelect } = _this.props.selectionsReducer;
+  useEffect(() => {
+    setLocalState({
+      mode: initialMode,
+      newComment: null,
+      newVerseText: null,
+      newSelections: selections,
+      newNothingToSelect: nothingToSelect,
+      newTags: [],
+      lastContextId: null,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contextId]);
 
-        if (selections.length > 0) {
-          _this.setState({ nothingToSelect: false });
-        } else {
-          _this.setState({ nothingToSelect });
-        }
-        _this.setState({ selections });
-      },
-      changeMode(mode) {
-        _this.setState({
-          mode: mode,
-          selections: _this.props.selectionsReducer.selections,
-        });
-      },
-      handleComment(e) {
-        const comment = e.target.value;
-
-        _this.setState({ comment: comment });
-      },
-      checkComment(e) {
-        const newcomment = e.target.value || '';
-        const oldcomment = _this.props.commentsReducer.text || '';
-
-        _this.setState({ commentChanged: newcomment !== oldcomment });
-      },
-      cancelComment() {
-        _this.setState({
-          mode: 'default',
-          selections: _this.props.selectionsReducer.selections,
-          comment: undefined,
-          commentChanged: false,
-        });
-      },
-      saveComment() {
-        if (!_this.props.loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to leave a comment', 5);
-          return;
-        }
-        _this.props.actions.addComment(_this.state.comment, _this.props.loginReducer.userdata.username);
-        _this.setState({
-          mode: 'default',
-          selections: _this.props.selectionsReducer.selections,
-          comment: undefined,
-          commentChanged: false,
-        });
-      },
-      handleTagsCheckbox(tag) {
-        let newState = _this.state;
-
-        if (newState.tags === undefined) {
-          newState.tags = [];
-        }
-
-        if (!newState.tags.includes(tag)) {
-          newState.tags.push(tag);
-        } else {
-          newState.tags = newState.tags.filter(_tag => _tag !== tag);
-        }
-        _this.setState(newState);
-      },
-      handleEditVerse(e) {
-        const verseText = e.target.value;
-
-        _this.setState({ verseText: verseText });
-      },
-      checkVerse(e) {
-        let { chapter, verse } = _this.props.contextIdReducer.contextId.reference;
-        const newverse = e.target.value || '';
-        const oldverse = _this.props.resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse] || '';
-
-        if (newverse === oldverse) {
-          _this.setState({
-            verseChanged: false,
-            tags: [],
-          });
-        } else {
-          _this.setState({ verseChanged: true });
-        }
-      },
-      cancelEditVerse() {
-        _this.setState({
-          mode: 'default',
-          selections: _this.props.selectionsReducer.selections,
-          verseText: undefined,
-          verseChanged: false,
-          tags: [],
-        });
-      },
-      saveEditVerse() {
-        let {
-          loginReducer, actions, contextIdReducer, resourcesReducer,
-        } = _this.props;
-        let { chapter, verse } = contextIdReducer.contextId.reference;
-        let before = resourcesReducer.bibles.targetLanguage.targetBible[chapter][verse];
-        let username = loginReducer.userdata.username;
-
-        // verseText state is undefined if no changes are made in the text box.
-        if (!loginReducer.loggedInUser) {
-          _this.props.actions.selectModalTab(1, 1, true);
-          _this.props.actions.openAlertDialog('You must be logged in to edit a verse');
-          return;
-        }
-
-        const save = () => {
-          actions.editTargetVerse(chapter, verse, before, _this.state.verseText, _this.state.tags, username);
-          _this.setState({
-            mode: 'default',
-            selections: _this.props.selectionsReducer.selections,
-            verseText: undefined,
-            verseChanged: false,
-            tags: [],
-          });
-        };
-
-        if (_this.state.verseText) {
-          save();
-        } else {
-          // alert the user if the text is blank
-          let message = 'You are saving a blank verse. Please confirm.';
-
-          _this.props.actions.openOptionDialog(message, (option) => {
-            if (option !== 'Cancel') {
-              save();
-            }
-            _this.props.actions.closeAlertDialog();
-          }, 'Save Blank Verse', 'Cancel');
-        }
-      },
-      validateSelections(verseText) {
-        _this.props.actions.validateSelections(verseText);
-      },
-      toggleReminder() {
-        _this.props.actions.toggleReminder(_this.props.loginReducer.userdata.username);
-      },
-      openAlertDialog(message) {
-        _this.props.actions.openAlertDialog(message);
-      },
-      selectModalTab(tab, section, vis) {
-        _this.props.actions.selectModalTab(tab, section, vis);
-      },
-    };
+  function handleOpenDialog(goToNextOrPrevious) {
+    setLocalState({ goToNextOrPrevious, isDialogOpen: true });
   }
 
-  componentWillMount() {
-    let selections = [...this.props.selectionsReducer.selections];
-    this.setState({ selections });
+  function handleCloseDialog() {
+    setLocalState({ isDialogOpen: false });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { contextIdReducer } = this.props || {};
-    const nextContextIDReducer = nextProps.contextIdReducer;
-
-    if (contextIdReducer !== nextContextIDReducer) {
-      const selections = Array.from(nextProps.selectionsReducer.selections);
-      const nothingToSelect = nextProps.selectionsReducer.nothingToSelect;
-      const { chapter, verse } = nextContextIDReducer.contextId.reference || {};
-      const { targetBible } = nextProps.resourcesReducer.bibles.targetLanguage || {};
-      let verseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
-
-      if (Array.isArray(verseText)) {
-        verseText = verseText[0];
-      }
-      // normalize whitespace in case selection has contiguous whitespace _this isn't captured
-      verseText = normalizeString(verseText);
-      const mode = nextProps.selectionsReducer.selections.length > 0 || verseText.length === 0 ?
-        'default' : nextProps.selectionsReducer.nothingToSelect ? 'default' : 'select';
-
-      this.setState({
-        mode: mode,
-        comments: undefined,
-        verseText: undefined,
-        selections,
-        nothingToSelect,
-        tags: [],
-        lastContextId: undefined,
-      });
-    }
-  }
-
-  /**
-   * get filtered and unfiltered verse text
-   * @return {{verseText: string, unfilteredVerseText: string}}
-   */
-  getVerseText() {
-    let unfilteredVerseText = '';
-    let verseText = '';
-
-    if (this.props.contextIdReducer && this.props.contextIdReducer.contextId) {
-      const {
-        chapter, verse, bookId,
-      } = this.props.contextIdReducer.contextId.reference;
-      const bookAbbr = this.props.projectDetailsReducer.manifest.project.id;
-      const { targetBible } = this.props.resourcesReducer.bibles.targetLanguage;
-
-      if (targetBible && targetBible[chapter] && bookId === bookAbbr) {
-        unfilteredVerseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
-
-        if (Array.isArray(unfilteredVerseText)) {
-          unfilteredVerseText = unfilteredVerseText[0];
-        }
-        // normalize whitespace in case selection has contiguous whitespace _this isn't captured
-        verseText = normalizeString(unfilteredVerseText);
-      }
-    }
-    return { unfilteredVerseText, verseText };
-  }
-
-
-  cancelSelection() {
-    const { nothingToSelect } = this.props.selectionsReducer;
-    this.setState({ nothingToSelect });
-    this.actions.changeSelectionsInLocalState(this.props.selectionsReducer.selections);
-    this.actions.changeMode('default');
-  }
-
-  clearSelection() {
-    this.setState({ selections: [] });
-  }
-
-  saveSelection() {
-    let { verseText } = this.getVerseText();
-    // optimize the selections to address potential issues and save
-    let selections = optimizeSelections(verseText, this.state.selections);
-    const { username } = this.props.loginReducer.userdata;
-    this.props.actions.changeSelections(selections, username, this.state.nothingToSelect);
-    this.actions.changeMode('default');
-  }
-
-  /**
-   * returns true if current verse has been edited
-   * @return {boolean}
-   */
-  findIfVerseEdited() {
-    const groupItem = this.getGroupDatumForCurrentContext();
-    return !!(groupItem && groupItem.verseEdits);
-  }
-
-  /**
-   * returns true if current verse has been invalidated
-   * @return {boolean}
-   */
-  findIfVerseInvalidated() {
-    const groupItem = this.getGroupDatumForCurrentContext();
-    return !!(groupItem && groupItem.invalidated);
-  }
-
-  /**
-   * finds group data for current context (verse)
-   * @return {*}
-   */
-  getGroupDatumForCurrentContext() {
-    const { contextIdReducer: { contextId }, groupsDataReducer: { groupsData } } = this.props;
-    let groupItem = null;
-
-    if (groupsData[contextId.groupId]) {
-      groupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
-    }
-    return groupItem;
-  }
-
-  handleSkip(e) {
+  function handleSkip(e) {
     e.preventDefault();
+    setLocalState({ isDialogOpen: false });
 
-    if (this.state.goToNextOrPrevious == 'next') {
-      this.actions.skipToNext();
-    } else if (this.state.goToNextOrPrevious == 'previous') {
-      this.actions.skipToPrevious();
+    if (goToNextOrPrevious == 'next') {
+      actions.goToNext();
+    } else if (goToNextOrPrevious == 'previous') {
+      actions.goToPrevious();
     }
   }
 
-  onInvalidQuote(contextId, selectedGL) {
-    // to prevent multiple alerts on current selection
-    if (!isEqual(contextId, this.state.lastContextId)) {
-      this.props.actions.onInvalidCheck(contextId, selectedGL, true);
-      this.setState({ lastContextId: contextId });
+  function changeMode(mode) {
+    setLocalState({
+      mode,
+      newSelections: selections,
+    });
+  }
+
+  function handleComment(e) {
+    e.preventDefault();
+    setLocalState({ newComment: e.target.value });
+  }
+
+  function checkIfCommentChanged(e) {
+    const newcomment = e.target.value || '';
+    const oldcomment = commentText || '';
+
+    setLocalState({ isCommentChanged: newcomment !== oldcomment });
+  }
+
+  function cancelComment() {
+    setLocalState({
+      mode: 'default',
+      newSelections: selections,
+      newComment: null,
+      isCommentChanged: false,
+    });
+  }
+
+  function saveComment() {
+    actions.addComment(newComment);
+    setLocalState({
+      mode: 'default',
+      newSelections: selections,
+      newComment: null,
+      isCommentChanged: false,
+    });
+  }
+
+  function handleTagsCheckbox(tag) {
+    const _newTags = Array.from(newTags);
+
+    if (!newTags.includes(tag)) {
+      _newTags.push(tag);
+    } else {
+      _newTags.tags = _newTags.tags.filter(_tag => _tag !== tag);
+    }
+
+    setLocalState({ newTags: _newTags });
+  }
+
+  function handleEditVerse(e) {
+    setLocalState({ newVerseText: e.target.value });
+  }
+
+  function checkIfVerseChanged(e) {
+    const { chapter, verse } = contextId.reference;
+    const newverse = e.target.value || '';
+    const oldverse = targetBible[chapter][verse] || '';
+
+    if (newverse === oldverse) {
+      setLocalState({
+        isVerseChanged: false,
+        newTags: [],
+      });
+    } else {
+      setLocalState({ isVerseChanged: true });
     }
   }
 
-  render() {
-    const {
-      translate,
-      currentToolName,
-      projectDetailsReducer: {
-        manifest,
-        projectSaveLocation,
-      },
-      loginReducer,
-      selectionsReducer: {
-        selections,
-        nothingToSelect,
-      },
-      contextIdReducer: { contextId },
-      resourcesReducer,
-      commentsReducer,
-      toolsReducer,
-      groupsDataReducer,
-      remindersReducer,
-      maximumSelections,
-    } = this.props;
-    let { unfilteredVerseText, verseText } = this.getVerseText();
-    verseText = usfmjs.removeMarker(verseText);
-    const { toolsSelectedGLs } = manifest;
-    const alignedGLText = checkAreaHelpers.getAlignedGLText(
-      toolsSelectedGLs,
-      contextId,
-      resourcesReducer.bibles,
-      currentToolName,
-      translate,
-      this.onInvalidQuote
-    );
-    return (
-      <VerseCheck
-        translate={translate}
-        toggleNothingToSelect={nothingToSelect => this.setState({ nothingToSelect })}
-        commentsReducer={commentsReducer}
-        localNothingToSelect={this.state.nothingToSelect}
-        remindersReducer={remindersReducer}
-        projectDetailsReducer={{ manifest, projectSaveLocation }}
-        contextIdReducer={{ contextId }}
-        resourcesReducer={resourcesReducer}
-        selectionsReducer={{ selections, nothingToSelect }}
-        loginReducer={loginReducer}
-        toolsReducer={toolsReducer}
-        groupsDataReducer={groupsDataReducer}
-        alignedGLText={alignedGLText}
-        verseText={verseText}
-        unfilteredVerseText={unfilteredVerseText}
-        mode={this.state.mode}
-        actions={this.actions}
-        dialogModalVisibility={this.state.dialogModalVisibility}
-        commentChanged={this.state.commentChanged}
-        findIfVerseEdited={this.findIfVerseEdited}
-        findIfVerseInvalidated={this.findIfVerseInvalidated}
-        tags={this.state.tags}
-        verseChanged={this.state.verseChanged}
-        selections={this.state.selections}
-        saveSelection={this.saveSelection}
-        cancelSelection={this.cancelSelection}
-        clearSelection={this.clearSelection}
-        handleSkip={this.handleSkip}
-        maximumSelections={maximumSelections}
-      />
-    );
+  function cancelEditVerse() {
+    setLocalState({
+      mode: 'default',
+      newSelections: selections,
+      newVerseText: null,
+      isVerseChanged: false,
+      newTags: [],
+    });
   }
+
+  function saveEditVerse() {
+    const { chapter, verse } = contextId.reference;
+    const before = targetBible[chapter][verse];
+
+    setLocalState({
+      mode: 'default',
+      newSelections: selections,
+      newVerseText: null,
+      isVerseChanged: false,
+      newTags: [],
+    });
+    actions.editTargetVerse(chapter, verse, before, newVerseText, newTags);
+  }
+
+  function changeSelectionsInLocalState(newSelections) {
+    if (newSelections.length > 0) {
+      setLocalState({ newNothingToSelect: false });
+    } else {
+      setLocalState({ newNothingToSelect: nothingToSelect });
+    }
+    setLocalState({ newSelections });
+  }
+
+  function cancelSelection() {
+    setLocalState({
+      mode: 'default',
+      newNothingToSelect: nothingToSelect,
+      newSelections: selections,
+    });
+  }
+
+  function clearSelection() {
+    setLocalState({ newSelections: [] });
+  }
+
+  function saveSelection() {
+    // optimize the selections to address potential issues and save
+    const selections = optimizeSelections(verseText, newSelections);
+    actions.changeSelections(selections, newNothingToSelect);
+    changeMode('default');
+  }
+
+  function toggleNothingToSelect(newNothingToSelect) {
+    setLocalState({ newNothingToSelect });
+  }
+
+  return (
+    <VerseCheck
+      translate={translate}
+      mode={mode}
+      tags={newTags}
+      targetBible={targetBible}
+      verseText={verseText}
+      unfilteredVerseText={unfilteredVerseText}
+      contextId={contextId}
+      selections={selections}
+      isVerseEdited={isVerseEdited}
+      commentText={commentText}
+      alignedGLText={alignedGLText}
+      nothingToSelect={nothingToSelect}
+      bookmarkEnabled={bookmarkEnabled}
+      maximumSelections={maximumSelections}
+      isVerseInvalidated={isVerseInvalidated}
+      bookDetails={manifest.project}
+      targetLanguageDetails={manifest.target_language}
+      newSelections={newSelections}
+      localNothingToSelect={newNothingToSelect}
+      dialogModalVisibility={isDialogOpen}
+      isVerseChanged={isVerseChanged}
+      isCommentChanged={isCommentChanged}
+      handleSkip={handleSkip}
+      handleGoToNext={actions.goToNext}
+      handleGoToPrevious={actions.goToPrevious}
+      handleOpenDialog={handleOpenDialog}
+      handleCloseDialog={handleCloseDialog}
+      openAlertDialog={actions.openAlertDialog}
+      toggleReminder={actions.toggleReminder}
+      changeMode={changeMode}
+      cancelEditVerse={cancelEditVerse}
+      saveEditVerse={saveEditVerse}
+      handleComment={handleComment}
+      cancelComment={cancelComment}
+      saveComment={saveComment}
+      saveSelection={saveSelection}
+      cancelSelection={cancelSelection}
+      clearSelection={clearSelection}
+      handleEditVerse={handleEditVerse}
+      checkIfVerseChanged={checkIfVerseChanged}
+      checkIfCommentChanged={checkIfCommentChanged}
+      validateSelections={actions.validateSelections}
+      handleTagsCheckbox={handleTagsCheckbox}
+      toggleNothingToSelect={toggleNothingToSelect}
+      changeSelectionsInLocalState={changeSelectionsInLocalState}
+    />
+  );
 }
 
 VerseCheckWrapper.propTypes = {
-  translate: PropTypes.func,
-  currentToolName: PropTypes.string,
-  remindersReducer: PropTypes.object,
-  commentsReducer: PropTypes.object,
-  resourcesReducer: PropTypes.object,
+  translate: PropTypes.func.isRequired,
+  targetBible: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
+  manifest: PropTypes.object.isRequired,
+  maximumSelections: PropTypes.number.isRequired,
+  verseText: PropTypes.string.isRequired,
+  unfilteredVerseText: PropTypes.string.isRequired,
+  isVerseEdited: PropTypes.bool.isRequired,
+  isVerseInvalidated: PropTypes.bool.isRequired,
+  alignedGLText: PropTypes.string.isRequired,
+  remindersReducer: PropTypes.object.isRequired,
+  commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({
-    selections: PropTypes.array,
-    nothingToSelect: PropTypes.bool,
-  }),
-  groupsDataReducer: PropTypes.object,
-  loginReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
-  toolsReducer: PropTypes.object,
+    selections: PropTypes.array.isRequired,
+    nothingToSelect: PropTypes.bool.isRequired,
+  }).isRequired,
   actions: PropTypes.shape({
     changeSelections: PropTypes.func.isRequired,
     goToNext: PropTypes.func.isRequired,
     goToPrevious: PropTypes.func.isRequired,
     onInvalidCheck: PropTypes.func.isRequired,
+    validateSelections: PropTypes.func.isRequired,
+    toggleReminder: PropTypes.func.isRequired,
+    openAlertDialog: PropTypes.func.isRequired,
+    addComment: PropTypes.func.isRequired,
+    editTargetVerse: PropTypes.func.isRequired,
   }),
-  projectDetailsReducer: PropTypes.object.isRequired,
-  maximumSelections: PropTypes.number.isRequired,
 };
 
 export default VerseCheckWrapper;

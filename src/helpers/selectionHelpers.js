@@ -1,5 +1,4 @@
 /* eslint-disable no-constant-condition */
-import usfmjs from 'usfm-js';
 import _ from 'lodash';
 // helpers
 import * as stringHelpers from './stringHelpers';
@@ -206,11 +205,10 @@ export const rangesToSelections = (string, ranges) => {
  * @returns {array} - array of selection objects
  */
 export const optimizeSelections = (string, selections) => {
-  const cleanedString = usfmjs.removeMarker(string);
   let optimizedSelections; // return
-  let ranges = selectionsToRanges(cleanedString, selections).map(rangeObject => rangeObject.range); // get char ranges of each selection
+  let ranges = selectionsToRanges(string, selections).map(rangeObject => rangeObject.range); // get char ranges of each selection
   ranges = optimizeRanges(ranges); // optimize the ranges
-  optimizedSelections = rangesToSelections(cleanedString, ranges); // convert optimized ranges into selections
+  optimizedSelections = rangesToSelections(string, ranges); // convert optimized ranges into selections
 
   return optimizedSelections;
 };

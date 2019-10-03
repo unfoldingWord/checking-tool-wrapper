@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'deep-equal';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 //selectors
 import {
@@ -16,6 +17,9 @@ import {
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
 import * as selectionHelpers from './helpers/selectionHelpers';
+import * as verseHelpers from './helpers/verseHelpers';
+import * as checkAreaHelpers from './helpers/checkAreaHelpers';
+
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
@@ -103,6 +107,34 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const legacyToolsReducer = { currentToolName: ownProps.tc.selectedToolName };
+  // TODO: Move code below to selectors once we have reducers w/ tools.
+  const { targetBible } = ownProps.tc.resourcesReducer.bibles.targetLanguage;
+  const { contextId } = ownProps.tc.contextIdReducer;
+  const { verseText, unfilteredVerseText } = verseHelpers.getVerseText(targetBible, contextId);
+  const { groupsData } = ownProps.tc.groupsDataReducer;
+  let currentGroupItem;
+
+  if (groupsData[contextId.groupId]) {
+    currentGroupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
+  } else {
+    currentGroupItem = null;
+  }
+
+  const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
+  const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
+  const currentToolName = ownProps.tc.selectedToolName;
+  const manifest = ownProps.tc.projectDetailsReducer.manifest;
+  const { toolsSelectedGLs } = manifest;
+  const bibles = getBibles(ownProps);
+
+  const alignedGLText = checkAreaHelpers.getAlignedGLText(
+    toolsSelectedGLs,
+    contextId,
+    bibles,
+    currentToolName,
+    ownProps.translate,
+  );
+
   return {
     groupMenu: {
       tc: ownProps.tc,
@@ -112,18 +144,19 @@ export const mapStateToProps = (state, ownProps) => {
     },
     verseCheck: {
       translate: ownProps.translate,
-      currentToolName: ownProps.tc.selectedToolName,
-      projectDetailsReducer: ownProps.tc.projectDetailsReducer,
-      loginReducer: ownProps.tc.loginReducer,
-      resourcesReducer: ownProps.tc.resourcesReducer,
+      manifest,
+      targetBible,
+      contextId,
+      verseText,
+      unfilteredVerseText,
+      isVerseEdited,
+      isVerseInvalidated,
+      alignedGLText,
+      maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName),
+      actions: ownProps.tc.actions,
       commentsReducer: ownProps.tc.commentsReducer,
       selectionsReducer: ownProps.tc.selectionsReducer,
-      contextIdReducer: ownProps.tc.contextIdReducer,
-      toolsReducer: legacyToolsReducer,
-      groupsDataReducer: ownProps.tc.groupsDataReducer,
       remindersReducer: ownProps.tc.remindersReducer,
-      actions: ownProps.tc.actions,
-      maximumSelections: selectionHelpers.getMaximumSelections(ownProps.tc.selectedToolName),
     },
     translationHelps: {
       translate: ownProps.translate,
