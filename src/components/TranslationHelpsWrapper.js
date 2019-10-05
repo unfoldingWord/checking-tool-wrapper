@@ -75,11 +75,12 @@ function TranslationHelpsWrapper({
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
     actions.loadResourceArticle(resourceDir, article, lang, category);
+    console.log('HERE====>', resourcesReducer.translationHelps[resourceDir]);
     const articleData = resourcesReducer.translationHelps[resourceDir][article];
 
     setThState({
       showHelpsModal: true,
-      modalArticle: articleData || `Cannot find an article for ${link}`,
+      modalArticle: articleData || translate('tools.cannot_find_article', link),
       articleCategory: category,
     });
     // TODO: Shouldn't need to to set state and return state in the same function
@@ -111,4 +112,5 @@ TranslationHelpsWrapper.propTypes = {
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
 };
+
 export default TranslationHelpsWrapper;
