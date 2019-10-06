@@ -80,7 +80,7 @@ function TranslationHelpsWrapper({
 
     setThState({
       showHelpsModal: true,
-      modalArticle: articleData || translate('menu.cannot_find_article', link),
+      modalArticle: articleData || translate('cannot_find_article', link),
       articleCategory: category,
     });
     // TODO: Shouldn't need to to set state and return state in the same function
