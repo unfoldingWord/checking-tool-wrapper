@@ -82,6 +82,7 @@ class TranslationHelpsWrapper extends React.Component {
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
     this.props.actions.loadResourceArticle(resourceDir, article, lang, category);
+    console.log('HEEERE', this.props.resourcesReducer.translationHelps[resourceDir]);
     const articleData = this.props.resourcesReducer.translationHelps[resourceDir][article];
 
     let newState;
@@ -121,7 +122,6 @@ class TranslationHelpsWrapper extends React.Component {
     const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
     const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
     const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
-
     return (
       <TranslationHelps
         translate={translate}
