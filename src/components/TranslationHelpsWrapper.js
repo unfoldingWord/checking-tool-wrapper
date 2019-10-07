@@ -45,7 +45,27 @@ function TranslationHelpsWrapper({
   } = useTnArticleState(initialState);
   const groupId = contextId.groupId;
   const languageId = toolsSelectedGLs[currentToolName];
-  window.followLink = followTHelpsLink;
+
+  window.followLink = (link) => {
+    console.log('THW2 IN Follow 1', resourcesReducer.translationHelps);
+    const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
+
+    const [lang, type, category, article] = linkParts;
+    const resourceDir = tHelpsHelpers.getResourceDirByType(type);
+
+    actions.loadResourceArticle(resourceDir, article, lang, category);
+    console.log('THW2 IN Follow 2', resourcesReducer.translationHelps);
+    const articleData = resourcesReducer.translationHelps[resourceDir][article];
+
+    setThState({
+      showHelpsModal: true,
+      modalArticle: articleData || translate('menu.cannot_find_article', link),
+      articleCategory: category,
+    });
+    // TODO: Shouldn't need to to set state and return state in the same function
+    // Seems like an anti pattern
+    return true;
+  };
 
   useEffect(() => {
     // if (groupId) { // may not be needed
@@ -66,27 +86,6 @@ function TranslationHelpsWrapper({
       showHelpsModal: !showHelpsModal,
       modalArticle: '',
     });
-  }
-
-  function followTHelpsLink(link) {
-    console.log('THW2 IN Follow 1', resourcesReducer.translationHelps);
-    const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
-
-    const [lang, type, category, article] = linkParts;
-    const resourceDir = tHelpsHelpers.getResourceDirByType(type);
-
-    actions.loadResourceArticle(resourceDir, article, lang, category);
-    console.log('THW2 IN Follow 2', resourcesReducer.translationHelps);
-    const articleData = resourcesReducer.translationHelps[resourceDir][article];
-
-    setThState({
-      showHelpsModal: true,
-      modalArticle: articleData || translate('menu.cannot_find_article', link),
-      articleCategory: category,
-    });
-    // TODO: Shouldn't need to to set state and return state in the same function
-    // Seems like an anti pattern
-    return true;
   }
 
   const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
