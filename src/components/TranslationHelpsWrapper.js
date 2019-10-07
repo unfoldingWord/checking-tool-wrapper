@@ -4,6 +4,8 @@ import { TranslationHelps } from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 
+let resourcesReducer = {};
+
 function useTnArticleState(initialState) {
   const [
     {
@@ -22,16 +24,18 @@ function useTnArticleState(initialState) {
   };
 }
 
-function TranslationHelpsWrapper({
-  toolsSelectedGLs,
-  toolsReducer: { currentToolName },
-  resourcesReducer,
-  contextIdReducer: { contextId },
-  showHelps,
-  toggleHelps,
-  translate,
-  actions,
-}) {
+function TranslationHelpsWrapper(props) {
+  const {
+    toolsSelectedGLs,
+    toolsReducer: { currentToolName },
+    contextIdReducer: { contextId },
+    showHelps,
+    toggleHelps,
+    translate,
+    actions,
+  } = props;
+  resourcesReducer = props.resourcesReducer; // Need this so that the followTHelpsLink has the new article's content
+
   const initialState = {
     showHelpsModal: false,
     modalArticle: '',
@@ -47,19 +51,19 @@ function TranslationHelpsWrapper({
   const languageId = toolsSelectedGLs[currentToolName];
 
   window.followLink = (link) => {
-    console.log('THW2 IN Follow 1', resourcesReducer.translationHelps);
+    console.log('THW2 IN FOLLOW 1: ', resourcesReducer);
     const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
 
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
     actions.loadResourceArticle(resourceDir, article, lang, category);
-    console.log('THW2 IN Follow 2', resourcesReducer.translationHelps);
+    console.log('THW2 IN FOLLOW 2: ', resourcesReducer);
     const articleData = resourcesReducer.translationHelps[resourceDir][article];
 
     setThState({
       showHelpsModal: true,
-      modalArticle: articleData || translate('menu.cannot_find_article', link),
+      modalArticle: articleData || `Cannot find an article for ${link}`,
       articleCategory: category,
     });
     // TODO: Shouldn't need to to set state and return state in the same function
