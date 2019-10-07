@@ -4,7 +4,7 @@ import { TranslationHelps } from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 
-let resourcesReducer = {};
+let resourcesReducer = {}; // Needed to be global for the followLink function
 
 function useTnArticleState(initialState) {
   const [
@@ -51,14 +51,12 @@ function TranslationHelpsWrapper(props) {
   const languageId = toolsSelectedGLs[currentToolName];
 
   window.followLink = (link) => {
-    console.log('THW2 IN FOLLOW 1: ', resourcesReducer);
     const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
 
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
     actions.loadResourceArticle(resourceDir, article, lang, category);
-    console.log('THW2 IN FOLLOW 2: ', resourcesReducer);
     const articleData = resourcesReducer.translationHelps[resourceDir][article];
 
     setThState({
@@ -66,8 +64,6 @@ function TranslationHelpsWrapper(props) {
       modalArticle: articleData || `Cannot find an article for ${link}`,
       articleCategory: category,
     });
-    // TODO: Shouldn't need to to set state and return state in the same function
-    // Seems like an anti pattern
     return true;
   };
 
@@ -96,7 +92,6 @@ function TranslationHelpsWrapper(props) {
   const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
   const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, languageId, articleCategory);
 
-  console.log('THW2 Before return', resourcesReducer.translationHelps);
   return (
     <TranslationHelps
       translate={translate}
