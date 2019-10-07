@@ -1,107 +1,140 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'deep-equal';
 import { TranslationHelps } from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 
-function useTnArticleState(initialState) {
-  const [
-    {
-      showHelpsModal, modalArticle, articleCategory,
-    },
-    setTnArticleState,
-  ] = useState(initialState);
+class TranslationHelpsWrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showHelpsModal: false,
+      modalArticle: '',
+      articleCategory: '',
+    };
 
-  return {
-    showHelpsModal,
-    modalArticle,
-    articleCategory,
-    setThState: (updatedValues) => {
-      setTnArticleState(prevState => ({ ...prevState, ...updatedValues }));
-    },
-  };
-}
+    this.toggleHelpsModal = this.toggleHelpsModal.bind(this);
+    this.followTHelpsLink = this.followTHelpsLink.bind(this);
+    window.followLink = this.followTHelpsLink;
+  }
 
-function TranslationHelpsWrapper({
-  toolsSelectedGLs,
-  toolsReducer: { currentToolName },
-  resourcesReducer,
-  contextIdReducer: { contextId },
-  showHelps,
-  toggleHelps,
-  translate,
-  actions,
-}) {
-  const initialState = {
-    showHelpsModal: false,
-    modalArticle: '',
-    articleCategory: '',
-  };
-  const {
-    showHelpsModal,
-    modalArticle,
-    articleCategory,
-    setThState,
-  } = useTnArticleState(initialState);
-  const groupId = contextId.groupId;
-  const languageId = toolsSelectedGLs[currentToolName];
-  window.followLink = followTHelpsLink;
+  componentDidMount() {
+    this.loadArticle(this.props);
+  }
 
-  useEffect(() => {
-    // if (groupId) { // may not be needed
-    actions.loadResourceArticle(currentToolName, groupId, languageId);
-    // }
-  }, [actions, currentToolName, groupId, languageId]);
+  componentDidUpdate(prevProps) {
+    const { contextIdReducer } = this.props || {};
+    const prevContextIdReducer = prevProps.contextIdReducer;
 
-  useEffect(() => {
-    const page = document.getElementById('helpsbody');
-
-    if (page) {
-      page.scrollTop = 0;
+    if (this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
+      this.loadArticle(this.props);
     }
-  }, [contextId]);
 
-  function toggleHelpsModal() {
-    setThState({
-      showHelpsModal: !showHelpsModal,
+    if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
+      const page = document.getElementById('helpsbody');
+
+      if (page) {
+        page.scrollTop = 0;
+      }
+    }
+  }
+
+  /**
+   * safely get groupId from contextIdReducer
+   * @param {Object} contextIdReducer
+   * @return {String}
+   */
+  getGroupId(contextIdReducer) {
+    return contextIdReducer && contextIdReducer.contextId && contextIdReducer.contextId.groupId;
+  }
+
+  toggleHelpsModal() {
+    this.setState({
+      showHelpsModal: !this.state.showHelpsModal,
       modalArticle: '',
     });
   }
 
-  function followTHelpsLink(link) {
-    const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
+  /**
+   * Loads the resource article
+   * @param props
+   * @private
+   */
+  loadArticle(props) {
+    const {
+      contextIdReducer, toolsReducer, toolsSelectedGLs, actions,
+    } = props;
+    const contextId = contextIdReducer && contextIdReducer.contextId;
+
+    if (contextId) {
+      const articleId = contextId.groupId;
+      const { currentToolName } = toolsReducer;
+      const languageId = toolsSelectedGLs[currentToolName];
+      actions.loadResourceArticle(currentToolName, articleId, languageId);
+    }
+  }
+
+  followTHelpsLink(link) {
+    let linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
 
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
-    actions.loadResourceArticle(resourceDir, article, lang, category);
-    console.log('HERE====>', resourcesReducer.translationHelps[resourceDir]);
-    const articleData = resourcesReducer.translationHelps[resourceDir][article];
+    this.props.actions.loadResourceArticle(resourceDir, article, lang, category);
+    const articleData = this.props.resourcesReducer.translationHelps[resourceDir][article];
 
-    setThState({
-      showHelpsModal: true,
-      modalArticle: articleData || translate('cannot_find_article', link),
-      articleCategory: category,
-    });
-    // TODO: Shouldn't need to to set state and return state in the same function
+    let newState;
+    const showHelpsModal = true;
+    const articleCategory = category;
+
+    if (articleData) {
+      newState = {
+        showHelpsModal,
+        articleCategory,
+        modalArticle: articleData,
+      };
+    } else {
+      newState = {
+        showHelpsModal,
+        articleCategory,
+        modalArticle: 'Cannot find an article for ' + link,
+      };
+    }
+    //todo: Shouldn't need to to set state and return state in the same function
     // Seems like an anti pattern
-    return true;
+    this.setState(newState);
+    return newState;
   }
 
-  const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-  const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
-  const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, languageId, articleCategory);
-  return (
-    <TranslationHelps
-      translate={translate}
-      article={currentFileMarkdown}
-      modalArticle={tHelpsModalMarkdown}
-      openExpandedHelpsModal={toggleHelpsModal}
-      isShowHelpsSidebar={showHelps}
-      sidebarToggle={toggleHelps}
-      isShowHelpsExpanded={showHelpsModal} />
-  );
+  render() {
+    const {
+      toolsSelectedGLs,
+      toolsReducer: { currentToolName },
+      resourcesReducer,
+      contextIdReducer: { contextId },
+      showHelps,
+      toggleHelps,
+      translate,
+    } = this.props;
+    const languageId = toolsSelectedGLs[currentToolName];
+    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
+    const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
+    const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
+
+    return (
+      <TranslationHelps
+        translate={translate}
+        article={currentFileMarkdown}
+        modalArticle={tHelpsModalMarkdown}
+        openExpandedHelpsModal={() => this.toggleHelpsModal()}
+        isShowHelpsSidebar={showHelps}
+        sidebarToggle={toggleHelps}
+        isShowHelpsExpanded={this.state.showHelpsModal} />
+    );
+  }
 }
+
 TranslationHelpsWrapper.propTypes = {
   toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,
