@@ -70,9 +70,7 @@ function TranslationHelpsWrapper(props) {
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    // if (groupId) { // may not be needed
     actions.loadResourceArticle(currentToolName, groupId, languageId);
-    // }
   }, [actions, currentToolName, groupId, languageId]);
 
   useEffect(() => {
