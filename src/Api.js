@@ -7,7 +7,7 @@ import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import {
-  generateTimestamp, sameContext, getSelectionsFromChapterAndVerseCombo,
+  sameContext, getSelectionsFromChapterAndVerseCombo, generateTimestamp,
 } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 
@@ -38,36 +38,54 @@ export default class Api extends ToolApi {
       tool: { name: toolName },
     } = this.props;
     const groupsData = getGroupsData(toolName);
+    const groupsDataKeys = Object.keys(groupsData);
+    const chapters = Object.keys(targetBook);
+    const modifiedTimestamp = generateTimestamp();
 
-    for (const chapter of Object.keys(targetBook)) {
+    for (let i = 0, l = chapters.length; i < l; i++) {
+      const chapter = chapters[i];
+
       if (isNaN(chapter) || parseInt(chapter) === -1) {
         continue;
       }
-      this.validateChapter(chapter, groupsData, silent);
+      this.validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp);
     }
   }
 
   /**
- * verifies all the selections for chapter to make sure they are still valid.
- * This expects the book resources to have already been loaded.
- * Books are loaded when a project is selected.
- * @param {String} chapter
- */
-  validateChapter(chapter, groupsData, silent) {
+   * verifies all the selections for chapter to make sure they are still valid.
+   * This expects the book resources to have already been loaded.
+   * Books are loaded when a project is selected.
+   * @param {String} chapter
+   * @param {Object} groupsData
+   * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
+   * @param {boolean} silent - if true then don't show alerts
+   */
+  validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     const { tc: { targetBook } } = this.props;
 
     if (targetBook[chapter]) {
       const bibleChapter = targetBook[chapter];
 
       if (bibleChapter) {
-        for (let verse of Object.keys(bibleChapter)) {
+        const verses = Object.keys(bibleChapter);
+
+        for (let i = 0, l = verses.length; i < l; i++) {
+          const verse = verses[i];
           const targetVerse = bibleChapter[verse];
-          this._validateVerse(targetVerse, chapter, verse, groupsData, silent);
+          this._validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp);
         }
       }
     }
   }
 
+  /**
+   * validateVerse that can be called by main app
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {boolean} silent - if true then don't show alerts
+   * @param {Object} groupsData
+   */
   validateVerse(chapter, verse, silent = false, groupsData) {
     const {
       tc: {
@@ -77,25 +95,28 @@ export default class Api extends ToolApi {
       tool: { name: toolName },
     } = this.props;
     const _groupsData = groupsData || getGroupsData(toolName);
+    const groupsDataKeys = Object.keys(groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse, _groupsData, silent);
+    this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
   }
 
   /**
-  * verify all selections for current verse
-  * @param {number} chapter
-  * @param {number} verse
-  * @return {Function}
-  */
-  _validateVerse(targetVerse, chapter, verse, groupsData, silent) {
+   * verify all selections for current verse
+   * @param {Object} targetVerse
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {Object} groupsData
+   * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
+   * @param {boolean} silent - if true then don't show alerts
+   */
+  _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
       tc: {
         contextId: { reference: { bookId } },
         username: userName,
         project: { _projectPath: projectSaveLocation },
       },
-      tool: { name },
     } = this.props;
     const contextId = {
       reference: {
@@ -104,14 +125,16 @@ export default class Api extends ToolApi {
         verse: parseInt(verse),
       },
     };
-    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId, name);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupsDataKeys, contextId);
     let filtered = null;
     let selectionsChanged = false;
+    const groupItems = Object.keys(groupsDataForVerse);
 
-    for (let groupItemKey of Object.keys(groupsDataForVerse)) {
-      const groupItem = groupsDataForVerse[groupItemKey];
+    for (let i = groupItems.length - 1; i >= 0; i--) {
+      const groupItem = groupsDataForVerse[groupItems[i]];
 
-      for (let checkingOccurrence of groupItem) {
+      for (let j = groupItem.length - 1; j >= 0; j--) {
+        const checkingOccurrence = groupItem[j];
         const selections = checkingOccurrence.selections;
 
         if (!sameContext(contextId, checkingOccurrence.contextId)) {
@@ -139,7 +162,7 @@ export default class Api extends ToolApi {
                 selections: [],
                 userName,
               };
-              this.writeCheckData(invalidatedPayload, invalidatedCheckPath);
+              this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
 
               const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
               const selectionsPayload = {
@@ -147,7 +170,7 @@ export default class Api extends ToolApi {
                 selections: [],
                 userName,
               };
-              this.writeCheckData(selectionsPayload, selectionsCheckPath);
+              this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
             }
           }
         }
@@ -159,8 +182,8 @@ export default class Api extends ToolApi {
     }
   }
 
-  writeCheckData(payload = {}, checkPath) {
-    const modifiedTimestamp = generateTimestamp();
+  writeCheckData(payload = {}, checkPath, modifiedTimestamp) {
+    modifiedTimestamp = modifiedTimestamp || generateTimestamp();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
     fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload);

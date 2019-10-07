@@ -62,7 +62,7 @@ function TranslationHelpsWrapper(props) {
 
     setThState({
       showHelpsModal: true,
-      modalArticle: articleData || `Cannot find an article for ${link}`,
+      modalArticle: articleData || 'Cannot find an article for ' + link,
       articleCategory: category,
     });
     return true;
@@ -105,6 +105,7 @@ function TranslationHelpsWrapper(props) {
       isShowHelpsExpanded={showHelpsModal} />
   );
 }
+
 TranslationHelpsWrapper.propTypes = {
   toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,

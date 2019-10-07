@@ -7,10 +7,9 @@ import { getAlignedText } from 'tc-ui-toolkit';
  * @param {object} bibles
  * @param {string} currentToolName
  * @param {Function} translate
- * @param {Function} onInvalidQuote - optional method to call if quote cannot be matched
- * @return {*}
+ * @return {string}
  */
-export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate, onInvalidQuote) {
+export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate) {
   const selectedGL = toolsSelectedGLs[currentToolName];
 
   if (! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length) {
@@ -30,10 +29,6 @@ export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToo
         return alignedText;
       }
     }
-  }
-
-  if (onInvalidQuote) {
-    onInvalidQuote(contextId, selectedGL);
   }
 
   const origLangQuote = getQuoteAsString(contextId.quote);
