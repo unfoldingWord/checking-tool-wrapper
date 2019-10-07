@@ -20,22 +20,22 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   componentDidMount() {
-    console.log('didMount1', this.propse.resourcesReducer);
+    console.log('THW didMount1', this.props.resourcesReducer);
     this.loadArticle(this.props);
-    console.log('didMount2', this.propse.resourcesReducer);
+    console.log('THW didMount2', this.props.resourcesReducer);
   }
 
   componentDidUpdate(prevProps) {
     const { contextIdReducer } = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
 
-    console.log('didUpdate1', this.propse.resourcesReducer);
+    console.log('THW didUpdate1', this.props.resourcesReducer);
 
     if (this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
       this.loadArticle(this.props);
     }
 
-    console.log('didUpdate2', this.propse.resourcesReducer);
+    console.log('THW didUpdate2', this.props.resourcesReducer);
 
     if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
       const page = document.getElementById('helpsbody');
@@ -56,8 +56,8 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   toggleHelpsModal() {
-    console.log('toggleHelpsModal', !this.state.showHelpsModal);
-    console.log('toggleHelpsModal', this.propse.resourcesReducer);
+    console.log('THW toggleHelpsModal', !this.state.showHelpsModal);
+    console.log('THW toggleHelpsModal', this.props.resourcesReducer);
     this.setState({
       showHelpsModal: !this.state.showHelpsModal,
       modalArticle: '',
@@ -75,7 +75,7 @@ class TranslationHelpsWrapper extends React.Component {
     } = props;
     const contextId = contextIdReducer && contextIdReducer.contextId;
 
-    console.log('loadArticle', props);
+    console.log('THW loadArticle', props);
 
     if (contextId) {
       const articleId = contextId.groupId;
@@ -86,13 +86,14 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   followTHelpsLink(link) {
+    console.log('THW IN FOLLOW BEGINNING:', this.props.resourcesReducer);
     let linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
 
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
     this.props.actions.loadResourceArticle(resourceDir, article, lang, category);
-    console.log('IN FOLLOW:', this.props.resourcesReducer);
+    console.log('THW IN FOLLOW:', this.props.resourcesReducer);
     const articleData = this.props.resourcesReducer.translationHelps[resourceDir][article];
 
     let newState;
@@ -128,7 +129,7 @@ class TranslationHelpsWrapper extends React.Component {
       toggleHelps,
       translate,
     } = this.props;
-    console.log('render', this.props.resourcesReducer);
+    console.log('THW render', this.props.resourcesReducer);
     const languageId = toolsSelectedGLs[currentToolName];
     const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
     const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
