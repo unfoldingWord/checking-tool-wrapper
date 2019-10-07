@@ -20,22 +20,22 @@ class TranslationHelpsWrapper extends React.Component {
   }
 
   componentDidMount() {
-    console.log('didMount1', this.propse.resourcesReducer);
+    console.log('didMount1', this.props.resourcesReducer);
     this.loadArticle(this.props);
-    console.log('didMount2', this.propse.resourcesReducer);
+    console.log('didMount2', this.props.resourcesReducer);
   }
 
   componentDidUpdate(prevProps) {
     const { contextIdReducer } = this.props || {};
     const prevContextIdReducer = prevProps.contextIdReducer;
 
-    console.log('didUpdate1', this.propse.resourcesReducer);
+    console.log('didUpdate1', this.props.resourcesReducer);
 
     if (this.getGroupId(contextIdReducer) !== this.getGroupId(prevContextIdReducer)) { // we only need to reload article when groupId changes
       this.loadArticle(this.props);
     }
 
-    console.log('didUpdate2', this.propse.resourcesReducer);
+    console.log('didUpdate2', this.props.resourcesReducer);
 
     if (!isEqual(contextIdReducer, prevContextIdReducer)) { // we need to scroll to top whenever contextId changes
       const page = document.getElementById('helpsbody');
@@ -57,7 +57,7 @@ class TranslationHelpsWrapper extends React.Component {
 
   toggleHelpsModal() {
     console.log('toggleHelpsModal', !this.state.showHelpsModal);
-    console.log('toggleHelpsModal', this.propse.resourcesReducer);
+    console.log('toggleHelpsModal', this.props.resourcesReducer);
     this.setState({
       showHelpsModal: !this.state.showHelpsModal,
       modalArticle: '',
