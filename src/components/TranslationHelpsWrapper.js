@@ -4,7 +4,8 @@ import { TranslationHelps } from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 
-let resourcesReducer = {}; // Needed to be global for the followLink function
+// resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
+let resourcesReducer = {};
 
 function useTnArticleState(initialState) {
   const [
@@ -34,7 +35,7 @@ function TranslationHelpsWrapper(props) {
     translate,
     actions,
   } = props;
-  resourcesReducer = props.resourcesReducer; // Need this so that the followTHelpsLink has the new article's content
+  resourcesReducer = props.resourcesReducer;
 
   const initialState = {
     showHelpsModal: false,
@@ -50,7 +51,7 @@ function TranslationHelpsWrapper(props) {
   const groupId = contextId.groupId;
   const languageId = toolsSelectedGLs[currentToolName];
 
-  window.followLink = (link) => {
+  function followTHelpsLink(link) {
     const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
 
     const [lang, type, category, article] = linkParts;
@@ -66,6 +67,7 @@ function TranslationHelpsWrapper(props) {
     });
     return true;
   };
+  window.followLink = followTHelpsLink;
 
   useEffect(() => {
     // if (groupId) { // may not be needed
