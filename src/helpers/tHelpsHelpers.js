@@ -47,7 +47,6 @@ export function getResourceDirByType(type) {
   }
 }
 
-
 export function getArticleFromState(resourcesReducer = {}, contextId = {}, toolName) {
   const translationHelps = resourcesReducer.translationHelps || {};
   const article = translationHelps[toolName];
