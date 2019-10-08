@@ -20,10 +20,10 @@ function GroupMenuWrapper({
   tc: {
     project,
     contextId,
-    groupsDataReducer: { groupsData },
-    groupsIndexReducer: { groupsIndex },
     actions: { changeCurrentContextId },
   },
+  groupsData,
+  groupsIndex,
 }) {
   /**
    * Handles click events from the menu
@@ -87,23 +87,23 @@ function GroupMenuWrapper({
     {
       label: translate('menu.invalidated'),
       key: 'invalidated',
-      icon: <InvalidatedIcon/>,
+      icon: <InvalidatedIcon />,
     },
     {
       label: translate('menu.bookmarks'),
       key: 'reminders',
-      icon: <BookmarkIcon/>,
+      icon: <BookmarkIcon />,
     },
     {
       label: translate('menu.selected'),
       key: 'finished',
       disables: ['not-finished'],
-      icon: <CheckIcon/>,
+      icon: <CheckIcon />,
     },
     {
       label: translate('no_selection_needed'),
       key: 'nothingToSelect',
-      icon: <CheckIcon/>,
+      icon: <CheckIcon />,
     },
     {
       label: translate('menu.no_selection'),
@@ -111,44 +111,44 @@ function GroupMenuWrapper({
       key: 'finished',
       value: false,
       disables: ['finished'],
-      icon: <BlockIcon/>,
+      icon: <BlockIcon />,
     },
     {
       label: translate('menu.verse_edit'),
       key: 'verseEdits',
-      icon: <EditIcon/>,
+      icon: <EditIcon />,
     },
     {
       label: translate('menu.comments'),
       key: 'comments',
-      icon: <ModeCommentIcon/>,
+      icon: <ModeCommentIcon />,
     },
   ];
 
   const statusIcons = [
     {
       key: 'invalidated',
-      icon: <InvalidatedIcon style={{ color: 'white' }}/>,
+      icon: <InvalidatedIcon style={{ color: 'white' }} />,
     },
     {
       key: 'reminders',
-      icon: <BookmarkIcon style={{ color: 'white' }}/>,
+      icon: <BookmarkIcon style={{ color: 'white' }} />,
     },
     {
       key: 'finished',
-      icon: <CheckIcon style={{ color: '#58c17a' }}/>,
+      icon: <CheckIcon style={{ color: '#58c17a' }} />,
     },
     {
       key: 'nothingToSelect',
-      icon: <CheckIcon style={{ color: '#58c17a' }}/>,
+      icon: <CheckIcon style={{ color: '#58c17a' }} />,
     },
     {
       key: 'verseEdits',
-      icon: <EditIcon style={{ color: 'white' }}/>,
+      icon: <EditIcon style={{ color: 'white' }} />,
     },
     {
       key: 'comments',
-      icon: <ModeCommentIcon style={{ color: 'white' }}/>,
+      icon: <ModeCommentIcon style={{ color: 'white' }} />,
     },
   ];
 
@@ -179,8 +179,8 @@ function GroupMenuWrapper({
 GroupMenuWrapper.propTypes = {
   tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-  groupsIndexReducer: PropTypes.object,
-  groupsDataReducer: PropTypes.object,
+  groupsIndex: PropTypes.object,
+  groupsData: PropTypes.object,
 };
 
 export default GroupMenuWrapper;
