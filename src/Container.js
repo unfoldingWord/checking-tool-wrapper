@@ -47,24 +47,24 @@ function Container(props) {
         <div style={{
           display: 'flex', flexDirection: 'row', width: '100vw',
         }}>
-          <GroupMenuWrapper {...this.props.groupMenu} />
+          <GroupMenuWrapper {...props.groupMenu} />
           <div style={{
             display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
           }}>
             <div style={{ height: '250px', paddingBottom: '20px' }}>
-              <ScripturePaneWrapper {...this.props.scripturePane} />
+              <ScripturePaneWrapper {...props.scripturePane} />
             </div>
             <CheckInfoCardWrapper
               toggleHelps={() => setShowHelps(!showHelps)}
-              showHelps={this.state.showHelps}
-              {...this.props.checkInfoCard}
+              showHelps={showHelps}
+              {...props.checkInfoCard}
             />
-            <VerseCheckWrapper {...this.props.verseCheck} />
+            <VerseCheckWrapper {...props.verseCheck} />
           </div>
           <TranslationHelpsWrapper
             toggleHelps={() => setShowHelps(!showHelps)}
-            showHelps={this.state.showHelps}
-            {...this.props.translationHelps} />
+            showHelps={showHelps}
+            {...props.translationHelps} />
         </div>
       </TcuiThemeProvider>
     );
