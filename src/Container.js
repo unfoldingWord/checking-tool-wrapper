@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'deep-equal';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
@@ -27,59 +27,49 @@ import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 
-class Container extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { showHelps: true };
-    this.toggleHelps = this.toggleHelps.bind(this);
-  }
-  componentWillMount() {
-    const { bibles } = this.props.scripturePane;
-    settingsHelper.loadCorrectPaneSettings(this.props, this.props.tc.actions.setToolSettings, bibles);
-  }
+function Container(props) {
+  const theme = createTcuiTheme({
+    typography: { useNextVariants: true },
+    scrollbarThumb: { borderRadius: '10px' },
+  });
+  const [showHelps, setShowHelps] = useState(true);
 
-  toggleHelps() {
-    this.setState({ showHelps: !this.state.showHelps });
-  }
+  useEffect(() => {
+    const { bibles } = props.scripturePane;
+    settingsHelper.loadCorrectPaneSettings(props, props.tc.actions.setToolSettings, bibles);
+  }, [props]);
 
-  render() {
-    const { contextIdReducer: { contextId } } = this.props;
+  const { contextIdReducer: { contextId } } = props;
 
-    const theme = createTcuiTheme({
-      typography: { useNextVariants: true },
-      scrollbarThumb: { borderRadius: '10px' },
-    });
-
-    if (contextId !== null) {
-      return (
-        <TcuiThemeProvider theme={theme}>
+  if (contextId !== null) {
+    return (
+      <TcuiThemeProvider theme={theme}>
+        <div style={{
+          display: 'flex', flexDirection: 'row', width: '100vw',
+        }}>
+          <GroupMenuWrapper {...this.props.groupMenu} />
           <div style={{
-            display: 'flex', flexDirection: 'row', width: '100vw',
+            display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
           }}>
-            <GroupMenuWrapper {...this.props.groupMenu} />
-            <div style={{
-              display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
-            }}>
-              <div style={{ height: '250px', paddingBottom: '20px' }}>
-                <ScripturePaneWrapper {...this.props.scripturePane} />
-              </div>
-              <CheckInfoCardWrapper
-                toggleHelps={this.toggleHelps.bind(this)}
-                showHelps={this.state.showHelps}
-                {...this.props.checkInfoCard}
-              />
-              <VerseCheckWrapper {...this.props.verseCheck} />
+            <div style={{ height: '250px', paddingBottom: '20px' }}>
+              <ScripturePaneWrapper {...this.props.scripturePane} />
             </div>
-            <TranslationHelpsWrapper
-              toggleHelps={this.toggleHelps.bind(this)}
+            <CheckInfoCardWrapper
+              toggleHelps={() => setShowHelps(!showHelps)}
               showHelps={this.state.showHelps}
-              {...this.props.translationHelps} />
+              {...this.props.checkInfoCard}
+            />
+            <VerseCheckWrapper {...this.props.verseCheck} />
           </div>
-        </TcuiThemeProvider>
-      );
-    } else {
-      return null;
-    }
+          <TranslationHelpsWrapper
+            toggleHelps={() => setShowHelps(!showHelps)}
+            showHelps={this.state.showHelps}
+            {...this.props.translationHelps} />
+        </div>
+      </TcuiThemeProvider>
+    );
+  } else {
+    return null;
   }
 }
 
