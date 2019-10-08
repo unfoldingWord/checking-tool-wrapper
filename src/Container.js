@@ -37,7 +37,8 @@ function Container(props) {
   useEffect(() => {
     const { bibles } = props.scripturePane;
     settingsHelper.loadCorrectPaneSettings(props, props.tc.actions.setToolSettings, bibles);
-  }, [props]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { contextIdReducer: { contextId } } = props;
 
