@@ -1,18 +1,19 @@
 import { createSelector } from 'reselect';
 import isEqual from 'deep-equal';
 import {
-  getTranslateState, getManifestState, getSelectedToolName, getTargetBibleState, getContextIdState, getGroupsDataState, getBiblesState, getActionsState, getCommentsReducerState, getSelectionsReducerState, getRemindersReducerState,
+  getTranslateState, getManifestState, getSelectedToolName, getTargetBibleState, getContextIdState, getGroupsDataState, getBiblesState, getActionsState, getCommentsReducerState, getSelectionsReducerState, getRemindersReducerState, getToolsSelectedGLsState,
 } from '../';
 import { getMaximumSelections } from '../../helpers/selectionHelpers';
 import { getVerseText } from '../../helpers/verseHelpers';
 import { getAlignedGLText } from '../../helpers/checkAreaHelpers';
 
 const getAlignedGLTextState = createSelector([
-  getGroupsDataState,
   getContextIdState,
-], (groupsData, contextId, ) => {
-  const { toolsSelectedGLs } = manifest;
-
+  getToolsSelectedGLsState,
+  getBiblesState,
+  getSelectedToolName,
+  getTranslateState,
+], (contextId, toolsSelectedGLs, bibles, selectedToolName, translate) => {
   const alignedGLText = getAlignedGLText(
     toolsSelectedGLs,
     contextId,
