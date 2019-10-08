@@ -5,7 +5,7 @@ import { CheckInfoCard } from 'tc-ui-toolkit';
 import { VerseObjectUtils } from 'word-aligner';
 // helpers
 import { TRANSLATION_NOTES, TRANSLATION_WORDS } from '../helpers/consts';
-import { getPhraseFromTw, getNote } from '../helpers/checkingInfoHelpers';
+import { getPhraseFromTw, getNote } from '../helpers/checkInfoCardHelpers';
 
 function CheckInfoCardWrapper({
   translate,

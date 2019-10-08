@@ -456,7 +456,7 @@ exports[`Container Tests Test Container 1`] = `
           >
             <span>
               function () {
-          return "gen";
+          return 'gen';
         } 2:5 
             </span>
           </span>
@@ -473,7 +473,7 @@ exports[`Container Tests Test Container 1`] = `
           >
             <span>
               function () {
-          return "gen";
+          return 'gen';
         } 3:2 
             </span>
           </span>
