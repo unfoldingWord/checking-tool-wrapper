@@ -179,7 +179,7 @@ function GroupMenuWrapper({
 GroupMenuWrapper.propTypes = {
   tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-  groupsIndex: PropTypes.object,
+  groupsIndex: PropTypes.array,
   groupsData: PropTypes.object,
 };
 

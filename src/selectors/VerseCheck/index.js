@@ -29,7 +29,7 @@ const getCurrentGroup = createSelector(
   (groupsData, contextId) => {
     let currentGroupItem;
 
-    if (groupsData[contextId.groupId]) {
+    if (contextId && groupsData[contextId.groupId]) {
       currentGroupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
     } else {
       currentGroupItem = null;
@@ -45,8 +45,6 @@ export const getVerseCheckState = createSelector(
     getManifestState,
     getTargetBibleState,
     getContextIdState,
-    getGroupsDataState,
-    getBiblesState,
     getAlignedGLTextState,
     getCurrentGroup,
     getActionsState,
