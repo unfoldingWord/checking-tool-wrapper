@@ -4,7 +4,7 @@ import {
   getTranslateState, getGroupsIndexState, getContextIdState, getResourcesReducerState,
 } from '../';
 
-export const getTranslationHelpsState = createSelector(
+export const getCheckInfoCardState = createSelector(
   [
     getTranslateState,
     getResourcesReducerState,

@@ -13,9 +13,9 @@ import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 import { getGroupMenuState } from './selectors/GroupMenu';
 import { getVerseCheckState } from './selectors/VerseCheck';
-import { getCheckInfoCardState } from './selectors/TranslationHelps';
+import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import { getScripturePaneState } from './selectors/ScripturePane';
-import { getTranslationHelpsState } from './selectors/CheckInfoCard';
+import { getCheckInfoCardState } from './selectors/CheckInfoCard';
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
   scrollbarThumb: { borderRadius: '10px' },

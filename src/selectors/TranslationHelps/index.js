@@ -8,7 +8,7 @@ import {
   getActionsState,
 } from '../';
 
-export const getCheckInfoCardState = createSelector(
+export const getTranslationHelpsState = createSelector(
   [
     getTranslateState, getToolsSelectedGLsState, getLegacyToolsReducerState,
     getResourcesReducerState, getContextIdReducerState, getActionsState,
