@@ -30,7 +30,7 @@ import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
-console.log('__dirname', __dirname);
+
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -194,6 +194,8 @@ const mapStateToProps = (state, ownProps) => {
     },
   };
 };
+
+console.log('__dirname', __dirname);
 
 export default connectTool('translationNotes', {
   localeDir: path.join(__dirname, '/locale'),
