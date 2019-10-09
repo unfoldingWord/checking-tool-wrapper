@@ -10,30 +10,34 @@ import { getAlignedText } from 'tc-ui-toolkit';
  * @return {string}
  */
 export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate) {
-  const selectedGL = toolsSelectedGLs[currentToolName];
+  if (contextId) {
+    const selectedGL = toolsSelectedGLs[currentToolName];
 
-  if (! bibles || ! bibles[selectedGL] || ! Object.keys(bibles[selectedGL]).length) {
-    return contextId.quote;
-  }
+    if (!bibles || !bibles[selectedGL] || !Object.keys(bibles[selectedGL]).length) {
+      return contextId.quote;
+    }
 
-  const sortedBibleIds = Object.keys(bibles[selectedGL]).sort(bibleIdSort);
+    const sortedBibleIds = Object.keys(bibles[selectedGL]).sort(bibleIdSort);
 
-  for (let i = 0; i < sortedBibleIds.length; ++i) {
-    const bible = bibles[selectedGL][sortedBibleIds[i]];
+    for (let i = 0; i < sortedBibleIds.length; ++i) {
+      const bible = bibles[selectedGL][sortedBibleIds[i]];
 
-    if (bible && bible[contextId.reference.chapter] && bible[contextId.reference.chapter][contextId.reference.verse] && bible[contextId.reference.chapter][contextId.reference.verse].verseObjects) {
-      const verseObjects = bible[contextId.reference.chapter][contextId.reference.verse].verseObjects;
-      const alignedText = getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
+      if (bible && contextId && bible[contextId.reference.chapter] && bible[contextId.reference.chapter][contextId.reference.verse] && bible[contextId.reference.chapter][contextId.reference.verse].verseObjects) {
+        const verseObjects = bible[contextId.reference.chapter][contextId.reference.verse].verseObjects;
+        const alignedText = getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
 
-      if (alignedText) {
-        return alignedText;
+        if (alignedText) {
+          return alignedText;
+        }
       }
     }
-  }
 
-  const origLangQuote = getQuoteAsString(contextId.quote);
-  const message = translate('quote_invalid', { quote: origLangQuote });
-  return message;
+    const origLangQuote = getQuoteAsString(contextId.quote);
+    const message = translate('quote_invalid', { quote: origLangQuote });
+    return message;
+  } else {
+    return '';
+  }
 }
 
 export function getQuoteAsString(quote) {
@@ -53,7 +57,7 @@ export function bibleIdSort(a, b) {
   const biblePrecedence = ['udb', 'ust', 'ulb', 'ult', 'irv']; // these should come first in this order if more than one aligned Bible, from least to greatest
 
   if (biblePrecedence.indexOf(a) == biblePrecedence.indexOf(b)) {/* eslint-disable-next-line no-nested-ternary */
-    return (a < b? -1 : a > b ? 1 : 0);
+    return (a < b ? -1 : a > b ? 1 : 0);
   } else {
     return biblePrecedence.indexOf(b) - biblePrecedence.indexOf(a);
   } // this plays off the fact other Bible IDs will be -1
