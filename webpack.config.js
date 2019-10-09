@@ -32,6 +32,6 @@ module.exports = {
       },
     ],
   },
-  node: { __dirname: true },
+  node: { __dirname: false },
   externals: { 'react': 'commonjs react' },
 };
