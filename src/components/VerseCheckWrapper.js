@@ -63,6 +63,8 @@ function VerseCheckWrapper({
     lastContextId: null,
   });
 
+  console.log('VerseCheckWrapper() - selections: ', JSON.stringify(selections));
+
   useEffect(() => {
     setLocalState({ selections });
     // eslint-disable-next-line react-hooks/exhaustive-deps
