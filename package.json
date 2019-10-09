@@ -64,7 +64,7 @@
     "selections": "0.1.7",
     "style-loader": "0.23.1",
     "tc-tool": "2.1.0",
-    "tc-ui-toolkit": "0.15.1",
+    "tc-ui-toolkit": "github:translationCoreApps/tc-ui-toolkit#feature-jay-6472",
     "usfm-js": "2.0.1",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0"
