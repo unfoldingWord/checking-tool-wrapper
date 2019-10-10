@@ -32,6 +32,8 @@ function Container(props) {
 
   const { contextIdReducer: { contextId } } = props;
 
+  console.log('Container:render() - selections: ', JSON.stringify(props.verseCheck.selectionsReducer));
+
   if (contextId !== null) {
     return (
       <TcuiThemeProvider theme={theme}>
