@@ -34,4 +34,8 @@ module.exports = {
   },
   node: { __dirname: true },
   externals: { 'react': 'commonjs react' },
+  resolve: {
+    'react-redux': path.resolve('./node_modules/react-redux'),
+    // configuration options
+  },
 };
