@@ -35,8 +35,7 @@ function VerseCheckWrapper({
   },
 }) {
   // Determine screen mode
-  const initialMode = selections && selections.length || verseText.length === 0 ?
-    'default' : nothingToSelect ? 'default' : 'select';
+  const initialMode = getInitialMode();
   const {
     mode,
     newComment,
@@ -64,11 +63,20 @@ function VerseCheckWrapper({
   });
 
   console.log('VerseCheckWrapper() - selections: ', JSON.stringify(selections));
+  console.log('VerseCheckWrapper() - mode: ', mode);
 
   useEffect(() => {
     setLocalState({ selections });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log('VerseCheckWrapper:useEffect([selections]) - initial mode: ', mode);
+    const newMode = getInitialMode();
+    console.log('VerseCheckWrapper:useEffect([selections]) - new mode: ', newMode);
+    setLocalState({ mode: newMode });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selections]);
 
   useEffect(() => {
     setLocalState({
@@ -82,6 +90,11 @@ function VerseCheckWrapper({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
+
+  function getInitialMode() {
+    return selections && selections.length || verseText.length === 0 ?
+      'default' : nothingToSelect ? 'default' : 'select';
+  }
 
   function handleOpenDialog(goToNextOrPrevious) {
     setLocalState({ goToNextOrPrevious, isDialogOpen: true });
