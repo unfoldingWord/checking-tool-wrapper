@@ -150,12 +150,15 @@ function VerseCheckWrapper({
   }
 
   function handleTagsCheckbox(tag) {
-    const _newTags = Array.from(newTags);
+    const tagIndex = newTags.indexOf(tag);
+    let _newTags;
 
-    if (!newTags.includes(tag)) {
-      _newTags.push(tag);
+    if (tagIndex > -1) {
+      const copy = newTags.slice(0);
+      copy.splice(tagIndex, 1);
+      _newTags = copy;
     } else {
-      _newTags.tags = _newTags.tags.filter(_tag => _tag !== tag);
+      _newTags = [...newTags, tag];
     }
 
     setLocalState({ newTags: _newTags });
