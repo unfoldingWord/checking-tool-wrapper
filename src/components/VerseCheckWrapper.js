@@ -72,9 +72,15 @@ function VerseCheckWrapper({
 
   useEffect(() => {
     console.log('VerseCheckWrapper:useEffect([selections]) - initial mode: ', mode);
+    // TRICKY: for async fs loads, need to update state when selection loads
     const newMode = getInitialMode();
     console.log('VerseCheckWrapper:useEffect([selections]) - new mode: ', newMode);
-    setLocalState({ mode: newMode });
+    setLocalState(
+      {
+        mode: newMode,
+        newSelections: selections,
+      }
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selections]);
 
