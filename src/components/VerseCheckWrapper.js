@@ -68,7 +68,6 @@ function VerseCheckWrapper({
       {
         mode: getInitialMode(),
         newSelections: selections,
-        selections,
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
