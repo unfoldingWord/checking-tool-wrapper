@@ -62,23 +62,13 @@ function VerseCheckWrapper({
     lastContextId: null,
   });
 
-  console.log('VerseCheckWrapper() - selections: ', JSON.stringify(selections));
-  console.log('VerseCheckWrapper() - mode: ', mode);
-
   useEffect(() => {
-    setLocalState({ selections });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    console.log('VerseCheckWrapper:useEffect([selections]) - initial mode: ', mode);
-    // TRICKY: for async fs loads, need to update state when selection loads
-    const newMode = getInitialMode();
-    console.log('VerseCheckWrapper:useEffect([selections]) - new mode: ', newMode);
+    // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
     setLocalState(
       {
-        mode: newMode,
+        mode: getInitialMode(),
         newSelections: selections,
+        selections,
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
