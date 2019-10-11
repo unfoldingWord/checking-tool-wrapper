@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
