@@ -9,7 +9,7 @@
     "test": "eslint ./src && jest",
     "fix": "eslint ./src --fix",
     "prebuild": "rm -rf ./dist",
-    "build": "webpack -d",
+    "build": "webpack -p",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run build",
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
