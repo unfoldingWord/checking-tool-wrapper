@@ -190,7 +190,7 @@ GroupMenuWrapper.propTypes = {
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return { groupMenuWrapperReducer: state.groupMenuWrapperReducer };
+  return { groupMenuWrapperReducer: state.tool.groupMenuWrapperReducer };
 };
 
 export default connect(mapStateToProps)(GroupMenuWrapper);
