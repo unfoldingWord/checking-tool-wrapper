@@ -2,6 +2,7 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BlockIcon from '@material-ui/icons/Block';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
@@ -24,7 +25,10 @@ function GroupMenuWrapper({
     groupsIndexReducer: { groupsIndex },
     actions: { changeCurrentContextId },
   },
+  groupMenuWrapperReducer,
 }) {
+  console.log('groupMenuWrapperReducer', groupMenuWrapperReducer);
+
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
@@ -181,6 +185,9 @@ GroupMenuWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
   groupsIndexReducer: PropTypes.object,
   groupsDataReducer: PropTypes.object,
+  groupMenuWrapperReducer: PropTypes.object,
 };
 
-export default GroupMenuWrapper;
+const mapStateToProps = (state) => ({ groupMenuWrapperReducer: state.groupMenuWrapperReducer });
+
+export default connect(mapStateToProps)(GroupMenuWrapper);
