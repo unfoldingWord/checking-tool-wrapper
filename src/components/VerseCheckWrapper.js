@@ -35,8 +35,7 @@ function VerseCheckWrapper({
   },
 }) {
   // Determine screen mode
-  const initialMode = selections && selections.length || verseText.length === 0 ?
-    'default' : nothingToSelect ? 'default' : 'select';
+  const initialMode = getInitialMode();
   const {
     mode,
     newComment,
@@ -64,9 +63,15 @@ function VerseCheckWrapper({
   });
 
   useEffect(() => {
-    setLocalState({ selections });
+    // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
+    setLocalState(
+      {
+        mode: getInitialMode(),
+        newSelections: selections,
+      }
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selections]);
 
   useEffect(() => {
     setLocalState({
@@ -80,6 +85,11 @@ function VerseCheckWrapper({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
+
+  function getInitialMode() {
+    return selections && selections.length || verseText.length === 0 ?
+      'default' : nothingToSelect ? 'default' : 'select';
+  }
 
   function handleOpenDialog(goToNextOrPrevious) {
     setLocalState({ goToNextOrPrevious, isDialogOpen: true });
@@ -139,12 +149,15 @@ function VerseCheckWrapper({
   }
 
   function handleTagsCheckbox(tag) {
-    const _newTags = Array.from(newTags);
+    const tagIndex = newTags.indexOf(tag);
+    let _newTags;
 
-    if (!newTags.includes(tag)) {
-      _newTags.push(tag);
+    if (tagIndex > -1) {
+      const copy = newTags.slice(0);
+      copy.splice(tagIndex, 1);
+      _newTags = copy;
     } else {
-      _newTags.tags = _newTags.tags.filter(_tag => _tag !== tag);
+      _newTags = [...newTags, tag];
     }
 
     setLocalState({ newTags: _newTags });
