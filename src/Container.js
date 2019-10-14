@@ -1,12 +1,12 @@
 /* eslint-env jest */
-import path from 'path';
+// import path from 'path';
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'deep-equal';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
-import { connectTool } from 'tc-tool';
-import Api from './Api';
+// import { connectTool } from 'tc-tool';
+// import Api from './Api';
 //selectors
 import {
   getContextId,
