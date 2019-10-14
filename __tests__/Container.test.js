@@ -101,41 +101,4 @@ describe.only('Container Tests', () => {
       .find(TranslationHelpsContainer);
     expect(root).toBeTruthy();
   });
-
-  it('Test CheckInfoCardWrapper.getNote() to remove (See: ...)', () => {
-    const props = {
-      showHelps: true,
-      toggleHelps: jest.fn(),
-      groupsIndex: [{ id: 'figs-metaphor', name: 'Metaphor' }],
-      contextId: {
-        groupId: 'figs-metaphor',
-        occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message” (See: [Idiom](rc://en/ta/man/translate/figs-idiom), [[rc://some/unknown/link]] and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) ',
-        tool: 'translationNotes',
-      },
-      resourcesReducer: {},
-      translate: k => k,
-    };
-    const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
-    const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
-    const expectedNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message”';
-    expect(note).toEqual(expectedNote);
-  });
-
-  it('Test CheckInfoCardWrapper.getNote() where Bible verse at the end does NOT get removed, nothing should change', () => {
-    const props = {
-      showHelps: true,
-      toggleHelps: jest.fn(),
-      groupsIndex: [{ id: 'figs-metaphor', name: 'Metaphor' }],
-      contextId: {
-        groupId: 'figs-metaphor',
-        occurrenceNote: 'Paul said this in another verse ([Titus 1:5](rc://en/ult/book/tit/01/05))',
-        tool: 'translationNotes',
-      },
-      resourcesReducer: {},
-      translate: k => k,
-    };
-    const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
-    const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
-    expect(note).toEqual(props.contextId.occurrenceNote);
-  });
 });
