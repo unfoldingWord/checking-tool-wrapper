@@ -1,19 +1,19 @@
 /* eslint-env jest */
 import React from 'react';
-import {connect} from 'react-redux';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import {shallow, mount, render} from 'enzyme';
+import {
+  shallow,
+  render,
+} from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
+
 import toJson from 'enzyme-to-json';
 // containers
-import PlainContainer, { mapStateToProps } from '../src/Container';
+import Container from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from '../src/components/CheckInfoCardWrapper';
-import {TRANSLATION_WORDS} from "../src/helpers/consts";
-
-const Container = connect(mapStateToProps)(PlainContainer);
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -24,10 +24,8 @@ const props = {
   translate: k => k,
   tc: {
     ...basicProps.tc,
-    project: {
-      getBookName: () => () => "gen"
-    }
-  }
+    project: { getBookName: () => () => 'gen' },
+  },
 };
 
 props.tc.actions = {
@@ -46,16 +44,17 @@ props.tc.actions = {
   groupMenuChangeGroup: jest.fn(),
   groupMenuExpandSubMenu: jest.fn(),
   onInvalidCheck: jest.fn(),
-  getSelectionsFromContextId: () => ''
+  getSelectionsFromContextId: () => '',
 };
 
 const store = mockStore({});
+
 describe.only('Container Tests', () => {
   it('Test Container', () => {
     const wrapper = render(
-        <Provider store={store}>
-          <Container {...props} />
-        </Provider>
+      <Provider store={store}>
+        <Container {...props} />
+      </Provider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -63,14 +62,12 @@ describe.only('Container Tests', () => {
   it('Test empty Container', () => {
     const myProps = {
       ...props,
-      contextIdReducer: {
-        contextId: null
-      }
+      contextIdReducer: { contextId: null },
     };
     const wrapper = renderer.create(
-        <Provider store={store}>
-          <Container {...myProps} />
-        </Provider>
+      <Provider store={store}>
+        <Container {...myProps} />
+      </Provider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -102,14 +99,14 @@ describe.only('Container Tests', () => {
         <Container {...props} />
       </Provider>)
       .find(TranslationHelpsContainer);
-      expect(root).toBeTruthy();
+    expect(root).toBeTruthy();
   });
 
   it('Test CheckInfoCardWrapper.getNote() to remove (See: ...)', () => {
     const props = {
       showHelps: true,
       toggleHelps: jest.fn(),
-      groupsIndex: [{id: 'figs-metaphor', name: 'Metaphor'}],
+      groupsIndex: [{ id: 'figs-metaphor', name: 'Metaphor' }],
       contextId: {
         groupId: 'figs-metaphor',
         occurrenceNote: 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message” (See: [Idiom](rc://en/ta/man/translate/figs-idiom), [[rc://some/unknown/link]] and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) ',
@@ -117,7 +114,7 @@ describe.only('Container Tests', () => {
       },
       resourcesReducer: {},
       translate: k => k,
-    }
+    };
     const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
     const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
     const expectedNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message”';
@@ -128,7 +125,7 @@ describe.only('Container Tests', () => {
     const props = {
       showHelps: true,
       toggleHelps: jest.fn(),
-      groupsIndex: [{id: 'figs-metaphor', name: 'Metaphor'}],
+      groupsIndex: [{ id: 'figs-metaphor', name: 'Metaphor' }],
       contextId: {
         groupId: 'figs-metaphor',
         occurrenceNote: 'Paul said this in another verse ([Titus 1:5](rc://en/ult/book/tit/01/05))',
@@ -136,7 +133,7 @@ describe.only('Container Tests', () => {
       },
       resourcesReducer: {},
       translate: k => k,
-    }
+    };
     const checkInfoCardWrapper = shallow(<CheckInfoCardWrapper {...props} />);
     const note = checkInfoCardWrapper.instance().getNote(props.contextId.occurrenceNote);
     expect(note).toEqual(props.contextId.occurrenceNote);
