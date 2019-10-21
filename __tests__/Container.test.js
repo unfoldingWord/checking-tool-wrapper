@@ -1,21 +1,19 @@
 /* eslint-env jest */
 import React from 'react';
-import { connect ,Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import {
- shallow, mount, render
- } from 'enzyme';
+  shallow,
+  render,
+} from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import toJson from 'enzyme-to-json';
 // containers
-import PlainContainer, { mapStateToProps } from '../src/Container';
+import Container from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from '../src/components/CheckInfoCardWrapper';
-import { TRANSLATION_WORDS } from '../src/helpers/consts';
-
-const Container = connect(mapStateToProps)(PlainContainer);
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
