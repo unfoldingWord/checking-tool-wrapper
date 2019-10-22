@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
+import { connect } from 'react-redux';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
 
@@ -16,6 +17,7 @@ import { getVerseCheckState } from './selectors/VerseCheck';
 import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import { getScripturePaneState } from './selectors/ScripturePane';
 import { getCheckInfoCardState } from './selectors/CheckInfoCard';
+
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
   scrollbarThumb: { borderRadius: '10px' },
@@ -94,5 +96,4 @@ export const mapStateToProps = (_, ownProps) => ({
   scripturePane: getScripturePaneState(ownProps),
 });
 
-
-export default Container;
+export default connect(mapStateToProps)(Container);
