@@ -69,7 +69,7 @@ function GroupMenuWrapper({
       ...item,
       title: `${passageText} ${selectionText}`,
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
-      finished: !!item.selections && !item.invalidated,
+      finished: (!!item.selections && !item.invalidated) || item.nothingToSelect,
       nothingToSelect: !!item.nothingToSelect,
       tooltip: selectionText,
     };
