@@ -151,7 +151,8 @@ export default class Api extends ToolApi {
                 chapter,
                 verse,
                 projectSaveLocation,
-                checkingOccurrence.contextId.quote
+                checkingOccurrence.contextId.quote,
+                checkingOccurrence.contextId.occurrence
               );
               //If selections are changed, they need to be cleared
               selectionsChanged = true;
