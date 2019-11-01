@@ -70,7 +70,7 @@
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
     "selections": "0.1.7",
-    "tc-ui-toolkit": "0.15.2",
+    "tc-ui-toolkit": "github:translationCoreApps/tc-ui-toolkit#bugfix-mcleanb-6491",
     "usfm-js": "2.0.1"
   }
 }
