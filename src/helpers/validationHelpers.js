@@ -32,8 +32,7 @@ export function generateTimestamp(str) {
   }
 }
 
-export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, projectSaveLocation, quote = '') {
-  let selectionsObject = {};
+export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, projectSaveLocation, quote = '', occurrence = 1) {
   const contextId = {
     reference: {
       bookId,
@@ -53,18 +52,17 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
     let sorted = files.sort().reverse(); // sort the files to use latest
 
     if (quote) {
-      sorted = sorted.filter((filename) => {
+      for (let filename of sorted) {
         const currentSelectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
-        return isEqual(currentSelectionsObject.contextId.quote, quote); // add support for quote arrays
-      });
-    }
 
-    if (sorted.length) { // sanity check to prevent exception being thrown
-      const filename = sorted[0]; // get first item which will be latest match
-      selectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
+        if ((currentSelectionsObject.contextId.occurrence === occurrence) &&
+          isEqual(currentSelectionsObject.contextId.quote, quote)) { // supports quote arrays or strings
+          return currentSelectionsObject;
+        }
+      }
     }
   }
-  return selectionsObject;
+  return {};
 }
 
 /**
