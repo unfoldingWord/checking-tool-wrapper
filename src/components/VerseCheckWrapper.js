@@ -63,7 +63,7 @@ function VerseCheckWrapper({
     isDialogOpen: false,
     goToNextOrPrevious: null,
     lastContextId: null,
-    alignedGlTextState: null,
+    alignedGlTextState: '',
   });
 
   useEffect(() => {
@@ -333,7 +333,7 @@ VerseCheckWrapper.propTypes = {
     addComment: PropTypes.func.isRequired,
     editTargetVerse: PropTypes.func.isRequired,
   }),
-  selectedGL: PropTypes.object.isRequired,
+  selectedGL: PropTypes.string.isRequired,
 };
 
 export default VerseCheckWrapper;
