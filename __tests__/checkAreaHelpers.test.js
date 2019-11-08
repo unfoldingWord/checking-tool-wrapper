@@ -450,7 +450,7 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
       },
     };
     const currentToolName = TRANSLATION_WORDS;
-    const expectedAlignedGLText = 'quote_invalid';
+    const expectedAlignedGLText = null;
 
     // when
     const alignedGLText = checkAreaHelpers.getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, k => k);

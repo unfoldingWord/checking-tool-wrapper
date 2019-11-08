@@ -1,11 +1,27 @@
 import { createSelector } from 'reselect';
 import isEqual from 'deep-equal';
 import {
-  getTranslateState, getManifestState, getSelectedToolName, getTargetBibleState, getContextIdState, getGroupsDataState, getBiblesState, getActionsState, getCommentsReducerState, getSelectionsReducerState, getRemindersReducerState, getToolsSelectedGLsState,
+  getTranslateState,
+  getManifestState,
+  getSelectedToolName,
+  getTargetBibleState,
+  getContextIdState,
+  getGroupsDataState,
+  getBiblesState,
+  getActionsState,
+  getCommentsReducerState,
+  getSelectionsReducerState,
+  getRemindersReducerState,
+  getToolsSelectedGLsState,
+  getOnInvalidCheck,
 } from '../';
 import { getMaximumSelections } from '../../helpers/selectionHelpers';
 import { getVerseText } from '../../helpers/verseHelpers';
-import { getAlignedGLText } from '../../helpers/checkAreaHelpers';
+import {
+  getAlignedGLText,
+  showInvalidCheck,
+  getInvalidQuoteMessage,
+} from '../../helpers/checkAreaHelpers';
 
 const getAlignedGLTextState = createSelector([
   getContextIdState,
@@ -13,14 +29,19 @@ const getAlignedGLTextState = createSelector([
   getBiblesState,
   getSelectedToolName,
   getTranslateState,
-], (contextId, toolsSelectedGLs, bibles, selectedToolName, translate) => {
-  const alignedGLText = getAlignedGLText(
+  getOnInvalidCheck,
+], (contextId, toolsSelectedGLs, bibles, selectedToolName, translate, onInvalidCheck) => {
+  let alignedGLText = getAlignedGLText(
     toolsSelectedGLs,
     contextId,
     bibles,
     selectedToolName,
-    translate,
   );
+
+  if (!alignedGLText) { // if check is invalid
+    showInvalidCheck(contextId, toolsSelectedGLs, selectedToolName, onInvalidCheck);
+    alignedGLText = getInvalidQuoteMessage(contextId, translate);
+  }
   return alignedGLText;
 });
 
