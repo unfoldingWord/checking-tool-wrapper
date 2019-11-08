@@ -6,10 +6,9 @@ import { getAlignedText } from 'tc-ui-toolkit';
  * @param {object} contextId
  * @param {object} bibles
  * @param {string} currentToolName
- * @param {Function} translate
- * @return {string}
+ * @return {string|null} returns null if error getting text
  */
-export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName, translate) {
+export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName) {
   if (contextId) {
     const selectedGL = toolsSelectedGLs[currentToolName];
 
@@ -31,13 +30,25 @@ export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToo
         }
       }
     }
-
-    const origLangQuote = getQuoteAsString(contextId.quote);
-    const message = translate('quote_invalid', { quote: origLangQuote });
-    return message;
-  } else {
-    return '';
   }
+  return null;
+}
+
+/**
+ * creates the error meesage for invalid quote
+ * @param {object} contextId
+ * @param {Function} translate
+ * @return {string}
+ */
+export function getInvalidQuoteMessage(contextId, translate) {
+  let origLangQuote = '';
+
+  if (contextId) {
+    origLangQuote = getQuoteAsString(contextId.quote);
+  }
+
+  const message = translate('quote_invalid', { quote: origLangQuote });
+  return message;
 }
 
 export function getQuoteAsString(quote) {

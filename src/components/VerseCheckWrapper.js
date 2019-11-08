@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VerseCheck } from 'tc-ui-toolkit';
 import { optimizeSelections } from '../helpers/selectionHelpers';
+import { getInvalidQuoteMessage } from '../helpers/checkAreaHelpers';
 
 function useLocalState(initialState) {
   const [localState, setLocalState] = useState(initialState);
@@ -33,6 +34,7 @@ function VerseCheckWrapper({
     selections,
     nothingToSelect,
   },
+  selectedGL,
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -74,17 +76,29 @@ function VerseCheckWrapper({
   }, [selections]);
 
   useEffect(() => {
-    setLocalState({
-      mode: initialMode,
-      newComment: null,
-      newVerseText: null,
-      newSelections: selections,
-      newNothingToSelect: nothingToSelect,
-      newTags: [],
-      lastContextId: null,
-    });
+    let alignedGlText_ = alignedGLText;
+
+    if (!alignedGLText) {
+      alignedGlText_ = getInvalidQuoteMessage(contextId, translate);
+
+      if (actions.onInvalidCheck) {
+        actions.onInvalidCheck(contextId, selectedGL);
+      }
+    }
+    setLocalState({ alignedGLText: alignedGlText_ });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
+
+  useEffect(() => {
+    // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
+    setLocalState(
+      {
+        mode: getInitialMode(),
+        newSelections: selections,
+      }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [alignedGLText]);
 
   function getInitialMode() {
     return selections && selections.length || verseText.length === 0 ?
@@ -317,6 +331,7 @@ VerseCheckWrapper.propTypes = {
     addComment: PropTypes.func.isRequired,
     editTargetVerse: PropTypes.func.isRequired,
   }),
+  selectedGL: PropTypes.object.isRequired,
 };
 
 export default VerseCheckWrapper;
