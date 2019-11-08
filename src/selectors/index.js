@@ -5,7 +5,6 @@ export const getTranslateState = (state) => state.translate;
 export const getSelectedToolName = (state) => state.tc.selectedToolName;
 export const getManifestState = (state) => state.projectDetailsReducer.manifest;
 export const getContextIdState = (state) => state.contextIdReducer.contextId;
-export const getOnInvalidCheck = (state) => state.tc.actions.onInvalidCheck;
 export const getToolsSelectedGLsState = (state) => state.projectDetailsReducer.manifest.toolsSelectedGLs;
 export const getSelectionsState = (state) => state.selectionsReducer.selections;
 export const getCurrentPaneSettingsState = (state) => {

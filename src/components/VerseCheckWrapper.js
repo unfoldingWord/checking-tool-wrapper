@@ -87,20 +87,18 @@ function VerseCheckWrapper({
         actions.onInvalidCheck(contextId, selectedGL, true);
       }
     }
-    setLocalState({ alignedGlTextState });
+    setLocalState({
+      mode: initialMode,
+      newComment: null,
+      newVerseText: null,
+      newSelections: selections,
+      newNothingToSelect: nothingToSelect,
+      newTags: [],
+      lastContextId: null,
+      alignedGlTextState,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
-
-  useEffect(() => {
-    // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
-    setLocalState(
-      {
-        mode: getInitialMode(),
-        newSelections: selections,
-      }
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [alignedGLText]);
 
   function getInitialMode() {
     return selections && selections.length || verseText.length === 0 ?
