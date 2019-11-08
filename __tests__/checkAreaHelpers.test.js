@@ -460,6 +460,61 @@ describe('checkAreaHelpers.getAlignedGLText', () => {
   });
 });
 
+describe('checkAreaHelpers.getInvalidQuoteMessage', () => {
+  test('should give invalid quote message', () => {
+    // given
+    const contextId = {
+      quote: [
+        { word: 'εἰς', occurrence: 1 },
+        { word: 'τὰς', occurrence: 1 },
+        { word: '.', occurrence: 1 },
+        { word: 'ἀναγκαίας', occurrence: 1 },
+        { word: '-', occurence: 1 },
+        { word: 'χρείας', occurrence: 1 },
+        { word: ',', occurrence: 1 },
+        { word: 'ἵνα', occurrence: 1 },
+        { word: '...', occurrence: 1 },
+        { word: 'μὴ', occurrence: 1 },
+        { word: 'ὦσιν', occurrence: 1 },
+        { word: '…', occurrence: 1 },
+        { word: 'ἄκαρποι', occurrence: 1 },
+        { word: '?', occurrence: 1 },
+      ],
+    };
+    const expectedQuote = 'quote_invalid: εἰς τὰς. ἀναγκαίας - χρείας, ἵνα ... μὴ ὦσιν … ἄκαρποι?';
+
+    // when
+    const invalidQuote = checkAreaHelpers.getInvalidQuoteMessage(contextId, (t, p) => (t + ': ' + p.quote));
+
+    // then
+    expect(invalidQuote).toEqual(expectedQuote);
+  });
+
+  test('should handle null contextId', () => {
+    // given
+    const contextId = null;
+    const expectedQuote = 'quote_invalid: ';
+
+    // when
+    const invalidQuote = checkAreaHelpers.getInvalidQuoteMessage(contextId, (t, p) => (t + ': ' + p.quote));
+
+    // then
+    expect(invalidQuote).toEqual(expectedQuote);
+  });
+
+  test('should handle missing contextId.quote', () => {
+    // given
+    const contextId = {};
+    const expectedQuote = 'quote_invalid: ';
+
+    // when
+    const invalidQuote = checkAreaHelpers.getInvalidQuoteMessage(contextId, (t, p) => (t + ': ' + p.quote));
+
+    // then
+    expect(invalidQuote).toEqual(expectedQuote);
+  });
+});
+
 describe('checkAreaHelpers.getQuoteAsString', () => {
   test('should return a quote as a string when given an array with lots of punctuation', () => {
     const quote = [

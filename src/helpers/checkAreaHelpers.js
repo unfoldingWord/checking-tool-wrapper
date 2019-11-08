@@ -51,6 +51,11 @@ export function getInvalidQuoteMessage(contextId, translate) {
   return message;
 }
 
+/**
+ * convert quote to string
+ * @param {String|Array} quote
+ * @return {string}
+ */
 export function getQuoteAsString(quote) {
   let text = '';
 

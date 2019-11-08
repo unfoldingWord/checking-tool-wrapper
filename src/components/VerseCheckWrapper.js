@@ -50,6 +50,7 @@ function VerseCheckWrapper({
     isDialogOpen,
     goToNextOrPrevious,
     setLocalState,
+    alignedGlTextState,
   } = useLocalState({
     mode: initialMode,
     newComment: null,
@@ -62,6 +63,7 @@ function VerseCheckWrapper({
     isDialogOpen: false,
     goToNextOrPrevious: null,
     lastContextId: null,
+    alignedGlTextState: null,
   });
 
   useEffect(() => {
@@ -76,16 +78,16 @@ function VerseCheckWrapper({
   }, [selections]);
 
   useEffect(() => {
-    let alignedGlText_ = alignedGLText;
+    let alignedGlTextState = alignedGLText;
 
     if (!alignedGLText) {
-      alignedGlText_ = getInvalidQuoteMessage(contextId, translate);
+      alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (actions.onInvalidCheck) {
         actions.onInvalidCheck(contextId, selectedGL, true);
       }
     }
-    setLocalState({ alignedGLText: alignedGlText_ });
+    setLocalState({ alignedGlTextState });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
 
@@ -264,7 +266,7 @@ function VerseCheckWrapper({
       selections={selections}
       isVerseEdited={isVerseEdited}
       commentText={commentText}
-      alignedGLText={alignedGLText}
+      alignedGLText={alignedGlTextState}
       nothingToSelect={nothingToSelect}
       bookmarkEnabled={bookmarkEnabled}
       maximumSelections={maximumSelections}
