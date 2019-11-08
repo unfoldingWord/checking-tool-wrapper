@@ -82,7 +82,7 @@ function VerseCheckWrapper({
       alignedGlText_ = getInvalidQuoteMessage(contextId, translate);
 
       if (actions.onInvalidCheck) {
-        actions.onInvalidCheck(contextId, selectedGL);
+        actions.onInvalidCheck(contextId, selectedGL, true);
       }
     }
     setLocalState({ alignedGLText: alignedGlText_ });

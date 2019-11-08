@@ -13,37 +13,33 @@ import {
   getSelectionsReducerState,
   getRemindersReducerState,
   getToolsSelectedGLsState,
-  getOnInvalidCheck,
 } from '../';
 import { getMaximumSelections } from '../../helpers/selectionHelpers';
 import { getVerseText } from '../../helpers/verseHelpers';
-import {
-  getAlignedGLText,
-  showInvalidCheck,
-  getInvalidQuoteMessage,
-} from '../../helpers/checkAreaHelpers';
+import { getAlignedGLText } from '../../helpers/checkAreaHelpers';
 
 const getAlignedGLTextState = createSelector([
   getContextIdState,
   getToolsSelectedGLsState,
   getBiblesState,
   getSelectedToolName,
-  getTranslateState,
-  getOnInvalidCheck,
-], (contextId, toolsSelectedGLs, bibles, selectedToolName, translate, onInvalidCheck) => {
+], (contextId, toolsSelectedGLs, bibles, selectedToolName) => {
   let alignedGLText = getAlignedGLText(
     toolsSelectedGLs,
     contextId,
     bibles,
     selectedToolName,
   );
-
-  if (!alignedGLText) { // if check is invalid
-    showInvalidCheck(contextId, toolsSelectedGLs, selectedToolName, onInvalidCheck);
-    alignedGLText = getInvalidQuoteMessage(contextId, translate);
-  }
   return alignedGLText;
 });
+
+const getSelectedGL = createSelector(
+  [getToolsSelectedGLsState, getSelectedToolName],
+  (toolsSelectedGLs, selectedToolName) => {
+    const selectedGL = toolsSelectedGLs && toolsSelectedGLs[selectedToolName];
+    return selectedGL;
+  }
+);
 
 const getCurrentGroup = createSelector(
   [getGroupsDataState, getContextIdState],
@@ -72,10 +68,11 @@ export const getVerseCheckState = createSelector(
     getCommentsReducerState,
     getSelectionsReducerState,
     getRemindersReducerState,
+    getSelectedGL,
   ],
   (translate, selectedToolName, manifest, targetBible,
     contextId, alignedGLText, currentGroupItem, actions, commentsReducer,
-    selectionsReducer, remindersReducer
+    selectionsReducer, remindersReducer, selectedGL
   ) => {
     const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
     const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
@@ -95,6 +92,7 @@ export const getVerseCheckState = createSelector(
       commentsReducer,
       selectionsReducer,
       remindersReducer,
+      selectedGL,
     };
   }
 );
