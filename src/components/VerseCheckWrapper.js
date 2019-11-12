@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VerseCheck } from 'tc-ui-toolkit';
 import { optimizeSelections } from '../helpers/selectionHelpers';
+import { getInvalidQuoteMessage } from '../helpers/checkAreaHelpers';
 
 function useLocalState(initialState) {
   const [localState, setLocalState] = useState(initialState);
@@ -33,6 +34,7 @@ function VerseCheckWrapper({
     selections,
     nothingToSelect,
   },
+  selectedGL,
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -48,6 +50,7 @@ function VerseCheckWrapper({
     isDialogOpen,
     goToNextOrPrevious,
     setLocalState,
+    alignedGlTextState,
   } = useLocalState({
     mode: initialMode,
     newComment: null,
@@ -60,6 +63,7 @@ function VerseCheckWrapper({
     isDialogOpen: false,
     goToNextOrPrevious: null,
     lastContextId: null,
+    alignedGlTextState: '',
   });
 
   useEffect(() => {
@@ -74,6 +78,15 @@ function VerseCheckWrapper({
   }, [selections]);
 
   useEffect(() => {
+    let alignedGlTextState = alignedGLText;
+
+    if (!alignedGLText) {
+      alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
+
+      if (actions.onInvalidCheck) {
+        actions.onInvalidCheck(contextId, selectedGL, true);
+      }
+    }
     setLocalState({
       mode: initialMode,
       newComment: null,
@@ -82,6 +95,7 @@ function VerseCheckWrapper({
       newNothingToSelect: nothingToSelect,
       newTags: [],
       lastContextId: null,
+      alignedGlTextState,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
@@ -250,7 +264,7 @@ function VerseCheckWrapper({
       selections={selections}
       isVerseEdited={isVerseEdited}
       commentText={commentText}
-      alignedGLText={alignedGLText}
+      alignedGLText={alignedGlTextState}
       nothingToSelect={nothingToSelect}
       bookmarkEnabled={bookmarkEnabled}
       maximumSelections={maximumSelections}
@@ -317,6 +331,7 @@ VerseCheckWrapper.propTypes = {
     addComment: PropTypes.func.isRequired,
     editTargetVerse: PropTypes.func.isRequired,
   }),
+  selectedGL: PropTypes.string.isRequired,
 };
 
 export default VerseCheckWrapper;

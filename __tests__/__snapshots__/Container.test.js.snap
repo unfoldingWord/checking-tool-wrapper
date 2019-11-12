@@ -4867,7 +4867,6 @@ exports[`Container Tests Test Container 1`] = `
                     >
                       .
 
-
                     </span>
                   </div>
                 </div>
@@ -5233,8 +5232,7 @@ exports[`Container Tests Test Container 1`] = `
                     <span
                       style="background-color:var(--highlight-color)"
                     >
-                      . 
-
+                      .  
                     </span>
                   </div>
                 </div>
@@ -5430,7 +5428,7 @@ exports[`Container Tests Test Container 1`] = `
                     <strong
                       style="color:var(--accent-color)"
                     >
-                      "be insulted"
+                      ""
                     </strong>
                   </span>
                   <br />

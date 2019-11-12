@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -70,7 +70,7 @@
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
     "selections": "0.1.7",
-    "tc-ui-toolkit": "0.15.2",
+    "tc-ui-toolkit": "0.15.4",
     "usfm-js": "2.0.1"
   }
 }
