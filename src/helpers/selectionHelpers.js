@@ -1,10 +1,13 @@
 /* eslint-disable no-constant-condition */
 import _ from 'lodash';
+// constants
+import {
+  DEFAULT_MAX_SELECTIONS,
+  TRANSLATION_NOTES,
+  TN_MAX_SELECTIONS,
+} from '../common/constants';
 // helpers
 import * as stringHelpers from './stringHelpers';
-import {
-  DEFAULT_MAX_SELECTIONS, TRANSLATION_NOTES, TN_MAX_SELECTIONS,
-} from './consts';
 
 /**
  * determine the maximum selections allowed based on tool name
