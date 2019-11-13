@@ -1,5 +1,9 @@
 import fs from 'fs-extra';
 import path from 'path-extra';
+// helpers
+import ProjectAPI from './ProjectAPI';
+import ResourceAPI from './ResourceAPI';
+import { generateChapterGroupIndex } from './groupDataHelpers';
 
 /**
  * sorts either by chapter number, name, or id in that order
@@ -34,8 +38,7 @@ export function sortIndex(a, b) {
  * @param {function} translate - the locale function. TODO: refactor index loading so locale is not required
  * @return {*}
  */
-export function loadProjectGroupIndex(
-  gatewayLanguage, toolName, projectDir, translate) {
+export function loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate) {
   const project = new ProjectAPI(projectDir);
   const resources = ResourceAPI.default();
   const helpDir = resources.getLatestTranslationHelp(gatewayLanguage, toolName);

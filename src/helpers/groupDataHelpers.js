@@ -49,3 +49,23 @@ export function loadProjectGroupData(toolName, projectDir) {
   const project = new ProjectAPI(projectDir);
   return project.getGroupsData(toolName);
 }
+
+/**
+ * Generates a chapter-based group index.
+ * Most tools will use a chapter based-index.
+ * TODO: do not localize the group name here. Instead localize it as needed. See todo on {@link loadProjectGroupIndex}
+ * @param {function} translate - the locale function
+ * @param {number} [numChapters=150] - the number of chapters to generate
+ * @return {*}
+ */
+export const generateChapterGroupIndex = (translate, numChapters = 150) => {
+  const chapterLocalized = translate('tools.chapter') || 'Chapter';
+
+  return Array(numChapters).fill().map((_, i) => {
+    let chapter = i + 1;
+    return {
+      id: 'chapter_' + chapter,
+      name: chapterLocalized + ' ' + chapter,
+    };
+  });
+};

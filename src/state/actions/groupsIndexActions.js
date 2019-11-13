@@ -1,4 +1,8 @@
-import { LOAD_GROUPS_INDEX, UPDATE_REFRESH_COUNT_GROUPS_INDEX } from './actionTypes';
+import { loadProjectGroupIndex } from '../../helpers/groupsIndexHelpers';
+import {
+  LOAD_GROUPS_INDEX,
+  UPDATE_REFRESH_COUNT_GROUPS_INDEX,
+} from './actionTypes';
 
 /**
  * @description This action sends all of the group Ids and
@@ -6,7 +10,9 @@ import { LOAD_GROUPS_INDEX, UPDATE_REFRESH_COUNT_GROUPS_INDEX } from './actionTy
  * @param {string} groupIndex - The object of group indecies
  * @return {object} action object.
  */
-export const loadGroupsIndex = (groupsIndex) => ((dispatch) => {
+export const loadGroupsIndex = (language, toolName, projectDir, translate) => ((dispatch) => {
+  const groupsIndex = loadProjectGroupIndex(language, toolName, projectDir, translate);
+
   dispatch({
     type: LOAD_GROUPS_INDEX,
     groupsIndex,
