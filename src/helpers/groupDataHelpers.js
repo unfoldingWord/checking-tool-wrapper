@@ -1,3 +1,5 @@
+import ProjectAPI from './ProjectAPI';
+
 function isVerseMatch(checkRef, contextIdRef) {
   return (checkRef.chapter === contextIdRef.chapter) &&
     (checkRef.verse === contextIdRef.verse);
@@ -35,4 +37,15 @@ export function getGroupDataForVerse(groupsData, groupsDataKeys, contextId) {
     }
   }
   return filteredGroupData;
+}
+
+/**
+ * Loads all of a tool's group data from the project.
+ * @param {string} toolName - the name of the tool who's helps will be loaded
+ * @param {string} projectDir - the absolute path to the project
+ * @returns {*}
+ */
+export function loadProjectGroupData(toolName, projectDir) {
+  const project = new ProjectAPI(projectDir);
+  return project.getGroupsData(toolName);
 }
