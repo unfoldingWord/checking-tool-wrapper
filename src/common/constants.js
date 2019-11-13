@@ -10,6 +10,7 @@ export const SOURCE_CONTENT_UPDATER_MANIFEST = 'source-content-updater-manifest.
 export const TRANSLATION_NOTES = 'translationNotes';
 export const TRANSLATION_WORDS = 'translationWords';
 export const TRANSLATION_ACADEMY = 'translationAcademy';
+export const TRANSLATION_HELPS = 'translationHelps';
 export const NT_ORIG_LANG = 'el-x-koine';
 export const NT_ORIG_LANG_BIBLE = 'ugnt';
 export const OT_ORIG_LANG = 'hbo';

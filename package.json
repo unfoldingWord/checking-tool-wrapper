@@ -73,6 +73,7 @@
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
     "selections": "0.1.7",
+    "semver": "^6.3.0",
     "tc-ui-toolkit": "0.15.4",
     "usfm-js": "2.0.1"
   }
