@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CheckInfoCard } from 'tc-ui-toolkit';
 import { VerseObjectUtils } from 'word-aligner';
 // helpers
-import { TRANSLATION_NOTES, TRANSLATION_WORDS } from '../helpers/consts';
+import { TRANSLATION_NOTES, TRANSLATION_WORDS } from '../common/constants';
 import { getPhraseFromTw, getNote } from '../helpers/checkInfoCardHelpers';
 
 function CheckInfoCardWrapper({

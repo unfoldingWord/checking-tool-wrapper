@@ -2,7 +2,7 @@
 
 import path from 'path-extra';
 import fs from 'fs-extra';
-import { TRANSLATION_WORDS } from '../src/helpers/consts';
+import { TRANSLATION_WORDS } from '../src/common/constants';
 import Api from '../src/Api';
 
 jest.mock('../src/helpers/validationHelpers', () => ({
