@@ -1,1 +1,3 @@
 export const ADD_COMMENT = 'TOOL::ADD_COMMENT';
+export const CHANGE_CONTEXT_ID = 'TOOL::ADD_COMMENT';
+export const CLEAR_CONTEXT_ID = 'TOOL::CLEAR_CONTEXT_ID';
