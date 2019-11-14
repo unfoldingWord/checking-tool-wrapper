@@ -24,6 +24,7 @@ const theme = createTcuiTheme({
 });
 
 function Container(props) {
+  console.log('state', props.state);
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
@@ -88,7 +89,8 @@ Container.propTypes = {
   scripturePane: PropTypes.object.isRequired,
 };
 
-export const mapStateToProps = (_, ownProps) => ({
+export const mapStateToProps = (state, ownProps) => ({
+  state: state,
   groupMenu: getGroupMenuState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
