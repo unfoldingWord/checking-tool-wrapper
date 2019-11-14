@@ -25,6 +25,7 @@ const theme = createTcuiTheme({
 
 function Container(props) {
   console.log('state', props.state);
+  console.log('ownProps', props.ownProps);
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
@@ -91,6 +92,7 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => ({
   state: state,
+  ownProps: ownProps,
   groupMenu: getGroupMenuState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
