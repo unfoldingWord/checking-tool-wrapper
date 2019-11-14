@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GroupMenu from '../components/GroupMenuWrapper';
+// actions
+import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
+import { loadGroupsData } from '../state/actions/groupsDataActions';
 
 function GroupMenuContainer(props) {
+  console.log('props', props);
   useEffect(() => {
     props.f();//TODO:
-    props.fg();//TODO:
   });
 
   return <GroupMenu {...props} />;
@@ -17,7 +20,6 @@ GroupMenuContainer.propTypes = {
   groupsIndex: PropTypes.array.isRequired,
   groupsData: PropTypes.object.isRequired,
   f: PropTypes.func.isRequired,//TODO:
-  fg: PropTypes.func.isRequired,//TODO:
 };
 
 const mapStateToProps = (state) => ({
@@ -27,8 +29,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+  loadGroupsIndex,
+  loadGroupsData,
   f: () => console.log('clicked f'),//TODO:
-  fg: () => console.log('clicked fg'),//TODO:
 };
 
 export default connect(
