@@ -9,7 +9,7 @@ import { loadGroupsData } from '../state/actions/groupsDataActions';
 function GroupMenuContainer(props) {
   useEffect(() => {
     props.loadGroupsIndex();
-  });
+  }, [props]);
 
   return <GroupMenu {...props} />;
 }
