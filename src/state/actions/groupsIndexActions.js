@@ -15,7 +15,7 @@ export const loadGroupsIndex = (language, toolName, projectDir, translate) => ((
 
   dispatch({
     type: LOAD_GROUPS_INDEX,
-    groupsIndex: [1, 2, 3],
+    groupsIndex: [{ id: '1', name: '1' }, { id: '2', name: '2' }, { id: '3', name: '3' }],
   });
 });
 
