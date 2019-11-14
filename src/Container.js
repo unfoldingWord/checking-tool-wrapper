@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as settingsHelper from './helpers/settingsHelper';
 
 // components
-import GroupMenuWrapper from './components/GroupMenuWrapper';
+import GroupMenuWrapper from './containers/GroupMenuContainer';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';

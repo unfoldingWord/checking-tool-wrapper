@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GroupMenu from '../components/GroupMenuWrapper';
 
-function GroupMenuContainer({ f, fg }) {
+function GroupMenuContainer(props) {
   useEffect(() => {
-    f();
-    fg();
+    props.f();//TODO:
+    props.fg();//TODO:
   });
 
-  return GroupMenu;
+  return <GroupMenu {...props} />;
 }
 
 GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
   groupsIndex: PropTypes.array.isRequired,
   groupsData: PropTypes.object.isRequired,
+  f: PropTypes.func.isRequired,//TODO:
+  fg: PropTypes.func.isRequired,//TODO:
 };
 
 const mapStateToProps = (state) => ({
@@ -25,8 +27,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  f: () => console.log('clicked f'),
-  fg: () => console.log('clicked fg'),
+  f: () => console.log('clicked f'),//TODO:
+  fg: () => console.log('clicked fg'),//TODO:
 };
 
 export default connect(
