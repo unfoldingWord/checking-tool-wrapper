@@ -7,9 +7,8 @@ import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
 
 function GroupMenuContainer(props) {
-  console.log('props', props);
   useEffect(() => {
-    props.f();//TODO:
+    props.loadGroupsIndex();
   });
 
   return <GroupMenu {...props} />;
@@ -19,7 +18,8 @@ GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
   groupsIndex: PropTypes.array.isRequired,
   groupsData: PropTypes.object.isRequired,
-  f: PropTypes.func.isRequired,//TODO:
+  loadGroupsIndex: PropTypes.func.isRequired,
+  loadGroupsData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -31,7 +31,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadGroupsIndex,
   loadGroupsData,
-  f: () => console.log('clicked f'),//TODO:
 };
 
 export default connect(
