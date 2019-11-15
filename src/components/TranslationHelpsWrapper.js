@@ -57,16 +57,27 @@ function TranslationHelpsWrapper(props) {
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
 
-    actions.loadResourceArticle(resourceDir, article, lang, category);
-    const articleData = resourcesReducer.translationHelps[resourceDir][article];
+    let articleData = resourcesReducer.translationHelps[resourceDir][article];
 
-    setThState({
-      showHelpsModal: true,
-      modalArticle: articleData || 'Cannot find an article for ' + link,
-      articleCategory: category,
-    });
+    if (articleData) { // if already cached
+      setThState({
+        showHelpsModal: true,
+        modalArticle: articleData || 'Cannot find an article for ' + link,
+        articleCategory: category,
+      });
+    } else {
+      actions.loadResourceArticle(resourceDir, article, lang, category).then( () => {
+        articleData = resourcesReducer.translationHelps[resourceDir][article];
+        setThState({
+          showHelpsModal: true,
+          modalArticle: articleData || 'Cannot find an article for ' + link,
+          articleCategory: category,
+        });
+      });
+    }
+
     return true;
-  };
+  }
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
