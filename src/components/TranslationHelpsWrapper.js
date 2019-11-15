@@ -53,35 +53,25 @@ function TranslationHelpsWrapper(props) {
 
   function followTHelpsLink(link) {
     const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
-
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
-
     let articleData = resourcesReducer.translationHelps[resourceDir][article];
 
-    if (articleData) { // if already cached
-      setThState({
-        showHelpsModal: true,
-        modalArticle: articleData || 'Cannot find an article for ' + link,
-        articleCategory: category,
-      });
-    } else {
-      actions.loadResourceArticle(resourceDir, article, lang, category).then( () => {
-        articleData = resourcesReducer.translationHelps[resourceDir][article];
-        setThState({
-          showHelpsModal: true,
-          modalArticle: articleData || 'Cannot find an article for ' + link,
-          articleCategory: category,
-        });
-      });
+    if (!articleData) { // if not cached
+      actions.loadResourceArticle(resourceDir, article, lang, category); // do synchronous load
+      articleData = resourcesReducer.translationHelps[resourceDir][article];
     }
-
+    setThState({
+      showHelpsModal: true,
+      modalArticle: articleData || 'Cannot find an article for ' + link,
+      articleCategory: category,
+    });
     return true;
   }
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    actions.loadResourceArticle(currentToolName, groupId, languageId);
+    actions.loadResourceArticle(currentToolName, groupId, languageId, '', true); // do asynchronous load
   }, [actions, currentToolName, groupId, languageId]);
 
   useEffect(() => {
