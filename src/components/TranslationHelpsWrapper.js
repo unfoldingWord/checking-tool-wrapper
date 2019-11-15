@@ -51,15 +51,21 @@ function TranslationHelpsWrapper(props) {
   const groupId = contextId.groupId;
   const languageId = toolsSelectedGLs[currentToolName];
 
+  function getArticleFromReducer(resourceDir, article) {
+    const resources = resourcesReducer.translationHelps[resourceDir];
+    let articleData = resources && resources[article];
+    return articleData;
+  }
+
   function followTHelpsLink(link) {
     const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
     const [lang, type, category, article] = linkParts;
     const resourceDir = tHelpsHelpers.getResourceDirByType(type);
-    let articleData = resourcesReducer.translationHelps[resourceDir][article];
+    let articleData = getArticleFromReducer(resourceDir, article);
 
     if (!articleData) { // if not cached
       actions.loadResourceArticle(resourceDir, article, lang, category); // do synchronous load
-      articleData = resourcesReducer.translationHelps[resourceDir][article];
+      articleData = getArticleFromReducer(resourceDir, article);
     }
     setThState({
       showHelpsModal: true,
