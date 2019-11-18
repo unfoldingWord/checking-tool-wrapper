@@ -17,7 +17,7 @@ function GroupMenuContainer({
   loadGroupsIndex,
   // TODO:
   tool: {
-    groupsDataReducer,
+    // groupsDataReducer,
     groupsIndexReducer,
   },
   ...rest
@@ -27,7 +27,7 @@ function GroupMenuContainer({
   }, [gatewayLanguage, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
 
   console.log('PROPS', { tc, ...rest });
-  console.log('groupsDataReducer', groupsDataReducer);
+  // console.log('groupsDataReducer', groupsDataReducer);
   console.log('groupsIndexReducer', groupsIndexReducer);
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
