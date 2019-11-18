@@ -6,21 +6,31 @@ import GroupMenu from '../components/GroupMenuWrapper';
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
 
-function GroupMenuContainer(props) {
-  console.log('props', props);
-  // useEffect(() => {
-  //   loadGroupsIndex(language, toolName, projectDir, translate);
-  // }, [groupsIndexReducer]);// temp
+function GroupMenuContainer({
+  translate,
+  tc: {
+    gatewayLanguage,
+    selectedToolName,
+    projectSaveLocation,
+  },
+  ...rest
+}) {
+  console.log('rest', rest);
+  useEffect(() => {
+    loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
+  }, [gatewayLanguage, projectSaveLocation, selectedToolName, translate]);// temp
 
-  return <GroupMenu {...props} />;
+  return <GroupMenu {...rest} />;
 }
 
 GroupMenuContainer.propTypes = {
+  tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-  groupsIndexReducer: PropTypes.array.isRequired,
-  groupsData: PropTypes.object.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
+  // TODO:
+  groupsIndexReducer: PropTypes.array.isRequired,
+  groupsData: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -10,8 +10,8 @@ import {
  * @param {string} groupIndex - The object of group indecies
  * @return {object} action object.
  */
-export const loadGroupsIndex = (language, toolName, projectDir, translate) => ((dispatch) => {
-  const groupsIndex = loadProjectGroupIndex(language, toolName, projectDir, translate);
+export const loadGroupsIndex = (gatewayLanguage, toolName, projectDir, translate) => ((dispatch) => {
+  const groupsIndex = loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate);
 
   dispatch({
     type: LOAD_GROUPS_INDEX,
