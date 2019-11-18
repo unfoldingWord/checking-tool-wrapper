@@ -14,6 +14,7 @@ function GroupMenuContainer({
     projectSaveLocation,
   },
   tc,
+  loadGroupsIndex,
   // TODO:
   groupsDataReducer,
   groupsIndexReducer,
@@ -24,7 +25,7 @@ function GroupMenuContainer({
   console.log('groupsIndexReducer', groupsIndexReducer);
   useEffect(() => {
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, [gatewayLanguage, projectSaveLocation, selectedToolName, translate]);// temp
+  }, [gatewayLanguage, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
