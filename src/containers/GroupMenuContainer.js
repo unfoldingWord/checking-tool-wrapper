@@ -13,6 +13,7 @@ function GroupMenuContainer({
     selectedToolName,
     projectSaveLocation,
   },
+  tc,
   ...rest
 }) {
   console.log('rest', rest);
@@ -20,7 +21,7 @@ function GroupMenuContainer({
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [gatewayLanguage, projectSaveLocation, selectedToolName, translate]);// temp
 
-  return <GroupMenu {...rest} />;
+  return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
 
 GroupMenuContainer.propTypes = {
