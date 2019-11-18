@@ -13,6 +13,7 @@ function GroupMenuContainer({
     selectedToolName,
     projectSaveLocation,
   },
+  state,
   tc,
   loadGroupsIndex,
   // TODO:
@@ -20,12 +21,14 @@ function GroupMenuContainer({
   groupsIndexReducer,
   ...rest
 }) {
-  console.log('PROPS', { tc, ...rest });
-  console.log('groupsDataReducer', groupsDataReducer);
-  console.log('groupsIndexReducer', groupsIndexReducer);
   useEffect(() => {
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [gatewayLanguage, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
+
+  console.log('PROPS', { tc, ...rest });
+  console.log('groupsDataReducer', groupsDataReducer);
+  console.log('groupsIndexReducer', groupsIndexReducer);
+  console.log('state', state);
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
@@ -36,12 +39,13 @@ GroupMenuContainer.propTypes = {
   loadGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
   // TODO:
-  groupsIndexReducer: PropTypes.array.isRequired,
   groupsDataReducer: PropTypes.object.isRequired,
+  groupsIndexReducer: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   // TODO: Add selectors
+  state: state,
   groupsDataReducer: state.groupsDataReducer,
   groupsIndexReducer: state.groupsIndexReducer,
 });
