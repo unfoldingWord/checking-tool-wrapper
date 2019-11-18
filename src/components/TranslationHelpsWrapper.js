@@ -51,26 +51,44 @@ function TranslationHelpsWrapper(props) {
   const groupId = contextId.groupId;
   const languageId = toolsSelectedGLs[currentToolName];
 
+  /**
+   * extract article from reducer if present.
+   * @param {String} resourceType - subpath for resource such as 'translationAcademy'
+   * @param {String} article - name of article to find
+   * @return {String|null} - returns article if found
+   */
+  function getArticleFromReducer(resourceType, article) {
+    const resources = resourcesReducer.translationHelps[resourceType];
+    let articleData = resources && resources[article];
+    return articleData;
+  }
+
+  /**
+   * load the resource article for the link and display
+   * @param {String} link
+   * @return {boolean}
+   */
   function followTHelpsLink(link) {
     const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
-
     const [lang, type, category, article] = linkParts;
-    const resourceDir = tHelpsHelpers.getResourceDirByType(type);
+    const resourceSubDir = tHelpsHelpers.getResourceDirByType(type);
+    let articleData = getArticleFromReducer(resourceSubDir, article);
 
-    actions.loadResourceArticle(resourceDir, article, lang, category);
-    const articleData = resourcesReducer.translationHelps[resourceDir][article];
-
+    if (!articleData) { // if not cached
+      actions.loadResourceArticle(resourceSubDir, article, lang, category); // do synchronous load
+      articleData = getArticleFromReducer(resourceSubDir, article);
+    }
     setThState({
       showHelpsModal: true,
       modalArticle: articleData || 'Cannot find an article for ' + link,
       articleCategory: category,
     });
     return true;
-  };
+  }
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    actions.loadResourceArticle(currentToolName, groupId, languageId);
+    actions.loadResourceArticle(currentToolName, groupId, languageId, '', true); // do asynchronous load
   }, [actions, currentToolName, groupId, languageId]);
 
   useEffect(() => {
