@@ -6,14 +6,13 @@ import GroupMenu from '../components/GroupMenuWrapper';
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
 
-function GroupMenuContainer({
-  groupsIndexReducer, loadGroupsIndex, ...rest
-}) {
-  useEffect(() => {
-    loadGroupsIndex();
-  }, [groupsIndexReducer, loadGroupsIndex]);// temp
+function GroupMenuContainer(props) {
+  console.log('props', props);
+  // useEffect(() => {
+  //   loadGroupsIndex(language, toolName, projectDir, translate);
+  // }, [groupsIndexReducer]);// temp
 
-  return <GroupMenu {...rest} />;
+  return <GroupMenu {...props} />;
 }
 
 GroupMenuContainer.propTypes = {

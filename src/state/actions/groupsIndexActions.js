@@ -11,11 +11,11 @@ import {
  * @return {object} action object.
  */
 export const loadGroupsIndex = (language, toolName, projectDir, translate) => ((dispatch) => {
-  // const groupsIndex = loadProjectGroupIndex(language, toolName, projectDir, translate);
+  const groupsIndex = loadProjectGroupIndex(language, toolName, projectDir, translate);
 
   dispatch({
     type: LOAD_GROUPS_INDEX,
-    groupsIndex: [{ id: '1', name: '1' }, { id: '2', name: '2' }, { id: '3', name: '3' }],
+    groupsIndex,
   });
 });
 
