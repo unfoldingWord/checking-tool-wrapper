@@ -17,20 +17,17 @@ function GroupMenuContainer({
   tc,
   loadGroupsIndex,
   // TODO:
-  tool: {
-    groupsDataReducer,
-    groupsIndexReducer,
-  },
+  tool,
   ...rest
 }) {
   useEffect(() => {
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [gatewayLanguage, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
-
-  console.log('PROPS', { tc, ...rest });
-  console.log('groupsDataReducer', groupsDataReducer);
-  console.log('groupsIndexReducer', groupsIndexReducer);
   console.log('state', state);
+  console.log('PROPS', { tc, ...rest });
+  console.log('tool', tool);
+  console.log('groupsDataReducer', tool.groupsDataReducer);
+  console.log('groupsIndexReducer', tool.groupsIndexReducer);
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
