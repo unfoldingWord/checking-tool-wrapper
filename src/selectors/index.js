@@ -1,3 +1,13 @@
+import * as fromGrouspIndex from '../state/reducers/groupsIndexReducer';
+import * as fromGroupsData from '../state/reducers/groupsDataReducer';
+
+export const getGroupsIndex = (state) =>
+  fromGrouspIndex.getGroupsIndex(state.groupsIndexReducer);
+
+export const getGroupsData = (state) =>
+  fromGroupsData.getGroupsData(state.groupsDataReducer);
+
+// TODO:
 export const getTcState = (state) => state.tc;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
 export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;

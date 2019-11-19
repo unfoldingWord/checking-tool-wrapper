@@ -1,9 +1,18 @@
-export const ADD_COMMENT = 'TOOL::ADD_COMMENT';
+// groupsIndexReducer
 export const LOAD_GROUPS_INDEX = 'TOOL::LOAD_GROUPS_INDEX';
 export const CLEAR_PREVIOUS_GROUPS_INDEX = 'TOOL::CLEAR_PREVIOUS_GROUPS_INDEX';
 export const UPDATE_REFRESH_COUNT_GROUPS_INDEX = 'TOOL::UPDATE_REFRESH_COUNT_GROUPS_INDEX';
+// contextIdReducer
 export const CHANGE_CONTEXT_ID = 'TOOL::CHANGE_CONTEXT_ID';
 export const CLEAR_CONTEXT_ID = 'TOOL::CLEAR_CONTEXT_ID';
-export const ADD_GROUP_DATA = 'TOOL::ADD_GROUP_DATA';
+// groupsDataReducer
 export const CLEAR_PREVIOUS_GROUPS_DATA = 'TOOL::CLEAR_PREVIOUS_GROUPS_DATA';
 export const LOAD_GROUPS_DATA_FROM_FS = 'TOOL::LOAD_GROUPS_DATA_FROM_FS';
+// commentsReducer
+export const ADD_COMMENT = 'TOOL::ADD_COMMENT';
+// selectionsReducer
+export const CHANGE_SELECTIONS = 'TOOL::CHANGE_SELECTIONS';
+// bookmarksReducer
+export const SET_BOOKMARK = 'TOOL::SET_BOOKMARK';
+// invalidatedReducer
+export const SET_INVALIDATED = 'TOOL::SET_INVALIDATED';

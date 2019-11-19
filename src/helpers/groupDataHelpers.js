@@ -1,3 +1,4 @@
+import isEqual from 'deep-equal';
 import ProjectAPI from './ProjectAPI';
 
 function isVerseMatch(checkRef, contextIdRef) {
@@ -69,3 +70,38 @@ export const generateChapterGroupIndex = (translate, numChapters = 150) => {
     };
   });
 };
+
+/**
+ * searches groupData for a match for contextId (groupData must be for same groupId)
+ * @param {Object} contextId
+ * @param {Array} groupData for same groupId as contextId
+ * @return {number} - returns index of match or -1
+ */
+export const findGroupDataItem = (contextId, groupData) => {
+  let index = -1;
+  const isQuoteString = typeof contextId.quote === 'string';
+
+  for (let i = groupData.length - 1; i >= 0; i--) {
+    const grpContextId = groupData[i].contextId;
+
+    if (isSameVerse(grpContextId, contextId) &&
+      (grpContextId.occurrence === contextId.occurrence) &&
+      (isQuoteString ? (grpContextId.quote === contextId.quote) :
+        isEqual(grpContextId.quote, contextId.quote))) {
+      index = i;
+      break;
+    }
+  }
+  return index;
+};
+
+/**
+ * make sure context IDs are for same verse.  Optimized over isEqual()
+ * @param {Object} contextId1
+ * @param {Object} contextId2
+ * @return {boolean} returns true if context IDs are for same verse
+ */
+export function isSameVerse(contextId1, contextId2) {
+  return (contextId1.reference.chapter === contextId2.reference.chapter) &&
+    (contextId1.reference.verse === contextId2.reference.verse);
+}

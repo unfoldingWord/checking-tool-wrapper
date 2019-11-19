@@ -1,6 +1,14 @@
 import fs from 'fs-extra';
 import path from 'path-extra';
 import isEqual from 'deep-equal';
+import { PROJECT_CHECKDATA_DIRECTORY } from '../common/constants';
+import {
+  ADD_COMMENT,
+  SET_INVALIDATED,
+  SET_BOOKMARK,
+  CHANGE_SELECTIONS,
+} from '../state/actions/actionTypes';
+import { getGatewayLanguageCodeAndQuote } from '../helpers/gatewayLanguageHelpers';
 
 /**x
  * @description loads checkdata based on given contextId.
@@ -47,4 +55,167 @@ export function loadCheckData(loadPath, contextId) {
   * to initialized the reducer.
   */
   return checkDataObject;
+}
+
+/**
+ * Generates the output directory.
+ * @param {string} projectSaveLocation - Project's absolute path.
+ * @param {object} contextId - context id.
+ * @param {string} checkDataName - checkData folder name.
+ * @return {string} save path
+ * e.g. /translationCore/ar_eph_text_ulb/.apps/translationCore/checkData/comments/eph/1/3
+ */
+export function generateLoadPath(projectSaveLocation, contextId, checkDataName) {
+  if (projectSaveLocation) {
+    const bookAbbreviation = contextId.reference.bookId;
+    const chapter = contextId.reference.chapter.toString();
+    const verse = contextId.reference.verse.toString();
+    const loadPath = path.join(
+      projectSaveLocation,
+      PROJECT_CHECKDATA_DIRECTORY,
+      checkDataName,
+      bookAbbreviation,
+      chapter,
+      verse
+    );
+    return loadPath;
+  } else {
+    console.warn('projectSaveLocation is undefined');
+  }
+}
+
+/**
+ * Loads the latest comment file from the file system for the specify contextID.
+ * @param {string} projectSaveLocation - Project's absolute path.
+ * @param {object} contextId - context id.
+ * @return {Object} Dispatches an action that loads the commentsReducer with data.
+ */
+export function loadComments(projectSaveLocation, contextId) {
+  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'comments');
+  const commentsObject = loadCheckData(loadPath, contextId);
+
+  if (commentsObject) {
+    return {
+      type: ADD_COMMENT,
+      modifiedTimestamp: commentsObject.modifiedTimestamp,
+      text: commentsObject.text,
+      userName: commentsObject.userName,
+    };
+  } else {
+    // The object is undefined because the file wasn't found in the directory thus we init the reducer to a default value.
+    return {
+      type: ADD_COMMENT,
+      modifiedTimestamp: '',
+      text: '',
+      userName: '',
+    };
+  }
+}
+/**
+ * Loads the latest invalidated file from the file system for the specify contextID.
+ * @param {Object} state - store state object.
+ * @return {Object} Dispatches an action that loads the invalidatedReducer with data.
+ */
+export function loadInvalidated(projectSaveLocation, contextId) {
+  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
+  const invalidatedObject = loadCheckData(loadPath, contextId);
+  const {
+    gatewayLanguageCode,
+    gatewayLanguageQuote,
+  } = getGatewayLanguageCodeAndQuote(toolName, contextId, gatewayLanguageCode, toolsSelectedGLs, bibles);
+
+  if (invalidatedObject) {
+    return {
+      type: SET_INVALIDATED,
+      enabled: invalidatedObject.enabled,
+      username: invalidatedObject.userName || invalidatedObject.username,
+      modifiedTimestamp: invalidatedObject.modifiedTimestamp,
+      gatewayLanguageCode,
+      gatewayLanguageQuote,
+    };
+  } else {
+    // The object is undefined because the file wasn't found in the directory thus we init the reducer to a default value.
+    return {
+      type: SET_INVALIDATED,
+      enabled: false,
+      modifiedTimestamp: '',
+      username: '',
+      gatewayLanguageCode: null,
+      gatewayLanguageQuote: null,
+    };
+  }
+}
+/**
+ * Loads the latest reminders file from the file system for the specify contextID.
+ * @param {Object} state - store state object.
+ * @return {Object} Dispatches an action that loads the remindersReducer with data.
+ */
+export function loadBookmarks(projectSaveLocation, contextId) {
+  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
+  const remindersObject = loadCheckData(loadPath, contextId);
+  const {
+    gatewayLanguageCode,
+    gatewayLanguageQuote,
+  } = getGatewayLanguageCodeAndQuote(state);
+
+  if (remindersObject) {
+    return {
+      type: SET_BOOKMARK,
+      enabled: remindersObject.enabled,
+      username: remindersObject.userName || remindersObject.username,
+      modifiedTimestamp: remindersObject.modifiedTimestamp,
+      gatewayLanguageCode,
+      gatewayLanguageQuote,
+    };
+  } else {
+    // The object is undefined because the file wasn't found in the directory thus we init the reducer to a default value.
+    return {
+      type: SET_BOOKMARK,
+      enabled: false,
+      modifiedTimestamp: '',
+      username: '',
+      gatewayLanguageCode: null,
+      gatewayLanguageQuote: null,
+    };
+  }
+}
+/**
+ * Loads the latest selections file from the file system for the specific contextID.
+ * @param {Object} state - store state object.
+ * @return {Object} Dispatches an action that loads the selectionsReducer with data.
+ */
+export function loadSelections(projectSaveLocation, contextId) {
+  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'selections');
+  const selectionsObject = loadCheckData(loadPath, contextId);
+
+  if (selectionsObject) {
+    let {
+      selections,
+      modifiedTimestamp,
+      nothingToSelect,
+      username,
+      userName, // for old project data
+      gatewayLanguageCode,
+      gatewayLanguageQuote,
+    } = selectionsObject;
+    username = username || userName;
+
+    return {
+      type: CHANGE_SELECTIONS,
+      selections: selections,
+      nothingToSelect: nothingToSelect,
+      username,
+      modifiedTimestamp: modifiedTimestamp,
+      gatewayLanguageCode: gatewayLanguageCode,
+      gatewayLanguageQuote: gatewayLanguageQuote,
+    };
+  } else {
+    // The object is undefined because the file wasn't found in the directory thus we init the reducer to a default value.
+    return {
+      type: CHANGE_SELECTIONS,
+      modifiedTimestamp: null,
+      selections: [],
+      username: null,
+    };
+  }
 }
