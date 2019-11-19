@@ -15,7 +15,7 @@ function GroupMenuContainer({
   // projectSaveLocation,
   groupsDataReducer,
   groupsIndexReducer,
-  manifest: { project: bookId, toolsSelectedGLs },
+  // manifest: { project: bookId, toolsSelectedGLs },
   tc: {
     gatewayLanguage,
     selectedToolName,
@@ -26,8 +26,10 @@ function GroupMenuContainer({
   loadCurrentContextId,
   // TODO:
   tc,
+  state,
   ...rest
 }) {
+  console.log('state', state);
   console.log('gatewayLanguage', gatewayLanguage);
 
   useEffect(() => {
@@ -39,9 +41,9 @@ function GroupMenuContainer({
   console.log('groupsDataReducer', groupsDataReducer);
   console.log('groupsIndexReducer', groupsIndexReducer);
   console.log('tc', tc);
-  console.log('bookId', bookId);
-  console.log('toolsSelectedGLs', toolsSelectedGLs);
-  console.log('bookId', bookId);
+  // console.log('bookId', bookId);
+  // console.log('toolsSelectedGLs', toolsSelectedGLs);
+  // console.log('bookId', bookId);
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
   console.log('projectSaveLocation', projectSaveLocation);
@@ -66,16 +68,18 @@ GroupMenuContainer.propTypes = {
   groupsDataReducer: PropTypes.object.isRequired,
   groupsIndexReducer: PropTypes.array.isRequired,
   tc: PropTypes.object.isRequired,// TODO: remove
+  state: PropTypes.object.isRequired,// TODO: remove
 };
 
 const mapStateToProps = (state) => ({
   // TODO: Add selectors
+  state: state,
   groupsDataReducer: state.tool.groupsDataReducer,
   groupsIndexReducer: state.tool.groupsIndexReducer,
   // gatewayLanguage: state.tc.gatewayLanguage,
   // selectedToolName: state.tc.selectedToolName,
   // projectSaveLocation: state.tc.projectSaveLocation,
-  manifest: state.tc.projectDetailsReducer.manifest,
+  // manifest: state.tc.projectDetailsReducer.manifest,
   bibles: state.resourcesReducer.bibles,
 });
 
