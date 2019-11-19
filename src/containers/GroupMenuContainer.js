@@ -72,9 +72,9 @@ const mapStateToProps = (state) => ({
   // TODO: Add selectors
   groupsDataReducer: state.tool.groupsDataReducer,
   groupsIndexReducer: state.tool.groupsIndexReducer,
-  gatewayLanguage: state.tc.gatewayLanguage,
-  selectedToolName: state.tc.selectedToolName,
-  projectSaveLocation: state.tc.projectSaveLocation,
+  // gatewayLanguage: state.tc.gatewayLanguage,
+  // selectedToolName: state.tc.selectedToolName,
+  // projectSaveLocation: state.tc.projectSaveLocation,
   manifest: state.tc.projectDetailsReducer.manifest,
   bibles: state.resourcesReducer.bibles,
 });
