@@ -7,6 +7,13 @@ export const getGroupsIndex = (state) =>
 export const getGroupsData = (state) =>
   fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
 
+export const getProjectManifest = (state) =>
+  state.tc.projectDetailsReducer.manifest;
+
+export const getBiblesState = (state) =>
+  state.resourcesReducer.bibles;
+
+
 // TODO:
 export const getTcState = (state) => state.tc;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
@@ -21,7 +28,6 @@ export const getCurrentPaneSettingsState = (state) => {
   const { ScripturePane } = state.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
-export const getBiblesState = (state) => state.resourcesReducer.bibles;
 export const getTargetBibleState = (state) => state.tc.resourcesReducer.bibles.targetLanguage.targetBible;
 export const getActionsState = (state) => state.tc.actions;
 export const getCommentsReducerState = (state) => state.tc.commentsReducer;
