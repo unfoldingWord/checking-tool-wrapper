@@ -26,10 +26,10 @@ function GroupMenuContainer({
   loadCurrentContextId,
   // TODO:
   tc,
-  state,
+  ownProps,
   ...rest
 }) {
-  console.log('state', state);
+  console.log('ownProps', ownProps);
   console.log('gatewayLanguage', gatewayLanguage);
 
   useEffect(() => {
@@ -68,12 +68,12 @@ GroupMenuContainer.propTypes = {
   groupsDataReducer: PropTypes.object.isRequired,
   groupsIndexReducer: PropTypes.array.isRequired,
   tc: PropTypes.object.isRequired,// TODO: remove
-  state: PropTypes.object.isRequired,// TODO: remove
+  ownProps: PropTypes.object.isRequired,// TODO: remove
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   // TODO: Add selectors
-  state: state,
+  ownProps: ownProps,
   groupsDataReducer: state.tool.groupsDataReducer,
   groupsIndexReducer: state.tool.groupsIndexReducer,
   // gatewayLanguage: state.tc.gatewayLanguage,
