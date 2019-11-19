@@ -89,7 +89,7 @@ Container.propTypes = {
 };
 
 export const mapStateToProps = (state, ownProps) => ({
-  groupMenu: getGroupMenuState(ownProps),
+  groupMenu: ownProps,
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
   checkInfoCard: getCheckInfoCardState(ownProps),
