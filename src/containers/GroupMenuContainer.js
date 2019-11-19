@@ -41,9 +41,9 @@ function GroupMenuContainer({
   console.log('groupsDataReducer', groupsDataReducer);
   console.log('groupsIndexReducer', groupsIndexReducer);
   console.log('tc', tc);
-  // console.log('bookId', bookId);
-  // console.log('toolsSelectedGLs', toolsSelectedGLs);
-  // console.log('bookId', bookId);
+  console.log('bookId', bookId);
+  console.log('toolsSelectedGLs', toolsSelectedGLs);
+  console.log('bookId', bookId);
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
   console.log('projectSaveLocation', projectSaveLocation);
