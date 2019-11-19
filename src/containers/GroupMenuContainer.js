@@ -8,19 +8,19 @@ import { loadGroupsData } from '../state/actions/groupsDataActions';
 import { loadCurrentContextId } from '../state/actions/contextIdActions';
 
 function GroupMenuContainer({
-  // bibles,
+  bibles,
   translate,
-  // gatewayLanguage,
-  // selectedToolName,
-  // projectSaveLocation,
+  gatewayLanguage,
+  selectedToolName,
+  projectSaveLocation,
   groupsDataReducer,
   groupsIndexReducer,
-  // manifest: { project: bookId, toolsSelectedGLs },
-  tc: {
-    gatewayLanguage,
-    selectedToolName,
-    projectSaveLocation,
-  },
+  manifest: { project: bookId, toolsSelectedGLs },
+  // tc: {
+  //   gatewayLanguage,
+  //   selectedToolName,
+  //   projectSaveLocation,
+  // },
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
@@ -76,11 +76,11 @@ const mapStateToProps = (state, ownProps) => ({
   ownProps: ownProps,
   groupsDataReducer: state.tool.groupsDataReducer,
   groupsIndexReducer: state.tool.groupsIndexReducer,
-  // gatewayLanguage: state.tc.gatewayLanguage,
-  // selectedToolName: state.tc.selectedToolName,
-  // projectSaveLocation: state.tc.projectSaveLocation,
-  // manifest: state.tc.projectDetailsReducer.manifest,
-  // bibles: state.resourcesReducer.bibles,
+  gatewayLanguage: ownProps.tc.gatewayLanguage,
+  selectedToolName: ownProps.tc.selectedToolName,
+  projectSaveLocation: ownProps.tc.projectSaveLocation,
+  manifest: ownProps.tc.projectDetailsReducer.manifest,
+  bibles: ownProps.tc.resourcesReducer.bibles,
 });
 
 const mapDispatchToProps = {
