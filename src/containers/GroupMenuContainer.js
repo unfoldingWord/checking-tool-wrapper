@@ -5,6 +5,7 @@ import GroupMenu from '../components/GroupMenuWrapper';
 // actions
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
+import { loadCurrentContextId } from '../state/actions/contextIdActions';
 
 function GroupMenuContainer({
   translate,
@@ -15,6 +16,7 @@ function GroupMenuContainer({
   },
   loadGroupsIndex,
   loadGroupsData,
+  loadCurrentContextId,
   groupsDataReducer,
   groupsIndexReducer,
   // TODO:
@@ -22,12 +24,18 @@ function GroupMenuContainer({
   ...rest
 }) {
   useEffect(() => {
-    console.log('----useEffect----');
+    console.log('----useEffect 1----');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [gatewayLanguage, loadGroupsData, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
+
   console.log('groupsDataReducer', groupsDataReducer);
   console.log('groupsIndexReducer', groupsIndexReducer);
+  console.log('tc', tc);
+
+  // useEffect(() => {
+  //   loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, toolsSelectedGLs, bibles);
+  // });
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
@@ -37,6 +45,7 @@ GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
+  loadCurrentContextId: PropTypes.func.isRequired,
   // TODO:
   groupsDataReducer: PropTypes.object.isRequired,
   groupsIndexReducer: PropTypes.array.isRequired,
@@ -51,6 +60,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadGroupsIndex,
   loadGroupsData,
+  loadCurrentContextId,
 };
 
 export default connect(

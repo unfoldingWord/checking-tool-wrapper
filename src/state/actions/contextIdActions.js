@@ -3,7 +3,13 @@ import { batchActions } from 'redux-batched-actions';
 import delay from '../../utils/delay';
 import Repo from '../../helpers/Repo';
 import { findGroupDataItem } from '../../helpers/groupDataHelpers';
-import { getContextIdPathFromIndex } from '../../helpers/contextIdHelpers';
+import { getContextIdPathFromIndex, saveContextId } from '../../helpers/contextIdHelpers';
+import {
+  loadSelections,
+  loadComments,
+  loadBookmarks,
+  loadInvalidated,
+} from '../../helpers/checkDataHelpers';
 import {
   getGroupsIndex,
   getGroupsData,
@@ -18,14 +24,16 @@ import {
 
 /**
  * Loads the latest contextId file from the file system.
- * @param {*} toolName - tool's name.
- * @param {*} bookId - book id code. e.g. tit.
- * @param {*} projectSaveLocation - project's absolute path.
+ * @param {string} toolName - tool's name.
+ * @param {string} bookId - book id code. e.g. tit.
+ * @param {string} projectSaveLocation - project's absolute path.
+ * @param {object} toolsSelectedGLs - tools selected gls.
+ * @param {object} bibles - bible resources.
  */
-export function loadCurrentContextId(toolName, bookId, projectSaveLocation) {
+export function loadCurrentContextId(toolName, bookId, projectSaveLocation, toolsSelectedGLs, bibles) {
   return (dispatch, getState) => {
     const state = getState();
-    const { groupsIndex } = state.groupsIndexReducer;
+    const groupsIndex = getGroupsIndex(state);
 
     if (projectSaveLocation && toolName && bookId) {
       let contextId = {};
@@ -39,7 +47,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation) {
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
             if (contextId && contextIdExistInGroups) {
-              return dispatch(changeCurrentContextId(contextId));
+              return dispatch(changeCurrentContextId(contextId, toolName, projectSaveLocation, toolsSelectedGLs, bibles));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
@@ -48,7 +56,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation) {
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        dispatch(changeCurrentContextId(contextId));
+        dispatch(changeCurrentContextId(contextId, toolName, projectSaveLocation, toolsSelectedGLs, bibles));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
         console.warn('loadCurrentContextId() error loading contextId', err);
@@ -62,31 +70,38 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation) {
 /**
  * @description this action changes the contextId to the current check.
  * @param {object} contextId - the contextId object.
+ * @param {string} toolName - tool's name.
+ * @param {string} projectSaveLocation - project's absolute path.
+ * @param {object} toolsSelectedGLs - tools selected gls.
+ * @param {object} bibles - bible resources.
  * @return {object} New state for contextId reducer.
  */
-export const changeCurrentContextId = contextId => (dispatch, getState) => {
+export const changeCurrentContextId = (contextId, toolName, projectSaveLocation, toolsSelectedGLs, bibles) => (dispatch, getState) => {
   const state = getState();
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
   if (contextId) {
     const {
       reference: {
-        bookId, chapter, verse,
-      }, tool, groupId,
+        bookId,
+        chapter,
+        verse,
+      },
+      tool,
+      groupId,
     } = contextId;
     const refStr = `${tool} ${groupId} ${bookId} ${chapter}:${verse}`;
     console.log(`changeCurrentContextId() - setting new contextId to: ${refStr}`);
 
     if (!groupDataLoaded) { // if group data not found, load from file
-      dispatch(loadCheckData());
+      dispatch(loadCheckData(contextId, toolName, projectSaveLocation, toolsSelectedGLs, bibles));
     }
     saveContextId(state, contextId);
-    const projectDir = getProjectSaveLocation(state);
 
     // commit project changes after delay
     delay(5000).then(async () => {
       try {
-        const repo = await Repo.open(projectDir, state.loginReducer.userdata);
+        const repo = await Repo.open(projectSaveLocation, state.loginReducer.userdata);
         const saveStarted = await repo.saveDebounced(`Auto saving at ${refStr}`);
 
         if (!saveStarted) {
@@ -136,9 +151,10 @@ function firstContextId(state) {
  */
 function changeContextIdInReducers(contextId, dispatch, state) {
   let oldGroupObject = {};
+  const groupsData = getGroupsData(state);
 
   if (contextId && contextId.groupId) {
-    const currentGroupData = state.groupsDataReducer && state.groupsDataReducer.groupsData && state.groupsDataReducer.groupsData[contextId.groupId];
+    const currentGroupData = groupsData && groupsData[contextId.groupId];
 
     if (currentGroupData) {
       const index = findGroupDataItem(contextId, currentGroupData);
@@ -196,4 +212,11 @@ export const changeContextId = contextId => ({
   contextId,
 });
 
-
+const loadCheckData = (contextId, toolName, projectSaveLocation, toolsSelectedGLs, bibles) => dispatch => {
+  const actionsBatch = [];
+  actionsBatch.push(loadSelections(projectSaveLocation, contextId));
+  actionsBatch.push(loadComments(projectSaveLocation, contextId));
+  actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, toolName, toolsSelectedGLs, bibles));
+  actionsBatch.push(loadInvalidated(projectSaveLocation, contextId, toolName, toolsSelectedGLs, bibles));
+  dispatch(batchActions(actionsBatch)); // process the batch
+};

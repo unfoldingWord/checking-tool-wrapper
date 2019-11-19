@@ -116,7 +116,7 @@ export function loadComments(projectSaveLocation, contextId) {
  * @param {Object} state - store state object.
  * @return {Object} Dispatches an action that loads the invalidatedReducer with data.
  */
-export function loadInvalidated(projectSaveLocation, contextId) {
+export function loadInvalidated(projectSaveLocation, contextId, toolName, toolsSelectedGLs, bibles) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
   const invalidatedObject = loadCheckData(loadPath, contextId);
   const {
@@ -150,13 +150,13 @@ export function loadInvalidated(projectSaveLocation, contextId) {
  * @param {Object} state - store state object.
  * @return {Object} Dispatches an action that loads the remindersReducer with data.
  */
-export function loadBookmarks(projectSaveLocation, contextId) {
+export function loadBookmarks(projectSaveLocation, contextId, toolName, toolsSelectedGLs, bibles) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
   const remindersObject = loadCheckData(loadPath, contextId);
   const {
     gatewayLanguageCode,
     gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(state);
+  } = getGatewayLanguageCodeAndQuote(toolName, contextId, gatewayLanguageCode, toolsSelectedGLs, bibles);
 
   if (remindersObject) {
     return {

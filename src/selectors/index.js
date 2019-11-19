@@ -2,10 +2,10 @@ import * as fromGrouspIndex from '../state/reducers/groupsIndexReducer';
 import * as fromGroupsData from '../state/reducers/groupsDataReducer';
 
 export const getGroupsIndex = (state) =>
-  fromGrouspIndex.getGroupsIndex(state.groupsIndexReducer);
+  fromGrouspIndex.getGroupsIndex(state.tool.groupsIndexReducer);
 
 export const getGroupsData = (state) =>
-  fromGroupsData.getGroupsData(state.groupsDataReducer);
+  fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
 
 // TODO:
 export const getTcState = (state) => state.tc;
