@@ -8,7 +8,7 @@ import { loadGroupsData } from '../state/actions/groupsDataActions';
 import { loadCurrentContextId } from '../state/actions/contextIdActions';
 
 function GroupMenuContainer({
-  bibles,
+  // bibles,
   translate,
   // gatewayLanguage,
   // selectedToolName,
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
   // selectedToolName: state.tc.selectedToolName,
   // projectSaveLocation: state.tc.projectSaveLocation,
   // manifest: state.tc.projectDetailsReducer.manifest,
-  bibles: state.resourcesReducer.bibles,
+  // bibles: state.resourcesReducer.bibles,
 });
 
 const mapDispatchToProps = {
