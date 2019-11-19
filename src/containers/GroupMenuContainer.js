@@ -10,12 +10,17 @@ import { loadCurrentContextId } from '../state/actions/contextIdActions';
 function GroupMenuContainer({
   bibles,
   translate,
-  gatewayLanguage,
-  selectedToolName,
-  projectSaveLocation,
+  // gatewayLanguage,
+  // selectedToolName,
+  // projectSaveLocation,
   groupsDataReducer,
   groupsIndexReducer,
   manifest: { project: bookId, toolsSelectedGLs },
+  tc: {
+    gatewayLanguage,
+    selectedToolName,
+    projectSaveLocation,
+  },
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
@@ -23,6 +28,8 @@ function GroupMenuContainer({
   tc,
   ...rest
 }) {
+  console.log('gatewayLanguage', gatewayLanguage);
+
   useEffect(() => {
     console.log('----useEffect 1----');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
