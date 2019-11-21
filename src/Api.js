@@ -1,5 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { ToolApi } from 'tc-tool';
+import {
+  getActiveLanguage,
+  setActiveLocale,
+  ToolApi,
+} from 'tc-tool';
 import path from 'path-extra';
 import usfm from 'usfm-js';
 import fs from 'fs-extra';
@@ -258,8 +262,31 @@ export default class Api extends ToolApi {
     // TODO: implement
   }
 
+  /**
+   * Lifecycle method
+   * @param nextProps
+   */
   toolWillReceiveProps(nextProps) {
-    // TODO: implement
+    const { tc: { contextId: nextContext } } = nextProps;
+    const {
+      tc: { appLanguage },
+      tool: {
+        isReady,
+        name: toolName,
+      },
+    } = this.props;
+
+    const isCurrentTool = (nextContext.tool === toolName);
+
+    if (isCurrentTool && isReady) {
+      const { store } = this.context;
+      const currentLang = getActiveLanguage(store.getState());
+      const langId = currentLang && currentLang.code;
+
+      if (langId && (langId !== appLanguage)) { // see if locale language has changed
+        store.dispatch(setActiveLocale(appLanguage));
+      }
+    }
   }
 
   /**
