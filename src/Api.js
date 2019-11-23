@@ -278,20 +278,15 @@ export default class Api extends ToolApi {
     } = this.props;
 
     const isCurrentTool = (nextContext.tool === toolName);
-    console.log(`toolWillReceiveProps(${toolName}) appLanguage: ${appLanguage}, currentLanguage: ${currentLanguage}, isCurrentTool: ${isCurrentTool}, isReady: ${isReady}`);
 
     if (isCurrentTool && isReady) {
       const { store } = this.context;
       const currentLang = getActiveLanguage(store.getState());
       const langId = currentLang && currentLang.code;
-      console.log(`toolWillReceiveProps(${toolName}) appLanguage: ${appLanguage}, current tool lang: ${langId}`);
 
       if (langId && (langId !== appLanguage)) { // see if locale language has changed
-        console.log(`toolWillReceiveProps(${toolName}) setting language to: ${appLanguage}`);
         store.dispatch(setActiveLocale(appLanguage));
       }
-    } else {
-      console.log(`toolWillReceiveProps(${toolName}) properties are for: ${nextContext.tool}, appLanguage: ${appLanguage}`);
     }
   }
 
