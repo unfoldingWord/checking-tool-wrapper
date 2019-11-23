@@ -269,6 +269,7 @@ export default class Api extends ToolApi {
   toolWillReceiveProps(nextProps) {
     const { tc: { contextId: nextContext } } = nextProps;
     const {
+      currentLanguage,
       tc: { appLanguage },
       tool: {
         isReady,
@@ -277,6 +278,7 @@ export default class Api extends ToolApi {
     } = this.props;
 
     const isCurrentTool = (nextContext.tool === toolName);
+    console.log(`toolWillReceiveProps(${toolName}) appLanguage: ${appLanguage}, currentLanguage: ${currentLanguage}, isCurrentTool: ${isCurrentTool}, isReady: ${isReady}`);
 
     if (isCurrentTool && isReady) {
       const { store } = this.context;
@@ -288,6 +290,8 @@ export default class Api extends ToolApi {
         console.log(`toolWillReceiveProps(${toolName}) setting language to: ${appLanguage}`);
         store.dispatch(setActiveLocale(appLanguage));
       }
+    } else {
+      console.log(`toolWillReceiveProps(${toolName}) properties are for: ${nextContext.tool}, appLanguage: ${appLanguage}`);
     }
   }
 
