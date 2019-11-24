@@ -44,9 +44,10 @@ function GroupMenuContainer({
   console.log('selectedToolName', selectedToolName);
   console.log('projectSaveLocation', projectSaveLocation);
 
-  // useEffect(() => {
-  //   loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, toolsSelectedGLs, bibles);
-  // });
+  useEffect(() => {
+    console.log('----useEffect 2----');
+    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, toolsSelectedGLs, bibles);
+  }, [bibles, bookId, loadCurrentContextId, projectSaveLocation, selectedToolName, toolsSelectedGLs]);
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
