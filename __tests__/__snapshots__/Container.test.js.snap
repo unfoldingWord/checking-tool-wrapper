@@ -4868,6 +4868,11 @@ exports[`Container Tests Test Container 1`] = `
                       .
 
                     </span>
+                    <span
+                      style="background-color:transparent"
+                    >
+                       
+                    </span>
                   </div>
                 </div>
               </div>
@@ -5232,7 +5237,12 @@ exports[`Container Tests Test Container 1`] = `
                     <span
                       style="background-color:var(--highlight-color)"
                     >
-                      .  
+                      . 
+                    </span>
+                    <span
+                      style="background-color:transparent"
+                    >
+                       
                     </span>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -54,7 +54,7 @@
     "react-test-renderer": "16.8.5",
     "redux-mock-store": "1.5.3",
     "style-loader": "0.23.1",
-    "tc-tool": "3.0.2",
+    "tc-tool": "3.0.3",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0"
   },
@@ -77,7 +77,7 @@
     "selections": "0.1.7",
     "semver": "^6.3.0",
     "simple-git": "^1.126.0",
-    "tc-ui-toolkit": "0.15.4",
+    "tc-ui-toolkit": "0.15.6",
     "usfm-js": "2.0.1"
   }
 }
