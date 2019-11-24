@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GroupMenu from '../components/GroupMenuWrapper';
-// actions
+// Actions
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
 import { loadCurrentContextId } from '../state/actions/contextIdActions';
 
+// TODO: Connect loadCurrentContextId
 function GroupMenuContainer({
   bibles,
   translate,
@@ -16,11 +17,6 @@ function GroupMenuContainer({
   groupsDataReducer,
   groupsIndexReducer,
   manifest: { project: bookId, toolsSelectedGLs },
-  // tc: {
-  //   gatewayLanguage,
-  //   selectedToolName,
-  //   projectSaveLocation,
-  // },
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
