@@ -17,7 +17,7 @@ function GroupMenuContainer({
   groupsDataReducer,
   groupsIndexReducer,
   contextIdReducer,
-  manifest: { project: bookId },
+  manifest: { project: { id: bookId } },
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
