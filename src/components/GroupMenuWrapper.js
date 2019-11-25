@@ -17,9 +17,9 @@ import { generateItemId } from '../helpers/groupMenuHelpers';
 
 function GroupMenuWrapper({
   translate,
+  contextId,
   tc: {
     project,
-    contextId,
     actions: { changeCurrentContextId },
   },
   groupsData,
@@ -179,8 +179,9 @@ function GroupMenuWrapper({
 GroupMenuWrapper.propTypes = {
   tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-  groupsIndex: PropTypes.array,
-  groupsData: PropTypes.object,
+  groupsIndex: PropTypes.array.isRequired,
+  groupsData: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
 };
 
 export default GroupMenuWrapper;

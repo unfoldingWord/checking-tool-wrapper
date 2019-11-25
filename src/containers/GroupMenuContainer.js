@@ -52,6 +52,7 @@ function GroupMenuContainer({
     <GroupMenu
       tc={tc}
       translate={translate}
+      contextId={contextId}
       groupsData={groupsData}
       groupsIndex={groupsIndex}
       { ...rest }
