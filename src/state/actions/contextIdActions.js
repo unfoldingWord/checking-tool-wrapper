@@ -28,8 +28,9 @@ import {
  * @param {string} bookId - book id code. e.g. tit.
  * @param {string} projectSaveLocation - project's absolute path.
  * @param {object} glBible - gateway language bible.
+ * @param {object} userdata - user data.
  */
-export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBible) {
+export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBible, userdata) {
   return (dispatch, getState) => {
     console.log('loadCurrentContextId()');
     console.log('toolName', toolName);
@@ -52,7 +53,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
             if (contextId && contextIdExistInGroups) {
-              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBible));
+              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBible, userdata));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
@@ -61,7 +62,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBible));
+        dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBible, userdata));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
         console.warn('loadCurrentContextId() error loading contextId', err);
@@ -77,9 +78,10 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
  * @param {object} contextId - the contextId object.
  * @param {string} projectSaveLocation - project's absolute path.
  * @param {object} glBible - gateway language bible.
+ * @param {object} userdata - user data.
  * @return {object} New state for contextId reducer.
  */
-export const changeCurrentContextId = (contextId, projectSaveLocation, glBible) => (dispatch, getState) => {
+export const changeCurrentContextId = (contextId, projectSaveLocation, glBible, userdata) => (dispatch, getState) => {
   const state = getState();
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
@@ -99,12 +101,12 @@ export const changeCurrentContextId = (contextId, projectSaveLocation, glBible) 
     if (!groupDataLoaded) { // if group data not found, load from file
       dispatch(loadCheckData(contextId, projectSaveLocation, glBible));
     }
-    saveContextId(state, contextId);
+    saveContextId(contextId, projectSaveLocation);
 
     // commit project changes after delay
     delay(5000).then(async () => {
       try {
-        const repo = await Repo.open(projectSaveLocation, state.loginReducer.userdata);
+        const repo = await Repo.open(projectSaveLocation, userdata);
         const saveStarted = await repo.saveDebounced(`Auto saving at ${refStr}`);
 
         if (!saveStarted) {

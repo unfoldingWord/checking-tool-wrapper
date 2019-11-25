@@ -10,6 +10,7 @@ import { loadCurrentContextId } from '../state/actions/contextIdActions';
 // TODO: Connect loadCurrentContextId
 function GroupMenuContainer({
   glBible,
+  userdata,
   translate,
   gatewayLanguage,
   selectedToolName,
@@ -36,8 +37,8 @@ function GroupMenuContainer({
     console.log('----useEffect 2----');
     console.log('selectedToolName', 'bookId', 'projectSaveLocation', 'glBible');
     console.log(selectedToolName, bookId, projectSaveLocation, glBible);
-    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible);
-  }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBible]);
+    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible, userdata);
+  }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBible, userdata]);
 
   console.log('ownProps', ownProps);
   console.log('tc', tc);
@@ -55,6 +56,7 @@ function GroupMenuContainer({
 
 GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
+  userdata: PropTypes.object.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
   selectedToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
@@ -81,6 +83,7 @@ const mapStateToProps = (state, ownProps) => ({
   selectedToolName: ownProps.tc.selectedToolName,
   projectSaveLocation: ownProps.tc.projectSaveLocation,
   manifest: ownProps.tc.projectDetailsReducer.manifest,
+  userdata: ownProps.tc.loginReducer.userdata,
   glBible: ownProps.tc.resourcesReducer.bibles[ownProps.tc.gatewayLanguage],
 });
 
