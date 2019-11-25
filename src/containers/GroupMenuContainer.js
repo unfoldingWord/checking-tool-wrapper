@@ -16,7 +16,7 @@ function GroupMenuContainer({
   selectedToolName,
   projectSaveLocation,
   groupsDataReducer: { groupsData },
-  groupsIndexReducer,
+  groupsIndexReducer: { groupsIndex },
   contextId,
   manifest: { project: { id: bookId } },
   loadGroupsIndex,
@@ -45,7 +45,7 @@ function GroupMenuContainer({
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
   console.log('groupsData', groupsData);
-  console.log('groupsIndexReducer', groupsIndexReducer);
+  console.log('groupsIndex', groupsIndex);
   console.log('projectSaveLocation', projectSaveLocation);
 
   return (
@@ -53,6 +53,7 @@ function GroupMenuContainer({
       tc={tc}
       translate={translate}
       groupsData={groupsData}
+      groupsIndex={groupsIndex}
       { ...rest }
     />
   );
@@ -68,7 +69,7 @@ GroupMenuContainer.propTypes = {
   glBible: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   groupsDataReducer: PropTypes.object.isRequired,
-  groupsIndexReducer: PropTypes.array.isRequired,
+  groupsIndexReducer: PropTypes.object.isRequired,
   // Actions
   loadGroupsData: PropTypes.func.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
