@@ -17,7 +17,7 @@ function GroupMenuContainer({
   groupsDataReducer,
   groupsIndexReducer,
   contextIdReducer,
-  manifest: { project: bookId, toolsSelectedGLs },
+  manifest: { project: bookId },
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
@@ -35,16 +35,14 @@ function GroupMenuContainer({
   useEffect(() => {
     console.log('----useEffect 2----');
     loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible);
-  }, [glBible, bookId, loadCurrentContextId, projectSaveLocation, selectedToolName, toolsSelectedGLs]);
+  }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBible]);
 
   console.log('ownProps', ownProps);
-  console.log('gatewayLanguage', gatewayLanguage);
+  console.log('tc', tc);
   console.log('groupsDataReducer', groupsDataReducer);
   console.log('groupsIndexReducer', groupsIndexReducer);
   console.log('contextIdReducer', contextIdReducer);
-  console.log('tc', tc);
-  console.log('bookId', bookId);
-  console.log('toolsSelectedGLs', toolsSelectedGLs);
+  console.log('gatewayLanguage', gatewayLanguage);
   console.log('bookId', bookId);
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
@@ -66,6 +64,7 @@ GroupMenuContainer.propTypes = {
   // TODO:
   groupsDataReducer: PropTypes.object.isRequired,
   groupsIndexReducer: PropTypes.array.isRequired,
+  contextIdReducer: PropTypes.array.isRequired,
   tc: PropTypes.object.isRequired,// TODO: remove
   ownProps: PropTypes.object.isRequired,// TODO: remove
 };
