@@ -15,7 +15,7 @@ function GroupMenuContainer({
   gatewayLanguage,
   selectedToolName,
   projectSaveLocation,
-  groupsDataReducer,
+  groupsData,
   groupsIndexReducer,
   contextIdReducer,
   manifest: { project: { id: bookId } },
@@ -40,7 +40,7 @@ function GroupMenuContainer({
 
   console.log('ownProps', ownProps);
   console.log('tc', tc);
-  console.log('groupsDataReducer', groupsDataReducer);
+  console.log('groupsData', groupsData);
   console.log('groupsIndexReducer', groupsIndexReducer);
   console.log('contextIdReducer', contextIdReducer);
   console.log('gatewayLanguage', gatewayLanguage);
@@ -64,7 +64,7 @@ GroupMenuContainer.propTypes = {
   loadGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
   // TODO:
-  groupsDataReducer: PropTypes.object.isRequired,
+  groupsData: PropTypes.object.isRequired,
   groupsIndexReducer: PropTypes.array.isRequired,
   contextIdReducer: PropTypes.array.isRequired,
   tc: PropTypes.object.isRequired,// TODO: remove
@@ -74,7 +74,7 @@ GroupMenuContainer.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   // TODO: Add selectors
   ownProps: ownProps,
-  groupsDataReducer: state.tool.groupsDataReducer,
+  groupsData: state.tool.groupsDataReducer.groupsData,
   groupsIndexReducer: state.tool.groupsIndexReducer,
   contextIdReducer: state.tool.contextIdReducer,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
