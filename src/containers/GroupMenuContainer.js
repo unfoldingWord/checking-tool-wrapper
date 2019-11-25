@@ -15,7 +15,7 @@ function GroupMenuContainer({
   gatewayLanguage,
   selectedToolName,
   projectSaveLocation,
-  groupsDataReducer,
+  groupsDataReducer: { groupsData },
   groupsIndexReducer,
   contextId,
   manifest: { project: { id: bookId } },
@@ -38,18 +38,24 @@ function GroupMenuContainer({
     loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible, userdata);
   }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBible, userdata]);
 
-  console.log('ownProps', ownProps);
   console.log('tc', tc);
-  console.log('groupsDataReducer', groupsDataReducer);
-  console.log('groupsIndexReducer', groupsIndexReducer);
+  console.log('bookId', bookId);
+  console.log('ownProps', ownProps);
   console.log('contextId', contextId);
   console.log('gatewayLanguage', gatewayLanguage);
-  console.log('bookId', bookId);
-  console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
+  console.log('groupsData', groupsData);
+  console.log('groupsIndexReducer', groupsIndexReducer);
   console.log('projectSaveLocation', projectSaveLocation);
 
-  return <GroupMenu tc={tc} translate={translate} { ...rest } />;
+  return (
+    <GroupMenu
+      tc={tc}
+      translate={translate}
+      groupsData={groupsData}
+      { ...rest }
+    />
+  );
 }
 
 GroupMenuContainer.propTypes = {
@@ -60,13 +66,14 @@ GroupMenuContainer.propTypes = {
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
   glBible: PropTypes.object.isRequired,
-  loadGroupsIndex: PropTypes.func.isRequired,
-  loadGroupsData: PropTypes.func.isRequired,
-  loadCurrentContextId: PropTypes.func.isRequired,
-  // TODO:
+  contextId: PropTypes.object.isRequired,
   groupsDataReducer: PropTypes.object.isRequired,
   groupsIndexReducer: PropTypes.array.isRequired,
-  contextId: PropTypes.object.isRequired,
+  // Actions
+  loadGroupsData: PropTypes.func.isRequired,
+  loadGroupsIndex: PropTypes.func.isRequired,
+  loadCurrentContextId: PropTypes.func.isRequired,
+  // TODO:
   tc: PropTypes.object.isRequired,// TODO: remove
   ownProps: PropTypes.object.isRequired,// TODO: remove
 };
