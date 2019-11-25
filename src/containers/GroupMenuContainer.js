@@ -15,9 +15,9 @@ function GroupMenuContainer({
   gatewayLanguage,
   selectedToolName,
   projectSaveLocation,
-  groupsData,
-  groupsIndex,
-  contextId,
+  groupsDataReducer,
+  groupsIndexReducer,
+  contextIdReducer,
   manifest: { project: { id: bookId } },
   loadGroupsIndex,
   loadGroupsData,
@@ -40,9 +40,9 @@ function GroupMenuContainer({
 
   console.log('ownProps', ownProps);
   console.log('tc', tc);
-  console.log('groupsData', groupsData);
-  console.log('groupsIndex', groupsIndex);
-  console.log('contextId', contextId);
+  console.log('groupsDataReducer', groupsDataReducer);
+  console.log('groupsIndexReducer', groupsIndexReducer);
+  console.log('contextIdReducer', contextIdReducer);
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('bookId', bookId);
   console.log('gatewayLanguage', gatewayLanguage);
@@ -60,14 +60,13 @@ GroupMenuContainer.propTypes = {
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
   glBible: PropTypes.object.isRequired,
-  groupsData: PropTypes.object.isRequired,
-  groupsIndex: PropTypes.array.isRequired,
-  contextId: PropTypes.array.isRequired,
-  // Actions
   loadGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
   // TODO:
+  groupsDataReducer: PropTypes.object.isRequired,
+  groupsIndexReducer: PropTypes.array.isRequired,
+  contextIdReducer: PropTypes.array.isRequired,
   tc: PropTypes.object.isRequired,// TODO: remove
   ownProps: PropTypes.object.isRequired,// TODO: remove
 };
@@ -75,9 +74,9 @@ GroupMenuContainer.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   // TODO: Add selectors
   ownProps: ownProps,
-  groupsData: state.tool.groupsDataReducer.groupsData,
-  groupsIndex: state.tool.groupsIndexReducer.groupsIndex,
-  contextId: state.tool.contextIdReducer.contextId,
+  groupsDataReducer: state.tool.groupsDataReducer,
+  groupsIndexReducer: state.tool.groupsIndexReducer,
+  contextIdReducer: state.tool.contextIdReducer,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
   selectedToolName: ownProps.tc.selectedToolName,
   projectSaveLocation: ownProps.tc.projectSaveLocation,
