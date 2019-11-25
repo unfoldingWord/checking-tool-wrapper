@@ -3,20 +3,13 @@ import { getAlignedText } from 'tc-ui-toolkit';
 
 /**
  * Returns the gateway langauge code and quote.
- * @param {string} toolName - tools name.
- * @param {object} contextId - context id.
  * @param {string} gatewayLanguageCode - gateway language code.
- * @param {object} toolsSelectedGLs - list of gls selected for tools.
- * @param {object} bibles - bible resources.
+ * @param {object} contextId - context id.
+ * @param {object} glBible - gateway language bible.
  * @return {{gatewayLanguageCode: *, gatewayLanguageQuote: *}}
  */
-export const getGatewayLanguageCodeAndQuote = (toolName, contextId, gatewayLanguageCode, toolsSelectedGLs, bibles) => {
-  const gatewayLanguageQuote = getAlignedGLText(
-    toolsSelectedGLs,
-    contextId,
-    bibles,
-    toolName,
-  );
+export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBible) => {
+  const gatewayLanguageQuote = getAlignedGLText(contextId, glBible);
 
   return {
     gatewayLanguageCode,
@@ -26,29 +19,29 @@ export const getGatewayLanguageCodeAndQuote = (toolName, contextId, gatewayLangu
 
 /**
  * get the selected text from the GL resource for this context
- * @param {*} toolsSelectedGLs
- * @param {*} contextId
- * @param {*} bibles - list of resources
- * @param {*} currentToolName - such as translationWords
+ * @param {*} contextId - current context id.
+ * @param {*} glBible - gateway language Bible.
  */
-export function getAlignedGLText(toolsSelectedGLs, contextId, bibles, currentToolName) {
-  const selectedGL = toolsSelectedGLs[currentToolName];
+export function getAlignedGLText(contextId, glBible) {
+  if (contextId) {
+    if (!contextId.quote || !glBible || !glBible || !Object.keys(glBible).length) {
+      return contextId.quote;
+    }
 
-  if (!contextId.quote || !bibles || !bibles[selectedGL] || !Object.keys(bibles[selectedGL]).length) {
+    const sortedBibleIds = Object.keys(glBible).sort(bibleIdSort);
+
+    for (let i = 0; i < sortedBibleIds.length; ++i) {
+      const bible = glBible[sortedBibleIds[i]];
+      const alignedText = getAlignedTextFromBible(contextId, bible);
+
+      if (alignedText) {
+        return alignedText;
+      }
+    }
     return contextId.quote;
   }
 
-  const sortedBibleIds = Object.keys(bibles[selectedGL]).sort(bibleIdSort);
-
-  for (let i = 0; i < sortedBibleIds.length; ++i) {
-    const bible = bibles[selectedGL][sortedBibleIds[i]];
-    const alignedText = getAlignedTextFromBible(contextId, bible);
-
-    if (alignedText) {
-      return alignedText;
-    }
-  }
-  return contextId.quote;
+  return null;
 }
 
 /**

@@ -16,6 +16,7 @@ import {
 } from '../';
 import { getMaximumSelections } from '../../helpers/selectionHelpers';
 import { getVerseText } from '../../helpers/verseHelpers';
+// TODO: use the other getAlignedGLText from gatewayLanguageHelpers
 import { getAlignedGLText } from '../../helpers/checkAreaHelpers';
 
 const getAlignedGLTextState = createSelector([
@@ -24,6 +25,7 @@ const getAlignedGLTextState = createSelector([
   getBiblesState,
   getSelectedToolName,
 ], (contextId, toolsSelectedGLs, bibles, selectedToolName) => {
+  // TODO: use the other getAlignedGLText from gatewayLanguageHelpers
   let alignedGLText = getAlignedGLText(
     toolsSelectedGLs,
     contextId,

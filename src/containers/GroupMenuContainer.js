@@ -9,13 +9,14 @@ import { loadCurrentContextId } from '../state/actions/contextIdActions';
 
 // TODO: Connect loadCurrentContextId
 function GroupMenuContainer({
-  bibles,
+  glBible,
   translate,
   gatewayLanguage,
   selectedToolName,
   projectSaveLocation,
   groupsDataReducer,
   groupsIndexReducer,
+  contextIdReducer,
   manifest: { project: bookId, toolsSelectedGLs },
   loadGroupsIndex,
   loadGroupsData,
@@ -25,17 +26,22 @@ function GroupMenuContainer({
   ownProps,
   ...rest
 }) {
-  console.log('ownProps', ownProps);
-  console.log('gatewayLanguage', gatewayLanguage);
-
   useEffect(() => {
     console.log('----useEffect 1----');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [gatewayLanguage, loadGroupsData, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
 
+  useEffect(() => {
+    console.log('----useEffect 2----');
+    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible);
+  }, [glBible, bookId, loadCurrentContextId, projectSaveLocation, selectedToolName, toolsSelectedGLs]);
+
+  console.log('ownProps', ownProps);
+  console.log('gatewayLanguage', gatewayLanguage);
   console.log('groupsDataReducer', groupsDataReducer);
   console.log('groupsIndexReducer', groupsIndexReducer);
+  console.log('contextIdReducer', contextIdReducer);
   console.log('tc', tc);
   console.log('bookId', bookId);
   console.log('toolsSelectedGLs', toolsSelectedGLs);
@@ -43,11 +49,6 @@ function GroupMenuContainer({
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
   console.log('projectSaveLocation', projectSaveLocation);
-
-  useEffect(() => {
-    console.log('----useEffect 2----');
-    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, toolsSelectedGLs, bibles);
-  }, [bibles, bookId, loadCurrentContextId, projectSaveLocation, selectedToolName, toolsSelectedGLs]);
 
   return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
@@ -58,6 +59,7 @@ GroupMenuContainer.propTypes = {
   selectedToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
+  glBible: PropTypes.object.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
@@ -73,11 +75,12 @@ const mapStateToProps = (state, ownProps) => ({
   ownProps: ownProps,
   groupsDataReducer: state.tool.groupsDataReducer,
   groupsIndexReducer: state.tool.groupsIndexReducer,
+  contextIdReducer: state.tool.contextIdReducer,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
   selectedToolName: ownProps.tc.selectedToolName,
   projectSaveLocation: ownProps.tc.projectSaveLocation,
   manifest: ownProps.tc.projectDetailsReducer.manifest,
-  bibles: ownProps.tc.resourcesReducer.bibles,
+  glBible: ownProps.tc.resourcesReducer.bibles[ownProps.tc.gatewayLanguage],
 });
 
 const mapDispatchToProps = {

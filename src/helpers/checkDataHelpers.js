@@ -113,16 +113,23 @@ export function loadComments(projectSaveLocation, contextId) {
 }
 /**
  * Loads the latest invalidated file from the file system for the specify contextID.
- * @param {Object} state - store state object.
+ * @param {string} projectSaveLocation - project path.
  * @return {Object} Dispatches an action that loads the invalidatedReducer with data.
  */
-export function loadInvalidated(projectSaveLocation, contextId, toolName, toolsSelectedGLs, bibles) {
+
+/**
+ * Loads the latest invalidated file from the file system for the specify contextID.
+ * @param {*} projectSaveLocation - project path.
+ * @param {*} contextId - context id.
+ * @param {*} glBible - gateway language bible.
+ */
+export function loadInvalidated(projectSaveLocation, contextId, glBible) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
   const invalidatedObject = loadCheckData(loadPath, contextId);
   const {
     gatewayLanguageCode,
     gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(toolName, contextId, gatewayLanguageCode, toolsSelectedGLs, bibles);
+  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBible);
 
   if (invalidatedObject) {
     return {
@@ -145,18 +152,20 @@ export function loadInvalidated(projectSaveLocation, contextId, toolName, toolsS
     };
   }
 }
+
 /**
- * Loads the latest reminders file from the file system for the specify contextID.
- * @param {Object} state - store state object.
- * @return {Object} Dispatches an action that loads the remindersReducer with data.
+ * Loads the latest bookmarks file from the file system for the specify contextID.
+ * @param {*} projectSaveLocation - project path.
+ * @param {*} contextId - context id.
+ * @param {*} glBible - gateway language bible.
  */
-export function loadBookmarks(projectSaveLocation, contextId, toolName, toolsSelectedGLs, bibles) {
+export function loadBookmarks(projectSaveLocation, contextId, glBible) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
   const remindersObject = loadCheckData(loadPath, contextId);
   const {
     gatewayLanguageCode,
     gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(toolName, contextId, gatewayLanguageCode, toolsSelectedGLs, bibles);
+  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBible);
 
   if (remindersObject) {
     return {
