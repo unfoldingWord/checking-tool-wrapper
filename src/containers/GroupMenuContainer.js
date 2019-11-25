@@ -34,6 +34,8 @@ function GroupMenuContainer({
 
   useEffect(() => {
     console.log('----useEffect 2----');
+    console.log('selectedToolName', 'bookId', 'projectSaveLocation', 'glBible');
+    console.log(selectedToolName, bookId, projectSaveLocation, glBible);
     loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible);
   }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBible]);
 

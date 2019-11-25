@@ -31,9 +31,11 @@ import {
  */
 export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBible) {
   return (dispatch, getState) => {
-    console.table({
-      toolName, bookId, projectSaveLocation, glBible,
-    });
+    console.log('loadCurrentContextId()');
+    console.log('toolName', toolName);
+    console.log('bookId', bookId);
+    console.log('projectSaveLocation', projectSaveLocation);
+    console.log('glBible', glBible);
 
     const state = getState();
     const groupsIndex = getGroupsIndex(state);
