@@ -17,18 +17,19 @@ import { generateItemId } from '../helpers/groupMenuHelpers';
 
 function GroupMenuWrapper({
   translate,
-  contextId,
-  tc: { project },
+  tc: {
+    project,
+    contextId,
+    actions: { changeCurrentContextId },
+  },
   groupsData,
   groupsIndex,
-  changeCurrentContextId,
 }) {
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
    */
   function handleClick({ contextId }) {
-    console.log('handleClick()');
     changeCurrentContextId(contextId);
   };
 
@@ -176,12 +177,10 @@ function GroupMenuWrapper({
 }
 
 GroupMenuWrapper.propTypes = {
-  groupsIndex: PropTypes.array,
-  groupsData: PropTypes.object,
-  contextId: PropTypes.object,
   tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-  changeCurrentContextId: PropTypes.func.isRequired,
+  groupsIndex: PropTypes.array,
+  groupsData: PropTypes.object,
 };
 
 export default GroupMenuWrapper;

@@ -50,16 +50,7 @@ function GroupMenuContainer({
   console.log('selectedToolName', selectedToolName);
   console.log('projectSaveLocation', projectSaveLocation);
 
-  return (
-    <GroupMenu
-      tc={tc}
-      contextId={contextId}
-      translate={translate}
-      groupsData={groupsData}
-      groupsIndex={groupsIndex}
-      changeCurrentContextId={changeCurrentContextId}
-    />
-  );
+  return <GroupMenu tc={tc} translate={translate} { ...rest } />;
 }
 
 GroupMenuContainer.propTypes = {
