@@ -5483,7 +5483,7 @@ exports[`Container Tests Test Container 1`] = `
                 <span
                   class="jss190 jss198 jss161 jss152"
                 >
-                  No selection needed
+                  no_selection_needed
                 </span>
               </label>
               <div
@@ -5491,7 +5491,7 @@ exports[`Container Tests Test Container 1`] = `
                 data-delay-hide="100"
                 data-effect="float"
                 data-place="top"
-                data-tip="nothing_to_select_description"
+                data-tip="no_selection_needed_description"
                 data-type="dark"
                 style="vertical-align:super;font-size:0.8em"
               >
