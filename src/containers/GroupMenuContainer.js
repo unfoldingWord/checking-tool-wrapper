@@ -48,16 +48,20 @@ function GroupMenuContainer({
   console.log('groupsIndex', groupsIndex);
   console.log('projectSaveLocation', projectSaveLocation);
 
-  return (
-    <GroupMenu
-      tc={tc}
-      translate={translate}
-      contextId={contextId}
-      groupsData={groupsData}
-      groupsIndex={groupsIndex}
-      { ...rest }
-    />
-  );
+  if (contextId) {
+    return (
+      <GroupMenu
+        tc={tc}
+        translate={translate}
+        contextId={contextId}
+        groupsData={groupsData}
+        groupsIndex={groupsIndex}
+        { ...rest }
+      />
+    );
+  } else {
+    return null;
+  }
 }
 
 GroupMenuContainer.propTypes = {
