@@ -5,7 +5,7 @@ import GroupMenu from '../components/GroupMenuWrapper';
 // Actions
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
-import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/contextIdActions';
+import { loadCurrentContextId } from '../state/actions/contextIdActions';
 
 // TODO: Connect loadCurrentContextId
 function GroupMenuContainer({
@@ -22,7 +22,6 @@ function GroupMenuContainer({
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
-  changeCurrentContextId,
   // TODO:
   tc,
   ownProps,
@@ -68,7 +67,6 @@ GroupMenuContainer.propTypes = {
   loadGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
-  changeCurrentContextId: PropTypes.func.isRequired,
   // TODO:
   tc: PropTypes.object.isRequired,// TODO: remove
   ownProps: PropTypes.object.isRequired,// TODO: remove
@@ -92,7 +90,6 @@ const mapDispatchToProps = {
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
-  changeCurrentContextId,
 };
 
 export default connect(
