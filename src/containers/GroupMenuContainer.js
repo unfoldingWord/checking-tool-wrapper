@@ -6,7 +6,7 @@ import GroupMenu from '../components/GroupMenuWrapper';
 // Actions
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
-import { loadCurrentContextId } from '../state/actions/contextIdActions';
+import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/contextIdActions';
 
 // TODO: Connect loadCurrentContextId
 function GroupMenuContainer({
@@ -23,6 +23,7 @@ function GroupMenuContainer({
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
+  changeCurrentContextId,
   // TODO:
   tc,
   ownProps,
@@ -60,6 +61,7 @@ function GroupMenuContainer({
         contextId={contextId}
         groupsData={groupsData}
         groupsIndex={groupsIndex}
+        changeCurrentContextId={changeCurrentContextId}
       />
     );
   } else {

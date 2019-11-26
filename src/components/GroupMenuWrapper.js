@@ -18,12 +18,10 @@ import { generateItemId } from '../helpers/groupMenuHelpers';
 function GroupMenuWrapper({
   translate,
   contextId,
-  tc: {
-    project,
-    actions: { changeCurrentContextId },
-  },
+  tc: { project },
   groupsData,
   groupsIndex,
+  changeCurrentContextId,
 }) {
   /**
    * Handles click events from the menu
@@ -182,6 +180,7 @@ GroupMenuWrapper.propTypes = {
   groupsIndex: PropTypes.array.isRequired,
   groupsData: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
+  changeCurrentContextId: PropTypes.func.isRequired,
 };
 
 export default GroupMenuWrapper;
