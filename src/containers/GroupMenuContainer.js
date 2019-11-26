@@ -25,16 +25,19 @@ function GroupMenuContainer({
   // TODO:
   tc,
   ownProps,
-  ...rest
 }) {
   useEffect(() => {
     console.log('----useEffect 1----');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-    loadGroupsData(selectedToolName, projectSaveLocation);
-  }, [gatewayLanguage, loadGroupsData, loadGroupsIndex, projectSaveLocation, selectedToolName, translate]);// temp
+  }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation, translate]);
 
   useEffect(() => {
     console.log('----useEffect 2----');
+    loadGroupsData(selectedToolName, projectSaveLocation);
+  }, [loadGroupsData, selectedToolName, projectSaveLocation]);
+
+  useEffect(() => {
+    console.log('----useEffect 3----');
     loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBible, userdata);
   }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBible, userdata]);
 
