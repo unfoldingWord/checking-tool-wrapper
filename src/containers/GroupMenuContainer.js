@@ -15,9 +15,9 @@ function GroupMenuContainer({
   gatewayLanguage,
   selectedToolName,
   projectSaveLocation,
+  contextId,
   groupsDataReducer: { groupsData },
   groupsIndexReducer: { groupsIndex },
-  contextId,
   manifest: { project: { id: bookId } },
   loadGroupsIndex,
   loadGroupsData,
@@ -56,7 +56,6 @@ function GroupMenuContainer({
         contextId={contextId}
         groupsData={groupsData}
         groupsIndex={groupsIndex}
-        { ...rest }
       />
     );
   } else {
