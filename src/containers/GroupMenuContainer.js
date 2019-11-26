@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -29,7 +30,7 @@ function GroupMenuContainer({
   useEffect(() => {
     console.log('----useEffect 1----');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation, translate]);
+  }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
     console.log('----useEffect 2----');
