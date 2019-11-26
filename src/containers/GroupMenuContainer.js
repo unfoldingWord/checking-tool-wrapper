@@ -107,6 +107,7 @@ const mapDispatchToProps = {
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
+  changeCurrentContextId,
 };
 
 export default connect(
