@@ -56,7 +56,7 @@ function GroupMenuContainer({
   console.log('bookId', bookId);
   console.log('bookName', bookName);
   console.log('userdata', userdata);
-  console.log('glBible', glBibles);
+  console.log('glBibles', glBibles);
   console.log('contextId', contextId);
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);

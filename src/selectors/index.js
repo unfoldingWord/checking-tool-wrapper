@@ -11,36 +11,22 @@ export const getGroupsData = (state) =>
 export const getContextId = (state) =>
   fromContextId.getContextId(state.tool.contextIdReducer);
 
-export const getProjectManifest = (state) =>
-  state.tc.projectDetailsReducer.manifest;
-
-export const getGatewayLanguage = (state) =>
-  state.tc.gatewayLanguage;
-
-export const getToolName = (state) =>
-  state.tc.selectedToolName;
-
-export const getProjectPath = (state) =>
-  state.tc.projectSaveLocation;
-
-export const getUserData = (state) =>
-  state.tc.loginReducer.userdata;
-
-export const getGatewayLanguageBibles = (state) =>
-  state.tc.resourcesReducer.bibles[getGatewayLanguage(state)];
-
-export const getBookName = (state) =>
-  state.tc.project.getBookName();
-
+export const getProjectManifest = (state) => state.tc.projectDetailsReducer.manifest;
+export const getGatewayLanguage = (state) => state.tc.gatewayLanguage;
+export const getToolName = (state) => state.tc.selectedToolName;
+export const getProjectPath = (state) => state.tc.projectSaveLocation;
+export const getUserData = (state) => state.tc.loginReducer.userdata;
+export const getGatewayLanguageBibles = (state) => state.tc.resourcesReducer.bibles[getGatewayLanguage(state)];
+export const getBookName = (state) => state.tc.project.getBookName();
+export const getTcState = (state) => state.tc;
+export const getTranslateState = (state) => state.translate;
 
 
 // TODO:
 export const getBiblesState = (state) =>
   state.resourcesReducer.bibles;
-export const getTcState = (state) => state.tc;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
 export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;
-export const getTranslateState = (state) => state.translate;
 export const getSelectedToolName = (state) => state.tc.selectedToolName;
 export const getManifestState = (state) => state.projectDetailsReducer.manifest;
 export const getContextIdState = (state) => state.contextIdReducer.contextId;
