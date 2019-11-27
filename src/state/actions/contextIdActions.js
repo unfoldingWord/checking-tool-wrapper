@@ -106,6 +106,7 @@ export const changeCurrentContextId = (contextId, projectSaveLocation, glBible, 
     // commit project changes after delay
     delay(5000).then(async () => {
       try {
+        console.log('changeCurrentContextId', projectSaveLocation, userdata);
         const repo = await Repo.open(projectSaveLocation, userdata);
         const saveStarted = await repo.saveDebounced(`Auto saving at ${refStr}`);
 
