@@ -10,7 +10,7 @@ import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/c
 // Selectors
 import {
   getGroupsIndex,
-  // getGroupsData,
+  getGroupsData,
 } from '../selectors/index';
 
 // TODO: Connect loadCurrentContextId
@@ -22,7 +22,7 @@ function GroupMenuContainer({
   selectedToolName,
   projectSaveLocation,
   contextId,
-  groupsDataReducer: { groupsData },
+  groupsData,
   groupsIndex,
   manifest: { project: { id: bookId } },
   loadGroupsIndex,
@@ -83,7 +83,7 @@ GroupMenuContainer.propTypes = {
   manifest: PropTypes.object.isRequired,
   glBible: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
-  groupsDataReducer: PropTypes.object.isRequired,
+  groupsData: PropTypes.object.isRequired,
   groupsIndex: PropTypes.object.isRequired,
   // Actions
   loadGroupsData: PropTypes.func.isRequired,
@@ -97,7 +97,7 @@ GroupMenuContainer.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   // TODO: Add selectors
   ownProps: ownProps,
-  groupsDataReducer: state.tool.groupsDataReducer,
+  groupsData: getGroupsData(state),
   groupsIndex: getGroupsIndex(state),
   contextId: state.tool.contextIdReducer.contextId,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
