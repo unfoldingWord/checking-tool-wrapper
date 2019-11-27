@@ -14,12 +14,20 @@ export const getContextId = (state) =>
 export const getProjectManifest = (state) =>
   state.tc.projectDetailsReducer.manifest;
 
-export const getBiblesState = (state) =>
-  state.resourcesReducer.bibles;
+export const getGatewayLanguage = (state) =>
+  state.tc.gatewayLanguage;
+
+export const getToolName = (state) =>
+  state.tc.selectedToolName;
+
+export const getProjectPath = (state) =>
+  state.tc.projectSaveLocation;
 
 
 
 // TODO:
+export const getBiblesState = (state) =>
+  state.resourcesReducer.bibles;
 export const getTcState = (state) => state.tc;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
 export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;
