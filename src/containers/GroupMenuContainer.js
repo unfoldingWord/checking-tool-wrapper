@@ -16,6 +16,7 @@ import {
   getToolName,
   getProjectPath,
   getProjectManifest,
+  getUserData,
 } from '../selectors/index';
 
 // TODO: Connect loadCurrentContextId
@@ -105,11 +106,11 @@ const mapStateToProps = (state, ownProps) => ({
   groupsData: getGroupsData(state),
   groupsIndex: getGroupsIndex(state),
   contextId: getContextId(state),
-  gatewayLanguage: getGatewayLanguage(state),
-  selectedToolName: getToolName(state),
-  projectSaveLocation: getProjectPath(state),
-  manifest: getProjectManifest(state),
-  userdata: ownProps.tc.loginReducer.userdata,
+  gatewayLanguage: getGatewayLanguage(ownProps),
+  selectedToolName: getToolName(ownProps),
+  projectSaveLocation: getProjectPath(ownProps),
+  manifest: getProjectManifest(ownProps),
+  userdata: getUserData(ownProps),
   glBible: ownProps.tc.resourcesReducer.bibles[ownProps.tc.gatewayLanguage],
 });
 

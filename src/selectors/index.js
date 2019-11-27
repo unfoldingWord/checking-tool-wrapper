@@ -23,6 +23,8 @@ export const getToolName = (state) =>
 export const getProjectPath = (state) =>
   state.tc.projectSaveLocation;
 
+export const getUserData = (state) =>
+  state.tc.loginReducer.userdata;
 
 
 // TODO:
