@@ -11,7 +11,7 @@ import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/c
 import {
   getGroupsIndex,
   getGroupsData,
-  getContextId,
+  // getContextId,
 } from '../selectors/index';
 
 // TODO: Connect loadCurrentContextId
@@ -100,7 +100,7 @@ const mapStateToProps = (state, ownProps) => ({
   ownProps: ownProps,
   groupsData: getGroupsData(state),
   groupsIndex: getGroupsIndex(state),
-  contextId: getContextId(state),
+  contextId: state.tool.contextIdReducer.contextId,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
   selectedToolName: ownProps.tc.selectedToolName,
   projectSaveLocation: ownProps.tc.projectSaveLocation,
