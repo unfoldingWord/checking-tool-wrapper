@@ -1,5 +1,6 @@
 import * as fromGrouspIndex from '../state/reducers/groupsIndexReducer';
 import * as fromGroupsData from '../state/reducers/groupsDataReducer';
+import * as fromContextId from '../state/reducers/contextIdReducer';
 
 export const getGroupsIndex = (state) =>
   fromGrouspIndex.getGroupsIndex(state.tool.groupsIndexReducer);
@@ -7,11 +8,18 @@ export const getGroupsIndex = (state) =>
 export const getGroupsData = (state) =>
   fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
 
+export const getContextId = (state) =>
+  fromContextId.getContext(state.tool.contextIdReducer);
+
+export const getBibles = (state) =>
+  state.resourcesReducer.bibles;
+
 export const getProjectManifest = (state) =>
   state.tc.projectDetailsReducer.manifest;
 
-export const getBiblesState = (state) =>
-  state.resourcesReducer.bibles;
+
+
+
 
 
 // TODO:
