@@ -23,7 +23,7 @@ function GroupMenuContainer({
   projectSaveLocation,
   contextId,
   groupsDataReducer: { groupsData },
-  groupsIndexReducer: { groupsIndex },
+  groupsIndex,
   manifest: { project: { id: bookId } },
   loadGroupsIndex,
   loadGroupsData,
@@ -84,7 +84,7 @@ GroupMenuContainer.propTypes = {
   glBible: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   groupsDataReducer: PropTypes.object.isRequired,
-  groupsIndexReducer: PropTypes.object.isRequired,
+  groupsIndex: PropTypes.object.isRequired,
   // Actions
   loadGroupsData: PropTypes.func.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
@@ -98,7 +98,7 @@ const mapStateToProps = (state, ownProps) => ({
   // TODO: Add selectors
   ownProps: ownProps,
   groupsDataReducer: state.tool.groupsDataReducer,
-  groupsIndexReducer: getGroupsIndex(state),
+  groupsIndex: getGroupsIndex(state),
   contextId: state.tool.contextIdReducer.contextId,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
   selectedToolName: ownProps.tc.selectedToolName,
