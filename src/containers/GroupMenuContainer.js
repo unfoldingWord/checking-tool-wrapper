@@ -17,6 +17,7 @@ import {
   getProjectPath,
   getProjectManifest,
   getUserData,
+  getGatewayLanguageBible,
 } from '../selectors/index';
 
 // TODO: Connect loadCurrentContextId
@@ -57,6 +58,8 @@ function GroupMenuContainer({
   console.log('tc', tc);
   console.log('bookId', bookId);
   console.log('ownProps', ownProps);
+  console.log('userdata', userdata);
+  console.log('glBible', glBible);
   console.log('contextId', contextId);
   console.log('gatewayLanguage', gatewayLanguage);
   console.log('selectedToolName', selectedToolName);
@@ -111,7 +114,7 @@ const mapStateToProps = (state, ownProps) => ({
   projectSaveLocation: getProjectPath(ownProps),
   manifest: getProjectManifest(ownProps),
   userdata: getUserData(ownProps),
-  glBible: ownProps.tc.resourcesReducer.bibles[ownProps.tc.gatewayLanguage],
+  glBible: getGatewayLanguageBible(ownProps),
 });
 
 const mapDispatchToProps = {
