@@ -121,15 +121,15 @@ export function loadComments(projectSaveLocation, contextId) {
  * Loads the latest invalidated file from the file system for the specify contextID.
  * @param {*} projectSaveLocation - project path.
  * @param {*} contextId - context id.
- * @param {*} glBible - gateway language bible.
+ * @param {*} glBibles - gateway language bibles.
  */
-export function loadInvalidated(projectSaveLocation, contextId, glBible) {
+export function loadInvalidated(projectSaveLocation, contextId, glBibles) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
   const invalidatedObject = loadCheckData(loadPath, contextId);
   const {
     gatewayLanguageCode,
     gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBible);
+  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
 
   if (invalidatedObject) {
     return {
@@ -157,15 +157,15 @@ export function loadInvalidated(projectSaveLocation, contextId, glBible) {
  * Loads the latest bookmarks file from the file system for the specify contextID.
  * @param {*} projectSaveLocation - project path.
  * @param {*} contextId - context id.
- * @param {*} glBible - gateway language bible.
+ * @param {*} glBibles - gateway language bibles.
  */
-export function loadBookmarks(projectSaveLocation, contextId, glBible) {
+export function loadBookmarks(projectSaveLocation, contextId, glBibles) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
   const remindersObject = loadCheckData(loadPath, contextId);
   const {
     gatewayLanguageCode,
     gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBible);
+  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
 
   if (remindersObject) {
     return {

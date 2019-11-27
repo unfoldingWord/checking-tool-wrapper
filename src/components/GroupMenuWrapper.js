@@ -18,7 +18,7 @@ import { generateItemId } from '../helpers/groupMenuHelpers';
 function GroupMenuWrapper({
   translate,
   contextId,
-  tc: { project },
+  bookName,
   groupsData,
   groupsIndex,
   changeCurrentContextId,
@@ -37,8 +37,6 @@ function GroupMenuWrapper({
    * @returns {object} the updated item
    */
   function onProcessItem(item) {
-    const bookName = project.getBookName();
-
     const {
       contextId: {
         quote,
@@ -175,11 +173,11 @@ function GroupMenuWrapper({
 }
 
 GroupMenuWrapper.propTypes = {
-  tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   groupsIndex: PropTypes.array.isRequired,
   groupsData: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
+  bookName: PropTypes.string.isRequired,
   changeCurrentContextId: PropTypes.func.isRequired,
 };
 

@@ -27,17 +27,11 @@ import {
  * @param {string} toolName - tool's name.
  * @param {string} bookId - book id code. e.g. tit.
  * @param {string} projectSaveLocation - project's absolute path.
- * @param {object} glBible - gateway language bible.
+ * @param {object} glBibles - gateway language bible.
  * @param {object} userdata - user data.
  */
-export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBible, userdata) {
+export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBibles, userdata) {
   return (dispatch, getState) => {
-    console.log('loadCurrentContextId()');
-    console.log('toolName', toolName);
-    console.log('bookId', bookId);
-    console.log('projectSaveLocation', projectSaveLocation);
-    console.log('glBible', glBible);
-
     const state = getState();
     const groupsIndex = getGroupsIndex(state);
 
@@ -53,7 +47,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
             if (contextId && contextIdExistInGroups) {
-              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBible, userdata));
+              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBibles, userdata));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
@@ -62,7 +56,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBible, userdata));
+        dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBibles, userdata));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
         console.warn('loadCurrentContextId() error loading contextId', err);
@@ -77,11 +71,11 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
  * @description this action changes the contextId to the current check.
  * @param {object} contextId - the contextId object.
  * @param {string} projectSaveLocation - project's absolute path.
- * @param {object} glBible - gateway language bible.
+ * @param {object} glBibles - gateway language bible.
  * @param {object} userdata - user data.
  * @return {object} New state for contextId reducer.
  */
-export const changeCurrentContextId = (contextId, projectSaveLocation, glBible, userdata) => (dispatch, getState) => {
+export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles, userdata) => (dispatch, getState) => {
   const state = getState();
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
@@ -99,7 +93,7 @@ export const changeCurrentContextId = (contextId, projectSaveLocation, glBible, 
     console.log(`changeCurrentContextId() - setting new contextId to: ${refStr}`);
 
     if (!groupDataLoaded) { // if group data not found, load from file
-      dispatch(loadCheckData(contextId, projectSaveLocation, glBible));
+      dispatch(loadCheckData(contextId, projectSaveLocation, glBibles));
     }
     saveContextId(contextId, projectSaveLocation);
 
@@ -222,13 +216,13 @@ export const changeContextId = contextId => ({
  *
  * @param {*} contextId
  * @param {*} projectSaveLocation
- * @param {*} glBible
+ * @param {*} glBibles
  */
-const loadCheckData = (contextId, projectSaveLocation, glBible) => dispatch => {
+const loadCheckData = (contextId, projectSaveLocation, glBibles) => dispatch => {
   const actionsBatch = [];
   actionsBatch.push(loadSelections(projectSaveLocation, contextId));
   actionsBatch.push(loadComments(projectSaveLocation, contextId));
-  actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, glBible));
-  actionsBatch.push(loadInvalidated(projectSaveLocation, contextId, glBible));
+  actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, glBibles));
+  actionsBatch.push(loadInvalidated(projectSaveLocation, contextId, glBibles));
   dispatch(batchActions(actionsBatch)); // process the batch
 };

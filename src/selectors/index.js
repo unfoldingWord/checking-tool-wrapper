@@ -26,8 +26,13 @@ export const getProjectPath = (state) =>
 export const getUserData = (state) =>
   state.tc.loginReducer.userdata;
 
-export const getGatewayLanguageBible = (state) =>
+export const getGatewayLanguageBibles = (state) =>
   state.tc.resourcesReducer.bibles[getGatewayLanguage(state)];
+
+export const getBookName = (state) =>
+  state.tc.project.getBookName();
+
+
 
 // TODO:
 export const getBiblesState = (state) =>

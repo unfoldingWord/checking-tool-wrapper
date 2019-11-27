@@ -5,11 +5,11 @@ import { getAlignedText } from 'tc-ui-toolkit';
  * Returns the gateway langauge code and quote.
  * @param {string} gatewayLanguageCode - gateway language code.
  * @param {object} contextId - context id.
- * @param {object} glBible - gateway language bible.
+ * @param {object} glBibles - gateway language bibles.
  * @return {{gatewayLanguageCode: *, gatewayLanguageQuote: *}}
  */
-export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBible) => {
-  const gatewayLanguageQuote = getAlignedGLText(contextId, glBible);
+export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBibles) => {
+  const gatewayLanguageQuote = getAlignedGLText(contextId, glBibles);
 
   return {
     gatewayLanguageCode,
@@ -20,18 +20,18 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
 /**
  * get the selected text from the GL resource for this context
  * @param {*} contextId - current context id.
- * @param {*} glBible - gateway language Bible.
+ * @param {*} glBibles - gateway language Bibles.
  */
-export function getAlignedGLText(contextId, glBible) {
+export function getAlignedGLText(contextId, glBibles) {
   if (contextId) {
-    if (!contextId.quote || !glBible || !glBible || !Object.keys(glBible).length) {
+    if (!contextId.quote || !glBibles || !glBibles || !Object.keys(glBibles).length) {
       return contextId.quote;
     }
 
-    const sortedBibleIds = Object.keys(glBible).sort(bibleIdSort);
+    const sortedBibleIds = Object.keys(glBibles).sort(bibleIdSort);
 
     for (let i = 0; i < sortedBibleIds.length; ++i) {
-      const bible = glBible[sortedBibleIds[i]];
+      const bible = glBibles[sortedBibleIds[i]];
       const alignedText = getAlignedTextFromBible(contextId, bible);
 
       if (alignedText) {
