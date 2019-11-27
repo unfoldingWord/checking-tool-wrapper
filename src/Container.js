@@ -5,18 +5,18 @@ import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
-
 // components
 import GroupMenuWrapper from './containers/GroupMenuContainer';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
-import { getGroupMenuState } from './selectors/GroupMenu';
+// selectors
 import { getVerseCheckState } from './selectors/VerseCheck';
 import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import { getScripturePaneState } from './selectors/ScripturePane';
 import { getCheckInfoCardState } from './selectors/CheckInfoCard';
+import { getTcState, getTranslateState } from './selectors';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -32,7 +32,11 @@ function Container(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { contextIdReducer: { contextId } } = props;
+  const {
+    tc,
+    translate,
+    contextIdReducer: { contextId },
+  } = props;
 
   if (contextId !== null) {
     return (
@@ -40,7 +44,7 @@ function Container(props) {
         <div style={{
           display: 'flex', flexDirection: 'row', width: '100vw',
         }}>
-          <GroupMenuWrapper {...props.groupMenu} />
+          <GroupMenuWrapper tc={tc} translate={translate} />
           <div style={{
             display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
           }}>
@@ -68,10 +72,9 @@ function Container(props) {
 
 Container.propTypes = {
   translationHelps: PropTypes.any,
-  groupMenu: PropTypes.any,
   verseCheck: PropTypes.any,
   checkInfoCard: PropTypes.any,
-  translate: PropTypes.func,
+  translate: PropTypes.func.isRequired,
   settingsReducer: PropTypes.shape({ toolsSettings: PropTypes.shape({ ScripturePane: PropTypes.object }) }),
   contextIdReducer: PropTypes.shape({ contextId: PropTypes.shape({ groupId: PropTypes.any }) }),
   groupsIndexReducer: PropTypes.shape({ groupsIndex: PropTypes.array }),
@@ -84,12 +87,13 @@ Container.propTypes = {
       getSelectionsFromContextId: PropTypes.func.isRequired,
       onInvalidCheck: PropTypes.func.isRequired,
     }),
-  }),
+  }).isRequired,
   scripturePane: PropTypes.object.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => ({
-  groupMenu: getGroupMenuState(ownProps),
+  tc: getTcState(ownProps),
+  translate: getTranslateState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
   checkInfoCard: getCheckInfoCardState(ownProps),
