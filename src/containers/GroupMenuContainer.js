@@ -37,7 +37,6 @@ function GroupMenuContainer({
   loadGroupsData,
   loadCurrentContextId,
   changeCurrentContextId,
-  ownProps,//TODO: REMOVE
 }) {
   useEffect(() => {
     console.log('----useEffect 1----');
@@ -54,7 +53,6 @@ function GroupMenuContainer({
     loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBibles, userdata);
   }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBibles, userdata]);
 
-  console.log('ownProps', ownProps);
   console.log('bookId', bookId);
   console.log('bookName', bookName);
   console.log('userdata', userdata);
@@ -97,12 +95,9 @@ GroupMenuContainer.propTypes = {
   loadGroupsData: PropTypes.func.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
-  // TODO:
-  ownProps: PropTypes.object.isRequired,// TODO: remove
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  ownProps: ownProps,
   groupsData: getGroupsData(state),
   groupsIndex: getGroupsIndex(state),
   contextId: getContextId(state),
