@@ -7,6 +7,11 @@ import GroupMenu from '../components/GroupMenuWrapper';
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
 import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/contextIdActions';
+// Selectors
+import {
+  getGroupsIndex,
+  // getGroupsData,
+} from '../selectors/index';
 
 // TODO: Connect loadCurrentContextId
 function GroupMenuContainer({
@@ -93,7 +98,7 @@ const mapStateToProps = (state, ownProps) => ({
   // TODO: Add selectors
   ownProps: ownProps,
   groupsDataReducer: state.tool.groupsDataReducer,
-  groupsIndexReducer: state.tool.groupsIndexReducer,
+  groupsIndexReducer: getGroupsIndex(state),
   contextId: state.tool.contextIdReducer.contextId,
   gatewayLanguage: ownProps.tc.gatewayLanguage,
   selectedToolName: ownProps.tc.selectedToolName,
