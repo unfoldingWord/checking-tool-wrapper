@@ -53,7 +53,12 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
 
     if (quote) {
       for (let filename of sorted) {
-        const currentSelectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
+        const pathToOBject = path.join(selectionsPath, filename);
+        const currentSelectionsObject = fs.readJsonSync(pathToOBject);
+
+        if (!currentSelectionsObject.contextId) {
+          console.error(`getSelectionsFromChapterAndVerseCombo() - missing contextId ${pathToOBject}`);
+        }
 
         if ((currentSelectionsObject.contextId.occurrence === occurrence) &&
           isEqual(currentSelectionsObject.contextId.quote, quote)) { // supports quote arrays or strings
