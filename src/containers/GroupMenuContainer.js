@@ -24,7 +24,7 @@ import {
 function GroupMenuContainer({
   glBibles,
   bookName,
-  userdata,
+  userData,
   translate,
   gatewayLanguage,
   selectedToolName,
@@ -50,12 +50,12 @@ function GroupMenuContainer({
 
   useEffect(() => {
     console.log('----useEffect 3----');
-    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBibles, userdata);
-  }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBibles, userdata]);
+    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBibles, userData);
+  }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBibles, userData]);
 
   console.log('bookId', bookId);
   console.log('bookName', bookName);
-  console.log('userdata', userdata);
+  console.log('userdata', userData);
   console.log('glBibles', glBibles);
   console.log('contextId', contextId);
   console.log('gatewayLanguage', gatewayLanguage);
@@ -67,6 +67,9 @@ function GroupMenuContainer({
   if (contextId) {
     return (
       <GroupMenu
+        glBibles={glBibles}
+        userData={userData}
+        projectSaveLocation={bookName}
         bookName={bookName}
         translate={translate}
         contextId={contextId}
@@ -82,7 +85,7 @@ function GroupMenuContainer({
 
 GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
-  userdata: PropTypes.object.isRequired,
+  userData: PropTypes.object.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
   selectedToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
@@ -105,7 +108,7 @@ const mapStateToProps = (state, ownProps) => ({
   selectedToolName: getToolName(ownProps),
   projectSaveLocation: getProjectPath(ownProps),
   manifest: getProjectManifest(ownProps),
-  userdata: getUserData(ownProps),
+  userData: getUserData(ownProps),
   glBibles: getGatewayLanguageBibles(ownProps),
   bookName: getBookName(ownProps),
 });

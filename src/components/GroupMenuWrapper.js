@@ -21,6 +21,9 @@ function GroupMenuWrapper({
   bookName,
   groupsData,
   groupsIndex,
+  glBibles,
+  userData,
+  projectSaveLocation,
   changeCurrentContextId,
 }) {
   /**
@@ -28,7 +31,7 @@ function GroupMenuWrapper({
    * @param {object} contextId - the menu item's context id
    */
   function handleClick({ contextId }) {
-    changeCurrentContextId(contextId);
+    changeCurrentContextId(contextId, projectSaveLocation, glBibles, userData);
   };
 
   /**
@@ -174,10 +177,13 @@ function GroupMenuWrapper({
 
 GroupMenuWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired,
+  glBibles: PropTypes.object.isRequired,
   groupsIndex: PropTypes.array.isRequired,
   groupsData: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   bookName: PropTypes.string.isRequired,
+  projectSaveLocation: PropTypes.string.isRequired,
   changeCurrentContextId: PropTypes.func.isRequired,
 };
 

@@ -72,10 +72,10 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
  * @param {object} contextId - the contextId object.
  * @param {string} projectSaveLocation - project's absolute path.
  * @param {object} glBibles - gateway language bible.
- * @param {object} userdata - user data.
+ * @param {object} userData - user data.
  * @return {object} New state for contextId reducer.
  */
-export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles, userdata) => (dispatch, getState) => {
+export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles, userData) => (dispatch, getState) => {
   const state = getState();
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
@@ -100,8 +100,8 @@ export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles,
     // commit project changes after delay
     delay(5000).then(async () => {
       try {
-        console.log('changeCurrentContextId', projectSaveLocation, userdata);
-        const repo = await Repo.open(projectSaveLocation, userdata);
+        console.log('changeCurrentContextId', projectSaveLocation, userData);
+        const repo = await Repo.open(projectSaveLocation, userData);
         const saveStarted = await repo.saveDebounced(`Auto saving at ${refStr}`);
 
         if (!saveStarted) {
