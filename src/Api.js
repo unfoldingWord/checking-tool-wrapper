@@ -312,16 +312,17 @@ export default class Api extends ToolApi {
       const files = project.readDataDirSync(loadPath).filter(file => path.extname(file) === '.json');
       let sortedRecords = files.sort().reverse();
       const isQuoteArray = Array.isArray(quote);
-      let recordData;
+      let jsonData;
 
       // load check data
       for (let i = 0, len = sortedRecords.length; i < len; i++) {
         const record = sortedRecords[i];
         const recordPath = path.join(loadPath, record);
-        recordData = null;
+        jsonData = null;
 
         try {
-          recordData = JSON.parse(project.readDataFileSync(recordPath));
+          jsonData = project.readDataFileSync(recordPath);
+          const recordData = JSON.parse(jsonData);
 
           // return first match
           if (recordData.contextId.groupId === groupId &&
@@ -330,7 +331,7 @@ export default class Api extends ToolApi {
             return recordData;
           }
         } catch (e) {
-          console.warn(`Failed to load check record from ${recordPath}, recordData: ${recordData}`, e);
+          console.warn(`Failed to load check record from ${recordPath}, recordData: ${jsonData}`, e);
         }
       }
     }
