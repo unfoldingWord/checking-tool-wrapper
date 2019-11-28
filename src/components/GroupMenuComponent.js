@@ -15,7 +15,7 @@ import {
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
-function GroupMenuWrapper({
+function GroupMenuComponent({
   translate,
   contextId,
   bookName,
@@ -175,7 +175,7 @@ function GroupMenuWrapper({
   );
 }
 
-GroupMenuWrapper.propTypes = {
+GroupMenuComponent.propTypes = {
   translate: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
   glBibles: PropTypes.object.isRequired,
@@ -187,4 +187,4 @@ GroupMenuWrapper.propTypes = {
   changeCurrentContextId: PropTypes.func.isRequired,
 };
 
-export default GroupMenuWrapper;
+export default GroupMenuComponent;

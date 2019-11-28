@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import GroupMenu from '../components/GroupMenuWrapper';
+import GroupMenuComponent from '../components/GroupMenuComponent';
 // Actions
 import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
@@ -39,34 +39,20 @@ function GroupMenuContainer({
   changeCurrentContextId,
 }) {
   useEffect(() => {
-    console.log('----useEffect 1----');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
-    console.log('----useEffect 2----');
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
-    console.log('----useEffect 3----');
     loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBibles, userData);
   }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBibles, userData]);
 
-  console.log('bookId', bookId);
-  console.log('bookName', bookName);
-  console.log('userdata', userData);
-  console.log('glBibles', glBibles);
-  console.log('contextId', contextId);
-  console.log('gatewayLanguage', gatewayLanguage);
-  console.log('selectedToolName', selectedToolName);
-  console.log('groupsData', groupsData);
-  console.log('groupsIndex', groupsIndex);
-  console.log('projectSaveLocation', projectSaveLocation);
-
   if (contextId) {
     return (
-      <GroupMenu
+      <GroupMenuComponent
         glBibles={glBibles}
         userData={userData}
         projectSaveLocation={bookName}
