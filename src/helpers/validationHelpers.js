@@ -57,7 +57,7 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
         const currentSelectionsObject = fs.readJsonSync(pathToSelections);
 
         if (!currentSelectionsObject.contextId) {
-          console.error(`getSelectionsFromChapterAndVerseCombo() - missing contextId ${pathToSelections}`);
+          console.warn(`getSelectionsFromChapterAndVerseCombo() - missing contextId ${pathToSelections}`);
         } else {
           if ((currentSelectionsObject.contextId.occurrence === occurrence) &&
             isEqual(currentSelectionsObject.contextId.quote, quote)) { // supports quote arrays or strings

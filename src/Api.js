@@ -158,6 +158,7 @@ export default class Api extends ToolApi {
                 checkingOccurrence.contextId.quote,
                 checkingOccurrence.contextId.occurrence
               );
+              console.log(`Api._validateVerse() - invalidating: ${JSON.stringify(selectionsObject)}`);
               //If selections are changed, they need to be cleared
               selectionsChanged = true;
               const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
@@ -216,7 +217,7 @@ export default class Api extends ToolApi {
             completedChecks += (check.selections || check.nothingToSelect) ? 1 : 0;
           }
         } else {
-          console.warn(`Invalid group data found for "${group}"`);
+          console.warn(`Api.getProgress() - Invalid group data found for "${group}"`);
         }
       }
     }
@@ -331,7 +332,7 @@ export default class Api extends ToolApi {
             return recordData;
           }
         } catch (e) {
-          console.warn(`Failed to load check record from ${recordPath}, recordData: ${jsonData}`, e);
+          console.warn(`Api.loadCheckData() - Failed to load check record from ${recordPath}, recordData: ${jsonData}`, e);
         }
       }
     }
@@ -362,7 +363,7 @@ export default class Api extends ToolApi {
           }
         }
       } else {
-        console.warn(`Invalid group data found for "${group}"`);
+        console.warn(`Api.getInvalidChecks() - Invalid group data found for "${group}"`);
       }
     }
     return invalidChecks;
