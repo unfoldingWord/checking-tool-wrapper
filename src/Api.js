@@ -158,25 +158,29 @@ export default class Api extends ToolApi {
                 checkingOccurrence.contextId.quote,
                 checkingOccurrence.contextId.occurrence
               );
-              console.log(`Api._validateVerse() - invalidating: ${JSON.stringify(selectionsObject)}`);
-              //If selections are changed, they need to be cleared
-              selectionsChanged = true;
-              const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
-              const invalidatedPayload = {
-                ...selectionsObject,
-                invalidated: true,
-                selections: [],
-                userName,
-              };
-              this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
 
-              const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-              const selectionsPayload = {
-                ...selectionsObject,
-                selections: [],
-                userName,
-              };
-              this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
+              if (selectionsObject.contextId) {
+                //If selections are changed, they need to be cleared
+                selectionsChanged = true;
+                const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
+                const invalidatedPayload = {
+                  ...selectionsObject,
+                  invalidated: true,
+                  selections: [],
+                  userName,
+                };
+                this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
+
+                const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
+                const selectionsPayload = {
+                  ...selectionsObject,
+                  selections: [],
+                  userName,
+                };
+                this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
+              } else {
+                console.warn(`Api._validateVerse() - could not find selections for verse ${chapter}:${verse}, checkingOccurrence: ${JSON.stringify(checkingOccurrence)}`);
+              }
             }
           }
         }
