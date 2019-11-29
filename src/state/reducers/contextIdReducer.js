@@ -23,5 +23,5 @@ export default contextIdReducer;
  * @param state
  * @return {*}
  */
-export const getContextId = (state) =>
+export const getContext = (state) =>
   state.contextId;

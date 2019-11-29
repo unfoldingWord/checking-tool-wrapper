@@ -9,7 +9,7 @@ export const getGroupsData = (state) =>
   fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
 
 export const getContextId = (state) =>
-  fromContextId.getContextId(state.tool.contextIdReducer);
+  fromContextId.getContext(state.tool.contextIdReducer);
 
 export const getProjectManifest = (state) => state.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguage = (state) => state.tc.gatewayLanguage;

@@ -16,8 +16,11 @@ import { getVerseCheckState } from './selectors/VerseCheck';
 import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import { getScripturePaneState } from './selectors/ScripturePane';
 import { getCheckInfoCardState } from './selectors/CheckInfoCard';
-import { getTcState, getTranslateState } from './selectors';
-import { getContextId } from './state/reducers/contextIdReducer';
+import {
+  getTcState,
+  getTranslateState,
+  getContextId,
+} from './selectors';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
