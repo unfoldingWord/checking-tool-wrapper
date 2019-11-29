@@ -17,6 +17,7 @@ import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import { getScripturePaneState } from './selectors/ScripturePane';
 import { getCheckInfoCardState } from './selectors/CheckInfoCard';
 import { getTcState, getTranslateState } from './selectors';
+import { getContextId } from './state/reducers/contextIdReducer';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -54,7 +55,10 @@ function Container(props) {
     tc,
     translate,
     contextIdReducer: { contextId },
+    _contextId,
   } = props;
+
+  console.log('_contextId', _contextId);
 
   if (contextId !== null) {
     return (
@@ -85,6 +89,7 @@ function Container(props) {
 }
 
 Container.propTypes = {
+  _contextId: PropTypes.object.isRequired,
   translationHelps: PropTypes.any,
   verseCheck: PropTypes.any,
   checkInfoCard: PropTypes.any,
@@ -107,6 +112,7 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => ({
   tc: getTcState(ownProps),
+  _contextId: getContextId(state),
   translate: getTranslateState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
