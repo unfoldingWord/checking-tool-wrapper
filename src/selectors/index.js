@@ -22,7 +22,7 @@ export const getTcState = (state) => state.tc;
 export const getTranslateState = (state) => state.translate;
 
 
-// TODO:
+// TODO: Cleanup selectos below
 export const getBiblesState = (state) =>
   state.resourcesReducer.bibles;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;

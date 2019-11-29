@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
 // components
-import GroupMenuWrapper from './containers/GroupMenuContainer';
+import GroupMenuContainer from './containers/GroupMenuContainer';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
@@ -22,6 +22,24 @@ const theme = createTcuiTheme({
   typography: { useNextVariants: true },
   scrollbarThumb: { borderRadius: '10px' },
 });
+
+const styles = {
+  containerDiv:{
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100vw',
+  },
+  centerDiv: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    overflowX: 'auto',
+  },
+  scripturePaneDiv: {
+    height: '250px',
+    paddingBottom: '20px',
+  },
+};
 
 function Container(props) {
   const [showHelps, setShowHelps] = useState(true);
@@ -41,14 +59,10 @@ function Container(props) {
   if (contextId !== null) {
     return (
       <TcuiThemeProvider theme={theme}>
-        <div style={{
-          display: 'flex', flexDirection: 'row', width: '100vw',
-        }}>
-          <GroupMenuWrapper tc={tc} translate={translate} />
-          <div style={{
-            display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
-          }}>
-            <div style={{ height: '250px', paddingBottom: '20px' }}>
+        <div style={styles.containerDiv}>
+          <GroupMenuContainer tc={tc} translate={translate} />
+          <div style={styles.centerDiv}>
+            <div style={styles.scripturePaneDiv}>
               <ScripturePaneWrapper {...props.scripturePane} />
             </div>
             <CheckInfoCardWrapper
