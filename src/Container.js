@@ -64,32 +64,32 @@ function Container(props) {
 
   console.log('contextId', contextId);
 
-  if (contextId !== null) {
-    return (
-      <TcuiThemeProvider theme={theme}>
-        <div style={styles.containerDiv}>
-          <GroupMenuContainer tc={tc} translate={translate} />
-          <div style={styles.centerDiv}>
-            <div style={styles.scripturePaneDiv}>
-              <ScripturePaneWrapper {...props.scripturePane} />
-            </div>
-            <CheckInfoCardWrapper
-              toggleHelps={() => setShowHelps(!showHelps)}
-              showHelps={showHelps}
-              {...props.checkInfoCard}
-            />
-            <VerseCheckWrapper {...props.verseCheck} />
+  // if (contextId !== null) {
+  return (
+    <TcuiThemeProvider theme={theme}>
+      <div style={styles.containerDiv}>
+        <GroupMenuContainer tc={tc} translate={translate} />
+        <div style={styles.centerDiv}>
+          <div style={styles.scripturePaneDiv}>
+            <ScripturePaneWrapper {...props.scripturePane} />
           </div>
-          <TranslationHelpsWrapper
+          <CheckInfoCardWrapper
             toggleHelps={() => setShowHelps(!showHelps)}
             showHelps={showHelps}
-            {...props.translationHelps} />
+            {...props.checkInfoCard}
+          />
+          <VerseCheckWrapper {...props.verseCheck} />
         </div>
-      </TcuiThemeProvider>
-    );
-  } else {
-    return null;
-  }
+        <TranslationHelpsWrapper
+          toggleHelps={() => setShowHelps(!showHelps)}
+          showHelps={showHelps}
+          {...props.translationHelps} />
+      </div>
+    </TcuiThemeProvider>
+  );
+  // } else {
+  //   return null;
+  // }
 }
 
 Container.propTypes = {
