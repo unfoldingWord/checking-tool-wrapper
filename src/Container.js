@@ -57,13 +57,12 @@ function Container(props) {
   const {
     tc,
     translate,
-    contextIdReducer: { contextId },
+    // contextIdReducer: { contextId },TODO:
     _contextId,
-    state,
   } = props;
+  const contextId = _contextId;
 
-  console.log('_contextId', _contextId);
-  console.log('state', state);
+  console.log('contextId', contextId);
 
   if (contextId !== null) {
     return (
@@ -117,7 +116,6 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => ({
   tc: getTcState(ownProps),
-  state,
   _contextId: getContextId(state),
   translate: getTranslateState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
