@@ -58,9 +58,8 @@ function Container(props) {
     tc,
     translate,
     // contextIdReducer: { contextId },TODO:
-    _contextId,
+    contextId,
   } = props;
-  const contextId = _contextId;
 
   console.log('contextId', contextId);
 
@@ -76,6 +75,7 @@ function Container(props) {
           <CheckInfoCardWrapper
             toggleHelps={() => setShowHelps(!showHelps)}
             showHelps={showHelps}
+            contextId={contextId}// TODO:
             {...props.checkInfoCard}
           />
           <VerseCheckWrapper {...props.verseCheck} />
@@ -93,7 +93,7 @@ function Container(props) {
 }
 
 Container.propTypes = {
-  _contextId: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
   translationHelps: PropTypes.any,
   verseCheck: PropTypes.any,
   checkInfoCard: PropTypes.any,
@@ -116,7 +116,7 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => ({
   tc: getTcState(ownProps),
-  _contextId: getContextId(state),
+  contextId: getContextId(state),
   translate: getTranslateState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
