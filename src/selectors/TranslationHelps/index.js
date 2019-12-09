@@ -4,24 +4,22 @@ import {
   getToolsSelectedGLsState,
   getLegacyToolsReducerState,
   getResourcesReducerState,
-  getContextIdReducerState,
   getActionsState,
 } from '../';
 
 export const getTranslationHelpsState = createSelector(
   [
     getTranslateState, getToolsSelectedGLsState, getLegacyToolsReducerState,
-    getResourcesReducerState, getContextIdReducerState, getActionsState,
+    getResourcesReducerState, getActionsState,
   ],
   (
     translate, toolsSelectedGLs, legacyToolsReducer,
-    resourcesReducer, contextIdReducer, actions
+    resourcesReducer, actions
   ) => ({
     translate,
     toolsSelectedGLs,
     toolsReducer: legacyToolsReducer,
     resourcesReducer,
-    contextIdReducer,
     actions,
   })
 );

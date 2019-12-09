@@ -25,17 +25,17 @@ function useTnArticleState(initialState) {
   };
 }
 
-function TranslationHelpsWrapper(props) {
-  const {
-    toolsSelectedGLs,
-    toolsReducer: { currentToolName },
-    contextIdReducer: { contextId },
-    showHelps,
-    toggleHelps,
-    translate,
-    actions,
-  } = props;
-  resourcesReducer = props.resourcesReducer;
+function TranslationHelpsWrapper({
+  toolsSelectedGLs,
+  toolsReducer: { currentToolName },
+  contextId,
+  showHelps,
+  toggleHelps,
+  translate,
+  actions,
+  resourcesReducer: resourcesReducerProp,
+}) {
+  resourcesReducer = resourcesReducerProp;
 
   const initialState = {
     showHelpsModal: false,
@@ -126,11 +126,13 @@ TranslationHelpsWrapper.propTypes = {
   toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,
   resourcesReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
+  contextId: PropTypes.object.isRequired,
   toolsReducer: PropTypes.object,
   actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
 };
+
+TranslationHelpsWrapper.defaultProps = { contextId: {} };
 
 export default TranslationHelpsWrapper;
