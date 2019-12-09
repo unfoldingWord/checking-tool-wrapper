@@ -31,35 +31,39 @@ function CheckInfoCardWrapper({
     }
   }
 
-  const {
-    groupId, occurrenceNote, tool,
-  } = contextId || {};
-  const title = groupsIndex.filter(item => item.id === groupId)[0].name;
-  let phrase = '';
+  if (contextId !== null) {
+    const {
+      groupId, occurrenceNote, tool,
+    } = contextId || {};
+    const title = groupsIndex.filter(item => item.id === groupId)[0].name;
+    let phrase = '';
 
-  switch (tool) {
-  case TRANSLATION_WORDS: {
-    const { translationWords } = translationHelps ? translationHelps : {};
-    phrase = getPhraseFromTw(translationWords, groupId, translationHelps);
-    break;
-  }
-  case TRANSLATION_NOTES:
-    phrase = getNote(occurrenceNote);
-    break;
-  default:
-    console.error('tool is undefined in contextId');
-    break;
-  }
+    switch (tool) {
+    case TRANSLATION_WORDS: {
+      const { translationWords } = translationHelps ? translationHelps : {};
+      phrase = getPhraseFromTw(translationWords, groupId, translationHelps);
+      break;
+    }
+    case TRANSLATION_NOTES:
+      phrase = getNote(occurrenceNote);
+      break;
+    default:
+      console.error('tool is undefined in contextId');
+      break;
+    }
 
-  return (
-    <CheckInfoCard
-      title={title}
-      phrase={phrase}
-      getScriptureFromReference={getScriptureFromReference}
-      seeMoreLabel={translate('see_more')}
-      showSeeMoreButton={!showHelps}
-      onSeeMoreClick={toggleHelps} />
-  );
+    return (
+      <CheckInfoCard
+        title={title}
+        phrase={phrase}
+        getScriptureFromReference={getScriptureFromReference}
+        seeMoreLabel={translate('see_more')}
+        showSeeMoreButton={!showHelps}
+        onSeeMoreClick={toggleHelps} />
+    );
+  } else {
+    return null;
+  }
 }
 
 CheckInfoCardWrapper.propTypes = {
