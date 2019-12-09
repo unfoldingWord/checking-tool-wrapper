@@ -70,7 +70,10 @@ function Container(props) {
         <GroupMenuContainer tc={tc} translate={translate} />
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
-            <ScripturePaneWrapper {...props.scripturePane} />
+            <ScripturePaneWrapper
+              {...props.scripturePane}
+              contextId={contextId}// TODO:
+            />
           </div>
           <CheckInfoCardWrapper
             toggleHelps={() => setShowHelps(!showHelps)}

@@ -1,17 +1,16 @@
 import { createSelector } from 'reselect';
 import {
-  getTranslateState, getManifestState, getBiblesState, getContextIdState,
+  getTranslateState, getManifestState, getBiblesState,
   getSelectionsState, getCurrentPaneSettingsState, getActionsState, getProjectDetailsReducerState,
 } from '../';
 
 export const getScripturePaneState = createSelector(
   [
     getTranslateState, getManifestState, getSelectionsState, getCurrentPaneSettingsState,
-    getBiblesState, getContextIdState, getProjectDetailsReducerState, getActionsState,
+    getBiblesState, getProjectDetailsReducerState, getActionsState,
   ],
   (
-    translate, manifest, selections, currentPaneSettings, bibles,
-    contextId, projectDetailsReducer, actions
+    translate, manifest, selections, currentPaneSettings, bibles, projectDetailsReducer, actions
   ) => {
     const {
       showPopover, editTargetVerse, getLexiconData, setToolSettings,
@@ -23,7 +22,6 @@ export const getScripturePaneState = createSelector(
       selections,
       currentPaneSettings,
       bibles,
-      contextId,
       projectDetailsReducer,
       showPopover,
       editTargetVerse,

@@ -29,23 +29,27 @@ function ScripturePaneWrapper({
 
   const expandedScripturePaneTitle = makeTitle(manifest);
 
-  return (
-    <ScripturePane
-      currentPaneSettings={currentPaneSettings}
-      contextId={contextId}
-      bibles={bibles}
-      expandedScripturePaneTitle={expandedScripturePaneTitle}
-      showPopover={showPopover}
-      editTargetVerse={editTargetVerse}
-      projectDetailsReducer={projectDetailsReducer}
-      translate={translate}
-      getLexiconData={getLexiconData}
-      selections={selections}
-      setToolSettings={setToolSettings}
-      getAvailableScripturePaneSelections={getAvailableScripturePaneSelections}
-      makeSureBiblesLoadedForTool={makeSureBiblesLoadedForTool}
-    />
-  );
+  if (contextId) {
+    return (
+      <ScripturePane
+        currentPaneSettings={currentPaneSettings}
+        contextId={contextId}
+        bibles={bibles}
+        expandedScripturePaneTitle={expandedScripturePaneTitle}
+        showPopover={showPopover}
+        editTargetVerse={editTargetVerse}
+        projectDetailsReducer={projectDetailsReducer}
+        translate={translate}
+        getLexiconData={getLexiconData}
+        selections={selections}
+        setToolSettings={setToolSettings}
+        getAvailableScripturePaneSelections={getAvailableScripturePaneSelections}
+        makeSureBiblesLoadedForTool={makeSureBiblesLoadedForTool}
+      />
+    );
+  } else {
+    return null;
+  }
 }
 
 ScripturePaneWrapper.propTypes = {
