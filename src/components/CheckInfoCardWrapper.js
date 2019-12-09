@@ -33,14 +33,14 @@ function CheckInfoCardWrapper({
 
   const {
     groupId, occurrenceNote, tool,
-  } = contextId;
+  } = contextId || {};
   const title = groupsIndex.filter(item => item.id === groupId)[0].name;
   let phrase = '';
 
   switch (tool) {
   case TRANSLATION_WORDS: {
     const { translationWords } = translationHelps ? translationHelps : {};
-    phrase = getPhraseFromTw(translationWords, contextId.groupId, translationHelps);
+    phrase = getPhraseFromTw(translationWords, groupId, translationHelps);
     break;
   }
   case TRANSLATION_NOTES:
