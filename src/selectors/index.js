@@ -22,9 +22,9 @@ export const getTcState = (state) => state.tc;
 export const getTranslateState = (state) => state.translate;
 
 
-export const getTranslationHelpsArticle = (state, contextId = {}) => {
+export const getTranslationHelpsArticle = (state, contextId) => {
   const article = state.tc.resourcesReducer.translationHelps[state.tc.selectedToolName];
-
+  contextId = contextId || {};
   console.log('getTranslationHelpsArticle contextId', contextId);
   const { groupId = '' } = contextId;
   console.log('groupId', groupId);
@@ -33,7 +33,7 @@ export const getTranslationHelpsArticle = (state, contextId = {}) => {
 };
 
 
-// TODO: Cleanup selectos below
+// TODO: Cleanup selector below
 export const getBiblesState = (state) =>
   state.resourcesReducer.bibles;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
