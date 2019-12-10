@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 // selectors
-import { getTranslationHelpsArticle, getGatewayLanguage } from '../selectors/index';
+import {
+  getTranslationHelpsArticle, getGatewayLanguage, getContextId,
+} from '../selectors/index';
 
 // resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
 let resourcesReducer = {};
@@ -135,9 +137,13 @@ TranslationHelpsWrapper.propTypes = {
   gatewayLanguage: PropTypes.string.isRequired,
 };
 
-export const mapStateToProps = (state, ownProps) => ({
-  currentFile: getTranslationHelpsArticle(ownProps),
-  gatewayLanguage: getGatewayLanguage(ownProps),
-});
+export const mapStateToProps = (state, ownProps) => {
+  const contextId = getContextId(state);
+  return {
+    contextId,
+    gatewayLanguage: getGatewayLanguage(ownProps),
+    currentFile: getTranslationHelpsArticle(ownProps, contextId),
+  };
+};
 
 export default connect(mapStateToProps)(TranslationHelpsWrapper);

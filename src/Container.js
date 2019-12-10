@@ -88,7 +88,6 @@ function Container(props) {
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
           showHelps={showHelps}
-          contextId={contextId}// TODO:
           {...props.translationHelps} />
       </div>
     </TcuiThemeProvider>

@@ -22,9 +22,9 @@ export const getTcState = (state) => state.tc;
 export const getTranslateState = (state) => state.translate;
 
 
-export const getTranslationHelpsArticle = (state) => {
+export const getTranslationHelpsArticle = (state, contextId) => {
   const article = state.tc.resourcesReducer.translationHelps[state.tc.selectedToolName];
-  const { groupId } = getContextId(state);
+  const { groupId } = contextId;
 
   return article && groupId ? article[groupId] : '';
 };
