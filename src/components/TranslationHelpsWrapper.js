@@ -139,6 +139,8 @@ TranslationHelpsWrapper.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state);
+  console.log('mapStateToProps contextId', contextId);
+
   return {
     contextId,
     gatewayLanguage: getGatewayLanguage(ownProps),
