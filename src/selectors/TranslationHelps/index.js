@@ -1,7 +1,5 @@
 import { createSelector } from 'reselect';
 import {
-  getTranslateState,
-  getToolsSelectedGLsState,
   getLegacyToolsReducerState,
   getResourcesReducerState,
   getActionsState,
@@ -9,15 +7,9 @@ import {
 
 export const getTranslationHelpsState = createSelector(
   [
-    getTranslateState, getToolsSelectedGLsState, getLegacyToolsReducerState,
-    getResourcesReducerState, getActionsState,
+    getLegacyToolsReducerState, getResourcesReducerState, getActionsState,
   ],
-  (
-    translate, toolsSelectedGLs, legacyToolsReducer,
-    resourcesReducer, actions
-  ) => ({
-    translate,
-    toolsSelectedGLs,
+  (legacyToolsReducer, resourcesReducer, actions) => ({
     toolsReducer: legacyToolsReducer,
     resourcesReducer,
     actions,

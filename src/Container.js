@@ -84,6 +84,8 @@ function Container(props) {
           <VerseCheckWrapper {...props.verseCheck} />
         </div>
         <TranslationHelpsWrapper
+          tc={tc}
+          translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
           showHelps={showHelps}
           contextId={contextId}// TODO:

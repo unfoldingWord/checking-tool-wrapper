@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TranslationHelps } from 'tc-ui-toolkit';
+import { connect } from 'react-redux';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
+// selectors
+import { getTranslationHelpsArticle, getGatewayLanguage } from '../selectors/index';
 
 // resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
 let resourcesReducer = {};
@@ -26,13 +29,14 @@ function useTnArticleState(initialState) {
 }
 
 function TranslationHelpsWrapper({
-  toolsSelectedGLs,
   toolsReducer: { currentToolName },
-  contextId,
+  contextId: { groupId = '' },
   showHelps,
   toggleHelps,
   translate,
   actions,
+  currentFile,
+  gatewayLanguage,
   resourcesReducer: resourcesReducerProp,
 }) {
   resourcesReducer = resourcesReducerProp;
@@ -48,8 +52,6 @@ function TranslationHelpsWrapper({
     articleCategory,
     setThState,
   } = useTnArticleState(initialState);
-  const groupId = contextId.groupId;
-  const languageId = toolsSelectedGLs[currentToolName];
 
   /**
    * extract article from reducer if present.
@@ -88,8 +90,8 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    actions.loadResourceArticle(currentToolName, groupId, languageId, '', true); // do asynchronous load
-  }, [actions, currentToolName, groupId, languageId]);
+    actions.loadResourceArticle(currentToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
+  }, [actions, currentToolName, groupId, gatewayLanguage]);
 
   useEffect(() => {
     const page = document.getElementById('helpsbody');
@@ -97,7 +99,7 @@ function TranslationHelpsWrapper({
     if (page) {
       page.scrollTop = 0;
     }
-  }, [contextId]);
+  }, []);
 
   function toggleHelpsModal() {
     setThState({
@@ -106,9 +108,8 @@ function TranslationHelpsWrapper({
     });
   }
 
-  const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
-  const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
-  const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, languageId, articleCategory);
+  const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, gatewayLanguage);
+  const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, gatewayLanguage, articleCategory);
 
   return (
     <TranslationHelps
@@ -123,16 +124,20 @@ function TranslationHelpsWrapper({
 }
 
 TranslationHelpsWrapper.propTypes = {
-  toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,
   resourcesReducer: PropTypes.object,
   contextId: PropTypes.object.isRequired,
   toolsReducer: PropTypes.object,
+  currentFile: PropTypes.string.isRequired,
   actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
+  gatewayLanguage: PropTypes.string.isRequired,
 };
 
-TranslationHelpsWrapper.defaultProps = { contextId: {} };
+export const mapStateToProps = (state, ownProps) => ({
+  currentFile: getTranslationHelpsArticle(state),
+  gatewayLanguage: getGatewayLanguage(ownProps),
+});
 
-export default TranslationHelpsWrapper;
+export default connect(mapStateToProps)(TranslationHelpsWrapper);

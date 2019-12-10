@@ -22,6 +22,14 @@ export const getTcState = (state) => state.tc;
 export const getTranslateState = (state) => state.translate;
 
 
+export const getTranslationHelpsArticle = (state) => {
+  const article = state.tc.resourcesReduce.translationHelps[state.tc.selectedToolName];
+  const { groupId } = getContextId(state);
+
+  return article && groupId ? article[groupId] : '';
+};
+
+
 // TODO: Cleanup selectos below
 export const getBiblesState = (state) =>
   state.resourcesReducer.bibles;
