@@ -136,7 +136,7 @@ TranslationHelpsWrapper.propTypes = {
 };
 
 export const mapStateToProps = (state, ownProps) => ({
-  currentFile: getTranslationHelpsArticle(state),
+  currentFile: getTranslationHelpsArticle(ownProps),
   gatewayLanguage: getGatewayLanguage(ownProps),
 });
 
