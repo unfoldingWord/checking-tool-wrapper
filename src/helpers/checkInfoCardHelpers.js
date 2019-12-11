@@ -11,7 +11,7 @@ const InlineRenderer = new marked.Renderer();
 InlineRenderer.paragraph = (text => text);
 
 /**
- * leave links unchanged since they will be processed later
+ * leave links as markdown since they will be processed later
  * @param {String} href
  * @param {String} title
  * @param {String} text
@@ -81,7 +81,7 @@ export function getNote(occurrenceNote) {
   let cleanedNote = occurrenceNote.replace(/\s*\([^()[\]]+((\[[^[\]]+\])*(\[\[|\()+rc:\/\/[^)\]]+(\]\]|\))[^([)\]]*)+[^()[\]]*\)\s*$/g, '');
 
   try {
-    let convertedNote = marked(cleanedNote, { renderer: InlineRenderer }); // convert markdown in note
+    let convertedNote = marked(cleanedNote, { renderer: InlineRenderer }); // convert markdown in note using our custom renderer
 
     if (convertedNote) { // if not empty use
       cleanedNote = convertedNote;

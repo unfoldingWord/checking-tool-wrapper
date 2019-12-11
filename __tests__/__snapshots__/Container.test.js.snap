@@ -5334,7 +5334,9 @@ exports[`Container Tests Test Container 1`] = `
       >
         <div
           class="phrase"
-        />
+        >
+          <div />
+        </div>
         <div
           class="linkInactive"
         >
