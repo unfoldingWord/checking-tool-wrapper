@@ -2,8 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VerseCheck } from 'tc-ui-toolkit';
+import { connect } from 'react-redux';
 import { optimizeSelections } from '../helpers/selectionHelpers';
 import { getInvalidQuoteMessage } from '../helpers/checkAreaHelpers';
+import {
+  getContextId,
+  getProjectManifest,
+  getGatewayLanguage,
+  getTargetBible,
+  getCurrentGroup,
+  getAlignedGLText,
+  getMaximumSelections,
+  getToolName,
+} from '../selectors';
+import { getVerseText } from '../helpers/verseHelpers';
 
 function useLocalState(initialState) {
   const [localState, setLocalState] = useState(initialState);
@@ -334,4 +346,27 @@ VerseCheckWrapper.propTypes = {
   selectedGL: PropTypes.string.isRequired,
 };
 
-export default VerseCheckWrapper;
+export const mapStateToProps = (state, ownProps) => {
+  const contextId = getContextId(state);
+  const targetBible = getTargetBible(ownProps);
+  const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
+  const currentGroupItem = getCurrentGroup(state);
+  const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
+  const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
+  const selectedToolName = getToolName(ownProps);
+
+  return {
+    contextId,
+    verseText,
+    targetBible,
+    isVerseEdited,
+    isVerseInvalidated,
+    unfilteredVerseText,
+    manifest: getProjectManifest(ownProps),
+    alignedGLText: getAlignedGLText(state, ownProps),
+    maximumSelections: getMaximumSelections(selectedToolName),
+    gatewayLanguage: getGatewayLanguage(ownProps),//TODO: selectedGL
+  };
+};
+
+export default connect(mapStateToProps)(VerseCheckWrapper);

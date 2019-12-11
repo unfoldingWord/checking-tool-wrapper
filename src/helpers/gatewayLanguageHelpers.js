@@ -9,7 +9,7 @@ import { getAlignedText } from 'tc-ui-toolkit';
  * @return {{gatewayLanguageCode: *, gatewayLanguageQuote: *}}
  */
 export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBibles) => {
-  const gatewayLanguageQuote = getAlignedGLText(contextId, glBibles);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
 
   return {
     gatewayLanguageCode,
@@ -22,7 +22,7 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
  * @param {*} contextId - current context id.
  * @param {*} glBibles - gateway language Bibles.
  */
-export function getAlignedGLText(contextId, glBibles) {
+export function getAlignedGLTextHelper(contextId, glBibles) {
   if (contextId) {
     if (!contextId.quote || !glBibles || !glBibles || !Object.keys(glBibles).length) {
       return contextId.quote;

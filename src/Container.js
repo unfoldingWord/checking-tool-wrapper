@@ -63,7 +63,6 @@ function Container(props) {
 
   console.log('contextId', contextId);
 
-  // if (contextId !== null) {
   return (
     <TcuiThemeProvider theme={theme}>
       <div style={styles.containerDiv}>
@@ -81,7 +80,7 @@ function Container(props) {
             contextId={contextId}// TODO:
             {...props.checkInfoCard}
           />
-          <VerseCheckWrapper {...props.verseCheck} />
+          <VerseCheckWrapper tc={tc} translate={translate} {...props.verseCheck} />
         </div>
         <TranslationHelpsWrapper
           tc={tc}
@@ -92,9 +91,6 @@ function Container(props) {
       </div>
     </TcuiThemeProvider>
   );
-  // } else {
-  //   return null;
-  // }
 }
 
 Container.propTypes = {
