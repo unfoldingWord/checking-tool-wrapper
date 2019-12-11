@@ -14,5 +14,6 @@ export const ADD_COMMENT = 'TOOL::ADD_COMMENT';
 export const CHANGE_SELECTIONS = 'TOOL::CHANGE_SELECTIONS';
 // bookmarksReducer
 export const SET_BOOKMARK = 'TOOL::SET_BOOKMARK';
+export const TOGGLE_BOOKMARK = 'TOOL::TOGGLE_BOOKMARK';
 // invalidatedReducer
 export const SET_INVALIDATED = 'TOOL::SET_INVALIDATED';
