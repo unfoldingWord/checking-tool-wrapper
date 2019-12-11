@@ -3,7 +3,28 @@ import marked from 'marked';
 // setup marked options:
 const InlineRenderer = new marked.Renderer();
 
+/**
+ * leave paragraphs unchanged (prevents wrapping text in <p>...</p>)
+ * @type {String} text
+ * @return {String} same as text
+ */
 InlineRenderer.paragraph = (text => text);
+
+/**
+ * leave links unchanged since they will be processed later
+ * @param {String} href
+ * @param {String} title
+ * @param {String} text
+ * @return {String} link as markdown
+ */
+InlineRenderer.link = function (href, title, text) {
+  const link = href + (title ? ' ' + title : '');
+  const markdownLink = '[' + text + '](' + link + ')';
+  return markdownLink;
+};
+
+//
+// link(string href, string title, string text)
 
 /**
  * Gets the phrase from tW
