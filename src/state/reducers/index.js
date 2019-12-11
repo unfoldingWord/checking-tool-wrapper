@@ -7,6 +7,7 @@ import groupsDataReducer from './groupsDataReducer';
 import commentsReducer from './commentsReducer';
 import selectionsReducer from './selectionsReducer';
 import bookmarksReducer from './bookmarksReducer';
+import invalidatedReducer from './invalidatedReducer';
 
 export default combineReducers({
   contextIdReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   commentsReducer,
   selectionsReducer,
   bookmarksReducer,
+  invalidatedReducer,
 });
