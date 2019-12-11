@@ -1,3 +1,9 @@
+import marked from 'marked';
+
+// setup marked options:
+const InlineRenderer = new marked.Renderer();
+
+InlineRenderer.paragraph = (text => text);
 
 /**
  * Gets the phrase from tW
@@ -47,9 +53,21 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  * Removes the (See: [...](rc://...)) links at the end of an occurrenceNote
  * Ex: Paul speaks of God’s message as if it were an object (See: [Idiom](rc://en/ta/man/translate/figs-idiom) and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) =>
  *     Paul speaks of God’s message as if it were an object
- * @param {string} occurrecntNote
+ * @param {string} occurrenceNote
  * @return {string}
  */
 export function getNote(occurrenceNote) {
-  return occurrenceNote.replace(/\s*\([^()[\]]+((\[[^[\]]+\])*(\[\[|\()+rc:\/\/[^)\]]+(\]\]|\))[^([)\]]*)+[^()[\]]*\)\s*$/g, '');
+  let cleanedNote = occurrenceNote.replace(/\s*\([^()[\]]+((\[[^[\]]+\])*(\[\[|\()+rc:\/\/[^)\]]+(\]\]|\))[^([)\]]*)+[^()[\]]*\)\s*$/g, '');
+
+  try {
+    let convertedNote = marked(cleanedNote, { renderer: InlineRenderer }); // convert markdown in note
+
+    if (convertedNote) { // if not empty use
+      cleanedNote = convertedNote;
+    }
+  } catch (e) {
+    console.warn(`getNote() - failed to convert markdown in ${cleanedNote}`);
+  }
+
+  return cleanedNote;
 }
