@@ -267,55 +267,59 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
-  return (
-    <VerseCheck
-      translate={translate}
-      mode={mode}
-      tags={newTags}
-      targetBible={targetBible}
-      verseText={verseText}
-      unfilteredVerseText={unfilteredVerseText}
-      contextId={contextId}
-      selections={selections}
-      isVerseEdited={isVerseEdited}
-      commentText={commentText}
-      alignedGLText={alignedGlTextState}
-      nothingToSelect={nothingToSelect}
-      bookmarkEnabled={bookmarkEnabled}
-      maximumSelections={maximumSelections}
-      isVerseInvalidated={isVerseInvalidated}
-      bookDetails={manifest.project}
-      targetLanguageDetails={manifest.target_language}
-      newSelections={newSelections}
-      localNothingToSelect={newNothingToSelect}
-      dialogModalVisibility={isDialogOpen}
-      isVerseChanged={isVerseChanged}
-      isCommentChanged={isCommentChanged}
-      handleSkip={handleSkip}
-      handleGoToNext={actions.goToNext}
-      handleGoToPrevious={actions.goToPrevious}
-      handleOpenDialog={handleOpenDialog}
-      handleCloseDialog={handleCloseDialog}
-      openAlertDialog={actions.openAlertDialog}
-      toggleReminder={actions.toggleReminder}
-      changeMode={changeMode}
-      cancelEditVerse={cancelEditVerse}
-      saveEditVerse={saveEditVerse}
-      handleComment={handleComment}
-      cancelComment={cancelComment}
-      saveComment={saveComment}
-      saveSelection={saveSelection}
-      cancelSelection={cancelSelection}
-      clearSelection={clearSelection}
-      handleEditVerse={handleEditVerse}
-      checkIfVerseChanged={checkIfVerseChanged}
-      checkIfCommentChanged={checkIfCommentChanged}
-      validateSelections={actions.validateSelections}
-      handleTagsCheckbox={handleTagsCheckbox}
-      toggleNothingToSelect={toggleNothingToSelect}
-      changeSelectionsInLocalState={changeSelectionsInLocalState}
-    />
-  );
+  if (contextId) {
+    return (
+      <VerseCheck
+        translate={translate}
+        mode={mode}
+        tags={newTags}
+        targetBible={targetBible}
+        verseText={verseText}
+        unfilteredVerseText={unfilteredVerseText}
+        contextId={contextId}
+        selections={selections}
+        isVerseEdited={isVerseEdited}
+        commentText={commentText}
+        alignedGLText={alignedGlTextState}
+        nothingToSelect={nothingToSelect}
+        bookmarkEnabled={bookmarkEnabled}
+        maximumSelections={maximumSelections}
+        isVerseInvalidated={isVerseInvalidated}
+        bookDetails={manifest.project}
+        targetLanguageDetails={manifest.target_language}
+        newSelections={newSelections}
+        localNothingToSelect={newNothingToSelect}
+        dialogModalVisibility={isDialogOpen}
+        isVerseChanged={isVerseChanged}
+        isCommentChanged={isCommentChanged}
+        handleSkip={handleSkip}
+        handleGoToNext={actions.goToNext}
+        handleGoToPrevious={actions.goToPrevious}
+        handleOpenDialog={handleOpenDialog}
+        handleCloseDialog={handleCloseDialog}
+        openAlertDialog={actions.openAlertDialog}
+        toggleReminder={actions.toggleReminder}
+        changeMode={changeMode}
+        cancelEditVerse={cancelEditVerse}
+        saveEditVerse={saveEditVerse}
+        handleComment={handleComment}
+        cancelComment={cancelComment}
+        saveComment={saveComment}
+        saveSelection={saveSelection}
+        cancelSelection={cancelSelection}
+        clearSelection={clearSelection}
+        handleEditVerse={handleEditVerse}
+        checkIfVerseChanged={checkIfVerseChanged}
+        checkIfCommentChanged={checkIfCommentChanged}
+        validateSelections={actions.validateSelections}
+        handleTagsCheckbox={handleTagsCheckbox}
+        toggleNothingToSelect={toggleNothingToSelect}
+        changeSelectionsInLocalState={changeSelectionsInLocalState}
+      />
+    );
+  } else {
+    return null;
+  }
 }
 
 VerseCheckWrapper.propTypes = {
@@ -350,14 +354,16 @@ VerseCheckWrapper.propTypes = {
 };
 
 export const mapStateToProps = (state, ownProps) => {
-  const contextId = getContextId(state) || {};
+  const contextId = getContextId(state);
   const targetBible = getTargetBible(ownProps);
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
   const currentGroupItem = getCurrentGroup(state);
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const selectedToolName = getToolName(ownProps);
+  const alignedGLText = getAlignedGLText(state, ownProps);
 
+  console.log('alignedGLText', alignedGLText);
   return {
     contextId,
     verseText,
@@ -366,7 +372,7 @@ export const mapStateToProps = (state, ownProps) => {
     isVerseInvalidated,
     unfilteredVerseText,
     manifest: getProjectManifest(ownProps),
-    alignedGLText: getAlignedGLText(state, ownProps),
+    alignedGLText,
     maximumSelections: getMaximumSelections(selectedToolName),
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),

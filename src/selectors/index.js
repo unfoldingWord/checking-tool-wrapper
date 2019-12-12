@@ -17,7 +17,7 @@ export const getGroupsData = (state) =>
   fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
 
 export const getContextId = (state) =>
-  fromContextId.getContext(state.tool.contextIdReducer) || {};
+  fromContextId.getContext(state.tool.contextIdReducer);
 
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguage = (ownProps) => ownProps.tc.gatewayLanguage;
