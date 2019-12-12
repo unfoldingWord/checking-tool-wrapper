@@ -49,7 +49,7 @@ function VerseCheckWrapper({
     selections,
     nothingToSelect,
   },
-  selectedGL,
+  gatewayLanguage,
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -99,7 +99,7 @@ function VerseCheckWrapper({
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (actions.onInvalidCheck) {
-        actions.onInvalidCheck(contextId, selectedGL, true);
+        actions.onInvalidCheck(contextId, gatewayLanguage, true);
       }
     }
     setLocalState({
@@ -329,6 +329,7 @@ VerseCheckWrapper.propTypes = {
   isVerseEdited: PropTypes.bool.isRequired,
   isVerseInvalidated: PropTypes.bool.isRequired,
   alignedGLText: PropTypes.string.isRequired,
+  gatewayLanguage: PropTypes.string.isRequired,
   remindersReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({
@@ -346,7 +347,6 @@ VerseCheckWrapper.propTypes = {
     addComment: PropTypes.func.isRequired,
     editTargetVerse: PropTypes.func.isRequired,
   }),
-  selectedGL: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -371,7 +371,7 @@ export const mapStateToProps = (state, ownProps) => {
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
     remindersReducer: getBookmarksReducer(state),//TODO: Rename prop
-    gatewayLanguage: getGatewayLanguage(ownProps),//TODO: selectedGL
+    gatewayLanguage: getGatewayLanguage(ownProps),//TODO: gatewayLanguage
   };
 };
 
