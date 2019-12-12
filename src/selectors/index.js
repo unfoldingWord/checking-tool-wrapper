@@ -47,7 +47,7 @@ export const getCurrentGroup = (state) => {
 };
 export const getAlignedGLText = (state, ownProps) => {
   const contextId = getContextId(state);
-  const glBibles = getGatewayLanguageBibles(state, ownProps);
+  const glBibles = getGatewayLanguageBibles(ownProps);
 
   return getAlignedGLTextHelper(contextId, glBibles);
 };
