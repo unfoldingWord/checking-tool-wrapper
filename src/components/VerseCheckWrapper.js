@@ -350,7 +350,7 @@ VerseCheckWrapper.propTypes = {
 };
 
 export const mapStateToProps = (state, ownProps) => {
-  const contextId = getContextId(state);
+  const contextId = getContextId(state) || {};
   const targetBible = getTargetBible(ownProps);
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
   const currentGroupItem = getCurrentGroup(state);
