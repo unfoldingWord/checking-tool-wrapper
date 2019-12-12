@@ -54,11 +54,13 @@ export const getAlignedGLText = (state, ownProps) => {
 export const getMaximumSelections = toolName => (toolName === TRANSLATION_NOTES) ? TN_MAX_SELECTIONS : DEFAULT_MAX_SELECTIONS;
 export const getTcState = (ownProps) => ownProps.tc;
 export const getTranslateState = (state) => state.translate;
+export const getCommentsReducer = (state) => state.tool.commentsReducer;
+export const getSelectionsReducer = (state) => state.tool.selectionsReducer;
+export const getBookmarksReducer = (state) => state.tool.bookmarksReducer;
 
 
 // TODO: Cleanup selector below
-export const getBiblesState = (state) =>
-  state.resourcesReducer.bibles;
+export const getBiblesState = (state) => state.resourcesReducer.bibles;
 export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
 export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;
 export const getSelectedToolName = (state) => state.tc.selectedToolName;
@@ -72,9 +74,6 @@ export const getCurrentPaneSettingsState = (state) => {
 };
 export const getTargetBibleState = (state) => state.tc.resourcesReducer.bibles.targetLanguage.targetBible;
 export const getActionsState = (state) => state.tc.actions;
-export const getCommentsReducerState = (state) => state.tc.commentsReducer;
-export const getSelectionsReducerState = (state) => state.tc.selectionsReducer;
-export const getRemindersReducerState = (state) => state.tc.remindersReducer;
 export const getLegacyToolsReducerState = (state) => ({ currentToolName: state.tc.selectedToolName });
 export const getResourcesReducerState = (state) => state.tc.resourcesReducer;
 export const getContextIdReducerState = (state) => state.contextIdReducer;

@@ -184,7 +184,7 @@ function changeContextIdInReducers(contextId, dispatch, state) {
       type: SET_BOOKMARK,
       enabled: reminders,
       modifiedTimestamp: '',
-      userName: '',
+      username: null,
       gatewayLanguageCode: null,
       gatewayLanguageQuote: null,
     },
@@ -192,7 +192,7 @@ function changeContextIdInReducers(contextId, dispatch, state) {
       type: SET_INVALIDATED,
       enabled: invalidated,
       modifiedTimestamp: '',
-      userName: '',
+      username: null,
       gatewayLanguageCode: null,
       gatewayLanguageQuote: null,
     },
@@ -200,7 +200,7 @@ function changeContextIdInReducers(contextId, dispatch, state) {
       type: ADD_COMMENT,
       modifiedTimestamp: '',
       text: comments,
-      userName: '',
+      username: null,
     },
   ];
   dispatch(batchActions(actionsBatch)); // process the batch

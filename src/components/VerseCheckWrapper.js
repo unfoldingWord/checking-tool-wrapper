@@ -14,6 +14,9 @@ import {
   getAlignedGLText,
   getMaximumSelections,
   getToolName,
+  getCommentsReducer,
+  getSelectionsReducer,
+  getBookmarksReducer,
 } from '../selectors';
 import { getVerseText } from '../helpers/verseHelpers';
 
@@ -365,6 +368,9 @@ export const mapStateToProps = (state, ownProps) => {
     manifest: getProjectManifest(ownProps),
     alignedGLText: getAlignedGLText(state, ownProps),
     maximumSelections: getMaximumSelections(selectedToolName),
+    commentsReducer: getCommentsReducer(state),
+    selectionsReducer: getSelectionsReducer(state),
+    remindersReducer: getBookmarksReducer(state),//TODO: Rename prop
     gatewayLanguage: getGatewayLanguage(ownProps),//TODO: selectedGL
   };
 };
