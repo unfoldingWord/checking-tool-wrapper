@@ -60,7 +60,12 @@ export const getProjectPath = (ownProps) => ownProps.tc.projectSaveLocation;
 export const getUserData = (ownProps) => ownProps.tc.loginReducer.userdata;
 export const getGatewayLanguageBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles[getGatewayLanguage(ownProps)];
 export const getBookName = (ownProps) => ownProps.tc.project.getBookName();
-export const getTargetBible = (ownProps) => ownProps.tc.resourcesReducer.bibles.targetLanguage.targetBible;
+export const getTargetBible = (ownProps) => {
+  const bibles = getBibles(ownProps) || {};
+  const targetLanguage = bibles.targetLanguage;
+
+  return targetLanguage ? targetLanguage.targetBible : {};
+};
 export const getTranslationHelpsArticle = (ownProps, contextId = {}) => {
   const article = ownProps.tc.resourcesReducer.translationHelps[ownProps.tc.selectedToolName];
   const { groupId = '' } = contextId;
