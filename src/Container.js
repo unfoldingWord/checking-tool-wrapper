@@ -75,10 +75,10 @@ function Container(props) {
             />
           </div>
           <CheckInfoCardWrapper
-            toggleHelps={() => setShowHelps(!showHelps)}
+            tc={tc}
+            translate={translate}
             showHelps={showHelps}
-            contextId={contextId}// TODO:
-            {...props.checkInfoCard}
+            toggleHelps={() => setShowHelps(!showHelps)}
           />
           <VerseCheckWrapper
             tc={tc}
@@ -102,7 +102,6 @@ Container.propTypes = {
   contextId: PropTypes.object.isRequired,
   translationHelps: PropTypes.any,
   verseCheck: PropTypes.any,
-  checkInfoCard: PropTypes.any,
   translate: PropTypes.func.isRequired,
   settingsReducer: PropTypes.shape({ toolsSettings: PropTypes.shape({ ScripturePane: PropTypes.object }) }),
   contextIdReducer: PropTypes.shape({ contextId: PropTypes.shape({ groupId: PropTypes.any }) }),
@@ -126,7 +125,6 @@ export const mapStateToProps = (state, ownProps) => ({
   translate: getTranslateState(ownProps),
   verseCheck: getVerseCheckState(ownProps),
   translationHelps: getTranslationHelpsState(ownProps),
-  checkInfoCard: getCheckInfoCardState(ownProps),
   scripturePane: getScripturePaneState(ownProps),
 });
 

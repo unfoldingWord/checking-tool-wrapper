@@ -53,6 +53,11 @@ export const getAlignedGLText = (state, ownProps) => {
 };
 export const getMaximumSelections = toolName => (toolName === TRANSLATION_NOTES) ? TN_MAX_SELECTIONS : DEFAULT_MAX_SELECTIONS;
 export const getTcState = (ownProps) => ownProps.tc;
+export const getResourcesReducer = (ownProps) => ownProps.tc.resourcesReducer;
+export const getTranslationHelps = (ownProps) => {
+  const resourcesReducer = ownProps.tc.resourcesReducer;
+  return resourcesReducer['translationHelps'] ? resourcesReducer['translationHelps'] : {};
+};
 export const getTranslateState = (state) => state.translate;
 export const getCommentsReducer = (state) => state.tool.commentsReducer;
 export const getSelectionsReducer = (state) => state.tool.selectionsReducer;

@@ -1,20 +1,24 @@
 /* eslint-disable no-useless-escape */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { CheckInfoCard } from 'tc-ui-toolkit';
 import { VerseObjectUtils } from 'word-aligner';
 // helpers
 import { TRANSLATION_NOTES, TRANSLATION_WORDS } from '../common/constants';
 import { getPhraseFromTw, getNote } from '../helpers/checkInfoCardHelpers';
+import {
+  getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
+} from '../selectors';
 
 function CheckInfoCardWrapper({
   translate,
-  translationHelps,
-  groupsIndex,
   contextId,
-  resourcesReducer,
   showHelps,
   toggleHelps,
+  groupsIndex,
+  translationHelps,
+  resourcesReducer,
 }) {
   function getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
@@ -67,13 +71,20 @@ function CheckInfoCardWrapper({
 }
 
 CheckInfoCardWrapper.propTypes = {
-  translate: PropTypes.func,
-  translationHelps: PropTypes.any,
-  groupsIndex: PropTypes.any,
-  contextId: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
+  contextId: PropTypes.object.isRequired,
+  groupsIndex: PropTypes.object.isRequired,
+  translationHelps: PropTypes.object.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
 };
 
-export default CheckInfoCardWrapper;
+export const mapStateToProps = (state, ownProps) => ({
+  contextId: getContextId(state),
+  groupsIndex: getGroupsIndex(state),
+  translationHelps: getTranslationHelps(ownProps),
+  resourcesReducer: getResourcesReducer(ownProps),
+});
+
+export default connect(mapStateToProps)(CheckInfoCardWrapper);
