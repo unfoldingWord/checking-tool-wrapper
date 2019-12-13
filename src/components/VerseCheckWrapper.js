@@ -44,7 +44,7 @@ function VerseCheckWrapper({
   actions,
   alignedGLText,
   commentsReducer: { text: commentText },
-  remindersReducer: { enabled: bookmarkEnabled },
+  bookmarksReducer: { enabled: bookmarkEnabled },
   selectionsReducer: {
     selections,
     nothingToSelect,
@@ -334,7 +334,7 @@ VerseCheckWrapper.propTypes = {
   isVerseInvalidated: PropTypes.bool.isRequired,
   alignedGLText: PropTypes.string.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
-  remindersReducer: PropTypes.object.isRequired,
+  bookmarksReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array.isRequired,
@@ -363,8 +363,6 @@ export const mapStateToProps = (state, ownProps) => {
   const selectedToolName = getToolName(ownProps);
   const alignedGLText = getAlignedGLText(state, ownProps);
 
-  console.log('contextId', alignedGLText);
-  console.log('alignedGLText', alignedGLText);
   return {
     contextId,
     verseText,
@@ -377,8 +375,8 @@ export const mapStateToProps = (state, ownProps) => {
     maximumSelections: getMaximumSelections(selectedToolName),
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
-    remindersReducer: getBookmarksReducer(state),//TODO: Rename prop
-    gatewayLanguage: getGatewayLanguage(ownProps),//TODO: gatewayLanguage
+    bookmarksReducer: getBookmarksReducer(state),
+    gatewayLanguage: getGatewayLanguage(ownProps),
   };
 };
 

@@ -80,14 +80,19 @@ function Container(props) {
             contextId={contextId}// TODO:
             {...props.checkInfoCard}
           />
-          <VerseCheckWrapper tc={tc} translate={translate} {...props.verseCheck} />
+          <VerseCheckWrapper
+            tc={tc}
+            translate={translate}
+            {...props.verseCheck}// TODO:
+          />
         </div>
         <TranslationHelpsWrapper
           tc={tc}
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
           showHelps={showHelps}
-          {...props.translationHelps} />
+          {...props.translationHelps}
+        />
       </div>
     </TcuiThemeProvider>
   );
