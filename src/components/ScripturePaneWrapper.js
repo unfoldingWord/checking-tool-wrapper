@@ -1,21 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { ScripturePane } from 'tc-ui-toolkit';
+import {
+  getContextId,
+  getBibles,
+  getProjectManifest,
+  getSelections,
+  getProjectDetailsReducer,
+  getCurrentPaneSettings,
+} from '../selectors';
 
 function ScripturePaneWrapper({
-  manifest,
-  showPopover,
-  editTargetVerse,
-  projectDetailsReducer,
-  getLexiconData,
-  selections,
-  setToolSettings,
   bibles,
+  manifest,
   contextId,
   translate,
+  selections,
+  showPopover,
+  getLexiconData,
+  editTargetVerse,
+  setToolSettings,
   currentPaneSettings,
-  getAvailableScripturePaneSelections,
+  projectDetailsReducer,
   makeSureBiblesLoadedForTool,
+  getAvailableScripturePaneSelections,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -53,30 +62,29 @@ function ScripturePaneWrapper({
 }
 
 ScripturePaneWrapper.propTypes = {
-  bibles: PropTypes.object,
-  contextId: PropTypes.object,
-  translate: PropTypes.func,
-  currentToolName: PropTypes.string,
-  manifest: PropTypes.object,
-  commentsReducer: PropTypes.object,
-  projectDetailsReducer: PropTypes.object,
-  selections: PropTypes.array,
-  currentPaneSettings: PropTypes.array,
-  groupsDataReducer: PropTypes.object,
-  loginReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
-  toolsReducer: PropTypes.object,
-  actions: PropTypes.shape({
-    changeSelections: PropTypes.func.isRequired,
-    goToNext: PropTypes.func.isRequired,
-    goToPrevious: PropTypes.func.isRequired,
-  }),
+  bibles: PropTypes.object.isRequired,
+  manifest: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
+  selections: PropTypes.array.isRequired,
+  currentPaneSettings: PropTypes.array.isRequired,
+  projectDetailsReducer: PropTypes.object.isRequired,
+  // actions
   showPopover: PropTypes.func.isRequired,
+  getLexiconData: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
+  setToolSettings: PropTypes.func.isRequired,
   makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
   getAvailableScripturePaneSelections: PropTypes.func.isRequired,
-  getLexiconData: PropTypes.func.isRequired,
-  setToolSettings: PropTypes.func.isRequired,
 };
 
-export default ScripturePaneWrapper;
+export const mapStateToProps = (state, ownProps) => ({
+  bibles: getBibles(ownProps),
+  contextId: getContextId(state),
+  selections: getSelections(state),
+  manifest: getProjectManifest(ownProps),
+  currentPaneSettings: getCurrentPaneSettings(ownProps),
+  projectDetailsReducer: getProjectDetailsReducer(ownProps),
+});
+
+export default connect(mapStateToProps)(ScripturePaneWrapper);

@@ -56,7 +56,6 @@ function Container(props) {
   const {
     tc,
     translate,
-    // contextIdReducer: { contextId },TODO:
     contextId,
   } = props;
 
@@ -69,8 +68,9 @@ function Container(props) {
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
             <ScripturePaneWrapper
-              {...props.scripturePane}// TODO:
-              contextId={contextId}// TODO:
+              tc={tc}
+              translate={translate}
+              {...props.scripturePane}// TODO: Only actions prop left.
             />
           </div>
           <CheckInfoCardWrapper
@@ -98,33 +98,21 @@ function Container(props) {
 }
 
 Container.propTypes = {
-  contextId: PropTypes.object.isRequired,
-  translationHelps: PropTypes.any,
-  verseCheck: PropTypes.any,
+  tc: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
-  settingsReducer: PropTypes.shape({ toolsSettings: PropTypes.shape({ ScripturePane: PropTypes.object }) }),
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.shape({ groupId: PropTypes.any }) }),
-  groupsIndexReducer: PropTypes.shape({ groupsIndex: PropTypes.array }),
-  projectDetailsReducer: PropTypes.shape({ manifest: PropTypes.object.isRequired }),
-  tc: PropTypes.shape({
-    actions: PropTypes.shape({
-      setToolSettings: PropTypes.func.isRequired,
-      loadResourceArticle: PropTypes.func.isRequired,
-      getGLQuote: PropTypes.func.isRequired,
-      getSelectionsFromContextId: PropTypes.func.isRequired,
-      onInvalidCheck: PropTypes.func.isRequired,
-    }),
-  }).isRequired,
-  scripturePane: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
+  verseCheck: PropTypes.object.isRequired,// TODO: Only actions prop left.
+  scripturePane: PropTypes.object.isRequired,// TODO: Only actions prop left.
+  translationHelps: PropTypes.object.isRequired,// TODO: Only actions prop left.
 };
 
 export const mapStateToProps = (state, ownProps) => ({
   tc: getTcState(ownProps),
   contextId: getContextId(state),
   translate: getTranslateState(ownProps),
-  verseCheck: getVerseCheckState(ownProps),
-  translationHelps: getTranslationHelpsState(ownProps),
-  scripturePane: getScripturePaneState(ownProps),
+  verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
+  scripturePane: getScripturePaneState(ownProps),// TODO: Only actions prop left.
+  translationHelps: getTranslationHelpsState(ownProps),// TODO: Only actions prop left.
 });
 
 export default connect(mapStateToProps)(Container);
