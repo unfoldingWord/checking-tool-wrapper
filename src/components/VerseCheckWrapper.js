@@ -95,7 +95,7 @@ function VerseCheckWrapper({
   useEffect(() => {
     let alignedGlTextState = alignedGLText;
 
-    if (!alignedGLText) {
+    if (!alignedGLText && contextId) {
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (actions.onInvalidCheck) {
