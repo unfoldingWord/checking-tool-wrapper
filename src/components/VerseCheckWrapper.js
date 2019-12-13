@@ -363,6 +363,7 @@ export const mapStateToProps = (state, ownProps) => {
   const selectedToolName = getToolName(ownProps);
   const alignedGLText = getAlignedGLText(state, ownProps);
 
+  console.log('contextId', alignedGLText);
   console.log('alignedGLText', alignedGLText);
   return {
     contextId,
