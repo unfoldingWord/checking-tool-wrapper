@@ -15,7 +15,6 @@ import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 import { getVerseCheckState } from './selectors/VerseCheck';
 import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import { getScripturePaneState } from './selectors/ScripturePane';
-import { getCheckInfoCardState } from './selectors/CheckInfoCard';
 import {
   getTcState,
   getTranslateState,
@@ -70,7 +69,7 @@ function Container(props) {
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
             <ScripturePaneWrapper
-              {...props.scripturePane}
+              {...props.scripturePane}// TODO:
               contextId={contextId}// TODO:
             />
           </div>
@@ -83,15 +82,15 @@ function Container(props) {
           <VerseCheckWrapper
             tc={tc}
             translate={translate}
-            {...props.verseCheck}// TODO:
+            {...props.verseCheck}// TODO: Only actions prop left.
           />
         </div>
         <TranslationHelpsWrapper
           tc={tc}
+          showHelps={showHelps}
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
-          showHelps={showHelps}
-          {...props.translationHelps}
+          {...props.translationHelps}// TODO: Only actions prop left.
         />
       </div>
     </TcuiThemeProvider>

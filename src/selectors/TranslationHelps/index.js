@@ -1,17 +1,7 @@
 import { createSelector } from 'reselect';
-import {
-  getLegacyToolsReducerState,
-  getResourcesReducerState,
-  getActionsState,
-} from '../';
+import { getActionsState } from '../';
 
 export const getTranslationHelpsState = createSelector(
-  [
-    getLegacyToolsReducerState, getResourcesReducerState, getActionsState,
-  ],
-  (legacyToolsReducer, resourcesReducer, actions) => ({
-    toolsReducer: legacyToolsReducer,
-    resourcesReducer,
-    actions,
-  })
+  [getActionsState],
+  (actions) => ({ actions })
 );

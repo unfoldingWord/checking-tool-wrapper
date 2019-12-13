@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 // selectors
 import {
-  getTranslationHelpsArticle, getGatewayLanguage, getContextId,
+  getTranslationHelpsArticle,
+  getGatewayLanguage,
+  getContextId,
+  getToolName,
+  getResourcesReducer,
 } from '../selectors/index';
 
 // resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
@@ -31,7 +35,6 @@ function useTnArticleState(initialState) {
 }
 
 function TranslationHelpsWrapper({
-  toolsReducer: { currentToolName },
   contextId: { groupId = '' },
   showHelps,
   toggleHelps,
@@ -39,6 +42,7 @@ function TranslationHelpsWrapper({
   actions,
   currentFile,
   gatewayLanguage,
+  selectedToolName,
   resourcesReducer: resourcesReducerProp,
 }) {
   resourcesReducer = resourcesReducerProp;
@@ -92,8 +96,8 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    actions.loadResourceArticle(currentToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
-  }, [actions, currentToolName, groupId, gatewayLanguage]);
+    actions.loadResourceArticle(selectedToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
+  }, [actions, selectedToolName, groupId, gatewayLanguage]);
 
   useEffect(() => {
     const page = document.getElementById('helpsbody');
@@ -126,15 +130,15 @@ function TranslationHelpsWrapper({
 }
 
 TranslationHelpsWrapper.propTypes = {
-  translate: PropTypes.func,
-  resourcesReducer: PropTypes.object,
+  translate: PropTypes.func.isRequired,
   contextId: PropTypes.object.isRequired,
-  toolsReducer: PropTypes.object,
-  currentFile: PropTypes.string.isRequired,
-  actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
+  currentFile: PropTypes.string.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
+  selectedToolName: PropTypes.string.isRequired,
+  resourcesReducer: PropTypes.object.isRequired,
+  actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -142,7 +146,9 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     contextId,
+    selectedToolName: getToolName(ownProps),
     gatewayLanguage: getGatewayLanguage(ownProps),
+    resourcesReducer: getResourcesReducer(ownProps),
     currentFile: getTranslationHelpsArticle(ownProps, contextId),
   };
 };
