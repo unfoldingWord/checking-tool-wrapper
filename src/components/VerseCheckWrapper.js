@@ -365,6 +365,9 @@ export const mapStateToProps = (state, ownProps) => {
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const selectedToolName = getToolName(ownProps);
   const alignedGLText = getAlignedGLText(state, ownProps);
+  const manifest = getProjectManifest(ownProps);
+
+  console.log('manifest', manifest);
 
   return {
     contextId,
