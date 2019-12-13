@@ -355,7 +355,10 @@ VerseCheckWrapper.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state);
+  console.log('ownProps (targetBible)', ownProps);
   const targetBible = getTargetBible(ownProps);
+  console.log('targetBible', targetBible);
+
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
   const currentGroupItem = getCurrentGroup(state);
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);

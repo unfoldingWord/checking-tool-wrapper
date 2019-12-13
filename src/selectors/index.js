@@ -95,7 +95,6 @@ export const getCurrentPaneSettingsState = (state) => {
   const { ScripturePane } = state.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
-export const getTargetBibleState = (state) => state.tc.resourcesReducer.bibles.targetLanguage.targetBible;
 export const getActionsState = (state) => state.tc.actions;
 export const getLegacyToolsReducerState = (state) => ({ currentToolName: state.tc.selectedToolName });
 export const getResourcesReducerState = (state) => state.tc.resourcesReducer;
