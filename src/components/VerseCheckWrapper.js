@@ -355,19 +355,13 @@ VerseCheckWrapper.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state);
-  console.log('ownProps (targetBible)', ownProps);
   const targetBible = getTargetBible(ownProps);
-  console.log('targetBible', targetBible);
-
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
   const currentGroupItem = getCurrentGroup(state);
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const selectedToolName = getToolName(ownProps);
   const alignedGLText = getAlignedGLText(state, ownProps);
-  const manifest = getProjectManifest(ownProps);
-
-  console.log('manifest', manifest);
 
   return {
     contextId,
@@ -376,8 +370,8 @@ export const mapStateToProps = (state, ownProps) => {
     isVerseEdited,
     isVerseInvalidated,
     unfilteredVerseText,
-    manifest: getProjectManifest(ownProps),
     alignedGLText,
+    manifest: getProjectManifest(ownProps),
     maximumSelections: getMaximumSelections(selectedToolName),
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
