@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import contextIdReducer from './contextIdReducer';
 import groupsIndexReducer from './groupsIndexReducer';
 import groupsDataReducer from './groupsDataReducer';
+import groupMenuReducer from './groupMenuReducer';
 import commentsReducer from './commentsReducer';
 import selectionsReducer from './selectionsReducer';
 import bookmarksReducer from './bookmarksReducer';
@@ -13,6 +14,7 @@ export default combineReducers({
   contextIdReducer,
   groupsIndexReducer,
   groupsDataReducer,
+  groupMenuReducer,
   commentsReducer,
   selectionsReducer,
   bookmarksReducer,
