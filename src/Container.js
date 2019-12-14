@@ -49,7 +49,7 @@ function Container(props) {
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
-    const { bibles } = props.scripturePane;
+    const { bibles } = props;
     settingsHelper.loadCorrectPaneSettings(props, props.tc.actions.setToolSettings, bibles);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
