@@ -67,11 +67,11 @@ function Container(props) {
         <GroupMenuContainer tc={tc} translate={translate} />
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
-            {/* <ScripturePaneWrapper
+            <ScripturePaneWrapper
               tc={tc}
               translate={translate}
               {...props.scripturePane}// TODO: Only actions prop left.
-            /> */}
+            />
           </div>
           <CheckInfoCardWrapper
             tc={tc}
@@ -79,11 +79,11 @@ function Container(props) {
             showHelps={showHelps}
             toggleHelps={() => setShowHelps(!showHelps)}
           />
-          <VerseCheckWrapper
+          {/* <VerseCheckWrapper
             tc={tc}
             translate={translate}
             {...props.verseCheck}// TODO: Only actions prop left.
-          />
+          /> */}
         </div>
         <TranslationHelpsWrapper
           tc={tc}
