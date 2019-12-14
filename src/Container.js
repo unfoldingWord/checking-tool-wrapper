@@ -64,7 +64,7 @@ function Container(props) {
   return (
     <TcuiThemeProvider theme={theme}>
       <div style={styles.containerDiv}>
-        <GroupMenuContainer tc={tc} translate={translate} />
+        {/* <GroupMenuContainer tc={tc} translate={translate} /> */}
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
             {/* <ScripturePaneWrapper
