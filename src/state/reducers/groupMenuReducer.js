@@ -45,4 +45,12 @@ const groupMenuReducer = (state = initialState, action) => {
   }
 };
 
+/**
+ * Returns the group menu filters
+ * @param state
+ * @return {*}
+ */
+export const getFilters = (state) =>
+  state.filters;
+
 export default groupMenuReducer;
