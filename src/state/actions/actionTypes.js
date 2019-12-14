@@ -20,6 +20,8 @@ export const CHANGE_SELECTIONS = 'TOOL::CHANGE_SELECTIONS';
 // bookmarksReducer
 export const SET_BOOKMARK = 'TOOL::SET_BOOKMARK';
 export const TOGGLE_BOOKMARK = 'TOOL::TOGGLE_BOOKMARK';
+// verseEditReducer
+export const ADD_VERSE_EDIT = 'TOOL::ADD_VERSE_EDIT';
 // invalidatedReducer
 export const SET_INVALIDATED = 'TOOL::SET_INVALIDATED';
 export const SET_INVALIDATED_CHECKS_TOTAL = 'TOOL::SET_INVALIDATED_CHECKS_TOTAL';

@@ -8,6 +8,7 @@ import groupMenuReducer from './groupMenuReducer';
 import commentsReducer from './commentsReducer';
 import selectionsReducer from './selectionsReducer';
 import bookmarksReducer from './bookmarksReducer';
+import verseEditReducer from './verseEditReducer';
 import invalidatedReducer from './invalidatedReducer';
 
 export default combineReducers({
@@ -18,5 +19,6 @@ export default combineReducers({
   commentsReducer,
   selectionsReducer,
   bookmarksReducer,
+  verseEditReducer,
   invalidatedReducer,
 });
