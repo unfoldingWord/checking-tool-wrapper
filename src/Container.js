@@ -19,6 +19,7 @@ import {
   getTcState,
   getTranslateState,
   getContextId,
+  getBibles,
 } from './selectors';
 
 const theme = createTcuiTheme({
@@ -64,34 +65,34 @@ function Container(props) {
   return (
     <TcuiThemeProvider theme={theme}>
       <div style={styles.containerDiv}>
-        {/* <GroupMenuContainer tc={tc} translate={translate} /> */}
+        <GroupMenuContainer tc={tc} translate={translate} />
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
-            {/* <ScripturePaneWrapper
+            <ScripturePaneWrapper
               tc={tc}
               translate={translate}
               {...props.scripturePane}// TODO: Only actions prop left.
-            /> */}
+            />
           </div>
-          {/* <CheckInfoCardWrapper
+          <CheckInfoCardWrapper
             tc={tc}
             translate={translate}
             showHelps={showHelps}
             toggleHelps={() => setShowHelps(!showHelps)}
-          /> */}
-          {/* <VerseCheckWrapper
+          />
+          <VerseCheckWrapper
             tc={tc}
             translate={translate}
             {...props.verseCheck}// TODO: Only actions prop left.
-          /> */}
+          />
         </div>
-        {/* <TranslationHelpsWrapper
+        <TranslationHelpsWrapper
           tc={tc}
           showHelps={showHelps}
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
           {...props.translationHelps}// TODO: Only actions prop left.
-        /> */}
+        />
       </div>
     </TcuiThemeProvider>
   );
@@ -108,6 +109,7 @@ Container.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => ({
   tc: getTcState(ownProps),
+  bibles: getBibles(ownProps),
   contextId: getContextId(state),
   translate: getTranslateState(ownProps),
   verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
