@@ -85,13 +85,13 @@ function Container(props) {
             {...props.verseCheck}// TODO: Only actions prop left.
           /> */}
         </div>
-        <TranslationHelpsWrapper
+        {/* <TranslationHelpsWrapper
           tc={tc}
           showHelps={showHelps}
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
           {...props.translationHelps}// TODO: Only actions prop left.
-        />
+        /> */}
       </div>
     </TcuiThemeProvider>
   );
