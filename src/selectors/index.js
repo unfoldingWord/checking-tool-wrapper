@@ -2,6 +2,7 @@ import isEqual from 'deep-equal';
 // reducers
 import * as fromGrouspIndex from '../state/reducers/groupsIndexReducer';
 import * as fromGroupsData from '../state/reducers/groupsDataReducer';
+import * as fromGroupMenu from '../state/reducers/groupMenuReducer';
 import * as fromContextId from '../state/reducers/contextIdReducer';
 // helpers
 import { getAlignedGLTextHelper } from '../helpers/gatewayLanguageHelpers';
@@ -30,6 +31,9 @@ export const getCurrentGroup = (state) => {
   }
   return currentGroupItem;
 };
+
+export const getGroupMenuFilters = (state) =>
+  fromGroupMenu.getFilters(state.tool.groupMenuReducer);
 
 export const getContextId = (state) =>
   fromContextId.getContext(state.tool.contextIdReducer);
