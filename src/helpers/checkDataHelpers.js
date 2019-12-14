@@ -123,13 +123,10 @@ export function loadComments(projectSaveLocation, contextId) {
  * @param {*} contextId - context id.
  * @param {*} glBibles - gateway language bibles.
  */
-export function loadInvalidated(projectSaveLocation, contextId, glBibles) {
+export function loadInvalidated(projectSaveLocation, gatewayLanguageCode, contextId, glBibles) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
   const invalidatedObject = loadCheckData(loadPath, contextId);
-  const {
-    gatewayLanguageCode,
-    gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
+  const { gatewayLanguageQuote } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
 
   if (invalidatedObject) {
     return {
