@@ -26,22 +26,6 @@ function ScripturePaneWrapper({
   makeSureBiblesLoadedForTool,
   getAvailableScripturePaneSelections,
 }) {
-  console.table({
-    bibles,
-    manifest,
-    contextId,
-    translate,
-    selections,
-    showPopover,
-    getLexiconData,
-    editTargetVerse,
-    setToolSettings,
-    currentPaneSettings,
-    projectDetailsReducer,
-    makeSureBiblesLoadedForTool,
-    getAvailableScripturePaneSelections,
-  })
-
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
 
