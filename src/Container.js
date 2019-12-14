@@ -73,12 +73,12 @@ function Container(props) {
               {...props.scripturePane}// TODO: Only actions prop left.
             />
           </div>
-          <CheckInfoCardWrapper
+          {/* <CheckInfoCardWrapper
             tc={tc}
             translate={translate}
             showHelps={showHelps}
             toggleHelps={() => setShowHelps(!showHelps)}
-          />
+          /> */}
           {/* <VerseCheckWrapper
             tc={tc}
             translate={translate}
