@@ -1,12 +1,6 @@
 
-export const loadCorrectPaneSettings = (props, setToolSettings, bibles) => {
-  const { tc: { selectedToolName } } = props;
-  const { toolsSelectedGLs } = props.projectDetailsReducer.manifest;
-  const languageId = toolsSelectedGLs[selectedToolName];
-  const { ScripturePane } = props.settingsReducer.toolsSettings;
-  let currentPaneSettings = ScripturePane ? ScripturePane.currentPaneSettings : null;
-
-  const paneSeetingsIncludeGLandUlbOrUlt = (paneSetting) => paneSetting.languageId === languageId && (paneSetting.bibleId === 'ulb' || paneSetting.bibleId === 'ult');
+export const loadCorrectPaneSettings = (setToolSettings, bibles, gatewayLanguage, currentPaneSettings) => {
+  const paneSeetingsIncludeGLandUlbOrUlt = (paneSetting) => paneSetting.languageId === gatewayLanguage && (paneSetting.bibleId === 'ulb' || paneSetting.bibleId === 'ult');
 
   // make sure bibles in currentPaneSettings are found in the bibles object in the resourcesReducer
   currentPaneSettings = currentPaneSettings ? currentPaneSettings.filter((paneSetting) => bibles[paneSetting.languageId] && bibles[paneSetting.languageId][paneSetting.bibleId] ? true : false) : currentPaneSettings;
@@ -16,11 +10,11 @@ export const loadCorrectPaneSettings = (props, setToolSettings, bibles) => {
     const newCurrentPaneSettings = currentPaneSettings.map((paneSetting) => {
       const isUlbOrUlt = paneSetting.bibleId === 'ult' || paneSetting.bibleId === 'ulb';
 
-      if (isUlbOrUlt && languageId === 'en') {
-        paneSetting.languageId = languageId;
+      if (isUlbOrUlt && gatewayLanguage === 'en') {
+        paneSetting.languageId = gatewayLanguage;
         paneSetting.bibleId = 'ult';
-      } else if (isUlbOrUlt && languageId === 'hi') {
-        paneSetting.languageId = languageId;
+      } else if (isUlbOrUlt && gatewayLanguage === 'hi') {
+        paneSetting.languageId = gatewayLanguage;
         paneSetting.bibleId = 'ulb';
       }
       return paneSetting;
@@ -28,11 +22,11 @@ export const loadCorrectPaneSettings = (props, setToolSettings, bibles) => {
     setToolSettings('ScripturePane', 'currentPaneSettings', newCurrentPaneSettings);
   }
 
-  if (!ScripturePane || currentPaneSettings.length === 0) {
+  if (currentPaneSettings.length === 0) {
     // initializing the ScripturePane settings if not found.
     let bibleId;
 
-    if (languageId === 'en') {
+    if (gatewayLanguage === 'en') {
       bibleId = 'ult';
     } else { // for hindi is ulb
       bibleId = 'ulb';
@@ -40,7 +34,7 @@ export const loadCorrectPaneSettings = (props, setToolSettings, bibles) => {
 
     const initialCurrentPaneSettings = [
       {
-        languageId,
+        languageId: gatewayLanguage,
         bibleId,
       },
       {

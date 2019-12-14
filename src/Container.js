@@ -20,6 +20,8 @@ import {
   getTranslateState,
   getContextId,
   getBibles,
+  getGatewayLanguage,
+  getCurrentPaneSettings,
 } from './selectors';
 
 const theme = createTcuiTheme({
@@ -45,20 +47,23 @@ const styles = {
   },
 };
 
-function Container(props) {
+function Container({
+  tc,
+  bibles,
+  contextId,
+  translate,
+  gatewayLanguage,
+  currentPaneSettings,
+  verseCheck,// TODO: Only actions prop left.
+  scripturePane,// TODO: Only actions prop left.
+  translationHelps,// TODO: Only actions prop left.
+}) {
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
-    const { bibles } = props;
-    settingsHelper.loadCorrectPaneSettings(props, props.tc.actions.setToolSettings, bibles);
+    settingsHelper.loadCorrectPaneSettings(tc.actions.setToolSettings, bibles, gatewayLanguage, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const {
-    tc,
-    translate,
-    contextId,
-  } = props;
 
   console.log('contextId', contextId);
 
@@ -71,7 +76,7 @@ function Container(props) {
             <ScripturePaneWrapper
               tc={tc}
               translate={translate}
-              {...props.scripturePane}// TODO: Only actions prop left.
+              {...scripturePane}// TODO: Only actions prop left.
             />
           </div>
           <CheckInfoCardWrapper
@@ -83,7 +88,7 @@ function Container(props) {
           <VerseCheckWrapper
             tc={tc}
             translate={translate}
-            {...props.verseCheck}// TODO: Only actions prop left.
+            {...verseCheck}// TODO: Only actions prop left.
           />
         </div>
         <TranslationHelpsWrapper
@@ -91,7 +96,7 @@ function Container(props) {
           showHelps={showHelps}
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
-          {...props.translationHelps}// TODO: Only actions prop left.
+          {...translationHelps}// TODO: Only actions prop left.
         />
       </div>
     </TcuiThemeProvider>
@@ -100,8 +105,11 @@ function Container(props) {
 
 Container.propTypes = {
   tc: PropTypes.object.isRequired,
+  bibles: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   contextId: PropTypes.object.isRequired,
+  gatewayLanguage: PropTypes.string.isRequired,
+  currentPaneSettings: PropTypes.array.isRequired,
   verseCheck: PropTypes.object.isRequired,// TODO: Only actions prop left.
   scripturePane: PropTypes.object.isRequired,// TODO: Only actions prop left.
   translationHelps: PropTypes.object.isRequired,// TODO: Only actions prop left.
@@ -112,6 +120,8 @@ export const mapStateToProps = (state, ownProps) => ({
   bibles: getBibles(ownProps),
   contextId: getContextId(state),
   translate: getTranslateState(ownProps),
+  gatewayLanguage: getGatewayLanguage(ownProps),
+  currentPaneSettings: getCurrentPaneSettings(ownProps),
   verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
   scripturePane: getScripturePaneState(ownProps),// TODO: Only actions prop left.
   translationHelps: getTranslationHelpsState(ownProps),// TODO: Only actions prop left.
