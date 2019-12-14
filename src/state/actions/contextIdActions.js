@@ -1,9 +1,15 @@
 import fs from 'fs-extra';
 import { batchActions } from 'redux-batched-actions';
+// Helpers
 import delay from '../../utils/delay';
 import Repo from '../../helpers/Repo';
 import { findGroupDataItem } from '../../helpers/groupDataHelpers';
 import { getContextIdPathFromIndex, saveContextId } from '../../helpers/contextIdHelpers';
+import {
+  shiftGroupIndex,
+  shiftGroupDataItem,
+  visibleGroupItems,
+} from '../../helpers/navigationHelpers';
 import {
   loadSelections,
   loadComments,
@@ -13,6 +19,8 @@ import {
 import {
   getGroupsIndex,
   getGroupsData,
+  getContextId,
+  getGroupMenuFilters,
 } from '../../selectors';
 import {
   CHANGE_CONTEXT_ID,
@@ -21,6 +29,7 @@ import {
   SET_INVALIDATED,
   ADD_COMMENT,
 } from './actionTypes';
+
 
 /**
  * Loads the latest contextId file from the file system.
@@ -226,3 +235,58 @@ const loadCheckData = (contextId, projectSaveLocation, glBibles) => dispatch => 
   actionsBatch.push(loadInvalidated(projectSaveLocation, contextId, glBibles));
   dispatch(batchActions(actionsBatch)); // process the batch
 };
+
+export const changeToNextContextId = () => ((dispatch, getState) => {
+  const state = getState();
+  const groupsData = getGroupsData(state);
+  const groupsIndex = getGroupsIndex(state);
+  const filters = getGroupMenuFilters(state);
+  console.log('filters changeToNextContextId()', filters); //TODO: REMOVE CONSOLE LOG
+  let contextId = getContextId(state);
+
+  const nextGroupDataItem = shiftGroupDataItem(1, contextId, groupsData, filters); // get the next groupDataItem
+
+  if (nextGroupDataItem === undefined) { // if it is undefined
+    // End of the items in the group, need first of next group
+    const nextGroupIndex = shiftGroupIndex(1, contextId, groupsIndex, groupsData, filters);
+
+    if (nextGroupIndex !== undefined) {
+      const nextGroupData = groupsData[nextGroupIndex.id]; // get the new groupData for previous group
+      const visibleItems = visibleGroupItems(nextGroupData, filters);
+
+      if (visibleItems.length) {
+        contextId = visibleItems.shift().contextId;
+      }
+    }
+  } else {
+    contextId = nextGroupDataItem.contextId;
+  }
+  dispatch(changeCurrentContextId(contextId));
+});
+
+export const changeToPreviousContextId = () => ((dispatch, getState) => {
+  const state = getState();
+  const groupsData = getGroupsData(state);
+  const groupsIndex = getGroupsIndex(state);
+  const filters = getGroupMenuFilters(state);
+  console.log('filters changeToNextContextId()', filters); //TODO: REMOVE CONSOLE LOG
+  let contextId = getContextId(state);
+  const prevGroupDataItem = shiftGroupDataItem(-1, contextId, groupsData, filters); // get the prev groupDataItem
+
+  if (prevGroupDataItem === undefined) { // if it is undefined
+    // End of the items in the group, need first of previous group
+    const prevGroupIndex = shiftGroupIndex(-1, contextId, groupsIndex, groupsData, filters);
+
+    if (prevGroupIndex !== undefined) {
+      const prevGroupData = groupsData[prevGroupIndex.id]; // get the new groupData for previous group
+      const visibleItems = visibleGroupItems(prevGroupData, filters);
+
+      if (visibleItems.length) {
+        contextId = visibleItems.pop().contextId;
+      }
+    }
+  } else {
+    contextId = prevGroupDataItem.contextId;
+  }
+  dispatch(changeCurrentContextId(contextId));
+});
