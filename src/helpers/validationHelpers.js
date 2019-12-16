@@ -53,11 +53,16 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
 
     if (quote) {
       for (let filename of sorted) {
-        const currentSelectionsObject = fs.readJsonSync(path.join(selectionsPath, filename));
+        const pathToSelections = path.join(selectionsPath, filename);
+        const currentSelectionsObject = fs.readJsonSync(pathToSelections);
 
-        if ((currentSelectionsObject.contextId.occurrence === occurrence) &&
-          isEqual(currentSelectionsObject.contextId.quote, quote)) { // supports quote arrays or strings
-          return currentSelectionsObject;
+        if (!currentSelectionsObject.contextId) {
+          console.warn(`getSelectionsFromChapterAndVerseCombo() - missing contextId ${pathToSelections}`);
+        } else {
+          if ((currentSelectionsObject.contextId.occurrence === occurrence) &&
+            isEqual(currentSelectionsObject.contextId.quote, quote)) { // supports quote arrays or strings
+            return currentSelectionsObject;
+          }
         }
       }
     }
