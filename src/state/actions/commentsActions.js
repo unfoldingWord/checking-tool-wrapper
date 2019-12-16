@@ -1,10 +1,9 @@
-// TODO: Pending changes
-
 import { ADD_COMMENT } from '../actions/actionTypes';
 // helpers
 import generateTimestamp from '../../utils/generateTimestamp';
-import { getContextId } from '../../selectors';
 import { getGatewayLanguageCodeAndQuote } from '../../helpers/gatewayLanguageHelpers';
+// selectors
+import { getContextId } from '../../selectors';
 
 /**
  * Add a comment for the current check.
