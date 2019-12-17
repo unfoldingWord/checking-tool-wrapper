@@ -11,7 +11,7 @@
 - goToNext /
 - goToPrevious /
 - addComment /
-- editTargetVerse
+- editTargetVerse -
 - changeSelections
 - openAlertDialog
 - toggleReminder/toggleBookmark

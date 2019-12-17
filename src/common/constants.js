@@ -8,6 +8,7 @@ export const PROJECT_CHECKDATA_DIRECTORY = path.join(PROJECT_DOT_APPS_PATH, 'che
 export const PROJECT_INDEX_FOLDER_PATH = path.join('.apps', 'translationCore', 'index');
 // String names
 export const SOURCE_CONTENT_UPDATER_MANIFEST = 'source-content-updater-manifest.json';
+export const WORD_ALIGNMENT = 'wordAlignment';
 export const TRANSLATION_NOTES = 'translationNotes';
 export const TRANSLATION_WORDS = 'translationWords';
 export const TRANSLATION_ACADEMY = 'translationAcademy';
