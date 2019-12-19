@@ -86,6 +86,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
  */
 export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles, userData) => (dispatch, getState) => {
   const state = getState();
+  console.log('changeCurrentContextId() state', state);
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
   if (contextId) {
@@ -238,7 +239,6 @@ const loadCheckData = (contextId, projectSaveLocation, glBibles) => dispatch => 
 
 export const changeToNextContextId = () => ((dispatch, getState) => {
   const state = getState();
-  console.log('changeToNextContextId() state', state);
   const groupsData = getGroupsData(state);
   const groupsIndex = getGroupsIndex(state);
   const filters = getGroupMenuFilters(state);
