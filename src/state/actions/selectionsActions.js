@@ -8,6 +8,7 @@ import {
 import { getGatewayLanguageCodeAndQuote } from '../../helpers/gatewayLanguageHelpers';
 import generateTimestamp from '../../utils/generateTimestamp';
 import { sameContext } from '../../helpers/contextIdHelpers';
+import { saveSelectionsForOtherContext } from '../../localStorage/saveMethods';
 // selectors
 import { getContextId } from '../../selectors';
 import {
@@ -17,21 +18,20 @@ import {
 } from './actionTypes';
 
 /**
- * This method adds a selection array to the selections reducer.
+ * Adds a selection array to the selections reducer.
  * @param {Array} selections - An array of selections.
  * @param {Boolean} invalidated - if true then selection if flagged as invalidated, otherwise it is not flagged as invalidated
  * @param {Object} contextId - optional contextId to use, otherwise will use current
- * @param {Array|null} batchGroupData - if present then add group data actions to this array for later batch operation
+ * @param {Array} batchGroupData - if present then add group data actions to this array for later batch operation
  * @param {Boolean} nothingToSelect - nothing to select checkbox.
- * @return {Object} - An action object, consisting of a timestamp, action type,
- *                    a selection array, and a username.
+ * @param {String} username - User name.
+ * @param {String} selectedToolName - Current tool selected.
+ * @param {function} setInvalidation - Action to set an invalidation in tCore.
  */
 export const changeSelections = (selections, invalidated = false, contextId = null,
-  batchGroupData = null, nothingToSelect = false, ) => ((dispatch, getState) => {
+  batchGroupData = null, nothingToSelect = false, username, selectedToolName, setInvalidation) => ((dispatch, getState) => {
   const state = getState();
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
-  const username = state.loginReducer.userdata.username;// TODO:
-  const selectedToolName = '';// TODO:
 
   if (validTools.includes(selectedToolName) || validTools.includes(contextId.tool)) {
     const currentContextId = getContextId(state);
@@ -53,9 +53,9 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
         nothingToSelect,
         username,
       });
-      dispatch(InvalidatedActions.set(username, modifiedTimestamp, invalidated));
+      setInvalidation(username, modifiedTimestamp, invalidated);
     } else {
-      saveMethods.saveSelectionsForOtherContext(getState(), gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId);
+      saveSelectionsForOtherContext(getState(), gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId);
     }
 
     const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
