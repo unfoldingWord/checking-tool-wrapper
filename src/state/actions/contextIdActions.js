@@ -238,6 +238,7 @@ const loadCheckData = (contextId, projectSaveLocation, glBibles) => dispatch => 
 
 export const changeToNextContextId = () => ((dispatch, getState) => {
   const state = getState();
+  console.log('changeToNextContextId() state', state);
   const groupsData = getGroupsData(state);
   const groupsIndex = getGroupsIndex(state);
   const filters = getGroupMenuFilters(state);
