@@ -3,8 +3,16 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VerseCheck } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
+// helpers
 import { optimizeSelections } from '../helpers/selectionHelpers';
 import { getInvalidQuoteMessage } from '../helpers/checkAreaHelpers';
+import { getVerseText } from '../helpers/verseHelpers';
+// actions
+import { changeToNextContextId, changeToPreviousContextId } from '../state/actions/contextIdActions';
+import { addComment } from '../state/actions/commentsActions';
+import { changeSelections } from '../state/actions/selectionsActions';
+import { editTargetVerse } from '../state/actions/verseEditActions';
+// selectors
 import {
   getContextId,
   getProjectManifest,
@@ -18,7 +26,7 @@ import {
   getSelectionsReducer,
   getBookmarksReducer,
 } from '../selectors';
-import { getVerseText } from '../helpers/verseHelpers';
+
 
 function useLocalState(initialState) {
   const [localState, setLocalState] = useState(initialState);
@@ -380,4 +388,41 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(VerseCheckWrapper);
+const mapDispatchToProps = (dispatch) => {
+  // const { actions } = ownProps.tc.actions;//TODO: use CoreApi
+  const username = '';
+  const gatewayLanguageCode = '';
+  const glBibles = '';
+  const selectedToolName = '';
+
+  const setInvalidation = () => {};
+
+  return {
+    onInvalidCheck: () => {
+      dispatch();
+    },
+    goToNext: () => dispatch(changeToNextContextId()),
+    goToPrevious: () => dispatch(changeToPreviousContextId()),
+    addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, glBibles)),
+    editTargetVerse: (chapter, verse, before, after, tags) => {
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, glBibles));
+    },
+    changeSelections: (selections, nothingToSelect) => {
+      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation));
+    },
+    openAlertDialog: () => {
+      dispatch();
+    },
+    toggleBookmark: () => {// TODO: toggleReminder
+      dispatch();
+    },
+    validateSelections: () => {
+      dispatch();
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VerseCheckWrapper);

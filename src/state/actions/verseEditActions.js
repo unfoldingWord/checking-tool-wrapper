@@ -13,9 +13,12 @@ import { getContextId } from '../../selectors';
  * @param {int|string} verseWithVerseEdit
  * @param {string} before - the verse text before the edit
  * @param {string} after - the verse text after the edit
- * @param {string[]} tags - an array of tags indicating the reason for the edit
+ * @param {array} tags - an array of tags indicating the reason for the edit
+ * @param {string} username - user's name.
+ * @param {string} gatewayLanguageCode - gateway Language Code.
+ * @param {Object} glBibles - gateway Language bibles.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, gatewayLanguageCode, glBibles, username) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, glBibles) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;

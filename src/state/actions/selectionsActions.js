@@ -20,16 +20,16 @@ import {
 /**
  * Adds a selection array to the selections reducer.
  * @param {Array} selections - An array of selections.
- * @param {Boolean} invalidated - if true then selection if flagged as invalidated, otherwise it is not flagged as invalidated
- * @param {Object} contextId - optional contextId to use, otherwise will use current
- * @param {Array} batchGroupData - if present then add group data actions to this array for later batch operation
  * @param {Boolean} nothingToSelect - nothing to select checkbox.
  * @param {String} username - User name.
  * @param {String} selectedToolName - Current tool selected.
  * @param {function} setInvalidation - Action to set an invalidation in tCore.
+ * @param {Boolean} invalidated - if true then selection if flagged as invalidated, otherwise it is not flagged as invalidated
+ * @param {Object} contextId - optional contextId to use, otherwise will use current
+ * @param {Array} batchGroupData - if present then add group data actions to this array for later batch operation
  */
-export const changeSelections = (selections, invalidated = false, contextId = null,
-  batchGroupData = null, nothingToSelect = false, username, selectedToolName, setInvalidation) => ((dispatch, getState) => {
+export const changeSelections = (selections, nothingToSelect = false, username,
+  selectedToolName, setInvalidation, invalidated = false, contextId = null, batchGroupData = null) => ((dispatch, getState) => {
   const state = getState();
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
 
