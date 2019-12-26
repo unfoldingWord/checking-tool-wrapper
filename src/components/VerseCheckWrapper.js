@@ -66,7 +66,7 @@ function VerseCheckWrapper({
   goToPrevious,
   onInvalidCheck,
   validateSelections,
-  openAlertDialog,
+  showAlert,
   addComment,
   editTargetVerse,
 }) {
@@ -316,7 +316,7 @@ function VerseCheckWrapper({
         handleGoToPrevious={goToPrevious}
         handleOpenDialog={handleOpenDialog}
         handleCloseDialog={handleCloseDialog}
-        openAlertDialog={openAlertDialog}
+        openAlertDialog={showAlert}
         toggleReminder={toggleBookmark}//TODO: Change it in tc-ui-toolkit
         changeMode={changeMode}
         cancelEditVerse={cancelEditVerse}
@@ -365,7 +365,7 @@ VerseCheckWrapper.propTypes = {
   onInvalidCheck: PropTypes.func.isRequired,
   validateSelections: PropTypes.func.isRequired,
   toggleBookmark: PropTypes.func.isRequired,
-  openAlertDialog: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
 };
@@ -423,7 +423,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     changeSelections: (selections, nothingToSelect) => {
       dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
     },
-    openAlertDialog: (msg) => showAlert(msg),
+    showAlert,
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote));
     },
