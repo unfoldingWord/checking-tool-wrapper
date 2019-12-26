@@ -10,8 +10,9 @@ import { getVerseText } from '../helpers/verseHelpers';
 // actions
 import { changeToNextContextId, changeToPreviousContextId } from '../state/actions/contextIdActions';
 import { addComment } from '../state/actions/commentsActions';
-import { changeSelections } from '../state/actions/selectionsActions';
+import { changeSelections, validateSelections } from '../state/actions/selectionsActions';
 import { editTargetVerse } from '../state/actions/verseEditActions';
+import { toggleBookmark } from '../state/actions/bookmarksActions';
 // selectors
 import {
   getContextId,
@@ -19,7 +20,6 @@ import {
   getGatewayLanguage,
   getTargetBible,
   getCurrentGroup,
-  getAlignedGLText,
   getMaximumSelections,
   getToolName,
   getCommentsReducer,
@@ -49,7 +49,6 @@ function VerseCheckWrapper({
   isVerseInvalidated,
   unfilteredVerseText,
   maximumSelections,
-  actions,
   alignedGLText,
   commentsReducer: { text: commentText },
   bookmarksReducer: { enabled: bookmarkEnabled },
@@ -58,6 +57,15 @@ function VerseCheckWrapper({
     nothingToSelect,
   },
   gatewayLanguage,
+  toggleBookmark,
+  changeSelections,
+  goToNext,
+  goToPrevious,
+  onInvalidCheck,
+  validateSelections,
+  openAlertDialog,
+  addComment,
+  editTargetVerse,
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -106,8 +114,8 @@ function VerseCheckWrapper({
     if (!alignedGLText && contextId) {
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
-      if (actions.onInvalidCheck) {
-        actions.onInvalidCheck(contextId, gatewayLanguage, true);
+      if (onInvalidCheck) {
+        onInvalidCheck(contextId, gatewayLanguage, true);
       }
     }
     setLocalState({
@@ -141,9 +149,9 @@ function VerseCheckWrapper({
     setLocalState({ isDialogOpen: false });
 
     if (goToNextOrPrevious == 'next') {
-      actions.goToNext();
+      goToNext();
     } else if (goToNextOrPrevious == 'previous') {
-      actions.goToPrevious();
+      goToPrevious();
     }
   }
 
@@ -176,7 +184,7 @@ function VerseCheckWrapper({
   }
 
   function saveComment() {
-    actions.addComment(newComment);
+    addComment(newComment);
     setLocalState({
       mode: 'default',
       newSelections: selections,
@@ -240,7 +248,7 @@ function VerseCheckWrapper({
       isVerseChanged: false,
       newTags: [],
     });
-    actions.editTargetVerse(chapter, verse, before, newVerseText, newTags);
+    editTargetVerse(chapter, verse, before, newVerseText, newTags);
   }
 
   function changeSelectionsInLocalState(newSelections) {
@@ -267,7 +275,7 @@ function VerseCheckWrapper({
   function saveSelection() {
     // optimize the selections to address potential issues and save
     const selections = optimizeSelections(verseText, newSelections);
-    actions.changeSelections(selections, newNothingToSelect);
+    changeSelections(selections, newNothingToSelect);
     changeMode('default');
   }
 
@@ -301,12 +309,12 @@ function VerseCheckWrapper({
         isVerseChanged={isVerseChanged}
         isCommentChanged={isCommentChanged}
         handleSkip={handleSkip}
-        handleGoToNext={actions.goToNext}
-        handleGoToPrevious={actions.goToPrevious}
+        handleGoToNext={goToNext}
+        handleGoToPrevious={goToPrevious}
         handleOpenDialog={handleOpenDialog}
         handleCloseDialog={handleCloseDialog}
-        openAlertDialog={actions.openAlertDialog}
-        toggleReminder={actions.toggleReminder}
+        openAlertDialog={openAlertDialog}
+        toggleReminder={toggleBookmark}//TODO: Change it in tc-ui-toolkit
         changeMode={changeMode}
         cancelEditVerse={cancelEditVerse}
         saveEditVerse={saveEditVerse}
@@ -319,7 +327,7 @@ function VerseCheckWrapper({
         handleEditVerse={handleEditVerse}
         checkIfVerseChanged={checkIfVerseChanged}
         checkIfCommentChanged={checkIfCommentChanged}
-        validateSelections={actions.validateSelections}
+        validateSelections={validateSelections}
         handleTagsCheckbox={handleTagsCheckbox}
         toggleNothingToSelect={toggleNothingToSelect}
         changeSelectionsInLocalState={changeSelectionsInLocalState}
@@ -348,17 +356,15 @@ VerseCheckWrapper.propTypes = {
     selections: PropTypes.array.isRequired,
     nothingToSelect: PropTypes.bool.isRequired,
   }).isRequired,
-  actions: PropTypes.shape({
-    changeSelections: PropTypes.func.isRequired,
-    goToNext: PropTypes.func.isRequired,
-    goToPrevious: PropTypes.func.isRequired,
-    onInvalidCheck: PropTypes.func.isRequired,
-    validateSelections: PropTypes.func.isRequired,
-    toggleReminder: PropTypes.func.isRequired,
-    openAlertDialog: PropTypes.func.isRequired,
-    addComment: PropTypes.func.isRequired,
-    editTargetVerse: PropTypes.func.isRequired,
-  }),
+  changeSelections: PropTypes.func.isRequired,
+  goToNext: PropTypes.func.isRequired,
+  goToPrevious: PropTypes.func.isRequired,
+  onInvalidCheck: PropTypes.func.isRequired,
+  validateSelections: PropTypes.func.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
+  openAlertDialog: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  editTargetVerse: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -369,7 +375,7 @@ export const mapStateToProps = (state, ownProps) => {
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const selectedToolName = getToolName(ownProps);
-  const alignedGLText = getAlignedGLText(state, ownProps);
+  const alignedGLText = ownProps.gatewayLanguageQuote;
 
   return {
     contextId,
@@ -388,36 +394,38 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  // const { actions } = ownProps.tc.actions;//TODO: use CoreApi
-  const username = '';
-  const gatewayLanguageCode = '';
-  const glBibles = '';
-  const selectedToolName = '';
-
-  const setInvalidation = () => {};
-
-  return {
-    onInvalidCheck: () => {
-      dispatch();
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {
+    tc: {
+      username,
+      showAlert,
+      onInvalidCheck,
+      setInvalidation,
+      selectedToolName,
+      projectSaveLocation,
     },
+    gatewayLanguageQuote,
+    gatewayLanguage,
+  } = ownProps;
+  const { project: { id: bookId } } = getProjectManifest(ownProps);
+
+  return { // TODO: Test all actions work.
+    onInvalidCheck: () => onInvalidCheck(),
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
-    addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, glBibles)),
+    addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, glBibles));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote));
     },
     changeSelections: (selections, nothingToSelect) => {
-      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation));
+      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
     },
-    openAlertDialog: () => {
-      dispatch();
+    openAlertDialog: (msg) => showAlert(msg),
+    toggleBookmark: () => {
+      dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote));
     },
-    toggleBookmark: () => {// TODO: toggleReminder
-      dispatch();
-    },
-    validateSelections: () => {
-      dispatch();
+    validateSelections: (targetVerse) => {
+      dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
     },
   };
 };
