@@ -8,7 +8,6 @@ import {
   SET_BOOKMARK,
   CHANGE_SELECTIONS,
 } from '../state/actions/actionTypes';
-import { getGatewayLanguageCodeAndQuote } from '../helpers/gatewayLanguageHelpers';
 
 /**x
  * @description loads checkdata based on given contextId.
@@ -121,12 +120,12 @@ export function loadComments(projectSaveLocation, contextId) {
  * Loads the latest invalidated file from the file system for the specify contextID.
  * @param {*} projectSaveLocation - project path.
  * @param {*} contextId - context id.
- * @param {*} glBibles - gateway language bibles.
+ * @param {*} gatewayLanguageCode - gateway language code.
+ * @param {*} gatewayLanguageQuote - gateway language quote.
  */
-export function loadInvalidated(projectSaveLocation, gatewayLanguageCode, contextId, glBibles) {
+export function loadInvalidated(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
   const invalidatedObject = loadCheckData(loadPath, contextId);
-  const { gatewayLanguageQuote } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
 
   if (invalidatedObject) {
     return {
@@ -154,15 +153,12 @@ export function loadInvalidated(projectSaveLocation, gatewayLanguageCode, contex
  * Loads the latest bookmarks file from the file system for the specify contextID.
  * @param {*} projectSaveLocation - project path.
  * @param {*} contextId - context id.
- * @param {*} glBibles - gateway language bibles.
+ * @param {*} gatewayLanguageCode - gateway language code.
+ * @param {*} gatewayLanguageQuote - gateway language quote.
  */
-export function loadBookmarks(projectSaveLocation, contextId, glBibles) {
+export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote) {
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
   const remindersObject = loadCheckData(loadPath, contextId);
-  const {
-    gatewayLanguageCode,
-    gatewayLanguageQuote,
-  } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
 
   if (remindersObject) {
     return {

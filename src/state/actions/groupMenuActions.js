@@ -16,12 +16,13 @@ export const expandSubMenu = isSubMenuExpanded => ({
 /**
  * Changes the group in the group menu
  * @param {Object} contextId
- * @param {*} projectSaveLocation
- * @param {*} glBibles
- * @param {*} userData
+ * @param {string} projectSaveLocation
+ * @param {Object} userData
+ * @param {string} gatewayLanguageCode
+ * @param {string} gatewayLanguageQuote
  */
-export const changeGroup = (contextId, projectSaveLocation, glBibles, userData) => dispatch => {
-  dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBibles, userData));
+export const changeGroup = (contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => dispatch => {
+  dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
   dispatch(expandSubMenu(true));
 };
 

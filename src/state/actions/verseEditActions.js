@@ -1,6 +1,5 @@
 // Helpers
 import generateTimestamp from '../../utils/generateTimestamp';
-import { getGatewayLanguageCodeAndQuote } from '../../helpers/gatewayLanguageHelpers';
 // Selectors
 import { getContextId } from '../../selectors';
 
@@ -16,13 +15,12 @@ import { getContextId } from '../../selectors';
  * @param {array} tags - an array of tags indicating the reason for the edit
  * @param {string} username - user's name.
  * @param {string} gatewayLanguageCode - gateway Language Code.
- * @param {Object} glBibles - gateway Language bibles.
+ * @param {Object} gatewayLanguageQuote - gateway Language quote.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, glBibles) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
-  const { gatewayLanguageQuote } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
   const {
     bookId, chapter: currentCheckChapter, verse: currentCheckVerse,
   } = currentCheckContextId.reference;

@@ -22,6 +22,7 @@ export const CHANGE_SELECTIONS = 'TOOL::CHANGE_SELECTIONS';
 // bookmarksReducer
 export const SET_BOOKMARK = 'TOOL::SET_BOOKMARK';
 export const TOGGLE_BOOKMARK = 'TOOL::TOGGLE_BOOKMARK';
+export const TOGGLE_BOOKMARKS_IN_GROUPDATA = 'TOOL::TOGGLE_BOOKMARKS_IN_GROUPDATA';
 // verseEditReducer
 export const ADD_VERSE_EDIT = 'TOOL::ADD_VERSE_EDIT';
 // invalidatedReducer

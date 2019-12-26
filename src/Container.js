@@ -22,7 +22,10 @@ import {
   getBibles,
   getGatewayLanguage,
   getCurrentPaneSettings,
+  getAlignedGLText,
+  getGatewayLanguageBibles,
 } from './selectors';
+import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -54,6 +57,7 @@ function Container({
   translate,
   gatewayLanguage,
   currentPaneSettings,
+  gatewayLanguageQuote,
   verseCheck,// TODO: Only actions prop left.
   scripturePane,// TODO: Only actions prop left.
   translationHelps,// TODO: Only actions prop left.
@@ -71,7 +75,11 @@ function Container({
   return (
     <TcuiThemeProvider theme={theme}>
       <div style={styles.containerDiv}>
-        <GroupMenuContainer tc={tc} translate={translate} />
+        <GroupMenuContainer
+          tc={tc}
+          translate={translate}
+          gatewayLanguageQuote={gatewayLanguageQuote}
+        />
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>
             <ScripturePaneWrapper
@@ -89,6 +97,7 @@ function Container({
           <VerseCheckWrapper
             tc={tc}
             translate={translate}
+            gatewayLanguageQuote={gatewayLanguageQuote}
             {...verseCheck}// TODO: Only actions prop left.
           />
         </div>
@@ -109,23 +118,33 @@ Container.propTypes = {
   bibles: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   contextId: PropTypes.object.isRequired,
+  alignedText: PropTypes.string.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
+  gatewayLanguageQuote: PropTypes.string.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   verseCheck: PropTypes.object.isRequired,// TODO: Only actions prop left.
   scripturePane: PropTypes.object.isRequired,// TODO: Only actions prop left.
   translationHelps: PropTypes.object.isRequired,// TODO: Only actions prop left.
 };
 
-export const mapStateToProps = (state, ownProps) => ({
-  tc: getTcState(ownProps),
-  bibles: getBibles(ownProps),
-  contextId: getContextId(state),
-  translate: getTranslateState(ownProps),
-  gatewayLanguage: getGatewayLanguage(ownProps),
-  currentPaneSettings: getCurrentPaneSettings(ownProps),
-  verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
-  scripturePane: getScripturePaneState(ownProps),// TODO: Only actions prop left.
-  translationHelps: getTranslationHelpsState(ownProps),// TODO: Only actions prop left.
-});
+export const mapStateToProps = (state, ownProps) => {
+  const gatewayLanguage = getGatewayLanguage(ownProps);
+  const contextId = getContextId(state);
+  const glBibles = getGatewayLanguageBibles(ownProps);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
+
+  return {
+    contextId,
+    gatewayLanguage,
+    gatewayLanguageQuote,
+    tc: getTcState(ownProps),
+    bibles: getBibles(ownProps),
+    translate: getTranslateState(ownProps),
+    currentPaneSettings: getCurrentPaneSettings(ownProps),
+    verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
+    scripturePane: getScripturePaneState(ownProps),// TODO: Only actions prop left.
+    translationHelps: getTranslationHelpsState(ownProps),// TODO: Only actions prop left.
+  };
+};
 
 export default connect(mapStateToProps)(Container);

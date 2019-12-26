@@ -22,3 +22,9 @@ export const DEFAULT_MAX_SELECTIONS = 4;
 export const TN_MAX_SELECTIONS = 10;
 // url strings
 export const DCS_BASE_URL = 'https://git.door43.org';
+// alerts strings
+export const ALERT_ALIGNMENTS_RESET_ID = 'alignments_reset';
+export const ALERT_SELECTIONS_INVALIDATED_ID = 'selections_invalidated';
+export const ALERT_ALIGNMENTS_AND_SELECTIONS_RESET_MSG = 'tools.invalid_verse_alignments_and_selections';
+export const ALERT_SELECTIONS_INVALIDATED_MSG = 'tools.selections_invalidated';
+export const ALERT_ALIGNMENTS_RESET_MSG = 'tools.alignments_reset_wa_tool';

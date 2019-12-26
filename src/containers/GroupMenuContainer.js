@@ -22,9 +22,7 @@ import {
 } from '../selectors/index';
 
 function GroupMenuContainer({
-  glBibles,
   bookName,
-  userData,
   translate,
   gatewayLanguage,
   selectedToolName,
@@ -32,7 +30,6 @@ function GroupMenuContainer({
   contextId,
   groupsData,
   groupsIndex,
-  manifest: { project: { id: bookId } },
   loadGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
@@ -47,15 +44,12 @@ function GroupMenuContainer({
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
-    loadCurrentContextId(selectedToolName, bookId, projectSaveLocation, glBibles, userData);
-  }, [loadCurrentContextId, selectedToolName, bookId, projectSaveLocation, glBibles, userData]);
+    loadCurrentContextId();
+  }, [loadCurrentContextId, selectedToolName]);
 
   if (contextId) {
     return (
       <GroupMenuComponent
-        glBibles={glBibles}
-        userData={userData}
-        projectSaveLocation={bookName}
         bookName={bookName}
         translate={translate}
         contextId={contextId}
@@ -76,7 +70,6 @@ GroupMenuContainer.propTypes = {
   selectedToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
-  glBibles: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   groupsData: PropTypes.object.isRequired,
   groupsIndex: PropTypes.object.isRequired,
@@ -95,15 +88,14 @@ const mapStateToProps = (state, ownProps) => ({
   projectSaveLocation: getProjectPath(ownProps),
   manifest: getProjectManifest(ownProps),
   userData: getUserData(ownProps),
-  glBibles: getGatewayLanguageBibles(ownProps),
   bookName: getBookName(ownProps),
 });
 
 const mapDispatchToProps = {
   loadGroupsIndex,
   loadGroupsData,
-  loadCurrentContextId,
-  changeCurrentContextId,
+  loadCurrentContextId,//TODO: ADD ARGUMENTS
+  changeCurrentContextId, //TODO: ADD ARGUMENTS
 };
 
 export default connect(

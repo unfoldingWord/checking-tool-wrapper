@@ -1,7 +1,6 @@
 import { ADD_COMMENT } from '../actions/actionTypes';
 // helpers
 import generateTimestamp from '../../utils/generateTimestamp';
-import { getGatewayLanguageCodeAndQuote } from '../../helpers/gatewayLanguageHelpers';
 // selectors
 import { getContextId } from '../../selectors';
 
@@ -9,10 +8,10 @@ import { getContextId } from '../../selectors';
  * Add a comment for the current check.
  * @param {String} text - comment text.
  * @param {String} username - username.
- * @param {String} gatewayLanguageCode - gatewayLanguageCode.
- * @param {String} glBibles - glBibles.
+ * @param {String} gatewayLanguageCode - gateway Language Code.
+ * @param {String} gatewayLanguageQuote - gateway Language Quote.
  */
-export const addComment = (text, username, gatewayLanguageCode, glBibles) => ((dispatch, getState) => {
+export const addComment = (text, username, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const {
@@ -20,7 +19,6 @@ export const addComment = (text, username, gatewayLanguageCode, glBibles) => ((d
     chapter,
     verse,
   } = contextId.reference;
-  const { gatewayLanguageQuote } = getGatewayLanguageCodeAndQuote(gatewayLanguageCode, contextId, glBibles);
 
   dispatch({
     type: ADD_COMMENT,

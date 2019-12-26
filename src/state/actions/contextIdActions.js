@@ -36,10 +36,11 @@ import {
  * @param {string} toolName - tool's name.
  * @param {string} bookId - book id code. e.g. tit.
  * @param {string} projectSaveLocation - project's absolute path.
- * @param {object} glBibles - gateway language bible.
- * @param {object} userdata - user data.
+ * @param {object} userData - user data.
+ * @param {string} gatewayLanguageCode - gateway language code.
+ * @param {string} gatewayLanguageQuote - gateway language quote.
  */
-export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBibles, userdata) {
+export function loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) {
   return (dispatch, getState) => {
     const state = getState();
     const groupsIndex = getGroupsIndex(state);
@@ -56,7 +57,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
             if (contextId && contextIdExistInGroups) {
-              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBibles, userdata));
+              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
@@ -65,7 +66,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        dispatch(changeCurrentContextId(contextId, projectSaveLocation, glBibles, userdata));
+        dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
         console.warn('loadCurrentContextId() error loading contextId', err);
@@ -77,14 +78,14 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, glBi
 }
 
 /**
- * @description this action changes the contextId to the current check.
+ * Changes the contextId to the current check.
  * @param {object} contextId - the contextId object.
  * @param {string} projectSaveLocation - project's absolute path.
- * @param {object} glBibles - gateway language bible.
  * @param {object} userData - user data.
- * @return {object} New state for contextId reducer.
+ * @param {string} gatewayLanguageCode - gateway language code.
+ * @param {string} gatewayLanguageQuote - gateway language quote.
  */
-export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles, userData) => (dispatch, getState) => {
+export const changeCurrentContextId = (contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
   console.log('changeCurrentContextId() state', state);
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
@@ -103,7 +104,7 @@ export const changeCurrentContextId = (contextId, projectSaveLocation, glBibles,
     console.log(`changeCurrentContextId() - setting new contextId to: ${refStr}`);
 
     if (!groupDataLoaded) { // if group data not found, load from file
-      dispatch(loadCheckData(contextId, projectSaveLocation, glBibles));
+      dispatch(loadCheckData(contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote));
     }
     saveContextId(contextId, projectSaveLocation);
 
@@ -226,18 +227,19 @@ export const changeContextId = contextId => ({
  *
  * @param {*} contextId
  * @param {*} projectSaveLocation
- * @param {*} glBibles
+ * @param {*} gatewayLanguageCode
+ * @param {*} gatewayLanguageQuote
  */
-const loadCheckData = (contextId, projectSaveLocation, glBibles) => dispatch => {
+const loadCheckData = (contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote) => dispatch => {
   const actionsBatch = [];
   actionsBatch.push(loadSelections(projectSaveLocation, contextId));
   actionsBatch.push(loadComments(projectSaveLocation, contextId));
-  actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, glBibles));
-  actionsBatch.push(loadInvalidated(projectSaveLocation, contextId, glBibles));
+  actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote));
+  actionsBatch.push(loadInvalidated(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote));
   dispatch(batchActions(actionsBatch)); // process the batch
 };
 
-export const changeToNextContextId = () => ((dispatch, getState) => {
+export const changeToNextContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
   const state = getState();
   const groupsData = getGroupsData(state);
   const groupsIndex = getGroupsIndex(state);
@@ -262,7 +264,7 @@ export const changeToNextContextId = () => ((dispatch, getState) => {
   } else {
     contextId = nextGroupDataItem.contextId;
   }
-  dispatch(changeCurrentContextId(contextId));
+  dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
 });
 
 export const changeToPreviousContextId = () => ((dispatch, getState) => {
