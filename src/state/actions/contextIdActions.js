@@ -57,7 +57,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
             if (contextId && contextIdExistInGroups) {
-              return dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+              return dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
@@ -66,7 +66,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+        dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
         console.warn('loadCurrentContextId() error loading contextId', err);
@@ -79,14 +79,14 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
 
 /**
  * Changes the contextId to the current check.
- * @param {object} contextId - the contextId object.
  * @param {string} projectSaveLocation - project's absolute path.
  * @param {object} userData - user data.
  * @param {string} gatewayLanguageCode - gateway language code.
  * @param {string} gatewayLanguageQuote - gateway language quote.
  */
-export const changeCurrentContextId = (contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
+export const changeCurrentContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
+  const contextId = getContextId(state);
   console.log('changeCurrentContextId() state', state);
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
@@ -264,10 +264,10 @@ export const changeToNextContextId = (projectSaveLocation, userData, gatewayLang
   } else {
     contextId = nextGroupDataItem.contextId;
   }
-  dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
 });
 
-export const changeToPreviousContextId = () => ((dispatch, getState) => {
+export const changeToPreviousContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
   const state = getState();
   const groupsData = getGroupsData(state);
   const groupsIndex = getGroupsIndex(state);
@@ -291,5 +291,5 @@ export const changeToPreviousContextId = () => ((dispatch, getState) => {
   } else {
     contextId = prevGroupDataItem.contextId;
   }
-  dispatch(changeCurrentContextId(contextId));
+  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
 });

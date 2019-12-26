@@ -91,11 +91,23 @@ const mapStateToProps = (state, ownProps) => ({
   bookName: getBookName(ownProps),
 });
 
-const mapDispatchToProps = {
-  loadGroupsIndex,
-  loadGroupsData,
-  loadCurrentContextId,//TODO: ADD ARGUMENTS
-  changeCurrentContextId, //TODO: ADD ARGUMENTS
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
+  const projectSaveLocation = getProjectPath(ownProps);
+  const { project: { id: bookId } } = getProjectManifest(ownProps);
+  const toolName = getToolName(ownProps);
+  const userData = getUserData(ownProps);
+
+  return {
+    loadGroupsIndex,
+    loadGroupsData,
+    loadCurrentContextId: () => {
+      dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+    },
+    changeCurrentContextId: () => {
+      dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+    },
+  };
 };
 
 export default connect(
