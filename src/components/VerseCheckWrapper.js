@@ -25,6 +25,9 @@ import {
   getCommentsReducer,
   getSelectionsReducer,
   getBookmarksReducer,
+  getSelectedToolName,
+  getProjectPath,
+  getUsername,
 } from '../selectors';
 
 
@@ -397,16 +400,16 @@ export const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     tc: {
-      username,
       showAlert,
       onInvalidCheck,
       setInvalidation,
-      selectedToolName,
-      projectSaveLocation,
+      gatewayLanguage,
     },
     gatewayLanguageQuote,
-    gatewayLanguage,
   } = ownProps;
+  const username = getUsername(ownProps);
+  const selectedToolName = getSelectedToolName(ownProps);
+  const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
 
   return { // TODO: Test all actions work.
