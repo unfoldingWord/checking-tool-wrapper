@@ -79,6 +79,8 @@ ScripturePaneWrapper.propTypes = {
 };
 
 export const mapStateToProps = (state, ownProps) => ({
+  showPopover: ownProps.tc.showPopover,
+  setToolSettings: ownProps.tc.setToolSettings,
   bibles: getBibles(ownProps),
   contextId: getContextId(state),
   selections: getSelections(state),

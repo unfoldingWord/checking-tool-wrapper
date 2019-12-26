@@ -1,7 +1,6 @@
-// Helpers
 import generateTimestamp from '../../utils/generateTimestamp';
-// Selectors
 import { getContextId } from '../../selectors';
+import { validateSelections } from './selectionsActions';
 
 /**
  * This is a called by tool when a verse has been edited. It updates group data reducer for current tool
@@ -15,9 +14,11 @@ import { getContextId } from '../../selectors';
  * @param {array} tags - an array of tags indicating the reason for the edit
  * @param {string} username - user's name.
  * @param {string} gatewayLanguageCode - gateway Language Code.
- * @param {Object} gatewayLanguageQuote - gateway Language quote.
+ * @param {string} gatewayLanguageQuote - gateway Language quote.
+ * @param {string} projectSaveLocation - project path.
+ * @param {string} selectedToolName - tool name.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
@@ -38,7 +39,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   const actionsBatch = [];
 
   dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
-    false, selectionsValidationResults, actionsBatch));
+    false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, selectedToolName, username));
 
   // create verse edit record to write to file system
   const modifiedTimestamp = generateTimestamp();

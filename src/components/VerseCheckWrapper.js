@@ -388,6 +388,8 @@ export const mapStateToProps = (state, ownProps) => {
     isVerseInvalidated,
     unfilteredVerseText,
     alignedGLText,
+    showAlert: ownProps.tc.showAlert,
+    onInvalidCheck: ownProps.tc.onInvalidCheck,
     manifest: getProjectManifest(ownProps),
     maximumSelections: getMaximumSelections(selectedToolName),
     commentsReducer: getCommentsReducer(state),
@@ -400,8 +402,6 @@ export const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     tc: {
-      showAlert,
-      onInvalidCheck,
       setInvalidation,
       gatewayLanguage,
     },
@@ -413,17 +413,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { project: { id: bookId } } = getProjectManifest(ownProps);
 
   return { // TODO: Test all actions work.
-    onInvalidCheck: () => onInvalidCheck(),
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
     },
     changeSelections: (selections, nothingToSelect) => {
       dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
     },
-    showAlert,
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote));
     },

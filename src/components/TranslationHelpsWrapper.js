@@ -39,10 +39,10 @@ function TranslationHelpsWrapper({
   showHelps,
   toggleHelps,
   translate,
-  actions,
   currentFile,
   gatewayLanguage,
   selectedToolName,
+  loadResourceArticle,
   resourcesReducer: resourcesReducerProp,
 }) {
   resourcesReducer = resourcesReducerProp;
@@ -83,7 +83,7 @@ function TranslationHelpsWrapper({
     let articleData = getArticleFromReducer(resourceSubDir, article);
 
     if (!articleData) { // if not cached
-      actions.loadResourceArticle(resourceSubDir, article, lang, category); // do synchronous load
+      loadResourceArticle(resourceSubDir, article, lang, category); // do synchronous load
       articleData = getArticleFromReducer(resourceSubDir, article);
     }
     setThState({
@@ -96,8 +96,8 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    actions.loadResourceArticle(selectedToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
-  }, [actions, selectedToolName, groupId, gatewayLanguage]);
+    loadResourceArticle(selectedToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
+  }, [loadResourceArticle, selectedToolName, groupId, gatewayLanguage]);
 
   useEffect(() => {
     const page = document.getElementById('helpsbody');
@@ -138,7 +138,7 @@ TranslationHelpsWrapper.propTypes = {
   gatewayLanguage: PropTypes.string.isRequired,
   selectedToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
-  actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
+  loadResourceArticle: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -146,6 +146,7 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     contextId,
+    loadResourceArticle: ownProps.tc.loadResourceArticle,
     selectedToolName: getToolName(ownProps),
     gatewayLanguage: getGatewayLanguage(ownProps),
     resourcesReducer: getResourcesReducer(ownProps),
