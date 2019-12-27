@@ -1,17 +1,19 @@
 /* eslint-env jest */
 import React from 'react';
-import {connect} from 'react-redux';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import {shallow, mount, render} from 'enzyme';
+import {
+  shallow,
+  render,
+} from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
+
 import toJson from 'enzyme-to-json';
 // containers
-import PlainContainer, { mapStateToProps } from '../src/Container';
+import Container from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
-
-const Container = connect(mapStateToProps)(PlainContainer)
+import CheckInfoCardWrapper from '../src/components/CheckInfoCardWrapper';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -22,10 +24,8 @@ const props = {
   translate: k => k,
   tc: {
     ...basicProps.tc,
-    project: {
-      getBookName: () => () => "gen"
-    }
-  }
+    project: { getBookName: () => () => 'gen' },
+  },
 };
 
 props.tc.actions = {
@@ -43,16 +43,18 @@ props.tc.actions = {
   makeSureBiblesLoadedForTool: jest.fn(),
   groupMenuChangeGroup: jest.fn(),
   groupMenuExpandSubMenu: jest.fn(),
-  getSelectionsFromContextId: () => ''
+  onInvalidCheck: jest.fn(),
+  getSelectionsFromContextId: () => '',
 };
 
 const store = mockStore({});
+
 describe.only('Container Tests', () => {
   it('Test Container', () => {
     const wrapper = render(
-        <Provider store={store}>
-          <Container {...props} />
-        </Provider>
+      <Provider store={store}>
+        <Container {...props} />
+      </Provider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -60,14 +62,12 @@ describe.only('Container Tests', () => {
   it('Test empty Container', () => {
     const myProps = {
       ...props,
-      contextIdReducer: {
-        contextId: null
-      }
+      contextIdReducer: { contextId: null },
     };
     const wrapper = renderer.create(
-        <Provider store={store}>
-          <Container {...myProps} />
-        </Provider>
+      <Provider store={store}>
+        <Container {...myProps} />
+      </Provider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -93,12 +93,12 @@ describe.only('Container Tests', () => {
     expect(container).toBe(0);
   });
 
-  it('Test TranslationHelps componentWillReceiveProps', () => {
+  it('Test TranslationHelpsContainer', () => {
     const root = render(
       <Provider store={store}>
         <Container {...props} />
       </Provider>)
       .find(TranslationHelpsContainer);
-      expect(props.tc.actions.loadResourceArticle).toHaveBeenCalledWith("translationWords", "blasphemy", "en");
+    expect(root).toBeTruthy();
   });
 });

@@ -7,9 +7,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -18,25 +18,24 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            babelrc: true
-          }
-        }
+          options: { babelrc: true },
+        },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(jpg|png|svg)$/,
         loader: 'file-loader',
-        options: {
-          name: '[path][name].[hash].[ext]',
-        },
-      }
-    ]
+        options: { name: '[path][name].[hash].[ext]' },
+      },
+    ],
   },
+  node: { __dirname: true },
   externals: {
-    'react': 'commonjs react'
-  }
+    'react': 'commonjs react',
+    'react-redux': 'react-redux',
+  },
+  resolve: { alias: { 'react-redux': path.resolve('./node_modules/react-redux') } },
 };

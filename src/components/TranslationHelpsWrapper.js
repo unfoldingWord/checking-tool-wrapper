@@ -1,137 +1,134 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {TranslationHelps} from 'tc-ui-toolkit';
+import { TranslationHelps } from 'tc-ui-toolkit';
 // helpers
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 
-class TranslationHelpsWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showHelpsModal: false,
-      modalArticle: '',
-      articleCategory: ''
-    };
+// resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
+let resourcesReducer = {};
 
-    this.toggleHelpsModal = this.toggleHelpsModal.bind(this);
-    this.followTHelpsLink = this.followTHelpsLink.bind(this);
-    window.followLink = this.followTHelpsLink;
-  }
+function useTnArticleState(initialState) {
+  const [
+    {
+      showHelpsModal, modalArticle, articleCategory,
+    },
+    setTnArticleState,
+  ] = useState(initialState);
 
-  componentWillMount() {
-    this._reloadArticle(this.props);
-  }
+  return {
+    showHelpsModal,
+    modalArticle,
+    articleCategory,
+    setThState: (updatedValues) => {
+      setTnArticleState(prevState => ({ ...prevState, ...updatedValues }));
+    },
+  };
+}
 
-  componentWillReceiveProps(nextProps) {
-    const {contextIdReducer, resourcesReducer} = this.props || {};
-    const nextContextIDReducer = nextProps.contextIdReducer;
-    if (contextIdReducer !== nextContextIDReducer) {
-      this._reloadArticle(nextProps);
-    }
+function TranslationHelpsWrapper(props) {
+  const {
+    toolsSelectedGLs,
+    toolsReducer: { currentToolName },
+    contextIdReducer: { contextId },
+    showHelps,
+    toggleHelps,
+    translate,
+    actions,
+  } = props;
+  resourcesReducer = props.resourcesReducer;
 
-    const {contextId} = contextIdReducer;
-    const nextContextId = nextContextIDReducer.contextId;
+  const initialState = {
+    showHelpsModal: false,
+    modalArticle: '',
+    articleCategory: '',
+  };
+  const {
+    showHelpsModal,
+    modalArticle,
+    articleCategory,
+    setThState,
+  } = useTnArticleState(initialState);
+  const groupId = contextId.groupId;
+  const languageId = toolsSelectedGLs[currentToolName];
 
-    const currentArticle = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId);
-    const nextArticle = tHelpsHelpers.getArticleFromState(nextProps.resourcesReducer, nextContextId);
-    if (currentArticle !== nextArticle) {
-      var page = document.getElementById("helpsbody");
-      if (page) page.scrollTop = 0;
-    }
-  }
-
-  toggleHelpsModal() {
-    this.setState({
-      showHelpsModal: !this.state.showHelpsModal,
-      modalArticle: ''
-    });
+  /**
+   * extract article from reducer if present.
+   * @param {String} resourceType - subpath for resource such as 'translationAcademy'
+   * @param {String} article - name of article to find
+   * @return {String|null} - returns article if found
+   */
+  function getArticleFromReducer(resourceType, article) {
+    const resources = resourcesReducer.translationHelps[resourceType];
+    let articleData = resources && resources[article];
+    return articleData;
   }
 
   /**
-   * Loads the resource article
-   * @param props
-   * @private
+   * load the resource article for the link and display
+   * @param {String} link
+   * @return {boolean}
    */
-  _reloadArticle(props) {
-    const {contextIdReducer, toolsReducer, currentProjectToolsSelectedGL, actions} = props;
-    const {contextId} = contextIdReducer;
-    if (contextId) {
-      const articleId = contextId.groupId;
-      const {currentToolName} = toolsReducer;
-      const languageId = currentProjectToolsSelectedGL[currentToolName];
-      actions.loadResourceArticle(currentToolName, articleId, languageId);
-    }
-  }
-
-  followTHelpsLink(link) {
-    let linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
-
+  function followTHelpsLink(link) {
+    const linkParts = link.split('/'); // link format: <lang>/<resource>/<category>/<article>
     const [lang, type, category, article] = linkParts;
-    const resourceDir = tHelpsHelpers.getResourceDirByType(type);
+    const resourceSubDir = tHelpsHelpers.getResourceDirByType(type);
+    let articleData = getArticleFromReducer(resourceSubDir, article);
 
-    this.props.actions.loadResourceArticle(resourceDir, article, lang, category);
-    const articleData = this.props.resourcesReducer.translationHelps[resourceDir][article];
-
-    let newState;
-    const showHelpsModal = true;
-    const articleCategory = category;
-    if (articleData) {
-      newState = {
-        showHelpsModal,
-        articleCategory,
-        modalArticle: articleData
-      };
-    } else {
-      newState = {
-        showHelpsModal,
-        articleCategory,
-        modalArticle: 'Cannot find an article for ' + link
-      };
+    if (!articleData) { // if not cached
+      actions.loadResourceArticle(resourceSubDir, article, lang, category); // do synchronous load
+      articleData = getArticleFromReducer(resourceSubDir, article);
     }
-    //todo: Shouldn't need to to set state and return state in the same function
-    // Seems like an anti pattern
-    this.setState(newState);
-    return newState;
+    setThState({
+      showHelpsModal: true,
+      modalArticle: articleData || 'Cannot find an article for ' + link,
+      articleCategory: category,
+    });
+    return true;
+  }
+  window.followLink = followTHelpsLink;
+
+  useEffect(() => {
+    actions.loadResourceArticle(currentToolName, groupId, languageId, '', true); // do asynchronous load
+  }, [actions, currentToolName, groupId, languageId]);
+
+  useEffect(() => {
+    const page = document.getElementById('helpsbody');
+
+    if (page) {
+      page.scrollTop = 0;
+    }
+  }, [contextId]);
+
+  function toggleHelpsModal() {
+    setThState({
+      showHelpsModal: !showHelpsModal,
+      modalArticle: '',
+    });
   }
 
-  render() {
-    const {
-      currentProjectToolsSelectedGL,
-      toolsReducer: {currentToolName},
-      resourcesReducer,
-      contextIdReducer: {contextId},
-      showHelps,
-      toggleHelps,
-      translate
-    } = this.props;
-    const languageId = currentProjectToolsSelectedGL[currentToolName];
-    const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId);
-    const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
-    const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(this.state.modalArticle, languageId, this.state.articleCategory);
-    return (
-      <TranslationHelps
-        translate={translate}
-        article={currentFileMarkdown}
-        modalArticle={tHelpsModalMarkdown}
-        openExpandedHelpsModal={() => this.toggleHelpsModal()}
-        isShowHelpsSidebar={showHelps}
-        sidebarToggle={toggleHelps}
-        isShowHelpsExpanded={this.state.showHelpsModal} />
-    );
-  }
+  const currentFile = tHelpsHelpers.getArticleFromState(resourcesReducer, contextId, currentToolName);
+  const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, languageId);
+  const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, languageId, articleCategory);
+
+  return (
+    <TranslationHelps
+      translate={translate}
+      article={currentFileMarkdown}
+      modalArticle={tHelpsModalMarkdown}
+      openExpandedHelpsModal={toggleHelpsModal}
+      isShowHelpsSidebar={showHelps}
+      sidebarToggle={toggleHelps}
+      isShowHelpsExpanded={showHelpsModal} />
+  );
 }
 
 TranslationHelpsWrapper.propTypes = {
-  currentProjectToolsSelectedGL: PropTypes.object,
+  toolsSelectedGLs: PropTypes.object,
   translate: PropTypes.func,
   resourcesReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({
-    contextId: PropTypes.object.isRequired
-  }),
+  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
   toolsReducer: PropTypes.object,
-  actions: PropTypes.shape({
-    loadResourceArticle: PropTypes.func.isRequired,
-  }),
+  actions: PropTypes.shape({ loadResourceArticle: PropTypes.func.isRequired }),
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
 };

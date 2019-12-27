@@ -1,72 +1,68 @@
 /* eslint-env jest */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-//selectors
-import {
-  getContextId,
-  getManifest,
-  getCurrentProjectToolsSelectedGL,
-  getGroupsIndex,
-  getResourceByName,
-  getSelections,
-  getCurrentPaneSettings,
-  getBibles
-} from './selectors';
+import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
+import { connect } from 'react-redux';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
+
 // components
 import GroupMenuWrapper from './components/GroupMenuWrapper';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
+import { getGroupMenuState } from './selectors/GroupMenu';
+import { getVerseCheckState } from './selectors/VerseCheck';
+import { getTranslationHelpsState } from './selectors/TranslationHelps';
+import { getScripturePaneState } from './selectors/ScripturePane';
+import { getCheckInfoCardState } from './selectors/CheckInfoCard';
 
-class Container extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showHelps: true
-    };
-    this.toggleHelps = this.toggleHelps.bind(this);
-  }
-  componentWillMount() {
-    const { bibles } = this.props.scripturePane;
-    settingsHelper.loadCorrectPaneSettings(this.props, this.props.tc.actions.setToolSettings, bibles);
-  }
+const theme = createTcuiTheme({
+  typography: { useNextVariants: true },
+  scrollbarThumb: { borderRadius: '10px' },
+});
 
-  toggleHelps() {
-    this.setState({showHelps: !this.state.showHelps});
-  }
+function Container(props) {
+  const [showHelps, setShowHelps] = useState(true);
 
-  render() {
-    const {
-      contextIdReducer: {contextId}
-    } = this.props;
+  useEffect(() => {
+    const { bibles } = props.scripturePane;
+    settingsHelper.loadCorrectPaneSettings(props, props.tc.actions.setToolSettings, bibles);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    if (contextId !== null) {
-      return (
-        <div style={{display: 'flex', flexDirection: 'row', width: '100vw'}}>
-          <GroupMenuWrapper {...this.props.groupMenu} />
-          <div style={{display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto'}}>
+  const { contextIdReducer: { contextId } } = props;
+
+  if (contextId !== null) {
+    return (
+      <TcuiThemeProvider theme={theme}>
+        <div style={{
+          display: 'flex', flexDirection: 'row', width: '100vw',
+        }}>
+          <GroupMenuWrapper {...props.groupMenu} />
+          <div style={{
+            display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
+          }}>
             <div style={{ height: '250px', paddingBottom: '20px' }}>
-              <ScripturePaneWrapper {...this.props.scripturePane} />
+              <ScripturePaneWrapper {...props.scripturePane} />
             </div>
             <CheckInfoCardWrapper
-              toggleHelps={this.toggleHelps.bind(this)}
-              showHelps={this.state.showHelps}
-              {...this.props.checkInfoCard}
+              toggleHelps={() => setShowHelps(!showHelps)}
+              showHelps={showHelps}
+              {...props.checkInfoCard}
             />
-            <VerseCheckWrapper {...this.props.verseCheck} />
+            <VerseCheckWrapper {...props.verseCheck} />
           </div>
           <TranslationHelpsWrapper
-            toggleHelps={this.toggleHelps.bind(this)}
-            showHelps={this.state.showHelps}
-            {...this.props.translationHelps} />
+            toggleHelps={() => setShowHelps(!showHelps)}
+            showHelps={showHelps}
+            {...props.translationHelps} />
         </div>
-      );
-    } else {
-      return null;
-    }
+      </TcuiThemeProvider>
+    );
+  } else {
+    return null;
   }
 }
 
@@ -76,87 +72,28 @@ Container.propTypes = {
   verseCheck: PropTypes.any,
   checkInfoCard: PropTypes.any,
   translate: PropTypes.func,
-  settingsReducer: PropTypes.shape({
-    toolsSettings: PropTypes.shape({
-      ScripturePane: PropTypes.object
-    })
-  }),
-  contextIdReducer: PropTypes.shape({
-    contextId: PropTypes.shape({
-      groupId: PropTypes.any
-    })
-  }),
-  groupsIndexReducer: PropTypes.shape({
-    groupsIndex: PropTypes.array
-  }),
-  projectDetailsReducer: PropTypes.shape({
-    currentProjectToolsSelectedGL: PropTypes.object.isRequired
-  }),
+  settingsReducer: PropTypes.shape({ toolsSettings: PropTypes.shape({ ScripturePane: PropTypes.object }) }),
+  contextIdReducer: PropTypes.shape({ contextId: PropTypes.shape({ groupId: PropTypes.any }) }),
+  groupsIndexReducer: PropTypes.shape({ groupsIndex: PropTypes.array }),
+  projectDetailsReducer: PropTypes.shape({ manifest: PropTypes.object.isRequired }),
   tc: PropTypes.shape({
     actions: PropTypes.shape({
       setToolSettings: PropTypes.func.isRequired,
       loadResourceArticle: PropTypes.func.isRequired,
       getGLQuote: PropTypes.func.isRequired,
-      getSelectionsFromContextId: PropTypes.func.isRequired
-    })
+      getSelectionsFromContextId: PropTypes.func.isRequired,
+      onInvalidCheck: PropTypes.func.isRequired,
+    }),
   }),
-  scripturePane: PropTypes.object.isRequired
+  scripturePane: PropTypes.object.isRequired,
 };
 
-export const mapStateToProps = (state, ownProps) => {
-  const legacyToolsReducer = {currentToolName: ownProps.tc.selectedToolName};
-  return {
-    groupMenu: {
-      tc: ownProps.tc,
-      groupsDataReducer: ownProps.tc.groupsDataReducer,
-      groupsIndexReducer: ownProps.tc.groupsIndexReducer,
-      translate: ownProps.translate
-    },
-    verseCheck: {
-      translate: ownProps.translate,
-      currentToolName: ownProps.tc.selectedToolName,
-      projectDetailsReducer: ownProps.tc.projectDetailsReducer,
-      loginReducer: ownProps.tc.loginReducer,
-      resourcesReducer: ownProps.tc.resourcesReducer,
-      commentsReducer: ownProps.tc.commentsReducer,
-      selectionsReducer: ownProps.tc.selectionsReducer,
-      contextIdReducer: ownProps.tc.contextIdReducer,
-      toolsReducer: legacyToolsReducer,
-      groupsDataReducer: ownProps.tc.groupsDataReducer,
-      remindersReducer: ownProps.tc.remindersReducer,
-      actions: ownProps.tc.actions
-    },
-    translationHelps: {
-      translate: ownProps.translate,
-      currentProjectToolsSelectedGL: getCurrentProjectToolsSelectedGL(ownProps),
-      toolsReducer: legacyToolsReducer,
-      resourcesReducer: ownProps.tc.resourcesReducer,
-      contextIdReducer: ownProps.tc.contextIdReducer,
-      actions: ownProps.tc.actions
-    },
-    checkInfoCard: {
-      translate: ownProps.translate,
-      translationHelps: getResourceByName(ownProps, 'translationHelps'),
-      groupsIndex: getGroupsIndex(ownProps),
-      contextId: getContextId(ownProps)
-    },
-    scripturePane: {
-      translate: ownProps.translate,
-      manifest: getManifest(ownProps),
-      selections: getSelections(ownProps),
-      currentPaneSettings: getCurrentPaneSettings(ownProps),
-      bibles: getBibles(ownProps),
-      contextId: getContextId(ownProps),
-      projectDetailsReducer: ownProps.tc.projectDetailsReducer,
-      showPopover: ownProps.tc.actions.showPopover,
-      editTargetVerse: ownProps.tc.actions.editTargetVerse,
-      getLexiconData: ownProps.tc.actions.getLexiconData,
-      setToolSettings: ownProps.tc.actions.setToolSettings,
-      getAvailableScripturePaneSelections: ownProps.tc.actions.getAvailableScripturePaneSelections,
-      makeSureBiblesLoadedForTool: ownProps.tc.actions.makeSureBiblesLoadedForTool
-    }
-  };
-};
+export const mapStateToProps = (_, ownProps) => ({
+  groupMenu: getGroupMenuState(ownProps),
+  verseCheck: getVerseCheckState(ownProps),
+  translationHelps: getTranslationHelpsState(ownProps),
+  checkInfoCard: getCheckInfoCardState(ownProps),
+  scripturePane: getScripturePaneState(ownProps),
+});
 
-
-export default Container;
+export default connect(mapStateToProps)(Container);

@@ -1,11 +1,17 @@
+import {
+  TRANSLATION_ACADEMY, TRANSLATION_NOTES, TRANSLATION_WORDS,
+} from './consts';
+
 /**
- * 
+ *
  * @param {String} src
  * @param {String} languageId
  * @param {String} articleCat - category of the given article. Ok if empty
  */
 export function convertMarkdownLinks(src, languageId, articleCat='') {
-  if (!src) return src;
+  if (!src) {
+    return src;
+  }
 
   // OBS tN: Convert all [<Title>](rc://<lang>/tn/help/obs/*) links to just show "Open Bible Stories - <Title>"
   src = src.replace(/\[([^\]]+)\]\(rc:\/\/[^/]+\/tn\/help\/obs[^)]+\)/g, 'Open Bible Stories - $1');
@@ -25,25 +31,25 @@ export function convertMarkdownLinks(src, languageId, articleCat='') {
   src = src.replace(/\[([^\]]+)\]\((\.\.\/)*([^/)]+)\)/g, '<a style="cursor: pointer" onclick="return followLink(\''+languageId+'/ta/'+articleCat+'/$3\')">$1</a>');
   // tA: Convert all [<Title>](../[manual]/[articleId]) relative tA links to make a clickable link to call the followlink() function for 'ta'
   src = src.replace(/\[([^\]]+)\]\((\.\.\/)*([^/)]+)\/([^/)]+)\)/g, '<a style="cursor: pointer" onclick="return followLink(\''+languageId+'/ta/$3/$4\')">$1</a>');
-  return src;    
+  return src;
 }
 
 export function getResourceDirByType(type) {
   switch (type) {
-    case 'ta':
-      return 'translationAcademy';
-    case 'tw':
-      return 'translationWords';
-    case 'tn':
-      return 'translationNotes';
-    default:
-      return type;
+  case 'ta':
+    return TRANSLATION_ACADEMY;
+  case 'tw':
+    return TRANSLATION_WORDS;
+  case 'tn':
+    return TRANSLATION_NOTES;
+  default:
+    return type;
   }
 }
 
-
-export function getArticleFromState(resourcesReducer = {}, contextId = {}) {
-  const {translationWords} = resourcesReducer.translationHelps || {};
-  const {groupId} = contextId;
-  return translationWords && groupId ? translationWords[groupId] : '';
+export function getArticleFromState(resourcesReducer = {}, contextId = {}, toolName) {
+  const translationHelps = resourcesReducer.translationHelps || {};
+  const article = translationHelps[toolName];
+  const { groupId } = contextId;
+  return article && groupId ? article[groupId] : '';
 }

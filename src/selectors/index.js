@@ -1,36 +1,23 @@
-export function getManifest(state) {
-  return state.projectDetailsReducer.manifest;
-}
-
-export function getProjectSaveLocation(state) {
-  return state.projectDetailsReducer.projectSaveLocation;
-}
-
-export function getContextId(state) {
-  return state.contextIdReducer.contextId;
-}
-
-export function getCurrentProjectToolsSelectedGL(state) {
-  return state.projectDetailsReducer.currentProjectToolsSelectedGL;
-}
-
-export function getGroupsIndex(state) {
-  return state.groupsIndexReducer.groupsIndex;
-}
-
-export function getResourceByName(state, resourceName) {
-  return state.resourcesReducer[resourceName] ? state.resourcesReducer[resourceName] : {};
-}
-
-export function getSelections(state) {
-  return state.selectionsReducer.selections;
-}
-
-export function getCurrentPaneSettings(state) {
-  const {ScripturePane} = state.settingsReducer.toolsSettings;
+export const getTcState = (state) => state.tc;
+export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
+export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;
+export const getTranslateState = (state) => state.translate;
+export const getSelectedToolName = (state) => state.tc.selectedToolName;
+export const getManifestState = (state) => state.projectDetailsReducer.manifest;
+export const getContextIdState = (state) => state.contextIdReducer.contextId;
+export const getToolsSelectedGLsState = (state) => state.projectDetailsReducer.manifest.toolsSelectedGLs;
+export const getSelectionsState = (state) => state.selectionsReducer.selections;
+export const getCurrentPaneSettingsState = (state) => {
+  const { ScripturePane } = state.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
-}
-
-export function getBibles(state) {
-  return state.resourcesReducer.bibles;
-}
+};
+export const getBiblesState = (state) => state.resourcesReducer.bibles;
+export const getTargetBibleState = (state) => state.tc.resourcesReducer.bibles.targetLanguage.targetBible;
+export const getActionsState = (state) => state.tc.actions;
+export const getCommentsReducerState = (state) => state.tc.commentsReducer;
+export const getSelectionsReducerState = (state) => state.tc.selectionsReducer;
+export const getRemindersReducerState = (state) => state.tc.remindersReducer;
+export const getLegacyToolsReducerState = (state) => ({ currentToolName: state.tc.selectedToolName });
+export const getResourcesReducerState = (state) => state.tc.resourcesReducer;
+export const getContextIdReducerState = (state) => state.contextIdReducer;
+export const getProjectDetailsReducerState = (state) => state.projectDetailsReducer;
