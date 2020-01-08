@@ -40,7 +40,6 @@ props.tc.actions = {
   goToNext: jest.fn(),
   goToPrevious: jest.fn(),
   getAvailableScripturePaneSelections: jest.fn(),
-  makeSureBiblesLoadedForTool: jest.fn(),
   groupMenuChangeGroup: jest.fn(),
   groupMenuExpandSubMenu: jest.fn(),
   onInvalidCheck: jest.fn(),

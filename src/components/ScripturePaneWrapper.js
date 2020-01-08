@@ -24,7 +24,6 @@ function ScripturePaneWrapper({
   setToolSettings,
   currentPaneSettings,
   projectDetailsReducer,
-  makeSureBiblesLoadedForTool,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -53,7 +52,7 @@ function ScripturePaneWrapper({
         selections={selections}
         setToolSettings={setToolSettings}
         getAvailableScripturePaneSelections={getAvailableScripturePaneSelections}
-        makeSureBiblesLoadedForTool={makeSureBiblesLoadedForTool}
+        makeSureBiblesLoadedForTool={() => 'DEPRECATE makeSureBiblesLoadedForTool'}// TODO:
       />
     );
   } else {
@@ -73,7 +72,6 @@ ScripturePaneWrapper.propTypes = {
   showPopover: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
-  makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => ({
