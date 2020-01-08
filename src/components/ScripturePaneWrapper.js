@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ScripturePane } from 'tc-ui-toolkit';
+import { getAvailableScripturePaneSelections } from '../helpers/resourcesHelpers';
 import {
   getContextId,
   getBibles,
@@ -24,7 +25,6 @@ function ScripturePaneWrapper({
   currentPaneSettings,
   projectDetailsReducer,
   makeSureBiblesLoadedForTool,
-  getAvailableScripturePaneSelections,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -75,7 +75,6 @@ ScripturePaneWrapper.propTypes = {
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
   makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
-  getAvailableScripturePaneSelections: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => ({

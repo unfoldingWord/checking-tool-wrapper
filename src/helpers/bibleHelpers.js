@@ -26,3 +26,23 @@ export function getOrigLangforBook(bookId) {
   const bibleId = (isOT) ? OT_ORIG_LANG_BIBLE : NT_ORIG_LANG_BIBLE;
   return { languageId, bibleId };
 }
+
+/**
+ * returns true if this bookId and languageId match the original language bible
+ * @param {String} languageId
+ * @param {String} bookId
+ * @return {boolean}
+ */
+export function isOriginalLanguageBible(languageId, bookId) {
+  return ((languageId.toLowerCase() === NT_ORIG_LANG && bookId.toLowerCase() === NT_ORIG_LANG_BIBLE) ||
+    (languageId.toLowerCase() === OT_ORIG_LANG && bookId.toLowerCase() === OT_ORIG_LANG_BIBLE));
+}
+
+/**
+ * returns true if this bookId and languageId match the original language bible
+ * @param {String} languageId
+ * @return {boolean}
+ */
+export function isOriginalLanguage(languageId) {
+  return (languageId.toLowerCase() === NT_ORIG_LANG || languageId.toLowerCase() === OT_ORIG_LANG);
+}
