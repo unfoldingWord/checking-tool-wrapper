@@ -1,44 +1,42 @@
 import isEqual from 'deep-equal';
 import ProjectAPI from './ProjectAPI';
 
-function isVerseMatch(checkRef, contextIdRef) {
-  return (checkRef.chapter === contextIdRef.chapter) &&
-    (checkRef.verse === contextIdRef.verse);
-}
-
 /**
- * @description gets the group data for the current verse from groupsDataReducer
+ * Gets the group data for the verse reference in contextId from groupsDataReducer
  * @param {Object} groupsData
- * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
  * @param {Object} contextId
  * @return {object} group data object.
  */
-export function getGroupDataForVerse(groupsData, groupsDataKeys, contextId) {
+export const getGroupDataForVerse = (groupsData, contextId) => {
   const filteredGroupData = {};
 
-  for (let i = groupsDataKeys.length - 1; i >= 0; i--) {
-    const groupItemKey = groupsDataKeys[i];
-    const groupItem = groupsData[groupItemKey];
+  if (groupsData) {
+    const groupsDataKeys = Object.keys(groupsData);
 
-    if (groupItem) {
-      for (let j = groupItem.length - 1; j >= 0; j--) {
-        const check = groupItem[j];
+    for (let i = 0, l = groupsDataKeys.length; i < l; i++) {
+      const groupItemKey = groupsDataKeys[i];
+      const groupItem = groupsData[groupItemKey];
 
-        try {
-          if (isVerseMatch(check.contextId.reference, contextId.reference)) {
-            if (!filteredGroupData[groupItemKey]) {
-              filteredGroupData[groupItemKey] = [];
+      if (groupItem) {
+        for (let j = 0, l = groupItem.length; j < l; j++) {
+          const check = groupItem[j];
+
+          try {
+            if (isSameVerse(check.contextId, contextId)) {
+              if (!filteredGroupData[groupItemKey]) {
+                filteredGroupData[groupItemKey] = [];
+              }
+              filteredGroupData[groupItemKey].push(check);
             }
-            filteredGroupData[groupItemKey].push(check);
+          } catch (e) {
+            console.warn(`Corrupt check found in group "${groupItemKey}"`, check);
           }
-        } catch (e) {
-          console.warn(`Corrupt check found in group "${groupItemKey}"`, check);
         }
       }
     }
   }
   return filteredGroupData;
-}
+};
 
 /**
  * Loads all of a tool's group data from the project.
@@ -105,3 +103,71 @@ export function isSameVerse(contextId1, contextId2) {
   return (contextId1.reference.chapter === contextId2.reference.chapter) &&
     (contextId1.reference.verse === contextId2.reference.verse);
 }
+
+/**
+ * Returns the toggled group data based on the key name passed in.
+ * @param {object} state - app store state.
+ * @param {object} action - action object being dispatch by the action method.
+ * @param {string} key - object key. ex. "comments", "bookmarks", "selections" or "verseEdits".
+ */
+export const getToggledGroupData = (state, action, key) => {
+  let groupData = state.groupsData[action.contextId.groupId];
+
+  if (groupData == undefined) {
+    return groupData;
+  }
+
+  let index = -1;
+
+  for (let i = 0, l = groupData.length; i < l; i++) {
+    if (isEqual(groupData[i].contextId, action.contextId)) {
+      index = i;
+      break;
+    }
+  }
+
+  const oldGroupObject = (index >= 0) ? groupData[index] : null;
+
+  if (oldGroupObject) {
+    groupData = [...groupData]; // create new array from old one (shallow copy)
+    let groupObject = { ...oldGroupObject }; // create new object from old one (shallow copy)
+    groupData[index] = groupObject; // replace original object
+
+    switch (key) {
+    case 'comments':
+      if (action.text.length > 0) {
+        groupObject[key] = action.text;
+      } else {
+        groupObject[key] = false;
+      }
+      break;
+    case 'invalidated':
+      if (action.boolean) {
+        groupObject[key] = true;
+      } else {
+        groupObject[key] = false;
+      }
+      break;
+    case 'reminders':
+      if (action.boolean) {
+        groupObject[key] = action.boolean;
+      } else {
+        groupObject[key] = !groupData[index][key];
+      }
+      break;
+    case 'selections':
+      if (action.selections.length > 0) {
+        groupObject[key] = action.selections; // we save the selections for quick invalidation checking
+        groupObject['nothingToSelect'] = !!action.nothingToSelect;
+      } else {
+        groupObject[key] = null;
+        groupObject['nothingToSelect'] = !!action.nothingToSelect;
+      }
+      break;
+    default:
+      groupObject[key] = true;
+      break;
+    }
+  }
+  return groupData;
+};

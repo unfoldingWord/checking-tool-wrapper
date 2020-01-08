@@ -18,7 +18,7 @@ import {
 // helpers
 import generateTimestamp from '../../utils/generateTimestamp';
 import { sameContext } from '../../helpers/contextIdHelpers';
-import { isSameVerse } from '../../helpers/groupDataHelpers';
+import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
 import { saveSelectionsForOtherContext } from '../../localStorage/saveMethods';
 // selectors
 import { getContextId, getGroupsData } from '../../selectors';
@@ -28,6 +28,7 @@ import {
   TOGGLE_SELECTIONS_IN_GROUPDATA,
   SET_INVALIDATION_IN_GROUPDATA,
 } from './actionTypes';
+;
 
 /**
  * Adds a selection array to the selections reducer.
@@ -204,7 +205,8 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
   const state = getState();
   const initialSelectionsChanged = results.selectionsChanged;
   contextId = contextId || state.contextIdReducer.contextId;
-  const groupsDataForVerse = getGroupDataForVerse(state, contextId);
+  const groupsData = getGroupsData(state);
+  const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId);
   let filtered = null;
   results.selectionsChanged = false;
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
@@ -345,42 +347,4 @@ export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignments
   }
 
   dispatch(showIgnorableAlert(id, translate(message), { onConfirm: callback }));
-};
-
-/**
- * Gets the group data for the verse reference in contextId from groupsDataReducer
- * @param {Object} state
- * @param {Object} contextId
- * @return {object} group data object.
- */
-export const getGroupDataForVerse = (state, contextId) => {
-  const groupsData = getGroupsData(state);
-  const filteredGroupData = {};
-
-  if (groupsData) {
-    const groupsDataKeys = Object.keys(groupsData);
-
-    for (let i = 0, l = groupsDataKeys.length; i < l; i++) {
-      const groupItemKey = groupsDataKeys[i];
-      const groupItem = groupsData[groupItemKey];
-
-      if (groupItem) {
-        for (let j = 0, l = groupItem.length; j < l; j++) {
-          const check = groupItem[j];
-
-          try {
-            if (isSameVerse(check.contextId, contextId)) {
-              if (!filteredGroupData[groupItemKey]) {
-                filteredGroupData[groupItemKey] = [];
-              }
-              filteredGroupData[groupItemKey].push(check);
-            }
-          } catch (e) {
-            console.warn(`Corrupt check found in group "${groupItemKey}"`, check);
-          }
-        }
-      }
-    }
-  }
-  return filteredGroupData;
 };
