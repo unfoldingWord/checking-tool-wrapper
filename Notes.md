@@ -7,6 +7,7 @@
 
 ## TO DOs
 
+- Remove prop selectors for wrappers in container.js
 - TO DOs.
 - Move Container.js to the containers folder and rename it to Main.js or App.js. Also make the respective changes in both tools (tw & tn) repos.
 - makeSureBiblesLoadedForTool should be called in the core codebase before loading/opening tool. (Maybe remove its usage in the tool?)

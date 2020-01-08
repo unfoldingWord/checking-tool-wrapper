@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ScripturePane } from 'tc-ui-toolkit';
 import { getAvailableScripturePaneSelections } from '../helpers/resourcesHelpers';
+import { getLexiconData } from '../helpers/lexiconHelpers';
 import {
   getContextId,
   getBibles,
@@ -19,7 +20,6 @@ function ScripturePaneWrapper({
   translate,
   selections,
   showPopover,
-  getLexiconData,
   editTargetVerse,
   setToolSettings,
   currentPaneSettings,
@@ -71,7 +71,6 @@ ScripturePaneWrapper.propTypes = {
   projectDetailsReducer: PropTypes.object.isRequired,
   // actions
   showPopover: PropTypes.func.isRequired,
-  getLexiconData: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
   makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
