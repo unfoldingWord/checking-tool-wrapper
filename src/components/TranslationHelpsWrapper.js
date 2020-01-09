@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TranslationHelps } from 'tc-ui-toolkit';
@@ -97,7 +98,7 @@ function TranslationHelpsWrapper({
 
   useEffect(() => {
     loadResourceArticle(selectedToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
-  }, [loadResourceArticle, selectedToolName, groupId, gatewayLanguage]);
+  }, [selectedToolName, groupId, gatewayLanguage]);
 
   useEffect(() => {
     const page = document.getElementById('helpsbody');
