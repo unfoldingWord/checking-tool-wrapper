@@ -157,4 +157,9 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(TranslationHelpsWrapper);
+const mapDispatchToProps = (dispatch, ownProps) => ({ loadResourceArticle: ownProps.tc.loadResourceArticle });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TranslationHelpsWrapper);
