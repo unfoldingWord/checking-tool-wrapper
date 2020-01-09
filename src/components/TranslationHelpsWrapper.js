@@ -145,6 +145,7 @@ TranslationHelpsWrapper.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
   return {
+    loadResourceArticle: ownProps.actions.loadResourceArticle,
     contextId,
     selectedToolName: getToolName(ownProps),
     gatewayLanguage: getGatewayLanguage(ownProps),
@@ -153,9 +154,6 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({ loadResourceArticle: ownProps.tc.loadResourceArticle });
+// const mapDispatchToProps = (dispatch, ownProps) => ({ loadResourceArticle: ownProps.tc.loadResourceArticle });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TranslationHelpsWrapper);
+export default connect(mapStateToProps)(TranslationHelpsWrapper);

@@ -22,7 +22,6 @@ import {
   getBibles,
   getGatewayLanguage,
   getCurrentPaneSettings,
-  getAlignedGLText,
   getGatewayLanguageBibles,
 } from './selectors';
 import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
