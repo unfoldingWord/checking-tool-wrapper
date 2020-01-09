@@ -144,6 +144,8 @@ TranslationHelpsWrapper.propTypes = {
 
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
+  console.log('ownProps.tc', ownProps.tc);
+  console.log('ownProps.tc.loadResourceArticle', ownProps.tc.loadResourceArticle);
 
   return {
     contextId,
