@@ -104,12 +104,13 @@ export const changeCurrentContextId = (projectSaveLocation, userData, gatewayLan
     console.log(`changeCurrentContextId() - setting new contextId to: ${refStr}`);
 
     if (!groupDataLoaded) { // if group data not found, load from file
+      console.log('contextId', contextId);
       dispatch(loadCheckData(contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote));
     }
     saveContextId(contextId, projectSaveLocation);
 
     // commit project changes after delay
-    delay(5000).then(async () => {
+    delay(500).then(async () => {
       try {
         console.log('changeCurrentContextId', projectSaveLocation, userData);
         const repo = await Repo.open(projectSaveLocation, userData);

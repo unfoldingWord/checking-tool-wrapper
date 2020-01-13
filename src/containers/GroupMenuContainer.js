@@ -17,7 +17,6 @@ import {
   getProjectPath,
   getProjectManifest,
   getUserData,
-  getGatewayLanguageBibles,
   getBookName,
 } from '../selectors/index';
 
@@ -44,6 +43,9 @@ function GroupMenuContainer({
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
+    console.log('====================================');
+    console.log('GroupMenuContainer 3rd useEffect');
+    console.log('====================================');
     loadCurrentContextId();
   }, [loadCurrentContextId, selectedToolName]);
 
