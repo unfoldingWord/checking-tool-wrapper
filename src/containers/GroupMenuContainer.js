@@ -109,8 +109,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const userData = getUserData(ownProps);
 
   return {
-    loadGroupsIndex,
-    loadGroupsData,
+    loadGroupsIndex: () => loadGroupsIndex(),
+    loadGroupsData: () => loadGroupsData(),
     loadCurrentContextId: () => {
       dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
