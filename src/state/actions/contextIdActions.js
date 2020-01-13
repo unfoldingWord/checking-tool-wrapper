@@ -85,10 +85,11 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
  * @param {object} userData - user data.
  * @param {string} gatewayLanguageCode - gateway language code.
  * @param {string} gatewayLanguageQuote - gateway language quote.
+ * @param {object} contextId - context Id.
  */
-export const changeCurrentContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
+export const changeCurrentContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote, contextId = null) => (dispatch, getState) => {
   const state = getState();
-  const contextId = getContextId(state);
+  contextId = contextId || getContextId(state);
   console.log('changeCurrentContextId() state', state);
   console.log('changeCurrentContextId() contextId', contextId);
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
