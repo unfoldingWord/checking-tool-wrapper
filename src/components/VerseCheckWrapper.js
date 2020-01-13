@@ -406,6 +406,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       gatewayLanguage,
     },
     gatewayLanguageQuote,
+    actions: {
+      changeSelections,
+      validateSelections,
+    },
   } = ownProps;
   const username = getUsername(ownProps);
   const selectedToolName = getSelectedToolName(ownProps);
@@ -419,18 +423,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     editTargetVerse: (chapter, verse, before, after, tags) => {
       dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
     },
-    changeSelections: (selections, nothingToSelect) => {
-      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
-    },
+    changeSelections,
+    // changeSelections: (selections, nothingToSelect) => {
+    //   dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
+    // },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote));
     },
-    validateSelections: (targetVerse) => {
-      console.log('====================================');
-      console.log('validateSelections');
-      console.log('====================================');
-      // dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
-    },
+    validateSelections,
+    // validateSelections: (targetVerse) => {
+    //   console.log('====================================');
+    //   console.log('validateSelections');
+    //   console.log('====================================');
+    //   // dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
+    // },
   };
 };
 
