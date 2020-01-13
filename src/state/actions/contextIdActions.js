@@ -89,6 +89,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
  */
 export const changeCurrentContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote, contextId = null) => (dispatch, getState) => {
   const state = getState();
+  console.log('changeCurrentContextId() contextId', contextId);
   contextId = contextId || getContextId(state);
   console.log('changeCurrentContextId() state', state);
   console.log('changeCurrentContextId() contextId', contextId);
