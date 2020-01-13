@@ -101,31 +101,37 @@ const mapStateToProps = (state, ownProps) => ({
   bookName: getBookName(ownProps),
 });
 
-const mapDispatchToProps = (dispatch, ownProps) =>
-// const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
-// const projectSaveLocation = getProjectPath(ownProps);
-// const { project: { id: bookId } } = getProjectManifest(ownProps);
-// const toolName = getToolName(ownProps);
-// const userData = getUserData(ownProps);
+// const mapDispatchToProps = (dispatch, ownProps) =>
+// // const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
+// // const projectSaveLocation = getProjectPath(ownProps);
+// // const { project: { id: bookId } } = getProjectManifest(ownProps);
+// // const toolName = getToolName(ownProps);
+// // const userData = getUserData(ownProps);
 
-  ({
-    loadGroupsIndex: () => {
-      console.log('loadGroupsIndex');
-      loadGroupsIndex();
-    },
-    loadGroupsData: () => {
-      console.log('loadGroupsData');
-      loadGroupsData();
-    },
-    loadCurrentContextId: () => console.log('loadCurrentContextId'),
-    changeCurrentContextId: () => console.log('changeCurrentContextId'),
-    // loadCurrentContextId: () => {
-    //   dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
-    // },
-    // changeCurrentContextId: () => {
-    //   dispatch(changeCurrentContextId(null, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
-    // },
-  });
+//   ({
+//     loadGroupsIndex: () => {
+//       console.log('loadGroupsIndex');
+//       loadGroupsIndex();
+//     },
+//     loadGroupsData: () => {
+//       console.log('loadGroupsData');
+//       loadGroupsData();
+//     },
+//     loadCurrentContextId: () => console.log('loadCurrentContextId'),
+//     changeCurrentContextId: () => console.log('changeCurrentContextId'),
+//     // loadCurrentContextId: () => {
+//     //   dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+//     // },
+//     // changeCurrentContextId: () => {
+//     //   dispatch(changeCurrentContextId(null, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+//     // },
+//   });
+
+const mapDispatchToProps = () => ({
+  loadGroupsIndex,
+  loadGroupsData,
+});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
