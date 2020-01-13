@@ -50,12 +50,12 @@ function GroupMenuContainer({
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
-  // useEffect(() => {
-  //   console.log('====================================');
-  //   console.log('GroupMenuContainer 3rd useEffect');
-  //   console.log('====================================');
-  //   loadCurrentContextId();
-  // }, [loadCurrentContextId, selectedToolName]);
+  useEffect(() => {
+    console.log('====================================');
+    console.log('GroupMenuContainer 3rd useEffect');
+    console.log('====================================');
+    loadCurrentContextId();
+  }, [loadCurrentContextId, selectedToolName]);
 
   if (contextId) {
     return (
@@ -101,33 +101,30 @@ const mapStateToProps = (state, ownProps) => ({
   bookName: getBookName(ownProps),
 });
 
-const mapDispatchToProps = (dispatch, ownProps) =>
-// const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
-// const projectSaveLocation = getProjectPath(ownProps);
-// const { project: { id: bookId } } = getProjectManifest(ownProps);
-// const toolName = getToolName(ownProps);
-// const userData = getUserData(ownProps);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
+  const projectSaveLocation = getProjectPath(ownProps);
+  const { project: { id: bookId } } = getProjectManifest(ownProps);
+  const toolName = getToolName(ownProps);
+  const userData = getUserData(ownProps);
 
-  ({
-    loadGroupsIndex: () => {
-      console.log('loadGroupsIndex');
-      dispatch(loadGroupsIndex());
+  return {
+    loadGroupsIndex: (gatewayLanguage, selectedToolName, projectSaveLocation, translate) => {
+      dispatch(loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate));
     },
-    loadGroupsData: () => {
-      console.log('loadGroupsData');
-      dispatch(loadGroupsData());
+    loadGroupsData: (selectedToolName, projectSaveLocation) => {
+      dispatch(loadGroupsData(selectedToolName, projectSaveLocation));
     },
-    loadCurrentContextId: () => console.log('loadCurrentContextId'),
-    changeCurrentContextId: () => console.log('changeCurrentContextId'),
-    // loadCurrentContextId: () => {
-    //   dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
-    // },
-    // changeCurrentContextId: () => {
-    //   dispatch(changeCurrentContextId(null, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
-    // },
-  });
+    loadCurrentContextId: () => {
+      dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+    },
+    changeCurrentContextId: () => {
+      dispatch(changeCurrentContextId(null, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+    },
+  };
+};
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(GroupMenuContainer);
-
