@@ -140,6 +140,8 @@ function firstContextId(state) {
   let contextId;
   const groupsIndex = getGroupsIndex(state);
   const groupsData = getGroupsData(state);
+  console.log('firstContextId groupsIndex', groupsIndex);
+  console.log('firstContextId groupsData', groupsData);
   let groupsIndexEmpty = groupsIndex.length === 0;
   let groupsDataEmpty = Object.keys(groupsData).length === 0;
 
