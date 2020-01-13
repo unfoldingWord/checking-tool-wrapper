@@ -420,9 +420,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
     },
     changeSelections: (selections, nothingToSelect) => {
-      console.log('====================================');
-      console.log('changeSelections');
-      console.log('====================================');
       dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
     },
     toggleBookmark: () => {
@@ -432,7 +429,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       console.log('====================================');
       console.log('validateSelections');
       console.log('====================================');
-      dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
+      // dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
     },
   };
 };
