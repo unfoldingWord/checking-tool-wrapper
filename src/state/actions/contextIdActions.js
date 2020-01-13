@@ -59,6 +59,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
             console.log('loadCurrentContextId contextId', contextId);
 
             if (contextId && contextIdExistInGroups) {
+              console.log('contextIdExistInGroups');
               return dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
             }
           } catch (err) {
@@ -68,6 +69,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
+        console.log('groupsIndex', groupsIndex);
         console.log('firstContextId contextId', contextId);
         dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
       } catch (err) {

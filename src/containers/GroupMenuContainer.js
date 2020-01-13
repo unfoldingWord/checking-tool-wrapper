@@ -35,10 +35,16 @@ function GroupMenuContainer({
   changeCurrentContextId,
 }) {
   useEffect(() => {
+    console.log('====================================');
+    console.log('GroupMenuContainer 1st useEffect');
+    console.log('====================================');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
+    console.log('====================================');
+    console.log('GroupMenuContainer 2nd useEffect');
+    console.log('====================================');
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
