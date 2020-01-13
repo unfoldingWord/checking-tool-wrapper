@@ -59,7 +59,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
             console.log('loadCurrentContextId contextId', contextId);
 
             if (contextId && contextIdExistInGroups) {
-              return dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+              return dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote, contextId));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
@@ -68,7 +68,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+        dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote, contextId));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
         console.warn('loadCurrentContextId() error loading contextId', err);
@@ -269,7 +269,7 @@ export const changeToNextContextId = (projectSaveLocation, userData, gatewayLang
   } else {
     contextId = nextGroupDataItem.contextId;
   }
-  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote, contextId));
 });
 
 export const changeToPreviousContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
@@ -296,5 +296,5 @@ export const changeToPreviousContextId = (projectSaveLocation, userData, gateway
   } else {
     contextId = prevGroupDataItem.contextId;
   }
-  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote, contextId));
 });
