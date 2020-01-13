@@ -38,6 +38,7 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('GroupMenuContainer 1st useEffect');
     console.log('====================================');
+    console.log('loadGroupsIndex', loadGroupsIndex);
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
 
@@ -45,6 +46,7 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('GroupMenuContainer 2nd useEffect');
     console.log('====================================');
+    console.log('loadGroupsData', loadGroupsData);
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
@@ -113,7 +115,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
     changeCurrentContextId: () => {
-      dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+      dispatch(changeCurrentContextId(null, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
   };
 };

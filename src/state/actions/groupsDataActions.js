@@ -7,6 +7,7 @@ import { loadProjectGroupData } from '../../helpers/groupDataHelpers';
  * @param {string} projectDir - the absolute path to the project.
  */
 export const loadGroupsData = (toolName, projectDir) => (dispatch) => {
+  console.log('loadGroupsData()');
   const groupsData = loadProjectGroupData(toolName, projectDir);
 
   dispatch({
