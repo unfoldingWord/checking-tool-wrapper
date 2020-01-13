@@ -56,6 +56,8 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
             contextId = fs.readJsonSync(loadPath);
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
+            console.log('loadCurrentContextId contextId', contextId);
+
             if (contextId && contextIdExistInGroups) {
               return dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
             }
@@ -88,6 +90,7 @@ export const changeCurrentContextId = (projectSaveLocation, userData, gatewayLan
   const state = getState();
   const contextId = getContextId(state);
   console.log('changeCurrentContextId() state', state);
+  console.log('changeCurrentContextId() contextId', contextId);
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
   if (contextId) {
