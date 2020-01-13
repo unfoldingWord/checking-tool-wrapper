@@ -40,7 +40,7 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('loadGroupsIndex', loadGroupsIndex);
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
+  }, [gatewayLanguage, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
     console.log('====================================');
@@ -48,7 +48,7 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('loadGroupsData', loadGroupsData);
     loadGroupsData(selectedToolName, projectSaveLocation);
-  }, [loadGroupsData, selectedToolName, projectSaveLocation]);
+  }, [selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
     console.log('====================================');
@@ -109,8 +109,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const userData = getUserData(ownProps);
 
   return {
-    loadGroupsIndex: () => loadGroupsIndex(),
-    loadGroupsData: () => loadGroupsData(),
+    loadGroupsIndex: () => {
+      console.log('loadGroupsIndex');
+      loadGroupsIndex();
+    },
+    loadGroupsData: () => {
+      console.log('loadGroupsData');
+      loadGroupsData();
+    },
     loadCurrentContextId: () => {
       dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
