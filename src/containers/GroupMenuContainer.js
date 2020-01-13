@@ -50,12 +50,12 @@ function GroupMenuContainer({
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [loadGroupsData, selectedToolName, projectSaveLocation]);
 
-  // useEffect(() => {
-  //   console.log('====================================');
-  //   console.log('GroupMenuContainer 3rd useEffect');
-  //   console.log('====================================');
-  //   loadCurrentContextId();
-  // }, [loadCurrentContextId, selectedToolName]);
+  useEffect(() => {
+    console.log('====================================');
+    console.log('GroupMenuContainer 3rd useEffect');
+    console.log('====================================');
+    loadCurrentContextId();
+  }, [loadCurrentContextId, selectedToolName]);
 
   if (contextId) {
     return (
