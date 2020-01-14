@@ -39,7 +39,7 @@ function GroupMenuContainer({
     console.log('GroupMenuContainer 1st useEffect loadGroupsIndex()');
     console.log('====================================');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, []);
+  }, groupsIndex);
 
   useEffect(() => {
     console.log('====================================');
