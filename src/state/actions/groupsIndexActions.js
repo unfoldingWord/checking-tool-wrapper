@@ -1,13 +1,16 @@
 import { loadProjectGroupIndex } from '../../helpers/groupsIndexHelpers';
 import {
   LOAD_GROUPS_INDEX,
+  CLEAR_PREVIOUS_GROUPS_INDEX,
   UPDATE_REFRESH_COUNT_GROUPS_INDEX,
 } from './actionTypes';
 
 /**
- * @description This action sends all of the group Ids and
- * group names to the groupsIndexReducer
- * @param {string} groupIndex - The object of group indecies
+ * Loads all of the group Ids and group names to the groupsIndexReducer
+ * @param {string} gatewayLanguage - gateway Language.
+ * @param {string} toolName - tool Name.
+ * @param {string} projectDir - project Directory path.
+ * @param {function} translate - locale transtale.
  * @return {object} action object.
  */
 export const loadGroupsIndex = (gatewayLanguage, toolName, projectDir, translate) => ((dispatch, getState) => {
@@ -23,3 +26,5 @@ export const loadGroupsIndex = (gatewayLanguage, toolName, projectDir, translate
 export const updateRefreshCount = () => ((dispatch) => {
   dispatch({ type: UPDATE_REFRESH_COUNT_GROUPS_INDEX });
 });
+
+export const clearGroupsIndex = () => ({ type: CLEAR_PREVIOUS_GROUPS_INDEX });

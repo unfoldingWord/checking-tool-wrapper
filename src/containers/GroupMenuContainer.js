@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GroupMenuComponent from '../components/GroupMenuComponent';
 // Actions
-import { loadGroupsIndex } from '../state/actions/groupsIndexActions';
+import { loadGroupsIndex, clearGroupsIndex } from '../state/actions/groupsIndexActions';
 import { loadGroupsData } from '../state/actions/groupsDataActions';
 import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/contextIdActions';
 // Selectors
@@ -30,6 +30,7 @@ function GroupMenuContainer({
   groupsData,
   groupsIndex,
   loadGroupsIndex,
+  clearGroupsIndex,
   loadGroupsData,
   loadCurrentContextId,
   changeCurrentContextId,
@@ -39,21 +40,26 @@ function GroupMenuContainer({
     console.log('GroupMenuContainer 1st useEffect loadGroupsIndex()');
     console.log('====================================');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, groupsIndex);
+
+    return () => {
+      // Clean up the groupsIndex on unmount
+      clearGroupsIndex();
+    };
+  }, [selectedToolName]);
 
   useEffect(() => {
     console.log('====================================');
     console.log('GroupMenuContainer 2nd useEffect loadGroupsData()');
     console.log('====================================');
     loadGroupsData(selectedToolName, projectSaveLocation);
-  }, []);
+  }, [selectedToolName]);
 
   useEffect(() => {
     console.log('====================================');
     console.log('GroupMenuContainer 3rd useEffect loadCurrentContextId()');
     console.log('====================================');
     loadCurrentContextId();
-  }, []);
+  }, [selectedToolName]);
 
   if (contextId) {
     return (
@@ -82,8 +88,9 @@ GroupMenuContainer.propTypes = {
   groupsData: PropTypes.object.isRequired,
   groupsIndex: PropTypes.object.isRequired,
   // Actions
-  loadGroupsData: PropTypes.func.isRequired,
   loadGroupsIndex: PropTypes.func.isRequired,
+  clearGroupsIndex: PropTypes.func.isRequired,
+  loadGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
 };
 
@@ -110,6 +117,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     loadGroupsIndex: (gatewayLanguage, selectedToolName, projectSaveLocation, translate) => {
       dispatch(loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate));
     },
+    clearGroupsIndex: () => clearGroupsIndex(),
     loadGroupsData: (selectedToolName, projectSaveLocation) => {
       dispatch(loadGroupsData(selectedToolName, projectSaveLocation));
     },
