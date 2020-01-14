@@ -16,10 +16,7 @@ const groupsIndexReducer = (state = initialState, action) => {
   case LOAD_GROUPS_INDEX: {
     return {
       ...state,
-      groupsIndex: [
-        ...state.groupsIndex,
-        ...action.groupsIndex,
-      ].sort(sortIndex),
+      groupsIndex: [...action.groupsIndex].sort(sortIndex),
       loadedFromFileSystem: true,
     };
   }
