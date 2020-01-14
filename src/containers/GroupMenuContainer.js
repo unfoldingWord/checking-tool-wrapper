@@ -36,21 +36,21 @@ function GroupMenuContainer({
 }) {
   useEffect(() => {
     console.log('====================================');
-    console.log('GroupMenuContainer 1st useEffect');
+    console.log('GroupMenuContainer 1st useEffect loadGroupsIndex()');
     console.log('====================================');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [groupsIndex, selectedToolName]);
 
   useEffect(() => {
     console.log('====================================');
-    console.log('GroupMenuContainer 2nd useEffect');
+    console.log('GroupMenuContainer 2nd useEffect loadGroupsData()');
     console.log('====================================');
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [selectedToolName]);
 
   useEffect(() => {
     console.log('====================================');
-    console.log('GroupMenuContainer 3rd useEffect');
+    console.log('GroupMenuContainer 3rd useEffect loadCurrentContextId()');
     console.log('====================================');
     loadCurrentContextId();
   }, [selectedToolName]);
