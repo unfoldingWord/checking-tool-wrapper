@@ -42,6 +42,7 @@ import {
  */
 export function loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) {
   return (dispatch, getState) => {
+    console.log('loadCurrentContextId');
     const state = getState();
     const groupsIndex = getGroupsIndex(state);
 

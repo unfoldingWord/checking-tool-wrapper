@@ -409,6 +409,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     actions: {
       changeSelections,
       validateSelections,
+      editTargetVerse,
     },
   } = ownProps;
   const username = getUsername(ownProps);
@@ -420,17 +421,33 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote)),
-    editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
+    editTargetVerse: () => {// TEMP
+      console.log('====================================');
+      console.log('editTargetVerse()');
+      console.log('====================================');
+      editTargetVerse();
     },
-    changeSelections,
+    // editTargetVerse: (chapter, verse, before, after, tags) => {
+    //   dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
+    // },
+    changeSelections: () => {// TEMP
+      console.log('====================================');
+      console.log('changeSelections()');
+      console.log('====================================');
+      changeSelections();
+    },
     // changeSelections: (selections, nothingToSelect) => {
     //   dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
     // },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote));
     },
-    validateSelections,
+    validateSelections: () => {// TEMP
+      console.log('====================================');
+      console.log('validateSelections()');
+      console.log('====================================');
+      validateSelections();
+    },
     // validateSelections: (targetVerse) => {
     //   console.log('====================================');
     //   console.log('validateSelections');

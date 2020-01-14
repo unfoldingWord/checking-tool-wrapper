@@ -4,6 +4,8 @@ import { USER_RESOURCES_PATH } from '../common/constants';
 import ResourceAPI from './ResourceAPI';
 
 export function getLexiconData(lexiconId, entryId) {
+  console.log('getLexiconData');
+
   try {
     const languageId = 'en'; // TODO: need to add other language support
     // generate path from resourceType and articleId and get latest version

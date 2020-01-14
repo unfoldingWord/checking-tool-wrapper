@@ -38,7 +38,6 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('GroupMenuContainer 1st useEffect');
     console.log('====================================');
-    console.log('loadGroupsIndex', loadGroupsIndex);
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
   }, [groupsIndex, loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
 
@@ -46,7 +45,6 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('GroupMenuContainer 2nd useEffect');
     console.log('====================================');
-    console.log('loadGroupsData', loadGroupsData);
     loadGroupsData(selectedToolName, projectSaveLocation);
   }, [groupsData, loadGroupsData, selectedToolName, projectSaveLocation]);
 
