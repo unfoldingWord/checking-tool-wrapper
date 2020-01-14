@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import GroupMenuComponent from '../components/GroupMenuComponent';
 // Actions
 import { loadGroupsIndex, clearGroupsIndex } from '../state/actions/groupsIndexActions';
-import { loadGroupsData } from '../state/actions/groupsDataActions';
-import { loadCurrentContextId, changeCurrentContextId } from '../state/actions/contextIdActions';
+import { loadGroupsData, clearGroupsData } from '../state/actions/groupsDataActions';
+import {
+  loadCurrentContextId, changeCurrentContextId, clearContextId,
+} from '../state/actions/contextIdActions';
 // Selectors
 import {
   getGroupsIndex,
@@ -32,8 +34,10 @@ function GroupMenuContainer({
   loadGroupsIndex,
   clearGroupsIndex,
   loadGroupsData,
+  clearGroupsData,
   loadCurrentContextId,
   changeCurrentContextId,
+  clearContextId,
 }) {
   useEffect(() => {
     console.log('====================================');
@@ -42,7 +46,8 @@ function GroupMenuContainer({
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
 
     return () => {
-      // Clean up the groupsIndex on unmount
+      console.log('1st useEffect');
+      // Clean up groupsIndex on unmount
       clearGroupsIndex();
     };
   }, [selectedToolName]);
@@ -52,6 +57,12 @@ function GroupMenuContainer({
     console.log('GroupMenuContainer 2nd useEffect loadGroupsData()');
     console.log('====================================');
     loadGroupsData(selectedToolName, projectSaveLocation);
+
+    return () => {
+      console.log('2nd useEffect');
+      // Clean up groupsData on unmount
+      clearGroupsData();
+    };
   }, [selectedToolName]);
 
   useEffect(() => {
@@ -59,6 +70,10 @@ function GroupMenuContainer({
     console.log('GroupMenuContainer 3rd useEffect loadCurrentContextId()');
     console.log('====================================');
     loadCurrentContextId();
+    return () => {
+      console.log('3rd useEffect');
+      clearContextId();
+    };
   }, [selectedToolName]);
 
   if (contextId) {
@@ -91,7 +106,9 @@ GroupMenuContainer.propTypes = {
   loadGroupsIndex: PropTypes.func.isRequired,
   clearGroupsIndex: PropTypes.func.isRequired,
   loadGroupsData: PropTypes.func.isRequired,
+  clearGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
+  clearContextId: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -121,12 +138,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     loadGroupsData: (selectedToolName, projectSaveLocation) => {
       dispatch(loadGroupsData(selectedToolName, projectSaveLocation));
     },
+    clearGroupsData: () => clearGroupsData(),
     loadCurrentContextId: () => {
       dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
     changeCurrentContextId: () => {
       dispatch(changeCurrentContextId(null, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
+    clearContextId: () => clearContextId(),
   };
 };
 

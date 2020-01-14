@@ -28,6 +28,7 @@ import {
   SET_BOOKMARK,
   SET_INVALIDATED,
   ADD_COMMENT,
+  CLEAR_CONTEXT_ID,
 } from './actionTypes';
 
 
@@ -305,3 +306,5 @@ export const changeToPreviousContextId = (projectSaveLocation, userData, gateway
   }
   dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
 });
+
+export const clearContextId = () => ({ type: CLEAR_CONTEXT_ID });

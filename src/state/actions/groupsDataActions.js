@@ -1,4 +1,4 @@
-import { LOAD_GROUPS_DATA_FROM_FS } from '../actions/actionTypes';
+import { LOAD_GROUPS_DATA_FROM_FS, CLEAR_PREVIOUS_GROUPS_DATA } from '../actions/actionTypes';
 import { loadProjectGroupData } from '../../helpers/groupDataHelpers';
 
 /**
@@ -15,3 +15,8 @@ export const loadGroupsData = (toolName, projectDir) => (dispatch) => {
     groupsData,
   });
 };
+
+/**
+ * Clears the GroupsDataReducer to its inital state.
+ */
+export const clearGroupsData = () => ({ type: CLEAR_PREVIOUS_GROUPS_DATA });

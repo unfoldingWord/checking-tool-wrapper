@@ -27,4 +27,7 @@ export const updateRefreshCount = () => ((dispatch) => {
   dispatch({ type: UPDATE_REFRESH_COUNT_GROUPS_INDEX });
 });
 
+/**
+ * Clears the GroupsIndexReducer to its inital state.
+ */
 export const clearGroupsIndex = () => ({ type: CLEAR_PREVIOUS_GROUPS_INDEX });
