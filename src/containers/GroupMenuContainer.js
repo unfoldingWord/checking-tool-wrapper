@@ -40,7 +40,7 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('loadGroupsIndex', loadGroupsIndex);
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, [loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
+  }, [groupsIndex, loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
     console.log('====================================');
@@ -48,7 +48,7 @@ function GroupMenuContainer({
     console.log('====================================');
     console.log('loadGroupsData', loadGroupsData);
     loadGroupsData(selectedToolName, projectSaveLocation);
-  }, [loadGroupsData, selectedToolName, projectSaveLocation]);
+  }, [groupsData, loadGroupsData, selectedToolName, projectSaveLocation]);
 
   useEffect(() => {
     console.log('====================================');
