@@ -39,21 +39,21 @@ function GroupMenuContainer({
     console.log('GroupMenuContainer 1st useEffect');
     console.log('====================================');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
-  }, [groupsIndex, loadGroupsIndex, gatewayLanguage, selectedToolName, projectSaveLocation]);
+  }, []);
 
   useEffect(() => {
     console.log('====================================');
     console.log('GroupMenuContainer 2nd useEffect');
     console.log('====================================');
     loadGroupsData(selectedToolName, projectSaveLocation);
-  }, [groupsData, loadGroupsData, selectedToolName, projectSaveLocation]);
+  }, []);
 
   useEffect(() => {
     console.log('====================================');
     console.log('GroupMenuContainer 3rd useEffect');
     console.log('====================================');
     loadCurrentContextId();
-  }, [loadCurrentContextId, selectedToolName]);
+  }, []);
 
   if (contextId) {
     return (
