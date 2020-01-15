@@ -115,6 +115,7 @@ export const changeCurrentContextId = (contextId = null, projectSaveLocation, us
 
     if (!groupDataLoaded) { // if group data not found, load from file
       console.log('contextId', contextId);
+      console.log('!groupDataLoaded loadCheckData');
       dispatch(loadCheckData(contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote));
     }
     saveContextId(contextId, projectSaveLocation);
@@ -122,7 +123,6 @@ export const changeCurrentContextId = (contextId = null, projectSaveLocation, us
     // commit project changes after delay
     delay(500).then(async () => {
       try {
-        console.log('changeCurrentContextId', projectSaveLocation, userData);
         const repo = await Repo.open(projectSaveLocation, userData);
         const saveStarted = await repo.saveDebounced(`Auto saving at ${refStr}`);
 
@@ -174,6 +174,7 @@ function firstContextId(state) {
  * @return {Boolean} true if check data found in reducers
  */
 function changeContextIdInReducers(contextId, dispatch, state) {
+  console.log('changeContextIdInReducers()');
   let oldGroupObject = {};
   const groupsData = getGroupsData(state);
 
