@@ -142,7 +142,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     loadCurrentContextId: () => {
       dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
-    changeCurrentContextId: (contextId = null) => {
+    changeCurrentContextId: (item = null) => {
+      const contextId = item.contextId || null;
       console.log('changeCurrentContextId contextId', contextId);
       dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
