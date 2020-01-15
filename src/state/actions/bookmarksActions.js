@@ -17,7 +17,7 @@ export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuo
   const { enabled } = getBookmarksReducer(state);
   console.log('toggleBookmark enabled', enabled);
   const bookmarkData = {
-    enabled,
+    enabled: !enabled,
     username,
     modifiedTimestamp,
     gatewayLanguageCode,
