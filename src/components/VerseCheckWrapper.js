@@ -440,7 +440,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     //   dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
     // },
     toggleBookmark: () => {
-      // dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
+      dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: () => {// TEMP
       console.log('====================================');
