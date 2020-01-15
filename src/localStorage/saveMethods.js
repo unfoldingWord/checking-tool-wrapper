@@ -51,7 +51,7 @@ function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectS
     try {
       const savePath = generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation);
 
-      if (savePath && fs.existsSync(savePath)) {
+      if (savePath) {
         fs.outputJsonSync(savePath, payload, { spaces: 2 });
         resolve();
       } else {
@@ -79,7 +79,7 @@ export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
       ...bookmarkData,
     };
     const modifiedTimestamp = bookmarkData.modifiedTimestamp || generateTimestamp();
-    return saveData(contextId, 'bookmarks', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
+    return saveData(contextId, 'reminders', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
   } catch (err) {
     console.error(err);
     throw new Error(err);
