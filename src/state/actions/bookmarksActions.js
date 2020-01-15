@@ -30,10 +30,10 @@ export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuo
   });
 });
 
-export function toggle(username, gatewayLanguageCode, gatewayLanguageQuote, modifiedTimestamp) {
+export function toggle(username, gatewayLanguageCode, gatewayLanguageQuote, modifiedTimestamp = null) {
   return {
     type: TOGGLE_BOOKMARK,
-    modifiedTimestamp,
+    modifiedTimestamp: modifiedTimestamp || generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
     username,
