@@ -27,8 +27,8 @@ function GroupMenuComponent({
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
    */
-  function handleClick() {
-    changeCurrentContextId();
+  function handleClick(contextId) {
+    changeCurrentContextId(contextId);
   };
 
   /**
