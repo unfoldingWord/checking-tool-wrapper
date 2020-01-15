@@ -1,10 +1,8 @@
-// TODO: IF THIS FILE GETS To long separate functions by categiries
+// TODO: IF THIS FILE GETS To long separate functions by categories
 import fs from 'fs-extra';
 import path from 'path-extra';
-import isEqual from 'deep-equal';
 import generateTimestamp from '../utils/generateTimestamp';
 import { PROJECT_CHECKDATA_DIRECTORY } from '../common/constants';
-import { loadCheckData } from '../helpers/checkDataHelpers';
 
 /**
  * Generates the output directory.
@@ -36,39 +34,59 @@ function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSa
       console.error(`projectSaveLocation is undefined`, );
     }
   } catch (err) {
-    console.warn(err);
+    console.error(err);
   }
 }
 
 /**
  * abstracted function to handle data saving.
- * @param {object} state - store state object.
+ * @param {object} contextId - context Id.
  * @param {string} checkDataName - checkDate folder name where data will be saved.
- *  @example 'comments', 'reminders', 'selections', 'verseEdits' etc
- * @param {object} payload - object of data: merged contextIdReducer and commentsReducer.
+ *  @example 'comments', 'bookmarks', 'selections', 'verseEdits' etc
+ * @param {object} payload - checkData.
  * @param {string} modifiedTimestamp - timestamp.
  */
-function saveData(state, checkDataName, payload, modifiedTimestamp) {
-  try {
-    let savePath = generateSavePath(state, checkDataName, modifiedTimestamp);
+function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectSaveLocation) {
+  return new Promise((resolve, reject) => {
+    try {
+      const savePath = generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation);
 
-    if (savePath !== undefined) {
-      // since contextId updates and triggers the rest to load, contextId get's updated and fires this.
-      // let's not overwrite files, so check to see if it exists.
-      const saveDir = path.parse(savePath).dir;
-      const existingPayload = loadCheckData(saveDir, payload.contextId);
-
-      if (!fs.existsSync(savePath) && !isEqual(existingPayload, payload)) {
+      if (savePath && fs.existsSync(savePath)) {
         fs.outputJsonSync(savePath, payload, { spaces: 2 });
+        resolve();
+      } else {
+        const errorMessage = `saveData(): savePath is undefined or path does not exists ${savePath}`;
+        console.error(errorMessage);
+        reject(errorMessage);
       }
-    } else {
-      // no savepath
+    } catch (err) {
+      console.error(err);
+      reject(err);
     }
-  } catch (err) {
-    console.warn(err);
-  }
+  });
 }
 
+/**
+ * Saves the bookmarks check data.
+ * @param {object} contextId - context Id.
+ * @param {object} bookmarkData - bookmark check Data.
+ * @param {string} projectSaveLocation - project directory Path.
+ */
+export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
+  try {
+    const bookmarkPayload = {
+      ...contextId,
+      ...bookmarkData,
+    };
+    const modifiedTimestamp = bookmarkData.modifiedTimestamp || generateTimestamp();
+    return saveData(contextId, 'bookmarks', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
+  } catch (err) {
+    console.error(err);
+    throw new Error(err);
+  }
+};
+
+// TODO: Review code below
 /**
  * This function saves the selections data.
  * @param {Object} state - The state object courtesy of the store
