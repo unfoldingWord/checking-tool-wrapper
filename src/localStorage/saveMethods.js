@@ -76,7 +76,7 @@ function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectS
 export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
   try {
     const bookmarkPayload = {
-      ...contextId,
+      contextId,
       ...bookmarkData,
     };
     const modifiedTimestamp = bookmarkData.modifiedTimestamp || generateTimestamp();
