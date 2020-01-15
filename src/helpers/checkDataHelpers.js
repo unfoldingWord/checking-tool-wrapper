@@ -160,6 +160,11 @@ export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCod
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
   const remindersObject = loadCheckData(loadPath, contextId);
 
+  console.log('====================================');
+  console.log('loadBookmarks() remindersObject', remindersObject);
+  console.log('loadPath', loadPath);
+  console.log('====================================');
+
   if (remindersObject) {
     return {
       type: SET_BOOKMARK,
