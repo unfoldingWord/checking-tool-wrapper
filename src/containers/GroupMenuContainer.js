@@ -46,7 +46,7 @@ function GroupMenuContainer({
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
 
     return () => {
-      console.log('1st useEffect');
+      console.log('1st useEffect Clean up');
       // Clean up groupsIndex on unmount
       clearGroupsIndex();
     };
@@ -59,7 +59,7 @@ function GroupMenuContainer({
     loadGroupsData(selectedToolName, projectSaveLocation);
 
     return () => {
-      console.log('2nd useEffect');
+      console.log('2nd useEffect Clean up');
       // Clean up groupsData on unmount
       clearGroupsData();
     };
@@ -71,7 +71,7 @@ function GroupMenuContainer({
     console.log('====================================');
     loadCurrentContextId();
     return () => {
-      console.log('3rd useEffect');
+      console.log('3rd useEffect Clean up');
       clearContextId();
     };
   }, [selectedToolName]);
