@@ -245,6 +245,7 @@ export const changeContextId = contextId => ({
  */
 const loadCheckData = (contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote) => dispatch => {
   const actionsBatch = [];
+  console.log('loadCheckData()', loadCheckData);
   actionsBatch.push(loadSelections(projectSaveLocation, contextId));
   actionsBatch.push(loadComments(projectSaveLocation, contextId));
   actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote));
