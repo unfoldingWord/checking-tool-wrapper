@@ -1,5 +1,5 @@
 import generateTimestamp from '../../utils/generateTimestamp';
-import { getContextId } from '../../selectors';
+import { getContextId, getBookmarksReducer } from '../../selectors';
 import { saveBookmark } from '../../localStorage/saveMethods';
 import { TOGGLE_BOOKMARKS_IN_GROUPDATA, TOGGLE_BOOKMARK } from './actionTypes';
 
@@ -14,7 +14,7 @@ export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuo
   const state = getState();
   const contextId = getContextId(state);
   const modifiedTimestamp = generateTimestamp();
-  const enabled = state.bookmarksReducer.enabled;
+  const { enabled } = getBookmarksReducer(state);
   console.log('toggleBookmark enabled', enabled);
   const bookmarkData = {
     enabled,
