@@ -21,6 +21,7 @@ import {
   getUserData,
   getBookName,
 } from '../selectors/index';
+import { PROJECT_INDEX_FOLDER_PATH } from '../common/constants';
 
 function GroupMenuContainer({
   bookName,
@@ -144,7 +145,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeCurrentContextId: (item = null) => {
       const contextId = item.contextId || null;
-      console.log('changeCurrentContextId contextId', contextId);
       dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
     clearContextId: () => clearContextId(),
