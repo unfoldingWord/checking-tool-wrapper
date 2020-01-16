@@ -132,6 +132,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
     dispatch({
       type: TOGGLE_VERSE_EDITS_IN_GROUPDATA,
       contextId: contextIdWithVerseEdit,
+      projectSaveLocation,
     });
   }
 
@@ -146,7 +147,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
     dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, null, translate, showIgnorableAlert));
   }
   dispatch(doBackgroundVerseEditsUpdates(verseEdit, contextIdWithVerseEdit,
-    currentCheckContextId, actionsBatch, selectedToolName));
+    currentCheckContextId, actionsBatch, selectedToolName, projectSaveLocation));
 };
 
 /**
@@ -169,8 +170,9 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
  * @param {Object} currentCheckContextId - contextId of group menu item selected
  * @param {array} batchGroupData - if present then add group data actions to this array for later batch operation
  * @param {string} toolName - tool Name.
+ * @param {string} projectSaveLocation - project Directory path.
  */
-export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, toolName) => (dispatch, getState) => {
+export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, toolName, projectSaveLocation) => (dispatch, getState) => {
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
 
@@ -184,7 +186,7 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
 
   if (toolName === TRANSLATION_WORDS || toolName === TRANSLATION_NOTES) {
     const editedChecks = {};
-    getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks);
+    getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks, projectSaveLocation);
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
     if (groupEditsCount) {
@@ -236,11 +238,12 @@ export const recordTargetVerseEdit = (bookId, chapter, verse, before, after, tag
 
 /**
  * batch setting verse edit flags for all tw checks in verse if not set
- * @param {Object} state - current state
- * @param {Object} contextId - of verse edit
- * @param {Object} editedChecks - gets loaded with verse edits indexed by groupId
+ * @param {object} groupsData - groups Data.
+ * @param {object} contextId - of verse edit.
+ * @param {object} editedChecks - gets loaded with verse edits indexed by groupId.
+ * @param {string} projectSaveLocation - project Directory path.
  */
-export const getCheckVerseEditsInGroupData = (groupsData, contextId, editedChecks) => {
+export const getCheckVerseEditsInGroupData = (groupsData, contextId, editedChecks, projectSaveLocation) => {
   const matchedGroupData = getGroupDataForVerse(groupsData, contextId);
   const keys = Object.keys(matchedGroupData);
 
@@ -261,6 +264,7 @@ export const getCheckVerseEditsInGroupData = (groupsData, contextId, editedCheck
             editedChecks[groupId].push({
               type: TOGGLE_VERSE_EDITS_IN_GROUPDATA,
               contextId: check.contextId,
+              projectSaveLocation,
             });
           }
         }

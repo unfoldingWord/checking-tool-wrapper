@@ -92,7 +92,7 @@ export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
  * @param {object} groupsData - groups Data.
  * @param {string} projectSaveLocation - project directory path.
  * @param {string} toolName - tool Name.
- * @param {string} toolName - book Id.
+ * @param {string} bookId - book Id.
  */
 export const saveGroupsData = (groupsData, projectSaveLocation, toolName, bookId) => {
   try {

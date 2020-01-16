@@ -29,6 +29,7 @@ export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuo
   dispatch({
     type: TOGGLE_BOOKMARKS_IN_GROUPDATA,
     contextId,
+    projectSaveLocation,
   });
 });
 
