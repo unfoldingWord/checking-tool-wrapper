@@ -3,6 +3,7 @@ import {
   LOAD_GROUPS_DATA_FROM_FS,
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
   TOGGLE_BOOKMARKS_IN_GROUPDATA,
+  TOGGLE_COMMENTS_IN_GROUPDATA,
 } from '../actions/actionTypes';
 import { getToggledGroupData } from '../../helpers/groupDataHelpers';
 
@@ -22,7 +23,7 @@ const groupsDataReducer = (state = initialState, action) => {
       },
       loadedFromFileSystem: true,
     };
-  case TOGGLE_VERSE_EDITS_IN_GROUPDATA:
+  case TOGGLE_VERSE_EDITS_IN_GROUPDATA://TODO:
     return {
       ...state,
       groupsData: {
@@ -36,6 +37,14 @@ const groupsDataReducer = (state = initialState, action) => {
       groupsData: {
         ...state.groupsData,
         [action.contextId.groupId]: getToggledGroupData(state, action, 'reminders'),
+      },
+    };
+  case TOGGLE_COMMENTS_IN_GROUPDATA:
+    return {
+      ...state,
+      groupsData: {
+        ...state.groupsData,
+        [action.contextId.groupId]: getToggledGroupData(state, action, 'comments'),
       },
     };
   // TODO: Add missing toggle action cases.
