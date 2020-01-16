@@ -172,7 +172,7 @@ export const getToggledGroupData = (state, action, key) => {
   }
 
   const { groupsData } = state;
-  const { projejectSaveLocation } = action;
+  const { projectSaveLocation } = action;
   const { tool: toolName } = action.contextId;
   const { bookId } = action.contextId.reference;
   const updatedGroupsData = {
@@ -180,10 +180,10 @@ export const getToggledGroupData = (state, action, key) => {
     [action.contextId.groupId]: groupData,
   };
   console.log('====================================');
-  console.log('saveGroupsData()', updatedGroupsData, projejectSaveLocation, toolName, bookId);
+  console.log('saveGroupsData()', updatedGroupsData, projectSaveLocation, toolName, bookId);
   console.log('====================================');
   // Persisting groupsData in filesystem
-  saveGroupsData(updatedGroupsData, projejectSaveLocation, toolName, bookId);
+  saveGroupsData(updatedGroupsData, projectSaveLocation, toolName, bookId);
 
   return groupData;
 };
