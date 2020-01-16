@@ -183,6 +183,7 @@ function changeContextIdInReducers(contextId, dispatch, state) {
 
     if (currentGroupData) {
       const index = findGroupDataItem(contextId, currentGroupData);
+      console.log('changeContextIdInReducers() index', index);
       oldGroupObject = (index >= 0) ? currentGroupData[index] : null;
     }
   }
@@ -191,6 +192,8 @@ function changeContextIdInReducers(contextId, dispatch, state) {
   const selections = oldGroupObject['selections'] || [];
   const nothingToSelect = oldGroupObject['nothingToSelect'] || false;
   const reminders = oldGroupObject['reminders'] || false;
+  console.log(oldGroupObject['reminders']);
+  console.log('reminders', reminders);
   const invalidated = oldGroupObject['invalidated'] || false;
   const comments = oldGroupObject['comments'] || '';
   const actionsBatch = [
