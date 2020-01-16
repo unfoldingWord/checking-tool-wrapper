@@ -32,9 +32,6 @@ const groupsDataReducer = (state = initialState, action) => {
       },
     };
   case TOGGLE_BOOKMARKS_IN_GROUPDATA:
-    console.log('====================================');
-    console.log('TOGGLE_BOOKMARKS_IN_GROUPDATA', action);
-    console.log('====================================');
     return {
       ...state,
       groupsData: {

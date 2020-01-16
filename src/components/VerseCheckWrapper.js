@@ -420,7 +420,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return { // TODO: Test all actions work.
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
-    addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote)),
+    addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: () => {// TEMP
       console.log('====================================');
       console.log('editTargetVerse()');

@@ -173,8 +173,10 @@ export const getToggledGroupData = (state, action, key) => {
 
   const { groupsData } = state;
   const { projectSaveLocation } = action;
-  const { tool: toolName } = action.contextId;
-  const { bookId } = action.contextId.reference;
+  const {
+    tool: toolName,
+    reference: { bookId },
+  } = action.contextId.reference;
   const updatedGroupsData = {
     ...groupsData,
     [action.contextId.groupId]: groupData,
