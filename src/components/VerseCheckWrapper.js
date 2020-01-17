@@ -402,14 +402,15 @@ export const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     tc: {
+      showAlert,
+      closeAlert,
       setInvalidation,
       gatewayLanguage,
+      showIgnorableAlert,
     },
+    translate,
     gatewayLanguageQuote,
-    actions: {
-      validateSelections,
-      editTargetVerse,
-    },
+    actions: { validateSelections },
   } = ownProps;
   const username = getUsername(ownProps);
   const selectedToolName = getSelectedToolName(ownProps);
@@ -420,15 +421,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation)),
-    editTargetVerse: () => {// TEMP
-      console.log('====================================');
-      console.log('editTargetVerse()');
-      console.log('====================================');
-      editTargetVerse();
+    editTargetVerse: (chapter, verse, before, after, tags) => {
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert));
     },
-    // editTargetVerse: (chapter, verse, before, after, tags) => {
-    //   dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
-    // },
     changeSelections: (selections, nothingToSelect) => {
       dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },

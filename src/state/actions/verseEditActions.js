@@ -31,8 +31,12 @@ import { validateSelections, showInvalidatedWarnings } from './selectionsActions
  * @param {string} gatewayLanguageQuote - gateway Language quote.
  * @param {string} projectSaveLocation - project path.
  * @param {string} selectedToolName - tool name.
+ * @param {function} translate - locale function.
+ * @param {function} showAlert - showAlert.
+ * @param {function} closeAlert - closeAlert.
+ * @param {function} showIgnorableAlert - showIgnorableAlert.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
@@ -56,7 +60,6 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, selectedToolName, username));
 
   // create verse edit record to write to file system
-  const modifiedTimestamp = generateTimestamp();
   const verseEdit = {
     verseBefore: before,
     verseAfter: after,
@@ -65,14 +68,14 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     activeBook: bookId,
     activeChapter: currentCheckChapter,
     activeVerse: currentCheckVerse,
-    modifiedTimestamp,
+    modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
     contextId: contextIdWithVerseEdit,
   };
 
   dispatch(updateVerseEditStatesAndCheckAlignments(verseEdit, contextIdWithVerseEdit, currentCheckContextId,
-    selectionsValidationResults.selectionsChanged, actionsBatch));
+    selectionsValidationResults.selectionsChanged, actionsBatch, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert));
 };
 
 /**
