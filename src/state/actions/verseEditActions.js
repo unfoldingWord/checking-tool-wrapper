@@ -8,6 +8,7 @@ import {
 } from '../../common/constants';
 import { writeTranslationWordsVerseEditToFile } from '../../helpers/verseEditHelpers';
 import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
+import { saveVerseEdit } from '../../localStorage/saveMethods';
 import {
   ADD_VERSE_EDIT,
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
@@ -71,11 +72,20 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
+    quote: contextIdWithVerseEdit.quote,
+    occurrence: contextIdWithVerseEdit.occurrence,
     contextId: contextIdWithVerseEdit,
   };
 
-  dispatch(updateVerseEditStatesAndCheckAlignments(verseEdit, contextIdWithVerseEdit, currentCheckContextId,
-    selectionsValidationResults.selectionsChanged, actionsBatch, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse));
+  dispatch(
+    updateVerseEditStatesAndCheckAlignments(
+      verseEdit, contextIdWithVerseEdit, currentCheckContextId, selectionsValidationResults.selectionsChanged, actionsBatch,
+      selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse
+    )
+  );
+
+  // Peristing verse edit checkData in filesystem.
+  saveVerseEdit(currentCheckContextId, verseEdit, projectSaveLocation);
 };
 
 /**

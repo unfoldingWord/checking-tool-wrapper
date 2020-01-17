@@ -16,7 +16,7 @@ import { PROJECT_CHECKDATA_DIRECTORY, PROJECT_INDEX_FOLDER_PATH } from '../commo
 function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation) {
   try {
     if (projectSaveLocation && contextId && modifiedTimestamp) {
-      const bookAbbreviation = contextId.reference.bookId;
+      const bookId = contextId.reference.bookId;
       const chapter = contextId.reference.chapter.toString();
       const verse = contextId.reference.verse.toString();
       const fileName = modifiedTimestamp + '.json';
@@ -24,7 +24,7 @@ function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSa
         projectSaveLocation,
         PROJECT_CHECKDATA_DIRECTORY,
         checkDataName,
-        bookAbbreviation,
+        bookId,
         chapter,
         verse,
         fileName.replace(/[:"]/g, '_')
@@ -45,6 +45,7 @@ function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSa
  *  @example 'comments', 'bookmarks', 'selections', 'verseEdits' etc
  * @param {object} payload - checkData.
  * @param {string} modifiedTimestamp - timestamp.
+ * @param {string} projectSaveLocation - project directory path.
  */
 function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectSaveLocation) {
   return new Promise((resolve, reject) => {
@@ -84,6 +85,23 @@ export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
   } catch (err) {
     console.error(err);
     throw new Error(err);
+  }
+};
+
+/**
+ * Save the verse Edit check data.
+ * @param {object} state - store state object.
+ */
+export const saveVerseEdit = (contextId, verseEditData, projectSaveLocation) => {
+  try {
+    const verseEditPayload = {
+      contextId,
+      ...verseEditData,
+    };
+    const modifiedTimestamp = generateTimestamp();
+    return saveData(contextId, 'verseEdits', verseEditPayload, modifiedTimestamp, projectSaveLocation);
+  } catch (err) {
+    console.error(err);
   }
 };
 
