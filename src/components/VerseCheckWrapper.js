@@ -441,7 +441,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       console.log('====================================');
       console.log('validateSelections');
       console.log('====================================');
-      dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
+      dispatch(validateSelections(targetVerse, null, null, null, null, {}, null, projectSaveLocation, bookId, selectedToolName, username));
     },
   };
 };
