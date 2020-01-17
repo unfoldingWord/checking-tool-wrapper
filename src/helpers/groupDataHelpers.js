@@ -176,7 +176,7 @@ export const getToggledGroupData = (state, action, key) => {
   const {
     tool: toolName,
     reference: { bookId },
-  } = action.contextId.reference;
+  } = action.contextId;
   const updatedGroupsData = {
     ...groupsData,
     [action.contextId.groupId]: groupData,
