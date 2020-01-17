@@ -77,8 +77,8 @@ function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectS
 export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
   try {
     const bookmarkPayload = {
-      contextId,
       ...bookmarkData,
+      contextId,
     };
     const modifiedTimestamp = bookmarkData.modifiedTimestamp || generateTimestamp();
     return saveData(contextId, 'reminders', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
@@ -95,8 +95,8 @@ export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
 export const saveVerseEdit = (contextId, verseEditData, projectSaveLocation) => {
   try {
     const verseEditPayload = {
-      contextId,
       ...verseEditData,
+      contextId,
     };
     const modifiedTimestamp = generateTimestamp();
     return saveData(contextId, 'verseEdits', verseEditPayload, modifiedTimestamp, projectSaveLocation);
