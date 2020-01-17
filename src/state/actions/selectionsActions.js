@@ -318,22 +318,18 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
 
 /**
  * displays warning that selections have been invalidated
- * @param {Function|Null} callback - optional callback after OK button clicked
- * @return {Function}
  */
-export const showSelectionsInvalidatedWarning = (callback = null) => showInvalidatedWarnings(true, false, callback);
+export const showSelectionsInvalidatedWarning = () => showInvalidatedWarnings(true, false);
 
 /**
  * Displays warning that selections, alignments, or both have been invalidated
  * @param {boolean} showSelectionInvalidated
  * @param {boolean} showAlignmentsInvalidated
- * @param {Function|Null} callback - optional callback after OK button clicked
  * @param {Function} translate - locale method.
  * @param {Function} showIgnorableAlert - show alert method.
  * @return {Function}
  */
-export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignmentsInvalidated,
-  callback = null, translate, showIgnorableAlert) => (dispatch) => {
+export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert) => (dispatch) => {
   let message = null;
   let id = null;
 
@@ -348,5 +344,9 @@ export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignments
     id = ALERT_ALIGNMENTS_RESET_ID;
   }
 
-  dispatch(showIgnorableAlert(id, translate(message), { onConfirm: callback }));
+  console.log('====================================');
+  console.log('showInvalidatedWarnings() message', message);
+  console.log('====================================');
+
+  dispatch(showIgnorableAlert(id, translate(message)));
 };

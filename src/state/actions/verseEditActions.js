@@ -147,7 +147,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   closeAlert();
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
-    dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, null, translate, showIgnorableAlert));
+    dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert));
   }
   dispatch(doBackgroundVerseEditsUpdates(verseEdit, contextIdWithVerseEdit,
     currentCheckContextId, actionsBatch, selectedToolName, projectSaveLocation));
