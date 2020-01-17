@@ -430,15 +430,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     // editTargetVerse: (chapter, verse, before, after, tags) => {
     //   dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName));
     // },
-    changeSelections: () => {// TEMP
-      console.log('====================================');
-      console.log('changeSelections()');
-      console.log('====================================');
-      changeSelections();
+    changeSelections: (selections, nothingToSelect) => {
+      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },
-    // changeSelections: (selections, nothingToSelect) => {
-    //   dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote));
-    // },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },

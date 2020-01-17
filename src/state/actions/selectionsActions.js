@@ -43,8 +43,8 @@ import {
  * @param {Array} gatewayLanguageCode - gateway Language Code
  * @param {Array} gatewayLanguageQuote - gateway Language Quote
  */
-export const changeSelections = (selections, nothingToSelect = false, username,
-  selectedToolName, setInvalidation, invalidated = false, contextId = null, batchGroupData = null, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
+export const changeSelections = (selections, nothingToSelect = false, username, selectedToolName, setInvalidation, invalidated = false,
+  contextId = null, batchGroupData = null, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
   const state = getState();
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
 
@@ -76,11 +76,13 @@ export const changeSelections = (selections, nothingToSelect = false, username,
       contextId,
       selections,
       nothingToSelect,
+      projectSaveLocation,
     });
     actionsBatch.push({
       type: SET_INVALIDATION_IN_GROUPDATA,
       contextId,
       boolean: invalidated,
+      projectSaveLocation,
     });
 
     if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
