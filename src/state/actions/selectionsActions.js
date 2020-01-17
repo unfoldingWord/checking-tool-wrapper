@@ -144,6 +144,10 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber,
     dispatch(batchActions(actionsBatch));
   }
 
+  console.log('====================================');
+  console.log('validateSelections() results', results);
+  console.log('====================================');
+
   results.selectionsChanged = selectionInvalidated;
 
   if (showInvalidation && selectionInvalidated) {
