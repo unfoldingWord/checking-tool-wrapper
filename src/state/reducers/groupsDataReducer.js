@@ -4,6 +4,7 @@ import {
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
   TOGGLE_BOOKMARKS_IN_GROUPDATA,
   TOGGLE_COMMENTS_IN_GROUPDATA,
+  TOGGLE_SELECTIONS_IN_GROUPDATA,
   SET_INVALIDATION_IN_GROUPDATA,
 } from '../actions/actionTypes';
 import { getToggledGroupData } from '../../helpers/groupDataHelpers';
@@ -46,6 +47,14 @@ const groupsDataReducer = (state = initialState, action) => {
       groupsData: {
         ...state.groupsData,
         [action.contextId.groupId]: getToggledGroupData(state, action, 'comments'),
+      },
+    };
+  case TOGGLE_SELECTIONS_IN_GROUPDATA:
+    return {
+      ...state,
+      groupsData: {
+        ...state.groupsData,
+        [action.contextId.groupId]: getToggledGroupData(state, action, 'selections'),
       },
     };
   case SET_INVALIDATION_IN_GROUPDATA:
