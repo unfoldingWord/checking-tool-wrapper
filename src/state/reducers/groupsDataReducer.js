@@ -25,14 +25,6 @@ const groupsDataReducer = (state = initialState, action) => {
       },
       loadedFromFileSystem: true,
     };
-  case TOGGLE_VERSE_EDITS_IN_GROUPDATA://TODO:
-    return {
-      ...state,
-      groupsData: {
-        ...state.groupsData,
-        [action.contextId.groupId]: getToggledGroupData(state, action, 'verseEdits'),
-      },
-    };
   case TOGGLE_BOOKMARKS_IN_GROUPDATA:
     return {
       ...state,
@@ -55,6 +47,14 @@ const groupsDataReducer = (state = initialState, action) => {
       groupsData: {
         ...state.groupsData,
         [action.contextId.groupId]: getToggledGroupData(state, action, 'selections'),
+      },
+    };
+  case TOGGLE_VERSE_EDITS_IN_GROUPDATA:
+    return {
+      ...state,
+      groupsData: {
+        ...state.groupsData,
+        [action.contextId.groupId]: getToggledGroupData(state, action, 'verseEdits'),
       },
     };
   case SET_INVALIDATION_IN_GROUPDATA:

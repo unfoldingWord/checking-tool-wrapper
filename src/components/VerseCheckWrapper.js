@@ -406,6 +406,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       closeAlert,
       setInvalidation,
       gatewayLanguage,
+      updateTargetVerse,
       showIgnorableAlert,
     },
     translate,
@@ -422,7 +423,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
     },
     changeSelections: (selections, nothingToSelect) => {
       dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
