@@ -407,7 +407,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     gatewayLanguageQuote,
     actions: {
-      changeSelections,
       validateSelections,
       editTargetVerse,
     },
