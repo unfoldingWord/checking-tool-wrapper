@@ -411,7 +411,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     translate,
     gatewayLanguageQuote,
-    actions: { validateSelections },
+    // actions: { validateSelections },
   } = ownProps;
   const username = getUsername(ownProps);
   const selectedToolName = getSelectedToolName(ownProps);
@@ -431,18 +431,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },
-    validateSelections: () => {// TEMP
-      console.log('====================================');
-      console.log('validateSelections()');
-      console.log('====================================');
-      validateSelections();
-    },
-    // validateSelections: (targetVerse) => {
+    // validateSelections: () => {// TEMP
     //   console.log('====================================');
-    //   console.log('validateSelections');
+    //   console.log('validateSelections()');
     //   console.log('====================================');
-    //   // dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
+    //   validateSelections();
     // },
+    validateSelections: (targetVerse) => {
+      console.log('====================================');
+      console.log('validateSelections');
+      console.log('====================================');
+      dispatch(validateSelections(targetVerse, null, null, null, null, null, null, projectSaveLocation, bookId, selectedToolName, username));
+    },
   };
 };
 
