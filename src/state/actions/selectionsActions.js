@@ -143,6 +143,7 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber,
   if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
     dispatch(batchActions(actionsBatch));
   }
+
   results.selectionsChanged = selectionInvalidated;
 
   if (showInvalidation && selectionInvalidated) {
