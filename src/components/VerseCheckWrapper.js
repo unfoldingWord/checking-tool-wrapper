@@ -317,7 +317,7 @@ function VerseCheckWrapper({
         handleOpenDialog={handleOpenDialog}
         handleCloseDialog={handleCloseDialog}
         openAlertDialog={showAlert}
-        toggleReminder={toggleBookmark}//TODO: Change it in tc-ui-toolkit
+        toggleReminder={toggleBookmark}//TODO: Change toggleReminder to toggleBookmark namespace in tc-ui-toolkit
         changeMode={changeMode}
         cancelEditVerse={cancelEditVerse}
         saveEditVerse={saveEditVerse}
@@ -416,34 +416,27 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const username = getUsername(ownProps);
   const selectedToolName = getSelectedToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
-  const { project: { id: bookId } } = getProjectManifest(ownProps);
 
-  return { // TODO: Test all actions work.
+  return {
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
       dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
     },
-    changeSelections: (selections, nothingToSelect) => {
-      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
-    },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },
-    validateSelections: (targetVerse) => {// TEMP
+    changeSelections: (selections, nothingToSelect) => {// TODO: Make sure it works correctly.
+      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
+    },
+    validateSelections: (targetVerse) => {// TODO: Use the version of this function located withi this tools codebase.
       console.log('====================================');
       console.log('validateSelections()');
       console.log('====================================');
       console.log('contextId', ownProps.contextId);
       validateSelections(targetVerse, ownProps.contextId);
     },
-    // validateSelections: (targetVerse) => {
-    //   console.log('====================================');
-    //   console.log('validateSelections');
-    //   console.log('====================================');
-    //   dispatch(validateSelections(targetVerse, null, null, null, null, {}, null, projectSaveLocation, bookId, selectedToolName, username, setInvalidation, gatewayLanguage, gatewayLanguageQuote));
-    // },
   };
 };
 

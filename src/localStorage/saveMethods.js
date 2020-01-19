@@ -1,4 +1,3 @@
-// TODO: IF THIS FILE GETS To long separate functions by categories
 import fs from 'fs-extra';
 import path from 'path-extra';
 import generateTimestamp from '../utils/generateTimestamp';
@@ -130,91 +129,85 @@ export const saveGroupsData = (groupsData, projectSaveLocation, toolName, bookId
   }
 };
 
-// TODO: Review code below
 /**
- * This function saves the selections data.
- * @param {Object} state - The state object courtesy of the store
+ * Saves the selections data.
+ * @param {object} contextId
+ * @param {object} selectionData
+ * @param {string} projectSaveLocation
  */
-export const saveSelections = state => {
+export const saveSelections = (contextId, selectionData, projectSaveLocation) => {
   try {
-    let selectionsPayload = {
-      ...state.contextIdReducer,
-      ...state.selectionsReducer,
+    const selectionsPayload = {
+      contextId,
+      ...selectionData,
     };
-    let modifiedTimestamp = state.selectionsReducer.modifiedTimestamp;
-    saveData(state, 'selections', selectionsPayload, modifiedTimestamp);
+    const modifiedTimestamp = selectionData.modifiedTimestamp;
+    saveData(contextId, 'selections', selectionsPayload, modifiedTimestamp, projectSaveLocation);
   } catch (err) {
-    console.warn(err);
+    console.error(err);
   }
 };
 
 /**
 * saves selection data for a context that is not current
-* @param {String} gatewayLanguageCode
-* @param {String} gatewayLanguageQuote
-* @param {Array} selections
-* @param {Boolean} invalidated
-* @param {String} userName
-* @param {Object} contextId
+* @param {string} gatewayLanguageCode
+* @param {string} gatewayLanguageQuote
+* @param {array} selections
+* @param {boolean} invalidated
+* @param {string} username
+* @param {object} contextId
+* @param {string} projectSaveLocation
 */
-export const saveSelectionsForOtherContext = (state, gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, userName, contextId) => {
+export const saveSelectionsForOtherContext = (gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation) => {
   const selectionData = {
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
     selections,
-    userName,
+    username,
   };
-  const newState = {
-    projectDetailsReducer: state.projectDetailsReducer,
-    contextIdReducer: { contextId },
-    selectionsReducer: selectionData,
-  };
-  saveSelections(newState);
-  saveInvalidatedForOtherContext(state, gatewayLanguageCode, gatewayLanguageQuote, invalidated, userName, contextId); // now update invalidated
+  saveSelections(contextId, selectionData, projectSaveLocation);
+  saveInvalidatedForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, invalidated, username, contextId, projectSaveLocation); // now update invalidated
 };
 
 /**
  * saves selection data for a context that is not current
- * @param {Object} state
  * @param {String} gatewayLanguageCode
  * @param {String} gatewayLanguageQuote
  * @param {Boolean} invalidated
  * @param {String} username
  * @param {Object} contextId
  */
-export const saveInvalidatedForOtherContext = (state, gatewayLanguageCode, gatewayLanguageQuote, invalidated, username, contextId) => {
+export const saveInvalidatedForOtherContext = (gatewayLanguageCode, gatewayLanguageQuote, invalidated, username, contextId, projectSaveLocation) => {
   delete invalidated.invalidatedChecksTotal;
   delete invalidated.verseEditsTotal;
   delete invalidated.invalidatedAlignmentsTotal;
-  const selectionData = {
+  const invalidatedData = {
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
     invalidated,
     username,
   };
-  const newState = {
-    projectDetailsReducer: state.projectDetailsReducer,
-    contextIdReducer: { contextId },
-    invalidatedReducer: selectionData,
-  };
-  saveInvalidated(newState);
+
+  saveInvalidated(contextId, invalidatedData, projectSaveLocation);
 };
 
 /**
- * This function saves the invalidated data.
- * @param {object} state - store state object.
+ * Saves the invalidated data.
+ * @param {object} contextId - context id.
+ * @param {object} invalidatedData - invalidated Data.
+ * @param {string} projectSaveLocation - Project Directory Path.
  */
-export const saveInvalidated = state => {
+export const saveInvalidated = (contextId, invalidatedData, projectSaveLocation) => {
   try {
-    let invalidatedPayload = {
-      ...state.contextIdReducer,
-      ...state.invalidatedReducer,
+    const invalidatedPayload = {
+      contextId,
+      ...invalidatedData,
     };
-    let modifiedTimestamp = state.invalidatedReducer.modifiedTimestamp;
-    saveData(state, 'invalidated', invalidatedPayload, modifiedTimestamp);
+    const modifiedTimestamp = invalidatedData.modifiedTimestamp;
+    saveData(contextId, 'invalidated', invalidatedPayload, modifiedTimestamp, projectSaveLocation);
   } catch (err) {
-    console.warn(err);
+    console.error(err);
   }
 };

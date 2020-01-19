@@ -67,7 +67,7 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
       });
       setInvalidation(username, modifiedTimestamp, invalidated);
     } else {
-      saveSelectionsForOtherContext(getState(), gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId);
+      saveSelectionsForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation);
     }
 
     const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
