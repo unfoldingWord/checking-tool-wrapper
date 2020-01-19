@@ -10,7 +10,7 @@ import { getVerseText } from '../helpers/verseHelpers';
 // actions
 import { changeToNextContextId, changeToPreviousContextId } from '../state/actions/contextIdActions';
 import { addComment } from '../state/actions/commentsActions';
-import { changeSelections, validateSelections } from '../state/actions/selectionsActions';
+import { changeSelections } from '../state/actions/selectionsActions';
 import { editTargetVerse } from '../state/actions/verseEditActions';
 import { toggleBookmark } from '../state/actions/bookmarksActions';
 // selectors
@@ -417,7 +417,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const selectedToolName = getSelectedToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
-  const contextId = getContextId(state);
 
   return { // TODO: Test all actions work.
     goToNext: () => dispatch(changeToNextContextId()),
@@ -436,8 +435,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       console.log('====================================');
       console.log('validateSelections()');
       console.log('====================================');
-      console.log('contextId', contextId);
-      validateSelections(targetVerse, contextId);
+      console.log('ownProps', ownProps);
+      validateSelections(targetVerse);
     },
     // validateSelections: (targetVerse) => {
     //   console.log('====================================');
