@@ -97,6 +97,7 @@ function Container({
           <VerseCheckWrapper
             tc={tc}
             translate={translate}
+            contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
             {...verseCheck}// TODO: Only actions prop left.
           />
