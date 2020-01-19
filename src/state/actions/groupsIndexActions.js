@@ -14,7 +14,6 @@ import {
  * @return {object} action object.
  */
 export const loadGroupsIndex = (gatewayLanguage, toolName, projectDir, translate) => ((dispatch, getState) => {
-  console.log('loadGroupsIndex getState()', getState());
   const groupsIndex = loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate);
 
   dispatch({

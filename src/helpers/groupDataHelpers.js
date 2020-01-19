@@ -181,9 +181,6 @@ export const getToggledGroupData = (state, action, key) => {
     ...groupsData,
     [action.contextId.groupId]: groupData,
   };
-  console.log('====================================');
-  console.log('saveGroupsData()', updatedGroupsData, projectSaveLocation, toolName, bookId);
-  console.log('====================================');
   // Persisting groupsData in filesystem
   saveGroupsData(updatedGroupsData, projectSaveLocation, toolName, bookId);
 

@@ -43,7 +43,6 @@ import {
  */
 export function loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) {
   return (dispatch, getState) => {
-    console.log('loadCurrentContextId');
     const state = getState();
     const groupsIndex = getGroupsIndex(state);
 
@@ -58,25 +57,20 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
             contextId = fs.readJsonSync(loadPath);
             const contextIdExistInGroups = groupsIndex.filter(({ id }) => id === contextId.groupId).length > 0;
 
-            console.log('loadCurrentContextId contextId', contextId);
-
             if (contextId && contextIdExistInGroups) {
-              console.log('contextIdExistInGroups');
               return dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
             }
           } catch (err) {
             // The object is undefined because the file wasn't found in the directory
-            console.warn('loadCurrentContextId() error reading contextId', err);
+            console.error('loadCurrentContextId() error reading contextId', err);
           }
         }
         // if we could not read contextId default to first
         contextId = firstContextId(state);
-        console.log('groupsIndex', groupsIndex);
-        console.log('firstContextId contextId', contextId);
         dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
       } catch (err) {
         // The object is undefined because the file wasn't found in the directory or other error
-        console.warn('loadCurrentContextId() error loading contextId', err);
+        console.error('loadCurrentContextId() error loading contextId', err);
       }
     } else {
       console.warn('projectSaveLocation || toolName || bookId is undefined');
@@ -94,10 +88,7 @@ export function loadCurrentContextId(toolName, bookId, projectSaveLocation, user
  */
 export const changeCurrentContextId = (contextId = null, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
-  console.log('changeCurrentContextId() contextId', contextId);
   contextId = contextId || getContextId(state);
-  console.log('changeCurrentContextId() state', state);
-  console.log('changeCurrentContextId() contextId', contextId);
   const groupDataLoaded = changeContextIdInReducers(contextId, dispatch, state);
 
   if (contextId) {
@@ -111,13 +102,12 @@ export const changeCurrentContextId = (contextId = null, projectSaveLocation, us
       groupId,
     } = contextId;
     const refStr = `${tool} ${groupId} ${bookId} ${chapter}:${verse}`;
-    console.log(`changeCurrentContextId() - setting new contextId to: ${refStr}`);
+    console.info(`changeCurrentContextId() - setting new contextId to: ${refStr}`);
 
     if (!groupDataLoaded) { // if group data not found, load from file
-      console.log('contextId', contextId);
-      console.log('!groupDataLoaded loadCheckData');
       dispatch(loadCheckData(contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote));
     }
+
     saveContextId(contextId, projectSaveLocation);
 
     // commit project changes after delay
@@ -127,7 +117,7 @@ export const changeCurrentContextId = (contextId = null, projectSaveLocation, us
         const saveStarted = await repo.saveDebounced(`Auto saving at ${refStr}`);
 
         if (!saveStarted) {
-          console.log(`changeCurrentContextId() - GIT Save already running, skipping save after ${refStr}`);
+          console.info(`changeCurrentContextId() - GIT Save already running, skipping save after ${refStr}`);
         }
       } catch (e) {
         console.error(`changeCurrentContextId() - Failed to auto save ${refStr}`, e);
@@ -144,8 +134,6 @@ function firstContextId(state) {
   let contextId;
   const groupsIndex = getGroupsIndex(state);
   const groupsData = getGroupsData(state);
-  console.log('firstContextId groupsIndex', groupsIndex);
-  console.log('firstContextId groupsData', groupsData);
   let groupsIndexEmpty = groupsIndex.length === 0;
   let groupsDataEmpty = Object.keys(groupsData).length === 0;
 
@@ -174,7 +162,6 @@ function firstContextId(state) {
  * @return {Boolean} true if check data found in reducers
  */
 function changeContextIdInReducers(contextId, dispatch, state) {
-  console.log('changeContextIdInReducers()');
   let oldGroupObject = {};
   const groupsData = getGroupsData(state);
 
@@ -183,7 +170,6 @@ function changeContextIdInReducers(contextId, dispatch, state) {
 
     if (currentGroupData) {
       const index = findGroupDataItem(contextId, currentGroupData);
-      console.log('changeContextIdInReducers() index', index);
       oldGroupObject = (index >= 0) ? currentGroupData[index] : null;
     }
   }
@@ -192,8 +178,6 @@ function changeContextIdInReducers(contextId, dispatch, state) {
   const selections = oldGroupObject['selections'] || [];
   const nothingToSelect = oldGroupObject['nothingToSelect'] || false;
   const reminders = oldGroupObject['reminders'] || false;
-  console.log(oldGroupObject['reminders']);
-  console.log('reminders', reminders);
   const invalidated = oldGroupObject['invalidated'] || false;
   const comments = oldGroupObject['comments'] || '';
   const actionsBatch = [
@@ -249,7 +233,6 @@ export const changeContextId = contextId => ({
  */
 const loadCheckData = (contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote) => dispatch => {
   const actionsBatch = [];
-  console.log('loadCheckData()', loadCheckData);
   actionsBatch.push(loadSelections(projectSaveLocation, contextId));
   actionsBatch.push(loadComments(projectSaveLocation, contextId));
   actionsBatch.push(loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote));
@@ -262,7 +245,6 @@ export const changeToNextContextId = (projectSaveLocation, userData, gatewayLang
   const groupsData = getGroupsData(state);
   const groupsIndex = getGroupsIndex(state);
   const filters = getGroupMenuFilters(state);
-  console.log('filters changeToNextContextId()', filters); //TODO: REMOVE CONSOLE LOG
   let contextId = getContextId(state);
 
   const nextGroupDataItem = shiftGroupDataItem(1, contextId, groupsData, filters); // get the next groupDataItem
@@ -290,7 +272,6 @@ export const changeToPreviousContextId = (projectSaveLocation, userData, gateway
   const groupsData = getGroupsData(state);
   const groupsIndex = getGroupsIndex(state);
   const filters = getGroupMenuFilters(state);
-  console.log('filters changeToNextContextId()', filters); //TODO: REMOVE CONSOLE LOG
   let contextId = getContextId(state);
   const prevGroupDataItem = shiftGroupDataItem(-1, contextId, groupsData, filters); // get the prev groupDataItem
 

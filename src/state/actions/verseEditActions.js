@@ -9,6 +9,7 @@ import {
 import { writeTranslationWordsVerseEditToFile } from '../../helpers/verseEditHelpers';
 import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
 import { saveVerseEdit } from '../../localStorage/saveMethods';
+import delay from '../../utils/delay';
 import {
   ADD_VERSE_EDIT,
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
@@ -117,10 +118,10 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {Object} showIgnorableAlert -
  * @param {Object} updateTargetVerse -
  */
-export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => (dispatch) => {
+export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => async (dispatch) => {
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
-  // await delay(1000); TODO:
+  await delay(500);
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
@@ -190,7 +191,7 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
     if (groupEditsCount) {
-      console.log(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
+      console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
     }
   }
   dispatch(batchActions(actionsBatch));

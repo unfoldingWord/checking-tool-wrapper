@@ -21,7 +21,6 @@ import {
   getUserData,
   getBookName,
 } from '../selectors/index';
-import { PROJECT_INDEX_FOLDER_PATH } from '../common/constants';
 
 function GroupMenuContainer({
   bookName,
@@ -41,38 +40,27 @@ function GroupMenuContainer({
   clearContextId,
 }) {
   useEffect(() => {
-    console.log('====================================');
-    console.log('GroupMenuContainer 1st useEffect loadGroupsIndex()');
-    console.log('====================================');
     loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
 
     return () => {
-      console.log('1st useEffect Clean up');
       // Clean up groupsIndex on unmount
       clearGroupsIndex();
     };
   }, [selectedToolName]);
 
   useEffect(() => {
-    console.log('====================================');
-    console.log('GroupMenuContainer 2nd useEffect loadGroupsData()');
-    console.log('====================================');
     loadGroupsData(selectedToolName, projectSaveLocation);
 
     return () => {
-      console.log('2nd useEffect Clean up');
       // Clean up groupsData on unmount
       clearGroupsData();
     };
   }, [selectedToolName]);
 
   useEffect(() => {
-    console.log('====================================');
-    console.log('GroupMenuContainer 3rd useEffect loadCurrentContextId()');
-    console.log('====================================');
     loadCurrentContextId();
+
     return () => {
-      console.log('3rd useEffect Clean up');
       clearContextId();
     };
   }, [selectedToolName]);

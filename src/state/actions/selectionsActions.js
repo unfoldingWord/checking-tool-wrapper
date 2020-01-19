@@ -157,10 +157,6 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber,
     dispatch(batchActions(actionsBatch));
   }
 
-  console.log('====================================');
-  console.log('validateSelections() results', results);
-  console.log('====================================');
-
   results.selectionsChanged = selectionInvalidated;
 
   if (showInvalidation && selectionInvalidated) {
@@ -376,10 +372,6 @@ export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignments
     message = ALERT_ALIGNMENTS_RESET_MSG;
     id = ALERT_ALIGNMENTS_RESET_ID;
   }
-
-  console.log('====================================');
-  console.log('showInvalidatedWarnings() message', message);
-  console.log('====================================');
 
   dispatch(showIgnorableAlert(id, translate(message)));
 };

@@ -64,7 +64,6 @@ function Container({
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
-    console.log('Container.js loadCorrectPaneSettings');
     settingsHelper.loadCorrectPaneSettings(tc.actions.setToolSettings, bibles, gatewayLanguage, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

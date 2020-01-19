@@ -307,7 +307,7 @@ export const clearRemote = (projectPath, name) => new Promise((resolve, reject) 
       resolve(res);
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     reject(e);
   }
 });
