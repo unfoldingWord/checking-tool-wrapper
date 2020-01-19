@@ -7,6 +7,8 @@
 
 ## TO DOs
 
+- Fix loadResourceArticle.
+- Change toggleReminder to toggleBookmark namespace in tc-ui-toolkit
 - DEPRECATE makeSureBiblesLoadedForTool. It should only be called in the core codebase before loading/opening a tool.
 - Remove prop selectors for wrappers in container.js
 - Go over TODOs added to tools' codebase.

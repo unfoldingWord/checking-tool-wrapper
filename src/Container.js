@@ -14,7 +14,6 @@ import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 // selectors
 import { getVerseCheckState } from './selectors/VerseCheck';
 import { getTranslationHelpsState } from './selectors/TranslationHelps';
-import { getScripturePaneState } from './selectors/ScripturePane';
 import {
   getTcState,
   getTranslateState,
@@ -84,7 +83,6 @@ function Container({
             <ScripturePaneWrapper
               tc={tc}
               translate={translate}
-              {...scripturePane}// TODO: Only actions prop left.
             />
           </div>
           <CheckInfoCardWrapper
@@ -123,7 +121,6 @@ Container.propTypes = {
   gatewayLanguageQuote: PropTypes.string.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   verseCheck: PropTypes.object.isRequired,// TODO: Only actions prop left.
-  scripturePane: PropTypes.object.isRequired,// TODO: Only actions prop left.
   translationHelps: PropTypes.object.isRequired,// TODO: Only actions prop left.
 };
 
@@ -142,7 +139,6 @@ export const mapStateToProps = (state, ownProps) => {
     translate: getTranslateState(ownProps),
     currentPaneSettings: getCurrentPaneSettings(ownProps),
     verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
-    scripturePane: getScripturePaneState(ownProps),// TODO: Only actions prop left.
     translationHelps: getTranslationHelpsState(ownProps),// TODO: Only actions prop left.
   };
 };
