@@ -417,6 +417,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const selectedToolName = getSelectedToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
+  const contextId = getContextId(state);
 
   return { // TODO: Test all actions work.
     goToNext: () => dispatch(changeToNextContextId()),
@@ -435,7 +436,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       console.log('====================================');
       console.log('validateSelections()');
       console.log('====================================');
-      validateSelections(targetVerse);
+      console.log('contextId', contextId);
+      validateSelections(targetVerse, contextId);
     },
     // validateSelections: (targetVerse) => {
     //   console.log('====================================');
