@@ -57,7 +57,6 @@ function Container({
   currentPaneSettings,
   gatewayLanguageQuote,
   verseCheck,// TODO: Only actions prop left.
-  scripturePane,// TODO: Only actions prop left.
   translationHelps,// TODO: Only actions prop left.
 }) {
   const [showHelps, setShowHelps] = useState(true);
