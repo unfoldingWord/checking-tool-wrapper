@@ -142,7 +142,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   let showAlignmentsInvalidated = false;
   // showAlignmentsInvalidated = !api.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
 
-  closeAlert();
+  // closeAlert();
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
     dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert));
