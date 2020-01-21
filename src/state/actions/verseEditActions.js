@@ -194,7 +194,10 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
       console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
     }
   }
-  dispatch(batchActions(actionsBatch));
+
+  if (actionsBatch.length) {
+    dispatch(batchActions(actionsBatch));
+  }
 };
 
 /**
