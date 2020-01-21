@@ -61,6 +61,7 @@ function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectS
         reject(errorMessage);
       }
     } catch (err) {
+      console.error(`saveData() Error checkDataName:${checkDataName}`);
       console.error(err);
       reject(err);
     }
