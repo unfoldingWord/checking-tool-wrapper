@@ -422,15 +422,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
+      // TODO: Check why editTargetVerse() isnt recording edits anymore.
       dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
     },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     changeSelections: (selections, nothingToSelect) => {// TODO: Make sure it works correctly.
-      console.log('====================================');
-      console.log('changeSelections()', selections, nothingToSelect);
-      console.log('====================================');
       dispatch(changeSelections(selections, null, null, null, nothingToSelect, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
