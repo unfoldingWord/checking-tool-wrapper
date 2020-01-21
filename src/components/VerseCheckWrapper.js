@@ -430,7 +430,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     changeSelections: (selections, nothingToSelect) => {// TODO: Make sure it works correctly.
       dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
     },
-    validateSelections: (targetVerse) => {// TODO: Use the version of this function located withi this tools codebase.
+    validateSelections: () => {// TODO: Use the version of this function located withi this tools codebase.
       console.log('====================================');
       console.log('validateSelections()');
       console.log('====================================');
