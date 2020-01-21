@@ -435,7 +435,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       console.log('validateSelections()');
       console.log('====================================');
       console.log('contextId', ownProps.contextId);
-      validateSelections(targetVerse);
+      validateSelections();
     },
   };
 };
