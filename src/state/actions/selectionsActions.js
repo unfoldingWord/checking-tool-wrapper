@@ -48,11 +48,10 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
   username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
   const state = getState();
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
+  const currentContextId = getContextId(state);
+  contextId = contextId || currentContextId; // use current if contextId is not passed
 
   if (validTools.includes(selectedToolName) || validTools.includes(contextId.tool)) {
-    const currentContextId = getContextId(state);
-    contextId = contextId || currentContextId; // use current if contextId is not passed
-
     if (sameContext(currentContextId, contextId)) { // see if we need to update current selection
       const modifiedTimestamp = generateTimestamp();
 

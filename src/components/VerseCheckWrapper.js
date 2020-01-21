@@ -405,9 +405,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       showAlert,
       closeAlert,
       setInvalidation,
-      gatewayLanguage,
       updateTargetVerse,
       showIgnorableAlert,
+      gatewayLanguage: gatewayLanguageCode,
     },
     translate,
     gatewayLanguageQuote,
@@ -420,22 +420,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     goToNext: () => dispatch(changeToNextContextId()),
     goToPrevious: () => dispatch(changeToPreviousContextId()),
-    addComment: (text) => dispatch(addComment(text, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation)),
+    addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
     },
     toggleBookmark: () => {
-      dispatch(toggleBookmark(username, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
+      dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     changeSelections: (selections, nothingToSelect) => {// TODO: Make sure it works correctly.
-      dispatch(changeSelections(selections, nothingToSelect, username, selectedToolName, setInvalidation, null, null, null, gatewayLanguage, gatewayLanguageQuote, projectSaveLocation));
+      console.log('====================================');
+      console.log('changeSelections()', selections, nothingToSelect);
+      console.log('====================================');
+      dispatch(changeSelections(selections, null, null, null, nothingToSelect, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
-    validateSelections: () => {// TODO: Use the version of this function located withi this tools codebase.
+    validateSelections: (targetVerse) => {
+      // TODO: The version of validateSelections() below is coming from the tC codebase. Our goal is to use the version of this function that is within this codebase.
       console.log('====================================');
       console.log('validateSelections()');
       console.log('====================================');
       console.log('contextId', ownProps.contextId);
-      validateSelections();
+      validateSelections(targetVerse, ownProps.contextId);
     },
   };
 };
