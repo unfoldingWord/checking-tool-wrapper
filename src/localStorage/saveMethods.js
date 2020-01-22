@@ -47,25 +47,20 @@ function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSa
  * @param {string} projectSaveLocation - project directory path.
  */
 function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectSaveLocation) {
-  return new Promise((resolve, reject) => {
-    try {
-      const savePath = generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation);
+  try {
+    const savePath = generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation);
 
-      if (savePath) {
-        fs.outputJsonSync(savePath, payload, { spaces: 2 });
-        console.info(`Succesfully saved: ${checkDataName} check data item.`);
-        resolve();
-      } else {
-        const errorMessage = `saveData(): savePath is undefined or path does not exists ${savePath}`;
-        console.error(errorMessage);
-        reject(errorMessage);
-      }
-    } catch (err) {
-      console.error(`saveData() Error checkDataName:${checkDataName}`);
-      console.error(err);
-      reject(err);
+    if (savePath) {
+      fs.outputJsonSync(savePath, payload, { spaces: 2 });
+      console.info(`Succesfully saved: ${checkDataName} check data item.`);
+    } else {
+      const errorMessage = `saveData(): savePath is undefined or path does not exists ${savePath}`;
+      console.error(errorMessage);
     }
-  });
+  } catch (err) {
+    console.error(`saveData() Error checkDataName:${checkDataName}`);
+    console.error(err);
+  }
 }
 
 /**
@@ -81,7 +76,7 @@ export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
       contextId,
     };
     const modifiedTimestamp = bookmarkData.modifiedTimestamp || generateTimestamp();
-    return saveData(contextId, 'reminders', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
+    saveData(contextId, 'reminders', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
   } catch (err) {
     console.error(err);
     throw new Error(err);
@@ -99,7 +94,7 @@ export const saveVerseEdit = (contextId, verseEditData, projectSaveLocation) => 
       contextId,
     };
     const modifiedTimestamp = generateTimestamp();
-    return saveData(contextId, 'verseEdits', verseEditPayload, modifiedTimestamp, projectSaveLocation);
+    saveData(contextId, 'verseEdits', verseEditPayload, modifiedTimestamp, projectSaveLocation);
   } catch (err) {
     console.error(err);
   }
