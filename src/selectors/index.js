@@ -88,21 +88,5 @@ export const getCurrentPaneSettings = (ownProps) => {
 export const getSelectedToolName = (ownProps) => ownProps.tc.selectedToolName;
 export const getUsername = (ownProps) => ownProps.tc.username;
 
-
 // TODO: Cleanup selector below
-export const getBiblesState = (state) => state.resourcesReducer.bibles;
-export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
-export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;
-export const getManifestState = (state) => state.projectDetailsReducer.manifest;
-export const getContextIdState = (state) => state.contextIdReducer.contextId;
-export const getToolsSelectedGLsState = (state) => state.projectDetailsReducer.manifest.toolsSelectedGLs;
-export const getSelectionsState = (state) => state.selectionsReducer.selections;
-export const getCurrentPaneSettingsState = (state) => {
-  const { ScripturePane } = state.settingsReducer.toolsSettings;
-  return ScripturePane ? ScripturePane.currentPaneSettings : [];
-};
 export const getActionsState = (state) => state.tc.actions;
-export const getLegacyToolsReducerState = (state) => ({ currentToolName: state.tc.selectedToolName });
-export const getResourcesReducerState = (state) => state.tc.resourcesReducer;
-export const getContextIdReducerState = (state) => state.contextIdReducer;
-export const getProjectDetailsReducerState = (state) => state.projectDetailsReducer;
