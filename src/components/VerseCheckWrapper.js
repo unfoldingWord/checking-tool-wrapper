@@ -429,7 +429,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeSelections: (selections, nothingToSelect) => {
       // TODO: Make sure it works correctly.
-      dispatch(changeSelections(selections, null, null, null, nothingToSelect, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
+      dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
       // TODO: The version of validateSelections() below is coming from the tC codebase. Our goal is to use the version of this function that is within this codebase.
