@@ -118,10 +118,10 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {Object} showIgnorableAlert -
  * @param {Object} updateTargetVerse -
  */
-export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => (dispatch) => {
+export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => async (dispatch) => {
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
-  // await delay(500);
+  await delay(300);
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);

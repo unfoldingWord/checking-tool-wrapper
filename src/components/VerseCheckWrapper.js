@@ -427,7 +427,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
-    changeSelections: (selections, nothingToSelect) => {// TODO: Make sure it works correctly.
+    changeSelections: (selections, nothingToSelect) => {
+      // TODO: Make sure it works correctly.
       dispatch(changeSelections(selections, null, null, null, nothingToSelect, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
