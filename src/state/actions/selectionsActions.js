@@ -28,24 +28,24 @@ import {
   TOGGLE_SELECTIONS_IN_GROUPDATA,
   SET_INVALIDATION_IN_GROUPDATA,
 } from './actionTypes';
+import { setInvalidation } from './InvalidatedActions';
 ;
 
 /**
  * Adds a selection array to the selections reducer.
- * @param {Array} selections - An array of selections.
- * @param {Boolean} invalidated - if true then selection if flagged as invalidated, otherwise it is not flagged as invalidated
- * @param {Object} contextId - optional contextId to use, otherwise will use current
- * @param {Array} batchGroupData - if present then add group data actions to this array for later batch operation
- * @param {Boolean} nothingToSelect - nothing to select checkbox.
+ * @param {array} selections - An array of selections.
+ * @param {boolean} invalidated - if true then selection if flagged as invalidated, otherwise it is not flagged as invalidated
+ * @param {object} contextId - optional contextId to use, otherwise will use current
+ * @param {array} batchGroupData - if present then add group data actions to this array for later batch operation
+ * @param {boolean} nothingToSelect - nothing to select checkbox.
  * @param {String} username - User name.
  * @param {String} selectedToolName - Current tool selected.
- * @param {function} setInvalidation - Action to set an invalidation in tCore.
- * @param {Array} gatewayLanguageCode - gateway Language Code
- * @param {Array} gatewayLanguageQuote - gateway Language Quote
- * @param {Array} projectSaveLocation - gateway Language Quote
+ * @param {string} gatewayLanguageCode - gateway Language Code
+ * @param {string} gatewayLanguageQuote - gateway Language Quote
+ * @param {string} projectSaveLocation - gateway Language Quote
  */
 export const changeSelections = (selections, invalidated = false, contextId = null, batchGroupData = null, nothingToSelect = false,
-  username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
+  username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
   console.log('changeSelections()');
   const state = getState();
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
@@ -74,7 +74,7 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
         nothingToSelect,
         username,
       });
-      setInvalidation(username, modifiedTimestamp, invalidated);
+      dispatch(setInvalidation(username, invalidated, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     } else {
       saveSelectionsForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation);
     }
@@ -114,12 +114,11 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
  * @param {string} bookId
  * @param {string} selectedToolName
  * @param {string} username
- * @param {function} setInvalidation
  * @param {string} gatewayLanguageCode
  * @param {string} gatewayLanguageQuote
  */
 export const validateSelections = (targetVerse, contextId = null, chapterNumber, verseNumber, showInvalidation = true, results = {}, batchGroupData = null,
-  projectSaveLocation, bookId, selectedToolName, username, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
+  projectSaveLocation, bookId, selectedToolName, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
   contextId = contextId || getContextId(state);
   const { chapter, verse } = contextId.reference;
@@ -143,7 +142,7 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber,
         // clear selections
         dispatch(
           changeSelections(
-            [], true, groupObject.contextId, actionsBatch, null, username, selectedToolName, setInvalidation,
+            [], true, groupObject.contextId, actionsBatch, null, username, selectedToolName,
             gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
           ));
       }
@@ -151,14 +150,14 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber,
     }
 
     const results_ = { selectionsChanged: selectionInvalidated };
-    dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
+    dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
     selectionInvalidated = validateSelectionsForUnloadedTools(
-      projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote
+      projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote
     );
   } else { // wordAlignment tool
     selectionInvalidated = validateSelectionsForUnloadedTools(
-      projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote
+      projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote
     );
   }
 
@@ -226,7 +225,7 @@ export const getGroupDataForGroupIdChapterVerse = (groupsData, groupId, chapterN
  * @return {Function}
  */
 export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent = false, contextId = null, warnOnError = false, batchGroupData = null,
-  username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => (dispatch, getState) => {
+  username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => (dispatch, getState) => {
   const state = getState();
   const initialSelectionsChanged = results.selectionsChanged;
   contextId = contextId || state.contextIdReducer.contextId;
@@ -259,7 +258,7 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
             dispatch(
               changeSelections(
                 [], true, checkingOccurrence.contextId, batchGroupData, null, username, selectedToolName,
-                setInvalidation, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
+                gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
               )
             ); // clear selection
           }
@@ -288,13 +287,12 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
  * @param {Boolean} selectionInvalidated
  * @param {Boolean} username
  * @param {Boolean} selectedToolName
- * @param {Boolean} setInvalidation
  * @param {Boolean} gatewayLanguageCode
  * @param {Boolean} gatewayLanguageQuote
  * @return {Boolean} - updated value for selectionInvalidated
  */
 const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter, verse, targetVerse,
-  selectionInvalidated, username, selectedToolName, setInvalidation, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch) => {
+  selectionInvalidated, username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch) => {
   const selectionsPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
 
   if (fs.existsSync(selectionsPath)) {
@@ -343,7 +341,7 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
         fs.outputJSONSync(path.join(invalidatedCheckPath, newFilename.replace(/[:"]/g, '_')), newInvalidation);
         dispatch(
           changeSelections(
-            [], true, newInvalidation.contextId, username, selectedToolName, setInvalidation,
+            [], true, newInvalidation.contextId, username, selectedToolName,
             gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
           )
         );
