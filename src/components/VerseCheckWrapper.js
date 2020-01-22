@@ -375,6 +375,9 @@ export const mapStateToProps = (state, ownProps) => {
   const targetBible = getTargetBible(ownProps);
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
   const currentGroupItem = getCurrentGroup(state);
+  console.log('====================================');
+  console.log('currentGroupItem', currentGroupItem);
+  console.log('====================================');
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const selectedToolName = getToolName(ownProps);
