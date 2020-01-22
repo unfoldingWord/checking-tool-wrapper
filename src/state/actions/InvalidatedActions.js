@@ -16,15 +16,15 @@ export const setInvalidation = (username, invalidated, gatewayLanguageCode, gate
   const state = getState();
   const contextId = getContextId(state);
   const invalidatedData = {
-    modifiedTimestamp: generateTimestamp(),
-    gatewayLanguageCode,
-    gatewayLanguageQuote,
     username,
     invalidated,
+    gatewayLanguageCode,
+    gatewayLanguageQuote,
+    modifiedTimestamp: generateTimestamp(),
   };
 
   // Peristing invalidation data
-  saveInvalidated(contextId, invalidatedData,projectSaveLocation);
+  saveInvalidated(contextId, invalidatedData, projectSaveLocation);
 
   dispatch({
     type: SET_INVALIDATED,
@@ -33,6 +33,7 @@ export const setInvalidation = (username, invalidated, gatewayLanguageCode, gate
   dispatch({
     type: SET_INVALIDATION_IN_GROUPDATA,
     contextId,
+    projectSaveLocation,
     boolean: invalidated,
   });
 });
