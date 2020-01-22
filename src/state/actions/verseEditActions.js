@@ -38,7 +38,7 @@ import { validateSelections, showInvalidatedWarnings } from './selectionsActions
  * @param {function} showIgnorableAlert - showIgnorableAlert.
  * @param {function} updateTargetVerse - updateTargetVerse.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, validateSelections) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
@@ -58,9 +58,8 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   const selectionsValidationResults = {};
   const actionsBatch = [];
 
-  validateSelections(after, contextId);
-  // dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
-  //   false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, selectedToolName, username));
+  dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
+    false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, selectedToolName, username));
 
   // create verse edit record to write to file system
   const verseEdit = {
