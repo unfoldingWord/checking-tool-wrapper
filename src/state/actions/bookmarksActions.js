@@ -23,7 +23,7 @@ export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuo
     gatewayLanguageQuote,
   };
 
-  await saveBookmark(contextId, bookmarkData, projectSaveLocation);
+  saveBookmark(contextId, bookmarkData, projectSaveLocation);
   dispatch(toggle(username, gatewayLanguageCode, gatewayLanguageQuote, modifiedTimestamp));
   dispatch({
     type: TOGGLE_BOOKMARKS_IN_GROUPDATA,
