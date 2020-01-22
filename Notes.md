@@ -1,4 +1,4 @@
-# DELETE THIS FILE AFTER USED
+# DELETE THIS FILE AFTER COMPLETION
 
 ## Findings
 
@@ -7,6 +7,7 @@
 
 ## TO DOs
 
+- Invalidations are not being recorded and/or displayed.
 - Fix loadResourceArticle.
 - Change toggleReminder to toggleBookmark namespace in tc-ui-toolkit
 - DEPRECATE makeSureBiblesLoadedForTool. It should only be called in the core codebase before loading/opening a tool.
