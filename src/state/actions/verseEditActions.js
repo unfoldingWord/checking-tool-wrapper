@@ -38,7 +38,7 @@ import { validateSelections, showInvalidatedWarnings } from './selectionsActions
  * @param {function} showIgnorableAlert - showIgnorableAlert.
  * @param {function} updateTargetVerse - updateTargetVerse.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse) => async (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
@@ -86,7 +86,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   );
 
   // Peristing verse edit checkData in filesystem.
-  await saveVerseEdit(currentCheckContextId, verseEdit, projectSaveLocation);
+  saveVerseEdit(currentCheckContextId, verseEdit, projectSaveLocation);
 };
 
 /**
