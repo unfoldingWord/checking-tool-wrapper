@@ -357,7 +357,7 @@ export const showSelectionsInvalidatedWarning = () => showInvalidatedWarnings(tr
  * @param {Function} showIgnorableAlert - show alert method.
  * @return {Function}
  */
-export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert) => (dispatch) => {
+export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert) => () => {
   let message = null;
   let id = null;
 
@@ -372,5 +372,5 @@ export const showInvalidatedWarnings = (showSelectionInvalidated, showAlignments
     id = ALERT_ALIGNMENTS_RESET_ID;
   }
 
-  dispatch(showIgnorableAlert(id, translate(message)));
+  showIgnorableAlert(id, translate(message));
 };
