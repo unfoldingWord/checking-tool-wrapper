@@ -24,6 +24,7 @@ function ScripturePaneWrapper({
   setToolSettings,
   currentPaneSettings,
   projectDetailsReducer,
+  makeSureBiblesLoadedForTool,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -53,10 +54,9 @@ function ScripturePaneWrapper({
         selections={selections}
         setToolSettings={setToolSettings}
         getAvailableScripturePaneSelections={(resourceList) => {
-          console.log('getAvailableScripturePaneSelections', resourceList, contextId, bibles);
           getAvailableScripturePaneSelections(resourceList, contextId, bibles);
         }}
-        makeSureBiblesLoadedForTool={() => 'DEPRECATE makeSureBiblesLoadedForTool'}// TODO:
+        makeSureBiblesLoadedForTool={makeSureBiblesLoadedForTool}
       />
     );
   } else {
@@ -76,17 +76,19 @@ ScripturePaneWrapper.propTypes = {
   showPopover: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
+  makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => ({
-  showPopover: ownProps.tc.showPopover,
-  setToolSettings: ownProps.tc.setToolSettings,
   bibles: getBibles(ownProps),
   contextId: getContextId(state),
   selections: getSelections(state),
   manifest: getProjectManifest(ownProps),
   currentPaneSettings: getCurrentPaneSettings(ownProps),
   projectDetailsReducer: getProjectDetailsReducer(ownProps),
+  showPopover: ownProps.tc.showPopover,
+  setToolSettings: ownProps.tc.setToolSettings,
+  makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
 });
 
 export default connect(mapStateToProps)(ScripturePaneWrapper);
