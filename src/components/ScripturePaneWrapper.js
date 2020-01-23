@@ -51,7 +51,7 @@ function ScripturePaneWrapper({
         getLexiconData={getLexiconData}
         selections={selections}
         setToolSettings={setToolSettings}
-        getAvailableScripturePaneSelections={(resourceList, contextId, bibles) => {
+        getAvailableScripturePaneSelections={(resourceList) => {
           console.log('getAvailableScripturePaneSelections', resourceList, contextId, bibles);
           getAvailableScripturePaneSelections(resourceList, contextId, bibles);
         }}
