@@ -370,7 +370,7 @@ VerseCheckWrapper.propTypes = {
   editTargetVerse: PropTypes.func.isRequired,
 };
 
-export const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state);
   const targetBible = getTargetBible(ownProps);
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
