@@ -1,10 +1,5 @@
 # DELETE THIS FILE AFTER COMPLETION
 
-## Findings
-
-- InvalidatedReducer is used in the core codebase. Is it even used in the tools?
-- wA tool uses groupsDataReducer & groupsIndexReducer from tc.
-
 ## TO DOs
 
 - "No selection needed" is displaying 2 checks in the grouped menu.

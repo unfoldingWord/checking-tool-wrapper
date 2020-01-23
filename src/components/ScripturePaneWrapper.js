@@ -51,7 +51,10 @@ function ScripturePaneWrapper({
         getLexiconData={getLexiconData}
         selections={selections}
         setToolSettings={setToolSettings}
-        getAvailableScripturePaneSelections={getAvailableScripturePaneSelections}
+        getAvailableScripturePaneSelections={(resourceList, contextId, bibles) => {
+          console.log('getAvailableScripturePaneSelections', resourceList, contextId, bibles);
+          getAvailableScripturePaneSelections(resourceList, contextId, bibles);
+        }}
         makeSureBiblesLoadedForTool={() => 'DEPRECATE makeSureBiblesLoadedForTool'}// TODO:
       />
     );
