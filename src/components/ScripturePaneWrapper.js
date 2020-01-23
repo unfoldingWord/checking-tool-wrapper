@@ -24,7 +24,7 @@ function ScripturePaneWrapper({
   setToolSettings,
   currentPaneSettings,
   projectDetailsReducer,
-  makeSureBiblesLoadedForTool,
+  // makeSureBiblesLoadedForTool,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -88,7 +88,7 @@ export const mapStateToProps = (state, ownProps) => ({
   projectDetailsReducer: getProjectDetailsReducer(ownProps),
   showPopover: ownProps.tc.showPopover,
   setToolSettings: ownProps.tc.setToolSettings,
-  makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
+  // makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
 });
 
 export default connect(mapStateToProps)(ScripturePaneWrapper);
