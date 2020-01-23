@@ -145,7 +145,7 @@ TranslationHelpsWrapper.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
   return {
-    loadResourceArticle: ownProps.tc.loadResourceArticle,// TODO: TEMP
+    loadResourceArticle: ownProps.tc.loadResourceArticle,
     contextId,
     selectedToolName: getToolName(ownProps),
     gatewayLanguage: getGatewayLanguage(ownProps),

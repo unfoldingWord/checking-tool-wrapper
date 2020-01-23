@@ -26,6 +26,10 @@ function ScripturePaneWrapper({
   projectDetailsReducer,
   makeSureBiblesLoadedForTool,
 }) {
+  console.log('====================================');
+  console.log('ScripturePaneWrapper() manifest', manifest);
+  console.log('====================================');
+
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
 

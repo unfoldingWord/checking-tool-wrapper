@@ -2,10 +2,8 @@
 
 ## TO DOs
 
-- DEPRECATE makeSureBiblesLoadedForTool. It should only be called in the core codebase before loading/opening a tool.
 - Adding new bible sources to the scripture pane isn't working.
 
-- Fix loadResourceArticle.
 - "No selection needed" is displaying 2 checks in the grouped menu.
 - Expanded scripture pane verse editor isnt workinf properly.
 - Invalidations are not being recorded and/or displayed.

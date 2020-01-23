@@ -70,6 +70,9 @@ function VerseCheckWrapper({
   addComment,
   editTargetVerse,
 }) {
+  console.log('====================================');
+  console.log('VerseCheckWrapper() manifest', manifest);
+  console.log('====================================');
   // Determine screen mode
   const initialMode = getInitialMode();
   const {
