@@ -208,7 +208,7 @@ export const findRepo = (user, reponame) => {
         return (foundMatch);
       }));
     }).catch((e) => {
-      console.log(e);
+      console.error(e);
       reject(e);
     });
   });
@@ -246,7 +246,7 @@ export const updateGitRemotes = async (
     try {
       await saveRemote(projectSaveLocation, TC_OLD_ORIGIN_KEY, oldOrigin);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
@@ -254,7 +254,7 @@ export const updateGitRemotes = async (
     try {
       await saveRemote(projectSaveLocation, 'origin', newOriginUrl);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 };
@@ -271,7 +271,7 @@ export const saveRemote = async (projectPath, remoteName, url) => {
     const repo = await Repo.open(projectPath);
     await repo.addRemote(url, remoteName);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 
@@ -350,7 +350,7 @@ export const hasGitHistoryForCurrentUser = async (
       }
     }
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
   return false;
 };

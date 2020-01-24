@@ -192,7 +192,7 @@ export default class ProjectAPI {
         if (index >= 0) {
           currentData[index].contextId = newObject.contextId;
         } else {
-          console.log('updateCategoryGroupData() - no match found for ', newObject.contextId);
+          console.warn('updateCategoryGroupData() - no match found for ', newObject.contextId);
         }
       }
       fs.outputJsonSync(destFile, currentData);
