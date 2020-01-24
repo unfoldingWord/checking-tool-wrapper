@@ -84,7 +84,8 @@ export const getCurrentPaneSettings = (ownProps) => {
   const { ScripturePane } = ownProps.tc.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
-export const getSelectedToolName = (ownProps) => ownProps.tc.selectedToolName;
+export const getSelectedToolName = (ownProps) => ownProps.tc.currentToolName;
+export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
 export const getUsername = (ownProps) => ownProps.tc.username;
 
 // TODO: Cleanup selector below

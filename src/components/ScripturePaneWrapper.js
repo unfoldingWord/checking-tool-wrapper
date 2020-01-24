@@ -56,7 +56,7 @@ function ScripturePaneWrapper({
         currentPaneSettings={currentPaneSettings}
         contextId={contextId}
         bibles={bibles}
-        handleModalOpen={() => {}}// TODO: Make sure that handleModalOpen is not required in the tc-ui-toolkit as it is not always needed.
+        handleModalOpen={() => {}}// TODO: #6653 Make sure that handleModalOpen is not required in the tc-ui-toolkit as it is not always needed.
         expandedScripturePaneTitle={expandedScripturePaneTitle}
         showPopover={showPopover}
         editTargetVerse={editTargetVerse}

@@ -106,10 +106,10 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
       gatewayLanguageQuote: String,
       contextId: Object
     }} verseEdit - record to be saved to file system if in WA tool
- * @param {Object} contextIdWithVerseEdit - contextId of verse being edited
- * @param {Object} currentCheckContextId - contextId of group menu item selected
- * @param {Boolean} showSelectionInvalidated - if true then show prompt that selections invalidated
- * @param {Array|null} batchGroupData - if present then add group data actions to this array for later batch operation
+ * @param {object} contextIdWithVerseEdit - contextId of verse being edited
+ * @param {object} currentCheckContextId - contextId of group menu item selected
+ * @param {boolean} showSelectionInvalidated - if true then show prompt that selections invalidated
+ * @param {array} batchGroupData - if present then add group data actions to this array for later batch operation
  * @param {Object} selectedToolName -
  * @param {Object} translate -
  * @param {Object} showAlert -

@@ -16,7 +16,7 @@ export function getLexiconData(lexiconId, entryId) {
     }
     return { [lexiconId]: { [entryId]: entryData } };
   } catch (error) {
-    console.error('ERROR with getLexiconData');
+    console.error('Error with getLexiconData()s');
     console.error(error);
   }
 }

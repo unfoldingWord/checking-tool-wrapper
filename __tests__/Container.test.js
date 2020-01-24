@@ -34,16 +34,11 @@ props.tc.actions = {
   getLexiconData: jest.fn(),
   setToolSettings: jest.fn(),
   loadResourceArticle: jest.fn(),
-  getGLQuote: jest.fn(),
   setFilter: jest.fn(),
   changeSelections: jest.fn(),
   goToNext: jest.fn(),
   goToPrevious: jest.fn(),
-  getAvailableScripturePaneSelections: jest.fn(),
-  groupMenuChangeGroup: jest.fn(),
-  groupMenuExpandSubMenu: jest.fn(),
   onInvalidCheck: jest.fn(),
-  getSelectionsFromContextId: () => '',
 };
 
 const store = mockStore({});

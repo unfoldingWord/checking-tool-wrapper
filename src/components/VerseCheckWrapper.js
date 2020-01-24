@@ -317,8 +317,7 @@ function VerseCheckWrapper({
         handleOpenDialog={handleOpenDialog}
         handleCloseDialog={handleCloseDialog}
         openAlertDialog={showAlert}
-        toggleReminder={toggleBookmark}//TODO: Change toggleReminder to toggleBookmark namespace in tc-ui-toolkit
-        changeMode={changeMode}
+        toggleReminder={toggleBookmark}//TODO: #6653 Change the function name of toggleReminder to toggleBookmark in tc-ui-toolkit.
         cancelEditVerse={cancelEditVerse}
         saveEditVerse={saveEditVerse}
         handleComment={handleComment}
@@ -409,11 +408,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       closeAlert,
       updateTargetVerse,
       showIgnorableAlert,
+      validateSelections,
       gatewayLanguage: gatewayLanguageCode,
     },
     translate,
     gatewayLanguageQuote,
-    actions: { validateSelections },
   } = ownProps;
   const username = getUsername(ownProps);
   const selectedToolName = getSelectedToolName(ownProps);

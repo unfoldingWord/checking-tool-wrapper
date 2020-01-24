@@ -12,7 +12,6 @@ import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 // selectors
-import { getVerseCheckState } from './selectors/VerseCheck';
 import {
   getTcState,
   getTranslateState,
@@ -55,7 +54,6 @@ function Container({
   gatewayLanguage,
   currentPaneSettings,
   gatewayLanguageQuote,
-  verseCheck,// TODO: Only actions prop left.
 }) {
   const [showHelps, setShowHelps] = useState(true);
 
@@ -93,7 +91,6 @@ function Container({
             translate={translate}
             contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
-            {...verseCheck}// TODO: Only actions prop left.
           />
         </div>
         <TranslationHelpsWrapper
@@ -116,7 +113,6 @@ Container.propTypes = {
   gatewayLanguage: PropTypes.string.isRequired,
   gatewayLanguageQuote: PropTypes.string.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
-  verseCheck: PropTypes.object.isRequired,// TODO: Only actions prop left.
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -133,7 +129,6 @@ export const mapStateToProps = (state, ownProps) => {
     bibles: getBibles(ownProps),
     translate: getTranslateState(ownProps),
     currentPaneSettings: getCurrentPaneSettings(ownProps),
-    verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
   };
 };
 
