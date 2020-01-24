@@ -299,6 +299,7 @@ export default class Api extends ToolApi {
         store.dispatch(setActiveLocale(appLanguage));
       }
     }
+    console.log('End of toolWillReceiveProps');
   }
 
   /**
