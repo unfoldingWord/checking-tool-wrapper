@@ -30,10 +30,17 @@ export default class Api extends ToolApi {
    * Lifecycle method
    */
   toolWillConnect() {
+    console.log('====================================');
+    console.log('toolWillConnect');
+    console.log('====================================');
     this.validateBook(true);
   }
 
   validateBook(silent) {
+    console.log('====================================');
+    console.log('validateBook()');
+    console.log('====================================');
+    console.log('this.props', this.props);
     const {
       tc: {
         targetBook,
@@ -239,6 +246,9 @@ export default class Api extends ToolApi {
    * @param prevState
    */
   stateChangeThrottled(nextState, prevState) {
+    console.log('====================================');
+    console.log('stateChangeThrottled');
+    console.log('====================================');
     // TODO: implement
   }
 
@@ -249,6 +259,9 @@ export default class Api extends ToolApi {
    */
   mapStateToProps(state, props) {
     // TODO: implement
+    console.log('====================================');
+    console.log('mapStateToProps');
+    console.log('====================================');
   }
 
   /**
@@ -257,6 +270,9 @@ export default class Api extends ToolApi {
    */
   mapDispatchToProps(dispatch) {
     // TODO: implement
+    console.log('====================================');
+    console.log('mapDispatchToProps');
+    console.log('====================================');
     return {};
   }
 
@@ -265,6 +281,9 @@ export default class Api extends ToolApi {
    */
   toolWillDisconnect() {
     // TODO: implement
+    console.log('====================================');
+    console.log('toolWillDisconnect');
+    console.log('====================================');
   }
 
   /**
