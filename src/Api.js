@@ -272,7 +272,7 @@ export default class Api extends ToolApi {
    * @param nextProps
    */
   toolWillReceiveProps(nextProps) {
-    const { tc: { contextId: nextContext } } = nextProps;
+    const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
     const {
       currentLanguage,
       tc: { appLanguage },
@@ -282,7 +282,7 @@ export default class Api extends ToolApi {
       },
     } = this.props;
 
-    const isCurrentTool = (nextContext.tool === toolName);
+    const isCurrentTool = (nextCurrentToolName === toolName);
 
     if (isCurrentTool && isReady) {
       const { store } = this.context;
