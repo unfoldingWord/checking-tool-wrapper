@@ -2,9 +2,9 @@
 
 ## TO DOs
 
+- Remove reducers, actions & code that is no longer needed in tC codebase.
 - Go over TODOs added to tools' codebase.
 - Move Container.js to the containers folder and rename it to Main.js or App.js. Also make the respective changes in both tools (tw & tn) repos.
-- Remove reducers, actions & code that is no longer needed in tC codebase.
   - Remove usage of validateSelections
 - "No selection needed" is displaying 2 checks in the grouped menu.
 - Invalidations are not being recorded and/or displayed.
