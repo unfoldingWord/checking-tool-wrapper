@@ -40,6 +40,14 @@ function ScripturePaneWrapper({
     }
   }
 
+  function getScripturePaneSelections(resourceList) {
+    getAvailableScripturePaneSelections(resourceList, contextId, bibles);
+  }
+
+  function ensureBiblesAreLoadedForTool(contextId) {
+    makeSureBiblesLoadedForTool(contextId);
+  }
+
   const expandedScripturePaneTitle = makeTitle(manifest);
 
   if (contextId) {
@@ -57,8 +65,8 @@ function ScripturePaneWrapper({
         getLexiconData={getLexiconData}
         selections={selections}
         setToolSettings={setToolSettings}
-        getAvailableScripturePaneSelections={(resourceList) => getAvailableScripturePaneSelections(resourceList, contextId, bibles)}
-        makeSureBiblesLoadedForTool={() => makeSureBiblesLoadedForTool(contextId)}
+        getAvailableScripturePaneSelections={getScripturePaneSelections}
+        makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
       />
     );
   } else {
