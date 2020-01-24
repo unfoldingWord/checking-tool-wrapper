@@ -57,10 +57,8 @@ function ScripturePaneWrapper({
         getLexiconData={getLexiconData}
         selections={selections}
         setToolSettings={setToolSettings}
-        getAvailableScripturePaneSelections={(resourceList) => {
-          getAvailableScripturePaneSelections(resourceList, contextId, bibles);
-        }}
-        makeSureBiblesLoadedForTool={makeSureBiblesLoadedForTool}
+        getAvailableScripturePaneSelections={(resourceList) => getAvailableScripturePaneSelections(resourceList, contextId, bibles)}
+        makeSureBiblesLoadedForTool={() => makeSureBiblesLoadedForTool(contextId)}
       />
     );
   } else {
