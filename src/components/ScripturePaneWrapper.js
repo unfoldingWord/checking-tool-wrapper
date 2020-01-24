@@ -45,6 +45,9 @@ function ScripturePaneWrapper({
   }
 
   function ensureBiblesAreLoadedForTool(contextId) {
+    console.log('====================================');
+    console.log('ensureBiblesAreLoadedForTool: contextId', contextId);
+    console.log('====================================');
     makeSureBiblesLoadedForTool(contextId);
   }
 
