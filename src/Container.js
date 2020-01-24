@@ -13,7 +13,6 @@ import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 // selectors
 import { getVerseCheckState } from './selectors/VerseCheck';
-import { getTranslationHelpsState } from './selectors/TranslationHelps';
 import {
   getTcState,
   getTranslateState,
@@ -57,7 +56,6 @@ function Container({
   currentPaneSettings,
   gatewayLanguageQuote,
   verseCheck,// TODO: Only actions prop left.
-  translationHelps,// TODO: Only actions prop left.
 }) {
   const [showHelps, setShowHelps] = useState(true);
 
@@ -103,7 +101,6 @@ function Container({
           showHelps={showHelps}
           translate={translate}
           toggleHelps={() => setShowHelps(!showHelps)}
-          {...translationHelps}// TODO: Only actions prop left.
         />
       </div>
     </TcuiThemeProvider>
@@ -120,7 +117,6 @@ Container.propTypes = {
   gatewayLanguageQuote: PropTypes.string.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   verseCheck: PropTypes.object.isRequired,// TODO: Only actions prop left.
-  translationHelps: PropTypes.object.isRequired,// TODO: Only actions prop left.
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -138,7 +134,6 @@ export const mapStateToProps = (state, ownProps) => {
     translate: getTranslateState(ownProps),
     currentPaneSettings: getCurrentPaneSettings(ownProps),
     verseCheck: getVerseCheckState(ownProps),// TODO: Only actions prop left.
-    translationHelps: getTranslationHelpsState(ownProps),// TODO: Only actions prop left.
   };
 };
 

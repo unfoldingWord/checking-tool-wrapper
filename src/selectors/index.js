@@ -50,7 +50,6 @@ export const getBookmarksReducer = (state) =>
 export const getSelections = (state) =>
   state.tool.selectionsReducer.selections;
 
-
 export const getAlignedGLText = (state, ownProps) => {
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
