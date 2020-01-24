@@ -291,34 +291,39 @@ export default class Api extends ToolApi {
    * @param nextProps
    */
   toolWillReceiveProps(nextProps) {
-    console.log('toolWillReceiveProps() this.props', this.props);
-    console.log('nextProps',nextProps);
-    const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
-    console.log('nextCurrentToolName', nextCurrentToolName);
-    const {
-      currentLanguage,
-      tc: { appLanguage },
-      tool: {
-        isReady,
-        name: toolName,
-      },
-    } = this.props;
+    try {
+      console.log('toolWillReceiveProps() this.props', this.props);
+      console.log('nextProps',nextProps);
+      const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
+      console.log('nextCurrentToolName', nextCurrentToolName);
+      const {
+        currentLanguage,
+        tc: { appLanguage },
+        tool: {
+          isReady,
+          name: toolName,
+        },
+      } = this.props;
 
-    console.log('toolName', toolName);
-    const isCurrentTool = (nextCurrentToolName === toolName);
+      console.log('toolName', toolName);
+      const isCurrentTool = (nextCurrentToolName === toolName);
 
-    console.log('isCurrentTool', isCurrentTool);
+      console.log('isCurrentTool', isCurrentTool);
 
-    if (isCurrentTool && isReady) {
-      const { store } = this.context;
-      const currentLang = getActiveLanguage(store.getState());
-      const langId = currentLang && currentLang.code;
+      if (isCurrentTool && isReady) {
+        const { store } = this.context;
+        const currentLang = getActiveLanguage(store.getState());
+        const langId = currentLang && currentLang.code;
 
-      if (langId && (langId !== appLanguage)) { // see if locale language has changed
-        store.dispatch(setActiveLocale(appLanguage));
+        if (langId && (langId !== appLanguage)) { // see if locale language has changed
+          store.dispatch(setActiveLocale(appLanguage));
+        }
       }
+      console.log('End of toolWillReceiveProps');
+    } catch (error) {
+      console.log('toolWillReceiveProps error');
+      console.error(error);
     }
-    console.log('End of toolWillReceiveProps');
   }
 
   /**
