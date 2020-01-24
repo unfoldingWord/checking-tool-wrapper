@@ -124,7 +124,7 @@ export default class Api extends ToolApi {
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
       tc: {
-        contextId: { reference: { bookId } },
+        bookId,
         username: userName,
         project: { _projectPath: projectSaveLocation },
       },
@@ -477,7 +477,7 @@ export default class Api extends ToolApi {
   _loadVerseSelections(chapter, verse, props) {
     const {
       tc: {
-        contextId: { reference: { bookId } },
+        bookId,
         projectDataPathExistsSync,
         readProjectDataSync,
         readProjectDataDirSync,
