@@ -28,11 +28,6 @@ export function getAvailableScripturePaneSelections(resourceList, contextId, bib
 
     // add target Bible if in resource reducer
     if (bibles && bibles[TARGET_LANGUAGE] && bibles[TARGET_LANGUAGE][TARGET_BIBLE]) {
-      console.log('====================================');
-      console.log('bibles', bibles);
-      console.log('====================================');
-      const manifest = bibles[TARGET_LANGUAGE][TARGET_BIBLE].manifest;
-      console.log('manifest', manifest);
       const resource = {
         bookId,
         bibleId: TARGET_BIBLE,
@@ -69,10 +64,6 @@ export function getAvailableScripturePaneSelections(resourceList, contextId, bib
                   languageId_ = ORIGINAL_LANGUAGE;
                 }
 
-                console.log('====================================');
-                console.log('pathToBibleManifestFile', pathToBibleManifestFile);
-                console.log('fs.existsSync(pathToBibleManifestFile)', fs.existsSync(pathToBibleManifestFile));
-                console.log('====================================');
                 const manifest = fs.readJsonSync(pathToBibleManifestFile);
 
                 if (Object.keys(manifest).length) {

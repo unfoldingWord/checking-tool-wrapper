@@ -145,11 +145,11 @@ TranslationHelpsWrapper.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
   return {
-    loadResourceArticle: ownProps.tc.loadResourceArticle,
     contextId,
     selectedToolName: getToolName(ownProps),
     gatewayLanguage: getGatewayLanguage(ownProps),
     resourcesReducer: getResourcesReducer(ownProps),
+    loadResourceArticle: ownProps.tc.loadResourceArticle,
     currentFile: getTranslationHelpsArticle(ownProps, contextId),
   };
 };

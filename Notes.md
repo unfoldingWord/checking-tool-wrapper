@@ -2,8 +2,6 @@
 
 ## TO DOs
 
-- Adding new bible sources to the scripture pane isn't working.
-
 - Go over TODOs added to tools' codebase.
 - Remove prop selectors for wrappers in container.js
 - Change toggleReminder to toggleBookmark namespace in tc-ui-toolkit
