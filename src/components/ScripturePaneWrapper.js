@@ -12,8 +12,8 @@ import {
   getProjectDetailsReducer,
   getCurrentPaneSettings,
   getUsername,
-  getSelectedToolName,
   getProjectPath,
+  getCurrentToolName,
 } from '../selectors';
 import { editTargetVerse } from '../state/actions/verseEditActions';
 
@@ -114,12 +114,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     gatewayLanguageQuote,
   } = ownProps;
   const username = getUsername(ownProps);
-  const selectedToolName = getSelectedToolName(ownProps);
+  const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
 
   return {
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
     },
   };
 };

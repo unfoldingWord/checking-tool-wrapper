@@ -21,11 +21,10 @@ import {
   getTargetBible,
   getCurrentGroup,
   getMaximumSelections,
-  getToolName,
   getCommentsReducer,
   getSelectionsReducer,
   getBookmarksReducer,
-  getSelectedToolName,
+  getCurrentToolName,
   getProjectPath,
   getUsername,
 } from '../selectors';
@@ -379,7 +378,7 @@ const mapStateToProps = (state, ownProps) => {
   console.log('====================================');
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
-  const selectedToolName = getToolName(ownProps);
+  const currentToolName = getCurrentToolName(ownProps);
   const alignedGLText = ownProps.gatewayLanguageQuote;
 
   return {
@@ -393,7 +392,7 @@ const mapStateToProps = (state, ownProps) => {
     showAlert: ownProps.tc.showAlert,
     onInvalidCheck: ownProps.tc.onInvalidCheck,
     manifest: getProjectManifest(ownProps),
-    maximumSelections: getMaximumSelections(selectedToolName),
+    maximumSelections: getMaximumSelections(currentToolName),
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
     bookmarksReducer: getBookmarksReducer(state),
@@ -415,7 +414,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     gatewayLanguageQuote,
   } = ownProps;
   const username = getUsername(ownProps);
-  const selectedToolName = getSelectedToolName(ownProps);
+  const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
 
   return {
@@ -423,14 +422,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
     },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     changeSelections: (selections, nothingToSelect) => {
       // TODO: Make sure it works correctly.
-      dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, selectedToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
+      dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
       // TODO: The version of validateSelections() below is coming from the tC codebase. Our goal is to use the version of this function that is within this codebase.

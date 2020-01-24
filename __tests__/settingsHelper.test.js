@@ -10,7 +10,7 @@ const bibles = {
 describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should change the pane settings to render English ULT if Enslish is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'en' } } },
       settingsReducer: {
         toolsSettings: {
@@ -39,7 +39,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
 
   test('Should change the pane settings to render Hindi ULB if Hindi is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'en' } } },
       settingsReducer: {
         toolsSettings: {
@@ -78,7 +78,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
       },
     ];
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'en' } } },
       settingsReducer: { toolsSettings: { ScripturePane: { currentPaneSettings: bothHindiAndEnglish } } },
     };
@@ -91,7 +91,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
 
   test('Should render the English ULT if the pane settings is empty and English is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'en' } } },
       settingsReducer: { toolsSettings: { ScripturePane: { currentPaneSettings: [] } } },
     };
@@ -113,7 +113,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
 
   test('Should render the Hindi ULB if the pane settings is empty and Hindi is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'hi' } } },
       settingsReducer: { toolsSettings: { ScripturePane: { currentPaneSettings: [] } } },
     };
@@ -136,7 +136,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
 
   test('Should render the English ULT if the pane settings is empty and English is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'en' } } },
       settingsReducer: { toolsSettings: { ScripturePane: { currentPaneSettings: [] } } },
     };
@@ -158,7 +158,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
 
   test('Should add the English ULT and target language in a fresh install if English is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'en' } } },
       settingsReducer: { toolsSettings: {} },
     };
@@ -180,7 +180,7 @@ describe('settingsHelper.loadCorrectPaneSettings', () => {
 
   test('Should add the Hindi ULB and target language in a fresh install if Hindi is selected as the GL', () => {
     const props = {
-      tc: { selectedToolName: TRANSLATION_WORDS },
+      tc: { currentToolName: TRANSLATION_WORDS },
       projectDetailsReducer: { manifest: { toolsSelectedGLs: { translationWords: 'hi' } } },
       settingsReducer: { toolsSettings: {} },
     };

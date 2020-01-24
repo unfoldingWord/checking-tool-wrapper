@@ -15,18 +15,18 @@ import {
   getGroupsData,
   getContextId,
   getGatewayLanguage,
-  getToolName,
   getProjectPath,
   getProjectManifest,
   getUserData,
   getBookName,
+  getCurrentToolName,
 } from '../selectors/index';
 
 function GroupMenuContainer({
   bookName,
   translate,
   gatewayLanguage,
-  selectedToolName,
+  currentToolName,
   projectSaveLocation,
   contextId,
   groupsData,
@@ -40,22 +40,22 @@ function GroupMenuContainer({
   clearContextId,
 }) {
   useEffect(() => {
-    loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate);
+    loadGroupsIndex(gatewayLanguage, currentToolName, projectSaveLocation, translate);
 
     return () => {
       // Clean up groupsIndex on unmount
       clearGroupsIndex();
     };
-  }, [selectedToolName]);
+  }, [currentToolName]);
 
   useEffect(() => {
-    loadGroupsData(selectedToolName, projectSaveLocation);
+    loadGroupsData(currentToolName, projectSaveLocation);
 
     return () => {
       // Clean up groupsData on unmount
       clearGroupsData();
     };
-  }, [selectedToolName]);
+  }, [currentToolName]);
 
   useEffect(() => {
     loadCurrentContextId();
@@ -63,7 +63,7 @@ function GroupMenuContainer({
     return () => {
       clearContextId();
     };
-  }, [selectedToolName]);
+  }, [currentToolName]);
 
   if (contextId) {
     return (
@@ -85,7 +85,7 @@ GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
-  selectedToolName: PropTypes.string.isRequired,
+  currentToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
@@ -105,7 +105,7 @@ const mapStateToProps = (state, ownProps) => ({
   groupsIndex: getGroupsIndex(state),
   contextId: getContextId(state),
   gatewayLanguage: getGatewayLanguage(ownProps),
-  selectedToolName: getToolName(ownProps),
+  currentToolName: getCurrentToolName(ownProps),
   projectSaveLocation: getProjectPath(ownProps),
   manifest: getProjectManifest(ownProps),
   userData: getUserData(ownProps),
@@ -116,20 +116,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
   const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
-  const toolName = getToolName(ownProps);
+  const currentToolName = getCurrentToolName(ownProps);
   const userData = getUserData(ownProps);
 
   return {
-    loadGroupsIndex: (gatewayLanguage, selectedToolName, projectSaveLocation, translate) => {
-      dispatch(loadGroupsIndex(gatewayLanguage, selectedToolName, projectSaveLocation, translate));
+    loadGroupsIndex: (gatewayLanguage, currentToolName, projectSaveLocation, translate) => {
+      dispatch(loadGroupsIndex(gatewayLanguage, currentToolName, projectSaveLocation, translate));
     },
     clearGroupsIndex: () => clearGroupsIndex(),
-    loadGroupsData: (selectedToolName, projectSaveLocation) => {
-      dispatch(loadGroupsData(selectedToolName, projectSaveLocation));
+    loadGroupsData: (currentToolName, projectSaveLocation) => {
+      dispatch(loadGroupsData(currentToolName, projectSaveLocation));
     },
     clearGroupsData: () => clearGroupsData(),
     loadCurrentContextId: () => {
-      dispatch(loadCurrentContextId(toolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+      dispatch(loadCurrentContextId(currentToolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
     },
     changeCurrentContextId: (item = null) => {
       const contextId = item.contextId || null;

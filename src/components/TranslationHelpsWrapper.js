@@ -10,8 +10,8 @@ import {
   getTranslationHelpsArticle,
   getGatewayLanguage,
   getContextId,
-  getToolName,
   getResourcesReducer,
+  getCurrentToolName,
 } from '../selectors/index';
 
 // resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
@@ -42,7 +42,7 @@ function TranslationHelpsWrapper({
   translate,
   currentFile,
   gatewayLanguage,
-  selectedToolName,
+  currentToolName,
   loadResourceArticle,
   resourcesReducer: resourcesReducerProp,
 }) {
@@ -97,8 +97,8 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    loadResourceArticle(selectedToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
-  }, [selectedToolName, groupId, gatewayLanguage]);
+    loadResourceArticle(currentToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
+  }, [currentToolName, groupId, gatewayLanguage]);
 
   useEffect(() => {
     const page = document.getElementById('helpsbody');
@@ -137,16 +137,17 @@ TranslationHelpsWrapper.propTypes = {
   toggleHelps: PropTypes.func.isRequired,
   currentFile: PropTypes.string.isRequired,
   gatewayLanguage: PropTypes.string.isRequired,
-  selectedToolName: PropTypes.string.isRequired,
+  currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
   loadResourceArticle: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
+
   return {
     contextId,
-    selectedToolName: getToolName(ownProps),
+    currentToolName: getCurrentToolName(ownProps),
     gatewayLanguage: getGatewayLanguage(ownProps),
     resourcesReducer: getResourcesReducer(ownProps),
     loadResourceArticle: ownProps.tc.loadResourceArticle,

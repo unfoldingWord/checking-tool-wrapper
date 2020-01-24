@@ -58,14 +58,14 @@ export const getAlignedGLText = (state, ownProps) => {
 };
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguage = (ownProps) => ownProps.tc.gatewayLanguage;
-export const getToolName = (ownProps) => ownProps.tc.selectedToolName;
+export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
 export const getProjectPath = (ownProps) => ownProps.tc.projectSaveLocation;
 export const getUserData = (ownProps) => ownProps.tc.loginReducer.userdata;
 export const getGatewayLanguageBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles[getGatewayLanguage(ownProps)];
 export const getBookName = (ownProps) => ownProps.tc.project.getBookName();
 export const getTargetBible = (ownProps) => ownProps.tc.resourcesReducer.bibles.targetLanguage.targetBible;
 export const getTranslationHelpsArticle = (ownProps, contextId = {}) => {
-  const article = ownProps.tc.resourcesReducer.translationHelps[ownProps.tc.selectedToolName];
+  const article = ownProps.tc.resourcesReducer.translationHelps[ownProps.tc.currentToolName];
   const { groupId = '' } = contextId;
 
   return article && groupId ? article[groupId] : '';
@@ -84,8 +84,6 @@ export const getCurrentPaneSettings = (ownProps) => {
   const { ScripturePane } = ownProps.tc.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
-export const getSelectedToolName = (ownProps) => ownProps.tc.currentToolName;
-export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
 export const getUsername = (ownProps) => ownProps.tc.username;
 
 // TODO: Cleanup selector below

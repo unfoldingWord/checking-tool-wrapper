@@ -31,14 +31,14 @@ import { validateSelections, showInvalidatedWarnings } from './selectionsActions
  * @param {string} gatewayLanguageCode - gateway Language Code.
  * @param {string} gatewayLanguageQuote - gateway Language quote.
  * @param {string} projectSaveLocation - project path.
- * @param {string} selectedToolName - tool name.
+ * @param {string} currentToolName - tool name.
  * @param {function} translate - locale function.
  * @param {function} showAlert - showAlert.
  * @param {function} closeAlert - closeAlert.
  * @param {function} showIgnorableAlert - showIgnorableAlert.
  * @param {function} updateTargetVerse - updateTargetVerse.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
@@ -59,7 +59,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   const actionsBatch = [];
 
   dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
-    false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, selectedToolName, username));
+    false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, currentToolName, username));
 
   // create verse edit record to write to file system
   const verseEdit = {
@@ -81,7 +81,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   dispatch(
     updateVerseEditStatesAndCheckAlignments(
       verseEdit, contextIdWithVerseEdit, currentCheckContextId, selectionsValidationResults.selectionsChanged, actionsBatch,
-      selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse
+      currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse
     )
   );
 
@@ -110,7 +110,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {object} currentCheckContextId - contextId of group menu item selected
  * @param {boolean} showSelectionInvalidated - if true then show prompt that selections invalidated
  * @param {array} batchGroupData - if present then add group data actions to this array for later batch operation
- * @param {Object} selectedToolName -
+ * @param {Object} currentToolName -
  * @param {Object} translate -
  * @param {Object} showAlert -
  * @param {Object} closeAlert -
@@ -118,7 +118,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {Object} showIgnorableAlert -
  * @param {Object} updateTargetVerse -
  */
-export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, selectedToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => async (dispatch) => {
+export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => async (dispatch) => {
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
@@ -126,7 +126,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
-  if (selectedToolName === WORD_ALIGNMENT) {
+  if (currentToolName === WORD_ALIGNMENT) {
     // since tw group data is not loaded into reducer, need to save verse edit record directly to file system
     dispatch(writeTranslationWordsVerseEditToFile(verseEdit, projectSaveLocation));
     // in group data reducer set verse edit flag for the verse edited
@@ -148,7 +148,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
     dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert));
   }
   dispatch(doBackgroundVerseEditsUpdates(verseEdit, contextIdWithVerseEdit,
-    currentCheckContextId, actionsBatch, selectedToolName, projectSaveLocation));
+    currentCheckContextId, actionsBatch, currentToolName, projectSaveLocation));
 };
 
 /**
