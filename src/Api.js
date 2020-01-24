@@ -272,6 +272,8 @@ export default class Api extends ToolApi {
    * @param nextProps
    */
   toolWillReceiveProps(nextProps) {
+    console.log('toolWillReceiveProps() this.props', this.props);
+    console.log('nextProps',nextProps);
     const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
     const {
       currentLanguage,
