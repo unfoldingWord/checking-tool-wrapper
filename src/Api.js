@@ -294,8 +294,8 @@ export default class Api extends ToolApi {
     try {
       console.log('toolWillReceiveProps() this.props', this.props);
       console.log('nextProps',nextProps);
-      const { tc: { contextId: nextContextId } } = nextProps;
-      console.log('nextContextId', nextContextId);
+      const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
+      console.log('nextCurrentToolName', nextCurrentToolName);
       const {
         currentLanguage,
         tc: { appLanguage },
@@ -306,8 +306,7 @@ export default class Api extends ToolApi {
       } = this.props;
 
       console.log('toolName', toolName);
-      console.log('nextContextId.tool', nextContextId.tool);
-      const isCurrentTool = (nextContextId.tool === toolName);
+      const isCurrentTool = (nextCurrentToolName === toolName);
 
       console.log('isCurrentTool', isCurrentTool);
 
