@@ -11,7 +11,11 @@ import {
   getSelections,
   getProjectDetailsReducer,
   getCurrentPaneSettings,
+  getUsername,
+  getSelectedToolName,
+  getProjectPath,
 } from '../selectors';
+import { editTargetVerse } from '../state/actions/verseEditActions';
 
 function ScripturePaneWrapper({
   bibles,
@@ -26,10 +30,6 @@ function ScripturePaneWrapper({
   projectDetailsReducer,
   makeSureBiblesLoadedForTool,
 }) {
-  console.log('====================================');
-  console.log('ScripturePaneWrapper() manifest', manifest);
-  console.log('====================================');
-
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
 
@@ -101,4 +101,27 @@ export const mapStateToProps = (state, ownProps) => ({
   makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
 });
 
-export default connect(mapStateToProps)(ScripturePaneWrapper);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {
+    tc: {
+      showAlert,
+      closeAlert,
+      updateTargetVerse,
+      showIgnorableAlert,
+      gatewayLanguage: gatewayLanguageCode,
+    },
+    translate,
+    gatewayLanguageQuote,
+  } = ownProps;
+  const username = getUsername(ownProps);
+  const selectedToolName = getSelectedToolName(ownProps);
+  const projectSaveLocation = getProjectPath(ownProps);
+
+  return {
+    editTargetVerse: (chapter, verse, before, after, tags) => {
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, selectedToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScripturePaneWrapper);
