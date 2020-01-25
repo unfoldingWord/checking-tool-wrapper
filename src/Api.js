@@ -299,7 +299,7 @@ export default class Api extends ToolApi {
       console.log('nextCurrentToolName', nextCurrentToolName);
       const {
         currentLanguage,
-        tc: { appLanguage },
+        tc: { appLanguage, currentToolName },
         tool: {
           isReady,
           name: toolName,
@@ -307,7 +307,8 @@ export default class Api extends ToolApi {
       } = this.props;
 
       console.log('toolName', toolName);
-      const isCurrentTool = (nextCurrentToolName === toolName);
+      console.log('currentToolName', currentToolName);
+      const isCurrentTool = (nextCurrentToolName === currentToolName);
 
       console.log('isCurrentTool', isCurrentTool);
       console.log('isReady', isReady);
