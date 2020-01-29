@@ -85,6 +85,3 @@ export const getCurrentPaneSettings = (ownProps) => {
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
 export const getUsername = (ownProps) => ownProps.tc.username;
-
-// TODO: Cleanup selector below
-export const getActionsState = (state) => state.tc.actions;

@@ -246,9 +246,6 @@ export default class Api extends ToolApi {
    * @param prevState
    */
   stateChangeThrottled(nextState, prevState) {
-    console.log('====================================');
-    console.log('stateChangeThrottled');
-    console.log('====================================');
     // TODO: implement
   }
 
@@ -259,9 +256,6 @@ export default class Api extends ToolApi {
    */
   mapStateToProps(state, props) {
     // TODO: implement
-    console.log('====================================');
-    console.log('mapStateToProps');
-    console.log('====================================');
   }
 
   /**
@@ -270,9 +264,6 @@ export default class Api extends ToolApi {
    */
   mapDispatchToProps(dispatch) {
     // TODO: implement
-    console.log('====================================');
-    console.log('mapDispatchToProps');
-    console.log('====================================');
     return {};
   }
 
@@ -281,9 +272,6 @@ export default class Api extends ToolApi {
    */
   toolWillDisconnect() {
     // TODO: implement
-    console.log('====================================');
-    console.log('toolWillDisconnect');
-    console.log('====================================');
   }
 
   /**
@@ -292,26 +280,13 @@ export default class Api extends ToolApi {
    */
   toolWillReceiveProps(nextProps) {
     try {
-      console.log('toolWillReceiveProps()');
-      console.log('nextProps',nextProps);
-      console.log('this.props', this.props);
       const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
-      console.log('nextCurrentToolName', nextCurrentToolName);
       const {
-        currentLanguage,
         tc: { appLanguage, currentToolName },
-        tool: {
-          isReady,
-          name: toolName,
-        },
+        tool: { isReady },
       } = this.props;
 
-      console.log('toolName', toolName);
-      console.log('currentToolName', currentToolName);
       const isCurrentTool = (nextCurrentToolName === currentToolName);
-
-      console.log('isCurrentTool', isCurrentTool);
-      console.log('isReady', isReady);
 
       if (isCurrentTool && isReady) {
         const { store } = this.context;
@@ -322,9 +297,7 @@ export default class Api extends ToolApi {
           store.dispatch(setActiveLocale(appLanguage));
         }
       }
-      console.log('End of toolWillReceiveProps');
     } catch (error) {
-      console.log('toolWillReceiveProps error');
       console.error(error);
     }
   }

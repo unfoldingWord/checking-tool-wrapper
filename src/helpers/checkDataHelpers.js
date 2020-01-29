@@ -28,13 +28,17 @@ export function loadCheckData(loadPath, contextId) {
     let sorted = files.sort().reverse(); // sort the files to put latest first
     const isQuoteArray = Array.isArray(contextId.quote);
 
-    for (let i = 0, len = sorted.length; i < len; i++) {
+    for (let i = sorted.length - 1; i >= 0; i--) { // check starting with most recent
       const file = sorted[i];
 
       // check each file for contextId
       try {
-        let readPath = path.join(loadPath, file);
+        const readPath = path.join(loadPath, file);
         let _checkDataObject = fs.readJsonSync(readPath);
+
+        if (_checkDataObject) {
+          _checkDataObject = JSON.parse(_checkDataObject);
+        }
 
         if (_checkDataObject && _checkDataObject.contextId &&
           _checkDataObject.contextId.groupId === contextId.groupId &&
@@ -55,7 +59,6 @@ export function loadCheckData(loadPath, contextId) {
   */
   return checkDataObject;
 }
-
 /**
  * Generates the output directory.
  * @param {string} projectSaveLocation - Project's absolute path.
