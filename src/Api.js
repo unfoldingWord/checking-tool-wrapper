@@ -1,5 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { ToolApi } from 'tc-tool';
+import {
+  getActiveLanguage,
+  setActiveLocale,
+  ToolApi,
+} from 'tc-tool';
 import path from 'path-extra';
 import usfm from 'usfm-js';
 import fs from 'fs-extra';
@@ -154,24 +158,29 @@ export default class Api extends ToolApi {
                 checkingOccurrence.contextId.quote,
                 checkingOccurrence.contextId.occurrence
               );
-              //If selections are changed, they need to be cleared
-              selectionsChanged = true;
-              const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
-              const invalidatedPayload = {
-                ...selectionsObject,
-                invalidated: true,
-                selections: [],
-                userName,
-              };
-              this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
 
-              const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-              const selectionsPayload = {
-                ...selectionsObject,
-                selections: [],
-                userName,
-              };
-              this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
+              if (selectionsObject.contextId) {
+                //If selections are changed, they need to be cleared
+                selectionsChanged = true;
+                const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
+                const invalidatedPayload = {
+                  ...selectionsObject,
+                  invalidated: true,
+                  selections: [],
+                  userName,
+                };
+                this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
+
+                const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
+                const selectionsPayload = {
+                  ...selectionsObject,
+                  selections: [],
+                  userName,
+                };
+                this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
+              } else {
+                console.warn(`Api._validateVerse() - could not find selections for verse ${chapter}:${verse}, checkingOccurrence: ${JSON.stringify(checkingOccurrence)}`);
+              }
             }
           }
         }
@@ -212,7 +221,7 @@ export default class Api extends ToolApi {
             completedChecks += (check.selections || check.nothingToSelect) ? 1 : 0;
           }
         } else {
-          console.warn(`Invalid group data found for "${group}"`);
+          console.warn(`Api.getProgress() - Invalid group data found for "${group}"`);
         }
       }
     }
@@ -258,8 +267,32 @@ export default class Api extends ToolApi {
     // TODO: implement
   }
 
+  /**
+   * Lifecycle method
+   * @param nextProps
+   */
   toolWillReceiveProps(nextProps) {
-    // TODO: implement
+    const { tc: { contextId: nextContext } } = nextProps;
+    const {
+      currentLanguage,
+      tc: { appLanguage },
+      tool: {
+        isReady,
+        name: toolName,
+      },
+    } = this.props;
+
+    const isCurrentTool = (nextContext.tool === toolName);
+
+    if (isCurrentTool && isReady) {
+      const { store } = this.context;
+      const currentLang = getActiveLanguage(store.getState());
+      const langId = currentLang && currentLang.code;
+
+      if (langId && (langId !== appLanguage)) { // see if locale language has changed
+        store.dispatch(setActiveLocale(appLanguage));
+      }
+    }
   }
 
   /**
@@ -284,14 +317,17 @@ export default class Api extends ToolApi {
       const files = project.readDataDirSync(loadPath).filter(file => path.extname(file) === '.json');
       let sortedRecords = files.sort().reverse();
       const isQuoteArray = Array.isArray(quote);
+      let jsonData;
 
       // load check data
       for (let i = 0, len = sortedRecords.length; i < len; i++) {
         const record = sortedRecords[i];
         const recordPath = path.join(loadPath, record);
+        jsonData = null;
 
         try {
-          const recordData = JSON.parse(project.readDataFileSync(recordPath));
+          jsonData = project.readDataFileSync(recordPath);
+          const recordData = JSON.parse(jsonData);
 
           // return first match
           if (recordData.contextId.groupId === groupId &&
@@ -300,7 +336,7 @@ export default class Api extends ToolApi {
             return recordData;
           }
         } catch (e) {
-          console.warn(`Failed to load check record from ${recordPath}`, e);
+          console.warn(`Api.loadCheckData() - Failed to load check record from ${recordPath}, recordData: ${jsonData}`, e);
         }
       }
     }
@@ -331,7 +367,7 @@ export default class Api extends ToolApi {
           }
         }
       } else {
-        console.warn(`Invalid group data found for "${group}"`);
+        console.warn(`Api.getInvalidChecks() - Invalid group data found for "${group}"`);
       }
     }
     return invalidChecks;
