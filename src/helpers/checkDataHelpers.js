@@ -59,6 +59,7 @@ export function loadCheckData(loadPath, contextId) {
   */
   return checkDataObject;
 }
+
 /**
  * Generates the output directory.
  * @param {string} projectSaveLocation - Project's absolute path.
@@ -113,11 +114,6 @@ export function loadComments(projectSaveLocation, contextId) {
     };
   }
 }
-/**
- * Loads the latest invalidated file from the file system for the specify contextID.
- * @param {string} projectSaveLocation - project path.
- * @return {Object} Dispatches an action that loads the invalidatedReducer with data.
- */
 
 /**
  * Loads the latest invalidated file from the file system for the specify contextID.
@@ -184,6 +180,7 @@ export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCod
     };
   }
 }
+
 /**
  * Loads the latest selections file from the file system for the specific contextID.
  * @param {Object} state - store state object.
