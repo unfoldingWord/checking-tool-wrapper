@@ -12,7 +12,6 @@ import {
   isOriginalLanguage,
   isOldTestament,
 } from './bibleHelpers';
-import ResourceAPI from './ResourceAPI';
 
 /**
  * Populates resourceList with resources that can be used in scripture pane
@@ -47,7 +46,7 @@ export function getAvailableScripturePaneSelections(resourceList, contextId, bib
 
         biblesFolders.forEach(bibleId => {
           const bibleIdPath = path.join(biblesPath, bibleId);
-          const bibleLatestVersion = ResourceAPI.getLatestVersion(bibleIdPath);
+          const bibleLatestVersion = getLatestVersion(bibleIdPath);
 
           if (bibleLatestVersion) {
             const pathToBibleManifestFile = path.join(bibleLatestVersion, 'manifest.json');
@@ -127,6 +126,32 @@ export function getFilesInResourcePath(resourcePath, ext=null) {
       return file !== '.DS_Store';
     }); // filter out .DS_Store
     return files;
+  }
+  return [];
+}
+
+function getLatestVersion(dir) {
+  const versions = listVersions(dir);
+
+  if (versions.length > 0) {
+    return path.join(dir, versions[0]);
+  } else {
+    return null;
+  }
+}
+
+/**
+   * Returns an array of paths found in the directory filtered and sorted by version
+   * @param {string} dir
+   * @returns {string[]}
+   */
+function listVersions(dir) {
+  if (fs.pathExistsSync(dir)) {
+    const versionedDirs = fs.readdirSync(dir).filter(file => fs.lstatSync(path.join(dir, file)).isDirectory() &&
+          file.match(/^v\d/i));
+    return versionedDirs.sort((a, b) =>
+      -this.compareVersions(a, b) // do inverted sort
+    );
   }
   return [];
 }
