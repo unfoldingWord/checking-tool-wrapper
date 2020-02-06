@@ -57,11 +57,11 @@ export const getAlignedGLText = (state, ownProps) => {
   return getAlignedGLTextHelper(contextId, glBibles);
 };
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
-export const getGatewayLanguage = (ownProps) => ownProps.tc.gatewayLanguage;
+export const getGatewayLanguageCode = (ownProps) => ownProps.tc.gatewayLanguageCode;
 export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
 export const getProjectPath = (ownProps) => ownProps.tc.projectSaveLocation;
 export const getUserData = (ownProps) => ownProps.tc.loginReducer.userdata;
-export const getGatewayLanguageBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles[getGatewayLanguage(ownProps)];
+export const getGatewayLanguageBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles[getGatewayLanguageCode(ownProps)];
 export const getBookName = (ownProps) => ownProps.tc.project.getBookName();
 export const getTargetBible = (ownProps) => ownProps.tc.resourcesReducer.bibles.targetLanguage.targetBible;
 export const getTranslationHelpsArticle = (ownProps, contextId = {}) => {
