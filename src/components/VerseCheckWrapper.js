@@ -17,7 +17,7 @@ import { toggleBookmark } from '../state/actions/bookmarksActions';
 import {
   getContextId,
   getProjectManifest,
-  getGatewayLanguage,
+  getGatewayLanguageCode,
   getTargetBible,
   getCurrentGroup,
   getMaximumSelections,
@@ -58,7 +58,7 @@ function VerseCheckWrapper({
     selections,
     nothingToSelect,
   },
-  gatewayLanguage,
+  gatewayLanguageCode,
   toggleBookmark,
   changeSelections,
   goToNext,
@@ -117,7 +117,7 @@ function VerseCheckWrapper({
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (onInvalidCheck) {
-        onInvalidCheck(contextId, gatewayLanguage, true);
+        onInvalidCheck(contextId, gatewayLanguageCode, true);
       }
     }
     setLocalState({
@@ -350,7 +350,7 @@ VerseCheckWrapper.propTypes = {
   isVerseEdited: PropTypes.bool.isRequired,
   isVerseInvalidated: PropTypes.bool.isRequired,
   alignedGLText: PropTypes.string.isRequired,
-  gatewayLanguage: PropTypes.string.isRequired,
+  gatewayLanguageCode: PropTypes.string.isRequired,
   bookmarksReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({
@@ -373,9 +373,6 @@ const mapStateToProps = (state, ownProps) => {
   const targetBible = getTargetBible(ownProps);
   const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
   const currentGroupItem = getCurrentGroup(state);
-  console.log('====================================');
-  console.log('currentGroupItem', currentGroupItem);
-  console.log('====================================');
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const currentToolName = getCurrentToolName(ownProps);
@@ -396,7 +393,7 @@ const mapStateToProps = (state, ownProps) => {
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
     bookmarksReducer: getBookmarksReducer(state),
-    gatewayLanguage: getGatewayLanguage(ownProps),
+    gatewayLanguageCode: getGatewayLanguageCode(ownProps),
   };
 };
 
@@ -408,7 +405,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       updateTargetVerse,
       showIgnorableAlert,
       validateSelections,
-      gatewayLanguage: gatewayLanguageCode,
+      gatewayLanguageCode,
     },
     translate,
     gatewayLanguageQuote,

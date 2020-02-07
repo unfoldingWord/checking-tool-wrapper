@@ -8,7 +8,7 @@ import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 // selectors
 import {
   getTranslationHelpsArticle,
-  getGatewayLanguage,
+  getGatewayLanguageCode,
   getContextId,
   getResourcesReducer,
   getCurrentToolName,
@@ -41,7 +41,7 @@ function TranslationHelpsWrapper({
   toggleHelps,
   translate,
   currentFile,
-  gatewayLanguage,
+  gatewayLanguageCode,
   currentToolName,
   loadResourceArticle,
   resourcesReducer: resourcesReducerProp,
@@ -97,8 +97,8 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    loadResourceArticle(currentToolName, groupId, gatewayLanguage, '', true); // do asynchronous load
-  }, [currentToolName, groupId, gatewayLanguage]);
+    loadResourceArticle(currentToolName, groupId, gatewayLanguageCode, '', true); // do asynchronous load
+  }, [currentToolName, groupId, gatewayLanguageCode]);
 
   useEffect(() => {
     const page = document.getElementById('helpsbody');
@@ -115,8 +115,8 @@ function TranslationHelpsWrapper({
     });
   }
 
-  const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, gatewayLanguage);
-  const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, gatewayLanguage, articleCategory);
+  const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, gatewayLanguageCode);
+  const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, gatewayLanguageCode, articleCategory);
 
   return (
     <TranslationHelps
@@ -136,7 +136,7 @@ TranslationHelpsWrapper.propTypes = {
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
   currentFile: PropTypes.string.isRequired,
-  gatewayLanguage: PropTypes.string.isRequired,
+  gatewayLanguageCode: PropTypes.string.isRequired,
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
   loadResourceArticle: PropTypes.func.isRequired,
@@ -148,7 +148,7 @@ export const mapStateToProps = (state, ownProps) => {
   return {
     contextId,
     currentToolName: getCurrentToolName(ownProps),
-    gatewayLanguage: getGatewayLanguage(ownProps),
+    gatewayLanguageCode: getGatewayLanguageCode(ownProps),
     resourcesReducer: getResourcesReducer(ownProps),
     loadResourceArticle: ownProps.tc.loadResourceArticle,
     currentFile: getTranslationHelpsArticle(ownProps, contextId),

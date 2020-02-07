@@ -17,7 +17,7 @@ import {
   getTranslateState,
   getContextId,
   getBibles,
-  getGatewayLanguage,
+  getGatewayLanguageCode,
   getCurrentPaneSettings,
   getGatewayLanguageBibles,
 } from './selectors';
@@ -118,7 +118,7 @@ Container.propTypes = {
 };
 
 export const mapStateToProps = (state, ownProps) => {
-  const gatewayLanguage = getGatewayLanguage(ownProps);
+  const gatewayLanguage = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);

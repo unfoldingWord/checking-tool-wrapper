@@ -13,7 +13,6 @@ import toJson from 'enzyme-to-json';
 // containers
 import Container from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
-import CheckInfoCardWrapper from '../src/components/CheckInfoCardWrapper';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -28,7 +27,7 @@ const props = {
   },
 };
 
-props.tc.actions = {
+props.tc = {
   showPopover: jest.fn(),
   editTargetVerse: jest.fn(),
   getLexiconData: jest.fn(),
@@ -40,6 +39,8 @@ props.tc.actions = {
   goToPrevious: jest.fn(),
   onInvalidCheck: jest.fn(),
 };
+
+console.log('props', props)
 
 const store = mockStore({});
 

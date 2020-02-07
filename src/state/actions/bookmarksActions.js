@@ -10,7 +10,7 @@ import { TOGGLE_BOOKMARKS_IN_GROUPDATA, TOGGLE_BOOKMARK } from './actionTypes';
  * @param {string} gatewayLanguageQuote - gateway Language Quote.
  * @param {string} projectSaveLocation - project directory path.
  */
-export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => (async (dispatch, getState) => {
+export const toggleBookmark = (username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const modifiedTimestamp = generateTimestamp();

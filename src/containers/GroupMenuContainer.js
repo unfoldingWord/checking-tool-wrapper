@@ -14,7 +14,7 @@ import {
   getGroupsIndex,
   getGroupsData,
   getContextId,
-  getGatewayLanguage,
+  getGatewayLanguageCode,
   getProjectPath,
   getProjectManifest,
   getUserData,
@@ -25,7 +25,7 @@ import {
 function GroupMenuContainer({
   bookName,
   translate,
-  gatewayLanguage,
+  gatewayLanguageCode,
   currentToolName,
   projectSaveLocation,
   contextId,
@@ -40,7 +40,7 @@ function GroupMenuContainer({
   clearContextId,
 }) {
   useEffect(() => {
-    loadGroupsIndex(gatewayLanguage, currentToolName, projectSaveLocation, translate);
+    loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate);
 
     return () => {
       // Clean up groupsIndex on unmount
@@ -84,7 +84,7 @@ function GroupMenuContainer({
 GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
-  gatewayLanguage: PropTypes.string.isRequired,
+  gatewayLanguageCode: PropTypes.string.isRequired,
   currentToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
@@ -104,7 +104,7 @@ const mapStateToProps = (state, ownProps) => ({
   groupsData: getGroupsData(state),
   groupsIndex: getGroupsIndex(state),
   contextId: getContextId(state),
-  gatewayLanguage: getGatewayLanguage(ownProps),
+  gatewayLanguageCode: getGatewayLanguageCode(ownProps),
   currentToolName: getCurrentToolName(ownProps),
   projectSaveLocation: getProjectPath(ownProps),
   manifest: getProjectManifest(ownProps),
@@ -113,15 +113,15 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { gatewayLanguageQuote, tc: { gatewayLanguage } } = ownProps;
+  const { gatewayLanguageQuote, tc: { gatewayLanguageCode } } = ownProps;
   const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const userData = getUserData(ownProps);
 
   return {
-    loadGroupsIndex: (gatewayLanguage, currentToolName, projectSaveLocation, translate) => {
-      dispatch(loadGroupsIndex(gatewayLanguage, currentToolName, projectSaveLocation, translate));
+    loadGroupsIndex: (gatewayLanguageCode, currentToolName, projectSaveLocation, translate) => {
+      dispatch(loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate));
     },
     clearGroupsIndex: () => clearGroupsIndex(),
     loadGroupsData: (currentToolName, projectSaveLocation) => {
@@ -129,11 +129,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     clearGroupsData: () => clearGroupsData(),
     loadCurrentContextId: () => {
-      dispatch(loadCurrentContextId(currentToolName, bookId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+      dispatch(loadCurrentContextId(currentToolName, bookId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
     },
     changeCurrentContextId: (item = null) => {
       const contextId = item.contextId || null;
-      dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguage, gatewayLanguageQuote));
+      dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
     },
     clearContextId: () => clearContextId(),
   };
