@@ -137,7 +137,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
     });
   }
 
-  // TODO: Ask Joel how to use tool api within its own codebase.
+  // TODO: Get tool's api from props. #6656
   // const api = Api();
   let showAlignmentsInvalidated = false;
   // showAlignmentsInvalidated = !api.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
