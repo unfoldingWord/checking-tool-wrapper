@@ -46,22 +46,12 @@ import { setInvalidation } from './InvalidatedActions';
  */
 export const changeSelections = (selections, invalidated = false, contextId = null, batchGroupData = null, nothingToSelect = false,
   username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
-  console.log('changeSelections()');
   const state = getState();
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
   const currentContextId = getContextId(state);
   contextId = contextId || currentContextId; // use current if contextId is not passed
 
-  console.log('====================================');
-  console.log('currentContextId', currentContextId);
-  console.log('contextId', contextId);
-  console.log('====================================');
-
   if (validTools.includes(currentToolName) || validTools.includes(contextId.tool)) {
-    console.log('validTool');
-    console.log('currentToolName', currentToolName);
-    console.log('contextId.tool', contextId.tool);
-
     if (sameContext(currentContextId, contextId)) { // see if we need to update current selection
       const modifiedTimestamp = generateTimestamp();
 

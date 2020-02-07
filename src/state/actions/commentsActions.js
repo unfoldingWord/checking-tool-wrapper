@@ -13,9 +13,6 @@ import { getContextId } from '../../selectors';
  * @param {string} projectSaveLocation - project directory path.
  */
 export const addComment = (text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
-  console.log('====================================');
-  console.log('addComment()');
-  console.log('====================================');
   const state = getState();
   const contextId = getContextId(state);
   const {

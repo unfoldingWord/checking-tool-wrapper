@@ -63,9 +63,6 @@ function Container({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log('tc', tc);
-  console.log('contextId', contextId);
-
   return (
     <TcuiThemeProvider theme={theme}>
       <div style={styles.containerDiv}>

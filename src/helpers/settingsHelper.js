@@ -1,5 +1,5 @@
 
-export const loadCorrectPaneSettings = (setToolSettings, bibles, gatewayLanguage, currentPaneSettings) => {
+export const loadCorrectPaneSettings = (setToolSettings, bibles, gatewayLanguage, currentPaneSettings = []) => {
   const paneSeetingsIncludeGLandUlbOrUlt = (paneSetting) => paneSetting.languageId === gatewayLanguage && (paneSetting.bibleId === 'ulb' || paneSetting.bibleId === 'ult');
 
   // make sure bibles in currentPaneSettings are found in the bibles object in the resourcesReducer

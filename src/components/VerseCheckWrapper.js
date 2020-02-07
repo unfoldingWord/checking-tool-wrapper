@@ -430,10 +430,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     validateSelections: (targetVerse) => {
       // TODO: The version of validateSelections() below is coming from the tC codebase. Our goal is to use the version of this function that is within this codebase.
-      console.log('====================================');
-      console.log('validateSelections()');
-      console.log('====================================');
-      console.log('contextId', ownProps.contextId);
       validateSelections(targetVerse, ownProps.contextId);
     },
   };

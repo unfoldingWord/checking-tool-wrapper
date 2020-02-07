@@ -30,17 +30,10 @@ export default class Api extends ToolApi {
    * Lifecycle method
    */
   toolWillConnect() {
-    console.log('====================================');
-    console.log('toolWillConnect');
-    console.log('====================================');
     this.validateBook(true);
   }
 
   validateBook(silent) {
-    console.log('====================================');
-    console.log('validateBook()');
-    console.log('====================================');
-    console.log('this.props', this.props);
     const {
       tc: {
         targetBook,
@@ -136,7 +129,7 @@ export default class Api extends ToolApi {
         verse: parseInt(verse),
       },
     };
-    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupsDataKeys, contextId);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId);
     let filtered = null;
     let selectionsChanged = false;
     const groupItems = Object.keys(groupsDataForVerse);

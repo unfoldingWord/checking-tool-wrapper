@@ -112,10 +112,6 @@ export function isSameVerse(contextId1, contextId2) {
  * @param {string} key - object key. ex. "comments", "bookmarks", "selections" or "verseEdits".
  */
 export const getToggledGroupData = (state, action, key) => {
-  console.log('====================================');
-  console.log('getToggledGroupData()');
-  console.log('state, action, key', state, action, key);
-  console.log('====================================');
   let groupData = state.groupsData[action.contextId.groupId];
 
   if (groupData == undefined) {
@@ -188,6 +184,5 @@ export const getToggledGroupData = (state, action, key) => {
   // Persisting groupsData in filesystem
   saveGroupsData(updatedGroupsData, projectSaveLocation, toolName, bookId);
 
-  console.log('groupData', groupData);
   return groupData;
 };
