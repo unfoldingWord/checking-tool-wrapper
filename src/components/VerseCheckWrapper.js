@@ -71,6 +71,9 @@ function VerseCheckWrapper({
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
+  console.log('====================================');
+  console.log('initialMode', initialMode);
+  console.log('====================================');
   const {
     mode,
     newComment,
@@ -98,6 +101,10 @@ function VerseCheckWrapper({
     lastContextId: null,
     alignedGlTextState: '',
   });
+
+  console.log('====================================');
+  console.log('mode', mode);
+  console.log('====================================');
 
   useEffect(() => {
     // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
@@ -377,6 +384,9 @@ const mapStateToProps = (state, ownProps) => {
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const currentToolName = getCurrentToolName(ownProps);
   const alignedGLText = ownProps.gatewayLanguageQuote;
+  console.log('====================================');
+  console.log('getSelectionsReducer(state)', getSelectionsReducer(state));
+  console.log('====================================');
 
   return {
     contextId,
