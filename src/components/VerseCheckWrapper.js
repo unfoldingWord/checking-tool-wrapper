@@ -385,9 +385,6 @@ const mapStateToProps = (state, ownProps) => {
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const currentToolName = getCurrentToolName(ownProps);
   const alignedGLText = ownProps.gatewayLanguageQuote;
-  console.log('====================================');
-  console.log('getSelectionsReducer(state)', getSelectionsReducer(state));
-  console.log('====================================');
 
   return {
     contextId,
