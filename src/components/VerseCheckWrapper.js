@@ -295,6 +295,7 @@ function VerseCheckWrapper({
   if (contextId) {
     return (
       <VerseCheck
+        changeMode={changeMode}
         translate={translate}
         mode={mode}
         tags={newTags}
