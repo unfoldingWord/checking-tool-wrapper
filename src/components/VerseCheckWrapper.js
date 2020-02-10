@@ -71,9 +71,6 @@ function VerseCheckWrapper({
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
-  console.log('====================================');
-  console.log('initialMode', initialMode);
-  console.log('====================================');
   const {
     mode,
     newComment,
@@ -101,10 +98,6 @@ function VerseCheckWrapper({
     lastContextId: null,
     alignedGlTextState: '',
   });
-
-  console.log('====================================');
-  console.log('mode', mode);
-  console.log('====================================');
 
   useEffect(() => {
     // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
