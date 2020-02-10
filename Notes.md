@@ -1,8 +1,7 @@
-# DELETE THIS FILE AFTER COMPLETION
+# DELETE THIS FILE AFTER COMPLETION of #6656
 
 ## TO DOs
 
-- #6656
 - Remove reducers, actions & code that is no longer needed in tC codebase.
 - Go over TODOs added to tools' codebase.
 - Move Container.js to the containers folder and rename it to Main.js or App.js. Also make the respective changes in both tools (tw & tn) repos.
