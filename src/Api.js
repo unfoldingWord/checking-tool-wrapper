@@ -10,10 +10,9 @@ import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
-import {
-  sameContext, getSelectionsFromChapterAndVerseCombo, generateTimestamp,
-} from './helpers/validationHelpers';
+import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
+import { sameContext } from './helpers/contextIdHelpers';
 
 export default class Api extends ToolApi {
   constructor() {
