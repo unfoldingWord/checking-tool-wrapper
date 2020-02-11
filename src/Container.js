@@ -52,14 +52,14 @@ function Container({
   translate,
   contextId,
   setToolSettings,
-  gatewayLanguage,
+  gatewayLanguageCode,
   currentPaneSettings,
   gatewayLanguageQuote,
 }) {
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
-    settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguage, currentPaneSettings);
+    settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -109,13 +109,13 @@ Container.propTypes = {
   contextId: PropTypes.object.isRequired,
   alignedText: PropTypes.string.isRequired,
   setToolSettings: PropTypes.func.isRequired,
-  gatewayLanguage: PropTypes.string.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
+  gatewayLanguageCode: PropTypes.string.isRequired,
   gatewayLanguageQuote: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
-  const gatewayLanguage = getGatewayLanguageCode(ownProps);
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
@@ -124,7 +124,7 @@ export const mapStateToProps = (state, ownProps) => {
   return {
     tc,
     contextId,
-    gatewayLanguage,
+    gatewayLanguageCode,
     gatewayLanguageQuote,
     bibles: getBibles(ownProps),
     translate: getTranslateState(ownProps),

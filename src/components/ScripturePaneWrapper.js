@@ -108,7 +108,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       closeAlert,
       updateTargetVerse,
       showIgnorableAlert,
-      gatewayLanguage: gatewayLanguageCode,
+      gatewayLanguageCode,
     },
     translate,
     gatewayLanguageQuote,
