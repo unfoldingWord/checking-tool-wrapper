@@ -54,7 +54,8 @@ describe('api.validateBook', () => {
     // expect(props.tc.showIgnorableDialog).toHaveBeenCalled();
     expect(writeCheckDataSpy).toHaveBeenCalled();
     expect(fs.outputJSONSync).toHaveBeenCalledWith(
-      expect.stringContaining(path.join(projectPath, '.apps/translationCore/checkData/selections/tit/2/12/')),
+      expect.stringContaining(
+        path.join(projectPath, '.apps/translationCore/checkData/selections/tit/2/12/')),
       {
         contextId: {
           groupId: 'accuse',
@@ -73,7 +74,8 @@ describe('api.validateBook', () => {
         modifiedTimestamp: expect.any(String),
         selections: [],
         userName: 'royalsix',
-      }
+      },
+      { spaces: 2 }
     );
   });
 });
@@ -233,13 +235,21 @@ describe('selection data', () => {
     const props = {
       tc: {
         bookId: 'book',
-        contextId: { reference: { bookId: 'book', chapter: 1, verse: 1 } },
+        contextId: {
+          reference: {
+            bookId: 'book', chapter: 1, verse: 1,
+          },
+        },
         projectDataPathExistsSync: jest.fn(() => true),
         readProjectDataSync: jest.fn(() => generator.next().value),
         readProjectDataDirSync: jest.fn(() => ['1.json', '1_dup.json', '2.json']),
         targetBook: { '1': { '1': {} } },
       },
-      contextId: { reference: { bookId: 'book', chapter: 1, verse: 1 } },
+      contextId: {
+        reference: {
+          bookId: 'book', chapter: 1, verse: 1,
+        },
+      },
     };
     const selections = api._loadBookSelections(props);
 
