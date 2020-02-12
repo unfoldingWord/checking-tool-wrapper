@@ -120,6 +120,7 @@ export const mapStateToProps = (state, ownProps) => {
   const glBibles = getGatewayLanguageBibles(ownProps);
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
   const tc = getTcState(ownProps);
+  console.log('mapStateToProps ownProps', ownProps);
 
   return {
     tc,
