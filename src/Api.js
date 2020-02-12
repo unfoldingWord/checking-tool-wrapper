@@ -91,6 +91,11 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    */
   validateVerse(chapter, verse, silent = false, groupsData) {
+    console.log('====================================');
+    console.log('validateVerse()');
+    console.log('chapter, verse, silent, groupsData');
+    console.log(chapter, verse, silent, groupsData);
+    console.log('====================================');
     const {
       tc: {
         targetBook,
@@ -98,7 +103,13 @@ export default class Api extends ToolApi {
       },
       tool: { name: toolName },
     } = this.props;
+    console.log('validateVerse ====================================');
+    console.log('this.props', this.props);
+    console.log('====================================');
     const _groupsData = groupsData || getGroupsData(toolName);
+    console.log('====================================');
+    console.log('groupsData', groupsData);
+    console.log('====================================');
     const groupsDataKeys = Object.keys(groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
