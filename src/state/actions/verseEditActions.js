@@ -59,9 +59,6 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   const selectionsValidationResults = {};
   const actionsBatch = [];
 
-  console.log('====================================');
-  console.log('editTargetVerse before validateSelections()');
-  console.log('====================================');
   dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
     false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, currentToolName, username));
 
@@ -129,21 +126,11 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
-  console.log('====================================');
-  console.log('updateVerseEditStatesAndCheckAlignments()');
-  console.log('====================================');
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
-  console.log('====================================');
-  console.log('after updateTargetVerse()', verseEdit);
-  console.log('====================================');
-
   if (currentToolName === WORD_ALIGNMENT) {
-    console.log('====================================');
-    console.log('verseEdit', verseEdit);
-    console.log('====================================');
     // since tw group data is not loaded into reducer, need to save verse edit record directly to file system
     dispatch(writeTranslationWordsVerseEditToFile(verseEdit, projectSaveLocation));
     // in group data reducer set verse edit flag for the verse edited
@@ -157,14 +144,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   // TODO: Get tool's api from props. #6656
   // const api = Api();
   let showAlignmentsInvalidated = false;
-  console.log('====================================');
-  console.log('before toolApi.validateVerse');
-  console.log('====================================');
   showAlignmentsInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true, groupsData);
-  console.log('====================================');
-  console.log('after toolApi.validateVerse');
-  console.log('showAlignmentsInvalidated', showAlignmentsInvalidated);
-  console.log('====================================');
   closeAlert();
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {

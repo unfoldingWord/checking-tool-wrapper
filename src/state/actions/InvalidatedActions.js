@@ -13,9 +13,6 @@ import { saveInvalidated } from '../../localStorage/saveMethods';
  * @return {object} action state.
  */
 export const setInvalidation = (username, invalidated, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => ((dispatch, getState) => {
-  console.log('====================================');
-  console.log('setInvalidation()');
-  console.log('====================================');
   const state = getState();
   const contextId = getContextId(state);
   const invalidatedData = {

@@ -34,13 +34,13 @@ export const spliceStringOnRanges = (string, ranges) => {
     let range = rangeObject.range;
     // save all the text before the selection
     let beforeSelection = remainingString.slice(0, range[0] - rangeShift);
-    // console.log('beforeSelection: ', beforeSelection)
+    // console.info('beforeSelection: ', beforeSelection)
     // save the text in the selection
     let selection = remainingString.slice(range[0] - rangeShift, range[1] + 1 - rangeShift);
-    // console.log('subString: ', selection)
+    // console.info('subString: ', selection)
     // save all the text after the selection
     let afterSelection = remainingString.slice(range[1] - rangeShift + 1);
-    // console.log('afterSelection: ', afterSelection)
+    // console.info('afterSelection: ', afterSelection)
     selectionArray.push({ text: beforeSelection, selected: false });
     selectionArray.push({
       text: selection,
@@ -62,7 +62,7 @@ export const spliceStringOnRanges = (string, ranges) => {
 // Use the following lines to test the previous function
 // var string = "01 234 56789qwertyuiopasdfghjklzxcvbnmtyui01 234 567890"
 // var ranges = [ { range: [ 45, 47 ], occurrence: 2, occurrences: 2 } ]
-// console.log(module.exports.spliceStringOnRanges(string, ranges))
+// console.info(module.exports.spliceStringOnRanges(string, ranges))
 
 /**
  * This converts ranges to array of selection objects
@@ -95,7 +95,7 @@ export const selectionsToRanges = (string, selections) => {
 // var selections = [
 //   { text: '234', occurrence: 2, occurrences: 2 },
 // ]
-// console.log(module.exports.selectionsToRanges(string, selections))
+// console.info(module.exports.selectionsToRanges(string, selections))
 
 /**
  * Splice string into array of substrings, flagging what is selected
@@ -115,7 +115,7 @@ export const selectionArray = (string, selections) => {
 // var selections = [
 //   { text: '234', occurrence: 2, occurrences: 2 },
 // ]
-// console.log(module.exports.selectionArray(string, selections))
+// console.info(module.exports.selectionArray(string, selections))
 
 
 /**
@@ -159,7 +159,7 @@ export const optimizeRanges = (ranges) => {
 //
 // Use the following lines to test the previous function
 // var ranges = [[1,1],[5,9],[3,4],[7,10],[20,40],[15,16],[14,17]]
-// console.log(module.exports.optimizeRanges(ranges))
+// console.info(module.exports.optimizeRanges(ranges))
 // => [ [ 1, 1 ], [ 3, 10 ], [ 14, 17 ], [ 20, 40 ] ]
 
 /**
@@ -195,7 +195,7 @@ export const rangesToSelections = (string, ranges) => {
 // Use the following lines to test the previous function
 // var string = "0123456789qwertyuiopasdfghjklzxcvbnmtyui01234567890"
 // var ranges = [ [3,9], [14,17], [20,40] ]
-// console.log(module.exports.rangesToSelections(string, ranges))
+// console.info(module.exports.rangesToSelections(string, ranges))
 // => [ { text: '3456789', occurrence: 1, occurrences: 2 },
 //      { text: 'tyui', occurrence: 1, occurrences: 2 },
 //      { text: 'asdfghjklzxcvbnmtyui0', occurrence: 1, occurrences: 1 }
@@ -237,7 +237,7 @@ export const optimizeSelections = (string, selections) => {
 //   { text: 'yui', occurrence: 2, occurrences: 2 },
 //   { text: '0', occurrence: 3, occurrences: 3 }
 // ]
-// console.log(module.exports.optimizeSelections(string, selections))
+// console.info(module.exports.optimizeSelections(string, selections))
 
 /**
  * @description Function that count occurrences of a substring in a string
@@ -322,10 +322,10 @@ export const normalizeString = (string) => {
 //   [20,24]
 // ]
 // var ranges = module.exports.selectionsToRanges(string, selectedText)
-// console.log(ranges)
+// console.info(ranges)
 //
 // var selectionArray = module.exports.spliceStringOnRanges(string, ranges)
-// console.log(selectionArray)
+// console.info(selectionArray)
 
 // var selectionArray = module.exports.selectionArray(string, selectedText)
-// console.log(selectionArray)
+// console.info(selectionArray)
