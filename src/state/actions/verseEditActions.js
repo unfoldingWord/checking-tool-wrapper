@@ -120,7 +120,9 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {function} updateTargetVerse -
  * @param {object} toolApi -
  */
-export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi) => async (dispatch) => {
+export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi) => async (dispatch, getState) => {
+  const state = getState();
+  const groupsData = getGroupsData(state);
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
@@ -155,7 +157,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   console.log('====================================');
   console.log('before toolApi.validateVerse');
   console.log('====================================');
-  showAlignmentsInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
+  showAlignmentsInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true, groupsData);
   console.log('====================================');
   console.log('after toolApi.validateVerse');
   console.log('showAlignmentsInvalidated', showAlignmentsInvalidated);
