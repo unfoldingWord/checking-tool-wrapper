@@ -207,7 +207,7 @@ export default class Api extends ToolApi {
     modifiedTimestamp = modifiedTimestamp || generateTimestamp();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
-    fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload);
+    fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload, { spaces: 2 });
   }
 
   /**
