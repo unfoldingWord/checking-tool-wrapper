@@ -406,7 +406,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       closeAlert,
       updateTargetVerse,
       showIgnorableAlert,
-      // validateSelections,
       gatewayLanguageCode,
     },
     toolApi,
@@ -428,12 +427,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     changeSelections: (selections, nothingToSelect) => {
-      // TODO: Make sure it works correctly.
       dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
-      // TODO:
-      validateSelections(targetVerse, ownProps.contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
+      dispatch(validateSelections(targetVerse, ownProps.contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote));
     },
   };
 };

@@ -141,8 +141,6 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
     });
   }
 
-  // TODO: Get tool's api from props. #6656
-  // const api = Api();
   let showAlignmentsInvalidated = false;
   showAlignmentsInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true, groupsData);
   closeAlert();
