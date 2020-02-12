@@ -120,6 +120,8 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
  */
 export const validateSelections = (targetVerse, contextId = null, chapterNumber = null, verseNumber = null, showInvalidation = true, results = {}, batchGroupData = null,
   projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
+  console.log('validateSelections()');
+
   const state = getState();
   contextId = contextId || getContextId(state);
   const { chapter, verse } = contextId.reference;
