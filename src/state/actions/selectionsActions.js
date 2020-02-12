@@ -107,7 +107,7 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
  * @param {string} gatewayLanguageCode
  * @param {string} gatewayLanguageQuote
  */
-export const validateSelections = (targetVerse, contextId = null, chapterNumber, verseNumber, showInvalidation = true, results = {}, batchGroupData = null,
+export const validateSelections = (targetVerse, contextId = null, chapterNumber = null, verseNumber = null, showInvalidation = true, results = {}, batchGroupData = null,
   projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
   contextId = contextId || getContextId(state);

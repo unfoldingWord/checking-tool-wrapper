@@ -10,7 +10,7 @@ import { getVerseText } from '../helpers/verseHelpers';
 // actions
 import { changeToNextContextId, changeToPreviousContextId } from '../state/actions/contextIdActions';
 import { addComment } from '../state/actions/commentsActions';
-import { changeSelections } from '../state/actions/selectionsActions';
+import { changeSelections, validateSelections } from '../state/actions/selectionsActions';
 import { editTargetVerse } from '../state/actions/verseEditActions';
 import { toggleBookmark } from '../state/actions/bookmarksActions';
 // selectors
@@ -401,11 +401,12 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     tc: {
+      bookId,
       showAlert,
       closeAlert,
       updateTargetVerse,
       showIgnorableAlert,
-      validateSelections,
+      // validateSelections,
       gatewayLanguageCode,
     },
     toolApi,
@@ -432,8 +433,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
-      // TODO: The version of validateSelections() below is coming from the tC codebase. Our goal is to use the version of this function that is within this codebase.
-      validateSelections(targetVerse, ownProps.contextId);
+      // TODO:
+      validateSelections(targetVerse, ownProps.contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
     },
   };
 };
