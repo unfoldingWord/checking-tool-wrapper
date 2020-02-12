@@ -111,6 +111,9 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber,
   projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
   contextId = contextId || getContextId(state);
+  console.log('====================================');
+  console.log('validateSelections()', contextId);
+  console.log('====================================');
   const { chapter, verse } = contextId.reference;
   chapterNumber = chapterNumber || chapter;
   verseNumber = verseNumber || verse;

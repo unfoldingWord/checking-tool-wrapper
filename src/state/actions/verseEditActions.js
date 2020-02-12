@@ -124,6 +124,9 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
+  console.log('====================================');
+  console.log('updateVerseEditStatesAndCheckAlignments()');
+  console.log('====================================');
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
@@ -142,8 +145,14 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   // TODO: Get tool's api from props. #6656
   // const api = Api();
   let showAlignmentsInvalidated = false;
+  console.log('====================================');
+  console.log('before toolApi.validateVerse');
+  console.log('====================================');
   showAlignmentsInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
-
+  console.log('====================================');
+  console.log('after toolApi.validateVerse');
+  console.log('showAlignmentsInvalidated', showAlignmentsInvalidated);
+  console.log('====================================');
   closeAlert();
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
