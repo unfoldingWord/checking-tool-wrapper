@@ -110,6 +110,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       showIgnorableAlert,
       gatewayLanguageCode,
     },
+    toolApi,
     translate,
     gatewayLanguageQuote,
   } = ownProps;
@@ -119,7 +120,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi));
     },
   };
 };

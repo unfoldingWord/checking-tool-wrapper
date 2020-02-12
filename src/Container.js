@@ -77,6 +77,7 @@ function Container({
           <div style={styles.scripturePaneDiv}>
             <ScripturePaneWrapper
               tc={tc}
+              toolApi={toolApi}
               translate={translate}
             />
           </div>
