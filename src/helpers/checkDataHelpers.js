@@ -45,9 +45,9 @@ export function loadCheckData(loadPath, contextId) {
         let _checkDataObject = fs.readJsonSync(readPath);
         console.log('_checkDataObject', _checkDataObject);
 
-        if (_checkDataObject) {
-          _checkDataObject = JSON.parse(_checkDataObject);
-        }
+        // if (_checkDataObject) {
+        //   _checkDataObject = JSON.parse(_checkDataObject);
+        // }
 
         if (_checkDataObject && _checkDataObject.contextId &&
           _checkDataObject.contextId.groupId === contextId.groupId &&
