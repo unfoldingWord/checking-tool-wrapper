@@ -18,8 +18,16 @@ import {
 export function loadCheckData(loadPath, contextId) {
   let checkDataObject;
 
+
+  console.log('loadCheckData====================================');
+  console.log('loadPath', loadPath);
+  console.log('contextId', contextId);
+  console.log('fs.existsSync(loadPath)', fs.existsSync(loadPath));
+  console.log('====================================');
+
   if (loadPath && contextId && fs.existsSync(loadPath)) {
     let files = fs.readdirSync(loadPath);
+    console.log('files', files);
 
     files = files.filter(file => // filter the filenames to only use .json
       path.extname(file) === '.json'
@@ -35,6 +43,7 @@ export function loadCheckData(loadPath, contextId) {
       try {
         const readPath = path.join(loadPath, file);
         let _checkDataObject = fs.readJsonSync(readPath);
+        console.log('_checkDataObject', _checkDataObject);
 
         if (_checkDataObject) {
           _checkDataObject = JSON.parse(_checkDataObject);
@@ -45,6 +54,7 @@ export function loadCheckData(loadPath, contextId) {
           (isQuoteArray ? isEqual(_checkDataObject.contextId.quote, contextId.quote) : (_checkDataObject.contextId.quote === contextId.quote)) &&
           _checkDataObject.contextId.occurrence === contextId.occurrence) {
           checkDataObject = _checkDataObject; // return the first match since it is the latest modified one
+          console.log('_checkDataObject =', _checkDataObject);
           break;
         }
       } catch (err) {
