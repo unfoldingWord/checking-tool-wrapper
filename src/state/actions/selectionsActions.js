@@ -127,8 +127,15 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
 
     for (let i = 0, l = matchedGroupData.length; i < l; i++) {
       const groupObject = matchedGroupData[i];
+      console.log('====================================');
+      console.log('targetVerse', targetVerse);
+      console.log('====================================');
       const selections = getSelectionsForContextID(projectSaveLocation, groupObject.contextId);
       const validSelections = checkSelectionOccurrences(targetVerse, selections);
+      console.log('====================================');
+      console.log('selections', selections);
+      console.log('validSelections', validSelections);
+      console.log('====================================');
       const selectionsChanged = (selections.length !== validSelections.length);
 
       console.log('validateSelections ====================================');
@@ -176,9 +183,15 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
  * @return {Array} - selections
  */
 export const getSelectionsForContextID = (projectSaveLocation, contextId) => {
+  console.log('====================================');
+  console.log('getSelectionsForContextID()');
+  console.log('====================================');
   let selections = [];
   const loadPath = generateLoadPath(projectSaveLocation, contextId, 'selections');
   const selectionsObject = loadCheckData(loadPath, contextId);
+  console.log('====================================');
+  console.log('selectionsObject', selectionsObject);
+  console.log('====================================');
 
   if (selectionsObject) {
     selections = selectionsObject.selections;
