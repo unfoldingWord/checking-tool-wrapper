@@ -20,6 +20,7 @@ export default class Api extends ToolApi {
     this.getAlignmentMemory = this.getAlignmentMemory.bind(this);
     this.getInvalidChecks = this.getInvalidChecks.bind(this);
     this.getProgress = this.getProgress.bind(this);
+    this.validateVerse = this.validateVerse.bind(this);
     this._loadBookSelections = this._loadBookSelections.bind(this);
     this._loadVerseSelections = this._loadVerseSelections.bind(this);
     this._loadCheckData = this._loadCheckData.bind(this);
