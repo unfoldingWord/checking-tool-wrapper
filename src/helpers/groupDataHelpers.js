@@ -171,6 +171,9 @@ export const getToggledGroupData = (state, action, key) => {
     }
   }
 
+  console.log('====================================');
+  console.log('getToggledGroupData() action', action);
+  console.log('====================================');
   const { groupsData } = state;
   const { projectSaveLocation } = action;
   const {
