@@ -19,7 +19,7 @@ import {
 import generateTimestamp from '../../utils/generateTimestamp';
 import { sameContext } from '../../helpers/contextIdHelpers';
 import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
-import { saveSelectionsForOtherContext } from '../../localStorage/saveMethods';
+import { saveSelectionsForOtherContext, saveSelections } from '../../localStorage/saveMethods';
 // selectors
 import { getContextId, getGroupsData } from '../../selectors';
 import { generateLoadPath, loadCheckData } from '../../helpers/checkDataHelpers';
@@ -64,6 +64,17 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
         nothingToSelect,
         username,
       });
+
+      const selectionData = {
+        modifiedTimestamp,
+        gatewayLanguageCode,
+        gatewayLanguageQuote,
+        selections,
+        nothingToSelect,
+        username,
+      };
+      // Persisting selection checkData in filesystem.
+      saveSelections(contextId, selectionData, projectSaveLocation);
       dispatch(setInvalidation(username, invalidated, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     } else {
       saveSelectionsForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation);

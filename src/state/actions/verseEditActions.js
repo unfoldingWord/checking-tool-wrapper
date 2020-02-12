@@ -89,7 +89,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     )
   );
 
-  // Peristing verse edit checkData in filesystem.
+  // Persisting verse edit checkData in filesystem.
   saveVerseEdit(currentCheckContextId, verseEdit, projectSaveLocation);
 };
 
