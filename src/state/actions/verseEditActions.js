@@ -59,6 +59,9 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   const selectionsValidationResults = {};
   const actionsBatch = [];
 
+  console.log('====================================');
+  console.log('editTargetVerse before validateSelections()');
+  console.log('====================================');
   dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
     false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, currentToolName, username));
 

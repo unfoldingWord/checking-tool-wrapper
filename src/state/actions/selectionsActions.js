@@ -131,6 +131,10 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
       const validSelections = checkSelectionOccurrences(targetVerse, selections);
       const selectionsChanged = (selections.length !== validSelections.length);
 
+      console.log('validateSelections ====================================');
+      console.log('selectionsChanged', selectionsChanged);
+      console.log('====================================');
+
       if (selectionsChanged) {
         // clear selections
         dispatch(
