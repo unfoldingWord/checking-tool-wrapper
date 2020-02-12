@@ -79,6 +79,7 @@ export const getTranslationHelps = (ownProps) => {
 };
 export const getProjectDetailsReducer = (ownProps) => ownProps.tc.projectDetailsReducer;
 export const getTcState = (ownProps) => ownProps.tc;
+export const getToolApi = (ownProps) => ownProps.toolApi;
 export const getTranslateState = (ownProps) => ownProps.translate;
 export const getCurrentPaneSettings = (ownProps) => {
   const { ScripturePane } = ownProps.tc.settingsReducer.toolsSettings;

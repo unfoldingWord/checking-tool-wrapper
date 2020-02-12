@@ -37,8 +37,9 @@ import { validateSelections, showInvalidatedWarnings } from './selectionsActions
  * @param {function} closeAlert - closeAlert.
  * @param {function} showIgnorableAlert - showIgnorableAlert.
  * @param {function} updateTargetVerse - updateTargetVerse.
+ * @param {object} toolApi - toolApi.
  */
-export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse) => (dispatch, getState) => {
+export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi) => (dispatch, getState) => {
   const state = getState();
   const contextId = getContextId(state);
   const currentCheckContextId = contextId;
@@ -81,7 +82,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   dispatch(
     updateVerseEditStatesAndCheckAlignments(
       verseEdit, contextIdWithVerseEdit, currentCheckContextId, selectionsValidationResults.selectionsChanged, actionsBatch,
-      currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse
+      currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi
     )
   );
 
@@ -110,15 +111,16 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {object} currentCheckContextId - contextId of group menu item selected
  * @param {boolean} showSelectionInvalidated - if true then show prompt that selections invalidated
  * @param {array} batchGroupData - if present then add group data actions to this array for later batch operation
- * @param {Object} currentToolName -
- * @param {Object} translate -
- * @param {Object} showAlert -
- * @param {Object} closeAlert -
- * @param {Object} projectSaveLocation -
- * @param {Object} showIgnorableAlert -
- * @param {Object} updateTargetVerse -
+ * @param {string} currentToolName -
+ * @param {function} translate -
+ * @param {function} showAlert -
+ * @param {function} closeAlert -
+ * @param {string} projectSaveLocation -
+ * @param {function} showIgnorableAlert -
+ * @param {function} updateTargetVerse -
+ * @param {object} toolApi -
  */
-export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse) => async (dispatch) => {
+export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi) => async (dispatch) => {
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
@@ -140,7 +142,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   // TODO: Get tool's api from props. #6656
   // const api = Api();
   let showAlignmentsInvalidated = false;
-  // showAlignmentsInvalidated = !api.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
+  showAlignmentsInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
 
   closeAlert();
 

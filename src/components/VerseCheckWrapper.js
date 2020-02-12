@@ -408,10 +408,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       validateSelections,
       gatewayLanguageCode,
     },
+    toolApi,
     translate,
     gatewayLanguageQuote,
   } = ownProps;
-  console.log('ownProps', ownProps);
+  console.log('toolApi', toolApi);
   const username = getUsername(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
@@ -421,7 +422,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     goToPrevious: () => dispatch(changeToPreviousContextId()),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi));
     },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
