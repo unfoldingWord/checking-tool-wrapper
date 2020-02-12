@@ -411,6 +411,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     translate,
     gatewayLanguageQuote,
   } = ownProps;
+  console.log('ownProps', ownProps);
   const username = getUsername(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
