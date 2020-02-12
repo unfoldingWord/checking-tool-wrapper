@@ -123,6 +123,8 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
   console.log('validateSelections()');
 
   const state = getState();
+  console.log('state', state);
+
   contextId = contextId || getContextId(state);
   const { chapter, verse } = contextId.reference;
   chapterNumber = chapterNumber || chapter;
