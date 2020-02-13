@@ -13,10 +13,11 @@ import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 // selectors
 import {
-  getTcState,
-  getTranslateState,
-  getContextId,
   getBibles,
+  getToolApi,
+  getTcState,
+  getContextId,
+  getTranslateState,
   getGatewayLanguageCode,
   getCurrentPaneSettings,
   getGatewayLanguageBibles,
@@ -49,6 +50,7 @@ const styles = {
 function Container({
   tc,
   bibles,
+  toolApi,
   translate,
   contextId,
   setToolSettings,
@@ -75,6 +77,7 @@ function Container({
           <div style={styles.scripturePaneDiv}>
             <ScripturePaneWrapper
               tc={tc}
+              toolApi={toolApi}
               translate={translate}
             />
           </div>
@@ -86,6 +89,7 @@ function Container({
           />
           <VerseCheckWrapper
             tc={tc}
+            toolApi={toolApi}
             translate={translate}
             contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
@@ -105,6 +109,7 @@ function Container({
 Container.propTypes = {
   tc: PropTypes.object.isRequired,
   bibles: PropTypes.object.isRequired,
+  toolApi: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   contextId: PropTypes.object.isRequired,
   alignedText: PropTypes.string.isRequired,
@@ -120,9 +125,11 @@ export const mapStateToProps = (state, ownProps) => {
   const glBibles = getGatewayLanguageBibles(ownProps);
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
   const tc = getTcState(ownProps);
+  const toolApi = getToolApi(ownProps);
 
   return {
     tc,
+    toolApi,
     contextId,
     gatewayLanguageCode,
     gatewayLanguageQuote,

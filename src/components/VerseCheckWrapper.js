@@ -10,7 +10,7 @@ import { getVerseText } from '../helpers/verseHelpers';
 // actions
 import { changeToNextContextId, changeToPreviousContextId } from '../state/actions/contextIdActions';
 import { addComment } from '../state/actions/commentsActions';
-import { changeSelections } from '../state/actions/selectionsActions';
+import { changeSelections, validateSelections } from '../state/actions/selectionsActions';
 import { editTargetVerse } from '../state/actions/verseEditActions';
 import { toggleBookmark } from '../state/actions/bookmarksActions';
 // selectors
@@ -27,6 +27,7 @@ import {
   getCurrentToolName,
   getProjectPath,
   getUsername,
+  getUserData,
 } from '../selectors';
 
 
@@ -401,37 +402,37 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     tc: {
+      bookId,
       showAlert,
       closeAlert,
       updateTargetVerse,
       showIgnorableAlert,
-      validateSelections,
       gatewayLanguageCode,
     },
+    toolApi,
     translate,
     gatewayLanguageQuote,
   } = ownProps;
   const username = getUsername(ownProps);
+  const userData = getUserData(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
 
   return {
-    goToNext: () => dispatch(changeToNextContextId()),
-    goToPrevious: () => dispatch(changeToPreviousContextId()),
+    goToNext: () => dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
+    goToPrevious: () => dispatch(changeToPreviousContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
-      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse));
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi));
     },
     toggleBookmark: () => {
       dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     changeSelections: (selections, nothingToSelect) => {
-      // TODO: Make sure it works correctly.
       dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
-      // TODO: The version of validateSelections() below is coming from the tC codebase. Our goal is to use the version of this function that is within this codebase.
-      validateSelections(targetVerse, ownProps.contextId);
+      validateSelections(targetVerse, ownProps.contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
     },
   };
 };

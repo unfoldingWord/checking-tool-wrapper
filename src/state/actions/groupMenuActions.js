@@ -2,7 +2,6 @@ import {
   GROUP_MENU_EXPAND_SUBMENU,
   GROUP_MENU_SET_FILTER,
 } from './actionTypes';
-import { changeCurrentContextId } from './contextIdActions';
 
 /**
  * This action expands/collapses the submenu in the group menu
@@ -12,19 +11,6 @@ export const expandSubMenu = isSubMenuExpanded => ({
   type: GROUP_MENU_EXPAND_SUBMENU,
   isSubMenuExpanded,
 });
-
-/**
- * Changes the group in the group menu
- * @param {Object} contextId
- * @param {string} projectSaveLocation
- * @param {Object} userData
- * @param {string} gatewayLanguageCode
- * @param {string} gatewayLanguageQuote
- */
-export const changeGroup = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => dispatch => {
-  dispatch(changeCurrentContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
-  dispatch(expandSubMenu(true));
-};
 
 /**
  * Sets filter for what items to show.

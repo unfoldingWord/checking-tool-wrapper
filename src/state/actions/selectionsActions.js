@@ -19,7 +19,7 @@ import {
 import generateTimestamp from '../../utils/generateTimestamp';
 import { sameContext } from '../../helpers/contextIdHelpers';
 import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
-import { saveSelectionsForOtherContext } from '../../localStorage/saveMethods';
+import { saveSelectionsForOtherContext, saveSelections } from '../../localStorage/saveMethods';
 // selectors
 import { getContextId, getGroupsData } from '../../selectors';
 import { generateLoadPath, loadCheckData } from '../../helpers/checkDataHelpers';
@@ -64,6 +64,17 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
         nothingToSelect,
         username,
       });
+
+      const selectionData = {
+        modifiedTimestamp,
+        gatewayLanguageCode,
+        gatewayLanguageQuote,
+        selections,
+        nothingToSelect,
+        username,
+      };
+      // Persisting selection checkData in filesystem.
+      saveSelections(contextId, selectionData, projectSaveLocation);
       dispatch(setInvalidation(username, invalidated, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     } else {
       saveSelectionsForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation);
@@ -107,7 +118,7 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
  * @param {string} gatewayLanguageCode
  * @param {string} gatewayLanguageQuote
  */
-export const validateSelections = (targetVerse, contextId = null, chapterNumber, verseNumber, showInvalidation = true, results = {}, batchGroupData = null,
+export const validateSelections = (targetVerse, contextId = null, chapterNumber = null, verseNumber = null, showInvalidation = true, results = {}, batchGroupData = null,
   projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
   const state = getState();
   contextId = contextId || getContextId(state);
@@ -328,7 +339,7 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
         const newFilename = modifiedTimestamp + '.json';
         const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
         fs.ensureDirSync(invalidatedCheckPath);
-        fs.outputJSONSync(path.join(invalidatedCheckPath, newFilename.replace(/[:"]/g, '_')), newInvalidation);
+        fs.outputJSONSync(path.join(invalidatedCheckPath, newFilename.replace(/[:"]/g, '_')), newInvalidation, { spaces: 2 });
         dispatch(
           changeSelections(
             [], true, newInvalidation.contextId, username, currentToolName,
