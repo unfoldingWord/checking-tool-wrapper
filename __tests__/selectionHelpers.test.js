@@ -1,6 +1,11 @@
 /* eslint-env jest */
 import * as selectionHelpers from '../src/helpers/selectionHelpers';
-import {DEFAULT_MAX_SELECTIONS, TN_MAX_SELECTIONS, TRANSLATION_NOTES, TRANSLATION_WORDS} from "../src/helpers/consts";
+import {
+  DEFAULT_MAX_SELECTIONS,
+  TN_MAX_SELECTIONS,
+  TRANSLATION_NOTES,
+  TRANSLATION_WORDS,
+} from '../src/common/constants';
 
 describe('selectionHelpers.getMaximumSelections', () => {
   test('Should set TN to max for TN', () => {
@@ -38,5 +43,4 @@ describe('selectionHelpers.getMaximumSelections', () => {
     // then
     expect(results).toEqual(expectedResult);
   });
-
 });

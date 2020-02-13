@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import * as checkAreaHelpers from '../src/helpers/checkAreaHelpers';
-import { TRANSLATION_WORDS } from '../src/helpers/consts';
+import { TRANSLATION_WORDS } from '../src/common/constants';
 
 
 describe('checkAreaHelpers.getAlignedGLText', () => {

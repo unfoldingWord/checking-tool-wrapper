@@ -1,291 +1,163 @@
 /* eslint-env jest */
 import * as settingsHelper from '../src/helpers/settingsHelper';
-import {TRANSLATION_WORDS} from "../src/helpers/consts";
+import { TRANSLATION_WORDS } from '../src/common/constants';
 
 const bibles = {
-  hi: {
-    ulb: []
-  },
-  en: {
-    ult: []
-  }
+  hi: { ulb: [] },
+  en: { ult: [] },
 };
 
 describe('settingsHelper.loadCorrectPaneSettings', () => {
   test('Should change the pane settings to render English ULT if Enslish is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
+    const gatewayLanguage = 'en';
+    const currentPaneSettings = [
+      {
+        languageId: 'hi',
+        bibleId: 'ulb',
       },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'en'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {
-          ScripturePane: {
-            currentPaneSettings: [
-              {
-                languageId: 'hi',
-                bibleId: 'ulb'
-              },
-            ]
-          }
-        }
-      }
-    };
+    ];
     const expectedResult = [
       {
         languageId: 'en',
-        bibleId: 'ult'
-      }
+        bibleId: 'ult',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage, currentPaneSettings);
   });
 
   test('Should change the pane settings to render Hindi ULB if Hindi is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
+    const currentPaneSettings = [
+      {
+        languageId: 'en',
+        bibleId: 'ult',
       },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'en'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {
-          ScripturePane: {
-            currentPaneSettings: [
-              {
-                languageId: 'en',
-                bibleId: 'ult'
-              },
-            ]
-          }
-        }
-      }
-    };
+    ];
+    const gatewayLanguage = 'hi';
     const expectedResult = [
       {
         languageId: 'hi',
-        bibleId: 'ulb'
-      }
+        bibleId: 'ulb',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage, currentPaneSettings);
   });
 
   test('Should render both Hindi ULB and English ULT if they are both currently in the pane settings', () => {
     const bothHindiAndEnglish = [
       {
         languageId: 'en',
-        bibleId: 'ult'
+        bibleId: 'ult',
       },
       {
         languageId: 'hi',
-        bibleId: 'ulb'
+        bibleId: 'ulb',
       },
     ];
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
-      },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'en'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {
-          ScripturePane: {
-            currentPaneSettings: bothHindiAndEnglish
-          }
-        }
-      }
-    };
+    const gatewayLanguage = 'en';
+    const currentPaneSettings = bothHindiAndEnglish;
     const expectedResult = bothHindiAndEnglish;
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage, currentPaneSettings);
   });
 
   test('Should render the English ULT if the pane settings is empty and English is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
-      },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'en'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {
-          ScripturePane: {
-            currentPaneSettings: []
-          }
-        }
-      }
-    };
     const expectedResult = [
       {
         languageId: 'en',
-        bibleId: 'ult'
+        bibleId: 'ult',
       },
       {
         languageId: 'targetLanguage',
-        bibleId: 'targetBible'
-      }
+        bibleId: 'targetBible',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+    const gatewayLanguage = 'en';
+    const currentPaneSettings = [];
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage, currentPaneSettings);
   });
 
   test('Should render the Hindi ULB if the pane settings is empty and Hindi is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
-      },
-      projectDetailsReducer: {
-
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'hi'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {
-          ScripturePane: {
-            currentPaneSettings: []
-          }
-        }
-      }
-    };
     const expectedResult = [
       {
         languageId: 'hi',
-        bibleId: 'ulb'
+        bibleId: 'ulb',
       },
       {
         languageId: 'targetLanguage',
-        bibleId: 'targetBible'
-      }
+        bibleId: 'targetBible',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+    const gatewayLanguage = 'hi';
+    const currentPaneSettings = [];
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage, currentPaneSettings);
   });
 
-
   test('Should render the English ULT if the pane settings is empty and English is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
-      },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'en'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {
-          ScripturePane: {
-            currentPaneSettings: []
-          }
-        }
-      }
-    };
     const expectedResult = [
       {
         languageId: 'en',
-        bibleId: 'ult'
+        bibleId: 'ult',
       },
       {
         languageId: 'targetLanguage',
-        bibleId: 'targetBible'
-      }
+        bibleId: 'targetBible',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+    const gatewayLanguage = 'en';
+    const currentPaneSettings = [];
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage, currentPaneSettings);
   });
 
   test('Should add the English ULT and target language in a fresh install if English is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
-      },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'en'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {}
-      }
-    };
     const expectedResult = [
       {
         languageId: 'en',
-        bibleId: 'ult'
+        bibleId: 'ult',
       },
       {
         languageId: 'targetLanguage',
-        bibleId: 'targetBible'
-      }
+        bibleId: 'targetBible',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+    const gatewayLanguage = 'en';
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage);
   });
 
   test('Should add the Hindi ULB and target language in a fresh install if Hindi is selected as the GL', () => {
-    const props = {
-      tc: {
-        selectedToolName: TRANSLATION_WORDS
-      },
-      projectDetailsReducer: {
-        manifest: {
-          toolsSelectedGLs: {
-            translationWords: 'hi'
-          }
-        }
-      },
-      settingsReducer: {
-        toolsSettings: {}
-      }
-    };
     const expectedResult = [
       {
         languageId: 'hi',
-        bibleId: 'ulb'
+        bibleId: 'ulb',
       },
       {
         languageId: 'targetLanguage',
-        bibleId: 'targetBible'
-      }
+        bibleId: 'targetBible',
+      },
     ];
-    settingsHelper.loadCorrectPaneSettings(props, (toolNamespace, settingsLabel, paneSettings) => {
+    const gatewayLanguage = 'hi';
+
+    settingsHelper.loadCorrectPaneSettings((toolNamespace, settingsLabel, paneSettings) => {
       expect(paneSettings).toEqual(expectedResult);
-    }, bibles);
+    }, bibles, gatewayLanguage);
   });
 });

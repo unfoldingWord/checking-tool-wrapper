@@ -10,10 +10,9 @@ import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
-import {
-  sameContext, getSelectionsFromChapterAndVerseCombo, generateTimestamp,
-} from './helpers/validationHelpers';
+import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
+import { sameContext } from './helpers/contextIdHelpers';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -21,6 +20,7 @@ export default class Api extends ToolApi {
     this.getAlignmentMemory = this.getAlignmentMemory.bind(this);
     this.getInvalidChecks = this.getInvalidChecks.bind(this);
     this.getProgress = this.getProgress.bind(this);
+    this.validateVerse = this.validateVerse.bind(this);
     this._loadBookSelections = this._loadBookSelections.bind(this);
     this._loadVerseSelections = this._loadVerseSelections.bind(this);
     this._loadCheckData = this._loadCheckData.bind(this);
@@ -117,7 +117,7 @@ export default class Api extends ToolApi {
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
       tc: {
-        contextId: { reference: { bookId } },
+        bookId,
         username: userName,
         project: { _projectPath: projectSaveLocation },
       },
@@ -129,7 +129,7 @@ export default class Api extends ToolApi {
         verse: parseInt(verse),
       },
     };
-    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupsDataKeys, contextId);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId);
     let filtered = null;
     let selectionsChanged = false;
     const groupItems = Object.keys(groupsDataForVerse);
@@ -196,7 +196,7 @@ export default class Api extends ToolApi {
     modifiedTimestamp = modifiedTimestamp || generateTimestamp();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
-    fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload);
+    fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload, { spaces: 2 });
   }
 
   /**
@@ -272,26 +272,26 @@ export default class Api extends ToolApi {
    * @param nextProps
    */
   toolWillReceiveProps(nextProps) {
-    const { tc: { contextId: nextContext } } = nextProps;
-    const {
-      currentLanguage,
-      tc: { appLanguage },
-      tool: {
-        isReady,
-        name: toolName,
-      },
-    } = this.props;
+    try {
+      const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
+      const {
+        tc: { appLanguage, currentToolName },
+        tool: { isReady },
+      } = this.props;
 
-    const isCurrentTool = (nextContext.tool === toolName);
+      const isCurrentTool = (nextCurrentToolName === currentToolName);
 
-    if (isCurrentTool && isReady) {
-      const { store } = this.context;
-      const currentLang = getActiveLanguage(store.getState());
-      const langId = currentLang && currentLang.code;
+      if (isCurrentTool && isReady) {
+        const { store } = this.context;
+        const currentLang = getActiveLanguage(store.getState());
+        const langId = currentLang && currentLang.code;
 
-      if (langId && (langId !== appLanguage)) { // see if locale language has changed
-        store.dispatch(setActiveLocale(appLanguage));
+        if (langId && (langId !== appLanguage)) { // see if locale language has changed
+          store.dispatch(setActiveLocale(appLanguage));
+        }
       }
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -451,7 +451,7 @@ export default class Api extends ToolApi {
   _loadVerseSelections(chapter, verse, props) {
     const {
       tc: {
-        contextId: { reference: { bookId } },
+        bookId,
         projectDataPathExistsSync,
         readProjectDataSync,
         readProjectDataDirSync,
