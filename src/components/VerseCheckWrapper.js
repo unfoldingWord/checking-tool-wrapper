@@ -27,6 +27,7 @@ import {
   getCurrentToolName,
   getProjectPath,
   getUsername,
+  getUserData,
 } from '../selectors';
 
 
@@ -413,12 +414,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     gatewayLanguageQuote,
   } = ownProps;
   const username = getUsername(ownProps);
+  const userData = getUserData(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
 
   return {
-    goToNext: () => dispatch(changeToNextContextId()),
-    goToPrevious: () => dispatch(changeToPreviousContextId()),
+    goToNext: () => dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
+    goToPrevious: () => dispatch(changeToPreviousContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
     addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
     editTargetVerse: (chapter, verse, before, after, tags) => {
       dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi));

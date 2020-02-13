@@ -118,6 +118,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { project: { id: bookId } } = getProjectManifest(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const userData = getUserData(ownProps);
+  console.log('projectSaveLocation', projectSaveLocation);
 
   return {
     loadGroupsIndex: (gatewayLanguageCode, currentToolName, projectSaveLocation, translate) => {

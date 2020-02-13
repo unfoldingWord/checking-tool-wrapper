@@ -158,10 +158,10 @@ function firstContextId(state) {
 
 /**
  * change context ID and load check data in reducers from group data reducer
- * @param {Object} contextId
- * @param {Function} dispatch
- * @param {Object} state
- * @return {Boolean} true if check data found in reducers
+ * @param {object} contextId
+ * @param {function} dispatch
+ * @param {object} state
+ * @return {boolean} true if check data found in reducers
  */
 function changeContextIdInReducers(contextId, dispatch, state) {
   let oldGroupObject = {};
@@ -227,11 +227,11 @@ export const changeContextId = contextId => ({
 });
 
 /**
- *
- * @param {*} contextId
- * @param {*} projectSaveLocation
- * @param {*} gatewayLanguageCode
- * @param {*} gatewayLanguageQuote
+ * Load Check Data.
+ * @param {object} contextId
+ * @param {string} projectSaveLocation
+ * @param {string} gatewayLanguageCode
+ * @param {string} gatewayLanguageQuote
  */
 const loadCheckData = (contextId, projectSaveLocation, gatewayLanguageCode, gatewayLanguageQuote) => dispatch => {
   const actionsBatch = [];
@@ -242,6 +242,13 @@ const loadCheckData = (contextId, projectSaveLocation, gatewayLanguageCode, gate
   dispatch(batchActions(actionsBatch)); // process the batch
 };
 
+/**
+ * Change To Next ContextId.
+ * @param {string} projectSaveLocation
+ * @param {object} userData
+ * @param {string} gatewayLanguageCode
+ * @param {string} gatewayLanguageQuote
+ */
 export const changeToNextContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
   const state = getState();
   const groupsData = getGroupsData(state);
@@ -269,6 +276,13 @@ export const changeToNextContextId = (projectSaveLocation, userData, gatewayLang
   dispatch(changeCurrentContextId(contextId, projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
 });
 
+/**
+ * Change To Previous ContextId.
+ * @param {string} projectSaveLocation
+ * @param {object} userData
+ * @param {string} gatewayLanguageCode
+ * @param {string} gatewayLanguageQuote
+ */
 export const changeToPreviousContextId = (projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote) => ((dispatch, getState) => {
   const state = getState();
   const groupsData = getGroupsData(state);
