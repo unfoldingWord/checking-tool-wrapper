@@ -29,7 +29,6 @@ import {
   SET_INVALIDATION_IN_GROUPDATA,
 } from './actionTypes';
 import { setInvalidation } from './InvalidatedActions';
-;
 
 /**
  * Adds a selection array to the selections reducer.
