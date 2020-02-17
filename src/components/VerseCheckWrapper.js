@@ -59,7 +59,6 @@ function VerseCheckWrapper({
     selections,
     nothingToSelect,
   },
-  gatewayLanguageCode,
   toggleBookmark,
   changeSelections,
   goToNext,
@@ -118,7 +117,7 @@ function VerseCheckWrapper({
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (onInvalidCheck) {
-        onInvalidCheck(contextId, gatewayLanguageCode, true);
+        onInvalidCheck();
       }
     }
     setLocalState({
@@ -389,13 +388,11 @@ const mapStateToProps = (state, ownProps) => {
     unfilteredVerseText,
     alignedGLText,
     showAlert: ownProps.tc.showAlert,
-    onInvalidCheck: ownProps.tc.onInvalidCheck,
     manifest: getProjectManifest(ownProps),
     maximumSelections: getMaximumSelections(currentToolName),
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
     bookmarksReducer: getBookmarksReducer(state),
-    gatewayLanguageCode: getGatewayLanguageCode(ownProps),
   };
 };
 
@@ -405,11 +402,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       bookId,
       showAlert,
       closeAlert,
+      onInvalidCheck,
       updateTargetVerse,
       showIgnorableAlert,
-      gatewayLanguageCode,
     },
     toolApi,
+    contextId,
     translate,
     gatewayLanguageQuote,
   } = ownProps;
@@ -417,6 +415,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const userData = getUserData(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
 
   return {
     goToNext: () => dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
@@ -432,7 +431,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     },
     validateSelections: (targetVerse) => {
-      validateSelections(targetVerse, ownProps.contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
+      validateSelections(targetVerse, contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
+    },
+    onInvalidCheck: () => {
+      onInvalidCheck(contextId, gatewayLanguageCode, true, dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)));
     },
   };
 };
