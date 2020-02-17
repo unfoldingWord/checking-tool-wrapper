@@ -59,7 +59,6 @@ function VerseCheckWrapper({
     selections,
     nothingToSelect,
   },
-  gatewayLanguageCode,
   toggleBookmark,
   changeSelections,
   goToNext,
@@ -394,7 +393,6 @@ const mapStateToProps = (state, ownProps) => {
     commentsReducer: getCommentsReducer(state),
     selectionsReducer: getSelectionsReducer(state),
     bookmarksReducer: getBookmarksReducer(state),
-    gatewayLanguageCode: getGatewayLanguageCode(ownProps),
   };
 };
 
@@ -407,7 +405,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       onInvalidCheck,
       updateTargetVerse,
       showIgnorableAlert,
-      gatewayLanguageCode,
     },
     toolApi,
     contextId,
@@ -418,6 +415,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const userData = getUserData(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
   const projectSaveLocation = getProjectPath(ownProps);
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
 
   return {
     goToNext: () => dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
