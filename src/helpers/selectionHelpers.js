@@ -270,7 +270,7 @@ export const occurrencesInString = (string, subString) => {
  * @param {String} string - the string to normalize
  * @preturns {String} - The returned normalized string
  */
-export const normalizeString = (string) => {
+export const normalizeString = (string = '') => {
   console.log('====================================');
   console.log('normalizeString() string', string);
   console.log('====================================');
