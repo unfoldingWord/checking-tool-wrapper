@@ -196,9 +196,6 @@ export default class Api extends ToolApi {
     modifiedTimestamp = modifiedTimestamp || generateTimestamp();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
-    console.log('====================================');
-    console.log('writeCheckData() newFilename', newFilename);
-    console.log('====================================');
     fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload, { spaces: 2 });
   }
 

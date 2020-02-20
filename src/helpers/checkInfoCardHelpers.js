@@ -78,9 +78,6 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  * @return {string}
  */
 export function getNote(occurrenceNote) {
-  console.log('====================================');
-  console.log('getNote() occurrenceNote', occurrenceNote);
-  console.log('====================================');
   let cleanedNote = occurrenceNote.replace(/\s*\([^()[\]]+((\[[^[\]]+\])*(\[\[|\()+rc:\/\/[^)\]]+(\]\]|\))[^([)\]]*)+[^()[\]]*\)\s*$/g, '');
 
   try {

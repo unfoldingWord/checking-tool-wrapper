@@ -81,9 +81,6 @@ export default class Repo {
     if (!url || !url.trim()) {
       return null;
     }
-    console.log('====================================');
-    console.log('sanitizeRemoteUrl() url', url);
-    console.log('====================================');
 
     url = url.trim().replace(/\/?$/, ''); // remove white space and right trailing /'s
     const liveDoor43Url = new RegExp(/^https?:\/\/(live\.|www\.)?door43.org\/u\/([^/]+)\/([^/]+)/);
@@ -107,9 +104,6 @@ export default class Repo {
       // Return a proper git.door43.org URL from the match
       let userName = match[2];
       let repoName = match[3];
-      console.log('====================================');
-      console.log('sanitizeRemoteUrl() repoName', repoName);
-      console.log('====================================');
 
       repoName = (repoName && repoName.replace('.git', '')) || '';
       return DCS_BASE_URL + '/' + userName + '/' + repoName + '.git';

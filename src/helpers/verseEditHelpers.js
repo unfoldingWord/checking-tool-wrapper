@@ -26,9 +26,6 @@ export const writeTranslationWordsVerseEditToFile = (verseEdit, projectSaveLocat
     verseEdit.activeBook, verseEdit.contextId.reference.chapter.toString(),
     verseEdit.contextId.reference.verse.toString());
   fs.ensureDirSync(verseEditsPath);
-  console.log('====================================');
-  console.log('writeTranslationWordsVerseEditToFile() newFilename', newFilename);
-  console.log('====================================');
 
   const filePath = path.join(verseEditsPath, newFilename.replace(/[:"]/g, '_'));
   fs.outputJSONSync(filePath, verseEdit, { spaces: 2 });
