@@ -64,6 +64,9 @@ export function getQuoteAsString(quote) {
   } else if (typeof quote === 'string') {
     text = quote;
   }
+  console.log('====================================');
+  console.log('getQuoteAsString() text', text);
+  console.log('====================================');
   // remove space before any punctuation that is used in Greek except `...` and `…`
   text = text.replace(/\s+(?!\.\.\.)(?!…)([.,;'’`?!"]+)/g, '$1');
   return text;

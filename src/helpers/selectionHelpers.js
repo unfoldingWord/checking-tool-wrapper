@@ -271,6 +271,10 @@ export const occurrencesInString = (string, subString) => {
  * @preturns {String} - The returned normalized string
  */
 export const normalizeString = (string) => {
+  console.log('====================================');
+  console.log('normalizeString() string', string);
+  console.log('====================================');
+
   string = string.replace(/\s+/g, ' ');
   return string;
 };

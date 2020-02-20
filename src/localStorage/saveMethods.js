@@ -19,6 +19,10 @@ function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSa
       const chapter = contextId.reference.chapter.toString();
       const verse = contextId.reference.verse.toString();
       const fileName = modifiedTimestamp + '.json';
+      console.log('====================================');
+      console.log('generateSavePath() fileName', fileName);
+      console.log('====================================');
+
       const savePath = path.join(
         projectSaveLocation,
         PROJECT_CHECKDATA_DIRECTORY,

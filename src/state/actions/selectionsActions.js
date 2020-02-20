@@ -338,6 +338,10 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
         const newFilename = modifiedTimestamp + '.json';
         const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
         fs.ensureDirSync(invalidatedCheckPath);
+        console.log('====================================');
+        console.log('validateSelectionsForUnloadedTools() newFilename', newFilename);
+        console.log('====================================');
+
         fs.outputJSONSync(path.join(invalidatedCheckPath, newFilename.replace(/[:"]/g, '_')), newInvalidation, { spaces: 2 });
         dispatch(
           changeSelections(
