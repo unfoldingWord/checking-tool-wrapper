@@ -104,6 +104,7 @@ export default class Repo {
       // Return a proper git.door43.org URL from the match
       let userName = match[2];
       let repoName = match[3];
+
       repoName = (repoName && repoName.replace('.git', '')) || '';
       return DCS_BASE_URL + '/' + userName + '/' + repoName + '.git';
     }
