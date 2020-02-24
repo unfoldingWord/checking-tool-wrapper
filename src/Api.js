@@ -13,6 +13,7 @@ import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 import { sameContext } from './helpers/contextIdHelpers';
+import { WORD_ALIGNMENT } from './common/constants';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -21,6 +22,7 @@ export default class Api extends ToolApi {
     this.getInvalidChecks = this.getInvalidChecks.bind(this);
     this.getProgress = this.getProgress.bind(this);
     this.validateVerse = this.validateVerse.bind(this);
+    this.validateVerseAlignments = this.validateVerseAlignments.bind(this);
     this._loadBookSelections = this._loadBookSelections.bind(this);
     this._loadVerseSelections = this._loadVerseSelections.bind(this);
     this._loadCheckData = this._loadCheckData.bind(this);
@@ -81,6 +83,24 @@ export default class Api extends ToolApi {
         }
       }
     }
+  }
+
+  /**
+   * checks the alignments for changes
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {boolean} silent - if true then don't show alerts
+   * @returns {boolean} true if valid
+   */
+  validateVerseAlignments(chapter, verse, silent=false) {
+    const { tc: { tools } } = this.props;
+    const wA_api = tools && tools[WORD_ALIGNMENT];
+
+    // TODO: this is a temporary fix - as we finish tool reducer updates we should call API in tCore since tools should not have knowledge of one another
+    if (wA_api) {
+      return wA_api.trigger('validateVerse', chapter, verse, silent);
+    }
+    return false;
   }
 
   /**
