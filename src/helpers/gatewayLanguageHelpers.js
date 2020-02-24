@@ -38,7 +38,6 @@ export function getAlignedGLTextHelper(contextId, glBibles) {
         return alignedText;
       }
     }
-    return contextId.quote;
   }
 
   return null;
@@ -52,7 +51,7 @@ export function getAlignedGLTextHelper(contextId, glBibles) {
 export function bibleIdSort(a, b) {
   const biblePrecedence = ['udb', 'ust', 'ulb', 'ult', 'irv']; // these should come first in this order if more than one aligned Bible, from least to greatest
 
-  if (biblePrecedence.indexOf(a) == biblePrecedence.indexOf(b)) {
+  if (biblePrecedence.indexOf(a) === biblePrecedence.indexOf(b)) {
     return (a < b ? -1 : a > b ? 1 : 0);
   } else {
     return biblePrecedence.indexOf(b) - biblePrecedence.indexOf(a);
