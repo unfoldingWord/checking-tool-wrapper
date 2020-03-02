@@ -5513,7 +5513,7 @@ exports[`Container Tests Test Container 1`] = `
                   />
                 </svg>
                 <div
-                  class="__react_component_tooltip place-top type-dark "
+                  class="__react_component_tooltip place-top type-dark"
                   data-id="tooltip"
                 />
               </div>
@@ -11107,7 +11107,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   />
                 </svg>
                 <div
-                  class="__react_component_tooltip place-top type-dark "
+                  class="__react_component_tooltip place-top type-dark"
                   data-id="tooltip"
                 />
               </div>
