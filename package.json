@@ -65,9 +65,9 @@
     "fs-extra": "7.0.1",
     "gogs-client": "^0.5.2",
     "isEqual": "^1.0.3",
+    "marked": "^0.6.2",
     "ospath": "^1.2.2",
     "path-extra": "^4.3.0",
-    "marked": "^0.6.2",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -78,7 +78,7 @@
     "selections": "0.1.7",
     "semver": "^6.3.0",
     "simple-git": "^1.126.0",
-    "tc-ui-toolkit": "0.15.10",
+    "tc-ui-toolkit": "github:unfoldingWord/tc-ui-toolkit#enhancement-mannycolon-6653",
     "usfm-js": "2.0.1"
   }
 }
