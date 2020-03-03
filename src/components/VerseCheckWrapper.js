@@ -317,7 +317,7 @@ function VerseCheckWrapper({
         handleOpenDialog={handleOpenDialog}
         handleCloseDialog={handleCloseDialog}
         openAlertDialog={showAlert}
-        toggleReminder={toggleBookmark}//TODO: #6653 Change the function name of toggleReminder to toggleBookmark in tc-ui-toolkit.
+        toggleBookmark={toggleBookmark}
         cancelEditVerse={cancelEditVerse}
         saveEditVerse={saveEditVerse}
         handleComment={handleComment}
