@@ -1,4 +1,6 @@
 import isEqual from 'deep-equal';
+import path from 'path-extra';
+import fs from 'fs-extra';
 import { saveGroupsData } from '../localStorage/saveMethods';
 import ProjectAPI from './ProjectAPI';
 
@@ -48,6 +50,31 @@ export const getGroupDataForVerse = (groupsData, contextId) => {
 export function loadProjectGroupData(toolName, projectDir) {
   const project = new ProjectAPI(projectDir);
   return project.getGroupsData(toolName);
+}
+
+/**
+ * gets path to a tool's group data from the project.
+ * @param {string} toolName - the name of the tool who's helps will be loaded
+ * @param {string} projectDir - the absolute path to the project
+ * @param {string} groupID - group identifier
+ * @returns {string} path to a tool's group data
+ */
+export function getGroupDataIndexPath(toolName, projectDir, groupID) {
+  const project = new ProjectAPI(projectDir);
+  return path.join(project.getCategoriesDir(toolName), groupID + '.json');
+}
+
+/**
+ * gets path to a tool's group data from the project.
+ * @param {string} toolName - the name of the tool who's helps will be loaded
+ * @param {string} projectDir - the absolute path to the project
+ * @param {string} groupID - group identifier
+ * @param {object} groupData - data to save
+ * @returns {string} path to a tool's group data
+ */
+export function saveGroupData(toolName, projectDir, groupID, groupData) {
+  const dataPath = getGroupDataIndexPath(toolName, projectDir, groupID);
+  return fs.outputJson(dataPath, groupData);
 }
 
 /**

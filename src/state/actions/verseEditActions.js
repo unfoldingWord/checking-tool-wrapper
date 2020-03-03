@@ -5,7 +5,7 @@ import {
   TRANSLATION_WORDS,
   TRANSLATION_NOTES,
 } from '../../common/constants';
-import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
+import { getGroupDataForVerse, saveGroupData } from '../../helpers/groupDataHelpers';
 import { saveVerseEdit } from '../../localStorage/saveMethods';
 import delay from '../../utils/delay';
 import {
@@ -177,6 +177,14 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
 
     if (groupEditsCount) {
       console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
+
+      // update group data index files
+      for (let i = 0; i < groupEditsCount; i++) {
+        const grpEdit = groupEditsCount[i];
+        const groupID = grpEdit.groupID;
+        const groupData = groupsData[groupID];
+        saveGroupData(toolName, projectSaveLocation, groupID, groupData);
+      }
     }
   }
 
