@@ -169,27 +169,29 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   const state = getState();
   const groupsData = getGroupsData(state);
+  const editedChecks = {};
 
   if (toolName === TRANSLATION_WORDS || toolName === TRANSLATION_NOTES) {
-    const editedChecks = {};
     getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks, projectSaveLocation);
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
     if (groupEditsCount) {
       console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
-
-      // update group data index files
-      for (let i = 0; i < groupEditsCount; i++) {
-        const grpEdit = groupEditsCount[i];
-        const groupID = grpEdit.groupID;
-        const groupData = groupsData[groupID];
-        saveGroupData(toolName, projectSaveLocation, groupID, groupData);
-      }
     }
   }
 
   if (actionsBatch.length) {
     dispatch(batchActions(actionsBatch));
+
+    // update group data index files with new data
+    const groupsData = getGroupsData(getState());
+    const editedGroups = Object.keys(editedChecks);
+
+    for (let i = 0, l = editedGroups.length; i < l; i++) {
+      const groupID = editedGroups[i];
+      const groupData = groupsData[groupID];
+      saveGroupData(toolName, projectSaveLocation, groupID, groupData);
+    }
   }
 };
 
