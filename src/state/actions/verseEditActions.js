@@ -1,6 +1,6 @@
 import { batchActions } from 'redux-batched-actions';
 import generateTimestamp from '../../utils/generateTimestamp';
-import { getContextId, getGroupsData} from '../../selectors';
+import { getContextId, getGroupsData } from '../../selectors';
 import {
   TRANSLATION_NOTES,
   TRANSLATION_WORDS,
@@ -189,7 +189,7 @@ export const updateGroupDataForVerseEdit = (projectSaveLocation, toolName, conte
  * @param {string} toolName - tool Name.
  * @param {string} projectSaveLocation - project Directory path.
  */
-export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, toolName, projectSaveLocation) => (dispatch, getState) => {
+export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, toolName, projectSaveLocation) => (dispatch) => {
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
 
