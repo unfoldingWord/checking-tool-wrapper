@@ -22,7 +22,7 @@ import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
 import { saveSelectionsForOtherContext, saveSelections } from '../../localStorage/saveMethods';
 // selectors
 import { getContextId, getGroupsData } from '../../selectors';
-import { generateLoadPath, loadCheckData } from '../../helpers/checkDataHelpers';
+import { loadCheckDataForKey } from '../../helpers/checkDataHelpers';
 import {
   CHANGE_SELECTIONS,
   TOGGLE_SELECTIONS_IN_GROUPDATA,
@@ -180,8 +180,7 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
  */
 export const getSelectionsForContextID = (projectSaveLocation, contextId) => {
   let selections = [];
-  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'selections');
-  const selectionsObject = loadCheckData(loadPath, contextId);
+  const selectionsObject = loadCheckDataForKey(projectSaveLocation, contextId, 'selections');
 
   if (selectionsObject) {
     selections = selectionsObject.selections;

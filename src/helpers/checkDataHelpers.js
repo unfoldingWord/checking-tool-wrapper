@@ -10,6 +10,19 @@ import {
 } from '../state/actions/actionTypes';
 
 /**x
+ * @description loads checkdata from project for specific key.
+ * @param {string} projectSaveLocation - path to project
+ * @param {object} contextId - groupData unique context Id.
+ * @param {string} key - to fetch (e.g. 'selections')
+ * @return {object} returns the object loaded from the file system.
+ */
+export function loadCheckDataForKey(projectSaveLocation, contextId, key) {
+  const loadPath = generateLoadPath(projectSaveLocation, contextId, key);
+  const checkData = loadCheckData(loadPath, contextId);
+  return checkData;
+}
+
+/**x
  * @description loads checkdata based on given contextId.
  * @param {String} loadPath - load path.
  * @param {object} contextId - groupData unique context Id.
@@ -90,8 +103,7 @@ export function generateLoadPath(projectSaveLocation, contextId, checkDataName) 
  * @return {Object} Dispatches an action that loads the commentsReducer with data.
  */
 export function loadComments(projectSaveLocation, contextId) {
-  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'comments');
-  const commentsObject = loadCheckData(loadPath, contextId);
+  const commentsObject = loadCheckDataForKey(projectSaveLocation, contextId, 'comments');
 
   if (commentsObject) {
     return {
@@ -119,8 +131,7 @@ export function loadComments(projectSaveLocation, contextId) {
  * @param {*} gatewayLanguageQuote - gateway language quote.
  */
 export function loadInvalidated(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote) {
-  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'invalidated');
-  const invalidatedObject = loadCheckData(loadPath, contextId);
+  const invalidatedObject = loadCheckDataForKey(projectSaveLocation, contextId, 'invalidated');
 
   if (invalidatedObject) {
     return {
@@ -152,8 +163,7 @@ export function loadInvalidated(projectSaveLocation, contextId, gatewayLanguageC
  * @param {*} gatewayLanguageQuote - gateway language quote.
  */
 export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote) {
-  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'reminders');
-  const remindersObject = loadCheckData(loadPath, contextId);
+  const remindersObject = loadCheckDataForKey(projectSaveLocation, contextId, 'reminders');
 
   if (remindersObject) {
     return {
@@ -179,12 +189,12 @@ export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCod
 
 /**
  * Loads the latest selections file from the file system for the specific contextID.
- * @param {Object} state - store state object.
+ * @param {*} projectSaveLocation - project path.
+ * @param {*} contextId - context id.
  * @return {Object} Dispatches an action that loads the selectionsReducer with data.
  */
 export function loadSelections(projectSaveLocation, contextId) {
-  const loadPath = generateLoadPath(projectSaveLocation, contextId, 'selections');
-  const selectionsObject = loadCheckData(loadPath, contextId);
+  const selectionsObject = loadCheckDataForKey(projectSaveLocation, contextId, 'selections');
 
   if (selectionsObject) {
     let {

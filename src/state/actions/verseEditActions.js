@@ -6,6 +6,7 @@ import {
   TRANSLATION_NOTES,
 } from '../../common/constants';
 import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
+import { updateGroupDataIndexForVerseEdits } from '../../helpers/verseEditHelpers';
 import { saveVerseEdit } from '../../localStorage/saveMethods';
 import delay from '../../utils/delay';
 import {
@@ -169,9 +170,9 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   const state = getState();
   const groupsData = getGroupsData(state);
+  const editedChecks = {};
 
   if (toolName === TRANSLATION_WORDS || toolName === TRANSLATION_NOTES) {
-    const editedChecks = {};
     getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks, projectSaveLocation);
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
@@ -182,6 +183,9 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
 
   if (actionsBatch.length) {
     dispatch(batchActions(actionsBatch));
+
+    // update group data index files with new data
+    updateGroupDataIndexForVerseEdits(getState(), editedChecks, toolName, projectSaveLocation);
   }
 };
 

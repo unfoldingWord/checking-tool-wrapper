@@ -1,5 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path-extra';
+import { getGroupsData } from '../selectors';
+import { saveGroupData } from '../helpers/groupDataHelpers';
 
 /**
  * Save verse edit in translationWords to file system
@@ -30,3 +32,21 @@ export const writeTranslationWordsVerseEditToFile = (verseEdit, projectSaveLocat
   const filePath = path.join(verseEditsPath, newFilename.replace(/[:"]/g, '_'));
   fs.outputJSONSync(filePath, verseEdit, { spaces: 2 });
 };
+
+/**
+ * update the group data for edited verses
+ * @param {object} state
+ * @param {object} editedChecks - groups with edited verses
+ * @param {string} toolName
+ * @param {string} projectSaveLocation
+ */
+export function updateGroupDataIndexForVerseEdits(state, editedChecks, toolName, projectSaveLocation) {
+  const groupsData = getGroupsData(state);
+  const editedGroups = Object.keys(editedChecks);
+
+  for (let i = 0, l = editedGroups.length; i < l; i++) {
+    const groupID = editedGroups[i];
+    const groupData = groupsData[groupID];
+    saveGroupData(toolName, projectSaveLocation, groupID, groupData);
+  }
+}
