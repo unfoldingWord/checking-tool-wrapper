@@ -5,7 +5,8 @@ import {
   TRANSLATION_WORDS,
   TRANSLATION_NOTES,
 } from '../../common/constants';
-import { getGroupDataForVerse, saveGroupData } from '../../helpers/groupDataHelpers';
+import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
+import { updateGroupDataIndexForVerseEdits } from '../../helpers/verseEditHelpers';
 import { saveVerseEdit } from '../../localStorage/saveMethods';
 import delay from '../../utils/delay';
 import {
@@ -135,24 +136,6 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   dispatch(doBackgroundVerseEditsUpdates(verseEdit, contextIdWithVerseEdit,
     currentCheckContextId, actionsBatch, currentToolName, projectSaveLocation));
 };
-
-/**
- * update the group data for edited verses
- * @param {object} state
- * @param {object} editedChecks - groups with edited verses
- * @param {string} toolName
- * @param {string} projectSaveLocation
- */
-function updateGroupDataIndexForVerseEdits(state, editedChecks, toolName, projectSaveLocation) {
-  const groupsData = getGroupsData(state);
-  const editedGroups = Object.keys(editedChecks);
-
-  for (let i = 0, l = editedGroups.length; i < l; i++) {
-    const groupID = editedGroups[i];
-    const groupData = groupsData[groupID];
-    saveGroupData(toolName, projectSaveLocation, groupID, groupData);
-  }
-}
 
 /**
  * after a delay it starts updating the verse edit flags.  There are also delays between operations
