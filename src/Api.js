@@ -9,10 +9,12 @@ import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
+import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 import { sameContext } from './helpers/contextIdHelpers';
+import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
 
 export default class Api extends ToolApi {
@@ -114,7 +116,12 @@ export default class Api extends ToolApi {
     const {
       tc: {
         targetBook,
-        project: { getGroupsData },
+        bookId,
+        username: userName,
+        project: {
+          getGroupsData,
+          _projectPath: projectSaveLocation,
+        },
       },
       tool: { name: toolName },
     } = this.props;
@@ -123,6 +130,21 @@ export default class Api extends ToolApi {
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
     this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+
+    // check for verse edit
+    const contextId = {
+      reference: {
+        bookId,
+        chapter,
+        verse,
+      },
+    };
+    const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
+
+    if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
+      const { store } = this.context;
+      store.dispatch(updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId));
+    }
   }
 
   /**
