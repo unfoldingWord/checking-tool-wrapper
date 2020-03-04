@@ -137,6 +137,24 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
 };
 
 /**
+ * update the group data for edited verses
+ * @param {object} state
+ * @param {object} editedChecks - groups with edited verses
+ * @param {string} toolName
+ * @param {string} projectSaveLocation
+ */
+function updateGroupDataIndexForVerseEdits(state, editedChecks, toolName, projectSaveLocation) {
+  const groupsData = getGroupsData(state);
+  const editedGroups = Object.keys(editedChecks);
+
+  for (let i = 0, l = editedGroups.length; i < l; i++) {
+    const groupID = editedGroups[i];
+    const groupData = groupsData[groupID];
+    saveGroupData(toolName, projectSaveLocation, groupID, groupData);
+  }
+}
+
+/**
  * after a delay it starts updating the verse edit flags.  There are also delays between operations
  *   so we don't slow down UI interactions of user
  * @param {{
@@ -184,14 +202,7 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
     dispatch(batchActions(actionsBatch));
 
     // update group data index files with new data
-    const groupsData = getGroupsData(getState());
-    const editedGroups = Object.keys(editedChecks);
-
-    for (let i = 0, l = editedGroups.length; i < l; i++) {
-      const groupID = editedGroups[i];
-      const groupData = groupsData[groupID];
-      saveGroupData(toolName, projectSaveLocation, groupID, groupData);
-    }
+    updateGroupDataIndexForVerseEdits(getState(), editedChecks, toolName, projectSaveLocation);
   }
 };
 
