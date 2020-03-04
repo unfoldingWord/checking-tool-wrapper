@@ -74,7 +74,7 @@ export function getGroupDataIndexPath(toolName, projectDir, groupID) {
  */
 export function saveGroupData(toolName, projectDir, groupID, groupData) {
   const dataPath = getGroupDataIndexPath(toolName, projectDir, groupID);
-  return fs.outputJson(dataPath, groupData, { spaces: 2 });
+  return fs.outputJson(dataPath, groupData, { spaces: 2 }); // don't need to wait for it to complete, so not a sync operation
 }
 
 /**
