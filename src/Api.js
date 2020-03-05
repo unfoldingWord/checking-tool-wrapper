@@ -8,8 +8,10 @@ import path from 'path-extra';
 import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
-import { checkSelectionOccurrences, getGroupsData } from 'selections';
+import { checkSelectionOccurrences } from 'selections';
+import { getGroupsData } from './selectors/index';
 import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
+import { loadGroupsData } from './state/actions/groupsDataActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
@@ -124,7 +126,13 @@ export default class Api extends ToolApi {
       tool: { name: toolName },
     } = this.props;
     const { store } = this.context;
-    const _groupsData = groupsData || getGroupsData(store.getState());
+    let _groupsData = groupsData || getGroupsData(store.getState());
+
+    if (!Object.keys(_groupsData).length) { // if groups data not loaded
+      store.dispatch(loadGroupsData(toolName, projectSaveLocation));
+      _groupsData = getGroupsData(store.getState()); // refresh with latest group data
+    }
+
     const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
