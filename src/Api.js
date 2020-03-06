@@ -113,7 +113,7 @@ export default class Api extends ToolApi {
    * @param {String} verse
    * @param {boolean} silent - if true then don't show alerts
    * @param {Object} groupsData
-   * @return {boolean} returns true if no selections invalidate
+   * @return {boolean} returns true if no selections invalidated
    */
   validateVerse(chapter, verse, silent = false, groupsData) {
     const {
@@ -136,7 +136,7 @@ export default class Api extends ToolApi {
     const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    const selectionsChanged = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+    const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
 
     // check for verse edit
     const contextId = {
@@ -151,7 +151,7 @@ export default class Api extends ToolApi {
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
       store.dispatch(updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId));
     }
-    return !selectionsChanged;
+    return selectionsValid;
   }
 
   /**
@@ -162,7 +162,7 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
-   * @return {boolean} returns true if no selections invalidate
+   * @return {boolean} returns true if no selections invalidated
    */
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
