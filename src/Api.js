@@ -9,10 +9,14 @@ import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
+import { getGroupsData } from './selectors/index';
+import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
+import { loadGroupsData } from './state/actions/groupsDataActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 import { sameContext } from './helpers/contextIdHelpers';
+import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
 
 export default class Api extends ToolApi {
@@ -109,20 +113,45 @@ export default class Api extends ToolApi {
    * @param {String} verse
    * @param {boolean} silent - if true then don't show alerts
    * @param {Object} groupsData
+   * @return {boolean} returns true if no selections invalidated
    */
   validateVerse(chapter, verse, silent = false, groupsData) {
     const {
       tc: {
         targetBook,
-        project: { getGroupsData },
+        bookId,
+        username: userName,
+        project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
     } = this.props;
-    const _groupsData = groupsData || getGroupsData(toolName);
-    const groupsDataKeys = Object.keys(groupsData);
+    const { store } = this.context;
+    let _groupsData = groupsData || getGroupsData(store.getState());
+
+    if (!Object.keys(_groupsData).length) { // if groups data not loaded
+      store.dispatch(loadGroupsData(toolName, projectSaveLocation));
+      _groupsData = getGroupsData(store.getState()); // refresh with latest group data
+    }
+
+    const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+    const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+
+    // check for verse edit
+    const contextId = {
+      reference: {
+        bookId,
+        chapter,
+        verse,
+      },
+    };
+    const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
+
+    if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
+      store.dispatch(updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId));
+    }
+    return selectionsValid;
   }
 
   /**
@@ -133,6 +162,7 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
+   * @return {boolean} returns true if no selections invalidated
    */
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
@@ -210,6 +240,7 @@ export default class Api extends ToolApi {
     if (selectionsChanged && !silent) {
       this._showResetDialog();
     }
+    return !selectionsChanged;
   }
 
   writeCheckData(payload = {}, checkPath, modifiedTimestamp) {

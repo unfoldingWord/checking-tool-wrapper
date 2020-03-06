@@ -125,10 +125,10 @@ export function loadComments(projectSaveLocation, contextId) {
 
 /**
  * Loads the latest invalidated file from the file system for the specify contextID.
- * @param {*} projectSaveLocation - project path.
+ * @param {string} projectSaveLocation - project path.
  * @param {*} contextId - context id.
- * @param {*} gatewayLanguageCode - gateway language code.
- * @param {*} gatewayLanguageQuote - gateway language quote.
+ * @param {string} gatewayLanguageCode - gateway language code.
+ * @param {string} gatewayLanguageQuote - gateway language quote.
  */
 export function loadInvalidated(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote) {
   const invalidatedObject = loadCheckDataForKey(projectSaveLocation, contextId, 'invalidated');
@@ -157,10 +157,10 @@ export function loadInvalidated(projectSaveLocation, contextId, gatewayLanguageC
 
 /**
  * Loads the latest bookmarks file from the file system for the specify contextID.
- * @param {*} projectSaveLocation - project path.
+ * @param {string} projectSaveLocation - project path.
  * @param {*} contextId - context id.
- * @param {*} gatewayLanguageCode - gateway language code.
- * @param {*} gatewayLanguageQuote - gateway language quote.
+ * @param {string} gatewayLanguageCode - gateway language code.
+ * @param {string} gatewayLanguageQuote - gateway language quote.
  */
 export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCode, gatewayLanguageQuote) {
   const remindersObject = loadCheckDataForKey(projectSaveLocation, contextId, 'reminders');
@@ -189,7 +189,7 @@ export function loadBookmarks(projectSaveLocation, contextId, gatewayLanguageCod
 
 /**
  * Loads the latest selections file from the file system for the specific contextID.
- * @param {*} projectSaveLocation - project path.
+ * @param {string} projectSaveLocation - project path.
  * @param {*} contextId - context id.
  * @return {Object} Dispatches an action that loads the selectionsReducer with data.
  */
@@ -226,4 +226,15 @@ export function loadSelections(projectSaveLocation, contextId) {
       username: null,
     };
   }
+}
+
+/**
+ * checks to see if verseEdits are recorded for this verse in checks.
+ * @param {*} projectSaveLocation - project path.
+ * @param {*} contextId - context id.
+ * @return {Boolean} true if verse has been edited
+ */
+export function loadVerseEdit(projectSaveLocation, contextId) {
+  const verseEditPath = generateLoadPath(projectSaveLocation, contextId, 'verseEdits');
+  return fs.existsSync(verseEditPath);
 }

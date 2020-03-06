@@ -2,8 +2,8 @@ import { batchActions } from 'redux-batched-actions';
 import generateTimestamp from '../../utils/generateTimestamp';
 import { getContextId, getGroupsData } from '../../selectors';
 import {
-  TRANSLATION_WORDS,
   TRANSLATION_NOTES,
+  TRANSLATION_WORDS,
 } from '../../common/constants';
 import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
 import { updateGroupDataIndexForVerseEdits } from '../../helpers/verseEditHelpers';
@@ -11,10 +11,10 @@ import { saveVerseEdit } from '../../localStorage/saveMethods';
 import delay from '../../utils/delay';
 import {
   ADD_VERSE_EDIT,
-  TOGGLE_VERSE_EDITS_IN_GROUPDATA,
   TOGGLE_MULTIPLE_VERSE_EDITS_IN_GROUPDATA,
+  TOGGLE_VERSE_EDITS_IN_GROUPDATA,
 } from './actionTypes';
-import { validateSelections, showInvalidatedWarnings } from './selectionsActions';
+import { showInvalidatedWarnings, validateSelections } from './selectionsActions';
 
 /**
  * This is called by tool when a verse has been edited. It updates group data reducer for current tool
@@ -123,8 +123,8 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
-  const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
-  const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
+  const chapterWithVerseEdit = verseEdit.activeChapter;
+  const verseWithVerseEdit = verseEdit.activeVerse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
@@ -135,6 +135,36 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   }
   dispatch(doBackgroundVerseEditsUpdates(verseEdit, contextIdWithVerseEdit,
     currentCheckContextId, actionsBatch, currentToolName, projectSaveLocation));
+};
+
+/**
+ * iterates through groupData to make sure all checks for this verse have verse edit set
+ * @param {string} projectSaveLocation
+ * @param {string} toolName
+ * @param contextIdWithVerseEdit
+ * @param {Array|null} batchGroupData
+ * @return {function(...[*]=)}
+ */
+export const updateGroupDataForVerseEdit = (projectSaveLocation, toolName, contextIdWithVerseEdit, batchGroupData = null) => (dispatch, getState) => {
+  const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
+  const groupsData = getGroupsData(getState());
+  const editedChecks = {};
+
+  if (toolName === TRANSLATION_WORDS || toolName === TRANSLATION_NOTES) {
+    getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks, projectSaveLocation);
+    const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
+
+    if (groupEditsCount) {
+      console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
+    }
+  }
+
+  if (actionsBatch.length) {
+    dispatch(batchActions(actionsBatch));
+
+    // update group data index files with new data
+    updateGroupDataIndexForVerseEdits(getState(), editedChecks, toolName, projectSaveLocation);
+  }
 };
 
 /**
@@ -159,7 +189,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
  * @param {string} toolName - tool Name.
  * @param {string} projectSaveLocation - project Directory path.
  */
-export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, toolName, projectSaveLocation) => (dispatch, getState) => {
+export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, toolName, projectSaveLocation) => (dispatch) => {
   const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
   const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
 
@@ -167,26 +197,7 @@ export const doBackgroundVerseEditsUpdates = (verseEdit, contextIdWithVerseEdit,
     verseEdit.verseBefore, verseEdit.verseAfter, verseEdit.tags, verseEdit.userName, generateTimestamp(),
     verseEdit.gatewayLanguageCode, verseEdit.gatewayLanguageQuote, currentCheckContextId));
 
-  const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
-  const state = getState();
-  const groupsData = getGroupsData(state);
-  const editedChecks = {};
-
-  if (toolName === TRANSLATION_WORDS || toolName === TRANSLATION_NOTES) {
-    getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks, projectSaveLocation);
-    const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
-
-    if (groupEditsCount) {
-      console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
-    }
-  }
-
-  if (actionsBatch.length) {
-    dispatch(batchActions(actionsBatch));
-
-    // update group data index files with new data
-    updateGroupDataIndexForVerseEdits(getState(), editedChecks, toolName, projectSaveLocation);
-  }
+  dispatch(updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextIdWithVerseEdit, batchGroupData));
 };
 
 /**
