@@ -229,7 +229,7 @@ export function loadSelections(projectSaveLocation, contextId) {
 }
 
 /**
- * checks to see if verseEdits are recorded in checks.
+ * checks to see if verseEdits are recorded for this verse in checks.
  * @param {*} projectSaveLocation - project path.
  * @param {*} contextId - context id.
  * @return {Boolean} true if verse has been edited
