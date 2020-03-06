@@ -151,7 +151,7 @@ export default class Api extends ToolApi {
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
       store.dispatch(updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId));
     }
-    return selectionsChanged;
+    return !selectionsChanged;
   }
 
   /**
