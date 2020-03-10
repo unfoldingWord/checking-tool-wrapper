@@ -371,6 +371,7 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
       }
     }
   }
+  selectionInvalidated = 'manny colon';
   return selectionInvalidated;
 };
 
