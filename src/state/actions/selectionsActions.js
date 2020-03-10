@@ -158,14 +158,14 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
     selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
     console.log('3 selectionInvalidated', selectionInvalidated);
 
-    selectionInvalidated = validateSelectionsForUnloadedTools(
+    selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
       projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
-    );
+    ));
     console.log('4 selectionInvalidated', selectionInvalidated);
   } else { // wordAlignment tool
-    selectionInvalidated = validateSelectionsForUnloadedTools(
+    selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
       projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
-    );
+    ));
     console.log('5 selectionInvalidated', selectionInvalidated);
   }
 
