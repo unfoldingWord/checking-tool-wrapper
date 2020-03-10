@@ -130,6 +130,11 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
   closeAlert();
 
+  console.log('updateVerseEditStatesAndCheckAlignments()====================================');
+  console.log('showSelectionInvalidated', showSelectionInvalidated);
+  console.log('showAlignmentsInvalidated', showAlignmentsInvalidated);
+  console.log('====================================');
+
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
     dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert));
   }

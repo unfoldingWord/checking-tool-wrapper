@@ -167,6 +167,11 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
 
   results.selectionsChanged = selectionInvalidated;
 
+  console.log('validateSelections()====================================');
+  console.log('showInvalidation', showInvalidation);
+  console.log('selectionInvalidated', selectionInvalidated);
+  console.log('====================================');
+
   if (showInvalidation && selectionInvalidated) {
     dispatch(showSelectionsInvalidatedWarning());
   }
@@ -269,6 +274,11 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
   if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
     dispatch(batchActions(actionsBatch));
   }
+
+  console.log('validateAllSelectionsForVerse()====================================');
+  console.log('warnOnError', warnOnError);
+  console.log('(initialSelectionsChanged, results.selectionsChanged', initialSelectionsChanged, results.selectionsChanged);
+  console.log('====================================');
 
   if (warnOnError && (initialSelectionsChanged || results.selectionsChanged)) {
     dispatch(showSelectionsInvalidatedWarning());
