@@ -78,11 +78,6 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     contextId: contextIdWithVerseEdit,
   };
 
-
-  console.log('====================================');
-  console.log('selectionsValidationResults', selectionsValidationResults);
-  console.log('====================================');
-
   dispatch(
     updateVerseEditStatesAndCheckAlignments(
       verseEdit, contextIdWithVerseEdit, currentCheckContextId, selectionsValidationResults.selectionsChanged, actionsBatch,
@@ -132,16 +127,8 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const verseWithVerseEdit = verseEdit.activeVerse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
-  console.log('====================================');
-  console.log('toolApi', toolApi);
-  console.log('====================================');
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
   closeAlert();
-
-  console.log('updateVerseEditStatesAndCheckAlignments()====================================');
-  console.log('showSelectionInvalidated', showSelectionInvalidated);
-  console.log('showAlignmentsInvalidated', showAlignmentsInvalidated);
-  console.log('====================================');
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
     dispatch(showInvalidatedWarnings(showSelectionInvalidated, showAlignmentsInvalidated, translate, showIgnorableAlert));

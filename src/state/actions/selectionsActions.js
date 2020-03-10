@@ -125,8 +125,6 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
   chapterNumber = chapterNumber || chapter;
   verseNumber = verseNumber || verse;
   let selectionInvalidated = false;
-  console.log('1 selectionInvalidated', selectionInvalidated);
-
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
 
   if (currentToolName !== WORD_ALIGNMENT) {
@@ -150,38 +148,24 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
       }
       selectionInvalidated = selectionInvalidated || selectionsChanged;
     }
-    console.log('2 selectionInvalidated', selectionInvalidated);
-
 
     const results_ = { selectionsChanged: selectionInvalidated };
     dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
-    console.log('3 selectionInvalidated', selectionInvalidated);
-
     selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
       projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
     ));
-    console.log('4 selectionInvalidated', selectionInvalidated);
   } else { // wordAlignment tool
     selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
       projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
     ));
-    console.log('5 selectionInvalidated', selectionInvalidated);
   }
 
   if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
     dispatch(batchActions(actionsBatch));
   }
 
-  console.log('final selectionInvalidated', selectionInvalidated);
-
-
   results.selectionsChanged = selectionInvalidated;
-
-  console.log('validateSelections()====================================');
-  console.log('showInvalidation', showInvalidation);
-  console.log('selectionInvalidated', selectionInvalidated);
-  console.log('====================================');
 
   if (showInvalidation && selectionInvalidated) {
     dispatch(showSelectionsInvalidatedWarning());
@@ -286,11 +270,6 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
     dispatch(batchActions(actionsBatch));
   }
 
-  console.log('validateAllSelectionsForVerse()====================================');
-  console.log('warnOnError', warnOnError);
-  console.log('(initialSelectionsChanged, results.selectionsChanged', initialSelectionsChanged, results.selectionsChanged);
-  console.log('====================================');
-
   if (warnOnError && (initialSelectionsChanged || results.selectionsChanged)) {
     dispatch(showSelectionsInvalidatedWarning());
   }
@@ -314,8 +293,6 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
 const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter, verse, targetVerse,
   selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch) => {
   const selectionsPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-
-  console.log('validateSelectionsForUnloadedTools selectionInvalidated', selectionInvalidated);
 
   if (fs.existsSync(selectionsPath)) {
     let files = fs.readdirSync(selectionsPath);
@@ -371,7 +348,7 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
       }
     }
   }
-  selectionInvalidated = 'manny colon';
+
   return selectionInvalidated;
 };
 

@@ -102,10 +102,6 @@ export default class Api extends ToolApi {
 
     // TODO: this is a temporary fix - as we finish tool reducer updates we should call API in tCore since tools should not have knowledge of one another
     if (wA_api) {
-      console.log('====================================');
-      console.log('wA_api');
-      console.log('chapter, verse', chapter, verse);
-      console.log('====================================');
       return wA_api.trigger('validateVerse', chapter, verse, silent);
     }
     return false;
