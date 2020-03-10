@@ -315,6 +315,8 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
   selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch) => {
   const selectionsPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
 
+  console.log('validateSelectionsForUnloadedTools selectionInvalidated', selectionInvalidated);
+
   if (fs.existsSync(selectionsPath)) {
     let files = fs.readdirSync(selectionsPath);
 
