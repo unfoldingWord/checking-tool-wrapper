@@ -1,6 +1,8 @@
 import {
-  TRANSLATION_ACADEMY, TRANSLATION_NOTES, TRANSLATION_WORDS,
-} from './consts';
+  TRANSLATION_ACADEMY,
+  TRANSLATION_NOTES,
+  TRANSLATION_WORDS,
+} from '../common/constants';
 
 /**
  *

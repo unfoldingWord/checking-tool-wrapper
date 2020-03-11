@@ -1,5 +1,5 @@
 import usfmjs from 'usfm-js';
-import { normalizeString } from './selectionHelpers';
+import { normalizeString } from './stringHelpers';
 
 /**
  *  Gets both the verse text without usfm markers and unfilteredVerseText.
