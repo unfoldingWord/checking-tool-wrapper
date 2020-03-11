@@ -40,11 +40,8 @@ import { showInvalidatedWarnings, validateSelections } from './selectionsActions
  */
 export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi) => (dispatch, getState) => {
   const state = getState();
-  const contextId = getContextId(state);
-  const currentCheckContextId = contextId;
-  const {
-    bookId, chapter: currentCheckChapter, verse: currentCheckVerse,
-  } = currentCheckContextId.reference;
+  const currentCheckContextId = getContextId(state);
+  const { bookId } = currentCheckContextId.reference;
   verseWithVerseEdit = (typeof verseWithVerseEdit === 'string') ? parseInt(verseWithVerseEdit) : verseWithVerseEdit; // make sure number
 
   const contextIdWithVerseEdit = {
@@ -68,8 +65,8 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     tags,
     username,
     activeBook: bookId,
-    activeChapter: currentCheckChapter,
-    activeVerse: currentCheckVerse,
+    activeChapter: chapterWithVerseEdit,
+    activeVerse: verseWithVerseEdit,
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
