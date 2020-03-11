@@ -152,13 +152,13 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
     const results_ = { selectionsChanged: selectionInvalidated };
     dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
-    selectionInvalidated = validateSelectionsForUnloadedTools(
+    selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
       projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
-    );
+    ));
   } else { // wordAlignment tool
-    selectionInvalidated = validateSelectionsForUnloadedTools(
+    selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
       projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
-    );
+    ));
   }
 
   if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
@@ -348,6 +348,7 @@ const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter
       }
     }
   }
+
   return selectionInvalidated;
 };
 
