@@ -1,23 +1,174 @@
-export const getTcState = (state) => state.tc;
-export const getGroupsDataState = (state) => state.tc.groupsDataReducer.groupsData;
-export const getGroupsIndexState = (state) => state.tc.groupsIndexReducer.groupsIndex;
-export const getTranslateState = (state) => state.translate;
-export const getSelectedToolName = (state) => state.tc.selectedToolName;
-export const getManifestState = (state) => state.projectDetailsReducer.manifest;
-export const getContextIdState = (state) => state.contextIdReducer.contextId;
-export const getToolsSelectedGLsState = (state) => state.projectDetailsReducer.manifest.toolsSelectedGLs;
-export const getSelectionsState = (state) => state.selectionsReducer.selections;
-export const getCurrentPaneSettingsState = (state) => {
-  const { ScripturePane } = state.settingsReducer.toolsSettings;
+import isEqual from 'deep-equal';
+// reducers
+import * as fromGrouspIndex from '../state/reducers/groupsIndexReducer';
+import * as fromGroupsData from '../state/reducers/groupsDataReducer';
+import * as fromGroupMenu from '../state/reducers/groupMenuReducer';
+import * as fromContextId from '../state/reducers/contextIdReducer';
+// helpers
+import { getAlignedGLTextHelper } from '../helpers/gatewayLanguageHelpers';
+// constants
+import {
+  DEFAULT_MAX_SELECTIONS,
+  TRANSLATION_NOTES,
+  TN_MAX_SELECTIONS,
+} from '../common/constants';
+
+export const getGroupsIndex = (state) =>
+  fromGrouspIndex.getGroupsIndex(state.tool.groupsIndexReducer);
+
+export const getGroupsData = (state) =>
+  fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
+
+export const getCurrentGroup = (state) => {
+  const groupsData = getGroupsData(state);
+  const contextId = getContextId(state);
+  let currentGroupItem;
+
+  if (contextId && groupsData[contextId.groupId]) {
+    currentGroupItem = groupsData[contextId.groupId].find(groupData => isEqual(groupData.contextId, contextId));
+  } else {
+    currentGroupItem = null;
+  }
+  return currentGroupItem;
+};
+
+export const getGroupMenuFilters = (state) =>
+  fromGroupMenu.getFilters(state.tool.groupMenuReducer);
+
+export const getContextId = (state) =>
+  fromContextId.getContext(state.tool.contextIdReducer);
+
+export const getCommentsReducer = (state) =>
+  state.tool.commentsReducer;
+
+export const getSelectionsReducer = (state) =>
+  state.tool.selectionsReducer;
+
+export const getBookmarksReducer = (state) =>
+  state.tool.bookmarksReducer;
+
+export const getSelections = (state) =>
+  state.tool.selectionsReducer.selections;
+
+export const getAlignedGLText = (state, ownProps) => {
+  const contextId = getContextId(state);
+  const glBibles = getGatewayLanguageBibles(ownProps);
+
+  return getAlignedGLTextHelper(contextId, glBibles);
+};
+export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
+export const getGatewayLanguageCode = (ownProps) => ownProps.tc.gatewayLanguageCode;
+export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
+export const getProjectPath = (ownProps) => ownProps.tc.projectSaveLocation;
+export const getUserData = (ownProps) => ownProps.tc.loginReducer.userdata;
+export const getGatewayLanguageBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles[getGatewayLanguageCode(ownProps)];
+export const getBookName = (ownProps) => ownProps.tc.project.getBookName();
+export const getTargetBible = (ownProps) => ownProps.tc.resourcesReducer.bibles.targetLanguage.targetBible;
+export const getTranslationHelpsArticle = (ownProps, contextId = {}) => {
+  const article = ownProps.tc.resourcesReducer.translationHelps[ownProps.tc.currentToolName];
+  const { groupId = '' } = contextId;
+
+  return article && groupId ? article[groupId] : '';
+};
+export const getMaximumSelections = toolName => (toolName === TRANSLATION_NOTES) ? TN_MAX_SELECTIONS : DEFAULT_MAX_SELECTIONS;
+export const getResourcesReducer = (ownProps) => ownProps.tc.resourcesReducer;
+export const getBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles;
+export const getTranslationHelps = (ownProps) => {
+  const resourcesReducer = ownProps.tc.resourcesReducer;
+  return resourcesReducer['translationHelps'] ? resourcesReducer['translationHelps'] : {};
+};
+export const getProjectDetailsReducer = (ownProps) => ownProps.tc.projectDetailsReducer;
+export const getTcState = (ownProps) => ownProps.tc;
+export const getToolApi = (ownProps) => ownProps.toolApi;
+export const getTranslateState = (ownProps) => ownProps.translate;
+export const getCurrentPaneSettings = (ownProps) => {
+  const { ScripturePane } = ownProps.tc.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
-export const getBiblesState = (state) => state.resourcesReducer.bibles;
-export const getTargetBibleState = (state) => state.tc.resourcesReducer.bibles.targetLanguage.targetBible;
-export const getActionsState = (state) => state.tc.actions;
-export const getCommentsReducerState = (state) => state.tc.commentsReducer;
-export const getSelectionsReducerState = (state) => state.tc.selectionsReducer;
-export const getRemindersReducerState = (state) => state.tc.remindersReducer;
-export const getLegacyToolsReducerState = (state) => ({ currentToolName: state.tc.selectedToolName });
-export const getResourcesReducerState = (state) => state.tc.resourcesReducer;
-export const getContextIdReducerState = (state) => state.contextIdReducer;
-export const getProjectDetailsReducerState = (state) => state.projectDetailsReducer;
+export const getUsername = (ownProps) => ownProps.tc.username;
+
+/**
+ * Returns a chapter in the target language bible
+ * @param {object} state
+ * @param {object} ownProps
+ * @param {number} chapter - the chapter number
+ */
+export const getTargetChapter = (state, ownProps, chapter) => {
+  const contextId = getContextId(state);
+
+  if (!chapter && contextId) {
+    const { reference: { chapter: _chapter } } = contextId;
+    chapter = _chapter;
+  } else if (!chapter && !contextId) {
+    return null;
+  }
+
+  return ownProps.tc.resourcesReducer.bibles.targetLanguage.targetBible[chapter + ''];
+};
+
+/**
+ * Returns the currently selected verse in the target language bible
+ * @param {object} state
+ * @param {object} ownProps
+ * @return {*}
+ */
+export const getSelectedTargetVerse = (state, ownProps) => {
+  const contextId = getContextId(state);
+
+  if (!contextId) {
+    return null;
+  }
+
+  const { reference: { chapter, verse } } = contextId;
+  const targetChapter = getTargetChapter(state, ownProps, chapter);
+
+  if (targetChapter) {
+    return targetChapter[verse + ''];
+  } else {
+    return null;
+  }
+};
+
+/**
+ * Returns a chapter in the original language bible
+ * @param {object} state
+ * @param {object} ownProps
+ * @param {number} chapter - the chapter number
+ * @return {*}
+ */
+export const getSourceChapter = (state, ownProps, chapter) => {
+  const { sourceBook } = ownProps.tc;
+  const contextId = getContextId(state);
+
+  if (!chapter && contextId) {
+    const { reference: { chapter: _chapter } } = contextId;
+    chapter = _chapter;
+  } else if (!chapter && !contextId) {
+    return null;
+  }
+
+  return sourceBook && sourceBook[chapter + ''];
+};
+
+/**
+ * Returns the currently selected verse in the original language bible
+ * @param {object} state
+ * @param {object} ownProps
+ * @return {*}
+ */
+export const getSelectedSourceVerse = (state, ownProps) => {
+  const contextId = getContextId(state);
+
+  if (!contextId) {
+    return null;
+  }
+
+  const { reference: { chapter, verse } } = contextId;
+  const sourceChapter = getSourceChapter(state, ownProps, chapter);
+
+  if (sourceChapter) {
+    return sourceChapter[verse + ''];
+  } else {
+    return null;
+  }
+};
