@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "4.0.2-beta",
+  "version": "4.0.2-beta.3",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -78,7 +78,7 @@
     "selections": "0.1.7",
     "semver": "6.3.0",
     "simple-git": "1.126.0",
-    "tc-ui-toolkit": "2.0.0-beta",
+    "tc-ui-toolkit": "1.0.1-beta.2",
     "usfm-js": "2.0.1"
   }
 }
