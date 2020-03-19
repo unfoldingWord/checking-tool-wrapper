@@ -1,7 +1,7 @@
-import ospath from 'ospath';
 import path from 'path-extra';
 import fs from 'fs-extra';
 import semver from 'semver';
+import ospath from '../utils/ospath-extra';
 import { TRANSLATION_HELPS } from '../common/constants';
 /**
  * Provides an interface by which you can interact with the resources in the user's home directory.
