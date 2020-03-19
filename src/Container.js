@@ -42,6 +42,8 @@ const styles = {
     overflowX: 'auto',
   },
   scripturePaneDiv: {
+    display: 'flex',
+    flexShrink: '0',
     height: '250px',
     paddingBottom: '20px',
   },
