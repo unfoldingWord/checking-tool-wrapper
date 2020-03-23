@@ -7,6 +7,7 @@ let remote = null;
 try {
   remote = require('electron').remote;
 } catch (e) { // fallback for testing
+  console.warn(`electron not defined, falling back to unit test environment`);
   remote = {
     app: {
       getPath: (path) => {
