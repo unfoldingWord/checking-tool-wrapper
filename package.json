@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "4.0.3",
+  "version": "4.0.4-beta.10",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -22,6 +22,9 @@
   "author": "@unfoldingWord",
   "license": "MIT",
   "keywords": [],
+  "peerDependencies": {
+    "electron": "6.x"
+  },
   "devDependencies": {
     "@babel/core": "7.4.0",
     "@babel/plugin-proposal-class-properties": "7.4.0",
@@ -78,6 +81,7 @@
     "selections": "0.1.7",
     "semver": "6.3.0",
     "simple-git": "1.126.0",
+    "tc-electron-env": "0.9.0-beta.10",
     "tc-ui-toolkit": "1.0.1",
     "usfm-js": "2.0.1"
   }
