@@ -38,5 +38,10 @@ module.exports = {
     'react-redux': 'react-redux',
     'electron': 'electron',
   },
-  resolve: { alias: { 'react-redux': path.resolve('./node_modules/react-redux') } },
+  resolve: {
+    alias: {
+      'react-redux': path.resolve('./node_modules/react-redux'),
+      'electron': path.resolve('./node_modules/electron'),
+    },
+  },
 };
