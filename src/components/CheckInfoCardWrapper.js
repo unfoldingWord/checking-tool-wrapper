@@ -44,11 +44,13 @@ function CheckInfoCardWrapper({
 
     switch (tool) {
     case TRANSLATION_WORDS: {
+      console.log("loading translation words");
       const { translationWords } = translationHelps ? translationHelps : {};
       phrase = getPhraseFromTw(translationWords, groupId, translationHelps);
       break;
     }
     case TRANSLATION_NOTES:
+      console.log("loading note", occurrenceNote);
       phrase = getNote(occurrenceNote);
       break;
     default:
