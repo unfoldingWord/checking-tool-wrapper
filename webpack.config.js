@@ -34,8 +34,9 @@ module.exports = {
   },
   node: { __dirname: true },
   externals: {
-    'react': 'commonjs react',
-    'react-redux': 'react-redux',
+    'react': 'commonjs2 react',
+    'react-dom': 'commonjs2 react-dom',
+    'react-redux': 'commonjs2 react-redux',
     'tc-ui-toolkit': 'commonjs2 tc-ui-toolkit'
   },
   resolve: { alias: { 'react-redux': path.resolve('./node_modules/react-redux') } },
