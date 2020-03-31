@@ -19,6 +19,7 @@ function CheckInfoCardWrapper({
   groupsIndex,
   translationHelps,
   resourcesReducer,
+  onNavigateToHelp
 }) {
   function getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
@@ -32,6 +33,13 @@ function CheckInfoCardWrapper({
       const { verseObjects } = currentBible[id][chapterParsed][verseParsed];
       const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
       return verseText;
+    }
+  }
+
+  function handleClickLink(href, title) {
+    if(href.startsWith('rc://')) {
+      // TODO: parse the link and find the correct help.
+      console.log(`clicked link ${title} ${href}`)
     }
   }
 
@@ -63,7 +71,8 @@ function CheckInfoCardWrapper({
         getScriptureFromReference={getScriptureFromReference}
         seeMoreLabel={translate('see_more')}
         showSeeMoreButton={!showHelps}
-        onSeeMoreClick={toggleHelps} />
+        onSeeMoreClick={toggleHelps}
+        onLinkClick={handleClickLink}/>
     );
   } else {
     return null;
