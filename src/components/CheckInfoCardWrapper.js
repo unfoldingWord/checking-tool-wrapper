@@ -38,7 +38,7 @@ function CheckInfoCardWrapper({
   function handleClickLink(href) {
     if (href.startsWith('rc://')) {
       // TRICKY: the translation helps wrapper requires a custom link format
-      const link = href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      const link = href.replace(/.*rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
       window.followLink(link);
     }
   }
