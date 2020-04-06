@@ -63,11 +63,9 @@ function Container({
   // TODO: parse the resource link and pass the article id to the helps.
 
   useEffect(() => {
-    console.log(resourceLink);
-
     if (resourceLink && window.followLink) {
       // Send supported link format to the translation helps wrapper.
-      const link = resourceLink.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      const link = resourceLink.href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
       console.log(resourceLink, link);
       window.followLink(link);
     }
