@@ -59,17 +59,6 @@ function Container({
   gatewayLanguageQuote,
 }) {
   const [showHelps, setShowHelps] = useState(true);
-  const [resourceLink, setResourceLink] = useState(null);
-  // TODO: parse the resource link and pass the article id to the helps.
-
-  useEffect(() => {
-    if (resourceLink && window.followLink) {
-      // Send supported link format to the translation helps wrapper.
-      const link = resourceLink.href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
-      console.log(resourceLink, link);
-      window.followLink(link);
-    }
-  }, [resourceLink, window.followLink]);
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
@@ -96,7 +85,6 @@ function Container({
             tc={tc}
             translate={translate}
             showHelps={showHelps}
-            onClickHelpLink={setResourceLink}
             toggleHelps={() => setShowHelps(!showHelps)}
           />
           <VerseCheckWrapper

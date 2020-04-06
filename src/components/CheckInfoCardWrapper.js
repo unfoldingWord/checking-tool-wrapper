@@ -19,7 +19,6 @@ function CheckInfoCardWrapper({
   groupsIndex,
   translationHelps,
   resourcesReducer,
-  onClickHelpLink,
 }) {
   function getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
@@ -36,9 +35,11 @@ function CheckInfoCardWrapper({
     }
   }
 
-  function handleClickLink(href, title) {
+  function handleClickLink(href) {
     if (href.startsWith('rc://') && typeof onClickHelpLink === 'function') {
-      onClickHelpLink({ href, title });
+      // TRICKY: the translation helps wrapper requires a custom link format
+      const link = href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      window.followLink(link);
     }
   }
 
@@ -86,7 +87,6 @@ CheckInfoCardWrapper.propTypes = {
   groupsIndex: PropTypes.object.isRequired,
   translationHelps: PropTypes.object.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
-  onClickHelpLink: PropTypes.func
 };
 
 export const mapStateToProps = (state, ownProps) => ({
