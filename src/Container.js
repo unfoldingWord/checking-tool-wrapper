@@ -63,6 +63,7 @@ function Container({
   // TODO: parse the resource link and pass the article id to the helps.
 
   useEffect(() => {
+    console.log(resourceLink);
     if (resourceLink && window.followLink) {
       window.followLink(resourceLink.href);
     }
