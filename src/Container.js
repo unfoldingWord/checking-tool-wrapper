@@ -59,6 +59,14 @@ function Container({
   gatewayLanguageQuote,
 }) {
   const [showHelps, setShowHelps] = useState(true);
+  const [resourceLink, setResourceLink] = useState(null);
+  // TODO: parse the resource link and pass the article id to the helps.
+
+  useEffect(() => {
+    if (resourceLink && window.followLink) {
+      window.followLink(resourceLink.href);
+    }
+  }, [resourceLink, window.followLink]);
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
@@ -85,6 +93,7 @@ function Container({
             tc={tc}
             translate={translate}
             showHelps={showHelps}
+            onClickHelpLink={setResourceLink}
             toggleHelps={() => setShowHelps(!showHelps)}
           />
           <VerseCheckWrapper
