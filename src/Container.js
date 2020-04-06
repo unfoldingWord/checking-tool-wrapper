@@ -64,8 +64,12 @@ function Container({
 
   useEffect(() => {
     console.log(resourceLink);
+
     if (resourceLink && window.followLink) {
-      window.followLink(resourceLink.href);
+      // Send supported link format to the translation helps wrapper.
+      const link = resourceLink.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      console.log(resourceLink, link);
+      window.followLink(link);
     }
   }, [resourceLink, window.followLink]);
 

@@ -38,7 +38,6 @@ function CheckInfoCardWrapper({
 
   function handleClickLink(href, title) {
     if (href.startsWith('rc://') && typeof onClickHelpLink === 'function') {
-      console.log('href ' + href);
       onClickHelpLink({ href, title });
     }
   }
