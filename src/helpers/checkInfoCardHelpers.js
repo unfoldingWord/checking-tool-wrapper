@@ -78,7 +78,7 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  * @return {string}
  */
 export function getNote(occurrenceNote) {
-  let cleanedNote = occurrenceNote; // = occurrenceNote.replace(/\s*\([^()[\]]+((\[[^[\]]+\])*(\[\[|\()+rc:\/\/[^)\]]+(\]\]|\))[^([)\]]*)+[^()[\]]*\)\s*$/g, '');
+  let cleanedNote = occurrenceNote;
 
   try {
     let convertedNote = marked(cleanedNote, { renderer: InlineRenderer }); // convert markdown in note using our custom renderer
