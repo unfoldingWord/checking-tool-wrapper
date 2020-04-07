@@ -18,6 +18,7 @@ InlineRenderer.paragraph = (text => text);
  * @return {String} link as markdown
  */
 InlineRenderer.link = function (href, title, text) {
+  console.log(`${href} ${title} ${text}`);
   const link = href + (title ? ' ' + title : '');
   const markdownLink = '[' + text + '](' + link + ')';
   return markdownLink;
@@ -79,6 +80,7 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  */
 export function getNote(occurrenceNote) {
   try {
+
     let convertedNote = marked(occurrenceNote, { renderer: InlineRenderer });
 
     if (convertedNote) { // if not empty use
