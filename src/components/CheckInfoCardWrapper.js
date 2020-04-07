@@ -6,7 +6,9 @@ import { CheckInfoCard } from 'tc-ui-toolkit';
 import { VerseObjectUtils } from 'word-aligner';
 // helpers
 import { TRANSLATION_NOTES, TRANSLATION_WORDS } from '../common/constants';
-import { getPhraseFromTw, getNote } from '../helpers/checkInfoCardHelpers';
+import {
+  getPhraseFromTw, getNote, formatRCLink,
+} from '../helpers/checkInfoCardHelpers';
 import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
@@ -19,6 +21,7 @@ function CheckInfoCardWrapper({
   groupsIndex,
   translationHelps,
   resourcesReducer,
+  tc: { appLanguage },
 }) {
   function getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
@@ -50,6 +53,25 @@ function CheckInfoCardWrapper({
     }
   }
 
+  /**
+   * Called to render links found in the note markup.
+   * This fixes and formats links
+   * @param href
+   * @param title
+   * @returns {{href: *, title: *}}
+   */
+  function onRenderLink({ href, title }) {
+    if (href.startsWith('rc://')) {
+      return formatRCLink(resourcesReducer, appLanguage, href, title);
+    } else {
+      console.warn(`Unsupported link: ${title} ${href}`);
+    }
+    return {
+      href,
+      title,
+    };
+  }
+
   if (contextId !== null) {
     const {
       groupId, occurrenceNote, tool,
@@ -64,7 +86,7 @@ function CheckInfoCardWrapper({
       break;
     }
     case TRANSLATION_NOTES:
-      phrase = getNote(occurrenceNote);
+      phrase = getNote(occurrenceNote, onRenderLink);
       break;
     default:
       console.error('tool is undefined in contextId');
@@ -90,6 +112,7 @@ CheckInfoCardWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
+  tc: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   groupsIndex: PropTypes.object.isRequired,
   translationHelps: PropTypes.object.isRequired,

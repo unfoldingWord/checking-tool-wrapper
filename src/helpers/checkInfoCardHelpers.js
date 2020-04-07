@@ -1,4 +1,5 @@
 import marked from 'marked';
+import { getResourceDirByType } from './tHelpsHelpers';
 
 /**
  * Produces a text renderer
@@ -111,4 +112,41 @@ export function getNote(occurrenceNote, linkRenderer = null) {
   }
 
   return occurrenceNote;
+}
+
+/**
+ * Produces a properly formatted link
+ * @param resourcesReducer
+ * @param appLanguage
+ * @param href
+ * @param title
+ * @returns {{href: *, title: *}}
+ */
+export function formatRCLink(resourcesReducer, appLanguage, href, title) {
+  // parse RC links based on spec https://resource-container.readthedocs.io/en/latest/linking.html#uri
+  const parts = /rc:\/\/([^/]+)\/([^/]+)\/([^/]+)\/([^/]+)(\/(.*))?/.exec(href);
+  let lang = parts[1];
+  const resource = parts[2];
+  const type = parts[3];
+  const project = parts[4];
+  const extra = parts[5]; // may include leading /
+  // const args = parts[6]; // same as extra but without leading /
+
+  const resourceDir = getResourceDirByType(resource);
+  console.log(resourceDir);
+  const resources = resourcesReducer.translationHelps[resourceDir];
+  console.log(resources);
+
+  if (lang !== appLanguage) {
+    lang = appLanguage;
+    // TODO: look up the title in the correct language
+  }
+
+  // rebuild link with updated path components
+  href = `rc://${lang}/${resource}/${type}/${project}/${extra}`;
+
+  return {
+    href,
+    title,
+  };
 }
