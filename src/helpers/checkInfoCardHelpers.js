@@ -18,7 +18,7 @@ InlineRenderer.paragraph = (text => text);
  * @return {String} link as markdown
  */
 InlineRenderer.link = function (href, title, text) {
-  console.log(`${href} ${title} ${text}`);
+  // TODO: sanitize links here and convert them to proper RC links.
   const link = href + (title ? ' ' + title : '');
   const markdownLink = '[' + text + '](' + link + ')';
   return markdownLink;
@@ -80,7 +80,6 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  */
 export function getNote(occurrenceNote) {
   try {
-
     let convertedNote = marked(occurrenceNote, { renderer: InlineRenderer });
 
     if (convertedNote) { // if not empty use
