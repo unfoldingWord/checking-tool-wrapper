@@ -78,17 +78,15 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  * @return {string}
  */
 export function getNote(occurrenceNote) {
-  let cleanedNote = occurrenceNote;
-
   try {
-    let convertedNote = marked(cleanedNote, { renderer: InlineRenderer }); // convert markdown in note using our custom renderer
+    let convertedNote = marked(occurrenceNote, { renderer: InlineRenderer });
 
     if (convertedNote) { // if not empty use
-      cleanedNote = convertedNote;
+      occurrenceNote = convertedNote;
     }
   } catch (e) {
-    console.warn(`getNote() - failed to convert markdown in ${cleanedNote}`);
+    console.warn(`getNote() - failed to convert markdown in ${occurrenceNote}`);
   }
 
-  return cleanedNote;
+  return occurrenceNote;
 }
