@@ -45,6 +45,8 @@ function CheckInfoCardWrapper({
       if (!showHelps) {
         toggleHelps();
       }
+    } else {
+      console.warn(`Unsupported link format ${href}`);
     }
   }
 
