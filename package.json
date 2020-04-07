@@ -55,7 +55,7 @@
     "redux-mock-store": "1.5.3",
     "style-loader": "0.23.1",
     "tc-tool": "3.0.3",
-    "tc-ui-toolkit": "1.1.0",
+    "tc-ui-toolkit": "1.0.0",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0"
   },
