@@ -1,27 +1,42 @@
 import marked from 'marked';
 
-// setup marked options:
-const InlineRenderer = new marked.Renderer();
-
 /**
- * leave paragraphs unchanged (prevents wrapping text in <p>...</p>)
- * @type {String} text
- * @return {String} same as text
+ * Produces a text renderer
+ * @param linkRenderer a custom callback to handle rendering links
+ * @returns {Renderer}
  */
-InlineRenderer.paragraph = (text => text);
+const buildRenderer = (linkRenderer = null) => {
+  // setup marked options:
+  const Renderer = new marked.Renderer();
 
-/**
- * leave links as markdown since they will be processed later
- * @param {String} href
- * @param {String} title
- * @param {String} text
- * @return {String} link as markdown
- */
-InlineRenderer.link = function (href, title, text) {
-  // TODO: sanitize links here and convert them to proper RC links.
-  const link = href + (title ? ' ' + title : '');
-  const markdownLink = '[' + text + '](' + link + ')';
-  return markdownLink;
+  /**
+   * leave paragraphs unchanged (prevents wrapping text in <p>...</p>)
+   * @type {String} text
+   * @return {String} same as text
+   */
+  Renderer.paragraph = (text => text);
+
+  /**
+   * leave links as markdown since they will be processed later
+   * @param {String} href
+   * @param {String} title
+   * @param {String} text
+   * @return {String} link as markdown
+   */
+  Renderer.link = function (href, title, text) {
+    if (typeof linkRenderer === 'function') {
+      const data = linkRenderer({
+        href,
+        title: text,
+      });
+      href = data.href;
+      text = data.title;
+    }
+
+    const link = href + (title ? ' ' + title : '');
+    return '[' + text + '](' + link + ')';
+  };
+  return Renderer;
 };
 
 //
@@ -76,11 +91,17 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  * Ex: Paul speaks of God’s message as if it were an object (See: [Idiom](rc://en/ta/man/translate/figs-idiom) and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) =>
  *     Paul speaks of God’s message as if it were an object
  * @param {string} occurrenceNote
+ * @param linkRenderer a callback to manually process link titles and hrefs.
  * @return {string}
  */
-export function getNote(occurrenceNote) {
+export function getNote(occurrenceNote, linkRenderer = null) {
   try {
-    let convertedNote = marked(occurrenceNote, { renderer: InlineRenderer });
+    // convert legacy nameless links to proper links.
+    occurrenceNote = occurrenceNote.replace(/\[\[(([^\][])*)]]/, '[$1]($1)');
+
+    // render markdown
+    const CustomRenderer = buildRenderer(linkRenderer);
+    let convertedNote = marked(occurrenceNote, { renderer: CustomRenderer });
 
     if (convertedNote) { // if not empty use
       occurrenceNote = convertedNote;
