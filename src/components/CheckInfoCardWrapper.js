@@ -42,6 +42,7 @@ function CheckInfoCardWrapper({
     if (href.startsWith('rc://')) {
       // TRICKY: the translation helps wrapper requires a custom link format
       const link = href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      console.log("opening link ", link);
       window.followLink(link);
 
       // TRICKY: open the helps so the modal mounts.
