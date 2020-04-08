@@ -130,17 +130,32 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
   const type = parts[3];
   const project = parts[4];
   const extra = parts[5]; // includes leading /
-  // const args = parts[6]; // same as extra but without leading /
 
-  const resourceDir = getResourceDirByType(resource);
-  console.log(resourceDir);
-  console.log(resourcesReducer);
-  const resources = resourcesReducer.translationHelps[resourceDir];
-  console.log(resources);
+  // Retrieve the linked resource
+  const loadResource = (resourceId, projectId, reducer) => {
+    const resourceDir = getResourceDirByType(resourceId);
 
+    if (resourceDir && reducer.translationHelps) {
+      const resources = reducer.translationHelps[resourceDir];
+
+      if (resources) {
+        return resources[projectId];
+      }
+    }
+    return null;
+  };
+
+  const helpResource = loadResource(resource, project, resourcesReducer);
+
+  // update the link language
   if (lang !== appLanguage) {
     lang = appLanguage.split('_')[0]; // remove the location e.g. _US
-    // TODO: look up the title in the correct language
+  }
+
+  // update the link title
+  if (helpResource) {
+    const resourceTitle = helpResource.split('\n')[0].replace(/^\s*#+\s*/, '').replace(/\s*#+\s*$/, '');
+    title = resourceTitle;
   }
 
   // rebuild link with updated path components
