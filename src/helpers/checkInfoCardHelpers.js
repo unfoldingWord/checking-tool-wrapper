@@ -1,26 +1,43 @@
 import marked from 'marked';
-
-// setup marked options:
-const InlineRenderer = new marked.Renderer();
+import { getResourceDirByType } from './tHelpsHelpers';
 
 /**
- * leave paragraphs unchanged (prevents wrapping text in <p>...</p>)
- * @type {String} text
- * @return {String} same as text
+ * Produces a text renderer
+ * @param linkRenderer a custom callback to handle rendering links
+ * @returns {Renderer}
  */
-InlineRenderer.paragraph = (text => text);
+const buildRenderer = (linkRenderer = null) => {
+  // setup marked options:
+  const Renderer = new marked.Renderer();
 
-/**
- * leave links as markdown since they will be processed later
- * @param {String} href
- * @param {String} title
- * @param {String} text
- * @return {String} link as markdown
- */
-InlineRenderer.link = function (href, title, text) {
-  const link = href + (title ? ' ' + title : '');
-  const markdownLink = '[' + text + '](' + link + ')';
-  return markdownLink;
+  /**
+   * leave paragraphs unchanged (prevents wrapping text in <p>...</p>)
+   * @type {String} text
+   * @return {String} same as text
+   */
+  Renderer.paragraph = (text => text);
+
+  /**
+   * leave links as markdown since they will be processed later
+   * @param {String} href
+   * @param {String} title
+   * @param {String} text
+   * @return {String} link as markdown
+   */
+  Renderer.link = function (href, title, text) {
+    if (typeof linkRenderer === 'function') {
+      const data = linkRenderer({
+        href,
+        title: text,
+      });
+      href = data.href;
+      text = data.title;
+    }
+
+    const link = href + (title ? ' ' + title : '');
+    return '[' + text + '](' + link + ')';
+  };
+  return Renderer;
 };
 
 //
@@ -75,20 +92,76 @@ export function getPhraseFromTw(translationWords, articleId, translationHelps) {
  * Ex: Paul speaks of God’s message as if it were an object (See: [Idiom](rc://en/ta/man/translate/figs-idiom) and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) =>
  *     Paul speaks of God’s message as if it were an object
  * @param {string} occurrenceNote
+ * @param linkRenderer a callback to manually process link titles and hrefs.
  * @return {string}
  */
-export function getNote(occurrenceNote) {
-  let cleanedNote = occurrenceNote.replace(/\s*\([^()[\]]+((\[[^[\]]+\])*(\[\[|\()+rc:\/\/[^)\]]+(\]\]|\))[^([)\]]*)+[^()[\]]*\)\s*$/g, '');
-
+export function getNote(occurrenceNote, linkRenderer = null) {
   try {
-    let convertedNote = marked(cleanedNote, { renderer: InlineRenderer }); // convert markdown in note using our custom renderer
+    // convert legacy nameless links to proper links.
+    occurrenceNote = occurrenceNote.replace(/\[\[(([^\][])*)]]/, '[$1]($1)');
+
+    // render markdown
+    const CustomRenderer = buildRenderer(linkRenderer);
+    let convertedNote = marked(occurrenceNote, { renderer: CustomRenderer });
 
     if (convertedNote) { // if not empty use
-      cleanedNote = convertedNote;
+      occurrenceNote = convertedNote;
     }
   } catch (e) {
-    console.warn(`getNote() - failed to convert markdown in ${cleanedNote}`);
+    console.warn(`getNote() - failed to convert markdown in ${occurrenceNote}`);
   }
 
-  return cleanedNote;
+  return occurrenceNote;
+}
+
+/**
+ * Produces a properly formatted link
+ * @param resourcesReducer
+ * @param appLanguage
+ * @param href
+ * @param title
+ * @returns {{href: *, title: *}}
+ */
+export function formatRCLink(resourcesReducer, appLanguage, href, title) {
+  // parse RC links based on spec https://resource-container.readthedocs.io/en/latest/linking.html#uri
+  const parts = /rc:\/\/([^/]+)\/([^/]+)\/([^/]+)\/([^/]+)(\/(.*))?/.exec(href);
+  let lang = parts[1];
+  const resource = parts[2];
+  const type = parts[3];
+  const project = parts[4];
+  const extra = parts[5]; // includes leading /
+
+  // Retrieve the linked resource
+  const loadResource = (resourceId, projectId, reducer) => {
+    const resourceDir = getResourceDirByType(resourceId);
+
+    if (resourceDir && reducer.translationHelps) {
+      const resources = reducer.translationHelps[resourceDir];
+
+      if (resources) {
+        return resources[projectId];
+      }
+    }
+    return null;
+  };
+
+  const helpResource = loadResource(resource, project, resourcesReducer);
+
+  // update the link language
+  if (lang !== appLanguage) {
+    lang = appLanguage.split('_')[0]; // remove the location e.g. _US
+  }
+
+  // update the link title
+  if (helpResource) {
+    title = helpResource.trim().split('\n')[0].replace(/^\s*#+\s*/, '').replace(/\s*#+\s*$/, '');
+  }
+
+  // rebuild link with updated path components
+  href = `rc://${lang}/${resource}/${type}/${project}${extra}`;
+
+  return {
+    href,
+    title,
+  };
 }
