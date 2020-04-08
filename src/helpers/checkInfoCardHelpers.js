@@ -123,7 +123,6 @@ export function getNote(occurrenceNote, linkRenderer = null) {
  * @returns {{href: *, title: *}}
  */
 export function formatRCLink(resourcesReducer, appLanguage, href, title) {
-  console.log('formatting link', href);
   // parse RC links based on spec https://resource-container.readthedocs.io/en/latest/linking.html#uri
   const parts = /rc:\/\/([^/]+)\/([^/]+)\/([^/]+)\/([^/]+)(\/(.*))?/.exec(href);
   let lang = parts[1];
@@ -135,6 +134,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
 
   const resourceDir = getResourceDirByType(resource);
   console.log(resourceDir);
+  console.log(resourcesReducer);
   const resources = resourcesReducer.translationHelps[resourceDir];
   console.log(resources);
 
