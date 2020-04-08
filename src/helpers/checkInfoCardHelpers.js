@@ -154,8 +154,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
 
   // update the link title
   if (helpResource) {
-    const resourceTitle = helpResource.split('\n')[0].replace(/^\s*#+\s*/, '').replace(/\s*#+\s*$/, '');
-    title = resourceTitle;
+    title = helpResource.trim().split('\n')[0].replace(/^\s*#+\s*/, '').replace(/\s*#+\s*$/, '');
   }
 
   // rebuild link with updated path components
