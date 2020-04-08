@@ -130,6 +130,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
   const type = parts[3];
   const project = parts[4];
   const extra = parts[5]; // includes leading /
+  console.log("before ", title, href);
 
   // Retrieve the linked resource
   const loadResource = (resourceId, projectId, reducer) => {
@@ -160,6 +161,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
   // rebuild link with updated path components
   href = `rc://${lang}/${resource}/${type}/${project}${extra}`;
 
+  console.log("after ", title, href);
   return {
     href,
     title,
