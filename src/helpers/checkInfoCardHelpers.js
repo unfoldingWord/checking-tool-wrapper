@@ -130,7 +130,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
   const resource = parts[2];
   const type = parts[3];
   const project = parts[4];
-  const extra = parts[5]; // may include leading /
+  const extra = parts[5]; // includes leading /
   // const args = parts[6]; // same as extra but without leading /
 
   const resourceDir = getResourceDirByType(resource);
@@ -144,7 +144,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
   }
 
   // rebuild link with updated path components
-  href = `rc://${lang}/${resource}/${type}/${project}/${extra}`;
+  href = `rc://${lang}/${resource}/${type}/${project}${extra}`;
 
   return {
     href,
