@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "1.0.11-beta.9",
+  "version": "1.0.11-build.2",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -24,7 +24,8 @@
   "keywords": [],
   "peerDependencies": {
     "string-punctuation-tokenizer": "^2.0.0",
-    "word-aligner": "^0.3.0"
+    "word-aligner": "^0.3.0",
+    "tc-ui-toolkit": "^0.15.8"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
@@ -60,7 +61,7 @@
     "string-punctuation-tokenizer": "2.0.0",
     "style-loader": "0.23.1",
     "tc-tool": "3.0.3",
-    "tc-ui-toolkit": "0.15.8-beta.2",
+    "tc-ui-toolkit": "0.15.8-build.2",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0",
     "word-aligner": "0.3.0"
