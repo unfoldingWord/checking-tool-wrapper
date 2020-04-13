@@ -36,6 +36,9 @@ module.exports = {
   externals: {
     'react': 'commonjs react',
     'react-redux': 'react-redux',
+    'string-punctuation-tokenizer': 'commonjs string-punctuation-tokenizer',
+    'tc-ui-toolkit': 'commonjs tc-ui-toolkit',
+    'word-aligner': 'commonjs word-aligner',
   },
   resolve: { alias: { 'react-redux': path.resolve('./node_modules/react-redux') } },
 };

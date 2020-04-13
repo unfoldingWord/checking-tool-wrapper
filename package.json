@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "1.0.11",
+  "version": "1.0.11-build.2",
   "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -22,6 +22,11 @@
   "author": "@unfoldingWord",
   "license": "MIT",
   "keywords": [],
+  "peerDependencies": {
+    "string-punctuation-tokenizer": "^2.0.0",
+    "word-aligner": "^0.3.0",
+    "tc-ui-toolkit": "^0.15.8"
+  },
   "devDependencies": {
     "@babel/core": "7.4.0",
     "@babel/plugin-proposal-class-properties": "7.4.0",
@@ -53,10 +58,13 @@
     "react-redux": "7.1.1",
     "react-test-renderer": "16.8.5",
     "redux-mock-store": "1.5.3",
+    "string-punctuation-tokenizer": "2.0.0",
     "style-loader": "0.23.1",
     "tc-tool": "3.0.3",
+    "tc-ui-toolkit": "0.15.8-build.2",
     "webpack": "4.29.6",
-    "webpack-cli": "3.3.0"
+    "webpack-cli": "3.3.0",
+    "word-aligner": "0.3.0"
   },
   "dependencies": {
     "@material-ui/icons": "3.0.2",
@@ -70,7 +78,6 @@
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
     "selections": "0.1.7",
-    "tc-ui-toolkit": "0.15.8",
     "usfm-js": "2.0.1"
   }
 }
