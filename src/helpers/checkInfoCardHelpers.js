@@ -149,7 +149,7 @@ export function formatRCLink(resourcesReducer, appLanguage, href, title) {
 
   // update the link language
   if (lang !== appLanguage) {
-    lang = appLanguage.split('_')[0]; // remove the location e.g. _US
+    lang = appLanguage.split('_')[0]; // remove the location if it exists e.g. _US
   }
 
   // update the link title

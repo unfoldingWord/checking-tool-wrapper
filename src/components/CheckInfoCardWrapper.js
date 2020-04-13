@@ -21,7 +21,7 @@ function CheckInfoCardWrapper({
   groupsIndex,
   translationHelps,
   resourcesReducer,
-  tc: { appLanguage },
+  tc: { gatewayLanguageCode },
 }) {
   function getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
@@ -62,7 +62,7 @@ function CheckInfoCardWrapper({
    */
   function onRenderLink({ href, title }) {
     if (href.startsWith('rc://')) {
-      return formatRCLink(resourcesReducer, appLanguage, href, title);
+      return formatRCLink(resourcesReducer, gatewayLanguageCode, href, title);
     } else {
       console.warn(`Unsupported link: ${title} ${href}`);
     }
