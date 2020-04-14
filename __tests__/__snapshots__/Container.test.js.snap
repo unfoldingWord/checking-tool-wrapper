@@ -4541,7 +4541,7 @@ exports[`Container Tests Test Container 1`] = `
     style="display:flex;flex-direction:column;width:100%;overflow-x:auto"
   >
     <div
-      style="height:250px;padding-bottom:20px"
+      style="display:flex;flex-shrink:0;height:250px;padding-bottom:20px"
     >
       <div
         class="scripture-pane-container"
@@ -5335,7 +5335,9 @@ exports[`Container Tests Test Container 1`] = `
         <div
           class="phrase"
         >
-          <div />
+          <div
+            style="color:#fff"
+          />
         </div>
         <div
           class="linkInactive"
@@ -10135,7 +10137,7 @@ exports[`Container Tests Test empty Container 1`] = `
     style="display:flex;flex-direction:column;width:100%;overflow-x:auto"
   >
     <div
-      style="height:250px;padding-bottom:20px"
+      style="display:flex;flex-shrink:0;height:250px;padding-bottom:20px"
     >
       <div
         class="scripture-pane-container"
@@ -10929,7 +10931,9 @@ exports[`Container Tests Test empty Container 1`] = `
         <div
           class="phrase"
         >
-          <div />
+          <div
+            style="color:#fff"
+          />
         </div>
         <div
           class="linkInactive"
