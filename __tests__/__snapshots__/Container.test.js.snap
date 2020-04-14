@@ -5335,7 +5335,9 @@ exports[`Container Tests Test Container 1`] = `
         <div
           class="phrase"
         >
-          <div />
+          <div
+            style="color:#fff"
+          />
         </div>
         <div
           class="linkInactive"
@@ -10929,7 +10931,9 @@ exports[`Container Tests Test empty Container 1`] = `
         <div
           class="phrase"
         >
-          <div />
+          <div
+            style="color:#fff"
+          />
         </div>
         <div
           class="linkInactive"
