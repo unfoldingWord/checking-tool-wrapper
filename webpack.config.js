@@ -34,10 +34,16 @@ module.exports = {
   },
   node: { __dirname: true },
   externals: {
+    'electron': 'electron',
     'react': 'commonjs2 react',
     'react-dom': 'commonjs2 react-dom',
     'react-redux': 'commonjs2 react-redux',
     'tc-ui-toolkit': 'commonjs2 tc-ui-toolkit'
   },
-  resolve: { alias: { 'react-redux': path.resolve('./node_modules/react-redux') } },
+  resolve: {
+    alias: {
+      'react-redux': path.resolve('./node_modules/react-redux'),
+      'electron': path.resolve('./node_modules/electron'),
+    },
+  },
 };
