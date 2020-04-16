@@ -130,6 +130,7 @@ export default class Api extends ToolApi {
       tool: { name: toolName },
       getGroupsData,
       loadGroupsData,
+      updateGroupDataForVerseEdit,
     } = this.props;
     let _groupsData = groupsData || getGroupsData();
 
@@ -154,7 +155,7 @@ export default class Api extends ToolApi {
     const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
 
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
-      this.props.updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
+      updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
     }
     return selectionsValid;
   }
