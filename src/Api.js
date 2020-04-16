@@ -11,13 +11,14 @@ import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
 import { getGroupsData } from './selectors/index';
 import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
-import { loadGroupsData } from './state/actions/groupsDataActions';
+import { clearGroupsData, loadGroupsData } from './state/actions/groupsDataActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 import { sameContext } from './helpers/contextIdHelpers';
 import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
+import { clearContextId } from './state/actions/contextIdActions';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -36,6 +37,9 @@ export default class Api extends ToolApi {
    * Lifecycle method
    */
   toolWillConnect() {
+    const { clearContextId, clearGroupsData } = this.props;
+    clearContextId();
+    clearGroupsData();
     this.validateBook(true);
   }
 
@@ -124,13 +128,15 @@ export default class Api extends ToolApi {
         project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
+      getGroupsData,
+      loadGroupsData,
+      updateGroupDataForVerseEdit,
     } = this.props;
-    const { store } = this.context;
-    let _groupsData = groupsData || getGroupsData(store.getState());
+    let _groupsData = groupsData || getGroupsData();
 
     if (!Object.keys(_groupsData).length) { // if groups data not loaded
-      store.dispatch(loadGroupsData(toolName, projectSaveLocation));
-      _groupsData = getGroupsData(store.getState()); // refresh with latest group data
+      loadGroupsData(toolName, projectSaveLocation);
+      _groupsData = getGroupsData(); // refresh with latest group data
     }
 
     const groupsDataKeys = Object.keys(_groupsData);
@@ -149,7 +155,7 @@ export default class Api extends ToolApi {
     const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
 
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
-      store.dispatch(updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId));
+      updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
     }
     return selectionsValid;
   }
@@ -299,7 +305,10 @@ export default class Api extends ToolApi {
    * @param props
    */
   mapStateToProps(state, props) {
-    // TODO: implement
+    return {
+      getActiveLanguage: () => getActiveLanguage(state),
+      getGroupsData: () => getGroupsData(state),
+    };
   }
 
   /**
@@ -307,8 +316,22 @@ export default class Api extends ToolApi {
    * @param dispatch
    */
   mapDispatchToProps(dispatch) {
-    // TODO: implement
-    return {};
+    const methods = {
+      clearContextId,
+      clearGroupsData,
+      loadGroupsData,
+      setActiveLocale,
+      updateGroupDataForVerseEdit,
+    };
+
+    const dispatchedMethods = {};
+
+    // eslint-disable-next-line array-callback-return
+    Object.keys(methods).map(key => {
+      dispatchedMethods[key] = (...args) => dispatch(methods[key](...args));
+    });
+
+    return dispatchedMethods;
   }
 
   /**
@@ -333,12 +356,11 @@ export default class Api extends ToolApi {
       const isCurrentTool = (nextCurrentToolName === currentToolName);
 
       if (isCurrentTool && isReady) {
-        const { store } = this.context;
-        const currentLang = getActiveLanguage(store.getState());
+        const currentLang = this.props.getActiveLanguage();
         const langId = currentLang && currentLang.code;
 
         if (langId && (langId !== appLanguage)) { // see if locale language has changed
-          store.dispatch(setActiveLocale(appLanguage));
+          this.props.setActiveLocale(appLanguage);
         }
       }
     } catch (error) {
