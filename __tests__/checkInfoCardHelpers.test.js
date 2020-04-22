@@ -1,34 +1,59 @@
 /* eslint-env jest */
-import React from 'react';
-import { connect ,Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import {
-  shallow, mount, render,
-} from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-
-import toJson from 'enzyme-to-json';
-// containers
-import PlainContainer, { mapStateToProps } from '../src/Container';
-import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
 import { getNote } from '../src/helpers/checkInfoCardHelpers';
 
-const Container = connect(mapStateToProps)(PlainContainer);
-
-const middlewares = [thunk];
 
 describe.only('checkInfoCardHelpers Tests', () => {
-  it('Test checkInfoCardHelpers.getNote() to remove (See: ...)', () => {
-    const occurrenceNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message” (See: [Idiom](rc://en/ta/man/translate/figs-idiom), [[rc://some/unknown/link]] and [Metaphor](rc://en/ta/man/translate/figs-metaphor)) ';
-    const note = getNote(occurrenceNote);
-    const expectedNote = 'Paul speaks of God’s message as if it were an object (not abstract) ([Titus 2:11](rc://en/ult/book/tit/02/11)) that could be visibly shown to people. Alternate translation: “He caused me to understand his message”';
-    expect(note).toEqual(expectedNote);
+  describe('getNote', () => {
+    it('calls the custom link renderer' ,() => {
+      const note = 'This is a note [Title](/link)';
+      const renderedNote = 'This is a note [Title](/link)';
+      const spy = jest.fn();
+      const newNote = getNote(note, spy);
+      expect(spy).toBeCalledWith({ href: '/link', title: 'Title' });
+      expect(newNote).toEqual(renderedNote);
+    });
+
+    it('re-writes a link' ,() => {
+      const note = 'This is a note [Title](/link)';
+      const renderedNote = 'This is a note [Custom Title](custom/href)';
+
+      const linkRenderer = function () {
+        return {
+          href: 'custom/href',
+          title: 'Custom Title',
+        };
+      };
+      expect(getNote(note, linkRenderer)).toEqual(renderedNote);
+    });
+
+    it('converts nameless links to named links' ,() => {
+      const note = 'This is a note [[some/link]]';
+      const renderedNote = 'This is a note [some/link](some/link)';
+      const newNote = getNote(note);
+      expect(newNote).toEqual(renderedNote);
+    });
   });
 
   it('Test CheckInfoCardWrapper.getNote() where Bible verse at the end does NOT get removed, nothing should change', () => {
+    // given
     const occurrenceNote = 'Paul said this in another verse ([Titus 1:5](rc://en/ult/book/tit/01/05))';
+
+    // when
     const note = getNote(occurrenceNote);
+
+    // then
     expect(note).toEqual(occurrenceNote);
+  });
+
+  it('Test CheckInfoCardWrapper.getNote() with Markdown', () => {
+    // given
+    const occurrenceNote = 'both **empty talkers** and **deceivers** refer to the same people. They taught false, worthless things and wanted people to believe them. (See: [[rc://en/ta/man/translate/figs-hendiadys]])';
+    const expectedNote = 'both <strong>empty talkers</strong> and <strong>deceivers</strong> refer to the same people. They taught false, worthless things and wanted people to believe them. (See: [rc://en/ta/man/translate/figs-hendiadys](rc://en/ta/man/translate/figs-hendiadys))';
+
+    // when
+    const note = getNote(occurrenceNote);
+
+    // then
+    expect(note).toEqual(expectedNote);
   });
 });

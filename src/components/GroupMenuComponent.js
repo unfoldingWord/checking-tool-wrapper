@@ -15,21 +15,19 @@ import {
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
-function GroupMenuWrapper({
+function GroupMenuComponent({
   translate,
-  tc: {
-    project,
-    contextId,
-    actions: { changeCurrentContextId },
-  },
+  contextId,
+  bookName,
   groupsData,
   groupsIndex,
+  changeCurrentContextId,
 }) {
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
    */
-  function handleClick({ contextId }) {
+  function handleClick(contextId) {
     changeCurrentContextId(contextId);
   };
 
@@ -39,8 +37,6 @@ function GroupMenuWrapper({
    * @returns {object} the updated item
    */
   function onProcessItem(item) {
-    const bookName = project.getBookName();
-
     const {
       contextId: {
         quote,
@@ -176,11 +172,13 @@ function GroupMenuWrapper({
   );
 }
 
-GroupMenuWrapper.propTypes = {
-  tc: PropTypes.object.isRequired,
+GroupMenuComponent.propTypes = {
   translate: PropTypes.func.isRequired,
-  groupsIndex: PropTypes.array,
-  groupsData: PropTypes.object,
+  groupsIndex: PropTypes.array.isRequired,
+  groupsData: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
+  bookName: PropTypes.string.isRequired,
+  changeCurrentContextId: PropTypes.func.isRequired,
 };
 
-export default GroupMenuWrapper;
+export default GroupMenuComponent;

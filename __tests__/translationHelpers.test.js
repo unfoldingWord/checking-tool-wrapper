@@ -6,7 +6,6 @@ describe('translationHelper.stripTranslateProperty', () => {
     // given
     const props = {
       translate: {},
-      currentToolViews: {},
       settingsReducer: {
         toolsSettings: {
           ScripturePane: {}

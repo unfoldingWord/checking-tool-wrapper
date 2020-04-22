@@ -9,11 +9,16 @@ import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
+import { getGroupsData } from './selectors/index';
+import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
+import { clearGroupsData, loadGroupsData } from './state/actions/groupsDataActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
-import {
-  sameContext, getSelectionsFromChapterAndVerseCombo, generateTimestamp,
-} from './helpers/validationHelpers';
+import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
+import { sameContext } from './helpers/contextIdHelpers';
+import { loadVerseEdit } from './helpers/checkDataHelpers';
+import { WORD_ALIGNMENT } from './common/constants';
+import { clearContextId } from './state/actions/contextIdActions';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -21,6 +26,8 @@ export default class Api extends ToolApi {
     this.getAlignmentMemory = this.getAlignmentMemory.bind(this);
     this.getInvalidChecks = this.getInvalidChecks.bind(this);
     this.getProgress = this.getProgress.bind(this);
+    this.validateVerse = this.validateVerse.bind(this);
+    this.validateVerseAlignments = this.validateVerseAlignments.bind(this);
     this._loadBookSelections = this._loadBookSelections.bind(this);
     this._loadVerseSelections = this._loadVerseSelections.bind(this);
     this._loadCheckData = this._loadCheckData.bind(this);
@@ -30,6 +37,9 @@ export default class Api extends ToolApi {
    * Lifecycle method
    */
   toolWillConnect() {
+    const { clearContextId, clearGroupsData } = this.props;
+    clearContextId();
+    clearGroupsData();
     this.validateBook(true);
   }
 
@@ -84,25 +94,70 @@ export default class Api extends ToolApi {
   }
 
   /**
+   * checks the alignments for changes
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {boolean} silent - if true then don't show alerts
+   * @returns {boolean} true if valid
+   */
+  validateVerseAlignments(chapter, verse, silent=false) {
+    const { tc: { tools } } = this.props;
+    const wA_api = tools && tools[WORD_ALIGNMENT];
+
+    // TODO: this is a temporary fix - as we finish tool reducer updates we should call API in tCore since tools should not have knowledge of one another
+    if (wA_api) {
+      return wA_api.trigger('validateVerse', chapter, verse, silent);
+    }
+    return false;
+  }
+
+  /**
    * validateVerse that can be called by main app
    * @param {String} chapter
    * @param {String} verse
    * @param {boolean} silent - if true then don't show alerts
    * @param {Object} groupsData
+   * @return {boolean} returns true if no selections invalidated
    */
   validateVerse(chapter, verse, silent = false, groupsData) {
     const {
       tc: {
         targetBook,
-        project: { getGroupsData },
+        bookId,
+        username: userName,
+        project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
+      getGroupsData,
+      loadGroupsData,
+      updateGroupDataForVerseEdit,
     } = this.props;
-    const _groupsData = groupsData || getGroupsData(toolName);
-    const groupsDataKeys = Object.keys(groupsData);
+    let _groupsData = groupsData || getGroupsData();
+
+    if (!Object.keys(_groupsData).length) { // if groups data not loaded
+      loadGroupsData(toolName, projectSaveLocation);
+      _groupsData = getGroupsData(); // refresh with latest group data
+    }
+
+    const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
-    this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+    const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+
+    // check for verse edit
+    const contextId = {
+      reference: {
+        bookId,
+        chapter,
+        verse,
+      },
+    };
+    const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
+
+    if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
+      updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
+    }
+    return selectionsValid;
   }
 
   /**
@@ -113,11 +168,12 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
+   * @return {boolean} returns true if no selections invalidated
    */
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
       tc: {
-        contextId: { reference: { bookId } },
+        bookId,
         username: userName,
         project: { _projectPath: projectSaveLocation },
       },
@@ -129,7 +185,7 @@ export default class Api extends ToolApi {
         verse: parseInt(verse),
       },
     };
-    const groupsDataForVerse = getGroupDataForVerse(groupsData, groupsDataKeys, contextId);
+    const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId);
     let filtered = null;
     let selectionsChanged = false;
     const groupItems = Object.keys(groupsDataForVerse);
@@ -190,13 +246,14 @@ export default class Api extends ToolApi {
     if (selectionsChanged && !silent) {
       this._showResetDialog();
     }
+    return !selectionsChanged;
   }
 
   writeCheckData(payload = {}, checkPath, modifiedTimestamp) {
     modifiedTimestamp = modifiedTimestamp || generateTimestamp();
     const newFilename = modifiedTimestamp + '.json';
     payload.modifiedTimestamp = modifiedTimestamp;
-    fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload);
+    fs.outputJSONSync(path.join(checkPath, newFilename.replace(/[:"]/g, '_')), payload, { spaces: 2 });
   }
 
   /**
@@ -248,7 +305,10 @@ export default class Api extends ToolApi {
    * @param props
    */
   mapStateToProps(state, props) {
-    // TODO: implement
+    return {
+      getActiveLanguage: () => getActiveLanguage(state),
+      getGroupsData: () => getGroupsData(state),
+    };
   }
 
   /**
@@ -256,8 +316,22 @@ export default class Api extends ToolApi {
    * @param dispatch
    */
   mapDispatchToProps(dispatch) {
-    // TODO: implement
-    return {};
+    const methods = {
+      clearContextId,
+      clearGroupsData,
+      loadGroupsData,
+      setActiveLocale,
+      updateGroupDataForVerseEdit,
+    };
+
+    const dispatchedMethods = {};
+
+    // eslint-disable-next-line array-callback-return
+    Object.keys(methods).map(key => {
+      dispatchedMethods[key] = (...args) => dispatch(methods[key](...args));
+    });
+
+    return dispatchedMethods;
   }
 
   /**
@@ -272,26 +346,25 @@ export default class Api extends ToolApi {
    * @param nextProps
    */
   toolWillReceiveProps(nextProps) {
-    const { tc: { contextId: nextContext } } = nextProps;
-    const {
-      currentLanguage,
-      tc: { appLanguage },
-      tool: {
-        isReady,
-        name: toolName,
-      },
-    } = this.props;
+    try {
+      const { tc: { currentToolName: nextCurrentToolName } } = nextProps;
+      const {
+        tc: { appLanguage, currentToolName },
+        tool: { isReady },
+      } = this.props;
 
-    const isCurrentTool = (nextContext.tool === toolName);
+      const isCurrentTool = (nextCurrentToolName === currentToolName);
 
-    if (isCurrentTool && isReady) {
-      const { store } = this.context;
-      const currentLang = getActiveLanguage(store.getState());
-      const langId = currentLang && currentLang.code;
+      if (isCurrentTool && isReady) {
+        const currentLang = this.props.getActiveLanguage();
+        const langId = currentLang && currentLang.code;
 
-      if (langId && (langId !== appLanguage)) { // see if locale language has changed
-        store.dispatch(setActiveLocale(appLanguage));
+        if (langId && (langId !== appLanguage)) { // see if locale language has changed
+          this.props.setActiveLocale(appLanguage);
+        }
       }
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -451,7 +524,7 @@ export default class Api extends ToolApi {
   _loadVerseSelections(chapter, verse, props) {
     const {
       tc: {
-        contextId: { reference: { bookId } },
+        bookId,
         projectDataPathExistsSync,
         readProjectDataSync,
         readProjectDataDirSync,
