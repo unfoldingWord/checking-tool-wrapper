@@ -38,7 +38,9 @@ module.exports = {
     'react': 'commonjs2 react',
     'react-dom': 'commonjs2 react-dom',
     'react-redux': 'commonjs2 react-redux',
-    'tc-ui-toolkit': 'commonjs2 tc-ui-toolkit'
+    'string-punctuation-tokenizer': 'commonjs2 string-punctuation-tokenizer',
+    'tc-ui-toolkit': 'commonjs2 tc-ui-toolkit',
+    'word-aligner': 'commonjs2 word-aligner',
   },
   resolve: {
     alias: {
