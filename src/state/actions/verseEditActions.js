@@ -40,8 +40,11 @@ import { showInvalidatedWarnings, validateSelections } from './selectionsActions
  */
 export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi) => (dispatch, getState) => {
   const state = getState();
-  const currentCheckContextId = getContextId(state);
-  const { bookId } = currentCheckContextId.reference;
+  const contextId = getContextId(state);
+  const currentCheckContextId = contextId;
+  const {
+    bookId, chapter: currentCheckChapter, verse: currentCheckVerse,
+  } = currentCheckContextId.reference;
   verseWithVerseEdit = (typeof verseWithVerseEdit === 'string') ? parseInt(verseWithVerseEdit) : verseWithVerseEdit; // make sure number
 
   const contextIdWithVerseEdit = {
@@ -65,8 +68,8 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     tags,
     username,
     activeBook: bookId,
-    activeChapter: chapterWithVerseEdit,
-    activeVerse: verseWithVerseEdit,
+    activeChapter: currentCheckChapter,
+    activeVerse: currentCheckVerse,
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
@@ -83,7 +86,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   );
 
   // Persisting verse edit checkData in filesystem.
-  saveVerseEdit(currentCheckContextId, verseEdit, projectSaveLocation);
+  saveVerseEdit(contextIdWithVerseEdit, verseEdit, projectSaveLocation);
 };
 
 /**
