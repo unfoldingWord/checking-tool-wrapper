@@ -40,8 +40,11 @@ import { showInvalidatedWarnings, validateSelections } from './selectionsActions
  */
 export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi) => (dispatch, getState) => {
   const state = getState();
-  const currentCheckContextId = getContextId(state);
-  const { bookId } = currentCheckContextId.reference;
+  const contextId = getContextId(state);
+  const currentCheckContextId = contextId;
+  const {
+    bookId, chapter: currentCheckChapter, verse: currentCheckVerse,
+  } = currentCheckContextId.reference;
   verseWithVerseEdit = (typeof verseWithVerseEdit === 'string') ? parseInt(verseWithVerseEdit) : verseWithVerseEdit; // make sure number
 
   const contextIdWithVerseEdit = {
@@ -65,8 +68,8 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     tags,
     username,
     activeBook: bookId,
-    activeChapter: chapterWithVerseEdit,
-    activeVerse: verseWithVerseEdit,
+    activeChapter: currentCheckChapter,
+    activeVerse: currentCheckVerse,
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
@@ -83,7 +86,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
   );
 
   // Persisting verse edit checkData in filesystem.
-  saveVerseEdit(currentCheckContextId, verseEdit, projectSaveLocation);
+  saveVerseEdit(contextIdWithVerseEdit, verseEdit, projectSaveLocation);
 };
 
 /**
@@ -120,8 +123,8 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
-  const chapterWithVerseEdit = verseEdit.activeChapter;
-  const verseWithVerseEdit = verseEdit.activeVerse;
+  const chapterWithVerseEdit = contextIdWithVerseEdit.reference.chapter;
+  const verseWithVerseEdit = contextIdWithVerseEdit.reference.verse;
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
