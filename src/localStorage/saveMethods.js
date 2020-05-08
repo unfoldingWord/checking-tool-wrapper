@@ -84,6 +84,26 @@ export const saveBookmark = (contextId, bookmarkData, projectSaveLocation) => {
 };
 
 /**
+ * Saves the comments check data.
+ * @param {object} contextId - context Id.
+ * @param {object} commentData - bookmark check Data.
+ * @param {string} projectSaveLocation - project directory Path.
+ */
+export const saveComments = (contextId, commentData, projectSaveLocation) => {
+  try {
+    const bookmarkPayload = {
+      ...commentData,
+      contextId,
+    };
+    const modifiedTimestamp = commentData.modifiedTimestamp || generateTimestamp();
+    saveData(contextId, 'comments', bookmarkPayload, modifiedTimestamp, projectSaveLocation);
+  } catch (err) {
+    console.error(err);
+    throw new Error(err);
+  }
+};
+
+/**
  * Save the verse Edit check data.
  * @param {object} state - store state object.
  */

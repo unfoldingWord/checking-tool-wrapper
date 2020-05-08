@@ -3,6 +3,7 @@ import { ADD_COMMENT, TOGGLE_COMMENTS_IN_GROUPDATA } from '../actions/actionType
 import generateTimestamp from '../../utils/generateTimestamp';
 // selectors
 import { getContextId } from '../../selectors';
+import { saveComments } from '../../localStorage/saveMethods';
 
 /**
  * Add a comment for the current check.
@@ -21,8 +22,8 @@ export const addComment = (text, username, gatewayLanguageCode, gatewayLanguageQ
     verse,
   } = contextId.reference;
 
-  dispatch({
-    type: ADD_COMMENT,
+  const commentsData = {
+    text,
     username,
     activeBook: bookId,
     activeChapter: chapter,
@@ -30,7 +31,11 @@ export const addComment = (text, username, gatewayLanguageCode, gatewayLanguageQ
     modifiedTimestamp: generateTimestamp(),
     gatewayLanguageCode,
     gatewayLanguageQuote,
-    text,
+  };
+
+  dispatch({
+    type: ADD_COMMENT,
+    ...commentsData,
   });
   dispatch({
     type: TOGGLE_COMMENTS_IN_GROUPDATA,
@@ -38,4 +43,5 @@ export const addComment = (text, username, gatewayLanguageCode, gatewayLanguageQ
     contextId,
     projectSaveLocation,
   });
+  saveComments(contextId, commentsData, projectSaveLocation);
 });
