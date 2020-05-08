@@ -11,7 +11,11 @@ import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
 import { getGroupsData } from './selectors/index';
 import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
-import { clearGroupsData, loadGroupsData } from './state/actions/groupsDataActions';
+import {
+  clearGroupsData,
+  loadGroupsData,
+  verifyGroupDataMatchesWithFs,
+} from './state/actions/groupsDataActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
@@ -257,6 +261,35 @@ export default class Api extends ToolApi {
   }
 
   /**
+   * makes sure that the groups data has been initialized and returns latest
+   */
+  _getGroupData() {
+    const {
+      tc: {
+        project: { _projectPath: projectSaveLocation },
+        bookId,
+        gatewayLanguageCode,
+      },
+      tool: { name: toolName },
+      loadGroupsData,
+      verifyGroupDataMatchesWithFs,
+    } = this.props;
+    const store = this.context.store; // TRICKY - we need the latest store since we may be updating
+    let groupsData = getGroupsData(store.getState());
+    const isGroupDataLoaded = !!Object.keys(groupsData).length;
+
+    if (!isGroupDataLoaded) { // if groups data not loaded
+      console.log(`_getGroupData(${toolName}) loading group data`);
+      loadGroupsData(toolName, projectSaveLocation);
+      // make sure data is in sync
+      console.log(`_getGroupData(${toolName}) verifying group data is up to date`);
+      verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, bookId);
+      groupsData = getGroupsData(store.getState()); // get recently updated data
+    }
+    return groupsData;
+  }
+
+  /**
    * Returns the percent progress of completion for the project.
    * @returns {number} - a value between 0 and 1
    */
@@ -265,12 +298,13 @@ export default class Api extends ToolApi {
     let totalChecks = 0;
     let completedChecks = 0;
     const selectedCategories = project.getSelectedCategories(name, true);
+    const groupsData = this._getGroupData();
 
     for (const categoryName in selectedCategories) {
       const groups = selectedCategories[categoryName];
 
       for (const group of groups) {
-        const data = project.getGroupData(name, group);
+        const data = groupsData[group];
 
         if (data && data.constructor === Array) {
           for (const check of data) {
@@ -305,10 +339,7 @@ export default class Api extends ToolApi {
    * @param props
    */
   mapStateToProps(state, props) {
-    return {
-      getActiveLanguage: () => getActiveLanguage(state),
-      getGroupsData: () => getGroupsData(state),
-    };
+    return { getActiveLanguage: () => getActiveLanguage(state) };
   }
 
   /**
@@ -322,6 +353,7 @@ export default class Api extends ToolApi {
       loadGroupsData,
       setActiveLocale,
       updateGroupDataForVerseEdit,
+      verifyGroupDataMatchesWithFs,
     };
 
     const dispatchedMethods = {};
@@ -418,7 +450,7 @@ export default class Api extends ToolApi {
   }
 
   /**
-   * Returns the total number of invalided checks
+   * Returns the total number of invalidated checks
    * TODO: move category selection management into the tool so we don't need this param
    * @param {string[]} groups - an array of categories to include in the calculation (sub categories).
    * @returns {number} - the number of invalid checks
@@ -426,16 +458,14 @@ export default class Api extends ToolApi {
   getInvalidChecks(groups) {
     const { tc: { project }, tool: { name } } = this.props;
     let invalidChecks = 0;
+    const groupsData = this._getGroupData();
 
     for (const group of groups) {
-      const data = project.getGroupData(name, group);
+      const data = groupsData[group];
 
       if (data && data.constructor === Array) {
         for (const check of data) {
-          const checkData = this._loadCheckData('invalidated',
-            check.contextId);
-
-          if (checkData && checkData.invalidated === true) {
+          if (check.invalidated === true) {
             invalidChecks++;
           }
         }

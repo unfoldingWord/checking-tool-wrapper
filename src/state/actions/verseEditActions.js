@@ -11,7 +11,6 @@ import { saveVerseEdit } from '../../localStorage/saveMethods';
 import delay from '../../utils/delay';
 import {
   ADD_VERSE_EDIT,
-  TOGGLE_MULTIPLE_VERSE_EDITS_IN_GROUPDATA,
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
 } from './actionTypes';
 import { showInvalidatedWarnings, validateSelections } from './selectionsActions';
@@ -292,18 +291,10 @@ export const editChecksToBatch = (editedChecks, actionBatch) => {
     const groupId = groupIds[j];
     const verseEdits = editedChecks[groupId];
 
-    if (verseEdits.length === 1) { // if only one, then don't need to combine
-      actionBatch.push(verseEdits[0]); // batch the only verse edit
+    // for each verseEdit
+    for (let k = 0, l2 = verseEdits.length; k < l2; k++) {
+      actionBatch.push(verseEdits[k]);
       groupEditsCount += 1;
-    } else { // combine multiple verse edits into one call
-      const references = verseEdits.map(item => (item.contextId.reference)); // just get all the references to change
-
-      actionBatch.push({
-        type: TOGGLE_MULTIPLE_VERSE_EDITS_IN_GROUPDATA,
-        groupId,
-        references,
-      });
-      groupEditsCount += references.length;
     }
   }
   return { groupIds, groupEditsCount };
