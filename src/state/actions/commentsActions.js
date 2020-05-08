@@ -43,5 +43,7 @@ export const addComment = (text, username, gatewayLanguageCode, gatewayLanguageQ
     contextId,
     projectSaveLocation,
   });
+
+  // persist comments
   saveComments(contextId, commentsData, projectSaveLocation);
 });
