@@ -32,6 +32,7 @@ export default class Api extends ToolApi {
     this.getProgress = this.getProgress.bind(this);
     this.validateVerse = this.validateVerse.bind(this);
     this.validateVerseAlignments = this.validateVerseAlignments.bind(this);
+    this.validateVerseSelectionsInOtherTools = this.validateVerseSelectionsInOtherTools.bind(this);
     this._loadBookSelections = this._loadBookSelections.bind(this);
     this._loadVerseSelections = this._loadVerseSelections.bind(this);
     this._loadCheckData = this._loadCheckData.bind(this);
@@ -78,6 +79,7 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
+   * @param {String} modifiedTimestamp
    */
   validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     const { tc: { targetBook } } = this.props;
@@ -116,6 +118,50 @@ export default class Api extends ToolApi {
   }
 
   /**
+   * checks the alignments for changes
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {boolean} silent - if true then don't show alerts
+   * @returns {boolean} true if valid
+   */
+  validateVerseSelectionsInOtherTools(chapter, verse, silent=false) {
+    const {
+      tc: { tools },
+      tool: { name: currentTool },
+    } = this.props;
+    const wA_api = tools && tools[WORD_ALIGNMENT];
+    let invalidatedSelections = false;
+    const toolNames = Object.keys(tools);
+
+    for (const toolName of toolNames) {
+      if (toolName === WORD_ALIGNMENT) {
+        continue; // skip since wA doesn't do selections
+      }
+
+      if (toolName === currentTool) {
+        continue; // skip since this is the current tool
+      }
+
+      const tool_api = tools && tools[toolName];
+
+      if (tool_api) {
+        console.log(`validateVerseSelectionsInOtherTools(${toolName}) - calling validateVerse in tool API`);
+        const validSelections = wA_api.trigger('validateVerse', chapter, verse, silent);
+        console.log(`validateVerseSelectionsInOtherTools(${toolName}) - validateVerse returned: ${validSelections}`);
+
+        if (!validSelections) { // capture if selections became invalid
+          invalidatedSelections = true;
+        }
+      } else {
+        console.error(`validateVerseSelectionsInOtherTools(${toolName}) - tool API not found`);
+      }
+    }
+
+    console.log(`validateVerseSelectionsInOtherTools() - validate : ${!invalidatedSelections}`);
+    return !invalidatedSelections;
+  }
+
+  /**
    * validateVerse that can be called by main app
    * @param {String} chapter
    * @param {String} verse
@@ -128,7 +174,6 @@ export default class Api extends ToolApi {
       tc: {
         targetBook,
         bookId,
-        username: userName,
         project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
@@ -147,6 +192,7 @@ export default class Api extends ToolApi {
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
     const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+    console.log(`validateVerse(${toolName}) - ${chapter}:${verse} selections valid: ${selectionsValid}`);
 
     // check for verse edit
     const contextId = {
@@ -159,6 +205,7 @@ export default class Api extends ToolApi {
     const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
 
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
+      console.log(`validateVerse(${toolName}) - ${chapter}:${verse} verse edited: ${isVerseEdited}`);
       updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
     }
     return selectionsValid;
@@ -172,6 +219,7 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
+   * @param {String} modifiedTimestamp
    * @return {boolean} returns true if no selections invalidated
    */
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
@@ -268,7 +316,6 @@ export default class Api extends ToolApi {
       tc: {
         project: { _projectPath: projectSaveLocation },
         bookId,
-        gatewayLanguageCode,
       },
       tool: { name: toolName },
       loadGroupsData,
@@ -456,7 +503,6 @@ export default class Api extends ToolApi {
    * @returns {number} - the number of invalid checks
    */
   getInvalidChecks(groups) {
-    const { tc: { project }, tool: { name } } = this.props;
     let invalidChecks = 0;
     const groupsData = this._getGroupData();
 

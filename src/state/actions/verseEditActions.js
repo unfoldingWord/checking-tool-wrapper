@@ -127,6 +127,8 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
+  const selectionsInvalidatedInOtherTools = !toolApi.validateVerseSelectionsInOtherTools(chapterWithVerseEdit, verseWithVerseEdit, true);
+  showSelectionInvalidated = showSelectionInvalidated || selectionsInvalidatedInOtherTools;
   closeAlert();
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
