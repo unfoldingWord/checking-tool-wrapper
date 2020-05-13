@@ -114,7 +114,6 @@ export default class Api extends ToolApi {
     } = this.props;
     const wA_api = tools && tools[WORD_ALIGNMENT];
 
-    // TODO: this is a temporary fix - as we finish tool reducer updates we should call API in tCore since tools should not have knowledge of one another
     if (wA_api) {
       try {
         return wA_api.trigger('validateVerse', chapter, verse, silent);
@@ -152,7 +151,6 @@ export default class Api extends ToolApi {
       const tool_api = tools && tools[toolName];
 
       if (tool_api) {
-        console.log(`${currentTool}.validateVerseSelectionsInOtherTools(${toolName}) - calling validateVerse in tool API`);
         let validSelections = false;
 
         try {
@@ -195,9 +193,6 @@ export default class Api extends ToolApi {
       updateGroupDataForVerseEdit,
     } = this.props;
     let _groupsData = groupsData || this._getGroupData();
-    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} starting`);
-
-    console.log(`${toolName}.validateVerse() - calling this._validateVerse`);
     const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
@@ -218,7 +213,6 @@ export default class Api extends ToolApi {
       console.log(`${toolName}.validateVerse() - ${chapter}:${verse} verse edited: ${isVerseEdited}`);
       updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
     }
-    console.log(`${toolName}.validateVerse() - finished, selectionsValid: ${selectionsValid}`);
     return selectionsValid;
   }
 
@@ -282,8 +276,8 @@ export default class Api extends ToolApi {
               );
 
               if (selectionsObject.contextId) {
-                console.log(`${toolName}._validateVerse(): invalidating: ${JSON.stringify(selectionsObject.contextId)}, gatewayLanguageCode: ${gatewayLanguageCode}`);
-                // If selections are no longer valid, they need to be cleared
+                console.log(`${toolName}._validateVerse(): invalidating: ${JSON.stringify(selectionsObject.contextId)}`);
+                // If selections are no longer valid, they need to be cleared and invalidated
                 changeSelections(
                   [], true, selectionsObject.contextId, null, false, username, toolName,
                   gatewayLanguageCode, selectionsObject.contextId.quote, projectSaveLocation

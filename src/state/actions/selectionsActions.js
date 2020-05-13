@@ -45,11 +45,8 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
   const currentContextId = getContextId(state);
   contextId = contextId || currentContextId; // use current if contextId is not passed
-  console.log(`${currentToolName}-changeSelections() - same context, contextId: ${JSON.stringify(contextId)}`);
 
   if (validTools.includes(currentToolName) || validTools.includes(contextId.tool)) {
-    console.log(`${currentToolName}-changeSelections() - same context, invalidated: ${invalidated}`);
-
     if (sameContext(currentContextId, contextId)) { // see if we need to update current selection
       const modifiedTimestamp = generateTimestamp();
 
@@ -75,7 +72,6 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
       saveSelections(contextId, selectionData, projectSaveLocation);
       dispatch(setInvalidation(username, invalidated, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     } else {
-      console.log(`${currentToolName}-changeSelections() - different context, invalidated: ${invalidated}`);
       saveSelectionsForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation);
     }
 
@@ -270,83 +266,6 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
     dispatch(showSelectionsInvalidatedWarning());
   }
 };
-
-/**
- * does validation for tools not loaded into group reducer
- * @param {String} projectSaveLocation
- * @param {String} bookId
- * @param {String|Number} chapter
- * @param {String|Number} verse
- * @param {Object} state
- * @param {String} targetVerse - new verse text
- * @param {Boolean} selectionInvalidated
- * @param {Boolean} username
- * @param {Boolean} currentToolName
- * @param {Boolean} gatewayLanguageCode
- * @param {Boolean} gatewayLanguageQuote
- * @return {Boolean} - updated value for selectionInvalidated
- */
-// const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter, verse, targetVerse,
-//   selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch) => {
-//   const selectionsPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-//
-//   if (fs.existsSync(selectionsPath)) {
-//     let files = fs.readdirSync(selectionsPath);
-//
-//     files = files.filter(file => // filter the filenames to only use .json
-//       path.extname(file) === '.json'
-//     ).sort();
-//
-//     // load all files keeping the latest for each context
-//     const latestContext = {};
-//
-//     for (let i = 0, l = files.length; i < l; i++) {
-//       const selectionsData = fs.readJsonSync(path.join(selectionsPath, files[i]));
-//       const contextId = selectionsData.contextId;
-//
-//       if (contextId) {
-//         if (currentToolName !== contextId.tool) {
-//           const contextIdQuote = Array.isArray(contextId.quote) ? contextId.quote.map(({ word }) => word).join(' ') : contextId.quote;
-//           const key = contextId.groupId + ':' + contextId.occurrence + ':' + contextIdQuote;
-//           latestContext[key] = selectionsData;
-//         }
-//       }
-//     }
-//
-//     const modifiedTimestamp = generateTimestamp();
-//     const keys = Object.keys(latestContext);
-//
-//     for (let j = 0, l = keys.length; j < l; j++) {
-//       const selectionsData = latestContext[keys[j]];
-//       const validSelections = checkSelectionOccurrences(targetVerse, selectionsData.selections);
-//
-//       if (!isEqual(selectionsData.selections, validSelections)) { // if true found invalidated check
-//         // add invalidation entry
-//         const newInvalidation = {
-//           contextId: selectionsData.contextId,
-//           invalidated: true,
-//           username,
-//           modifiedTimestamp: modifiedTimestamp,
-//           gatewayLanguageCode: selectionsData.gatewayLanguageCode,
-//           gatewayLanguageQuote: selectionsData.gatewayLanguageQuote,
-//         };
-//         const newFilename = modifiedTimestamp + '.json';
-//         const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
-//         fs.ensureDirSync(invalidatedCheckPath);
-//         fs.outputJSONSync(path.join(invalidatedCheckPath, newFilename.replace(/[:"]/g, '_')), newInvalidation, { spaces: 2 });
-//         dispatch(
-//           changeSelections(
-//             [], true, newInvalidation.contextId, username, currentToolName,
-//             gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
-//           )
-//         );
-//         selectionInvalidated = true;
-//       }
-//     }
-//   }
-//
-//   return selectionInvalidated;
-// };
 
 /**
  * displays warning that selections have been invalidated

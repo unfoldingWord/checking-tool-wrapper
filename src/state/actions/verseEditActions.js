@@ -147,14 +147,12 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
  * @return {function(...[*]=)}
  */
 export const updateGroupDataForVerseEdit = (projectSaveLocation, toolName, contextIdWithVerseEdit, batchGroupData = null) => (dispatch, getState) => {
-  console.log(`${toolName}.updateGroupDataForVerseEdit() - verse edited`);
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   const groupsData = getGroupsData(getState());
   const editedChecks = {};
 
   if (toolName === TRANSLATION_WORDS || toolName === TRANSLATION_NOTES) {
     getCheckVerseEditsInGroupData(groupsData, contextIdWithVerseEdit, editedChecks, projectSaveLocation);
-    console.log(`${toolName}.updateGroupDataForVerseEdit() - editedChecks: ${Object.keys(editedChecks).length}`);
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
     if (groupEditsCount) {
@@ -163,7 +161,7 @@ export const updateGroupDataForVerseEdit = (projectSaveLocation, toolName, conte
   }
 
   if (actionsBatch.length) {
-    console.info(`updateGroupDataForVerseEdit() - actionsBatch.length: ${actionsBatch.length}`);
+    console.info(`updateGroupDataForVerseEdit() - batch size: ${actionsBatch.length}`);
     dispatch(batchActions(actionsBatch));
 
     // update group data index files with new data
@@ -254,7 +252,6 @@ export const recordTargetVerseEdit = (bookId, chapter, verse, before, after, tag
 export const getCheckVerseEditsInGroupData = (groupsData, contextId, editedChecks, projectSaveLocation) => {
   const matchedGroupData = getGroupDataForVerse(groupsData, contextId);
   const keys = Object.keys(matchedGroupData);
-  console.log(`getCheckVerseEditsInGroupData() - keys: ${keys.length}`);
 
   if (keys.length) {
     for (let i = 0, l = keys.length; i < l; i++) {
