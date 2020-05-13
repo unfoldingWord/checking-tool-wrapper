@@ -151,27 +151,27 @@ export default class Api extends ToolApi {
       const tool_api = tools && tools[toolName];
 
       if (tool_api) {
-        console.log(`validateVerseSelectionsInOtherTools(${toolName}) - calling validateVerse in tool API`);
+        console.log(`${currentTool}.validateVerseSelectionsInOtherTools(${toolName}) - calling validateVerse in tool API`);
         let validSelections = false;
 
         try {
           validSelections = tool_api.trigger('validateVerse', chapter, verse, silent);
         } catch (e) {
-          console.error(`validateVerseSelectionsInOtherTools(${toolName}) - validateVerse failed`, e);
+          console.error(`${currentTool}.validateVerseSelectionsInOtherTools(${toolName}) - validateVerse failed`, e);
           validSelections = false;
         }
 
-        console.log(`validateVerseSelectionsInOtherTools(${toolName}) - validateVerse returned: ${validSelections}`);
+        console.log(`${currentTool}.SelectionsInOtherTools(${toolName}) - validateVerse returned: ${validSelections}`);
 
         if (!validSelections) { // capture if selections became invalid
           invalidatedSelections = true;
         }
       } else {
-        console.error(`validateVerseSelectionsInOtherTools(${toolName}) - tool API not found`);
+        console.error(`${currentTool}.validateVerseSelectionsInOtherTools(${toolName}) - tool API not found`);
       }
     }
 
-    console.log(`validateVerseSelectionsInOtherTools() - validate : ${!invalidatedSelections}`);
+    console.log(`${currentTool}.SelectionsInOtherTools() - validate : ${!invalidatedSelections}`);
     return !invalidatedSelections;
   }
 
@@ -184,6 +184,7 @@ export default class Api extends ToolApi {
    * @return {boolean} returns true if no selections invalidated
    */
   validateVerse(chapter, verse, silent = false, groupsData) {
+    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} starting`);
     const {
       tc: {
         targetBook,
@@ -198,15 +199,17 @@ export default class Api extends ToolApi {
     let _groupsData = groupsData || getGroupsData();
 
     if (!Object.keys(_groupsData).length) { // if groups data not loaded
+      console.log(`${toolName}.validateVerse() - calling loadGroupsData`);
       loadGroupsData(toolName, projectSaveLocation);
       _groupsData = getGroupsData(); // refresh with latest group data
     }
 
+    console.log(`${toolName}.validateVerse() - calling this._validateVerse`);
     const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
     const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
-    console.log(`validateVerse(${toolName}) - ${chapter}:${verse} selections valid: ${selectionsValid}`);
+    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
 
     // check for verse edit
     const contextId = {
@@ -219,9 +222,10 @@ export default class Api extends ToolApi {
     const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
 
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
-      console.log(`validateVerse(${toolName}) - ${chapter}:${verse} verse edited: ${isVerseEdited}`);
+      console.log(`${toolName}.validateVerse() - ${chapter}:${verse} verse edited: ${isVerseEdited}`);
       updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
     }
+    console.log(`${toolName}.validateVerse() - finished, selectionsValid: ${selectionsValid}`);
     return selectionsValid;
   }
 
