@@ -1,7 +1,6 @@
+/* eslint-disable quotes,object-curly-newline */
 /* eslint-env jest */
 
-import path from 'path-extra';
-import fs from 'fs-extra';
 import { TRANSLATION_WORDS } from '../src/common/constants';
 import Api from '../src/Api';
 
@@ -46,36 +45,29 @@ describe('api.validateBook', () => {
         showIgnorableDialog: jest.fn(() => {}),
       },
       contextId: { reference: { bookId: 'tit' } },
+      changeSelections: jest.fn(() => {}),
     };
     const api = new Api();
-    const writeCheckDataSpy = jest.spyOn(api, 'writeCheckData');
     api.props = props;
     api.validateBook();
     // expect(props.tc.showIgnorableDialog).toHaveBeenCalled();
-    expect(writeCheckDataSpy).toHaveBeenCalled();
-    expect(fs.outputJSONSync).toHaveBeenCalledWith(
-      expect.stringContaining(
-        path.join(projectPath, '.apps/translationCore/checkData/selections/tit/2/12/')),
-      {
-        contextId: {
-          groupId: 'accuse',
-          occurrence: 1,
-          quote: 'κατηγορίᾳ',
-          reference: {
-            bookId: 'tit',
-            chapter: 1,
-            verse: 6,
-          },
-          strong: ['G27240'],
-          tool: TRANSLATION_WORDS,
-        },
-        gatewayLanguageCode: 'en',
-        gatewayLanguageQuote: 'accused',
-        modifiedTimestamp: expect.any(String),
-        selections: [],
-        userName: 'royalsix',
+    expect(api.props.changeSelections).toHaveBeenCalledWith(
+      // eslint-disable-next-line quotes
+      [], true, {
+        "groupId": "accuse",
+        "occurrence": 1,
+        "quote": "κατηγορίᾳ",
+        "reference": { "bookId": "tit", "chapter": 1, "verse": 6 },
+        "strong": ["G27240"],
+        "tool": "translationWords",
       },
-      { spaces: 2 }
+      null,
+      false,
+      "royalsix",
+      "translationWords",
+      undefined,
+      "κατηγορίᾳ",
+      "users/john/translationCore/projects/my_en_project",
     );
   });
 });
