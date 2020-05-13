@@ -45,8 +45,11 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
   const validTools = [TRANSLATION_WORDS, TRANSLATION_NOTES];
   const currentContextId = getContextId(state);
   contextId = contextId || currentContextId; // use current if contextId is not passed
+  console.log(`${currentToolName}-changeSelections() - same context, contextId: ${JSON.stringify(contextId)}`);
 
   if (validTools.includes(currentToolName) || validTools.includes(contextId.tool)) {
+    console.log(`${currentToolName}-changeSelections() - same context, invalidated: ${invalidated}`);
+
     if (sameContext(currentContextId, contextId)) { // see if we need to update current selection
       const modifiedTimestamp = generateTimestamp();
 
@@ -72,6 +75,7 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
       saveSelections(contextId, selectionData, projectSaveLocation);
       dispatch(setInvalidation(username, invalidated, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
     } else {
+      console.log(`${currentToolName}-changeSelections() - different context, invalidated: ${invalidated}`);
       saveSelectionsForOtherContext(gatewayLanguageCode, gatewayLanguageQuote, selections, invalidated, username, contextId, projectSaveLocation);
     }
 
