@@ -184,7 +184,6 @@ export default class Api extends ToolApi {
    * @return {boolean} returns true if no selections invalidated
    */
   validateVerse(chapter, verse, silent = false, groupsData) {
-    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} starting`);
     const {
       tc: {
         targetBook,
@@ -192,17 +191,9 @@ export default class Api extends ToolApi {
         project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
-      getGroupsData,
-      loadGroupsData,
-      updateGroupDataForVerseEdit,
     } = this.props;
-    let _groupsData = groupsData || getGroupsData();
-
-    if (!Object.keys(_groupsData).length) { // if groups data not loaded
-      console.log(`${toolName}.validateVerse() - calling loadGroupsData`);
-      loadGroupsData(toolName, projectSaveLocation);
-      _groupsData = getGroupsData(); // refresh with latest group data
-    }
+    let _groupsData = groupsData || this._getGroupData();
+    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} starting`);
 
     console.log(`${toolName}.validateVerse() - calling this._validateVerse`);
     const groupsDataKeys = Object.keys(_groupsData);
