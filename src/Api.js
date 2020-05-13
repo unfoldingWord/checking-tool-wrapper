@@ -191,6 +191,7 @@ export default class Api extends ToolApi {
         project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
+      updateGroupDataForVerseEdit,
     } = this.props;
     let _groupsData = groupsData || this._getGroupData();
     console.log(`${toolName}.validateVerse() - ${chapter}:${verse} starting`);

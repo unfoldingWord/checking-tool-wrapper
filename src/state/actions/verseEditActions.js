@@ -158,7 +158,7 @@ export const updateGroupDataForVerseEdit = (projectSaveLocation, toolName, conte
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
     if (groupEditsCount) {
-      console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
+      console.info(`updateGroupDataForVerseEdit() - ${groupEditsCount} group edits found`);
     }
   }
 
