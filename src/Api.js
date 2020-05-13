@@ -23,6 +23,7 @@ import { sameContext } from './helpers/contextIdHelpers';
 import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
 import { clearContextId } from './state/actions/contextIdActions';
+import { changeSelections } from './state/actions/selectionsActions';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -236,9 +237,12 @@ export default class Api extends ToolApi {
     let {
       tc: {
         bookId,
-        username: userName,
+        gatewayLanguageCode,
+        username,
         project: { _projectPath: projectSaveLocation },
       },
+      tool: { name: toolName },
+      changeSelections,
     } = this.props;
     const contextId = {
       reference: {
@@ -278,24 +282,13 @@ export default class Api extends ToolApi {
               );
 
               if (selectionsObject.contextId) {
-                //If selections are changed, they need to be cleared
+                console.log(`${toolName}._validateVerse(): invalidating: ${JSON.stringify(selectionsObject.contextId)}, gatewayLanguageCode: ${gatewayLanguageCode}`);
+                // If selections are no longer valid, they need to be cleared
+                changeSelections(
+                  [], true, selectionsObject.contextId, null, false, username, toolName,
+                  gatewayLanguageCode, selectionsObject.contextId.quote, projectSaveLocation
+                );
                 selectionsChanged = true;
-                const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
-                const invalidatedPayload = {
-                  ...selectionsObject,
-                  invalidated: true,
-                  selections: [],
-                  userName,
-                };
-                this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
-
-                const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-                const selectionsPayload = {
-                  ...selectionsObject,
-                  selections: [],
-                  userName,
-                };
-                this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
               } else {
                 console.warn(`Api._validateVerse() - could not find selections for verse ${chapter}:${verse}, checkingOccurrence: ${JSON.stringify(checkingOccurrence)}`);
               }
@@ -409,6 +402,7 @@ export default class Api extends ToolApi {
       clearGroupsData,
       loadGroupsData,
       setActiveLocale,
+      changeSelections,
       updateGroupDataForVerseEdit,
       verifyGroupDataMatchesWithFs,
     };
