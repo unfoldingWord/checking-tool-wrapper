@@ -107,12 +107,19 @@ export default class Api extends ToolApi {
    * @returns {boolean} true if valid
    */
   validateVerseAlignments(chapter, verse, silent=false) {
-    const { tc: { tools } } = this.props;
+    const {
+      tc: { tools },
+      tool: { name: toolName },
+    } = this.props;
     const wA_api = tools && tools[WORD_ALIGNMENT];
 
     // TODO: this is a temporary fix - as we finish tool reducer updates we should call API in tCore since tools should not have knowledge of one another
     if (wA_api) {
-      return wA_api.trigger('validateVerse', chapter, verse, silent);
+      try {
+        return wA_api.trigger('validateVerse', chapter, verse, silent);
+      } catch (e) {
+        console.error(`validateVerseAlignments(${toolName}) - validateVerse failed`, e);
+      }
     }
     return false;
   }
@@ -129,7 +136,6 @@ export default class Api extends ToolApi {
       tc: { tools },
       tool: { name: currentTool },
     } = this.props;
-    const wA_api = tools && tools[WORD_ALIGNMENT];
     let invalidatedSelections = false;
     const toolNames = Object.keys(tools);
 
@@ -146,7 +152,15 @@ export default class Api extends ToolApi {
 
       if (tool_api) {
         console.log(`validateVerseSelectionsInOtherTools(${toolName}) - calling validateVerse in tool API`);
-        const validSelections = wA_api.trigger('validateVerse', chapter, verse, silent);
+        let validSelections = false;
+
+        try {
+          validSelections = tool_api.trigger('validateVerse', chapter, verse, silent);
+        } catch (e) {
+          console.error(`validateVerseSelectionsInOtherTools(${toolName}) - validateVerse failed`, e);
+          validSelections = false;
+        }
+
         console.log(`validateVerseSelectionsInOtherTools(${toolName}) - validateVerse returned: ${validSelections}`);
 
         if (!validSelections) { // capture if selections became invalid
