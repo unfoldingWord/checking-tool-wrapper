@@ -127,6 +127,8 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
+  const selectionsInvalidatedInOtherTools = !toolApi.validateVerseSelectionsInOtherTools(chapterWithVerseEdit, verseWithVerseEdit, true);
+  showSelectionInvalidated = showSelectionInvalidated || selectionsInvalidatedInOtherTools;
   closeAlert();
 
   if (showSelectionInvalidated || showAlignmentsInvalidated) {
@@ -154,11 +156,12 @@ export const updateGroupDataForVerseEdit = (projectSaveLocation, toolName, conte
     const { groupEditsCount } = editChecksToBatch(editedChecks, actionsBatch); // optimize edits into batch
 
     if (groupEditsCount) {
-      console.info(`doBackgroundVerseEditsUpdates() - ${groupEditsCount} group edits found`);
+      console.info(`updateGroupDataForVerseEdit() - ${groupEditsCount} group edits found`);
     }
   }
 
   if (actionsBatch.length) {
+    console.info(`updateGroupDataForVerseEdit() - batch size: ${actionsBatch.length}`);
     dispatch(batchActions(actionsBatch));
 
     // update group data index files with new data

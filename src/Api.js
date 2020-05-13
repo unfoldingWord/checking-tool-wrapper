@@ -23,6 +23,7 @@ import { sameContext } from './helpers/contextIdHelpers';
 import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
 import { clearContextId } from './state/actions/contextIdActions';
+import { changeSelections } from './state/actions/selectionsActions';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -32,6 +33,7 @@ export default class Api extends ToolApi {
     this.getProgress = this.getProgress.bind(this);
     this.validateVerse = this.validateVerse.bind(this);
     this.validateVerseAlignments = this.validateVerseAlignments.bind(this);
+    this.validateVerseSelectionsInOtherTools = this.validateVerseSelectionsInOtherTools.bind(this);
     this._loadBookSelections = this._loadBookSelections.bind(this);
     this._loadVerseSelections = this._loadVerseSelections.bind(this);
     this._loadCheckData = this._loadCheckData.bind(this);
@@ -78,6 +80,7 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
+   * @param {String} modifiedTimestamp
    */
   validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     const { tc: { targetBook } } = this.props;
@@ -105,14 +108,70 @@ export default class Api extends ToolApi {
    * @returns {boolean} true if valid
    */
   validateVerseAlignments(chapter, verse, silent=false) {
-    const { tc: { tools } } = this.props;
+    const {
+      tc: { tools },
+      tool: { name: toolName },
+    } = this.props;
     const wA_api = tools && tools[WORD_ALIGNMENT];
 
-    // TODO: this is a temporary fix - as we finish tool reducer updates we should call API in tCore since tools should not have knowledge of one another
     if (wA_api) {
-      return wA_api.trigger('validateVerse', chapter, verse, silent);
+      try {
+        return wA_api.trigger('validateVerse', chapter, verse, silent);
+      } catch (e) {
+        console.error(`validateVerseAlignments(${toolName}) - validateVerse failed`, e);
+      }
     }
     return false;
+  }
+
+  /**
+   * checks the alignments for changes
+   * @param {String} chapter
+   * @param {String} verse
+   * @param {boolean} silent - if true then don't show alerts
+   * @returns {boolean} true if valid
+   */
+  validateVerseSelectionsInOtherTools(chapter, verse, silent=false) {
+    const {
+      tc: { tools },
+      tool: { name: currentTool },
+    } = this.props;
+    let invalidatedSelections = false;
+    const toolNames = Object.keys(tools);
+
+    for (const toolName of toolNames) {
+      if (toolName === WORD_ALIGNMENT) {
+        continue; // skip since wA doesn't do selections
+      }
+
+      if (toolName === currentTool) {
+        continue; // skip since this is the current tool
+      }
+
+      const tool_api = tools && tools[toolName];
+
+      if (tool_api) {
+        let validSelections = false;
+
+        try {
+          validSelections = tool_api.trigger('validateVerse', chapter, verse, silent);
+        } catch (e) {
+          console.error(`${currentTool}.validateVerseSelectionsInOtherTools(${toolName}) - validateVerse failed`, e);
+          validSelections = false;
+        }
+
+        console.log(`${currentTool}.SelectionsInOtherTools(${toolName}) - validateVerse returned: ${validSelections}`);
+
+        if (!validSelections) { // capture if selections became invalid
+          invalidatedSelections = true;
+        }
+      } else {
+        console.error(`${currentTool}.validateVerseSelectionsInOtherTools(${toolName}) - tool API not found`);
+      }
+    }
+
+    console.log(`${currentTool}.SelectionsInOtherTools() - validate : ${!invalidatedSelections}`);
+    return !invalidatedSelections;
   }
 
   /**
@@ -128,25 +187,17 @@ export default class Api extends ToolApi {
       tc: {
         targetBook,
         bookId,
-        username: userName,
         project: { _projectPath: projectSaveLocation },
       },
       tool: { name: toolName },
-      getGroupsData,
-      loadGroupsData,
       updateGroupDataForVerseEdit,
     } = this.props;
-    let _groupsData = groupsData || getGroupsData();
-
-    if (!Object.keys(_groupsData).length) { // if groups data not loaded
-      loadGroupsData(toolName, projectSaveLocation);
-      _groupsData = getGroupsData(); // refresh with latest group data
-    }
-
+    let _groupsData = groupsData || this._getGroupData();
     const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
     const targetVerse = bibleChapter[verse];
     const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
+    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
 
     // check for verse edit
     const contextId = {
@@ -159,6 +210,7 @@ export default class Api extends ToolApi {
     const isVerseEdited = loadVerseEdit(projectSaveLocation, contextId);
 
     if (isVerseEdited) { // if verse has been edited, make sure checks in groupData for verse have the verse edit set
+      console.log(`${toolName}.validateVerse() - ${chapter}:${verse} verse edited: ${isVerseEdited}`);
       updateGroupDataForVerseEdit(projectSaveLocation, toolName, contextId);
     }
     return selectionsValid;
@@ -172,15 +224,19 @@ export default class Api extends ToolApi {
    * @param {Object} groupsData
    * @param {Array} groupsDataKeys - quick lookup for keys in groupsData
    * @param {boolean} silent - if true then don't show alerts
+   * @param {String} modifiedTimestamp
    * @return {boolean} returns true if no selections invalidated
    */
   _validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp) {
     let {
       tc: {
         bookId,
-        username: userName,
+        gatewayLanguageCode,
+        username,
         project: { _projectPath: projectSaveLocation },
       },
+      tool: { name: toolName },
+      changeSelections,
     } = this.props;
     const contextId = {
       reference: {
@@ -220,24 +276,13 @@ export default class Api extends ToolApi {
               );
 
               if (selectionsObject.contextId) {
-                //If selections are changed, they need to be cleared
+                console.log(`${toolName}._validateVerse(): invalidating: ${JSON.stringify(selectionsObject.contextId)}`);
+                // If selections are no longer valid, they need to be cleared and invalidated
+                changeSelections(
+                  [], true, selectionsObject.contextId, null, false, username, toolName,
+                  gatewayLanguageCode, selectionsObject.contextId.quote, projectSaveLocation
+                );
                 selectionsChanged = true;
-                const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
-                const invalidatedPayload = {
-                  ...selectionsObject,
-                  invalidated: true,
-                  selections: [],
-                  userName,
-                };
-                this.writeCheckData(invalidatedPayload, invalidatedCheckPath, modifiedTimestamp);
-
-                const selectionsCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-                const selectionsPayload = {
-                  ...selectionsObject,
-                  selections: [],
-                  userName,
-                };
-                this.writeCheckData(selectionsPayload, selectionsCheckPath, modifiedTimestamp);
               } else {
                 console.warn(`Api._validateVerse() - could not find selections for verse ${chapter}:${verse}, checkingOccurrence: ${JSON.stringify(checkingOccurrence)}`);
               }
@@ -268,7 +313,6 @@ export default class Api extends ToolApi {
       tc: {
         project: { _projectPath: projectSaveLocation },
         bookId,
-        gatewayLanguageCode,
       },
       tool: { name: toolName },
       loadGroupsData,
@@ -352,6 +396,7 @@ export default class Api extends ToolApi {
       clearGroupsData,
       loadGroupsData,
       setActiveLocale,
+      changeSelections,
       updateGroupDataForVerseEdit,
       verifyGroupDataMatchesWithFs,
     };
@@ -456,7 +501,6 @@ export default class Api extends ToolApi {
    * @returns {number} - the number of invalid checks
    */
   getInvalidChecks(groups) {
-    const { tc: { project }, tool: { name } } = this.props;
     let invalidChecks = 0;
     const groupsData = this._getGroupData();
 

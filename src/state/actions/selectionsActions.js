@@ -1,12 +1,8 @@
-import fs from 'fs-extra';
-import path from 'path-extra';
-import isEqual from 'deep-equal';
 import usfm from 'usfm-js';
 import { batchActions } from 'redux-batched-actions';
 import { checkSelectionOccurrences } from 'selections';
 // constants
 import {
-  WORD_ALIGNMENT,
   TRANSLATION_WORDS,
   TRANSLATION_NOTES,
   ALERT_SELECTIONS_INVALIDATED_ID,
@@ -127,39 +123,30 @@ export const validateSelections = (targetVerse, contextId = null, chapterNumber 
   let selectionInvalidated = false;
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
 
-  if (currentToolName !== WORD_ALIGNMENT) {
-    const groupsData = getGroupsData(state);
-    // for this groupId, find every check for this chapter/verse
-    const matchedGroupData = getGroupDataForGroupIdChapterVerse(groupsData, contextId.groupId, chapterNumber, verseNumber);
+  const groupsData = getGroupsData(state);
+  // for this groupId, find every check for this chapter/verse
+  const matchedGroupData = getGroupDataForGroupIdChapterVerse(groupsData, contextId.groupId, chapterNumber, verseNumber);
 
-    for (let i = 0, l = matchedGroupData.length; i < l; i++) {
-      const groupObject = matchedGroupData[i];
-      const selections = getSelectionsForContextID(projectSaveLocation, groupObject.contextId);
-      const validSelections = checkSelectionOccurrences(targetVerse, selections);
-      const selectionsChanged = (selections.length !== validSelections.length);
+  for (let i = 0, l = matchedGroupData.length; i < l; i++) {
+    const groupObject = matchedGroupData[i];
+    const selections = getSelectionsForContextID(projectSaveLocation, groupObject.contextId);
+    const validSelections = checkSelectionOccurrences(targetVerse, selections);
+    const selectionsChanged = (selections.length !== validSelections.length);
 
-      if (selectionsChanged) {
-        // clear selections
-        dispatch(
-          changeSelections(
-            [], true, groupObject.contextId, actionsBatch, null, username, currentToolName,
-            gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
-          ));
-      }
-      selectionInvalidated = selectionInvalidated || selectionsChanged;
+    if (selectionsChanged) {
+      // clear selections
+      dispatch(
+        changeSelections(
+          [], true, groupObject.contextId, actionsBatch, null, username, currentToolName,
+          gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
+        ));
     }
-
-    const results_ = { selectionsChanged: selectionInvalidated };
-    dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
-    selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
-    selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
-      projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
-    ));
-  } else { // wordAlignment tool
-    selectionInvalidated = dispatch(validateSelectionsForUnloadedTools(
-      projectSaveLocation, bookId, chapter, verse, targetVerse, selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote
-    ));
+    selectionInvalidated = selectionInvalidated || selectionsChanged;
   }
+
+  const results_ = { selectionsChanged: selectionInvalidated };
+  dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
+  selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
 
   if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
     dispatch(batchActions(actionsBatch));
@@ -190,7 +177,7 @@ export const getSelectionsForContextID = (projectSaveLocation, contextId) => {
 
 /**
  * populates groupData with all groupData entries for groupId and chapter/verse
- * @param {Object} groupsDataReducer
+ * @param {Object} groupsData
  * @param {String} groupId
  * @param {Number} chapterNumber - optional chapter number of verse text being edited
  * @param {Number} verseNumber - optional verse number of verse text being edited
@@ -221,6 +208,11 @@ export const getGroupDataForGroupIdChapterVerse = (groupsData, groupId, chapterN
  * @param {Object} contextId - optional contextId to use, otherwise will use current
  * @param {Boolean} warnOnError - if true, then will show message on selection change
  * @param {Array|null} batchGroupData - if present then add group data actions to this array for later batch operation
+ * @param {string} username
+ * @param {string} currentToolName
+ * @param {string} gatewayLanguageCode
+ * @param {Array|string} gatewayLanguageQuote
+ * @param {string} projectSaveLocation
  * @return {Function}
  */
 export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent = false, contextId = null, warnOnError = false, batchGroupData = null,
@@ -273,83 +265,6 @@ export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent 
   if (warnOnError && (initialSelectionsChanged || results.selectionsChanged)) {
     dispatch(showSelectionsInvalidatedWarning());
   }
-};
-
-/**
- * does validation for tools not loaded into group reducer
- * @param {String} projectSaveLocation
- * @param {String} bookId
- * @param {String|Number} chapter
- * @param {String|Number} verse
- * @param {Object} state
- * @param {String} targetVerse - new verse text
- * @param {Boolean} selectionInvalidated
- * @param {Boolean} username
- * @param {Boolean} currentToolName
- * @param {Boolean} gatewayLanguageCode
- * @param {Boolean} gatewayLanguageQuote
- * @return {Boolean} - updated value for selectionInvalidated
- */
-const validateSelectionsForUnloadedTools = (projectSaveLocation, bookId, chapter, verse, targetVerse,
-  selectionInvalidated, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch) => {
-  const selectionsPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'selections', bookId, chapter.toString(), verse.toString());
-
-  if (fs.existsSync(selectionsPath)) {
-    let files = fs.readdirSync(selectionsPath);
-
-    files = files.filter(file => // filter the filenames to only use .json
-      path.extname(file) === '.json'
-    ).sort();
-
-    // load all files keeping the latest for each context
-    const latestContext = {};
-
-    for (let i = 0, l = files.length; i < l; i++) {
-      const selectionsData = fs.readJsonSync(path.join(selectionsPath, files[i]));
-      const contextId = selectionsData.contextId;
-
-      if (contextId) {
-        if (currentToolName !== contextId.tool) {
-          const contextIdQuote = Array.isArray(contextId.quote) ? contextId.quote.map(({ word }) => word).join(' ') : contextId.quote;
-          const key = contextId.groupId + ':' + contextId.occurrence + ':' + contextIdQuote;
-          latestContext[key] = selectionsData;
-        }
-      }
-    }
-
-    const modifiedTimestamp = generateTimestamp();
-    const keys = Object.keys(latestContext);
-
-    for (let j = 0, l = keys.length; j < l; j++) {
-      const selectionsData = latestContext[keys[j]];
-      const validSelections = checkSelectionOccurrences(targetVerse, selectionsData.selections);
-
-      if (!isEqual(selectionsData.selections, validSelections)) { // if true found invalidated check
-        // add invalidation entry
-        const newInvalidation = {
-          contextId: selectionsData.contextId,
-          invalidated: true,
-          username,
-          modifiedTimestamp: modifiedTimestamp,
-          gatewayLanguageCode: selectionsData.gatewayLanguageCode,
-          gatewayLanguageQuote: selectionsData.gatewayLanguageQuote,
-        };
-        const newFilename = modifiedTimestamp + '.json';
-        const invalidatedCheckPath = path.join(projectSaveLocation, '.apps', 'translationCore', 'checkData', 'invalidated', bookId, chapter.toString(), verse.toString());
-        fs.ensureDirSync(invalidatedCheckPath);
-        fs.outputJSONSync(path.join(invalidatedCheckPath, newFilename.replace(/[:"]/g, '_')), newInvalidation, { spaces: 2 });
-        dispatch(
-          changeSelections(
-            [], true, newInvalidation.contextId, username, currentToolName,
-            gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
-          )
-        );
-        selectionInvalidated = true;
-      }
-    }
-  }
-
-  return selectionInvalidated;
 };
 
 /**
