@@ -204,7 +204,7 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
       console.log('ensureCheckVerseEditsInGroupData() - edited verses=' + versesEdited.length);
       console.log('ensureCheckVerseEditsInGroupData() - actionBatch length=' + actionBatch.length);
       //dispatch(batchActions(actionBatch));
-      const size = 100;
+      const size = 200;
       const chunks = chunkArrayInGroups(actionBatch, size);
 
       for (let i = 0, l = chunks.length; i < l; i ++) {
@@ -216,7 +216,7 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
         }
         console.log(`ensureCheckVerseEditsInGroupData() - processing chunk from ${pos} to ${end}`);
         // eslint-disable-next-line no-await-in-loop
-        await delay(50);
+        await delay(0);
         dispatch(batchActions(chunks[i]));
       }
       console.log('ensureCheckVerseEditsInGroupData() - total checks changed=' + groupEditsCount);

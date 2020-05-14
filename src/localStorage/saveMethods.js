@@ -132,7 +132,7 @@ export const saveGroupsDataItem = (groupsData, projectSaveLocation, toolName, bo
   if (groupsData[groupID]) {
     const fileName = groupID + '.json';
     const savePath = path.join(projectSaveLocation, PROJECT_INDEX_FOLDER_PATH, toolName, bookId, fileName);
-    fs.outputJson(savePath, groupsData[groupID], { spaces: 2 }); // no need to wait for save to complete
+    fs.outputJsonSync(savePath, groupsData[groupID], { spaces: 2 }); // no need to wait for save to complete
   }
 };
 
