@@ -164,6 +164,15 @@ export function verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, book
   });
 }
 
+function chunkArrayInGroups(arr, size) {
+  var myArray = [];
+
+  for(var i = 0; i < arr.length; i += size) {
+    myArray.push(arr.slice(i, i+size));
+  }
+  return myArray;
+}
+
 /**
  * make sure verse edit flag is set for all tw checks in verses
  * @param {Object} twVerseEdits - indexed by verse - contextIds for each verse edit
@@ -188,7 +197,20 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
     if (actionBatch.length) {
       await delay(400);
       console.log('ensureCheckVerseEditsInGroupData() - edited verses=' + versesEdited.length);
-      dispatch(batchActions(actionBatch));
+      //dispatch(batchActions(actionBatch));
+      const size = 50;
+      const chunks = chunkArrayInGroups(actionBatch, size);
+
+      for (let i = 0, l = chunks.length; i < l; i ++) {
+        const pos = i * size;
+        let end = pos + size - 1;
+
+        if (end > l) {
+          end = l;
+        }
+        console.log(`ensureCheckVerseEditsInGroupData() - processing chunk from ${pos} to ${end}`);
+        dispatch(batchActions(chunks[i]));
+      }
       console.log('ensureCheckVerseEditsInGroupData() - total checks changed=' + groupEditsCount);
       console.log('ensureCheckVerseEditsInGroupData() - batch finished, groupId\'s edited=' + groupIds.length);
     }
@@ -196,7 +218,7 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
 };
 
 /**
- * batch setting verse edit flags for all tw checks in verse if not set
+ * batch setting verse edit flags for all checks in verse if not set
  * @param {Object} state - current state
  * @param {Object} contextId - of verse edit
  * @param {Object} editedChecks - gets loaded with verse edits indexed by groupId
