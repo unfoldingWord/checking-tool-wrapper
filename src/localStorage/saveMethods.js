@@ -51,7 +51,7 @@ function saveData(contextId, checkDataName, payload, modifiedTimestamp, projectS
     const savePath = generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation);
 
     if (savePath) {
-      fs.outputJson(savePath, payload, { spaces: 2 });
+      fs.outputJsonSync(savePath, payload, { spaces: 2 });
       console.info(`Succesfully saved: ${checkDataName} check data item.`);
     } else {
       const errorMessage = `saveData(): savePath is undefined or path does not exists ${savePath}`;

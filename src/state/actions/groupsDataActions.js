@@ -165,21 +165,6 @@ export function verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, book
 }
 
 /**
- * break array into smaller chunks
- * @param arr
- * @param size
- * @return {[]}
- */
-function chunkArrayInGroups(arr, size) {
-  const myArray = [];
-
-  for (let i = 0; i < arr.length; i += size) {
-    myArray.push(arr.slice(i, i+size));
-  }
-  return myArray;
-}
-
-/**
  * make sure verse edit flag is set for all tw checks in verses
  * @param {Object} twVerseEdits - indexed by verse - contextIds for each verse edit
  * @param {String} projectSaveLocation
@@ -201,24 +186,10 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
     const { groupIds, groupEditsCount } = editChecksToBatch(editedChecks, actionBatch);
 
     if (actionBatch.length) {
+      await delay(50);
       console.log('ensureCheckVerseEditsInGroupData() - edited verses=' + versesEdited.length);
       console.log('ensureCheckVerseEditsInGroupData() - actionBatch length=' + actionBatch.length);
-      //dispatch(batchActions(actionBatch));
-      const size = 200;
-      const chunks = chunkArrayInGroups(actionBatch, size);
-
-      for (let i = 0, l = chunks.length; i < l; i ++) {
-        const pos = i * size;
-        let end = pos + size - 1;
-
-        if (end > actionBatch.length) {
-          end = actionBatch.length;
-        }
-        console.log(`ensureCheckVerseEditsInGroupData() - processing chunk from ${pos} to ${end}`);
-        // eslint-disable-next-line no-await-in-loop
-        await delay(0);
-        dispatch(batchActions(chunks[i]));
-      }
+      dispatch(batchActions(actionBatch));
       console.log('ensureCheckVerseEditsInGroupData() - total checks changed=' + groupEditsCount);
       console.log('ensureCheckVerseEditsInGroupData() - batch finished, groupId\'s edited=' + groupIds.length);
     }
