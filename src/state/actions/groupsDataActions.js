@@ -164,10 +164,16 @@ export function verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, book
   });
 }
 
+/**
+ * break array into smaller chunks
+ * @param arr
+ * @param size
+ * @return {[]}
+ */
 function chunkArrayInGroups(arr, size) {
-  var myArray = [];
+  const myArray = [];
 
-  for(var i = 0; i < arr.length; i += size) {
+  for (let i = 0; i < arr.length; i += size) {
     myArray.push(arr.slice(i, i+size));
   }
   return myArray;
@@ -205,8 +211,8 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
         const pos = i * size;
         let end = pos + size - 1;
 
-        if (end > l) {
-          end = l;
+        if (end > actionBatch.length) {
+          end = actionBatch.length;
         }
         console.log(`ensureCheckVerseEditsInGroupData() - processing chunk from ${pos} to ${end}`);
         dispatch(batchActions(chunks[i]));
