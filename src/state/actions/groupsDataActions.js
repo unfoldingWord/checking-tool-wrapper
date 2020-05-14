@@ -17,7 +17,6 @@ import {
   loadProjectGroupData,
 } from '../../helpers/groupDataHelpers';
 import { PROJECT_CHECKDATA_DIRECTORY } from '../../common/constants';
-import delay from '../../utils/delay';
 import { getGroupsData } from '../../selectors/index';
 import { editChecksToBatch } from './verseEditActions';
 
@@ -170,7 +169,7 @@ export function verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, book
  * @param {String} projectSaveLocation
  * @return {Function}
  */
-export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocation) => async (dispatch, getState) => {
+export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocation) => (dispatch, getState) => {
   const versesEdited = Object.keys(twVerseEdits);
 
   if (versesEdited && versesEdited.length) {
@@ -186,8 +185,8 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
     const { groupIds, groupEditsCount } = editChecksToBatch(editedChecks, actionBatch);
 
     if (actionBatch.length) {
-      await delay(400);
       console.log('ensureCheckVerseEditsInGroupData() - edited verses=' + versesEdited.length);
+      console.log('ensureCheckVerseEditsInGroupData() - actionBatch length=' + actionBatch.length);
       dispatch(batchActions(actionBatch));
       console.log('ensureCheckVerseEditsInGroupData() - total checks changed=' + groupEditsCount);
       console.log('ensureCheckVerseEditsInGroupData() - batch finished, groupId\'s edited=' + groupIds.length);
@@ -196,7 +195,7 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
 };
 
 /**
- * batch setting verse edit flags for all tw checks in verse if not set
+ * batch setting verse edit flags for all checks in verse if not set
  * @param {Object} state - current state
  * @param {Object} contextId - of verse edit
  * @param {Object} editedChecks - gets loaded with verse edits indexed by groupId

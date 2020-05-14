@@ -1,7 +1,7 @@
 import isEqual from 'deep-equal';
 import path from 'path-extra';
 import fs from 'fs-extra';
-import { saveGroupsData } from '../localStorage/saveMethods';
+import { saveGroupsDataItem } from '../localStorage/saveMethods';
 import ProjectAPI from './ProjectAPI';
 
 /**
@@ -209,7 +209,7 @@ export const getToggledGroupData = (state, action, key) => {
     [action.contextId.groupId]: groupData,
   };
   // Persisting groupsData in filesystem
-  saveGroupsData(updatedGroupsData, projectSaveLocation, toolName, bookId);
+  saveGroupsDataItem(updatedGroupsData, projectSaveLocation, toolName, bookId, action.contextId.groupId);
 
   return groupData;
 };
