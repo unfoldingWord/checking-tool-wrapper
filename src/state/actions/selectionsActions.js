@@ -46,7 +46,7 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
   const currentContextId = getContextId(state);
   contextId = contextId || currentContextId; // use current if contextId is not passed
 
-  const args = {selections, invalidated, contextId, batchGroupData: !!batchGroupData, nothingToSelect,
+  const args = { selections, invalidated, contextId, batchGroupData: !!batchGroupData, nothingToSelect,
     username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation };
   console.log(`changeSelections() - args: ${JSON.stringify(args)}`);
 
