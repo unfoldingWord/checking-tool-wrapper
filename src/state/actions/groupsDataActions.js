@@ -204,7 +204,7 @@ export const ensureCheckVerseEditsInGroupData = (twVerseEdits, projectSaveLocati
       console.log('ensureCheckVerseEditsInGroupData() - edited verses=' + versesEdited.length);
       console.log('ensureCheckVerseEditsInGroupData() - actionBatch length=' + actionBatch.length);
       //dispatch(batchActions(actionBatch));
-      const size = 50;
+      const size = 100;
       const chunks = chunkArrayInGroups(actionBatch, size);
 
       for (let i = 0, l = chunks.length; i < l; i ++) {
