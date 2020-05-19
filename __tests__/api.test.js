@@ -29,7 +29,16 @@ describe('api.validateBook', () => {
           _projectPath: projectPath,
           getGroupData: jest.fn(() => {}),
           getCategoryGroupIds: jest.fn(() => {}),
-          getGroupsData: jest.fn(() => ({
+        },
+        showIgnorableDialog: jest.fn(() => {}),
+      },
+      contextId: { reference: { bookId: 'tit' } },
+      changeSelections: jest.fn(() => {}),
+    };
+    const state = {
+      tool: {
+        groupsDataReducer: {
+          groupsData: {
             accuse:
               [{
                 'priority': 1, 'comments': false, 'reminders': false, 'selections': [{
@@ -40,15 +49,18 @@ describe('api.validateBook', () => {
                   }, 'tool': TRANSLATION_WORDS, 'groupId': 'age', 'quote': 'αἰῶνι', 'strong': ['G01650'], 'occurrence': 1,
                 }, 'invalidated': false,
               }],
-          })),
+          },
+          loadedFromFileSystem: true,
         },
-        showIgnorableDialog: jest.fn(() => {}),
       },
-      contextId: { reference: { bookId: 'tit' } },
-      changeSelections: jest.fn(() => {}),
     };
     const api = new Api();
     api.props = props;
+    api.context = {
+      store: {
+        getState: jest.fn(() => (state)),
+      },
+    };
     api.validateBook();
     // expect(props.tc.showIgnorableDialog).toHaveBeenCalled();
     expect(api.props.changeSelections).toHaveBeenCalledWith(
