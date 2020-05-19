@@ -9,7 +9,7 @@ import usfm from 'usfm-js';
 import fs from 'fs-extra';
 import isEqual from 'deep-equal';
 import { checkSelectionOccurrences } from 'selections';
-import { getGroupsData } from './selectors/index';
+import { getGroupsData, getGroupsDataLoaded } from './selectors/index';
 import { updateGroupDataForVerseEdit } from './state/actions/verseEditActions';
 import {
   clearGroupsData,
@@ -51,13 +51,10 @@ export default class Api extends ToolApi {
 
   validateBook(silent) {
     const {
-      tc: {
-        targetBook,
-        project: { getGroupsData },
-      },
+      tc: { targetBook },
       tool: { name: toolName },
     } = this.props;
-    const groupsData = getGroupsData(toolName);
+    const groupsData = this._getGroupData();
     const groupsDataKeys = Object.keys(groupsData);
     const chapters = Object.keys(targetBook);
     const modifiedTimestamp = generateTimestamp();
@@ -319,8 +316,7 @@ export default class Api extends ToolApi {
       verifyGroupDataMatchesWithFs,
     } = this.props;
     const store = this.context.store; // TRICKY - we need the latest store since we may be updating
-    let groupsData = getGroupsData(store.getState());
-    const isGroupDataLoaded = !!Object.keys(groupsData).length;
+    const isGroupDataLoaded = getGroupsDataLoaded(store.getState());
 
     if (!isGroupDataLoaded) { // if groups data not loaded
       console.log(`_getGroupData(${toolName}) loading group data`);
@@ -328,8 +324,9 @@ export default class Api extends ToolApi {
       // make sure data is in sync
       console.log(`_getGroupData(${toolName}) verifying group data is up to date`);
       verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, bookId);
-      groupsData = getGroupsData(store.getState()); // get recently updated data
     }
+
+    const groupsData = getGroupsData(store.getState()); // get recently updated data
     return groupsData;
   }
 

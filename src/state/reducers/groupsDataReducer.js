@@ -86,4 +86,7 @@ const groupsDataReducer = (state = initialState, action) => {
 export const getGroupsData = (state) =>
   state.groupsData;
 
+export const getGroupsDataLoaded = (state) =>
+  state.loadedFromFileSystem;
+
 export default groupsDataReducer;
