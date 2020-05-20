@@ -3,6 +3,7 @@ import path from 'path-extra';
 import fs from 'fs-extra';
 import { saveGroupsDataItem } from '../localStorage/saveMethods';
 import ProjectAPI from './ProjectAPI';
+import { sameContext } from './contextIdHelpers';
 
 /**
  * Gets the group data for the verse reference in contextId from groupsDataReducer
@@ -148,7 +149,7 @@ export const getToggledGroupData = (state, action, key) => {
   let index = -1;
 
   for (let i = 0, l = groupData.length; i < l; i++) {
-    if (isEqual(groupData[i].contextId, action.contextId)) {
+    if (sameContext(groupData[i].contextId, action.contextId)) {
       index = i;
       break;
     }
