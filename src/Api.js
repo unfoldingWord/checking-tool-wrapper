@@ -195,6 +195,7 @@ export default class Api extends ToolApi {
     const targetVerse = bibleChapter[verse];
     const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
     console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
+    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
 
     // check for verse edit
     const contextId = {
@@ -258,6 +259,7 @@ export default class Api extends ToolApi {
           if (selections && selections.length) {
             if (!filtered) { // for performance, we filter the verse only once and only if there is a selection
               filtered = usfm.removeMarker(targetVerse); // remove USFM markers
+              console.log(`${toolName}._validateVerse(): verse text: ${filtered}`);
             }
 
             const validSelections = checkSelectionOccurrences(filtered, selections);
