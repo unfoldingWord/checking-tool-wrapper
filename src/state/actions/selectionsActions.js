@@ -1,6 +1,4 @@
-import usfm from 'usfm-js';
 import { batchActions } from 'redux-batched-actions';
-import { checkSelectionOccurrences } from 'selections';
 // constants
 import {
   TRANSLATION_WORDS,
@@ -14,11 +12,9 @@ import {
 // helpers
 import generateTimestamp from '../../utils/generateTimestamp';
 import { sameContext } from '../../helpers/contextIdHelpers';
-import { getGroupDataForVerse } from '../../helpers/groupDataHelpers';
 import { saveSelectionsForOtherContext, saveSelections } from '../../localStorage/saveMethods';
 // selectors
-import { getContextId, getGroupsData } from '../../selectors';
-import { loadCheckDataForKey } from '../../helpers/checkDataHelpers';
+import { getContextId } from '../../selectors';
 import {
   CHANGE_SELECTIONS,
   TOGGLE_SELECTIONS_IN_GROUPDATA,
@@ -96,119 +92,6 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
     }
   }
 });
-
-/**
- * get selections for context ID
- * @param {Object} contextId - contextId to use in lookup
- * @param {String} projectSaveLocation
- * @return {Array} - selections
- */
-export const getSelectionsForContextID = (projectSaveLocation, contextId) => {
-  let selections = [];
-  const selectionsObject = loadCheckDataForKey(projectSaveLocation, contextId, 'selections');
-
-  if (selectionsObject) {
-    selections = selectionsObject.selections;
-  }
-  return selections;
-};
-
-/**
- * populates groupData with all groupData entries for groupId and chapter/verse
- * @param {Object} groupsData
- * @param {String} groupId
- * @param {Number} chapterNumber - optional chapter number of verse text being edited
- * @param {Number} verseNumber - optional verse number of verse text being edited
- * @return {Array} - group data items that match
- */
-export const getGroupDataForGroupIdChapterVerse = (groupsData, groupId, chapterNumber, verseNumber) => {
-  const matchedGroupData = [];
-  const groupData = groupId && groupsData && groupsData[groupId];
-
-  if (groupData && groupData.length) {
-    for (let i = 0, l = groupData.length; i < l; i++) {
-      const groupObject = groupData[i];
-
-      if ((groupObject.contextId.reference.chapter === chapterNumber) &&
-        (groupObject.contextId.reference.verse === verseNumber)) {
-        matchedGroupData.push(groupObject);
-      }
-    }
-  }
-  return matchedGroupData;
-};
-
-/**
- * verify all selections for current verse
- * @param {string} targetVerse - new text for verse
- * @param {object} results - keeps state of
- * @param {Boolean} skipCurrent - if true, then skip over validation of current contextId
- * @param {Object} contextId - optional contextId to use, otherwise will use current
- * @param {Boolean} warnOnError - if true, then will show message on selection change
- * @param {Array|null} batchGroupData - if present then add group data actions to this array for later batch operation
- * @param {string} username
- * @param {string} currentToolName
- * @param {string} gatewayLanguageCode
- * @param {Array|string} gatewayLanguageQuote
- * @param {string} projectSaveLocation
- * @return {Function}
- */
-export const validateAllSelectionsForVerse = (targetVerse, results, skipCurrent = false, contextId = null, warnOnError = false, batchGroupData = null,
-  username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation) => (dispatch, getState) => {
-  const state = getState();
-  const initialSelectionsChanged = results.selectionsChanged;
-  contextId = contextId || state.contextIdReducer.contextId;
-  const groupsData = getGroupsData(state);
-  const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId);
-  let filtered = null;
-  results.selectionsChanged = false;
-  const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
-
-  const groupsDataKeys = Object.keys(groupsDataForVerse);
-
-  for (let i = 0, l = groupsDataKeys.length; i < l; i++) {
-    const groupItemKey = groupsDataKeys[i];
-    const groupItem = groupsDataForVerse[groupItemKey];
-
-    for (let j = 0, lenGI = groupItem.length; j < lenGI; j++) {
-      const checkingOccurrence = groupItem[j];
-      const selections = checkingOccurrence.selections;
-
-      if (!skipCurrent || !sameContext(contextId, checkingOccurrence.contextId)) {
-        if (selections && selections.length) {
-          if (!filtered) { // for performance, we filter the verse only once and only if there is a selection
-            filtered = usfm.removeMarker(targetVerse); // remove USFM markers
-          }
-
-          const validSelections = checkSelectionOccurrences(filtered, selections);
-
-          if (selections.length !== validSelections.length) {
-            results.selectionsChanged = true;
-            dispatch(
-              changeSelections(
-                [], true, checkingOccurrence.contextId, batchGroupData, null, username, currentToolName,
-                gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
-              )
-            ); // clear selection
-          }
-        }
-      }
-    }
-  }
-
-  if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
-    dispatch(batchActions(actionsBatch));
-  }
-
-  if (warnOnError && (initialSelectionsChanged || results.selectionsChanged)) {
-    dispatch(showSelectionsInvalidatedWarning());
-  }
-};
-
-/**
- * displays warning that selections have been invalidated
- */
-export const showSelectionsInvalidatedWarning = () => showInvalidatedWarnings(true, false);
 
 /**
  * Displays warning that selections, alignments, or both have been invalidated
