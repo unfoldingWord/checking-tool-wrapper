@@ -13,7 +13,7 @@ import {
   ADD_VERSE_EDIT,
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
 } from './actionTypes';
-import { showInvalidatedWarnings, validateSelections } from './selectionsActions';
+import { showInvalidatedWarnings } from './selectionsActions';
 
 /**
  * This is called by tool when a verse has been edited. It updates group data reducer for current tool
