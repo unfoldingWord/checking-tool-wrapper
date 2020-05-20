@@ -147,6 +147,7 @@ export const getToggledGroupData = (state, action, key) => {
   }
 
   let index = -1;
+  let groupObject = null;
 
   for (let i = 0, l = groupData.length; i < l; i++) {
     if (sameContext(groupData[i].contextId, action.contextId)) {
@@ -159,7 +160,7 @@ export const getToggledGroupData = (state, action, key) => {
 
   if (oldGroupObject) {
     groupData = [...groupData]; // create new array from old one (shallow copy)
-    let groupObject = { ...oldGroupObject }; // create new object from old one (shallow copy)
+    groupObject = { ...oldGroupObject }; // create new object from old one (shallow copy)
     groupData[index] = groupObject; // replace original object
 
     switch (key) {
@@ -199,18 +200,20 @@ export const getToggledGroupData = (state, action, key) => {
     }
   }
 
-  const { groupsData } = state;
-  const { projectSaveLocation } = action;
-  const {
-    tool: toolName,
-    reference: { bookId },
-  } = action.contextId;
-  const updatedGroupsData = {
-    ...groupsData,
-    [action.contextId.groupId]: groupData,
-  };
-  // Persisting groupsData in filesystem
-  saveGroupsDataItem(updatedGroupsData, projectSaveLocation, toolName, bookId, action.contextId.groupId);
+  if (groupObject && !isEqual(groupObject, oldGroupObject)) { // only write if we found the group data item and it has changed
+    const { groupsData } = state;
+    const { projectSaveLocation } = action;
+    const {
+      tool: toolName,
+      reference: { bookId },
+    } = action.contextId;
+    const updatedGroupsData = {
+      ...groupsData,
+      [action.contextId.groupId]: groupData,
+    };
+    // Persisting groupsData in filesystem
+    saveGroupsDataItem(updatedGroupsData, projectSaveLocation, toolName, bookId, action.contextId.groupId);
+  }
 
   return groupData;
 };
