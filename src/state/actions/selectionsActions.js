@@ -98,68 +98,6 @@ export const changeSelections = (selections, invalidated = false, contextId = nu
 });
 
 /**
- * @description This method validates the current selections to see if they are still valid.
- * @param {String} targetVerse - target bible verse.
- * @param {Object} contextId - optional contextId to use, otherwise will use current
- * @param {Number} chapterNumber - optional chapter number of verse text being edited, if not given will use contextId
- * @param {Number} verseNumber - optional verse number of verse text being edited, if not given will use contextId
- * @param {Boolean} showInvalidation - if true then selections invalidation warning is shown - otherwise just set flag in results
- * @param {object} results - returns state of validations
- * @param {Array} batchGroupData - if present then add group data actions to this array for later batch operation
- * @param {string} projectSaveLocation
- * @param {string} bookId
- * @param {string} currentToolName
- * @param {string} username
- * @param {string} gatewayLanguageCode
- * @param {string} gatewayLanguageQuote
- */
-export const validateSelections = (targetVerse, contextId = null, chapterNumber = null, verseNumber = null, showInvalidation = true, results = {}, batchGroupData = null,
-  projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote) => (dispatch, getState) => {
-  const state = getState();
-  contextId = contextId || getContextId(state);
-  const { chapter, verse } = contextId.reference;
-  chapterNumber = chapterNumber || chapter;
-  verseNumber = verseNumber || verse;
-  let selectionInvalidated = false;
-  const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
-
-  const groupsData = getGroupsData(state);
-  // for this groupId, find every check for this chapter/verse
-  const matchedGroupData = getGroupDataForGroupIdChapterVerse(groupsData, contextId.groupId, chapterNumber, verseNumber);
-
-  for (let i = 0, l = matchedGroupData.length; i < l; i++) {
-    const groupObject = matchedGroupData[i];
-    const selections = getSelectionsForContextID(projectSaveLocation, groupObject.contextId);
-    const validSelections = checkSelectionOccurrences(targetVerse, selections);
-    const selectionsChanged = (selections.length !== validSelections.length);
-
-    if (selectionsChanged) {
-      // clear selections
-      dispatch(
-        changeSelections(
-          [], true, groupObject.contextId, actionsBatch, null, username, currentToolName,
-          gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation
-        ));
-    }
-    selectionInvalidated = selectionInvalidated || selectionsChanged;
-  }
-
-  const results_ = { selectionsChanged: selectionInvalidated };
-  dispatch(validateAllSelectionsForVerse(targetVerse, results_, true, contextId, false, actionsBatch, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
-  selectionInvalidated = selectionInvalidated || results_.selectionsChanged; // if new selections invalidated
-
-  if (!Array.isArray(batchGroupData)) { // if we are not returning batch, then process actions now
-    dispatch(batchActions(actionsBatch));
-  }
-
-  results.selectionsChanged = selectionInvalidated;
-
-  if (showInvalidation && selectionInvalidated) {
-    dispatch(showSelectionsInvalidatedWarning());
-  }
-};
-
-/**
  * get selections for context ID
  * @param {Object} contextId - contextId to use in lookup
  * @param {String} projectSaveLocation

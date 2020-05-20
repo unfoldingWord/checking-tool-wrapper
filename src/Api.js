@@ -195,7 +195,6 @@ export default class Api extends ToolApi {
     const targetVerse = bibleChapter[verse];
     const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
     console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
-    console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
 
     // check for verse edit
     const contextId = {
