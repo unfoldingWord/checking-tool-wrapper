@@ -19,6 +19,9 @@ export const getGroupsIndex = (state) =>
 export const getGroupsData = (state) =>
   fromGroupsData.getGroupsData(state.tool.groupsDataReducer);
 
+export const getGroupsDataLoaded = (state) =>
+  fromGroupsData.getGroupsDataLoaded(state.tool.groupsDataReducer);
+
 export const getCurrentGroup = (state) => {
   const groupsData = getGroupsData(state);
   const contextId = getContextId(state);

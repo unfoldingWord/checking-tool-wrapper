@@ -13,7 +13,7 @@ import {
   ADD_VERSE_EDIT,
   TOGGLE_VERSE_EDITS_IN_GROUPDATA,
 } from './actionTypes';
-import { showInvalidatedWarnings, validateSelections } from './selectionsActions';
+import { showInvalidatedWarnings } from './selectionsActions';
 
 /**
  * This is called by tool when a verse has been edited. It updates group data reducer for current tool
@@ -54,11 +54,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
       verse: verseWithVerseEdit,
     },
   };
-  const selectionsValidationResults = {};
   const actionsBatch = [];
-
-  dispatch(validateSelections(after, contextIdWithVerseEdit, chapterWithVerseEdit, verseWithVerseEdit,
-    false, selectionsValidationResults, actionsBatch, projectSaveLocation, bookId, currentToolName, username));
 
   // create verse edit record to write to file system
   const verseEdit = {
@@ -79,8 +75,8 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
 
   dispatch(
     updateVerseEditStatesAndCheckAlignments(
-      verseEdit, contextIdWithVerseEdit, currentCheckContextId, selectionsValidationResults.selectionsChanged, actionsBatch,
-      currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi
+      verseEdit, contextIdWithVerseEdit, currentCheckContextId, actionsBatch, currentToolName, translate,
+      showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi
     )
   );
 
@@ -107,7 +103,6 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
     }} verseEdit - record to be saved to file system if in WA tool
  * @param {object} contextIdWithVerseEdit - contextId of verse being edited
  * @param {object} currentCheckContextId - contextId of group menu item selected
- * @param {boolean} showSelectionInvalidated - if true then show prompt that selections invalidated
  * @param {array} batchGroupData - if present then add group data actions to this array for later batch operation
  * @param {string} currentToolName -
  * @param {function} translate -
@@ -118,7 +113,7 @@ export const editTargetVerse = (chapterWithVerseEdit, verseWithVerseEdit, before
  * @param {function} updateTargetVerse -
  * @param {object} toolApi -
  */
-export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, showSelectionInvalidated, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi) => async (dispatch) => {
+export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWithVerseEdit, currentCheckContextId, batchGroupData = null, currentToolName, translate, showAlert, closeAlert, projectSaveLocation, showIgnorableAlert, updateTargetVerse, toolApi) => async (dispatch) => {
   const actionsBatch = Array.isArray(batchGroupData) ? batchGroupData : []; // if batch array passed in then use it, otherwise create new array
   showAlert(translate('invalidation_checking'), true);
   await delay(300);
@@ -127,6 +122,7 @@ export const updateVerseEditStatesAndCheckAlignments = (verseEdit, contextIdWith
   updateTargetVerse(chapterWithVerseEdit, verseWithVerseEdit, verseEdit.verseAfter);
 
   const showAlignmentsInvalidated = !toolApi.validateVerseAlignments(chapterWithVerseEdit, verseWithVerseEdit, true);
+  let showSelectionInvalidated = !toolApi.validateVerse(chapterWithVerseEdit, verseWithVerseEdit, true);
   const selectionsInvalidatedInOtherTools = !toolApi.validateVerseSelectionsInOtherTools(chapterWithVerseEdit, verseWithVerseEdit, true);
   showSelectionInvalidated = showSelectionInvalidated || selectionsInvalidatedInOtherTools;
   closeAlert();
