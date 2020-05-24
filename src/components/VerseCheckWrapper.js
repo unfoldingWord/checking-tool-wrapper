@@ -333,6 +333,7 @@ function VerseCheckWrapper({
         handleTagsCheckbox={handleTagsCheckbox}
         toggleNothingToSelect={toggleNothingToSelect}
         changeSelectionsInLocalState={changeSelectionsInLocalState}
+        manifest={manifest}
       />
     );
   } else {
