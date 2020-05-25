@@ -160,10 +160,6 @@ function GroupMenuComponent({
   const activeEntry = generateMenuItem(contextId, onProcessItem);
   const sorted = sortEntries(entries);
 
-  console.log('====================================');
-  console.log('GroupedMenu targetLanguageFont', targetLanguageFont);
-  console.log('====================================');
-
   return (
     <GroupedMenu
       entries={sorted}

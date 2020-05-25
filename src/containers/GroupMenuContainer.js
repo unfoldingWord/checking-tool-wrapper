@@ -66,10 +66,6 @@ function GroupMenuContainer({
     };
   }, [currentToolName]);
 
-  console.log('====================================');
-  console.log('GroupMenuContainer languageFont', languageFont);
-  console.log('====================================');
-
   if (contextId) {
     return (
       <GroupMenuComponent
