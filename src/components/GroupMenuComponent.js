@@ -12,6 +12,8 @@ import {
   generateMenuItem,
   InvalidatedIcon,
   CheckIcon,
+  getTitleStr,
+  getReferenceStr,
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
@@ -46,6 +48,7 @@ function GroupMenuComponent({
           bookId, chapter, verse,
         },
       },
+      direction,
     } = item;
 
     // build selection preview
@@ -56,15 +59,13 @@ function GroupMenuComponent({
     }
 
     // build passage title
-    let passageText = `${bookName} ${chapter}:${verse}`;
-
-    if (selectionText) {
-      passageText = `${bookId} ${chapter}:${verse}`;
-    }
+    const refStr = getReferenceStr(chapter, verse);
+    const passageText = getTitleStr(bookName, refStr, direction);
+    const title = getTitleStr(passageText, selectionText, direction);
 
     return {
       ...item,
-      title: `${passageText} ${selectionText}`,
+      title,
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
       finished: (!!item.selections && !item.invalidated) || item.nothingToSelect,
       nothingToSelect: !!item.nothingToSelect,
