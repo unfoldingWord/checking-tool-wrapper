@@ -22,6 +22,7 @@ function GroupMenuComponent({
   groupsData,
   groupsIndex,
   changeCurrentContextId,
+  direction,
 }) {
   /**
    * Handles click events from the menu
@@ -29,7 +30,7 @@ function GroupMenuComponent({
    */
   function handleClick(contextId) {
     changeCurrentContextId(contextId);
-  };
+  }
 
   /**
    * Preprocess a menu item
@@ -69,7 +70,7 @@ function GroupMenuComponent({
       nothingToSelect: !!item.nothingToSelect,
       tooltip: selectionText,
     };
-  };
+  }
 
   function sortEntries(entries) {
     return entries.sort((a, b) => {
@@ -152,11 +153,12 @@ function GroupMenuComponent({
     groupsIndex,
     groupsData,
     'selections',
+    direction,
     onProcessItem,
     'nothingToSelect'
   );
 
-  const activeEntry = generateMenuItem(contextId, onProcessItem);
+  const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
   const sorted = sortEntries(entries);
 
   return (
@@ -179,6 +181,9 @@ GroupMenuComponent.propTypes = {
   contextId: PropTypes.object.isRequired,
   bookName: PropTypes.string.isRequired,
   changeCurrentContextId: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
 };
+
+GroupMenuComponent.defaultProps = { direction: 'ltr' };
 
 export default GroupMenuComponent;

@@ -38,6 +38,7 @@ function GroupMenuContainer({
   loadCurrentContextId,
   changeCurrentContextId,
   clearContextId,
+  manifest,
 }) {
   useEffect(() => {
     loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate);
@@ -66,6 +67,7 @@ function GroupMenuContainer({
   }, [currentToolName]);
 
   if (contextId) {
+    const direction = manifest && manifest.target_language && manifest.target_language.direction || '';
     return (
       <GroupMenuComponent
         bookName={bookName}
@@ -74,6 +76,7 @@ function GroupMenuContainer({
         groupsData={groupsData}
         groupsIndex={groupsIndex}
         changeCurrentContextId={changeCurrentContextId}
+        direction={direction}
       />
     );
   } else {
