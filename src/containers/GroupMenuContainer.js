@@ -38,6 +38,7 @@ function GroupMenuContainer({
   loadCurrentContextId,
   changeCurrentContextId,
   clearContextId,
+  manifest: { languageFont },
 }) {
   useEffect(() => {
     loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate);
@@ -73,6 +74,7 @@ function GroupMenuContainer({
         contextId={contextId}
         groupsData={groupsData}
         groupsIndex={groupsIndex}
+        targetLanguageFont={languageFont}
         changeCurrentContextId={changeCurrentContextId}
       />
     );
