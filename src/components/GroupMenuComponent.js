@@ -23,6 +23,7 @@ function GroupMenuComponent({
   bookName,
   groupsData,
   groupsIndex,
+  targetLanguageFont,
   changeCurrentContextId,
   direction,
 }) {
@@ -168,13 +169,14 @@ function GroupMenuComponent({
 
   return (
     <GroupedMenu
-      filters={filters}
       entries={sorted}
+      filters={filters}
       active={activeEntry}
       statusIcons={statusIcons}
-      emptyNotice={translate('menu.no_results')}
-      title={translate('menu.menu')}
       onItemClick={handleClick}
+      targetLanguageFont={targetLanguageFont}
+      title={translate('menu.menu')}
+      emptyNotice={translate('menu.no_results')}
     />
   );
 }
@@ -185,6 +187,7 @@ GroupMenuComponent.propTypes = {
   groupsData: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   bookName: PropTypes.string.isRequired,
+  targetLanguageFont: PropTypes.string,
   changeCurrentContextId: PropTypes.func.isRequired,
   direction: PropTypes.oneOf(['ltr', 'rtl']),
 };
