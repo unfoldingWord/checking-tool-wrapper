@@ -61,7 +61,7 @@ function GroupMenuComponent({
 
     // build passage title
     const refStr = getReferenceStr(chapter, verse);
-    const passageText = getTitleStr(bookName, refStr, direction);
+    const passageText = getTitleStr(bookName, refStr);
     let title = passageText;
 
     if (selectionText) {
