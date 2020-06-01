@@ -49,7 +49,6 @@ function GroupMenuComponent({
           bookId, chapter, verse,
         },
       },
-      direction,
     } = item;
 
     // build selection preview
