@@ -12,6 +12,8 @@ import {
   generateMenuItem,
   InvalidatedIcon,
   CheckIcon,
+  getTitleStr,
+  getReferenceStr,
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
@@ -23,6 +25,7 @@ function GroupMenuComponent({
   groupsIndex,
   targetLanguageFont,
   changeCurrentContextId,
+  direction,
 }) {
   /**
    * Handles click events from the menu
@@ -30,7 +33,7 @@ function GroupMenuComponent({
    */
   function handleClick(contextId) {
     changeCurrentContextId(contextId);
-  };
+  }
 
   /**
    * Preprocess a menu item
@@ -56,21 +59,23 @@ function GroupMenuComponent({
     }
 
     // build passage title
-    let passageText = `${bookName} ${chapter}:${verse}`;
+    const refStr = getReferenceStr(chapter, verse);
+    const passageText = getTitleStr(bookName, refStr);
+    let title = passageText;
 
     if (selectionText) {
-      passageText = `${bookId} ${chapter}:${verse}`;
+      title = `${bookName} ${refStr} ${selectionText}`;
     }
 
     return {
       ...item,
-      title: `${passageText} ${selectionText}`,
+      title,
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
       finished: (!!item.selections && !item.invalidated) || item.nothingToSelect,
       nothingToSelect: !!item.nothingToSelect,
       tooltip: selectionText,
     };
-  };
+  }
 
   function sortEntries(entries) {
     return entries.sort((a, b) => {
@@ -153,11 +158,12 @@ function GroupMenuComponent({
     groupsIndex,
     groupsData,
     'selections',
+    direction,
     onProcessItem,
     'nothingToSelect'
   );
 
-  const activeEntry = generateMenuItem(contextId, onProcessItem);
+  const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
   const sorted = sortEntries(entries);
 
   return (
@@ -182,6 +188,9 @@ GroupMenuComponent.propTypes = {
   bookName: PropTypes.string.isRequired,
   targetLanguageFont: PropTypes.string,
   changeCurrentContextId: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
 };
+
+GroupMenuComponent.defaultProps = { direction: 'ltr' };
 
 export default GroupMenuComponent;
