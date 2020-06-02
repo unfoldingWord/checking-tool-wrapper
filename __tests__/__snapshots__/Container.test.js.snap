@@ -5423,7 +5423,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     class="verse-title-title"
                   >
-                    English
+                    English (EN)
                   </span>
                   <span
                     class="verse-title-subtitle"
@@ -11042,7 +11042,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     class="verse-title-title"
                   >
-                    English
+                    English (EN)
                   </span>
                   <span
                     class="verse-title-subtitle"
