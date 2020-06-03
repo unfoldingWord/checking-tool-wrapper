@@ -76,7 +76,7 @@
     "string-punctuation-tokenizer": "2.0.0",
     "style-loader": "0.23.1",
     "tc-tool": "4.0.1",
-    "tc-ui-toolkit": "2.1.0",
+    "tc-ui-toolkit": "github:unfoldingWord/tc-ui-toolkit#feature-mannycolon-6961",
     "word-aligner": "0.3.0"
   },
   "dependencies": {
