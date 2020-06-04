@@ -68,7 +68,7 @@ function GroupMenuContainer({
 
   if (contextId && manifest) {
     const direction = manifest.target_language && manifest.target_language.direction || '';
-    const languageFont = manifest.languageFont || '';
+    const projectFont = manifest.projectFont || '';
     return (
       <GroupMenuComponent
         bookName={bookName}
@@ -76,7 +76,7 @@ function GroupMenuContainer({
         contextId={contextId}
         groupsData={groupsData}
         groupsIndex={groupsIndex}
-        targetLanguageFont={languageFont}
+        targetLanguageFont={projectFont}
         changeCurrentContextId={changeCurrentContextId}
         direction={direction}
       />
