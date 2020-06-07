@@ -4581,6 +4581,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     aria-label="English (EN)"
                     class="pane-title-text"
+                    style="line-height:"
                   >
                     English (EN)
                   </span>
@@ -4629,6 +4630,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     aria-label="Koine Greek (UGNT)"
                     class="pane-title-text"
+                    style="line-height:"
                   >
                     Koine Greek (UGNT)
                   </span>
@@ -4906,6 +4908,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     aria-label="English (ULT)"
                     class="pane-title-text"
+                    style="line-height:"
                   >
                     English (ULT)
                   </span>
@@ -10200,6 +10203,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     aria-label="English (EN)"
                     class="pane-title-text"
+                    style="line-height:"
                   >
                     English (EN)
                   </span>
@@ -10248,6 +10252,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     aria-label="Koine Greek (UGNT)"
                     class="pane-title-text"
+                    style="line-height:"
                   >
                     Koine Greek (UGNT)
                   </span>
@@ -10525,6 +10530,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     aria-label="English (ULT)"
                     class="pane-title-text"
+                    style="line-height:"
                   >
                     English (ULT)
                   </span>
