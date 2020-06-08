@@ -138,7 +138,7 @@ TranslationHelpsWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
-  currentFile: PropTypes.string.isRequired,
+  currentFile: PropTypes.string,
   gatewayLanguageCode: PropTypes.string.isRequired,
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
