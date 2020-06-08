@@ -21,6 +21,7 @@ import {
   getBookName,
   getCurrentToolName,
 } from '../selectors/index';
+import { contextNotEmpty } from '../utils/utils';
 
 function GroupMenuContainer({
   bookName,
@@ -66,9 +67,7 @@ function GroupMenuContainer({
     };
   }, [currentToolName]);
 
-  const keys = Object.keys(contextId);
-
-  if (keys && manifest) {
+  if (contextNotEmpty(contextId) && manifest) {
     const direction = manifest.target_language && manifest.target_language.direction || '';
     const projectFont = manifest.projectFont || '';
     return (
