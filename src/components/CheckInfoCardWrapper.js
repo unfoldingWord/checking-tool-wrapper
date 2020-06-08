@@ -12,6 +12,7 @@ import {
 import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
+import { contextNotEmpty } from '../utils/utils';
 
 function CheckInfoCardWrapper({
   translate,
@@ -72,7 +73,7 @@ function CheckInfoCardWrapper({
     };
   }
 
-  if (Object.keys(contextId)) {
+  if (contextNotEmpty(contextId)) {
     const {
       groupId, occurrenceNote, tool,
     } = contextId;
