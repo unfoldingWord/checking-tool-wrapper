@@ -29,6 +29,7 @@ import {
   getUsername,
   getUserData,
 } from '../selectors';
+import { contextNotEmpty } from '../utils/utils';
 
 
 function useLocalState(initialState) {
@@ -285,7 +286,7 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
-  if (Object.keys(contextId)) {
+  if (contextNotEmpty(contextId)) {
     return (
       <VerseCheck
         changeMode={changeMode}
