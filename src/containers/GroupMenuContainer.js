@@ -66,7 +66,9 @@ function GroupMenuContainer({
     };
   }, [currentToolName]);
 
-  if (Object.keys(contextId) && manifest) {
+  const keys = Object.keys(contextId);
+
+  if (keys && manifest) {
     const direction = manifest.target_language && manifest.target_language.direction || '';
     const projectFont = manifest.projectFont || '';
     return (
