@@ -72,10 +72,10 @@ function CheckInfoCardWrapper({
     };
   }
 
-  if (contextId !== null) {
+  if (Object.keys(contextId)) {
     const {
       groupId, occurrenceNote, tool,
-    } = contextId || {};
+    } = contextId;
     const title = groupsIndex.filter(item => item.id === groupId)[0].name;
     let phrase = '';
 
@@ -114,7 +114,7 @@ CheckInfoCardWrapper.propTypes = {
   toggleHelps: PropTypes.func.isRequired,
   tc: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
-  groupsIndex: PropTypes.object.isRequired,
+  groupsIndex: PropTypes.array.isRequired,
   translationHelps: PropTypes.object.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
 };

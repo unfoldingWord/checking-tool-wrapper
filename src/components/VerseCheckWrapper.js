@@ -285,7 +285,7 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
-  if (contextId) {
+  if (Object.keys(contextId)) {
     return (
       <VerseCheck
         changeMode={changeMode}

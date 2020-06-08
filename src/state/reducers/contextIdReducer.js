@@ -1,6 +1,6 @@
 import { CHANGE_CONTEXT_ID, CLEAR_CONTEXT_ID } from '../actions/actionTypes';
 
-const initialState = { contextId: null };
+const initialState = { contextId: {} };
 
 const contextIdReducer = (state = initialState, action) => {
   switch (action.type) {

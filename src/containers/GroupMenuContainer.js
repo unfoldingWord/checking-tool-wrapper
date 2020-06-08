@@ -66,7 +66,7 @@ function GroupMenuContainer({
     };
   }, [currentToolName]);
 
-  if (contextId && manifest) {
+  if (Object.keys(contextId) && manifest) {
     const direction = manifest.target_language && manifest.target_language.direction || '';
     const projectFont = manifest.projectFont || '';
     return (
@@ -95,7 +95,7 @@ GroupMenuContainer.propTypes = {
   manifest: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
   groupsData: PropTypes.object.isRequired,
-  groupsIndex: PropTypes.object.isRequired,
+  groupsIndex: PropTypes.array.isRequired,
   // Actions
   loadGroupsIndex: PropTypes.func.isRequired,
   clearGroupsIndex: PropTypes.func.isRequired,

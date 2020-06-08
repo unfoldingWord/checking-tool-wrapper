@@ -50,7 +50,7 @@ function ScripturePaneWrapper({
 
   const expandedScripturePaneTitle = makeTitle(manifest);
 
-  if (contextId) {
+  if (Object.keys(contextId)) {
     return (
       <ScripturePane
         currentPaneSettings={currentPaneSettings}
