@@ -353,7 +353,6 @@ VerseCheckWrapper.propTypes = {
   isVerseEdited: PropTypes.bool.isRequired,
   isVerseInvalidated: PropTypes.bool.isRequired,
   alignedGLText: PropTypes.string.isRequired,
-  gatewayLanguageCode: PropTypes.string.isRequired,
   bookmarksReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({

@@ -117,6 +117,7 @@ function TranslationHelpsWrapper({
 
   const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, gatewayLanguageCode);
   const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, gatewayLanguageCode, articleCategory);
+  const expandedHelpsButtonHoverText = translate('click_show_expanded');
 
   return (
     <TranslationHelps
@@ -126,7 +127,9 @@ function TranslationHelpsWrapper({
       openExpandedHelpsModal={toggleHelpsModal}
       isShowHelpsSidebar={showHelps}
       sidebarToggle={toggleHelps}
-      isShowHelpsExpanded={showHelpsModal} />
+      isShowHelpsExpanded={showHelpsModal}
+      expandedHelpsButtonHoverText={expandedHelpsButtonHoverText}
+    />
   );
 }
 
