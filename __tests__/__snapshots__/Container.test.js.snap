@@ -5605,6 +5605,7 @@ exports[`Container Tests Test Container 1`] = `
         <span
           class="glyphicon glyphicon-fullscreen"
           style="cursor:pointer"
+          title="click_show_expanded"
         />
       </div>
       <div
@@ -11227,6 +11228,7 @@ exports[`Container Tests Test empty Container 1`] = `
         <span
           class="glyphicon glyphicon-fullscreen"
           style="cursor:pointer"
+          title="click_show_expanded"
         />
       </div>
       <div

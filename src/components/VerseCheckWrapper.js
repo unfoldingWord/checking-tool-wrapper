@@ -29,6 +29,7 @@ import {
   getUsername,
   getUserData,
 } from '../selectors';
+import { contextNotEmpty } from '../utils/utils';
 
 
 function useLocalState(initialState) {
@@ -113,7 +114,7 @@ function VerseCheckWrapper({
   useEffect(() => {
     let alignedGlTextState = alignedGLText;
 
-    if (!alignedGLText && contextId) {
+    if (!alignedGLText && contextNotEmpty(contextId)) {
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (onInvalidCheck) {
@@ -285,7 +286,7 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
-  if (contextId) {
+  if (contextNotEmpty(contextId)) {
     return (
       <VerseCheck
         changeMode={changeMode}
@@ -352,7 +353,6 @@ VerseCheckWrapper.propTypes = {
   isVerseEdited: PropTypes.bool.isRequired,
   isVerseInvalidated: PropTypes.bool.isRequired,
   alignedGLText: PropTypes.string.isRequired,
-  gatewayLanguageCode: PropTypes.string.isRequired,
   bookmarksReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
   selectionsReducer: PropTypes.shape({

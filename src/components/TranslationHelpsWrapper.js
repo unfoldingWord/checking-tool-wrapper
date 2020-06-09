@@ -117,6 +117,7 @@ function TranslationHelpsWrapper({
 
   const currentFileMarkdown = tHelpsHelpers.convertMarkdownLinks(currentFile, gatewayLanguageCode);
   const tHelpsModalMarkdown = tHelpsHelpers.convertMarkdownLinks(modalArticle, gatewayLanguageCode, articleCategory);
+  const expandedHelpsButtonHoverText = translate('click_show_expanded');
 
   return (
     <TranslationHelps
@@ -126,7 +127,9 @@ function TranslationHelpsWrapper({
       openExpandedHelpsModal={toggleHelpsModal}
       isShowHelpsSidebar={showHelps}
       sidebarToggle={toggleHelps}
-      isShowHelpsExpanded={showHelpsModal} />
+      isShowHelpsExpanded={showHelpsModal}
+      expandedHelpsButtonHoverText={expandedHelpsButtonHoverText}
+    />
   );
 }
 
@@ -135,7 +138,7 @@ TranslationHelpsWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   showHelps: PropTypes.bool.isRequired,
   toggleHelps: PropTypes.func.isRequired,
-  currentFile: PropTypes.string.isRequired,
+  currentFile: PropTypes.string,
   gatewayLanguageCode: PropTypes.string.isRequired,
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,

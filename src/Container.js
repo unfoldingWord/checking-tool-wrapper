@@ -114,7 +114,6 @@ Container.propTypes = {
   toolApi: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   contextId: PropTypes.object.isRequired,
-  alignedText: PropTypes.string.isRequired,
   setToolSettings: PropTypes.func.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   gatewayLanguageCode: PropTypes.string.isRequired,

@@ -25,7 +25,7 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
 export function getAlignedGLTextHelper(contextId, glBibles) {
   if (contextId) {
     if (!contextId.quote || !glBibles || !glBibles || !Object.keys(glBibles).length) {
-      return contextId.quote;
+      return contextId.quote || '';
     }
 
     const sortedBibleIds = Object.keys(glBibles).sort(bibleIdSort);
@@ -40,7 +40,7 @@ export function getAlignedGLTextHelper(contextId, glBibles) {
     }
   }
 
-  return null;
+  return '';
 }
 
 /**
