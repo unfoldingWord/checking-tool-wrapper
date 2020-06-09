@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "4.9.4-alpha",
+  "version": "4.9.4-alpha.2",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint ./src",
