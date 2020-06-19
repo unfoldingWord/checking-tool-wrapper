@@ -28,6 +28,7 @@ import {
   getProjectPath,
   getUsername,
   getUserData,
+  getToolsSettings,
 } from '../selectors';
 
 
@@ -43,31 +44,32 @@ function useLocalState(initialState) {
 }
 
 function VerseCheckWrapper({
+  goToNext,
   manifest,
   translate,
   contextId,
   verseText,
+  showAlert,
+  addComment,
   targetBible,
+  goToPrevious,
   isVerseEdited,
-  isVerseInvalidated,
-  unfilteredVerseText,
-  maximumSelections,
   alignedGLText,
-  commentsReducer: { text: commentText },
-  bookmarksReducer: { enabled: bookmarkEnabled },
+  toolsSettings,
+  toggleBookmark,
+  onInvalidCheck,
+  editTargetVerse,
+  changeSelections,
+  maximumSelections,
+  isVerseInvalidated,
+  validateSelections,
+  unfilteredVerseText,
   selectionsReducer: {
     selections,
     nothingToSelect,
   },
-  toggleBookmark,
-  changeSelections,
-  goToNext,
-  goToPrevious,
-  onInvalidCheck,
-  validateSelections,
-  showAlert,
-  addComment,
-  editTargetVerse,
+  commentsReducer: { text: commentText },
+  bookmarksReducer: { enabled: bookmarkEnabled },
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -299,6 +301,7 @@ function VerseCheckWrapper({
         selections={selections}
         isVerseEdited={isVerseEdited}
         commentText={commentText}
+        toolsSettings={toolsSettings}
         alignedGLText={alignedGlTextState}
         nothingToSelect={nothingToSelect}
         bookmarkEnabled={bookmarkEnabled}
@@ -379,21 +382,23 @@ const mapStateToProps = (state, ownProps) => {
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const currentToolName = getCurrentToolName(ownProps);
   const alignedGLText = ownProps.gatewayLanguageQuote;
+  const toolsSettings = getToolsSettings(ownProps);
 
   return {
     contextId,
     verseText,
     targetBible,
     isVerseEdited,
+    alignedGLText,
+    toolsSettings,
     isVerseInvalidated,
     unfilteredVerseText,
-    alignedGLText,
     showAlert: ownProps.tc.showAlert,
     manifest: getProjectManifest(ownProps),
-    maximumSelections: getMaximumSelections(currentToolName),
     commentsReducer: getCommentsReducer(state),
-    selectionsReducer: getSelectionsReducer(state),
     bookmarksReducer: getBookmarksReducer(state),
+    selectionsReducer: getSelectionsReducer(state),
+    maximumSelections: getMaximumSelections(currentToolName),
   };
 };
 
