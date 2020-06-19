@@ -14,7 +14,6 @@ import {
   getUsername,
   getProjectPath,
   getCurrentToolName,
-  getToolsSettings,
 } from '../selectors';
 import { editTargetVerse } from '../state/actions/verseEditActions';
 
@@ -25,7 +24,6 @@ function ScripturePaneWrapper({
   translate,
   selections,
   showPopover,
-  toolsSettings,
   editTargetVerse,
   setToolSettings,
   currentPaneSettings,
@@ -60,7 +58,6 @@ function ScripturePaneWrapper({
         translate={translate}
         selections={selections}
         showPopover={showPopover}
-        toolsSettings={toolsSettings}
         getLexiconData={getLexiconData}
         editTargetVerse={editTargetVerse}
         setToolSettings={setToolSettings}
@@ -97,7 +94,6 @@ export const mapStateToProps = (state, ownProps) => ({
   selections: getSelections(state),
   showPopover: ownProps.tc.showPopover,
   manifest: getProjectManifest(ownProps),
-  toolsSettings: getToolsSettings(ownProps),
   setToolSettings: ownProps.tc.setToolSettings,
   currentPaneSettings: getCurrentPaneSettings(ownProps),
   projectDetailsReducer: getProjectDetailsReducer(ownProps),
