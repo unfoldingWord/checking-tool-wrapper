@@ -287,6 +287,10 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
+  console.log('====================================');
+  console.log('VerseCheckWrapper toolsSettings', toolsSettings);
+  console.log('====================================');
+
   if (contextId) {
     return (
       <VerseCheck

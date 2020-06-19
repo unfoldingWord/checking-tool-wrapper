@@ -90,6 +90,10 @@ export const getCurrentPaneSettings = (ownProps) => {
 };
 export const getToolsSettings = (ownProps) => {
   const { toolsSettings } = ownProps.tc.settingsReducer;
+  console.log('====================================');
+  console.log('getToolsSettings ownProps.tc.settingsReducer', ownProps.tc.settingsReducer);
+  console.log('getToolsSettings toolsSettings', toolsSettings);
+  console.log('====================================');
   return toolsSettings ? toolsSettings : {};
 };
 export const getUsername = (ownProps) => ownProps.tc.username;
