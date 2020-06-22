@@ -30,6 +30,7 @@ import {
   getUserData,
   getToolsSettings,
 } from '../selectors';
+import { contextNotEmpty } from '../utils/utils';
 
 
 function useLocalState(initialState) {
@@ -116,7 +117,7 @@ function VerseCheckWrapper({
   useEffect(() => {
     let alignedGlTextState = alignedGLText;
 
-    if (!alignedGLText && contextId) {
+    if (!alignedGLText && contextNotEmpty(contextId)) {
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (onInvalidCheck) {
@@ -288,11 +289,7 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
-  console.log('====================================');
-  console.log('VerseCheckWrapper toolsSettings', toolsSettings);
-  console.log('====================================');
-
-  if (contextId) {
+  if (contextNotEmpty(contextId)) {
     return (
       <VerseCheck
         mode={mode}

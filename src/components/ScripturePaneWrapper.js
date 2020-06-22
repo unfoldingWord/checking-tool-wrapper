@@ -16,6 +16,7 @@ import {
   getCurrentToolName,
 } from '../selectors';
 import { editTargetVerse } from '../state/actions/verseEditActions';
+import { contextNotEmpty } from '../utils/utils';
 
 function ScripturePaneWrapper({
   bibles,
@@ -50,7 +51,7 @@ function ScripturePaneWrapper({
 
   const expandedScripturePaneTitle = makeTitle(manifest);
 
-  if (contextId) {
+  if (contextNotEmpty(contextId)) {
     return (
       <ScripturePane
         bibles={bibles}
