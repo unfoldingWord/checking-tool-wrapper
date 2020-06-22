@@ -12,6 +12,7 @@ import {
 import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
+import { contextNotEmpty } from '../utils/utils';
 
 function CheckInfoCardWrapper({
   translate,
@@ -72,10 +73,10 @@ function CheckInfoCardWrapper({
     };
   }
 
-  if (contextId !== null) {
+  if (contextNotEmpty(contextId)) {
     const {
       groupId, occurrenceNote, tool,
-    } = contextId || {};
+    } = contextId;
     const title = groupsIndex.filter(item => item.id === groupId)[0].name;
     let phrase = '';
 
@@ -114,7 +115,7 @@ CheckInfoCardWrapper.propTypes = {
   toggleHelps: PropTypes.func.isRequired,
   tc: PropTypes.object.isRequired,
   contextId: PropTypes.object.isRequired,
-  groupsIndex: PropTypes.object.isRequired,
+  groupsIndex: PropTypes.array.isRequired,
   translationHelps: PropTypes.object.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
 };

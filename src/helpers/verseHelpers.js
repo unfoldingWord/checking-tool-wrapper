@@ -10,7 +10,7 @@ export function getVerseText(targetBible, contextId) {
   let unfilteredVerseText = '';
   let verseText = '';
 
-  if (contextId) {
+  if (contextId && contextId.reference) {
     const { chapter, verse } = contextId.reference;
 
     if (targetBible && targetBible[chapter]) {
