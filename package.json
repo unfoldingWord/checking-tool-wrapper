@@ -34,7 +34,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.1",
     "string-punctuation-tokenizer": "^2.0.0",
-    "tc-ui-toolkit": "^3.0.1",
+    "tc-ui-toolkit": "^4.0.0",
     "usfm-js": "^2.1.0",
     "word-aligner": "^0.4.0"
   },
@@ -77,7 +77,7 @@
     "string-punctuation-tokenizer": "2.0.0",
     "style-loader": "0.23.1",
     "tc-tool": "4.0.1",
-    "tc-ui-toolkit": "github:unfoldingWord/tc-ui-toolkit#feature-mannycolon-6943",
+    "tc-ui-toolkit": "4.0.0",
     "usfm-js": "2.1.0",
     "word-aligner": "0.4.0"
   },
