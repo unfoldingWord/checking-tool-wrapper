@@ -88,6 +88,10 @@ export const getCurrentPaneSettings = (ownProps) => {
   const { ScripturePane } = ownProps.tc.settingsReducer.toolsSettings;
   return ScripturePane ? ScripturePane.currentPaneSettings : [];
 };
+export const getToolsSettings = (ownProps) => {
+  const { toolsSettings } = ownProps.tc.settingsReducer;
+  return toolsSettings ? toolsSettings : {};
+};
 export const getUsername = (ownProps) => ownProps.tc.username;
 
 /**
