@@ -54,19 +54,19 @@ function ScripturePaneWrapper({
   if (contextNotEmpty(contextId)) {
     return (
       <ScripturePane
-        currentPaneSettings={currentPaneSettings}
-        contextId={contextId}
         bibles={bibles}
-        expandedScripturePaneTitle={expandedScripturePaneTitle}
-        showPopover={showPopover}
-        editTargetVerse={editTargetVerse}
-        projectDetailsReducer={projectDetailsReducer}
+        contextId={contextId}
         translate={translate}
-        getLexiconData={getLexiconData}
         selections={selections}
+        showPopover={showPopover}
+        getLexiconData={getLexiconData}
+        editTargetVerse={editTargetVerse}
         setToolSettings={setToolSettings}
-        getAvailableScripturePaneSelections={getScripturePaneSelections}
+        currentPaneSettings={currentPaneSettings}
+        projectDetailsReducer={projectDetailsReducer}
+        expandedScripturePaneTitle={expandedScripturePaneTitle}
         makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
+        getAvailableScripturePaneSelections={getScripturePaneSelections}
       />
     );
   } else {
@@ -93,11 +93,11 @@ export const mapStateToProps = (state, ownProps) => ({
   bibles: getBibles(ownProps),
   contextId: getContextId(state),
   selections: getSelections(state),
+  showPopover: ownProps.tc.showPopover,
   manifest: getProjectManifest(ownProps),
+  setToolSettings: ownProps.tc.setToolSettings,
   currentPaneSettings: getCurrentPaneSettings(ownProps),
   projectDetailsReducer: getProjectDetailsReducer(ownProps),
-  showPopover: ownProps.tc.showPopover,
-  setToolSettings: ownProps.tc.setToolSettings,
   makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
 });
 

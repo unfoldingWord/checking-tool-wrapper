@@ -28,6 +28,7 @@ import {
   getProjectPath,
   getUsername,
   getUserData,
+  getToolsSettings,
 } from '../selectors';
 import { contextNotEmpty } from '../utils/utils';
 
@@ -44,31 +45,33 @@ function useLocalState(initialState) {
 }
 
 function VerseCheckWrapper({
+  goToNext,
   manifest,
   translate,
   contextId,
   verseText,
+  showAlert,
+  addComment,
   targetBible,
+  goToPrevious,
   isVerseEdited,
-  isVerseInvalidated,
-  unfilteredVerseText,
-  maximumSelections,
   alignedGLText,
-  commentsReducer: { text: commentText },
-  bookmarksReducer: { enabled: bookmarkEnabled },
+  toolsSettings,
+  toggleBookmark,
+  onInvalidCheck,
+  editTargetVerse,
+  setToolSettings,
+  changeSelections,
+  maximumSelections,
+  isVerseInvalidated,
+  validateSelections,
+  unfilteredVerseText,
   selectionsReducer: {
     selections,
     nothingToSelect,
   },
-  toggleBookmark,
-  changeSelections,
-  goToNext,
-  goToPrevious,
-  onInvalidCheck,
-  validateSelections,
-  showAlert,
-  addComment,
-  editTargetVerse,
+  commentsReducer: { text: commentText },
+  bookmarksReducer: { enabled: bookmarkEnabled },
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -289,28 +292,30 @@ function VerseCheckWrapper({
   if (contextNotEmpty(contextId)) {
     return (
       <VerseCheck
-        changeMode={changeMode}
-        translate={translate}
         mode={mode}
         tags={newTags}
-        targetBible={targetBible}
+        translate={translate}
         verseText={verseText}
-        unfilteredVerseText={unfilteredVerseText}
         contextId={contextId}
+        changeMode={changeMode}
         selections={selections}
-        isVerseEdited={isVerseEdited}
+        targetBible={targetBible}
         commentText={commentText}
-        alignedGLText={alignedGlTextState}
+        isVerseEdited={isVerseEdited}
+        toolsSettings={toolsSettings}
+        newSelections={newSelections}
+        bookDetails={manifest.project}
+        isVerseChanged={isVerseChanged}
+        setToolSettings={setToolSettings}
         nothingToSelect={nothingToSelect}
         bookmarkEnabled={bookmarkEnabled}
+        alignedGLText={alignedGlTextState}
+        dialogModalVisibility={isDialogOpen}
         maximumSelections={maximumSelections}
         isVerseInvalidated={isVerseInvalidated}
-        bookDetails={manifest.project}
+        unfilteredVerseText={unfilteredVerseText}
         targetLanguageDetails={manifest.target_language}
-        newSelections={newSelections}
         localNothingToSelect={newNothingToSelect}
-        dialogModalVisibility={isDialogOpen}
-        isVerseChanged={isVerseChanged}
         isCommentChanged={isCommentChanged}
         handleSkip={handleSkip}
         handleGoToNext={goToNext}
@@ -344,17 +349,19 @@ function VerseCheckWrapper({
 
 VerseCheckWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
-  targetBible: PropTypes.object.isRequired,
-  contextId: PropTypes.object.isRequired,
   manifest: PropTypes.object.isRequired,
-  maximumSelections: PropTypes.number.isRequired,
   verseText: PropTypes.string.isRequired,
-  unfilteredVerseText: PropTypes.string.isRequired,
+  contextId: PropTypes.object.isRequired,
   isVerseEdited: PropTypes.bool.isRequired,
-  isVerseInvalidated: PropTypes.bool.isRequired,
+  targetBible: PropTypes.object.isRequired,
+  setToolSettings: PropTypes.func.isRequired,
   alignedGLText: PropTypes.string.isRequired,
-  bookmarksReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
+  bookmarksReducer: PropTypes.object.isRequired,
+  isVerseInvalidated: PropTypes.bool.isRequired,
+  maximumSelections: PropTypes.number.isRequired,
+  unfilteredVerseText: PropTypes.string.isRequired,
+  gatewayLanguageCode: PropTypes.string.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array.isRequired,
     nothingToSelect: PropTypes.bool.isRequired,
@@ -379,21 +386,24 @@ const mapStateToProps = (state, ownProps) => {
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
   const currentToolName = getCurrentToolName(ownProps);
   const alignedGLText = ownProps.gatewayLanguageQuote;
+  const toolsSettings = getToolsSettings(ownProps);
 
   return {
     contextId,
     verseText,
     targetBible,
     isVerseEdited,
+    alignedGLText,
+    toolsSettings,
     isVerseInvalidated,
     unfilteredVerseText,
-    alignedGLText,
     showAlert: ownProps.tc.showAlert,
     manifest: getProjectManifest(ownProps),
-    maximumSelections: getMaximumSelections(currentToolName),
     commentsReducer: getCommentsReducer(state),
-    selectionsReducer: getSelectionsReducer(state),
+    setToolSettings: ownProps.tc.setToolSettings,
     bookmarksReducer: getBookmarksReducer(state),
+    selectionsReducer: getSelectionsReducer(state),
+    maximumSelections: getMaximumSelections(currentToolName),
   };
 };
 
