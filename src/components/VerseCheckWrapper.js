@@ -435,7 +435,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       validateSelections(targetVerse, contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
     },
     onInvalidCheck: () => {
-      onInvalidCheck(contextId, gatewayLanguageCode, true, dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)));
+      onInvalidCheck(contextId, gatewayLanguageCode, true, () => {
+        dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote))
+      });
     },
   };
 };
