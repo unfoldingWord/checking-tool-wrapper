@@ -446,7 +446,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onInvalidCheck: () => {
       onInvalidCheck(contextId, gatewayLanguageCode, true, () => {
-        dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote))
+        dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
       });
     },
   };
