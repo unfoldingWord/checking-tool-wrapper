@@ -12,7 +12,6 @@ import {
   generateMenuItem,
   InvalidatedIcon,
   CheckIcon,
-  getTitleStr,
   getReferenceStr,
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
@@ -20,7 +19,6 @@ import { generateItemId } from '../helpers/groupMenuHelpers';
 function GroupMenuComponent({
   translate,
   contextId,
-  bookName,
   groupsData,
   groupsIndex,
   targetLanguageFont,
@@ -60,11 +58,10 @@ function GroupMenuComponent({
 
     // build passage title
     const refStr = getReferenceStr(chapter, verse);
-    const passageText = getTitleStr(bookName, refStr);
-    let title = passageText;
+    let title = refStr;
 
     if (selectionText) {
-      title = `${bookName} ${refStr} ${selectionText}`;
+      title = `${refStr} ${selectionText}`;
     }
 
     return {
