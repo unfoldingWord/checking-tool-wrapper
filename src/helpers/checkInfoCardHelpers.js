@@ -34,8 +34,12 @@ const buildRenderer = (linkRenderer = null) => {
       text = data.title;
     }
 
-    const link = href + (title ? ' ' + title : '');
-    return '[' + text + '](' + link + ')';
+    if (href) {
+      const link = href + (title ? ' ' + title : '');
+      return '[' + text + '](' + link + ')';
+    } else {
+      return text;
+    }
   };
   return Renderer;
 };
