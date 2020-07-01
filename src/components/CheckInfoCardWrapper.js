@@ -64,11 +64,11 @@ function CheckInfoCardWrapper({
   function onRenderLink({ href, title }) {
     if (href.startsWith('rc://')) {
       return formatRCLink(resourcesReducer, gatewayLanguageCode, href, title);
-    } else {
-      console.warn(`Unsupported link: ${title} ${href}`);
     }
+    // unsupported links will be removed.
+    console.warn(`Unsupported link will be removed: ${title} ${href}`);
     return {
-      href,
+      href: null,
       title,
     };
   }
