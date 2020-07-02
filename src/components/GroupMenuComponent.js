@@ -61,7 +61,7 @@ function GroupMenuComponent({
     let title = refStr;
 
     if (selectionText) {
-      title = `${refStr} ${selectionText}`;
+      title = `${refStr} ${selectionText}\u00A0\u00A0`;
     }
 
     return {
