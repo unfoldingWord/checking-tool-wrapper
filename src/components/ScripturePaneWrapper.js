@@ -27,6 +27,7 @@ function ScripturePaneWrapper({
   showPopover,
   editTargetVerse,
   setToolSettings,
+  complexScriptFonts,
   currentPaneSettings,
   projectDetailsReducer,
   makeSureBiblesLoadedForTool,
@@ -62,6 +63,7 @@ function ScripturePaneWrapper({
         getLexiconData={getLexiconData}
         editTargetVerse={editTargetVerse}
         setToolSettings={setToolSettings}
+        complexScriptFonts={complexScriptFonts}
         currentPaneSettings={currentPaneSettings}
         projectDetailsReducer={projectDetailsReducer}
         expandedScripturePaneTitle={expandedScripturePaneTitle}
@@ -80,6 +82,7 @@ ScripturePaneWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   selections: PropTypes.array.isRequired,
+  complexScriptFonts: PropTypes.array.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   projectDetailsReducer: PropTypes.object.isRequired,
   // actions
