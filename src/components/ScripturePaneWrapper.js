@@ -102,6 +102,7 @@ export const mapStateToProps = (state, ownProps) => ({
   currentPaneSettings: getCurrentPaneSettings(ownProps),
   projectDetailsReducer: getProjectDetailsReducer(ownProps),
   makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
+  complexScriptFonts: ownProps.tc.complexScriptFonts,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
