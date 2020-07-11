@@ -70,7 +70,7 @@ function GroupMenuComponent({
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
       finished: (!!item.selections && !item.invalidated) || item.nothingToSelect,
       nothingToSelect: !!item.nothingToSelect,
-      tooltip: title,
+      tooltip: selectionText,
     };
   }
 
