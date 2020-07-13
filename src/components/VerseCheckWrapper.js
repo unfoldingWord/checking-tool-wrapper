@@ -349,6 +349,7 @@ function VerseCheckWrapper({
 
 VerseCheckWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
+  gatewayLanguageCode: PropTypes.string,
   manifest: PropTypes.object.isRequired,
   verseText: PropTypes.string.isRequired,
   contextId: PropTypes.object.isRequired,
@@ -361,7 +362,6 @@ VerseCheckWrapper.propTypes = {
   isVerseInvalidated: PropTypes.bool.isRequired,
   maximumSelections: PropTypes.number.isRequired,
   unfilteredVerseText: PropTypes.string.isRequired,
-  gatewayLanguageCode: PropTypes.string.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array.isRequired,
     nothingToSelect: PropTypes.bool.isRequired,

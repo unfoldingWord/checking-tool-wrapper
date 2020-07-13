@@ -27,8 +27,10 @@ function ScripturePaneWrapper({
   showPopover,
   editTargetVerse,
   setToolSettings,
+  complexScriptFonts,
   currentPaneSettings,
   projectDetailsReducer,
+  addObjectPropertyToManifest,
   makeSureBiblesLoadedForTool,
 }) {
   function makeTitle(manifest) {
@@ -62,9 +64,11 @@ function ScripturePaneWrapper({
         getLexiconData={getLexiconData}
         editTargetVerse={editTargetVerse}
         setToolSettings={setToolSettings}
+        complexScriptFonts={complexScriptFonts}
         currentPaneSettings={currentPaneSettings}
         projectDetailsReducer={projectDetailsReducer}
         expandedScripturePaneTitle={expandedScripturePaneTitle}
+        addObjectPropertyToManifest={addObjectPropertyToManifest}
         makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
         getAvailableScripturePaneSelections={getScripturePaneSelections}
       />
@@ -80,6 +84,7 @@ ScripturePaneWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   selections: PropTypes.array.isRequired,
+  complexScriptFonts: PropTypes.object.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   projectDetailsReducer: PropTypes.object.isRequired,
   // actions
@@ -96,9 +101,11 @@ export const mapStateToProps = (state, ownProps) => ({
   showPopover: ownProps.tc.showPopover,
   manifest: getProjectManifest(ownProps),
   setToolSettings: ownProps.tc.setToolSettings,
+  complexScriptFonts: ownProps.tc.complexScriptFonts,
   currentPaneSettings: getCurrentPaneSettings(ownProps),
   projectDetailsReducer: getProjectDetailsReducer(ownProps),
   makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
+  addObjectPropertyToManifest: ownProps.tc.addObjectPropertyToManifest,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

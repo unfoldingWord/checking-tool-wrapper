@@ -4568,7 +4568,7 @@ exports[`Container Tests Test Container 1`] = `
               class="pane-container"
             >
               <div
-                class="pane-title-container"
+                class="pane-title-container-rtl"
               >
                 <div
                   class="pane-title-container-content"
@@ -4577,7 +4577,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     aria-label="English (EN)"
                     class="pane-title-text"
-                    style="line-height:"
+                    style="line-height:1;padding:0px"
                   >
                     English (EN)
                   </span>
@@ -4597,7 +4597,9 @@ exports[`Container Tests Test Container 1`] = `
                   <div
                     class="verse-content-ltr"
                   >
-                    <strong>
+                    <strong
+                      class=""
+                    >
                       2:5 
                     </strong>
                     <span>
@@ -4615,7 +4617,7 @@ exports[`Container Tests Test Container 1`] = `
               class="pane-container"
             >
               <div
-                class="pane-title-container"
+                class="pane-title-container-rtl"
               >
                 <div
                   class="pane-title-container-content"
@@ -4624,7 +4626,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     aria-label="Koine Greek (UGNT)"
                     class="pane-title-text"
-                    style="line-height:"
+                    style="line-height:1;padding:0px"
                   >
                     Koine Greek (UGNT)
                   </span>
@@ -4644,7 +4646,9 @@ exports[`Container Tests Test Container 1`] = `
                   <div
                     class="verse-content-ltr"
                   >
-                    <strong>
+                    <strong
+                      class=""
+                    >
                       2:5 
                     </strong>
                     <span>
@@ -4652,77 +4656,95 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         />
                         <span
+                          class=""
                           style="background-color:"
                         >
                           σώφρονας
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἁγνάς
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           οἰκουργούς
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἀγαθάς
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ὑποτασσομένας
@@ -4732,11 +4754,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           τοῖς
@@ -4746,11 +4770,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἰδίοις
@@ -4760,28 +4786,34 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἀνδράσιν
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἵνα
@@ -4791,11 +4823,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           μὴ
@@ -4805,11 +4839,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ὁ
@@ -4819,11 +4855,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           λόγος
@@ -4833,11 +4871,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           τοῦ
@@ -4847,11 +4887,13 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           Θεοῦ
@@ -4861,17 +4903,20 @@ exports[`Container Tests Test Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                           βλασφημῆται
                         </span>
                       </span>
                       <span
+                        class=""
                         style="background-color:var(--highlight-color)"
                       >
                         .
@@ -4891,7 +4936,7 @@ exports[`Container Tests Test Container 1`] = `
               class="pane-container"
             >
               <div
-                class="pane-title-container"
+                class="pane-title-container-rtl"
               >
                 <div
                   class="pane-title-container-content"
@@ -4900,7 +4945,7 @@ exports[`Container Tests Test Container 1`] = `
                   <span
                     aria-label="English (ULT)"
                     class="pane-title-text"
-                    style="line-height:"
+                    style="line-height:1;padding:0px"
                   >
                     English (ULT)
                   </span>
@@ -4920,15 +4965,19 @@ exports[`Container Tests Test Container 1`] = `
                   <div
                     class="verse-content-ltr"
                   >
-                    <strong>
+                    <strong
+                      class=""
+                    >
                       2:5 
                     </strong>
                     <span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         />
                         <span
+                          class=""
                           style="background-color:"
                         >
                           to
@@ -4936,11 +4985,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           be
@@ -4948,41 +4999,51 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           sensible
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           pure
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           good
@@ -4990,26 +5051,32 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           housekeepers
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           and
@@ -5017,11 +5084,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           obedient
@@ -5029,11 +5098,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           to
@@ -5041,11 +5112,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           their
@@ -5053,11 +5126,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           own
@@ -5065,26 +5140,32 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           husbands
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         .
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           They
@@ -5092,11 +5173,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           should
@@ -5104,11 +5187,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           do
@@ -5116,11 +5201,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           these
@@ -5128,11 +5215,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           things
@@ -5140,11 +5229,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           so
@@ -5152,11 +5243,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           that
@@ -5169,12 +5262,15 @@ exports[`Container Tests Test Container 1`] = `
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           God
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         '
                       </span>
                       <span>
@@ -5182,6 +5278,7 @@ exports[`Container Tests Test Container 1`] = `
                           style="background-color:transparent"
                         />
                         <span
+                          class=""
                           style="background-color:"
                         >
                           s
@@ -5194,6 +5291,7 @@ exports[`Container Tests Test Container 1`] = `
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           word
@@ -5201,11 +5299,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           may
@@ -5213,11 +5313,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           not
@@ -5225,11 +5327,13 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                           be
@@ -5237,17 +5341,20 @@ exports[`Container Tests Test Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                           insulted
                         </span>
                       </span>
                       <span
+                        class=""
                         style="background-color:var(--highlight-color)"
                       >
                         . 
@@ -10187,7 +10294,7 @@ exports[`Container Tests Test empty Container 1`] = `
               class="pane-container"
             >
               <div
-                class="pane-title-container"
+                class="pane-title-container-rtl"
               >
                 <div
                   class="pane-title-container-content"
@@ -10196,7 +10303,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     aria-label="English (EN)"
                     class="pane-title-text"
-                    style="line-height:"
+                    style="line-height:1;padding:0px"
                   >
                     English (EN)
                   </span>
@@ -10216,7 +10323,9 @@ exports[`Container Tests Test empty Container 1`] = `
                   <div
                     class="verse-content-ltr"
                   >
-                    <strong>
+                    <strong
+                      class=""
+                    >
                       2:5 
                     </strong>
                     <span>
@@ -10234,7 +10343,7 @@ exports[`Container Tests Test empty Container 1`] = `
               class="pane-container"
             >
               <div
-                class="pane-title-container"
+                class="pane-title-container-rtl"
               >
                 <div
                   class="pane-title-container-content"
@@ -10243,7 +10352,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     aria-label="Koine Greek (UGNT)"
                     class="pane-title-text"
-                    style="line-height:"
+                    style="line-height:1;padding:0px"
                   >
                     Koine Greek (UGNT)
                   </span>
@@ -10263,7 +10372,9 @@ exports[`Container Tests Test empty Container 1`] = `
                   <div
                     class="verse-content-ltr"
                   >
-                    <strong>
+                    <strong
+                      class=""
+                    >
                       2:5 
                     </strong>
                     <span>
@@ -10271,77 +10382,95 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         />
                         <span
+                          class=""
                           style="background-color:"
                         >
                           σώφρονας
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἁγνάς
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           οἰκουργούς
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἀγαθάς
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ὑποτασσομένας
@@ -10351,11 +10480,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           τοῖς
@@ -10365,11 +10496,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἰδίοις
@@ -10379,28 +10512,34 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἀνδράσιν
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ἵνα
@@ -10410,11 +10549,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           μὴ
@@ -10424,11 +10565,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           ὁ
@@ -10438,11 +10581,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           λόγος
@@ -10452,11 +10597,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           τοῦ
@@ -10466,11 +10613,13 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           Θεοῦ
@@ -10480,17 +10629,20 @@ exports[`Container Tests Test empty Container 1`] = `
                         style="cursor:pointer"
                       >
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                           βλασφημῆται
                         </span>
                       </span>
                       <span
+                        class=""
                         style="background-color:var(--highlight-color)"
                       >
                         .
@@ -10510,7 +10662,7 @@ exports[`Container Tests Test empty Container 1`] = `
               class="pane-container"
             >
               <div
-                class="pane-title-container"
+                class="pane-title-container-rtl"
               >
                 <div
                   class="pane-title-container-content"
@@ -10519,7 +10671,7 @@ exports[`Container Tests Test empty Container 1`] = `
                   <span
                     aria-label="English (ULT)"
                     class="pane-title-text"
-                    style="line-height:"
+                    style="line-height:1;padding:0px"
                   >
                     English (ULT)
                   </span>
@@ -10539,15 +10691,19 @@ exports[`Container Tests Test empty Container 1`] = `
                   <div
                     class="verse-content-ltr"
                   >
-                    <strong>
+                    <strong
+                      class=""
+                    >
                       2:5 
                     </strong>
                     <span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         />
                         <span
+                          class=""
                           style="background-color:"
                         >
                           to
@@ -10555,11 +10711,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           be
@@ -10567,41 +10725,51 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           sensible
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           pure
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           good
@@ -10609,26 +10777,32 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           housekeepers
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         ,
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           and
@@ -10636,11 +10810,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           obedient
@@ -10648,11 +10824,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           to
@@ -10660,11 +10838,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           their
@@ -10672,11 +10852,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           own
@@ -10684,26 +10866,32 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           husbands
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         .
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           They
@@ -10711,11 +10899,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           should
@@ -10723,11 +10913,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           do
@@ -10735,11 +10927,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           these
@@ -10747,11 +10941,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           things
@@ -10759,11 +10955,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           so
@@ -10771,11 +10969,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           that
@@ -10788,12 +10988,15 @@ exports[`Container Tests Test empty Container 1`] = `
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           God
                         </span>
                       </span>
-                      <span>
+                      <span
+                        class=""
+                      >
                         '
                       </span>
                       <span>
@@ -10801,6 +11004,7 @@ exports[`Container Tests Test empty Container 1`] = `
                           style="background-color:transparent"
                         />
                         <span
+                          class=""
                           style="background-color:"
                         >
                           s
@@ -10813,6 +11017,7 @@ exports[`Container Tests Test empty Container 1`] = `
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           word
@@ -10820,11 +11025,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           may
@@ -10832,11 +11039,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:"
                         >
                           not
@@ -10844,11 +11053,13 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:transparent"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                           be
@@ -10856,17 +11067,20 @@ exports[`Container Tests Test empty Container 1`] = `
                       </span>
                       <span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                            
                         </span>
                         <span
+                          class=""
                           style="background-color:var(--highlight-color)"
                         >
                           insulted
                         </span>
                       </span>
                       <span
+                        class=""
                         style="background-color:var(--highlight-color)"
                       >
                         . 
