@@ -84,7 +84,7 @@ ScripturePaneWrapper.propTypes = {
   contextId: PropTypes.object.isRequired,
   translate: PropTypes.func.isRequired,
   selections: PropTypes.array.isRequired,
-  complexScriptFonts: PropTypes.array.isRequired,
+  complexScriptFonts: PropTypes.object.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   projectDetailsReducer: PropTypes.object.isRequired,
   // actions
