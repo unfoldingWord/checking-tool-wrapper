@@ -25,17 +25,19 @@ export const occurrencesInString = (string, subString) => {
   }
   return occurrences;
 };
+
 /**
-  * @description - Function that normalizes a string including whitespace
-  * @param {String} string - the string to normalize
-  * @preturns {String} - The returned normalized string
-  */
-export const normalizeString = (string) => {
+ * Normalizes a string including whitespace
+ * @param {String} string - the string to normalize
+ * @returns {String} - The returned normalized string
+ */
+export const normalizeString = (string = '') => {
   string = string.replace(/\s+/g, ' ');
   return string;
 };
+
 /**
-  * @description - generates a selection object from the selected text, prescedingText and whole text
+  * Generates a selection object from the selected text, prescedingText and whole text
   * @param {String} selectedText - the text that is selected
   * @param {String} prescedingText - the text that prescedes the selection
   * @param {String} entireText - the text that the selection should be in

@@ -1,4 +1,3 @@
-// TODO: Pending changes
 import { ADD_COMMENT } from '../actions/actionTypes';
 
 const initialState = {

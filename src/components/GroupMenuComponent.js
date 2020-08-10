@@ -12,26 +12,26 @@ import {
   generateMenuItem,
   InvalidatedIcon,
   CheckIcon,
+  getReferenceStr,
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
-function GroupMenuWrapper({
+function GroupMenuComponent({
   translate,
-  tc: {
-    project,
-    contextId,
-    actions: { changeCurrentContextId },
-  },
+  contextId,
   groupsData,
   groupsIndex,
+  targetLanguageFont,
+  changeCurrentContextId,
+  direction,
 }) {
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
    */
-  function handleClick({ contextId }) {
+  function handleClick(contextId) {
     changeCurrentContextId(contextId);
-  };
+  }
 
   /**
    * Preprocess a menu item
@@ -39,8 +39,6 @@ function GroupMenuWrapper({
    * @returns {object} the updated item
    */
   function onProcessItem(item) {
-    const bookName = project.getBookName();
-
     const {
       contextId: {
         quote,
@@ -59,21 +57,22 @@ function GroupMenuWrapper({
     }
 
     // build passage title
-    let passageText = `${bookName} ${chapter}:${verse}`;
+    const refStr = getReferenceStr(chapter, verse);
+    let title = refStr;
 
     if (selectionText) {
-      passageText = `${bookId} ${chapter}:${verse}`;
+      title = `${refStr} ${selectionText}`;
     }
 
     return {
       ...item,
-      title: `${passageText} ${selectionText}`,
+      title,
       itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
       finished: (!!item.selections && !item.invalidated) || item.nothingToSelect,
       nothingToSelect: !!item.nothingToSelect,
       tooltip: selectionText,
     };
-  };
+  }
 
   function sortEntries(entries) {
     return entries.sort((a, b) => {
@@ -156,31 +155,39 @@ function GroupMenuWrapper({
     groupsIndex,
     groupsData,
     'selections',
+    direction,
     onProcessItem,
     'nothingToSelect'
   );
 
-  const activeEntry = generateMenuItem(contextId, onProcessItem);
+  const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
   const sorted = sortEntries(entries);
 
   return (
     <GroupedMenu
-      filters={filters}
       entries={sorted}
+      filters={filters}
       active={activeEntry}
       statusIcons={statusIcons}
-      emptyNotice={translate('menu.no_results')}
-      title={translate('menu.menu')}
       onItemClick={handleClick}
+      targetLanguageFont={targetLanguageFont}
+      title={translate('menu.menu')}
+      emptyNotice={translate('menu.no_results')}
     />
   );
 }
 
-GroupMenuWrapper.propTypes = {
-  tc: PropTypes.object.isRequired,
+GroupMenuComponent.propTypes = {
   translate: PropTypes.func.isRequired,
-  groupsIndex: PropTypes.array,
-  groupsData: PropTypes.object,
+  groupsIndex: PropTypes.array.isRequired,
+  groupsData: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
+  bookName: PropTypes.string.isRequired,
+  targetLanguageFont: PropTypes.string,
+  changeCurrentContextId: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
 };
 
-export default GroupMenuWrapper;
+GroupMenuComponent.defaultProps = { direction: 'ltr' };
+
+export default GroupMenuComponent;

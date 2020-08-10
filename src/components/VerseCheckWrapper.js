@@ -2,8 +2,36 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VerseCheck } from 'tc-ui-toolkit';
+import { connect } from 'react-redux';
+// helpers
 import { optimizeSelections } from '../helpers/selectionHelpers';
 import { getInvalidQuoteMessage } from '../helpers/checkAreaHelpers';
+import { getVerseText } from '../helpers/verseHelpers';
+// actions
+import { changeToNextContextId, changeToPreviousContextId } from '../state/actions/contextIdActions';
+import { addComment } from '../state/actions/commentsActions';
+import { changeSelections, validateSelections } from '../state/actions/selectionsActions';
+import { editTargetVerse } from '../state/actions/verseEditActions';
+import { toggleBookmark } from '../state/actions/bookmarksActions';
+// selectors
+import {
+  getContextId,
+  getProjectManifest,
+  getGatewayLanguageCode,
+  getTargetBible,
+  getCurrentGroup,
+  getMaximumSelections,
+  getCommentsReducer,
+  getSelectionsReducer,
+  getBookmarksReducer,
+  getCurrentToolName,
+  getProjectPath,
+  getUsername,
+  getUserData,
+  getToolsSettings,
+} from '../selectors';
+import { contextNotEmpty } from '../utils/utils';
+
 
 function useLocalState(initialState) {
   const [localState, setLocalState] = useState(initialState);
@@ -17,24 +45,33 @@ function useLocalState(initialState) {
 }
 
 function VerseCheckWrapper({
+  goToNext,
   manifest,
   translate,
   contextId,
   verseText,
+  showAlert,
+  addComment,
   targetBible,
+  goToPrevious,
   isVerseEdited,
-  isVerseInvalidated,
-  unfilteredVerseText,
-  maximumSelections,
-  actions,
   alignedGLText,
-  commentsReducer: { text: commentText },
-  remindersReducer: { enabled: bookmarkEnabled },
+  toolsSettings,
+  toggleBookmark,
+  onInvalidCheck,
+  editTargetVerse,
+  setToolSettings,
+  changeSelections,
+  maximumSelections,
+  isVerseInvalidated,
+  validateSelections,
+  unfilteredVerseText,
   selectionsReducer: {
     selections,
     nothingToSelect,
   },
-  selectedGL,
+  commentsReducer: { text: commentText },
+  bookmarksReducer: { enabled: bookmarkEnabled },
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -80,11 +117,11 @@ function VerseCheckWrapper({
   useEffect(() => {
     let alignedGlTextState = alignedGLText;
 
-    if (!alignedGLText) {
+    if (!alignedGLText && contextNotEmpty(contextId)) {
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
-      if (actions.onInvalidCheck) {
-        actions.onInvalidCheck(contextId, selectedGL, true);
+      if (onInvalidCheck) {
+        onInvalidCheck();
       }
     }
     setLocalState({
@@ -118,9 +155,9 @@ function VerseCheckWrapper({
     setLocalState({ isDialogOpen: false });
 
     if (goToNextOrPrevious == 'next') {
-      actions.goToNext();
+      goToNext();
     } else if (goToNextOrPrevious == 'previous') {
-      actions.goToPrevious();
+      goToPrevious();
     }
   }
 
@@ -153,7 +190,7 @@ function VerseCheckWrapper({
   }
 
   function saveComment() {
-    actions.addComment(newComment);
+    addComment(newComment);
     setLocalState({
       mode: 'default',
       newSelections: selections,
@@ -217,7 +254,7 @@ function VerseCheckWrapper({
       isVerseChanged: false,
       newTags: [],
     });
-    actions.editTargetVerse(chapter, verse, before, newVerseText, newTags);
+    editTargetVerse(chapter, verse, before, newVerseText, newTags);
   }
 
   function changeSelectionsInLocalState(newSelections) {
@@ -244,7 +281,7 @@ function VerseCheckWrapper({
   function saveSelection() {
     // optimize the selections to address potential issues and save
     const selections = optimizeSelections(verseText, newSelections);
-    actions.changeSelections(selections, newNothingToSelect);
+    changeSelections(selections, newNothingToSelect);
     changeMode('default');
   }
 
@@ -252,86 +289,170 @@ function VerseCheckWrapper({
     setLocalState({ newNothingToSelect });
   }
 
-  return (
-    <VerseCheck
-      translate={translate}
-      mode={mode}
-      tags={newTags}
-      targetBible={targetBible}
-      verseText={verseText}
-      unfilteredVerseText={unfilteredVerseText}
-      contextId={contextId}
-      selections={selections}
-      isVerseEdited={isVerseEdited}
-      commentText={commentText}
-      alignedGLText={alignedGlTextState}
-      nothingToSelect={nothingToSelect}
-      bookmarkEnabled={bookmarkEnabled}
-      maximumSelections={maximumSelections}
-      isVerseInvalidated={isVerseInvalidated}
-      bookDetails={manifest.project}
-      targetLanguageDetails={manifest.target_language}
-      newSelections={newSelections}
-      localNothingToSelect={newNothingToSelect}
-      dialogModalVisibility={isDialogOpen}
-      isVerseChanged={isVerseChanged}
-      isCommentChanged={isCommentChanged}
-      handleSkip={handleSkip}
-      handleGoToNext={actions.goToNext}
-      handleGoToPrevious={actions.goToPrevious}
-      handleOpenDialog={handleOpenDialog}
-      handleCloseDialog={handleCloseDialog}
-      openAlertDialog={actions.openAlertDialog}
-      toggleReminder={actions.toggleReminder}
-      changeMode={changeMode}
-      cancelEditVerse={cancelEditVerse}
-      saveEditVerse={saveEditVerse}
-      handleComment={handleComment}
-      cancelComment={cancelComment}
-      saveComment={saveComment}
-      saveSelection={saveSelection}
-      cancelSelection={cancelSelection}
-      clearSelection={clearSelection}
-      handleEditVerse={handleEditVerse}
-      checkIfVerseChanged={checkIfVerseChanged}
-      checkIfCommentChanged={checkIfCommentChanged}
-      validateSelections={actions.validateSelections}
-      handleTagsCheckbox={handleTagsCheckbox}
-      toggleNothingToSelect={toggleNothingToSelect}
-      changeSelectionsInLocalState={changeSelectionsInLocalState}
-    />
-  );
+  if (contextNotEmpty(contextId)) {
+    return (
+      <VerseCheck
+        mode={mode}
+        tags={newTags}
+        translate={translate}
+        verseText={verseText}
+        contextId={contextId}
+        changeMode={changeMode}
+        selections={selections}
+        targetBible={targetBible}
+        commentText={commentText}
+        isVerseEdited={isVerseEdited}
+        toolsSettings={toolsSettings}
+        newSelections={newSelections}
+        bookDetails={manifest.project}
+        isVerseChanged={isVerseChanged}
+        setToolSettings={setToolSettings}
+        nothingToSelect={nothingToSelect}
+        bookmarkEnabled={bookmarkEnabled}
+        alignedGLText={alignedGlTextState}
+        dialogModalVisibility={isDialogOpen}
+        maximumSelections={maximumSelections}
+        isVerseInvalidated={isVerseInvalidated}
+        unfilteredVerseText={unfilteredVerseText}
+        targetLanguageDetails={manifest.target_language}
+        localNothingToSelect={newNothingToSelect}
+        isCommentChanged={isCommentChanged}
+        handleSkip={handleSkip}
+        handleGoToNext={goToNext}
+        handleGoToPrevious={goToPrevious}
+        handleOpenDialog={handleOpenDialog}
+        handleCloseDialog={handleCloseDialog}
+        openAlertDialog={showAlert}
+        toggleBookmark={toggleBookmark}
+        cancelEditVerse={cancelEditVerse}
+        saveEditVerse={saveEditVerse}
+        handleComment={handleComment}
+        cancelComment={cancelComment}
+        saveComment={saveComment}
+        saveSelection={saveSelection}
+        cancelSelection={cancelSelection}
+        clearSelection={clearSelection}
+        handleEditVerse={handleEditVerse}
+        checkIfVerseChanged={checkIfVerseChanged}
+        checkIfCommentChanged={checkIfCommentChanged}
+        validateSelections={validateSelections}
+        handleTagsCheckbox={handleTagsCheckbox}
+        toggleNothingToSelect={toggleNothingToSelect}
+        changeSelectionsInLocalState={changeSelectionsInLocalState}
+        manifest={manifest}
+      />
+    );
+  } else {
+    return null;
+  }
 }
 
 VerseCheckWrapper.propTypes = {
   translate: PropTypes.func.isRequired,
-  targetBible: PropTypes.object.isRequired,
-  contextId: PropTypes.object.isRequired,
+  gatewayLanguageCode: PropTypes.string,
   manifest: PropTypes.object.isRequired,
-  maximumSelections: PropTypes.number.isRequired,
   verseText: PropTypes.string.isRequired,
-  unfilteredVerseText: PropTypes.string.isRequired,
+  contextId: PropTypes.object.isRequired,
   isVerseEdited: PropTypes.bool.isRequired,
-  isVerseInvalidated: PropTypes.bool.isRequired,
+  targetBible: PropTypes.object.isRequired,
+  setToolSettings: PropTypes.func.isRequired,
   alignedGLText: PropTypes.string.isRequired,
-  remindersReducer: PropTypes.object.isRequired,
   commentsReducer: PropTypes.object.isRequired,
+  bookmarksReducer: PropTypes.object.isRequired,
+  isVerseInvalidated: PropTypes.bool.isRequired,
+  maximumSelections: PropTypes.number.isRequired,
+  unfilteredVerseText: PropTypes.string.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array.isRequired,
     nothingToSelect: PropTypes.bool.isRequired,
   }).isRequired,
-  actions: PropTypes.shape({
-    changeSelections: PropTypes.func.isRequired,
-    goToNext: PropTypes.func.isRequired,
-    goToPrevious: PropTypes.func.isRequired,
-    onInvalidCheck: PropTypes.func.isRequired,
-    validateSelections: PropTypes.func.isRequired,
-    toggleReminder: PropTypes.func.isRequired,
-    openAlertDialog: PropTypes.func.isRequired,
-    addComment: PropTypes.func.isRequired,
-    editTargetVerse: PropTypes.func.isRequired,
-  }),
-  selectedGL: PropTypes.string.isRequired,
+  changeSelections: PropTypes.func.isRequired,
+  goToNext: PropTypes.func.isRequired,
+  goToPrevious: PropTypes.func.isRequired,
+  onInvalidCheck: PropTypes.func.isRequired,
+  validateSelections: PropTypes.func.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  editTargetVerse: PropTypes.func.isRequired,
 };
 
-export default VerseCheckWrapper;
+const mapStateToProps = (state, ownProps) => {
+  const contextId = getContextId(state);
+  const targetBible = getTargetBible(ownProps);
+  const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
+  const currentGroupItem = getCurrentGroup(state);
+  const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
+  const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);
+  const currentToolName = getCurrentToolName(ownProps);
+  const alignedGLText = ownProps.gatewayLanguageQuote;
+  const toolsSettings = getToolsSettings(ownProps);
+
+  return {
+    contextId,
+    verseText,
+    targetBible,
+    isVerseEdited,
+    alignedGLText,
+    toolsSettings,
+    isVerseInvalidated,
+    unfilteredVerseText,
+    showAlert: ownProps.tc.showAlert,
+    manifest: getProjectManifest(ownProps),
+    commentsReducer: getCommentsReducer(state),
+    setToolSettings: ownProps.tc.setToolSettings,
+    bookmarksReducer: getBookmarksReducer(state),
+    selectionsReducer: getSelectionsReducer(state),
+    maximumSelections: getMaximumSelections(currentToolName),
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {
+    tc: {
+      bookId,
+      showAlert,
+      closeAlert,
+      onInvalidCheck,
+      updateTargetVerse,
+      showIgnorableAlert,
+    },
+    toolApi,
+    contextId,
+    translate,
+    gatewayLanguageQuote,
+  } = ownProps;
+  const username = getUsername(ownProps);
+  const userData = getUserData(ownProps);
+  const currentToolName = getCurrentToolName(ownProps);
+  const projectSaveLocation = getProjectPath(ownProps);
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
+
+  return {
+    goToNext: () => dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
+    goToPrevious: () => dispatch(changeToPreviousContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote)),
+    addComment: (text) => dispatch(addComment(text, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation)),
+    editTargetVerse: (chapter, verse, before, after, tags) => {
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi));
+    },
+    toggleBookmark: () => {
+      dispatch(toggleBookmark(username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
+    },
+    changeSelections: (selections, nothingToSelect) => {
+      dispatch(changeSelections(selections, false, null, null, nothingToSelect, username, currentToolName, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation));
+    },
+    validateSelections: (targetVerse) => {
+      validateSelections(targetVerse, contextId, null, null, true, {}, null, projectSaveLocation, bookId, currentToolName, username, gatewayLanguageCode, gatewayLanguageQuote);
+    },
+    onInvalidCheck: () => {
+      onInvalidCheck(contextId, gatewayLanguageCode, true, () => {
+        dispatch(changeToNextContextId(projectSaveLocation, userData, gatewayLanguageCode, gatewayLanguageQuote));
+      });
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VerseCheckWrapper);
