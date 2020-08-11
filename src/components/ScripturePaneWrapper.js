@@ -1,20 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { ScripturePane } from 'tc-ui-toolkit';
+import { getAvailableScripturePaneSelections } from '../helpers/resourcesHelpers';
+import { getLexiconData } from '../helpers/lexiconHelpers';
+import {
+  getContextId,
+  getBibles,
+  getProjectManifest,
+  getSelections,
+  getProjectDetailsReducer,
+  getCurrentPaneSettings,
+  getUsername,
+  getProjectPath,
+  getCurrentToolName,
+} from '../selectors';
+import { editTargetVerse } from '../state/actions/verseEditActions';
+import { contextNotEmpty } from '../utils/utils';
 
 function ScripturePaneWrapper({
-  manifest,
-  showPopover,
-  editTargetVerse,
-  projectDetailsReducer,
-  getLexiconData,
-  selections,
-  setToolSettings,
   bibles,
+  manifest,
   contextId,
   translate,
+  selections,
+  showPopover,
+  editTargetVerse,
+  setToolSettings,
+  complexScriptFonts,
   currentPaneSettings,
-  getAvailableScripturePaneSelections,
+  projectDetailsReducer,
+  addObjectPropertyToManifest,
   makeSureBiblesLoadedForTool,
 }) {
   function makeTitle(manifest) {
@@ -27,52 +43,93 @@ function ScripturePaneWrapper({
     }
   }
 
+  function getScripturePaneSelections(resourceList) {
+    getAvailableScripturePaneSelections(resourceList, contextId, bibles);
+  }
+
+  function ensureBiblesAreLoadedForTool() {
+    makeSureBiblesLoadedForTool(contextId);
+  }
+
   const expandedScripturePaneTitle = makeTitle(manifest);
 
-  return (
-    <ScripturePane
-      currentPaneSettings={currentPaneSettings}
-      contextId={contextId}
-      bibles={bibles}
-      expandedScripturePaneTitle={expandedScripturePaneTitle}
-      showPopover={showPopover}
-      editTargetVerse={editTargetVerse}
-      projectDetailsReducer={projectDetailsReducer}
-      translate={translate}
-      getLexiconData={getLexiconData}
-      selections={selections}
-      setToolSettings={setToolSettings}
-      getAvailableScripturePaneSelections={getAvailableScripturePaneSelections}
-      makeSureBiblesLoadedForTool={makeSureBiblesLoadedForTool}
-    />
-  );
+  if (contextNotEmpty(contextId)) {
+    return (
+      <ScripturePane
+        bibles={bibles}
+        contextId={contextId}
+        translate={translate}
+        selections={selections}
+        showPopover={showPopover}
+        getLexiconData={getLexiconData}
+        editTargetVerse={editTargetVerse}
+        setToolSettings={setToolSettings}
+        complexScriptFonts={complexScriptFonts}
+        currentPaneSettings={currentPaneSettings}
+        projectDetailsReducer={projectDetailsReducer}
+        expandedScripturePaneTitle={expandedScripturePaneTitle}
+        addObjectPropertyToManifest={addObjectPropertyToManifest}
+        makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
+        getAvailableScripturePaneSelections={getScripturePaneSelections}
+      />
+    );
+  } else {
+    return null;
+  }
 }
 
 ScripturePaneWrapper.propTypes = {
-  bibles: PropTypes.object,
-  contextId: PropTypes.object,
-  translate: PropTypes.func,
-  currentToolName: PropTypes.string,
-  manifest: PropTypes.object,
-  commentsReducer: PropTypes.object,
-  projectDetailsReducer: PropTypes.object,
-  selections: PropTypes.array,
-  currentPaneSettings: PropTypes.array,
-  groupsDataReducer: PropTypes.object,
-  loginReducer: PropTypes.object,
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.object.isRequired }),
-  toolsReducer: PropTypes.object,
-  actions: PropTypes.shape({
-    changeSelections: PropTypes.func.isRequired,
-    goToNext: PropTypes.func.isRequired,
-    goToPrevious: PropTypes.func.isRequired,
-  }),
+  bibles: PropTypes.object.isRequired,
+  manifest: PropTypes.object.isRequired,
+  contextId: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
+  selections: PropTypes.array.isRequired,
+  complexScriptFonts: PropTypes.object.isRequired,
+  currentPaneSettings: PropTypes.array.isRequired,
+  projectDetailsReducer: PropTypes.object.isRequired,
+  // actions
   showPopover: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
-  makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
-  getAvailableScripturePaneSelections: PropTypes.func.isRequired,
-  getLexiconData: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
+  makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
 };
 
-export default ScripturePaneWrapper;
+export const mapStateToProps = (state, ownProps) => ({
+  bibles: getBibles(ownProps),
+  contextId: getContextId(state),
+  selections: getSelections(state),
+  showPopover: ownProps.tc.showPopover,
+  manifest: getProjectManifest(ownProps),
+  setToolSettings: ownProps.tc.setToolSettings,
+  complexScriptFonts: ownProps.tc.complexScriptFonts,
+  currentPaneSettings: getCurrentPaneSettings(ownProps),
+  projectDetailsReducer: getProjectDetailsReducer(ownProps),
+  makeSureBiblesLoadedForTool: ownProps.tc.makeSureBiblesLoadedForTool,
+  addObjectPropertyToManifest: ownProps.tc.addObjectPropertyToManifest,
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {
+    tc: {
+      showAlert,
+      closeAlert,
+      updateTargetVerse,
+      showIgnorableAlert,
+      gatewayLanguageCode,
+    },
+    toolApi,
+    translate,
+    gatewayLanguageQuote,
+  } = ownProps;
+  const username = getUsername(ownProps);
+  const currentToolName = getCurrentToolName(ownProps);
+  const projectSaveLocation = getProjectPath(ownProps);
+
+  return {
+    editTargetVerse: (chapter, verse, before, after, tags) => {
+      dispatch(editTargetVerse(chapter, verse, before, after, tags, username, gatewayLanguageCode, gatewayLanguageQuote, projectSaveLocation, currentToolName, translate, showAlert, closeAlert, showIgnorableAlert, updateTargetVerse, toolApi));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScripturePaneWrapper);

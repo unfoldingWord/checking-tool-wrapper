@@ -5,95 +5,140 @@ import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
-
 // components
-import GroupMenuWrapper from './components/GroupMenuWrapper';
+import GroupMenuContainer from './containers/GroupMenuContainer';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
 import TranslationHelpsWrapper from './components/TranslationHelpsWrapper';
 import CheckInfoCardWrapper from './components/CheckInfoCardWrapper';
 import ScripturePaneWrapper from './components/ScripturePaneWrapper';
-import { getGroupMenuState } from './selectors/GroupMenu';
-import { getVerseCheckState } from './selectors/VerseCheck';
-import { getTranslationHelpsState } from './selectors/TranslationHelps';
-import { getScripturePaneState } from './selectors/ScripturePane';
-import { getCheckInfoCardState } from './selectors/CheckInfoCard';
+// selectors
+import {
+  getBibles,
+  getToolApi,
+  getTcState,
+  getContextId,
+  getTranslateState,
+  getGatewayLanguageCode,
+  getCurrentPaneSettings,
+  getGatewayLanguageBibles,
+} from './selectors';
+import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
   scrollbarThumb: { borderRadius: '10px' },
 });
 
-function Container(props) {
+const styles = {
+  containerDiv:{
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100vw',
+  },
+  centerDiv: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    overflowX: 'auto',
+  },
+  scripturePaneDiv: {
+    display: 'flex',
+    flexShrink: '0',
+    height: '250px',
+    paddingBottom: '20px',
+  },
+};
+
+function Container({
+  tc,
+  bibles,
+  toolApi,
+  translate,
+  contextId,
+  setToolSettings,
+  gatewayLanguageCode,
+  currentPaneSettings,
+  gatewayLanguageQuote,
+}) {
   const [showHelps, setShowHelps] = useState(true);
 
   useEffect(() => {
-    const { bibles } = props.scripturePane;
-    settingsHelper.loadCorrectPaneSettings(props, props.tc.actions.setToolSettings, bibles);
+    settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { contextIdReducer: { contextId } } = props;
-
-  if (contextId !== null) {
-    return (
-      <TcuiThemeProvider theme={theme}>
-        <div style={{
-          display: 'flex', flexDirection: 'row', width: '100vw',
-        }}>
-          <GroupMenuWrapper {...props.groupMenu} />
-          <div style={{
-            display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'auto',
-          }}>
-            <div style={{ height: '250px', paddingBottom: '20px' }}>
-              <ScripturePaneWrapper {...props.scripturePane} />
-            </div>
-            <CheckInfoCardWrapper
-              toggleHelps={() => setShowHelps(!showHelps)}
-              showHelps={showHelps}
-              {...props.checkInfoCard}
+  return (
+    <TcuiThemeProvider theme={theme}>
+      <div style={styles.containerDiv}>
+        <GroupMenuContainer
+          tc={tc}
+          translate={translate}
+          gatewayLanguageQuote={gatewayLanguageQuote}
+        />
+        <div style={styles.centerDiv}>
+          <div style={styles.scripturePaneDiv}>
+            <ScripturePaneWrapper
+              tc={tc}
+              toolApi={toolApi}
+              translate={translate}
             />
-            <VerseCheckWrapper {...props.verseCheck} />
           </div>
-          <TranslationHelpsWrapper
-            toggleHelps={() => setShowHelps(!showHelps)}
+          <CheckInfoCardWrapper
+            tc={tc}
+            translate={translate}
             showHelps={showHelps}
-            {...props.translationHelps} />
+            toggleHelps={() => setShowHelps(!showHelps)}
+          />
+          <VerseCheckWrapper
+            tc={tc}
+            toolApi={toolApi}
+            translate={translate}
+            contextId={contextId}
+            gatewayLanguageQuote={gatewayLanguageQuote}
+          />
         </div>
-      </TcuiThemeProvider>
-    );
-  } else {
-    return null;
-  }
+        <TranslationHelpsWrapper
+          tc={tc}
+          showHelps={showHelps}
+          translate={translate}
+          toggleHelps={() => setShowHelps(!showHelps)}
+        />
+      </div>
+    </TcuiThemeProvider>
+  );
 }
 
 Container.propTypes = {
-  translationHelps: PropTypes.any,
-  groupMenu: PropTypes.any,
-  verseCheck: PropTypes.any,
-  checkInfoCard: PropTypes.any,
-  translate: PropTypes.func,
-  settingsReducer: PropTypes.shape({ toolsSettings: PropTypes.shape({ ScripturePane: PropTypes.object }) }),
-  contextIdReducer: PropTypes.shape({ contextId: PropTypes.shape({ groupId: PropTypes.any }) }),
-  groupsIndexReducer: PropTypes.shape({ groupsIndex: PropTypes.array }),
-  projectDetailsReducer: PropTypes.shape({ manifest: PropTypes.object.isRequired }),
-  tc: PropTypes.shape({
-    actions: PropTypes.shape({
-      setToolSettings: PropTypes.func.isRequired,
-      loadResourceArticle: PropTypes.func.isRequired,
-      getGLQuote: PropTypes.func.isRequired,
-      getSelectionsFromContextId: PropTypes.func.isRequired,
-      onInvalidCheck: PropTypes.func.isRequired,
-    }),
-  }),
-  scripturePane: PropTypes.object.isRequired,
+  tc: PropTypes.object.isRequired,
+  bibles: PropTypes.object.isRequired,
+  toolApi: PropTypes.object.isRequired,
+  translate: PropTypes.func.isRequired,
+  contextId: PropTypes.object.isRequired,
+  setToolSettings: PropTypes.func.isRequired,
+  currentPaneSettings: PropTypes.array.isRequired,
+  gatewayLanguageCode: PropTypes.string.isRequired,
+  gatewayLanguageQuote: PropTypes.string.isRequired,
 };
 
-export const mapStateToProps = (_, ownProps) => ({
-  groupMenu: getGroupMenuState(ownProps),
-  verseCheck: getVerseCheckState(ownProps),
-  translationHelps: getTranslationHelpsState(ownProps),
-  checkInfoCard: getCheckInfoCardState(ownProps),
-  scripturePane: getScripturePaneState(ownProps),
-});
+export const mapStateToProps = (state, ownProps) => {
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
+  const contextId = getContextId(state);
+  const glBibles = getGatewayLanguageBibles(ownProps);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
+  const tc = getTcState(ownProps);
+  const toolApi = getToolApi(ownProps);
+
+  return {
+    tc,
+    toolApi,
+    contextId,
+    gatewayLanguageCode,
+    gatewayLanguageQuote,
+    bibles: getBibles(ownProps),
+    translate: getTranslateState(ownProps),
+    setToolSettings: tc.setToolSettings,
+    currentPaneSettings: getCurrentPaneSettings(ownProps),
+  };
+};
 
 export default connect(mapStateToProps)(Container);

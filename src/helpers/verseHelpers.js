@@ -1,5 +1,5 @@
 import usfmjs from 'usfm-js';
-import { normalizeString } from './selectionHelpers';
+import { normalizeString } from './stringHelpers';
 
 /**
  *  Gets both the verse text without usfm markers and unfilteredVerseText.
@@ -10,7 +10,7 @@ export function getVerseText(targetBible, contextId) {
   let unfilteredVerseText = '';
   let verseText = '';
 
-  if (contextId) {
+  if (contextId && contextId.reference) {
     const { chapter, verse } = contextId.reference;
 
     if (targetBible && targetBible[chapter]) {

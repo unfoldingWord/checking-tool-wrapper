@@ -1,7 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 import {
   shallow,
   render,
@@ -13,41 +12,32 @@ import toJson from 'enzyme-to-json';
 // containers
 import Container from '../src/Container';
 import TranslationHelpsContainer from '../src/components/TranslationHelpsWrapper';
-import CheckInfoCardWrapper from '../src/components/CheckInfoCardWrapper';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 const basicProps = require('./__fixtures__/basicProps.json');
+const toolProps = require('./__fixtures__/toolProps.json');
 const props = {
   ...basicProps,
   translate: k => k,
   tc: {
     ...basicProps.tc,
     project: { getBookName: () => () => 'gen' },
+    showPopover: jest.fn(),
+    editTargetVerse: jest.fn(),
+    getLexiconData: jest.fn(),
+    setToolSettings: jest.fn(),
+    loadResourceArticle: jest.fn(),
+    setFilter: jest.fn(),
+    changeSelections: jest.fn(),
+    goToNext: jest.fn(),
+    goToPrevious: jest.fn(),
+    onInvalidCheck: jest.fn(),
   },
 };
 
-props.tc.actions = {
-  showPopover: jest.fn(),
-  editTargetVerse: jest.fn(),
-  getLexiconData: jest.fn(),
-  setToolSettings: jest.fn(),
-  loadResourceArticle: jest.fn(),
-  getGLQuote: jest.fn(),
-  setFilter: jest.fn(),
-  changeSelections: jest.fn(),
-  goToNext: jest.fn(),
-  goToPrevious: jest.fn(),
-  getAvailableScripturePaneSelections: jest.fn(),
-  makeSureBiblesLoadedForTool: jest.fn(),
-  groupMenuChangeGroup: jest.fn(),
-  groupMenuExpandSubMenu: jest.fn(),
-  onInvalidCheck: jest.fn(),
-  getSelectionsFromContextId: () => '',
-};
-
-const store = mockStore({});
+const store = mockStore(toolProps);
 
 describe.only('Container Tests', () => {
   it('Test Container', () => {
@@ -64,7 +54,7 @@ describe.only('Container Tests', () => {
       ...props,
       contextIdReducer: { contextId: null },
     };
-    const wrapper = renderer.create(
+    const wrapper = render(
       <Provider store={store}>
         <Container {...myProps} />
       </Provider>

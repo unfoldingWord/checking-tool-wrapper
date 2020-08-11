@@ -4,20 +4,6 @@ import isEqual from 'deep-equal';
 const CHECKDATA_DIRECTORY = path.join('.apps', 'translationCore', 'checkData');
 
 /**
- * returns true if contextIds are a match for reference and group
- * @param {Object} contextId1
- * @param {Object} contextId2
- * @return {boolean}
- */
-export function sameContext(contextId1, contextId2) {
-  if (!!contextId1 && !!contextId2) {
-    return isEqual(contextId1.reference, contextId2.reference) &&
-      (contextId1.groupId === contextId2.groupId);
-  }
-  return false;
-}
-
-/**
  * This helper method generates a timestamp in milliseconds for use
  * in the storing of data in the app. Timestamps will be used to
  * generate filenames and modified dates.
