@@ -56,8 +56,11 @@ export const getSelections = (state) =>
 export const getAlignedGLText = (state, ownProps) => {
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
+  const manifest = getProjectManifest();
+  const tsvRelation = manifest && manifest.tsv_relation;
 
-  return getAlignedGLTextHelper(contextId, glBibles);
+  return getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
 };
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguageCode = (ownProps) => ownProps.tc.gatewayLanguageCode || '';

@@ -20,7 +20,7 @@ import {
   getTranslateState,
   getGatewayLanguageCode,
   getCurrentPaneSettings,
-  getGatewayLanguageBibles,
+  getGatewayLanguageBibles, getProjectManifest,
 } from './selectors';
 import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
 
@@ -124,7 +124,9 @@ export const mapStateToProps = (state, ownProps) => {
   const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
+  const manifest = getProjectManifest();
+  const tsvRelation = manifest && manifest.tsv_relation;
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
   const tc = getTcState(ownProps);
   const toolApi = getToolApi(ownProps);
 
