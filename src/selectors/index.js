@@ -4,8 +4,6 @@ import * as fromGrouspIndex from '../state/reducers/groupsIndexReducer';
 import * as fromGroupsData from '../state/reducers/groupsDataReducer';
 import * as fromGroupMenu from '../state/reducers/groupMenuReducer';
 import * as fromContextId from '../state/reducers/contextIdReducer';
-// helpers
-import { getAlignedGLTextHelper } from '../helpers/gatewayLanguageHelpers';
 // constants
 import {
   DEFAULT_MAX_SELECTIONS,
@@ -53,15 +51,6 @@ export const getBookmarksReducer = (state) =>
 export const getSelections = (state) =>
   state.tool.selectionsReducer.selections;
 
-export const getAlignedGLText = (state, ownProps) => {
-  const contextId = getContextId(state);
-  const glBibles = getGatewayLanguageBibles(ownProps);
-  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
-  const manifest = getProjectManifest();
-  const tsvRelation = manifest && manifest.tsv_relation;
-
-  return getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
-};
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguageCode = (ownProps) => ownProps.tc.gatewayLanguageCode || '';
 export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
