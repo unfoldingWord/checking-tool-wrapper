@@ -124,7 +124,7 @@ export const mapStateToProps = (state, ownProps) => {
   const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
-  const manifest = getProjectManifest();
+  const manifest = getProjectManifest(ownProps);
   const tsvRelation = manifest && manifest.tsv_relation;
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
   const tc = getTcState(ownProps);
