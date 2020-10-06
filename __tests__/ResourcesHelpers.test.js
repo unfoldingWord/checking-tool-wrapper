@@ -34,6 +34,10 @@ describe('getThelpsManifest()', () => {
 
   it('getThelpsManifest should return null if glID is empty', () => {
     // given
+    const sourceResourcesPath = path.join( '__tests__/__fixtures__' );
+    const copyResourceFiles = [TRANSLATION_WORDS];
+    const destFolder = path.join(USER_RESOURCES_PATH, 'en', 'translationHelps');
+    fs.__loadFilesIntoMockFs(copyResourceFiles, sourceResourcesPath, destFolder);
     const glID = '';
     const toolName = TRANSLATION_WORDS;
     const expectedRelation = null;
@@ -47,6 +51,10 @@ describe('getThelpsManifest()', () => {
 
   it('getThelpsManifest should return null if tooName is empty', () => {
     // given
+    const sourceResourcesPath = path.join( '__tests__/__fixtures__' );
+    const copyResourceFiles = [TRANSLATION_WORDS];
+    const destFolder = path.join(USER_RESOURCES_PATH, 'en', 'translationHelps');
+    fs.__loadFilesIntoMockFs(copyResourceFiles, sourceResourcesPath, destFolder);
     const glID = 'en';
     const toolName = '';
     const expectedRelation = null;
