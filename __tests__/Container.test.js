@@ -34,6 +34,7 @@ const props = {
     goToNext: jest.fn(),
     goToPrevious: jest.fn(),
     onInvalidCheck: jest.fn(),
+    readProjectDataSync: jest.fn(),
   },
 };
 

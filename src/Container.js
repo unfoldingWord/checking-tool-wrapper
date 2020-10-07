@@ -5,6 +5,7 @@ import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
+import { getThelpsManifestRelation } from './helpers/resourcesHelpers';
 // components
 import GroupMenuContainer from './containers/GroupMenuContainer';
 import VerseCheckWrapper from './components/VerseCheckWrapper';
@@ -21,6 +22,7 @@ import {
   getGatewayLanguageCode,
   getCurrentPaneSettings,
   getGatewayLanguageBibles,
+  getCurrentToolName,
 } from './selectors';
 import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
 
@@ -124,7 +126,9 @@ export const mapStateToProps = (state, ownProps) => {
   const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);
   const glBibles = getGatewayLanguageBibles(ownProps);
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles);
+  const toolName = getCurrentToolName(ownProps);
+  const tsvRelation = getThelpsManifestRelation(gatewayLanguageCode, toolName);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
   const tc = getTcState(ownProps);
   const toolApi = getToolApi(ownProps);
 
