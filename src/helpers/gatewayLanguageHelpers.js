@@ -35,7 +35,7 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
       for (let relation of tsvRelation) {
         const parts = relation.split('/');
 
-        if ((parts.length === 2) && (parts[0] === glID)) {
+        if ((parts.length === 2) && (parts[0] === glID)) { // make sure it is for same gl and has the expected number of levels
           let bibleId = parts[1];
           bibleId = bibleId.split('?')[0];
           const bible = glBibles[bibleId];
@@ -44,7 +44,7 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
             const alignedText = getAlignedTextFromBible(contextId, bible);
 
             if (alignedText) {
-              return alignedText;
+              return alignedText; // we succeeded and we are done
             }
           }
         }
