@@ -8,11 +8,53 @@ import {
   USER_RESOURCES_PATH,
   NT_ORIG_LANG,
   OT_ORIG_LANG,
+  TRANSLATION_HELPS,
 } from '../common/constants';
 import {
   isOriginalLanguage,
   isOldTestament,
 } from './bibleHelpers';
+
+/**
+ * gets the relation from manifest file for tool
+ * @param {string} glID
+ * @param {string} toolName
+ * @return {null|[]} relation array
+ */
+export function getThelpsManifestRelation(glID, toolName) {
+  const tHelpsManifest = getThelpsManifest(glID, toolName);
+  const tsvRelation = tHelpsManifest && (tHelpsManifest.tsv_relation || (tHelpsManifest.dublin_core && tHelpsManifest.dublin_core.relation));
+  return tsvRelation;
+}
+
+/**
+ * gets the manifest file for tool
+ * @param {string} glID
+ * @param {string} toolName
+ * @return {null|{}} manifest object
+ */
+export function getThelpsManifest(glID, toolName) {
+  if ( glID && toolName) {
+    const resourcePath = path.join(USER_RESOURCES_PATH, glID, TRANSLATION_HELPS, toolName);
+    const latestVersion = getLatestVersion(resourcePath);
+
+    if (latestVersion) {
+      const pathToBibleManifestFile = path.join(latestVersion, 'manifest.json');
+
+      try {
+        const manifestExists = fs.existsSync(pathToBibleManifestFile);
+
+        if (manifestExists) {
+          const manifest = fs.readJsonSync(pathToBibleManifestFile);
+          return manifest;
+        }
+      } catch (error) {
+        console.error(`getThelpsManifest(${glID}, ${toolName}) - error getting manifest at ${pathToBibleManifestFile}`, error);
+      }
+    }
+  }
+  return null;
+}
 
 /**
  * Populates resourceList with resources that can be used in scripture pane
