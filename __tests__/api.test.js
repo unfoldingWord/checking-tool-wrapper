@@ -92,6 +92,7 @@ describe('load check data', () => {
       reference: {
         bookId: 'tit', chapter: 1, verse: 1,
       },
+      checkId: '2fd8',
       groupId: 'figs_metaphor',
       quote: 'that he put before them',
       occurrence: 1,
@@ -128,7 +129,7 @@ describe('load check data', () => {
     expect(data).toMatchSnapshot();
     expect(project.readDataFileSync.mock.calls[0]).
       toEqual(
-        ['checkData/invalidated/tit/1/1/2019-01-10T03_59_47.588Z.json']);
+        ['checkData/invalidated/tit/1/1/2fd8/2019-01-10T03_59_47.588Z.json']);
   });
 
   it('returns latest data in favor of context match', () => {
@@ -137,6 +138,7 @@ describe('load check data', () => {
       reference: {
         bookId: 'tit', chapter: 1, verse: 1,
       },
+      checkId: '2fd8',
       groupId: 'figs_metaphor',
       quote: 'that he put before them',
       occurrence: 1,
@@ -173,7 +175,7 @@ describe('load check data', () => {
     expect(data).toMatchSnapshot();
     expect(project.readDataFileSync.mock.calls[0]).
       toEqual(
-        ['checkData/invalidated/tit/1/1/2019-01-10T03_59_47.588Z.json']);
+        ['checkData/invalidated/tit/1/1/2fd8/2019-01-10T03_59_47.588Z.json']);
   });
 });
 

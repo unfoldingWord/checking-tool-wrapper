@@ -10,7 +10,7 @@ import {
   TRANSLATION_WORDS,
 } from '../common/constants';
 import generateTimestamp from '../utils/generateTimestamp';
-import {generateLoadPath, loadCheckData} from './checkDataHelpers';
+import { generateLoadPath, loadCheckData } from './checkDataHelpers';
 import { getOrigLangforBook } from './bibleHelpers';
 
 /**
