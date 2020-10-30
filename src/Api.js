@@ -454,10 +454,9 @@ export default class Api extends ToolApi {
     const {
       reference: {
         bookId, chapter, verse,
-      }, groupId, quote, occurrence,
+      }, groupId, quote, occurrence, checkId,
     } = contextId;
-    const loadPath = path.join('checkData', check, bookId, `${chapter}`,
-      `${verse}`);
+    const loadPath = path.join('checkData', check, bookId, `${chapter}`, `${verse}`, checkId);
 
     if (project.dataPathExistsSync(loadPath)) {
       // sort and filter check records

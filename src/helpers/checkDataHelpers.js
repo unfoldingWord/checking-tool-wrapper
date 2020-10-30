@@ -82,13 +82,15 @@ export function generateLoadPath(projectSaveLocation, contextId, checkDataName) 
     const bookAbbreviation = contextId.reference.bookId;
     const chapter = contextId.reference.chapter.toString();
     const verse = contextId.reference.verse.toString();
+    const checkId = contextId.reference.checkId;
     const loadPath = path.join(
       projectSaveLocation,
       PROJECT_CHECKDATA_DIRECTORY,
       checkDataName,
       bookAbbreviation,
       chapter,
-      verse
+      verse,
+      checkId,
     );
     return loadPath;
   } else {
