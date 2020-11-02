@@ -119,6 +119,7 @@ describe('load check data', () => {
       JSON.stringify(
         {
           contextId: {
+            checkId: '2fd8',
             groupId: 'figs_metaphor',
             quote: 'that he put before them',
             occurrence: 1,
@@ -129,7 +130,51 @@ describe('load check data', () => {
     expect(data).toMatchSnapshot();
     expect(project.readDataFileSync.mock.calls[0]).
       toEqual(
-        ['checkData/invalidated/tit/1/1/2fd8/2019-01-10T03_59_47.588Z.json']);
+        ['checkData/invalidated/tit/1/1/2019-01-10T03_59_47.588Z.json']);
+  });
+
+  it('matches a context that does not have a check id', () => {
+    const api = new Api();
+    const contextId = {
+      reference: {
+        bookId: 'tit', chapter: 1, verse: 1,
+      },
+      groupId: 'figs_metaphor',
+      quote: 'that he put before them',
+      occurrence: 1,
+    };
+    const project = {
+      dataPathExistsSync: jest.fn(),
+      readDataDirSync: jest.fn(),
+      readDataFileSync: jest.fn(),
+    };
+
+    api.props = { tc: { project } };
+
+    project.dataPathExistsSync.mockReturnValueOnce(true);
+    project.readDataDirSync.mockReturnValueOnce(
+      ['2018-12-18T21_28_18.837Z.json', '2019-01-10T03_59_47.588Z.json']);
+    project.readDataFileSync.mockReturnValueOnce(
+      JSON.stringify(
+        {
+          contextId: {
+            groupId: 'hmmm', quote: 'hello', occurrence: 2,
+          },
+        }));
+    project.readDataFileSync.mockReturnValueOnce(
+      JSON.stringify(
+        {
+          contextId: {
+            groupId: 'figs_metaphor',
+            quote: 'that he put before them',
+            occurrence: 1,
+          },
+        }));
+
+    const data = api._loadCheckData('invalidated', contextId);
+    expect(data).toMatchSnapshot();
+    expect(project.readDataFileSync.mock.calls[0]).
+      toEqual(['checkData/invalidated/tit/1/1/2019-01-10T03_59_47.588Z.json']);
   });
 
   it('returns latest data in favor of context match', () => {
@@ -158,6 +203,7 @@ describe('load check data', () => {
       JSON.stringify(
         {
           contextId: {
+            checkId: '2fd8',
             groupId: 'figs_metaphor',
             quote: 'that he put before them',
             occurrence: 1,
@@ -175,7 +221,7 @@ describe('load check data', () => {
     expect(data).toMatchSnapshot();
     expect(project.readDataFileSync.mock.calls[0]).
       toEqual(
-        ['checkData/invalidated/tit/1/1/2fd8/2019-01-10T03_59_47.588Z.json']);
+        ['checkData/invalidated/tit/1/1/2019-01-10T03_59_47.588Z.json']);
   });
 });
 
