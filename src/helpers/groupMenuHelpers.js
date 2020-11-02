@@ -1,5 +1,5 @@
 
-export function generateItemId(occurrence, bookId, chapter, verse, quote) {
+export function generateItemId(occurrence, bookId, chapter, verse, quote, checkId) {
   let quoteId = '';
 
   if (Array.isArray(quote)) { // is a bit more complicated
@@ -13,5 +13,5 @@ export function generateItemId(occurrence, bookId, chapter, verse, quote) {
   } else {
     quoteId = `${occurrence}:${quote}`;
   }
-  return `${quoteId}:${verse}:${chapter}:${bookId}`;
+  return `${checkId}:${quoteId}:${verse}:${chapter}:${bookId}`;
 }
