@@ -15,11 +15,11 @@ describe('groupMenuHelpers.generateItemId', () => {
       'strong': ['G00020'],
       'occurrence': 1,
     };
-    const expectedAlignedGLText = '1:Ἀαρών:5:1:luk';
+    const expectedAlignedGLText = 'checkId:1:Ἀαρών:5:1:luk';
 
     // when
     const alignedGLText = generateItemId(contextID.occurrence, contextID.reference.bookId,
-      contextID.reference.chapter, contextID.reference.verse, contextID.quote);
+      contextID.reference.chapter, contextID.reference.verse, contextID.quote, 'checkId');
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
@@ -43,11 +43,11 @@ describe('groupMenuHelpers.generateItemId', () => {
       'strong':['G14270','G54430','G29190','G35880','G24740'],
       'occurrence':1,
     };
-    const expectedAlignedGLText = '1:δώδεκα:1:φυλὰς:1:κρίνοντες:1:τοῦ:1:Ἰσραήλ:30:22:luk';
+    const expectedAlignedGLText = 'checkId:1:δώδεκα:1:φυλὰς:1:κρίνοντες:1:τοῦ:1:Ἰσραήλ:30:22:luk';
 
     // when
     const alignedGLText = generateItemId(contextID.occurrence, contextID.reference.bookId,
-      contextID.reference.chapter, contextID.reference.verse, contextID.quote);
+      contextID.reference.chapter, contextID.reference.verse, contextID.quote, 'checkId');
 
     // then
     expect(alignedGLText).toEqual(expectedAlignedGLText);
