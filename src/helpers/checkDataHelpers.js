@@ -51,6 +51,7 @@ export function loadCheckData(loadPath, contextId) {
 
         if (_checkDataObject && _checkDataObject.contextId &&
           _checkDataObject.contextId.groupId === contextId.groupId &&
+          _checkDataObject.contextId.checkId === contextId.checkId &&
           (isQuoteArray ? isEqual(_checkDataObject.contextId.quote, contextId.quote) : (_checkDataObject.contextId.quote === contextId.quote)) &&
           _checkDataObject.contextId.occurrence === contextId.occurrence) {
           checkDataObject = _checkDataObject; // return the first match since it is the latest modified one
@@ -82,15 +83,13 @@ export function generateLoadPath(projectSaveLocation, contextId, checkDataName) 
     const bookAbbreviation = contextId.reference.bookId;
     const chapter = contextId.reference.chapter.toString();
     const verse = contextId.reference.verse.toString();
-    const checkId = contextId.reference.checkId;
     const loadPath = path.join(
       projectSaveLocation,
       PROJECT_CHECKDATA_DIRECTORY,
       checkDataName,
       bookAbbreviation,
       chapter,
-      verse,
-      checkId,
+      verse
     );
     return loadPath;
   } else {

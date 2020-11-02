@@ -456,7 +456,7 @@ export default class Api extends ToolApi {
         bookId, chapter, verse,
       }, groupId, quote, occurrence, checkId,
     } = contextId;
-    const loadPath = path.join('checkData', check, bookId, `${chapter}`, `${verse}`, checkId);
+    const loadPath = path.join('checkData', check, bookId, `${chapter}`, `${verse}`);
 
     if (project.dataPathExistsSync(loadPath)) {
       // sort and filter check records
@@ -477,6 +477,7 @@ export default class Api extends ToolApi {
 
           // return first match
           if (recordData.contextId.groupId === groupId &&
+            recordData.contextId.checkId === checkId &&
             (isQuoteArray ? isEqual(recordData.contextId.quote, quote) : (recordData.contextId.quote === quote)) &&
             recordData.contextId.occurrence === occurrence) {
             return recordData;
@@ -623,7 +624,7 @@ export default class Api extends ToolApi {
         }
 
         if (data && data.contextId) {
-          const id = `${data.contextId.groupId}:${data.contextId.quote}`;
+          const id = `${data.contextId.groupId}:${data.contextId.quote}:${data.contextId.checkId}`;
 
           if (foundSelections.indexOf(id) === -1) {
             foundSelections.push(id);
