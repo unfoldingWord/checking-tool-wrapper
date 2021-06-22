@@ -139,13 +139,19 @@ export default class ProjectAPI {
 
   /**
    * returns true if the contextId's are for the same check instance
-   * @param {Object} contextId1
-   * @param {Object} contextId2
+   * @param {Object} existingContextId
+   * @param {Object} newContextId
    * @return {boolean}
    */
-  isMatchingCheckInstance(contextId1, contextId2) {
-    return (isEqual(contextId1.reference, contextId2.reference) ||
-      (contextId1.occurrence === contextId2.occurrence));
+  isMatchingCheckInstance(existingContextId, newContextId) {
+    return (isEqual(existingContextId.reference, newContextId.reference) &&
+      (existingContextId.occurrence === newContextId.occurrence) &&
+      (existingContextId.checkId === newContextId.checkId) &&
+      (
+        (existingContextId.quoteString && newContextId.quoteString ? (existingContextId.quoteString === newContextId.quoteString) : // compare quoteString if present
+          isEqual(existingContextId.quote, newContextId.quote)) // else compare quote array
+      )
+    );
   }
 
   /**
