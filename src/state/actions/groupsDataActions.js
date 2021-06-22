@@ -423,6 +423,7 @@ export function isCheckUnique(checkData, loadedChecks) {
         isEqual(check.contextId.quote, checkContextId.quote) : check.contextId.quote === checkContextId.quote;
 
       if (check.contextId && check.contextId.groupId === checkContextId.groupId &&
+        check.contextId.checkId === checkContextId.checkId &&
         quoteCondition && check.contextId.occurrence === checkContextId.occurrence) {
         return false;
       }

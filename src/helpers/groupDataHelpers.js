@@ -113,6 +113,7 @@ export const findGroupDataItem = (contextId, groupData) => {
 
     if (isSameVerse(grpContextId, contextId) &&
       (grpContextId.occurrence === contextId.occurrence) &&
+      (grpContextId.checkId === contextId.checkId) &&
       (isQuoteString ? (grpContextId.quote === contextId.quote) :
         isEqual(grpContextId.quote, contextId.quote))) {
       index = i;

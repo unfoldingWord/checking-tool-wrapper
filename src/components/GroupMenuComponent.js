@@ -42,6 +42,7 @@ function GroupMenuComponent({
     const {
       contextId: {
         quote,
+        checkId,
         occurrence,
         reference: {
           bookId, chapter, verse,
@@ -67,7 +68,7 @@ function GroupMenuComponent({
     return {
       ...item,
       title,
-      itemId: generateItemId(occurrence, bookId, chapter, verse, quote),
+      itemId: generateItemId(occurrence, bookId, chapter, verse, quote, checkId),
       finished: (!!item.selections && !item.invalidated) || item.nothingToSelect,
       nothingToSelect: !!item.nothingToSelect,
       tooltip: selectionText,

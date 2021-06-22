@@ -6,12 +6,11 @@ import isEqual from 'deep-equal';
 import {
   USER_RESOURCES_PATH,
   PROJECT_DOT_APPS_PATH,
-  PROJECT_CHECKDATA_DIRECTORY,
   SOURCE_CONTENT_UPDATER_MANIFEST,
   TRANSLATION_WORDS,
 } from '../common/constants';
 import generateTimestamp from '../utils/generateTimestamp';
-import { loadCheckData } from './checkDataHelpers';
+import { generateLoadPath, loadCheckData } from './checkDataHelpers';
 import { getOrigLangforBook } from './bibleHelpers';
 
 /**
@@ -107,18 +106,7 @@ export default class ProjectAPI {
           // check & fix corrupted selections value for each group data item.
           groupData = groupData.map(groupDataItem => {
             if (groupDataItem.selections === true) {// if selections is true then find selections array.
-              const {
-                bookId, chapter, verse,
-              } = groupDataItem.contextId.reference;
-              const loadPath = path.join(
-                this._projectPath,
-                PROJECT_CHECKDATA_DIRECTORY,
-                'selections',
-                bookId,
-                chapter.toString(),
-                verse.toString()
-              );
-
+              const loadPath = generateLoadPath(this._projectPath, groupDataItem.contextId, 'selections');
               const checkData = loadCheckData(loadPath, groupDataItem.contextId);
               groupDataItem.selections = (checkData && checkData.selections) || false;
               return groupDataItem;

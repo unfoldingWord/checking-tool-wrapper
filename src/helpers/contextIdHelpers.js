@@ -46,6 +46,7 @@ export const sameContext = (contextId1, contextId2) => {
 
     return isEqual(contextId1.reference, contextId2.reference) &&
       (contextId1.groupId === contextId2.groupId) &&
+      (contextId1.checkId === contextId2.checkId) &&
       (contextId1.occurrence === contextId2.occurrence) &&
       (isQuoteArray ? isEqual(contextId1.quote, contextId2.quote) : (contextId1.quote === contextId2.quote));
   }
