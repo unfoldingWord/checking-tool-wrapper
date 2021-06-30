@@ -118,6 +118,7 @@ function VerseCheckWrapper({
     let alignedGlTextState = alignedGLText;
 
     if (!alignedGLText && contextNotEmpty(contextId)) {
+      console.error('invalid check', alignedGLText, contextId);
       alignedGlTextState = getInvalidQuoteMessage(contextId, translate);
 
       if (onInvalidCheck) {
