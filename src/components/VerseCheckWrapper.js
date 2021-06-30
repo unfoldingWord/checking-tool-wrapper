@@ -124,6 +124,8 @@ function VerseCheckWrapper({
       if (onInvalidCheck) {
         onInvalidCheck();
       }
+    } else {
+      console.log('valid check', alignedGLText, contextId);
     }
     setLocalState({
       mode: initialMode,
