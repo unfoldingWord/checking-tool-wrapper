@@ -93,6 +93,7 @@ export function getAlignedTextFromBible(contextId, bible) {
     bible[contextId.reference.chapter] && bible[contextId.reference.chapter][contextId.reference.verse] &&
     bible[contextId.reference.chapter][contextId.reference.verse].verseObjects) {
     const verseObjects = bible[contextId.reference.chapter][contextId.reference.verse].verseObjects;
+    console.log('searching for aligned text', verseObjects, contextId.quote, contextId.occurrence);
     return getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
   }
 }
