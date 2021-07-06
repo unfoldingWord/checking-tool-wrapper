@@ -18,8 +18,9 @@ export function generateTimestamp(str) {
   }
 }
 
-export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, projectSaveLocation, quote = '', occurrence = 1) {
+export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, projectSaveLocation, quote = '', occurrence = 1, checkId = null) {
   const contextId = {
+    checkId,
     reference: {
       bookId,
       chapter,
@@ -45,8 +46,14 @@ export function getSelectionsFromChapterAndVerseCombo(bookId, chapter, verse, pr
         if (!currentSelectionsObject.contextId) {
           console.warn(`getSelectionsFromChapterAndVerseCombo() - missing contextId ${pathToSelections}`);
         } else {
-          if ((currentSelectionsObject.contextId.occurrence === occurrence) &&
+          const currentCheckId = currentSelectionsObject.contextId.checkId;
+
+          if ( (!currentCheckId || (checkId === currentCheckId)) &&
+            (currentSelectionsObject.contextId.occurrence === occurrence) &&
             isEqual(currentSelectionsObject.contextId.quote, quote)) { // supports quote arrays or strings
+            if (!currentCheckId && checkId) {
+              currentSelectionsObject.contextId.checkId = checkId; // migrate checkId
+            }
             return currentSelectionsObject;
           }
         }

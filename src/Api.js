@@ -19,7 +19,6 @@ import {
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
 import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
-import { sameContext } from './helpers/contextIdHelpers';
 import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
 import { clearContextId } from './state/actions/contextIdActions';
@@ -254,35 +253,34 @@ export default class Api extends ToolApi {
         const checkingOccurrence = groupItem[j];
         const selections = checkingOccurrence.selections;
 
-        if (!sameContext(contextId, checkingOccurrence.contextId)) {
-          if (selections && selections.length) {
-            if (!filtered) { // for performance, we filter the verse only once and only if there is a selection
-              filtered = usfm.removeMarker(targetVerse); // remove USFM markers
-            }
+        if (selections && selections.length) {
+          if (!filtered) { // for performance, we filter the verse only once and only if there is a selection
+            filtered = usfm.removeMarker(targetVerse); // remove USFM markers
+          }
 
-            const validSelections = checkSelectionOccurrences(filtered, selections);
+          const validSelections = checkSelectionOccurrences(filtered, selections);
 
-            if (selections.length !== validSelections.length) {
-              const selectionsObject = getSelectionsFromChapterAndVerseCombo(
-                bookId,
-                chapter,
-                verse,
-                projectSaveLocation,
-                checkingOccurrence.contextId.quote,
-                checkingOccurrence.contextId.occurrence
+          if (selections.length !== validSelections.length) {
+            const selectionsObject = getSelectionsFromChapterAndVerseCombo(
+              bookId,
+              chapter,
+              verse,
+              projectSaveLocation,
+              checkingOccurrence.contextId.quote,
+              checkingOccurrence.contextId.occurrence,
+              checkingOccurrence.contextId.checkId
+            );
+
+            if (selectionsObject.contextId) {
+              console.log(`${toolName}._validateVerse(): invalidating: ${JSON.stringify(selectionsObject.contextId)}`);
+              // If selections are no longer valid, they need to be cleared and invalidated
+              changeSelections(
+                [], true, selectionsObject.contextId, null, false, username, toolName,
+                gatewayLanguageCode, selectionsObject.contextId.quote, projectSaveLocation
               );
-
-              if (selectionsObject.contextId) {
-                console.log(`${toolName}._validateVerse(): invalidating: ${JSON.stringify(selectionsObject.contextId)}`);
-                // If selections are no longer valid, they need to be cleared and invalidated
-                changeSelections(
-                  [], true, selectionsObject.contextId, null, false, username, toolName,
-                  gatewayLanguageCode, selectionsObject.contextId.quote, projectSaveLocation
-                );
-                selectionsChanged = true;
-              } else {
-                console.warn(`Api._validateVerse() - could not find selections for verse ${chapter}:${verse}, checkingOccurrence: ${JSON.stringify(checkingOccurrence)}`);
-              }
+              selectionsChanged = true;
+            } else {
+              console.warn(`Api._validateVerse() - could not find selections for verse ${chapter}:${verse}, checkingOccurrence: ${JSON.stringify(checkingOccurrence)}`);
             }
           }
         }
