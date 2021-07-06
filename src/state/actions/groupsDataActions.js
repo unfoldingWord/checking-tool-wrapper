@@ -405,6 +405,17 @@ export function isAttributeChanged(object, checkAttr, oldGroupObject) {
 }
 
 /**
+ * compares quotes and can handle both arrays and strings
+ * @param {object} previousCheckContextId
+ * @param {object} checkContextId
+ * @return {boolean} - true if the quotes are the same
+ */
+function isQuoteSame(previousCheckContextId, checkContextId) {
+  return Array.isArray(previousCheckContextId.quote) ?
+    isEqual(previousCheckContextId.quote, checkContextId.quote) : previousCheckContextId.quote === checkContextId.quote;
+}
+
+/**
  * Evaluates whether a check has already been loaded
  * @param {object} checkData - the json check data
  * @param {array} loadedChecks - an array of loaded unique checks
@@ -419,12 +430,10 @@ export function isCheckUnique(checkData, loadedChecks) {
         return false;
       }
 
-      const quoteCondition = Array.isArray(check.contextId.quote) ?
-        isEqual(check.contextId.quote, checkContextId.quote) : check.contextId.quote === checkContextId.quote;
-
-      if (check.contextId && check.contextId.groupId === checkContextId.groupId &&
-        check.contextId.checkId === checkContextId.checkId &&
-        quoteCondition && check.contextId.occurrence === checkContextId.occurrence) {
+      if (check.contextId.checkId === checkContextId.checkId &&
+        check.contextId.groupId === checkContextId.groupId &&
+        isQuoteSame(check.contextId, checkContextId) &&
+        check.contextId.occurrence === checkContextId.occurrence) {
         return false;
       }
     }
