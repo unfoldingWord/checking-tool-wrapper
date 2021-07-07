@@ -1,0 +1,30 @@
+{
+  "contextId": {
+    "occurrenceNote": "Paul uses the term **nothing** here as a generalization for emphasis. Alternate translation: “understands nothing about God’s truth” (See: [Hyperbole](rc://en/ta/man/translate/figs-hyperbole))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 6,
+      "verse": 4
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-hyperbole",
+    "quote": [
+      {
+        "word": "μηδὲν",
+        "occurrence": 1
+      },
+      {
+        "word": "ἐπιστάμενος",
+        "occurrence": 1
+      }
+    ],
+    "quoteString": "μηδὲν ἐπιστάμενος",
+    "glQuote": "understanding nothing",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "understanding nothing",
+  "modifiedTimestamp": "2020-10-29T16:07:36.993Z"
+}

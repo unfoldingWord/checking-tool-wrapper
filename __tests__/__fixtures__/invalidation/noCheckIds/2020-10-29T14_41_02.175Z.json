@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "occurrenceNote": "If it would be clearer in your language, you could say this with an active form, and you could say who did the action. Alternate translation: “Jesus had mercy on me” (See: [Active or Passive](rc://en/ta/man/translate/figs-activepassive))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 1,
+      "verse": 13
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-activepassive",
+    "quote": "ἠλεήθην",
+    "quoteString": "ἠλεήθην",
+    "glQuote": "I was shown mercy",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "I was shown mercy",
+  "modifiedTimestamp": "2020-10-29T14:41:02.175Z"
+}

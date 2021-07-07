@@ -1,0 +1,34 @@
+{
+  "contextId": {
+    "occurrenceNote": "These two terms mean basically the same thing. Paul uses them together for emphasis. If it would be clearer in your language, you could combine these terms. Alternate translation: “arguments” (See: [Doublet](rc://en/ta/man/translate/figs-doublet))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 6,
+      "verse": 4
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-doublet",
+    "quote": [
+      {
+        "word": "ζητήσεις",
+        "occurrence": 1
+      },
+      {
+        "word": "καὶ",
+        "occurrence": 1
+      },
+      {
+        "word": "λογομαχίας",
+        "occurrence": 1
+      }
+    ],
+    "quoteString": "ζητήσεις καὶ λογομαχίας",
+    "glQuote": "controversies and word-battles",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "controversies and word-battles",
+  "modifiedTimestamp": "2020-10-29T16:01:46.453Z"
+}

@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "occurrenceNote": "Paul is referring to his character before he was a Christian. The implication is that he is referring to the way that he said people should not believe in Jesus as the Messiah. Alternate translation: “I was a person who said wrong things about Jesus.” (See: [Assumed Knowledge and Implicit Information](rc://en/ta/man/translate/figs-explicit))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 1,
+      "verse": 13
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-explicit",
+    "quote": "διώκτην",
+    "quoteString": "ὄντα βλάσφημον",
+    "glQuote": "being a blasphemer",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "being a blasphemer",
+  "modifiedTimestamp": "2020-10-29T15:37:05.415Z"
+}

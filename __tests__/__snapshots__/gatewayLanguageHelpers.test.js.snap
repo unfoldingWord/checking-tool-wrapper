@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`readLatestChecks make sure new checks with checkId supersede older checks without checkId's - invalidations 1`] = `
+Array [
+  Object {
+    "contextId": Object {
+      "checkId": "t434",
+      "glQuote": "he is puffed up",
+      "groupId": "figs-gendernotations",
+      "occurrence": 1,
+      "occurrenceNote": "Here, **he** refers to anyone in general who teaches what is not correct. Alternate translation: “that person is excessively proud” (See: [When Masculine Words Include Women](rc://en/ta/man/translate/figs-gendernotations))",
+      "quote": "τετύφωται",
+      "quoteString": "τετύφωται",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "he is puffed up",
+    "invalidated": false,
+    "modifiedTimestamp": "2021-07-07T13:18:33.648Z",
+    "username": "photonomad0",
+  },
+  Object {
+    "contextId": Object {
+      "glQuote": "ailing about controversies and word-battles",
+      "groupId": "figs-metaphor",
+      "occurrence": 1,
+      "occurrenceNote": "Paul speaks of people who feel compelled to engage in useless arguments as if they were ill. Such people greatly desire to argue, and they do not really want to find a way to agree. Alternate translation: “morbidly craves arguments” (See: [Metaphor](rc://en/ta/man/translate/figs-metaphor))",
+      "quote": "τετύφωται",
+      "quoteString": "νοσῶν περὶ ζητήσεις καὶ λογομαχίας",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "ailing about controversies and word-battles",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T16:17:08.172Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "glQuote": "understanding nothing",
+      "groupId": "figs-hyperbole",
+      "occurrence": 1,
+      "occurrenceNote": "Paul uses the term **nothing** here as a generalization for emphasis. Alternate translation: “understands nothing about God’s truth” (See: [Hyperbole](rc://en/ta/man/translate/figs-hyperbole))",
+      "quote": Array [
+        Object {
+          "occurrence": 1,
+          "word": "μηδὲν",
+        },
+        Object {
+          "occurrence": 1,
+          "word": "ἐπιστάμενος",
+        },
+      ],
+      "quoteString": "μηδὲν ἐπιστάμενος",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "understanding nothing",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T16:07:36.993Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "glQuote": "controversies and word-battles",
+      "groupId": "figs-doublet",
+      "occurrence": 1,
+      "occurrenceNote": "These two terms mean basically the same thing. Paul uses them together for emphasis. If it would be clearer in your language, you could combine these terms. Alternate translation: “arguments” (See: [Doublet](rc://en/ta/man/translate/figs-doublet))",
+      "quote": Array [
+        Object {
+          "occurrence": 1,
+          "word": "ζητήσεις",
+        },
+        Object {
+          "occurrence": 1,
+          "word": "καὶ",
+        },
+        Object {
+          "occurrence": 1,
+          "word": "λογομαχίας",
+        },
+      ],
+      "quoteString": "ζητήσεις καὶ λογομαχίας",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "controversies and word-battles",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T16:01:46.453Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "glQuote": "he is puffed up",
+      "groupId": "figs-activepassive",
+      "occurrence": 1,
+      "occurrenceNote": "If it would be clearer in your language, you could say this with an active form. Alternate translation: “that person is excessively proud” (See: [Active or Passive](rc://en/ta/man/translate/figs-activepassive))",
+      "quote": "τετύφωται",
+      "quoteString": "τετύφωται…νοσῶν",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "he is puffed up, … ailing",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T15:31:34.086Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "groupId": "evil",
+      "occurrence": 1,
+      "quote": "πονηραί",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4,
+      },
+      "strong": Array [
+        "G41900",
+      ],
+      "tool": "translationWords",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "evil",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-13T16:03:32.883Z",
+    "username": "lrsallee",
+  },
+]
+`;
+
+exports[`readLatestChecks make sure newer checks without checkId supersede older checks without checkId's - invalidations 1`] = `
+Array [
+  Object {
+    "contextId": Object {
+      "glQuote": "an aggressor",
+      "groupId": "figs-explicit",
+      "occurrence": 1,
+      "occurrenceNote": "Paul is referring to his character before he was a Christian. Alternate translation: “a violent person” or “a person who used violence against those who believed in Jesus” (See: [Assumed Knowledge and Implicit Information](rc://en/ta/man/translate/figs-explicit))",
+      "quote": Array [
+        Object {
+          "occurrence": 1,
+          "word": "ὄντα",
+        },
+        Object {
+          "occurrence": 1,
+          "word": "βλάσφημον",
+        },
+      ],
+      "quoteString": "ὑβριστήν",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "an aggresor",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T15:37:18.677Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "glQuote": "being a blasphemer",
+      "groupId": "figs-explicit",
+      "occurrence": 1,
+      "occurrenceNote": "Paul is referring to his character before he was a Christian. The implication is that he is referring to the way that he said people should not believe in Jesus as the Messiah. Alternate translation: “I was a person who said wrong things about Jesus.” (See: [Assumed Knowledge and Implicit Information](rc://en/ta/man/translate/figs-explicit))",
+      "quote": "διώκτην",
+      "quoteString": "ὄντα βλάσφημον",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "being a blasphemer",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T15:37:05.415Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "glQuote": "I was shown mercy",
+      "groupId": "figs-activepassive",
+      "occurrence": 1,
+      "occurrenceNote": "If it would be clearer in your language, you could say this with an active form, and you could say who did the action. Alternate translation: “Jesus had mercy on me” (See: [Active or Passive](rc://en/ta/man/translate/figs-activepassive))",
+      "quote": "ἠλεήθην",
+      "quoteString": "ἠλεήθην",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13,
+      },
+      "tool": "translationNotes",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "I was shown mercy",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-29T14:42:09.958Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "groupId": "mercy",
+      "occurrence": 1,
+      "quote": "ἠλεήθην",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13,
+      },
+      "strong": Array [
+        "G16530",
+      ],
+      "tool": "translationWords",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "I received mercy",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-13T20:58:08.980Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "groupId": "blasphemy",
+      "occurrence": 1,
+      "quote": "βλάσφημον",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13,
+      },
+      "strong": Array [
+        "G09890",
+      ],
+      "tool": "translationWords",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "a blasphemer",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-13T15:53:46.554Z",
+    "username": "lrsallee",
+  },
+  Object {
+    "contextId": Object {
+      "groupId": "believe",
+      "occurrence": 1,
+      "quote": "ἀπιστίᾳ",
+      "reference": Object {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13,
+      },
+      "strong": Array [
+        "G05700",
+      ],
+      "tool": "translationWords",
+    },
+    "gatewayLanguageCode": "en",
+    "gatewayLanguageQuote": "unbelief",
+    "invalidated": false,
+    "modifiedTimestamp": "2020-10-13T15:52:16.375Z",
+    "username": "lrsallee",
+  },
+]
+`;

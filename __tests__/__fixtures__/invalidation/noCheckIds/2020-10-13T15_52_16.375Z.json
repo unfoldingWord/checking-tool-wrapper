@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 1,
+      "verse": 13
+    },
+    "tool": "translationWords",
+    "groupId": "believe",
+    "quote": "ἀπιστίᾳ",
+    "strong": [
+      "G05700"
+    ],
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "unbelief",
+  "modifiedTimestamp": "2020-10-13T15:52:16.375Z"
+}

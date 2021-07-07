@@ -432,7 +432,7 @@ export function isCheckUnique(checkData, loadedChecks) {
         return false;
       }
 
-      // TRICKY: some older checks may not have checkId, so we reject this check if we have a newer check with a checkId
+      // TRICKY: some older checks may not have checkId, so we reject this check if we already have a newer check with a checkId
       if ((noCheckId || (check.contextId.checkId === checkContextId.checkId)) &&
         check.contextId.groupId === checkContextId.groupId &&
         isQuoteSame(check.contextId, checkContextId) &&

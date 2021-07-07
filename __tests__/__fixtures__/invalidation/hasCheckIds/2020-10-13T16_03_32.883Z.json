@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 6,
+      "verse": 4
+    },
+    "tool": "translationWords",
+    "groupId": "evil",
+    "quote": "πονηραί",
+    "strong": [
+      "G41900"
+    ],
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "evil",
+  "modifiedTimestamp": "2020-10-13T16:03:32.883Z"
+}
