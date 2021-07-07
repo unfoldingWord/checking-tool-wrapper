@@ -17,7 +17,11 @@ import {
   verifyGroupDataMatchesWithFs,
 } from './state/actions/groupsDataActions';
 import { getGroupDataForVerse } from './helpers/groupDataHelpers';
-import { getSelectionsFromChapterAndVerseCombo, generateTimestamp } from './helpers/validationHelpers';
+import {
+  getSelectionsFromChapterAndVerseCombo,
+  generateTimestamp,
+  cleanupSpacing,
+} from './helpers/validationHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
 import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
@@ -255,7 +259,7 @@ export default class Api extends ToolApi {
 
         if (selections && selections.length) {
           if (!filtered) { // for performance, we filter the verse only once and only if there is a selection
-            filtered = usfm.removeMarker(targetVerse); // remove USFM markers
+            filtered = cleanupSpacing(usfm.removeMarker(targetVerse)); // remove USFM markers
           }
 
           const validSelections = checkSelectionOccurrences(filtered, selections);

@@ -98,3 +98,18 @@ export function generateLoadPath(projectSaveLocation, contextId, checkDataName) 
     return loadPath;
   }
 }
+
+/**
+ * does cleanup of extra spaces in string
+ * @param {string} str - text to clean up
+ * @return {string} - text with extra spaces removed
+ */
+export function cleanupSpacing(str) {
+  const dbleSpc = '  ';
+
+  while (str.includes(dbleSpc)) {
+    str = str.replace(dbleSpc, ' ');
+  }
+  return str;
+}
+
