@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "occurrenceNote": "Paul speaks of people who feel compelled to engage in useless arguments as if they were ill. Such people greatly desire to argue, and they do not really want to find a way to agree. Alternate translation: “morbidly craves arguments” (See: [Metaphor](rc://en/ta/man/translate/figs-metaphor))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 6,
+      "verse": 4
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-metaphor",
+    "quote": "τετύφωται",
+    "quoteString": "νοσῶν περὶ ζητήσεις καὶ λογομαχίας",
+    "glQuote": "ailing about controversies and word-battles",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "ailing about controversies and word-battles",
+  "modifiedTimestamp": "2020-10-29T16:17:08.172Z"
+}

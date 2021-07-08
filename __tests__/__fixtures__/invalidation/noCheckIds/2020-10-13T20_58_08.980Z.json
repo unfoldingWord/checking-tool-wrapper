@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 1,
+      "verse": 13
+    },
+    "tool": "translationWords",
+    "groupId": "mercy",
+    "quote": "ἠλεήθην",
+    "strong": [
+      "G16530"
+    ],
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "I received mercy",
+  "modifiedTimestamp": "2020-10-13T20:58:08.980Z"
+}

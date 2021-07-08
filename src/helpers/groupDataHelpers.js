@@ -107,13 +107,18 @@ export const generateChapterGroupIndex = (translate, numChapters = 150) => {
 export const findGroupDataItem = (contextId, groupData) => {
   let index = -1;
   const isQuoteString = typeof contextId.quote === 'string';
+  const noContextID = !contextId.checkId;
 
   for (let i = groupData.length - 1; i >= 0; i--) {
     const grpContextId = groupData[i].contextId;
 
-    if (isSameVerse(grpContextId, contextId) &&
+    if (
+      // TRICKY: if there is no checkId in the check, then we use first item that matches all other parameters
+      //         (this is used for migration of checks in the case of tNotes).  Otherwise if checkId's are
+      //         different, then we don't have a match
+      (noContextID || (grpContextId.checkId === contextId.checkId)) &&
+      isSameVerse(grpContextId, contextId) &&
       (grpContextId.occurrence === contextId.occurrence) &&
-      (grpContextId.checkId === contextId.checkId) &&
       (isQuoteString ? (grpContextId.quote === contextId.quote) :
         isEqual(grpContextId.quote, contextId.quote))) {
       index = i;
@@ -173,11 +178,7 @@ export const getToggledGroupData = (state, action, key) => {
       }
       break;
     case 'invalidated':
-      if (action.boolean) {
-        groupObject[key] = true;
-      } else {
-        groupObject[key] = false;
-      }
+      groupObject[key] = !!action.boolean;
       break;
     case 'reminders':
       if (action.boolean) {

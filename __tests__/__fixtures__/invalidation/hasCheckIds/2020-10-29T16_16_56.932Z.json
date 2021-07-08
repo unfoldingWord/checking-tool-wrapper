@@ -1,0 +1,21 @@
+{
+  "contextId": {
+    "occurrenceNote": "Paul speaks figuratively of a person who is excessively proud as if they were inflated with air. Alternate translation: “that person is excessively proud” (See: [Metaphor](rc://en/ta/man/translate/figs-metaphor))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 6,
+      "verse": 4
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-metaphor",
+    "quote": "τετύφωται",
+    "quoteString": "τετύφωται…νοσῶν",
+    "glQuote": "he is puffed up",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "he is puffed up, … ailing",
+  "modifiedTimestamp": "2020-10-29T16:16:56.932Z"
+}

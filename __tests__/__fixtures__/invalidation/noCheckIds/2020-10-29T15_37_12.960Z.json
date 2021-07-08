@@ -1,0 +1,30 @@
+{
+  "contextId": {
+    "occurrenceNote": "Paul is referring to his character before he was a Christian. Alternate translation: “a person who persecuted those who believed in Jesus” (See: [Assumed Knowledge and Implicit Information](rc://en/ta/man/translate/figs-explicit))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 1,
+      "verse": 13
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-explicit",
+    "quote": [
+      {
+        "word": "ὄντα",
+        "occurrence": 1
+      },
+      {
+        "word": "βλάσφημον",
+        "occurrence": 1
+      }
+    ],
+    "quoteString": "διώκτην",
+    "glQuote": "a persecutor",
+    "occurrence": 1
+  },
+  "username": "lrsallee",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "a persecutor",
+  "modifiedTimestamp": "2020-10-29T15:37:12.960Z"
+}

@@ -1,0 +1,22 @@
+{
+  "contextId": {
+    "occurrenceNote": "Here, **he** refers to anyone in general who teaches what is not correct. Alternate translation: “that person is excessively proud” (See: [When Masculine Words Include Women](rc://en/ta/man/translate/figs-gendernotations))",
+    "reference": {
+      "bookId": "1ti",
+      "chapter": 6,
+      "verse": 4
+    },
+    "tool": "translationNotes",
+    "groupId": "figs-gendernotations",
+    "checkId": "t434",
+    "quote": "τετύφωται",
+    "quoteString": "τετύφωται",
+    "glQuote": "he is puffed up",
+    "occurrence": 1
+  },
+  "username": "photonomad0",
+  "invalidated": false,
+  "gatewayLanguageCode": "en",
+  "gatewayLanguageQuote": "he is puffed up",
+  "modifiedTimestamp": "2021-07-07T13:18:33.648Z"
+}
