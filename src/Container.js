@@ -129,6 +129,9 @@ export const mapStateToProps = (state, ownProps) => {
   const toolName = getCurrentToolName(ownProps);
   const tsvRelation = getThelpsManifestRelation(gatewayLanguageCode, toolName);
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
+  if (gatewayLanguageQuote === '') {
+    console.warn('missing gateway language quote', contextId, glBibles, gatewayLanguageCode, tsvRelation);
+  }
   const tc = getTcState(ownProps);
   const toolApi = getToolApi(ownProps);
 
