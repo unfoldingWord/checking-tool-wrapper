@@ -129,14 +129,60 @@ export const findGroupDataItem = (contextId, groupData) => {
 };
 
 /**
+ * get verse range from span
+ * @param {string} verseSpan
+ * @return {{high: number, low: number}}
+ */
+export function getVerseSpanRange(verseSpan) {
+  let [low, high] = verseSpan.split('-');
+  low = parseInt(low);
+  high = parseInt(high);
+  return { low, high };
+}
+
+/**
+ * test if verse is valid verse number or verse span string
+ * @param {string|number} verse
+ * @return {boolean}
+ */
+export function isVerseSpan(verse) {
+  const isSpan = (typeof verse === 'string') && verse.includes('-');
+  return isSpan;
+}
+
+/**
  * make sure context IDs are for same verse.  Optimized over isEqual()
- * @param {Object} contextId1
- * @param {Object} contextId2
+ * @param {string|number} verseSpan
+ * @param {number} verse
+ * @return {boolean} returns true if verse within verse span
+ */
+export function isVerseWithinVerseSpan(verseSpan, verse) {
+  const { low, high } = getVerseSpanRange(verseSpan);
+
+  if ((low > 0) && (high > 0)) {
+    return ((verse >= low) && (verse <= high));
+  }
+  return false;
+}
+
+/**
+ * make sure context IDs are for same verse.  Optimized over isEqual()
+ * @param {Object} contextId1 - context we are checking
+ * @param {Object} contextId2 - context that we are trying to match, could have verse span
  * @return {boolean} returns true if context IDs are for same verse
  */
 export function isSameVerse(contextId1, contextId2) {
-  return (contextId1.reference.chapter === contextId2.reference.chapter) &&
+  const match = (contextId1.reference.chapter === contextId2.reference.chapter) &&
     (contextId1.reference.verse === contextId2.reference.verse);
+
+  if (!match) { // if not exact match, check for verseSpan
+    if ((contextId1.reference.chapter === contextId2.reference.chapter)) {
+      if (isVerseSpan(contextId2.reference.verse)) {
+        return isVerseWithinVerseSpan(contextId2.reference.verse, contextId1.reference.verse);
+      }
+    }
+  }
+  return match;
 }
 
 /**

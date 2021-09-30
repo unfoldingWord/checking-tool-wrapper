@@ -241,8 +241,8 @@ export default class Api extends ToolApi {
     const contextId = {
       reference: {
         bookId,
-        chapter: parseInt(chapter),
-        verse: parseInt(verse),
+        chapter: chapter,
+        verse: verse,
       },
     };
     const groupsDataForVerse = getGroupDataForVerse(groupsData, contextId);
