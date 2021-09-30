@@ -26,14 +26,13 @@ function CheckInfoCardWrapper({
 }) {
   function getScriptureFromReference(lang, id, book, chapter, verse) {
     const chapterParsed = parseInt(chapter);
-    const verseParsed = parseInt(verse);
     const currentBible = resourcesReducer.bibles[lang];
 
     if (currentBible &&
       currentBible[id] &&
       currentBible[id][chapterParsed] &&
-      currentBible[id][chapterParsed][verseParsed]) {
-      const { verseObjects } = currentBible[id][chapterParsed][verseParsed];
+      currentBible[id][chapterParsed][verse]) {
+      const { verseObjects } = currentBible[id][chapterParsed][verse];
       const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
       return verseText;
     }
