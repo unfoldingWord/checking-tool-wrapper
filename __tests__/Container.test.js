@@ -53,7 +53,7 @@ describe.only('Container Tests', () => {
   it('Test empty Container', () => {
     const myProps = {
       ...props,
-      contextIdReducer: { contextId: null },
+      contextId: null,
     };
     const wrapper = render(
       <Provider store={store}>

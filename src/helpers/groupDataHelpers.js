@@ -151,16 +151,34 @@ export function isVerseSpan(verse) {
 }
 
 /**
+ * if ref is a string, converts to number unless it's a verse span
+ * @param {string|number} verse
+ * @return {string|number}
+ */
+export function normalizeRef(verse) {
+  const isString = (typeof verse === 'string');
+
+  if (isString) {
+    if (!verse.includes('-')) { // if not verse span convert to number
+      verse = parseInt(verse);
+    }
+  }
+  return verse;
+}
+
+/**
  * make sure context IDs are for same verse.  Optimized over isEqual()
  * @param {string|number} verseSpan
  * @param {number} verse
  * @return {boolean} returns true if verse within verse span
  */
 export function isVerseWithinVerseSpan(verseSpan, verse) {
-  const { low, high } = getVerseSpanRange(verseSpan);
+  if (typeof verseSpan === 'string') {
+    const { low, high } = getVerseSpanRange(verseSpan);
 
-  if ((low > 0) && (high > 0)) {
-    return ((verse >= low) && (verse <= high));
+    if ((low > 0) && (high > 0)) {
+      return ((verse >= low) && (verse <= high));
+    }
   }
   return false;
 }
@@ -172,13 +190,16 @@ export function isVerseWithinVerseSpan(verseSpan, verse) {
  * @return {boolean} returns true if context IDs are for same verse
  */
 export function isSameVerse(contextId1, contextId2) {
-  const match = (contextId1.reference.chapter === contextId2.reference.chapter) &&
-    (contextId1.reference.verse === contextId2.reference.verse);
+  let match = false;
 
-  if (!match) { // if not exact match, check for verseSpan
-    if ((contextId1.reference.chapter === contextId2.reference.chapter)) {
-      if (isVerseSpan(contextId2.reference.verse)) {
-        return isVerseWithinVerseSpan(contextId2.reference.verse, contextId1.reference.verse);
+  if (normalizeRef(contextId1.reference.chapter) === normalizeRef(contextId2.reference.chapter)) {
+    let verse1 = normalizeRef(contextId1.reference.verse);
+    let verse2 = normalizeRef(contextId2.reference.verse);
+    match = (verse1 === verse2);
+
+    if (!match) { // if not exact match, check for verseSpan
+      if (isVerseSpan(verse2)) {
+        match = isVerseWithinVerseSpan(verse2, verse1);
       }
     }
   }
