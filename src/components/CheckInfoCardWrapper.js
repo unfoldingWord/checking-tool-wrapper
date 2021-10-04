@@ -13,6 +13,7 @@ import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
 import { contextNotEmpty } from '../utils/utils';
+import { isVerseSpan, isVerseWithinVerseSpan } from '../helpers/groupDataHelpers';
 
 function CheckInfoCardWrapper({
   translate,
@@ -24,15 +25,46 @@ function CheckInfoCardWrapper({
   resourcesReducer,
   tc: { gatewayLanguageCode },
 }) {
-  function getScriptureFromReference(lang, id, book, chapter, verse) {
-    const chapterParsed = parseInt(chapter);
-    const currentBible = resourcesReducer.bibles[lang];
+  /**
+   * find verse data from verse or verse span
+   * @param {object} currentBible
+   * @param {string} id
+   * @param {string} chapter
+   * @param {string} verse
+   * @return {null|*}
+   */
+  function getBestVerse(currentBible, id, chapter, verse) {
+    const chapterData = currentBible && currentBible[id] && currentBible[id][chapter];
 
-    if (currentBible &&
-      currentBible[id] &&
-      currentBible[id][chapterParsed] &&
-      currentBible[id][chapterParsed][verse]) {
-      const { verseObjects } = currentBible[id][chapterParsed][verse];
+    if (chapterData) {
+      let verseData = chapterData[verse];
+
+      if (!verseData) {
+        const verseNum = parseInt(verse);
+
+        for (let verse_ in chapterData) {
+          if (isVerseSpan(verse_)) {
+            if (isVerseWithinVerseSpan(verse_, verseNum)) {
+              verseData = chapterData[verse_];
+              break;
+            }
+          }
+        }
+      }
+
+      if (verseData) {
+        return verseData;
+      }
+    }
+    return null;
+  }
+
+  function getScriptureFromReference(lang, id, book, chapter, verse) {
+    const currentBible = resourcesReducer.bibles[lang];
+    const verseData = getBestVerse(currentBible, id, chapter, verse);
+
+    if (verseData) {
+      const { verseObjects } = verseData;
       const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
       return verseText;
     }
