@@ -13,7 +13,7 @@ import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
 import { contextNotEmpty } from '../utils/utils';
-import { isVerseSpan, isVerseWithinVerseSpan } from '../helpers/groupDataHelpers';
+import { getBestVerse } from '../../lib/helpers/verseHelpers';
 
 function CheckInfoCardWrapper({
   translate,
@@ -26,31 +26,18 @@ function CheckInfoCardWrapper({
   tc: { gatewayLanguageCode },
 }) {
   /**
-   * find verse data from verse or verse span
-   * @param {object} currentBible
+   * find verse data for verse or verse span
+   * @param {object} biblesForLanguage
    * @param {string} id
    * @param {string} chapter
    * @param {string} verse
    * @return {null|*}
    */
-  function getBestVerse(currentBible, id, chapter, verse) {
-    const chapterData = currentBible && currentBible[id] && currentBible[id][chapter];
+  function getBestVerse_(biblesForLanguage, id, chapter, verse) {
+    const currentBible = biblesForLanguage && biblesForLanguage[id];
 
-    if (chapterData) {
-      let verseData = chapterData[verse];
-
-      if (!verseData) {
-        const verseNum = parseInt(verse);
-
-        for (let verse_ in chapterData) {
-          if (isVerseSpan(verse_)) {
-            if (isVerseWithinVerseSpan(verse_, verseNum)) {
-              verseData = chapterData[verse_];
-              break;
-            }
-          }
-        }
-      }
+    if (currentBible) {
+      const verseData = getBestVerse(currentBible, chapter, verse);
 
       if (verseData) {
         return verseData;
@@ -60,8 +47,8 @@ function CheckInfoCardWrapper({
   }
 
   function getScriptureFromReference(lang, id, book, chapter, verse) {
-    const currentBible = resourcesReducer.bibles[lang];
-    const verseData = getBestVerse(currentBible, id, chapter, verse);
+    const biblesForLanguage = resourcesReducer.bibles[lang];
+    const verseData = getBestVerse_(biblesForLanguage, id, chapter, verse);
 
     if (verseData) {
       const { verseObjects } = verseData;
