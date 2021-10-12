@@ -169,7 +169,7 @@ export function normalizeRef(verse) {
 /**
  * make sure context IDs are for same verse.  Optimized over isEqual()
  * @param {string|number} verseSpan
- * @param {number} verse
+ * @param {string|number} verse
  * @return {boolean} returns true if verse within verse span
  */
 export function isVerseWithinVerseSpan(verseSpan, verse) {

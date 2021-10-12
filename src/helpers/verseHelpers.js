@@ -5,12 +5,11 @@ import { isVerseSpan, isVerseWithinVerseSpan } from './groupDataHelpers';
 /**
  * find verse data from verse or verse span
  * @param {object} currentBible
- * @param {string} id
  * @param {string} chapter
  * @param {string} verse
  * @return {null|*}
  */
-function getBestVerse(currentBible, chapter, verse) {
+export function getBestVerse(currentBible, chapter, verse) {
   const chapterData = currentBible && currentBible[chapter];
 
   if (chapterData) {
