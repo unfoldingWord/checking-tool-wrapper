@@ -151,7 +151,8 @@ export function getVerseSpans(targetBook) {
       continue;
     }
 
-    const verses = Object.keys(chapters[chapter]);
+    const chapterData = targetBook[chapter];
+    const verses = Object.keys(chapterData);
 
     for (let j = 0, lv = verses.length; j < lv; j++) {
       const verse = verses[j];
