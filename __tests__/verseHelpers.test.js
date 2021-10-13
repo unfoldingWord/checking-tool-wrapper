@@ -5,7 +5,7 @@ describe('verseHelpers.getBestVerse', () => {
   test('Should find verse bridge', () => {
     //given
     const chapter = '1';
-    const verses = ['1', '2', '1-2', 'before'];
+    const verses = ['1', '2', '1-2', 'front'];
     const currentBible = createChapterWithVerses(chapter, verses);
     const lookupVerse = '1-2';
     const expectedVerseData = currentBible[chapter][lookupVerse];
@@ -20,7 +20,7 @@ describe('verseHelpers.getBestVerse', () => {
   test('Should find starting verse within verse bridge', () => {
     //given
     const chapter = '1';
-    const verses = ['1-2', 'before'];
+    const verses = ['1-2', 'front'];
     const currentBible = createChapterWithVerses(chapter, verses);
     const lookupVerse = '1';
     const expectedVerse = '1-2';
@@ -36,7 +36,7 @@ describe('verseHelpers.getBestVerse', () => {
   test('Should find ending verse within verse bridge', () => {
     //given
     const chapter = '1';
-    const verses = ['1-2', 'before'];
+    const verses = ['1-2', 'front'];
     const currentBible = createChapterWithVerses(chapter, verses);
     const lookupVerse = '2';
     const expectedVerse = '1-2';
@@ -52,7 +52,7 @@ describe('verseHelpers.getBestVerse', () => {
   test('Should find exact match', () => {
     //given
     const chapter = '1';
-    const verses = ['1', '2', '1-2', 'before'];
+    const verses = ['1', '2', '1-2', 'front'];
     const currentBible = createChapterWithVerses(chapter, verses);
     const lookupVerse = '2';
     const expectedVerseData = currentBible[chapter][lookupVerse];
@@ -67,7 +67,7 @@ describe('verseHelpers.getBestVerse', () => {
   test('Should return empty string if no match for verse', () => {
     //given
     const chapter = '1';
-    const verses = ['1', '2', '1-2', 'before'];
+    const verses = ['1', '2', '1-2', 'front'];
     const currentBible = createChapterWithVerses(chapter, verses);
     const lookupVerse = '3';
     const expectedVerseData = '';
@@ -82,7 +82,7 @@ describe('verseHelpers.getBestVerse', () => {
   test('Should return empty string if no match for chapter', () => {
     //given
     const chapter = '1';
-    const verses = ['1', '2', '1-2', 'before'];
+    const verses = ['1', '2', '1-2', 'front'];
     const currentBible = createChapterWithVerses(chapter, verses);
     const lookupVerse = '1';
     const lookupChapter = '3';

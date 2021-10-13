@@ -243,7 +243,7 @@ describe('groupDataHelpers.isSameVerse', () => {
     const contextId2 = {
       reference: {
         chapter: 1,
-        verse: 'before',
+        verse: 'front',
       },
     };
     const expectedResults = false;
@@ -383,7 +383,7 @@ describe('groupDataHelpers.isVerseWithinVerseSpan', () => {
 
   test('Should return false if invalid verse span - before', () => {
     //given
-    const verseSpan = 'before';
+    const verseSpan = 'front';
     const lookupVerse = 3;
     const expectedResults = false;
 
