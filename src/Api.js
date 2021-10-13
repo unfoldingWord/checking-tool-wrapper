@@ -312,6 +312,7 @@ export default class Api extends ToolApi {
       tc: {
         project: { _projectPath: projectSaveLocation },
         bookId,
+        targetBook,
       },
       tool: { name: toolName },
       loadGroupsData,
@@ -322,7 +323,7 @@ export default class Api extends ToolApi {
 
     if (!isGroupDataLoaded) { // if groups data not loaded
       console.log(`_getGroupData(${toolName}) loading group data`);
-      loadGroupsData(toolName, projectSaveLocation);
+      loadGroupsData(toolName, projectSaveLocation, targetBook);
       // make sure data is in sync
       console.log(`_getGroupData(${toolName}) verifying group data is up to date`);
       verifyGroupDataMatchesWithFs(toolName, projectSaveLocation, bookId);

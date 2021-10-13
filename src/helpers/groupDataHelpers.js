@@ -46,11 +46,17 @@ export const getGroupDataForVerse = (groupsData, contextId) => {
  * Loads all of a tool's group data from the project.
  * @param {string} toolName - the name of the tool who's helps will be loaded
  * @param {string} projectDir - the absolute path to the project
+ * @param {object} targetBook - target book content to mark verse spans
  * @returns {*}
  */
-export function loadProjectGroupData(toolName, projectDir) {
+export function loadProjectGroupData(toolName, projectDir, targetBook = null) {
   const project = new ProjectAPI(projectDir);
-  return project.getGroupsData(toolName);
+  let groupsData = project.getGroupsData(toolName);
+
+  if (targetBook) {
+    tagGroupDataSpans(targetBook, groupsData);
+  }
+  return groupsData;
 }
 
 /**
@@ -127,6 +133,66 @@ export const findGroupDataItem = (contextId, groupData) => {
   }
   return index;
 };
+
+/**
+ * find all the verse spans for book
+ * @param {object} targetBook
+ * @return {{}}
+ */
+export function getVerseSpans(targetBook) {
+  const verseSpans = {};
+  const chapters = Object.keys(targetBook);
+
+  for (let i = 0, l = chapters.length; i < l; i++) {
+    const verseSpansForChapter = {};
+    const chapter = chapters[i];
+    const verses = Object.keys(chapter);
+
+    for (let j = 0, lv = verses.length; j < lv; j++) {
+      const verse = verses[j];
+
+      if (isVerseSpan(verse)) {
+        const range = getVerseSpanRange(verse);
+        const { low, high } = range;
+
+        for (let i = low; i <= high; i++) {
+          verseSpansForChapter[i + ''] = verse;
+        }
+      }
+    }
+    verseSpans[chapter] = verseSpansForChapter;
+  }
+  return verseSpans;
+}
+
+export function tagGroupDataSpans(targetBook, groupsData) {
+  const verseSpans = getVerseSpans(targetBook);
+  const groupNames = Object.keys(groupsData);
+
+  for (let i = 0, l = groupNames.length; i < l; i++) {
+    const groupName = groupNames[i];
+    const groupItems = groupsData[groupName];
+
+    for (let j = 0, l2 = groupItems.length; j < l2; j++) {
+      const groupItem = groupItems[j];
+
+      try {
+        let contextId = groupItem.contextId;
+        const { reference: { chapter, verse } } = contextId;
+        const verseSpansForChapter = verseSpans[chapter];
+
+        if (verseSpansForChapter) {
+          const verseSpan = verseSpansForChapter[verse + ''];
+
+          if (verseSpan) {
+            groupItem.contextId.verseSpan = verseSpan;
+          }
+        }
+        // eslint-disable-next-line no-empty
+      } catch (e) { }
+    }
+  }
+}
 
 /**
  * get verse range from span
