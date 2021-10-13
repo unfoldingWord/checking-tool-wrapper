@@ -146,7 +146,12 @@ export function getVerseSpans(targetBook) {
   for (let i = 0, l = chapters.length; i < l; i++) {
     const verseSpansForChapter = {};
     const chapter = chapters[i];
-    const verses = Object.keys(chapter);
+
+    if (isNaN(parseInt(chapter))) {
+      continue;
+    }
+
+    const verses = Object.keys(chapters[chapter]);
 
     for (let j = 0, lv = verses.length; j < lv; j++) {
       const verse = verses[j];
