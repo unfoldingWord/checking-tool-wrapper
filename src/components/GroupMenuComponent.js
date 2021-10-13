@@ -47,6 +47,7 @@ function GroupMenuComponent({
         reference: {
           bookId, chapter, verse,
         },
+        verseSpan,
       },
     } = item;
 
@@ -58,7 +59,8 @@ function GroupMenuComponent({
     }
 
     // build passage title
-    const refStr = getReferenceStr(chapter, verse);
+    const verseLabel = verseSpan || verse;
+    const refStr = getReferenceStr(chapter, verseLabel);
     let title = refStr;
 
     if (selectionText) {
