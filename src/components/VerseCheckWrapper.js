@@ -245,7 +245,7 @@ function VerseCheckWrapper({
 
   function saveEditVerse() {
     const { chapter, verse } = contextId.reference;
-    const verseRef = contextId.verseSpan || verse; // if in verse span
+    const verseRef = contextId.verseSpan || verse; // if in verse span, use it
     const before = targetBible[chapter][verseRef];
 
     setLocalState({

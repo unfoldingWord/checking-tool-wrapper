@@ -51,7 +51,7 @@ export const getGroupDataForVerse = (groupsData, contextId) => {
  */
 export function loadProjectGroupData(toolName, projectDir, targetBook = null) {
   const project = new ProjectAPI(projectDir);
-  let groupsData = project.getGroupsData(toolName);
+  const groupsData = project.getGroupsData(toolName);
 
   if (targetBook) {
     tagGroupDataSpans(targetBook, groupsData);
