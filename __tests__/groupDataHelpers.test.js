@@ -1,6 +1,28 @@
 /* eslint-env jest */
 import * as groupDataHelpers from '../src/helpers/groupDataHelpers';
 
+describe('groupDataHelpers.getVerseSpans', () => {
+  test('should find the verse spans', () => {
+    //given
+    const chapter = '1';
+    const verses = ['4', '5', '1-3', 'front'];
+    const targetBook = createChapterWithVerses(chapter, verses);
+    const expectedResults = {
+      [chapter]: {
+        1: '1-3',
+        2: '1-3',
+        3: '1-3',
+      },
+    };
+
+    //when
+    const verseSpans = groupDataHelpers.getVerseSpans(targetBook);
+
+    //then
+    expect(verseSpans).toEqual(expectedResults);
+  });
+});
+
 describe('groupDataHelpers.isSameVerse', () => {
   test('Should match identical string', () => {
     //given
@@ -425,3 +447,28 @@ describe('groupDataHelpers.isVerseWithinVerseSpan', () => {
 //
 // helpers
 //
+
+/**
+ * create dummy content for verse
+ * @param {string} verse
+ * @return {string}
+ */
+function createVerseContent(verse) {
+  return `${verse}-Content`;
+}
+
+/**
+ * create dummy Bible with given chapter and verses
+ * @param {string} chapter
+ * @param {array} verses
+ * @return {object}
+ */
+function createChapterWithVerses(chapter, verses) {
+  const chapterData = {};
+
+  for (let verse of verses) {
+    chapterData[verse] = createVerseContent(verse);
+  }
+
+  return { [chapter]: chapterData };
+}

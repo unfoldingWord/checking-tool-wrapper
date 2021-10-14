@@ -27,6 +27,7 @@ import { loadVerseEdit } from './helpers/checkDataHelpers';
 import { WORD_ALIGNMENT } from './common/constants';
 import { clearContextId } from './state/actions/contextIdActions';
 import { changeSelections } from './state/actions/selectionsActions';
+import { getBestVerseFromChapter } from './helpers/verseHelpers';
 
 export default class Api extends ToolApi {
   constructor() {
@@ -93,7 +94,7 @@ export default class Api extends ToolApi {
 
         for (let i = 0, l = verses.length; i < l; i++) {
           const verse = verses[i];
-          const targetVerse = bibleChapter[verse];
+          const targetVerse = getBestVerseFromChapter(bibleChapter, verse);
           this._validateVerse(targetVerse, chapter, verse, groupsData, groupsDataKeys, silent, modifiedTimestamp);
         }
       }
@@ -195,7 +196,7 @@ export default class Api extends ToolApi {
     let _groupsData = groupsData || this._getGroupData();
     const groupsDataKeys = Object.keys(_groupsData);
     const bibleChapter = targetBook[chapter];
-    const targetVerse = bibleChapter[verse];
+    const targetVerse = getBestVerseFromChapter(bibleChapter, verse);
     const selectionsValid = this._validateVerse(targetVerse, chapter, verse, _groupsData, groupsDataKeys, silent);
     console.log(`${toolName}.validateVerse() - ${chapter}:${verse} selections valid: ${selectionsValid}`);
 

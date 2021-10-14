@@ -6,14 +6,30 @@ import { isVerseSpan, isVerseWithinVerseSpan } from './groupDataHelpers';
  * find verse data from verse or verse span
  * @param {object} currentBible
  * @param {string} chapter
- * @param {string} verse
+ * @param {string|number} verse
  * @return {null|*}
  */
-export function getBestVerse(currentBible, chapter, verse) {
+export function getBestVerseFromBook(currentBible, chapter, verse) {
   const chapterData = currentBible && currentBible[chapter];
+  let verseData = getBestVerseFromChapter(chapterData, verse);
+
+  if (verseData) {
+    return verseData;
+  }
+  return '';
+}
+
+/**
+ * find verse data from verse or verse span
+ * @param {object} chapterData
+ * @param {string|number} verse
+ * @return {null|*}
+ */
+export function getBestVerseFromChapter(chapterData, verse) {
+  let verseData = null;
 
   if (chapterData) {
-    let verseData = chapterData[verse];
+    verseData = chapterData[verse];
 
     if (!verseData) {
       const verseNum = parseInt(verse);
@@ -27,12 +43,8 @@ export function getBestVerse(currentBible, chapter, verse) {
         }
       }
     }
-
-    if (verseData) {
-      return verseData;
-    }
   }
-  return '';
+  return verseData;
 }
 
 /**
@@ -48,7 +60,7 @@ export function getVerseText(targetBible, contextId) {
     const { chapter, verse } = contextId.reference;
 
     if (targetBible && targetBible[chapter]) {
-      unfilteredVerseText = getBestVerse(targetBible, chapter, verse);
+      unfilteredVerseText = getBestVerseFromBook(targetBible, chapter, verse);
 
       if (Array.isArray(unfilteredVerseText)) {
         unfilteredVerseText = unfilteredVerseText[0];

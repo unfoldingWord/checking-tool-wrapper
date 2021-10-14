@@ -11,7 +11,7 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = currentBible[chapter][lookupVerse];
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, chapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);
@@ -27,7 +27,7 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = currentBible[chapter][expectedVerse];
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, chapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);
@@ -43,7 +43,7 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = currentBible[chapter][expectedVerse];
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, chapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);
@@ -58,7 +58,37 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = currentBible[chapter][lookupVerse];
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, chapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
+
+    //then
+    expect(verseData).toEqual(expectedVerseData);
+  });
+
+  test('Should find exact match with number verse', () => {
+    //given
+    const chapter = '1';
+    const verses = ['1', 2, '1-2', 'front'];
+    const currentBible = createChapterWithVerses(chapter, verses);
+    const lookupVerse = 2;
+    const expectedVerseData = currentBible[chapter][lookupVerse];
+
+    //when
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
+
+    //then
+    expect(verseData).toEqual(expectedVerseData);
+  });
+
+  test('Should find exact match with number verse and chapter', () => {
+    //given
+    const chapter = 1;
+    const verses = ['1', 2, '1-2', 'front'];
+    const currentBible = createChapterWithVerses(chapter + '', verses);
+    const lookupVerse = 2;
+    const expectedVerseData = currentBible[chapter][lookupVerse];
+
+    //when
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);
@@ -73,7 +103,7 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = '';
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, chapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, chapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);
@@ -89,7 +119,7 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = '';
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, lookupChapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, lookupChapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);
@@ -103,7 +133,7 @@ describe('verseHelpers.getBestVerse', () => {
     const expectedVerseData = '';
 
     //when
-    const verseData = verseHelpers.getBestVerse(currentBible, lookupChapter, lookupVerse);
+    const verseData = verseHelpers.getBestVerseFromBook(currentBible, lookupChapter, lookupVerse);
 
     //then
     expect(verseData).toEqual(expectedVerseData);

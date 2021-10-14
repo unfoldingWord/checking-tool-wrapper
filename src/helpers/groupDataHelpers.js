@@ -171,6 +171,11 @@ export function getVerseSpans(targetBook) {
   return verseSpans;
 }
 
+/**
+ * adds verseSpan tags to group data items where target translation is a verse span
+ * @param {object} targetBook
+ * @param {object} groupsData
+ */
 export function tagGroupDataSpans(targetBook, groupsData) {
   const verseSpans = getVerseSpans(targetBook);
   const groupNames = Object.keys(groupsData);
