@@ -13,7 +13,7 @@ import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
 import { contextNotEmpty } from '../utils/utils';
-import { getBestVerse } from '../../lib/helpers/verseHelpers';
+import { getBestVerseFromBook } from '../helpers/verseHelpers';
 
 function CheckInfoCardWrapper({
   translate,
@@ -37,7 +37,7 @@ function CheckInfoCardWrapper({
     const currentBible = biblesForLanguage && biblesForLanguage[id];
 
     if (currentBible) {
-      const verseData = getBestVerse(currentBible, chapter, verse);
+      const verseData = getBestVerseFromBook(currentBible, chapter, verse);
 
       if (verseData) {
         return verseData;

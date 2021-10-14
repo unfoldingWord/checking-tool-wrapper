@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import * as verseHelpers from '../src/helpers/verseHelpers';
 
-describe('verseHelpers.getBestVerse', () => {
+describe('verseHelpers.getBestVerseFromBook', () => {
   test('Should find verse bridge', () => {
     //given
     const chapter = '1';
