@@ -51,13 +51,25 @@ function ScripturePaneWrapper({
     makeSureBiblesLoadedForTool(contextId);
   }
 
+  let contextId_ = contextId;
+
+  if (contextId && contextId.verseSpan) { // if we have a verse span, create new contextId with verse span
+    contextId_ = {
+      ...contextId,
+      reference: {
+        ...contextId.reference,
+        verse: contextId.verseSpan,
+      },
+    };
+  }
+
   const expandedScripturePaneTitle = makeTitle(manifest);
 
   if (contextNotEmpty(contextId)) {
     return (
       <ScripturePane
         bibles={bibles}
-        contextId={contextId}
+        contextId={contextId_}
         translate={translate}
         selections={selections}
         showPopover={showPopover}
