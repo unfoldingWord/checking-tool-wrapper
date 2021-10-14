@@ -1,5 +1,51 @@
 import usfmjs from 'usfm-js';
 import { normalizeString } from './stringHelpers';
+import { isVerseSpan, isVerseWithinVerseSpan } from './groupDataHelpers';
+
+/**
+ * find verse data from verse or verse span
+ * @param {object} currentBible
+ * @param {string} chapter
+ * @param {string|number} verse
+ * @return {null|*}
+ */
+export function getBestVerseFromBook(currentBible, chapter, verse) {
+  const chapterData = currentBible && currentBible[chapter];
+  let verseData = getBestVerseFromChapter(chapterData, verse);
+
+  if (verseData) {
+    return verseData;
+  }
+  return '';
+}
+
+/**
+ * find verse data from verse or verse span
+ * @param {object} chapterData
+ * @param {string|number} verse
+ * @return {null|*}
+ */
+export function getBestVerseFromChapter(chapterData, verse) {
+  let verseData = null;
+
+  if (chapterData) {
+    verseData = chapterData[verse];
+
+    if (!verseData) {
+      const verseNum = parseInt(verse);
+
+      for (let verse_ in chapterData) {
+        if (isVerseSpan(verse_)) {
+          if (isVerseWithinVerseSpan(verse_, verseNum)) {
+            verseData = chapterData[verse_];
+            break;
+          }
+        }
+      }
+    }
+  }
+  return verseData;
+}
 
 /**
  *  Gets both the verse text without usfm markers and unfilteredVerseText.
@@ -14,7 +60,7 @@ export function getVerseText(targetBible, contextId) {
     const { chapter, verse } = contextId.reference;
 
     if (targetBible && targetBible[chapter]) {
-      unfilteredVerseText = targetBible && targetBible[chapter] ? targetBible[chapter][verse] : '';
+      unfilteredVerseText = getBestVerseFromBook(targetBible, chapter, verse);
 
       if (Array.isArray(unfilteredVerseText)) {
         unfilteredVerseText = unfilteredVerseText[0];

@@ -245,7 +245,8 @@ function VerseCheckWrapper({
 
   function saveEditVerse() {
     const { chapter, verse } = contextId.reference;
-    const before = targetBible[chapter][verse];
+    const verseRef = contextId.verseSpan || verse; // if in verse span, use it
+    const before = targetBible[chapter][verseRef];
 
     setLocalState({
       mode: 'default',
@@ -254,7 +255,7 @@ function VerseCheckWrapper({
       isVerseChanged: false,
       newTags: [],
     });
-    editTargetVerse(chapter, verse, before, newVerseText, newTags);
+    editTargetVerse(chapter, verseRef, before, newVerseText, newTags);
   }
 
   function changeSelectionsInLocalState(newSelections) {

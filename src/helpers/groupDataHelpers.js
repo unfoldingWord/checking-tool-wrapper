@@ -46,11 +46,17 @@ export const getGroupDataForVerse = (groupsData, contextId) => {
  * Loads all of a tool's group data from the project.
  * @param {string} toolName - the name of the tool who's helps will be loaded
  * @param {string} projectDir - the absolute path to the project
+ * @param {object} targetBook - target book content to mark verse spans
  * @returns {*}
  */
-export function loadProjectGroupData(toolName, projectDir) {
+export function loadProjectGroupData(toolName, projectDir, targetBook = null) {
   const project = new ProjectAPI(projectDir);
-  return project.getGroupsData(toolName);
+  const groupsData = project.getGroupsData(toolName);
+
+  if (targetBook) {
+    tagGroupDataSpans(targetBook, groupsData);
+  }
+  return groupsData;
 }
 
 /**
@@ -129,14 +135,152 @@ export const findGroupDataItem = (contextId, groupData) => {
 };
 
 /**
+ * find all the verse spans for book
+ * @param {object} targetBook
+ * @return {{}}
+ */
+export function getVerseSpans(targetBook) {
+  const verseSpans = {};
+  const chapters = Object.keys(targetBook);
+
+  for (let i = 0, l = chapters.length; i < l; i++) {
+    const verseSpansForChapter = {};
+    const chapter = chapters[i];
+
+    if (isNaN(parseInt(chapter))) {
+      continue;
+    }
+
+    const chapterData = targetBook[chapter];
+    const verses = Object.keys(chapterData);
+
+    for (let j = 0, lv = verses.length; j < lv; j++) {
+      const verse = verses[j];
+
+      if (isVerseSpan(verse)) {
+        const range = getVerseSpanRange(verse);
+        const { low, high } = range;
+
+        for (let i = low; i <= high; i++) {
+          verseSpansForChapter[i + ''] = verse;
+        }
+      }
+    }
+    verseSpans[chapter] = verseSpansForChapter;
+  }
+  return verseSpans;
+}
+
+/**
+ * adds verseSpan tags to group data items where target translation is a verse span
+ * @param {object} targetBook
+ * @param {object} groupsData
+ */
+export function tagGroupDataSpans(targetBook, groupsData) {
+  const verseSpans = getVerseSpans(targetBook);
+  const groupNames = Object.keys(groupsData);
+
+  for (let i = 0, l = groupNames.length; i < l; i++) {
+    const groupName = groupNames[i];
+    const groupItems = groupsData[groupName];
+
+    for (let j = 0, l2 = groupItems.length; j < l2; j++) {
+      const groupItem = groupItems[j];
+
+      try {
+        let contextId = groupItem.contextId;
+        const { reference: { chapter, verse } } = contextId;
+        const verseSpansForChapter = verseSpans[chapter];
+
+        if (verseSpansForChapter) {
+          const verseSpan = verseSpansForChapter[verse + ''];
+
+          if (verseSpan) {
+            groupItem.contextId.verseSpan = verseSpan;
+          }
+        }
+        // eslint-disable-next-line no-empty
+      } catch (e) { }
+    }
+  }
+}
+
+/**
+ * get verse range from span
+ * @param {string} verseSpan
+ * @return {{high: number, low: number}}
+ */
+export function getVerseSpanRange(verseSpan) {
+  let [low, high] = verseSpan.split('-');
+  low = parseInt(low);
+  high = parseInt(high);
+  return { low, high };
+}
+
+/**
+ * test if verse is valid verse number or verse span string
+ * @param {string|number} verse
+ * @return {boolean}
+ */
+export function isVerseSpan(verse) {
+  const isSpan = (typeof verse === 'string') && verse.includes('-');
+  return isSpan;
+}
+
+/**
+ * if ref is a string, converts to number unless it's a verse span
+ * @param {string|number} verse
+ * @return {string|number}
+ */
+export function normalizeRef(verse) {
+  const isString = (typeof verse === 'string');
+
+  if (isString) {
+    if (!verse.includes('-')) { // if not verse span convert to number
+      verse = parseInt(verse);
+    }
+  }
+  return verse;
+}
+
+/**
  * make sure context IDs are for same verse.  Optimized over isEqual()
- * @param {Object} contextId1
- * @param {Object} contextId2
+ * @param {string|number} verseSpan
+ * @param {string|number} verse
+ * @return {boolean} returns true if verse within verse span
+ */
+export function isVerseWithinVerseSpan(verseSpan, verse) {
+  if (typeof verseSpan === 'string') {
+    const { low, high } = getVerseSpanRange(verseSpan);
+
+    if ((low > 0) && (high > 0)) {
+      return ((verse >= low) && (verse <= high));
+    }
+  }
+  return false;
+}
+
+/**
+ * make sure context IDs are for same verse.  Optimized over isEqual()
+ * @param {Object} contextId1 - context we are checking
+ * @param {Object} contextId2 - context that we are trying to match, could have verse span
  * @return {boolean} returns true if context IDs are for same verse
  */
 export function isSameVerse(contextId1, contextId2) {
-  return (contextId1.reference.chapter === contextId2.reference.chapter) &&
-    (contextId1.reference.verse === contextId2.reference.verse);
+  let match = false;
+
+  if (normalizeRef(contextId1.reference.chapter) === normalizeRef(contextId2.reference.chapter)) {
+    let verse1 = normalizeRef(contextId1.reference.verse);
+    let verse2 = normalizeRef(contextId2.reference.verse);
+    match = (verse1 === verse2);
+
+    if (!match) { // if not exact match, check for verseSpan
+      if (isVerseSpan(verse2)) {
+        match = isVerseWithinVerseSpan(verse2, verse1);
+      }
+    }
+  }
+  return match;
 }
 
 /**

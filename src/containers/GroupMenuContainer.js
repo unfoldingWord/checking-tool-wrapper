@@ -119,7 +119,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { gatewayLanguageQuote, tc: { gatewayLanguageCode } } = ownProps;
+  const { gatewayLanguageQuote, tc: { gatewayLanguageCode, targetBook } } = ownProps;
   const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     clearGroupsIndex: () => clearGroupsIndex(),
     loadGroupsData: (currentToolName, projectSaveLocation) => {
-      dispatch(loadGroupsData(currentToolName, projectSaveLocation));
+      dispatch(loadGroupsData(currentToolName, projectSaveLocation, targetBook));
     },
     clearGroupsData: () => clearGroupsData(),
     loadCurrentContextId: () => {

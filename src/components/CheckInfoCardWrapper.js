@@ -13,6 +13,7 @@ import {
   getContextId, getGroupsIndex, getResourcesReducer, getTranslationHelps,
 } from '../selectors';
 import { contextNotEmpty } from '../utils/utils';
+import { getBestVerseFromBook } from '../helpers/verseHelpers';
 
 function CheckInfoCardWrapper({
   translate,
@@ -24,16 +25,33 @@ function CheckInfoCardWrapper({
   resourcesReducer,
   tc: { gatewayLanguageCode },
 }) {
-  function getScriptureFromReference(lang, id, book, chapter, verse) {
-    const chapterParsed = parseInt(chapter);
-    const verseParsed = parseInt(verse);
-    const currentBible = resourcesReducer.bibles[lang];
+  /**
+   * find verse data for verse or verse span
+   * @param {object} biblesForLanguage
+   * @param {string} id
+   * @param {string} chapter
+   * @param {string} verse
+   * @return {null|*}
+   */
+  function getBestVerse_(biblesForLanguage, id, chapter, verse) {
+    const currentBible = biblesForLanguage && biblesForLanguage[id];
 
-    if (currentBible &&
-      currentBible[id] &&
-      currentBible[id][chapterParsed] &&
-      currentBible[id][chapterParsed][verseParsed]) {
-      const { verseObjects } = currentBible[id][chapterParsed][verseParsed];
+    if (currentBible) {
+      const verseData = getBestVerseFromBook(currentBible, chapter, verse);
+
+      if (verseData) {
+        return verseData;
+      }
+    }
+    return null;
+  }
+
+  function getScriptureFromReference(lang, id, book, chapter, verse) {
+    const biblesForLanguage = resourcesReducer.bibles[lang];
+    const verseData = getBestVerse_(biblesForLanguage, id, chapter, verse);
+
+    if (verseData) {
+      const { verseObjects } = verseData;
       const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
       return verseText;
     }
