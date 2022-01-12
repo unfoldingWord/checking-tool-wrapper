@@ -10,6 +10,7 @@ import { PROJECT_CHECKDATA_DIRECTORY, PROJECT_INDEX_FOLDER_PATH } from '../commo
  *  @example comments, bookmarks, selections, verseEdits etc.
  * @param {String} modifiedTimestamp - timestamp.
  * that contains the specific timestamp.
+ * @param {String} projectSaveLocation
  * @return {String} save path.
  */
 function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSaveLocation) {
@@ -17,7 +18,7 @@ function generateSavePath(contextId, checkDataName, modifiedTimestamp, projectSa
     if (projectSaveLocation && contextId && modifiedTimestamp) {
       const bookId = contextId.reference.bookId;
       const chapter = contextId.reference.chapter.toString();
-      const verse = contextId.reference.verse.toString();
+      const verse = contextId.verseSpan || contextId.reference.verse.toString();
       const fileName = modifiedTimestamp + '.json';
       const savePath = path.join(
         projectSaveLocation,
