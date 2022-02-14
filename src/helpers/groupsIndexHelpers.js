@@ -51,7 +51,7 @@ export function loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, tra
     for (const categoryName in categories) {
       const categoryIndex = path.join(helpDir, categoryName, 'index.json');
 
-      if (fs.lstatSync(categoryIndex).isFile()) {
+      if (fs.existsSync(categoryIndex)) {
         try {
           const selectedSubcategories = categories[categoryName];
           // For categories with subcategories need to filter out not selected items.
