@@ -34,6 +34,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.1",
     "string-punctuation-tokenizer": "^2.0.0",
+    "tc-source-content-updater": "^1.0.0",
     "tc-ui-toolkit": "^4.0.0",
     "usfm-js": "^2.1.0",
     "word-aligner": "^0.4.0"
@@ -78,6 +79,7 @@
     "redux-mock-store": "1.5.3",
     "string-punctuation-tokenizer": "2.0.0",
     "style-loader": "0.23.1",
+    "tc-source-content-updater": "1.2.2",
     "tc-tool": "4.0.1",
     "tc-ui-toolkit": "5.2.0",
     "usfm-js": "2.1.0",
