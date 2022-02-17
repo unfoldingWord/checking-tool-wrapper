@@ -1,12 +1,13 @@
+import { getBibleElement } from './bibleHelpers';
 
 export const loadCorrectPaneSettings = (setToolSettings, bibles, gatewayLanguage, currentPaneSettings = []) => {
-  const paneSeetingsIncludeGLandUlbOrUlt = (paneSetting) => paneSetting.languageId === gatewayLanguage && (paneSetting.bibleId === 'ulb' || paneSetting.bibleId === 'ult');
+  const paneSettingsIncludeGLandUlbOrUlt = (paneSetting) => paneSetting.languageId === gatewayLanguage && (paneSetting.bibleId === 'ulb' || paneSetting.bibleId === 'ult');
 
   // make sure bibles in currentPaneSettings are found in the bibles object in the resourcesReducer
-  currentPaneSettings = currentPaneSettings ? currentPaneSettings.filter((paneSetting) => bibles[paneSetting.languageId] && bibles[paneSetting.languageId][paneSetting.bibleId] ? true : false) : currentPaneSettings;
+  currentPaneSettings = currentPaneSettings ? currentPaneSettings.filter((paneSetting) => isPaneSettingFoundInBibles(bibles, paneSetting)) : currentPaneSettings;
 
   // making sure the right ult or ulb language is displayed in the scripture pane
-  if (currentPaneSettings && !currentPaneSettings.some(paneSeetingsIncludeGLandUlbOrUlt) && currentPaneSettings.length > 0) {
+  if (currentPaneSettings && !currentPaneSettings.some(paneSettingsIncludeGLandUlbOrUlt) && currentPaneSettings.length > 0) {
     const newCurrentPaneSettings = currentPaneSettings.map((paneSetting) => {
       const isUlbOrUlt = paneSetting.bibleId === 'ult' || paneSetting.bibleId === 'ulb';
 
@@ -45,3 +46,14 @@ export const loadCorrectPaneSettings = (setToolSettings, bibles, gatewayLanguage
     setToolSettings('ScripturePane', 'currentPaneSettings', initialCurrentPaneSettings);
   }
 };
+
+/**
+ * check for pane
+ * @param {object} bibles
+ * @param {object} paneSetting
+ * @return {boolean}
+ */
+function isPaneSettingFoundInBibles(bibles, paneSetting) {
+  const bible = getBibleElement(bibles, paneSetting.languageId, paneSetting.bibleId, paneSetting.owner);
+  return !!bible;
+}
