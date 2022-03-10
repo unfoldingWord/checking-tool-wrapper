@@ -15,14 +15,14 @@ import ScripturePaneWrapper from './components/ScripturePaneWrapper';
 // selectors
 import {
   getBibles,
-  getToolApi,
-  getTcState,
   getContextId,
-  getTranslateState,
-  getGatewayLanguageCode,
   getCurrentPaneSettings,
-  getGatewayLanguageBibles,
   getCurrentToolName,
+  getGatewayLanguageBibles,
+  getGatewayLanguageCode,
+  getTcState,
+  getToolApi,
+  getTranslateState,
 } from './selectors';
 import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
 

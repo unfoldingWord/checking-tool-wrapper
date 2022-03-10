@@ -53,10 +53,17 @@ export const getSelections = (state) =>
 
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguageCode = (ownProps) => ownProps.tc.gatewayLanguageCode || '';
+export const getGatewayLanguageOwner = (ownProps) => ownProps.tc.gatewayLanguageOwner || '';
 export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
 export const getProjectPath = (ownProps) => ownProps.tc.projectSaveLocation;
 export const getUserData = (ownProps) => ownProps.tc.loginReducer.userdata;
-export const getGatewayLanguageBibles = (ownProps) => ownProps.tc.resourcesReducer.bibles[getGatewayLanguageCode(ownProps)] || [];
+export const getGatewayLanguageBibles = (ownProps) => {
+  const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
+  const gatewayLanguageOwner = getGatewayLanguageOwner(ownProps);
+  const key = `${gatewayLanguageCode}_${gatewayLanguageOwner}`;
+  return ownProps.tc.resourcesReducer.bibles[key] ||
+    ownProps.tc.resourcesReducer.bibles[gatewayLanguageCode] || [];
+};
 export const getBookName = (ownProps) => ownProps.tc.project.getBookName();
 export const getTargetBible = (ownProps) => ownProps.tc.resourcesReducer.bibles.targetLanguage.targetBible;
 export const getTranslationHelpsArticle = (ownProps, contextId = {}) => {
