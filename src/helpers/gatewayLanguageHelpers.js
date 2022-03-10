@@ -27,7 +27,7 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
  */
 export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null) {
   if (contextId) {
-    if (!contextId.quote || !glBibles || !glBibles || !Object.keys(glBibles).length) {
+    if (!contextId.quote || !glBibles || !Object.keys(glBibles).length) {
       return contextId.quote || '';
     }
 
