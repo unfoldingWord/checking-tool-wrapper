@@ -15,6 +15,7 @@ import {
   getGroupsData,
   getContextId,
   getGatewayLanguageCode,
+  getGatewayLanguageOwner,
   getProjectPath,
   getProjectManifest,
   getUserData,
@@ -91,6 +92,7 @@ GroupMenuContainer.propTypes = {
   translate: PropTypes.func.isRequired,
   userData: PropTypes.object.isRequired,
   gatewayLanguageCode: PropTypes.string.isRequired,
+  gatewayLanguageOwner: PropTypes.string.isRequired,
   currentToolName: PropTypes.string.isRequired,
   projectSaveLocation: PropTypes.string.isRequired,
   manifest: PropTypes.object.isRequired,
@@ -111,6 +113,7 @@ const mapStateToProps = (state, ownProps) => ({
   groupsIndex: getGroupsIndex(state),
   contextId: getContextId(state),
   gatewayLanguageCode: getGatewayLanguageCode(ownProps),
+  gatewayLanguageOwner: getGatewayLanguageOwner(ownProps),
   currentToolName: getCurrentToolName(ownProps),
   projectSaveLocation: getProjectPath(ownProps),
   manifest: getProjectManifest(ownProps),
@@ -119,7 +122,14 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { gatewayLanguageQuote, tc: { gatewayLanguageCode, targetBook } } = ownProps;
+  const {
+    gatewayLanguageQuote,
+    tc: {
+      gatewayLanguageCode,
+      gatewayLanguageOwner,
+      targetBook,
+    },
+  } = ownProps;
   const projectSaveLocation = getProjectPath(ownProps);
   const { project: { id: bookId } } = getProjectManifest(ownProps);
   const currentToolName = getCurrentToolName(ownProps);
@@ -127,7 +137,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     loadGroupsIndex: (gatewayLanguageCode, currentToolName, projectSaveLocation, translate) => {
-      dispatch(loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate));
+      dispatch(loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate, gatewayLanguageOwner));
     },
     clearGroupsIndex: () => clearGroupsIndex(),
     loadGroupsData: (currentToolName, projectSaveLocation) => {

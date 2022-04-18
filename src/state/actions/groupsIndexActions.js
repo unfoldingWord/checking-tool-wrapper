@@ -10,11 +10,12 @@ import {
  * @param {string} gatewayLanguage - gateway Language.
  * @param {string} toolName - tool Name.
  * @param {string} projectDir - project Directory path.
- * @param {function} translate - locale transtale.
+ * @param {function} translate - locale translate.
+ * @param {string} gatewayLanguageOwner
  * @return {object} action object.
  */
-export const loadGroupsIndex = (gatewayLanguage, toolName, projectDir, translate) => ((dispatch) => {
-  const groupsIndex = loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate);
+export const loadGroupsIndex = (gatewayLanguage, toolName, projectDir, translate, gatewayLanguageOwner) => ((dispatch) => {
+  const groupsIndex = loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate, gatewayLanguageOwner);
 
   dispatch({
     type: LOAD_GROUPS_INDEX,

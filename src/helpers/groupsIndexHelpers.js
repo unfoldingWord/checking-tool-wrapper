@@ -36,12 +36,13 @@ export function sortIndex(a, b) {
  * @param {string} toolName - the name of the tool who's index will be loaded
  * @param {string} projectDir - path to the project directory
  * @param {function} translate - the locale function. TODO: refactor index loading so locale is not required
+ * @param {string} gatewayLanguageOwner
  * @return {*}
  */
-export function loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate) {
+export function loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate, gatewayLanguageOwner) {
   const project = new ProjectAPI(projectDir);
   const resources = ResourceAPI.default();
-  const helpDir = resources.getLatestTranslationHelp(gatewayLanguage, toolName);
+  const helpDir = resources.getLatestTranslationHelp(gatewayLanguage, toolName, gatewayLanguageOwner);
 
   if (helpDir) {
     // load indices
