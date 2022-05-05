@@ -53,10 +53,11 @@ class ResourceAPI {
    * @param {string} gatewayLanguage - the gateway language code
    * @param {string} helpName - this is synonymous with toolName
    * @param {string} owner
+   * @param {boolean} notTWL - flag to override switching to TWL, this is useful for fetching the index from TW
    * @returns {string|null} the file path or null if no directory was found
    */
-  getLatestTranslationHelp(gatewayLanguage, helpName, owner) {
-    if ((helpName === TRANSLATION_WORDS) && (owner !== apiHelpers.DOOR43_CATALOG)) { // support twls if not from Door43 catalog
+  getLatestTranslationHelp(gatewayLanguage, helpName, owner, notTWL = false) {
+    if (!notTWL && (helpName === TRANSLATION_WORDS) && (owner !== apiHelpers.DOOR43_CATALOG)) { // support twls if not from Door43 catalog
       helpName = TRANSLATION_WORDS_LINKS;
     }
 

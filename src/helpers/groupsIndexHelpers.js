@@ -42,7 +42,7 @@ export function sortIndex(a, b) {
 export function loadProjectGroupIndex(gatewayLanguage, toolName, projectDir, translate, gatewayLanguageOwner) {
   const project = new ProjectAPI(projectDir);
   const resources = ResourceAPI.default();
-  const helpDir = resources.getLatestTranslationHelp(gatewayLanguage, toolName, gatewayLanguageOwner);
+  const helpDir = resources.getLatestTranslationHelp(gatewayLanguage, toolName, gatewayLanguageOwner, true);
 
   if (helpDir) {
     // load indices
