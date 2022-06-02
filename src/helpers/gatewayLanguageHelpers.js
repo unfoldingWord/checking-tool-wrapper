@@ -101,9 +101,9 @@ export function getAlignedTextFromBible(contextId, bible) {
     } else if (isVerseSpan(verseRef)) { // if we didn't find verse, check if verse span
       verseObjects = [];
       // iterate through all verses in span
-      const { low, hi } = getVerseSpanRange(verseRef);
+      const { low, high } = getVerseSpanRange(verseRef);
 
-      for (let i = low; i <= hi; i++) {
+      for (let i = low; i <= high; i++) {
         const verseObjects_ = chapterData?.[i]?.verseObjects;
 
         if (!verseObjects_) {
