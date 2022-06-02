@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { getAlignedText } from 'tc-ui-toolkit';
+import { getVerseSpanRange, isVerseSpan } from './groupDataHelpers';
 
 /**
  * Returns the gateway language code and quote.
@@ -89,10 +90,29 @@ export function bibleIdSort(a, b) {
  * @returns {string}
  */
 export function getAlignedTextFromBible(contextId, bible) {
-  if (bible && contextId && contextId.reference &&
-    bible[contextId.reference.chapter] && bible[contextId.reference.chapter][contextId.reference.verse] &&
-    bible[contextId.reference.chapter][contextId.reference.verse].verseObjects) {
-    const verseObjects = bible[contextId.reference.chapter][contextId.reference.verse].verseObjects;
+  if (bible && contextId?.reference) {
+    const chapterData = bible[contextId.reference.chapter];
+    const verseRef = contextId.reference.verse;
+    const verseData = chapterData?.[verseRef];
+    let verseObjects = null;
+
+    if (verseData) { // if we found verse
+      verseObjects = verseData.verseObjects;
+    } else if (isVerseSpan(verseRef)) { // if we didn't find verse, check if verse span
+      verseObjects = [];
+      // iterate through all verses in span
+      const { low, hi } = getVerseSpanRange(verseRef);
+
+      for (let i = low; i <= hi; i++) {
+        const verseObjects_ = chapterData?.[i]?.verseObjects;
+
+        if (!verseObjects_) {
+          verseObjects = null;
+          break;
+        }
+        verseObjects = verseObjects.concat(verseObjects_);
+      }
+    }
     return getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
   }
 }
