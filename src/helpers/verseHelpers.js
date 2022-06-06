@@ -42,7 +42,7 @@ export function getBestVerseFromChapter(chapterData, verse) {
         const { low, high } = getVerseSpanRange(verse);
 
         for (let i = low; i <= high; i++) {
-          const verseStr = chapterData?.[i]?.verseObjects;
+          const verseStr = chapterData[i];
 
           if (!verseStr) { // if verse missing, abort
             verses = null;
