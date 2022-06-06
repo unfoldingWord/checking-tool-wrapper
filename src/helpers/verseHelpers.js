@@ -48,7 +48,7 @@ export function getBestVerseFromChapter(chapterData, verse) {
             verses = null;
             break;
           }
-          verses = verses.push(verseStr);
+          verses.push(verseStr);
         }
         return verses && verses.join('\n') || null;
       }
