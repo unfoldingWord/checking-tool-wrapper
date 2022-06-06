@@ -1,6 +1,10 @@
 import usfmjs from 'usfm-js';
 import { normalizeString } from './stringHelpers';
-import { isVerseSpan, isVerseWithinVerseSpan } from './groupDataHelpers';
+import {
+  getVerseSpanRange,
+  isVerseSpan,
+  isVerseWithinVerseSpan,
+} from './groupDataHelpers';
 
 /**
  * find verse data from verse or verse span
@@ -32,6 +36,23 @@ export function getBestVerseFromChapter(chapterData, verse) {
     verseData = chapterData[verse];
 
     if (!verseData) {
+      if (isVerseSpan(verse)) { // if we didn't find verse, check if verse span
+        let verseObjects = [];
+        // iterate through all verses in span
+        const { low, high } = getVerseSpanRange(verse);
+
+        for (let i = low; i <= high; i++) {
+          const verseObjects_ = chapterData?.[i]?.verseObjects;
+
+          if (!verseObjects_) { // if verse missing, abort
+            verseObjects = null;
+            break;
+          }
+          verseObjects = verseObjects.concat(verseObjects_);
+        }
+        return verseObjects;
+      }
+
       const verseNum = parseInt(verse);
 
       for (let verse_ in chapterData) {
