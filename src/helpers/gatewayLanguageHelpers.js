@@ -106,7 +106,7 @@ export function getAlignedTextFromBible(contextId, bible) {
       for (let i = low; i <= high; i++) {
         const verseObjects_ = chapterData?.[i]?.verseObjects;
 
-        if (!verseObjects_) {
+        if (!verseObjects_) { // if verse missing, abort
           verseObjects = null;
           break;
         }

@@ -198,6 +198,8 @@ export function tagGroupDataSpans(targetBook, groupsData) {
           if (verseSpan) {
             groupItem.contextId.verseSpan = verseSpan;
           }
+        } else if (isVerseSpan(verse)) {
+          groupItem.contextId.verseSpan = verse;
         }
         // eslint-disable-next-line no-empty
       } catch (e) { }
