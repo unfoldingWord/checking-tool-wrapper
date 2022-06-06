@@ -86,9 +86,9 @@ export function getVerseText(targetBible, contextId) {
       if (Array.isArray(unfilteredVerseText)) {
         unfilteredVerseText = unfilteredVerseText[0];
       }
+      verseText = usfmjs.removeMarker(verseText);
       // normalize whitespace in case selection has contiguous whitespace _this isn't captured
       verseText = normalizeString(unfilteredVerseText);
-      verseText = usfmjs.removeMarker(verseText);
     }
   }
 
