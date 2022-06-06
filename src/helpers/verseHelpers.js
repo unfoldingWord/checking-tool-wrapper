@@ -37,20 +37,20 @@ export function getBestVerseFromChapter(chapterData, verse) {
 
     if (!verseData) {
       if (isVerseSpan(verse)) { // if we didn't find verse, check if verse span
-        let verseObjects = [];
+        let verses = [];
         // iterate through all verses in span
         const { low, high } = getVerseSpanRange(verse);
 
         for (let i = low; i <= high; i++) {
-          const verseObjects_ = chapterData?.[i]?.verseObjects;
+          const verseStr = chapterData?.[i]?.verseObjects;
 
-          if (!verseObjects_) { // if verse missing, abort
-            verseObjects = null;
+          if (!verseStr) { // if verse missing, abort
+            verses = null;
             break;
           }
-          verseObjects = verseObjects.concat(verseObjects_);
+          verses = verses.push(verseStr);
         }
-        return verseObjects;
+        return verses && verses.join('\n') || null;
       }
 
       const verseNum = parseInt(verse);
