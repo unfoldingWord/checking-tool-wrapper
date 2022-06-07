@@ -192,13 +192,16 @@ export function tagGroupDataSpans(targetBook, groupsData) {
         const { reference: { chapter, verse } } = contextId;
         const verseSpansForChapter = verseSpans[chapter];
 
-        if (verseSpansForChapter) {
+        if (isVerseSpan(verse)) {
+          groupItem.contextId.verseSpan = verse;
+        } else if (verseSpansForChapter) {
           const verseSpan = verseSpansForChapter[verse + ''];
 
           if (verseSpan) {
             groupItem.contextId.verseSpan = verseSpan;
           }
         }
+
         // eslint-disable-next-line no-empty
       } catch (e) { }
     }

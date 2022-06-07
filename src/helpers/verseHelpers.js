@@ -1,6 +1,10 @@
 import usfmjs from 'usfm-js';
 import { normalizeString } from './stringHelpers';
-import { isVerseSpan, isVerseWithinVerseSpan } from './groupDataHelpers';
+import {
+  getVerseSpanRange,
+  isVerseSpan,
+  isVerseWithinVerseSpan,
+} from './groupDataHelpers';
 
 /**
  * find verse data from verse or verse span
@@ -32,6 +36,23 @@ export function getBestVerseFromChapter(chapterData, verse) {
     verseData = chapterData[verse];
 
     if (!verseData) {
+      if (isVerseSpan(verse)) { // if we didn't find verse, check if verse span
+        let verses = [];
+        // iterate through all verses in span
+        const { low, high } = getVerseSpanRange(verse);
+
+        for (let i = low; i <= high; i++) {
+          const verseStr = chapterData[i];
+
+          if (!verseStr) { // if verse missing, abort
+            verses = null;
+            break;
+          }
+          verses.push(verseStr);
+        }
+        return verses && verses.join('\n') || null;
+      }
+
       const verseNum = parseInt(verse);
 
       for (let verse_ in chapterData) {
@@ -65,9 +86,9 @@ export function getVerseText(targetBible, contextId) {
       if (Array.isArray(unfilteredVerseText)) {
         unfilteredVerseText = unfilteredVerseText[0];
       }
+      verseText = usfmjs.removeMarker(unfilteredVerseText);
       // normalize whitespace in case selection has contiguous whitespace _this isn't captured
-      verseText = normalizeString(unfilteredVerseText);
-      verseText = usfmjs.removeMarker(verseText);
+      verseText = normalizeString(verseText);
     }
   }
 
