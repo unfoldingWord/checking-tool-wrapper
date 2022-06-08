@@ -26,7 +26,7 @@ export function getBestVerseFromBook(currentBible, chapter, verse) {
  * @param {object} chapterData
  * @returns {*}
  */
-function getVerse(chapterData, verse ) {
+export function getVerse(chapterData, verse ) {
   const verseNum = parseInt(verse);
   let verseData = chapterData[verseNum];
 

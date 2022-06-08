@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { getAlignedText, verseHelpers } from 'tc-ui-toolkit';
+import { getVerse } from './verseHelpers';
 
 /**
  * Returns the gateway language code and quote.
@@ -97,19 +98,34 @@ export function getAlignedTextFromBible(contextId, bible) {
 
     if (verseData) { // if we found verse
       verseObjects = verseData.verseObjects;
-    } else if (verseHelpers.isVerseSpan(verseRef)) { // if we didn't find verse, check if verse span
+    } else if (verseHelpers.isVerseSet(verseRef)) { // if we didn't find verse, check if verse span
+      const verseList = verseHelpers.getVerseList(verseRef);
       verseObjects = [];
-      // iterate through all verses in span
-      const { low, high } = verseHelpers.getVerseSpanRange(verseRef);
 
-      for (let i = low; i <= high; i++) {
-        const verseObjects_ = chapterData?.[i]?.verseObjects;
+      for (const verse_ of verseList) {
+        if (verseHelpers.isVerseSpan(verse_)) {
+          // iterate through all verses in span
+          const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
-        if (!verseObjects_) { // if verse missing, abort
-          verseObjects = null;
-          break;
+          for (let i = low; i <= high; i++) {
+            const verseData = getVerse(chapterData, i);
+
+            if (!verseData?.verseObjects) { // if verse missing, abort
+              verseObjects = null;
+              break;
+            }
+
+            const verseObjects_ = verseData.verseObjects;
+            verseObjects = verseObjects.concat(verseObjects_);
+          }
+        } else { // not a verse span
+          const verseData = getVerse(chapterData, verse_);
+
+          if (!verseData?.verseObjects) {
+            const verseObjects_ = verseData.verseObjects;
+            verseObjects = verseObjects.concat(verseObjects_);
+          }
         }
-        verseObjects = verseObjects.concat(verseObjects_);
       }
     }
     return getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
