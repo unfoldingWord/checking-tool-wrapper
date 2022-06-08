@@ -1,10 +1,7 @@
 import usfmjs from 'usfm-js';
+import { verseHelpers } from 'tc-ui-toolkit';
 import { normalizeString } from './stringHelpers';
-import {
-  getVerseSpanRange,
-  isVerseSpan,
-  isVerseWithinVerseSpan,
-} from './groupDataHelpers';
+import { isVerseWithinVerseSpan } from './groupDataHelpers';
 
 /**
  * find verse data from verse or verse span
@@ -24,6 +21,29 @@ export function getBestVerseFromBook(currentBible, chapter, verse) {
 }
 
 /**
+ * find verse in chapter, if not found check if within a verse span
+ * @param {string} verse
+ * @param {object} chapterData
+ * @returns {*}
+ */
+function getVerse(chapterData, verse ) {
+  const verseNum = parseInt(verse);
+  let verseData = chapterData[verseNum];
+
+  if (!verseData) {
+    for (let verse_ in chapterData) {
+      if (verseHelpers.isVerseSpan(verse_)) {
+        if (isVerseWithinVerseSpan(verse_, verseNum)) {
+          verseData = chapterData[verse_];
+          break;
+        }
+      }
+    }
+  }
+  return verseData;
+}
+
+/**
  * find verse data from verse or verse span
  * @param {object} chapterData
  * @param {string|number} verse
@@ -36,33 +56,35 @@ export function getBestVerseFromChapter(chapterData, verse) {
     verseData = chapterData[verse];
 
     if (!verseData) {
-      if (isVerseSpan(verse)) { // if we didn't find verse, check if verse span
+      if (verseHelpers.isVerseSet(verse)) { // if we didn't find verse, check if verse set
+        const verseList = verseHelpers.getVerseList(verse);
         let verses = [];
-        // iterate through all verses in span
-        const { low, high } = getVerseSpanRange(verse);
 
-        for (let i = low; i <= high; i++) {
-          const verseStr = chapterData[i];
+        for (const verse_ of verseList) {
+          if (verseHelpers.isVerseSpan(verse_)) {
+            // iterate through all verses in span
+            const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
-          if (!verseStr) { // if verse missing, abort
-            verses = null;
-            break;
+            for (let i = low; i <= high; i++) {
+              const verseStr = getVerse(chapterData, i );
+
+              if (!verseStr) { // if verse missing, abort
+                verses = null;
+                break;
+              }
+              verses.push(verseStr);
+            }
+          } else { // not a verse span
+            const verseData = getVerse(chapterData, verse_ );
+
+            if (verseData) {
+              verses.push(verseData);
+            }
           }
-          verses.push(verseStr);
         }
         return verses && verses.join('\n') || null;
       }
-
-      const verseNum = parseInt(verse);
-
-      for (let verse_ in chapterData) {
-        if (isVerseSpan(verse_)) {
-          if (isVerseWithinVerseSpan(verse_, verseNum)) {
-            verseData = chapterData[verse_];
-            break;
-          }
-        }
-      }
+      verseData = getVerse(chapterData, verse );
     }
   }
   return verseData;

@@ -36,7 +36,7 @@
     "string-punctuation-tokenizer": "^2.0.0",
     "tc-electron-env": "^0.10.0",
     "tc-source-content-updater": "^1.2.12",
-    "tc-ui-toolkit": "^4.0.0",
+    "tc-ui-toolkit": "^6.0.0",
     "tsv-groupdata-parser": "^0.10.0",
     "usfm-js": "^2.1.0",
     "word-aligner": "^0.4.0"
@@ -84,7 +84,7 @@
     "tc-electron-env": "0.10.0",
     "tc-source-content-updater": "1.2.12",
     "tc-tool": "4.0.1",
-    "tc-ui-toolkit": "5.2.0",
+    "tc-ui-toolkit": "6.0.8-alpha",
     "tsv-groupdata-parser": "0.10.3",
     "usfm-js": "2.1.0",
     "word-aligner": "0.4.0"

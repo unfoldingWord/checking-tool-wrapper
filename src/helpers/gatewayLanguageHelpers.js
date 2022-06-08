@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { getAlignedText } from 'tc-ui-toolkit';
-import { getVerseSpanRange, isVerseSpan } from './groupDataHelpers';
+import { getAlignedText, verseHelpers } from 'tc-ui-toolkit';
 
 /**
  * Returns the gateway language code and quote.
@@ -98,10 +97,10 @@ export function getAlignedTextFromBible(contextId, bible) {
 
     if (verseData) { // if we found verse
       verseObjects = verseData.verseObjects;
-    } else if (isVerseSpan(verseRef)) { // if we didn't find verse, check if verse span
+    } else if (verseHelpers.isVerseSpan(verseRef)) { // if we didn't find verse, check if verse span
       verseObjects = [];
       // iterate through all verses in span
-      const { low, high } = getVerseSpanRange(verseRef);
+      const { low, high } = verseHelpers.getVerseSpanRange(verseRef);
 
       for (let i = low; i <= high; i++) {
         const verseObjects_ = chapterData?.[i]?.verseObjects;
