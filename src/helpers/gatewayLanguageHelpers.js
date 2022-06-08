@@ -121,7 +121,7 @@ export function getAlignedTextFromBible(contextId, bible) {
         } else { // not a verse span
           const verseData = getVerse(chapterData, verse_);
 
-          if (!verseData?.verseObjects) {
+          if (verseData?.verseObjects) {
             const verseObjects_ = verseData.verseObjects;
             verseObjects = verseObjects.concat(verseObjects_);
           }
