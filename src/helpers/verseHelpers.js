@@ -24,23 +24,27 @@ export function getBestVerseFromBook(currentBible, chapter, verse) {
  * find verse in chapter, if not found check if within a verse span
  * @param {string} verse
  * @param {object} chapterData
- * @returns {*}
+ * @returns {{ verseData, verseLabel }}
  */
 export function getVerse(chapterData, verse ) {
   const verseNum = parseInt(verse);
   let verseData = chapterData[verseNum];
+  let verseLabel = null;
 
-  if (!verseData) {
+  if (verseData) {
+    verseLabel = verseNum;
+  } else {
     for (let verse_ in chapterData) {
       if (verseHelpers.isVerseSpan(verse_)) {
         if (isVerseWithinVerseSpan(verse_, verseNum)) {
           verseData = chapterData[verse_];
+          verseLabel = verse_;
           break;
         }
       }
     }
   }
-  return verseData;
+  return { verseData, verseLabel };
 }
 
 /**
@@ -50,44 +54,41 @@ export function getVerse(chapterData, verse ) {
  * @return {null|*}
  */
 export function getBestVerseFromChapter(chapterData, verse) {
-  let verseData = null;
-
   if (chapterData) {
-    verseData = chapterData[verse];
+    let verseData = chapterData?.[verse];
 
     if (!verseData) {
-      if (verseHelpers.isVerseSet(verse)) { // if we didn't find verse, check if verse set
-        const verseList = verseHelpers.getVerseList(verse);
-        let verses = [];
+      const history = []; // to guard against duplicate verses
+      const verseList = verseHelpers.getVerseList(verse);
+      let verses = [];
 
-        for (const verse_ of verseList) {
-          if (verseHelpers.isVerseSpan(verse_)) {
-            // iterate through all verses in span
-            const { low, high } = verseHelpers.getVerseSpanRange(verse_);
+      for (const verse_ of verseList) {
+        if (verseHelpers.isVerseSpan(verse_)) {
+          // iterate through all verses in span
+          const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
-            for (let i = low; i <= high; i++) {
-              const verseStr = getVerse(chapterData, i );
+          for (let i = low; i <= high; i++) {
+            const { verseData, verseLabel } = getVerse(chapterData, i );
 
-              if (!verseStr) { // if verse missing, abort
-                verses = null;
-                break;
-              }
-              verses.push(verseStr);
-            }
-          } else { // not a verse span
-            const verseData = getVerse(chapterData, verse_ );
-
-            if (verseData) {
+            if (verseData && !history.includes(verseLabel)) {
+              history.push(verseLabel + '');
               verses.push(verseData);
             }
           }
+        } else { // not a verse span
+          const { verseData, verseLabel } = getVerse(chapterData, verse_ );
+
+          if (verseData && !history.includes(verseLabel)) {
+            history.push(verseLabel + '');
+            verses.push(verseData);
+          }
         }
-        return verses && verses.join('\n') || null;
       }
-      verseData = getVerse(chapterData, verse );
+      return verses && verses.join('\n') || null;
     }
+    return verseData;
   }
-  return verseData;
+  return null;
 }
 
 /**

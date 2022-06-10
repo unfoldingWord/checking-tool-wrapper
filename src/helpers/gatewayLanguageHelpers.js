@@ -91,14 +91,16 @@ export function bibleIdSort(a, b) {
  */
 export function getAlignedTextFromBible(contextId, bible) {
   if (bible && contextId?.reference) {
-    const chapterData = bible[contextId.reference.chapter];
+    const chapter = contextId.reference.chapter;
+    const chapterData = bible[chapter];
     const verseRef = contextId.reference.verse;
     const verseData = chapterData?.[verseRef];
     let verseObjects = null;
+    const history = []; // to guard against duplicate verses
 
     if (verseData) { // if we found verse
       verseObjects = verseData.verseObjects;
-    } else if (verseHelpers.isVerseSet(verseRef)) { // if we didn't find verse, check if verse span
+    } else { // if we didn't find exact verse match
       const verseList = verseHelpers.getVerseList(verseRef);
       verseObjects = [];
 
@@ -108,20 +110,19 @@ export function getAlignedTextFromBible(contextId, bible) {
           const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
           for (let i = low; i <= high; i++) {
-            const verseData = getVerse(chapterData, i);
+            const { verseData, verseLabel } = getVerse(chapterData, i);
 
-            if (!verseData?.verseObjects) { // if verse missing, abort
-              verseObjects = null;
-              break;
+            if (verseData?.verseObjects && !history.includes(verseLabel)) {
+              history.push(verseLabel + '');
+              const verseObjects_ = verseData.verseObjects;
+              verseObjects = verseObjects.concat(verseObjects_);
             }
-
-            const verseObjects_ = verseData.verseObjects;
-            verseObjects = verseObjects.concat(verseObjects_);
           }
         } else { // not a verse span
-          const verseData = getVerse(chapterData, verse_);
+          const { verseData, verseLabel } = getVerse(chapterData, verse_);
 
-          if (verseData?.verseObjects) {
+          if (verseData?.verseObjects && !history.includes(verseLabel)) {
+            history.push(verseLabel + '');
             const verseObjects_ = verseData.verseObjects;
             verseObjects = verseObjects.concat(verseObjects_);
           }
