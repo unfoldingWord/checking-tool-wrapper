@@ -56,7 +56,7 @@ export function getVerse(chapterData, verse ) {
  * @param {array} verses - array of verses text
  * @param {boolean} addVerseRef - if true then we add verse marker inline
  */
-function addVerse(chapterData, verse, history, verses, addVerseRef=false) {
+function addVerse(chapterData, verses, history, verse, addVerseRef=false) {
   const { verseData, verseLabel } = getVerse(chapterData, verse);
 
   if (verseData && !history.includes(verseLabel)) {
@@ -91,10 +91,10 @@ export function getBestVerseFromChapter(chapterData, verse, addVerseRef=false) {
           const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
           for (let i = low; i <= high; i++) {
-            addVerse(chapterData, verse_, history, i, addVerseRef);
+            addVerse(chapterData, verses, history, i, addVerseRef);
           }
         } else { // not a verse span
-          addVerse(chapterData, verse_, history, verses, addVerseRef);
+          addVerse(chapterData, verses, history, verse_, addVerseRef);
         }
       }
       return verses && verses.join('\n') || null;
