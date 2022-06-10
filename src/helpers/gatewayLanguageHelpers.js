@@ -128,10 +128,10 @@ export function getAlignedTextFromBible(contextId, bible) {
           const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
           for (let i = low; i <= high; i++) {
-            verseObjects = addVerse(chapterData, verseObjects, history, i);
+            addVerse(chapterData, verseObjects, history, i);
           }
         } else { // not a verse span
-          verseObjects = addVerse(chapterData, verseObjects, history, verse_);
+          addVerse(chapterData, verseObjects, history, verse_);
         }
       }
     }
