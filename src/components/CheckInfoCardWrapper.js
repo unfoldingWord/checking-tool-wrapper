@@ -37,7 +37,7 @@ function CheckInfoCardWrapper({
     const currentBible = biblesForLanguage && biblesForLanguage[id];
 
     if (currentBible) {
-      const verseData = getBestVerseFromBook(currentBible, chapter, verse);
+      const verseData = getBestVerseFromBook(currentBible, chapter, verse, true);
 
       if (verseData) {
         return verseData;

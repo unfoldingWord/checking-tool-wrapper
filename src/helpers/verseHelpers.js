@@ -8,11 +8,12 @@ import { isVerseWithinVerseSpan } from './groupDataHelpers';
  * @param {object} currentBible
  * @param {string} chapter
  * @param {string|number} verse
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
  * @return {null|*}
  */
-export function getBestVerseFromBook(currentBible, chapter, verse) {
+export function getBestVerseFromBook(currentBible, chapter, verse, addVerseRef) {
   const chapterData = currentBible && currentBible[chapter];
-  let verseData = getBestVerseFromChapter(chapterData, verse);
+  let verseData = getBestVerseFromChapter(chapterData, verse, addVerseRef);
 
   if (verseData) {
     return verseData;
