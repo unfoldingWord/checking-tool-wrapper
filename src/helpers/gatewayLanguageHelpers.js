@@ -11,7 +11,7 @@ import { getVerse } from './verseHelpers';
  * @return {{gatewayLanguageCode: *, gatewayLanguageQuote: *}}
  */
 export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBibles, tsvRelation) => {
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation, true);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
 
   return {
     gatewayLanguageCode,
@@ -25,9 +25,8 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
  * @param {*} glBibles - gateway language Bibles.
  * @param {string} glID - current GL
  * @param {array|null} tsvRelation - list of relationship items in manifest
- * @param {boolean} addVerseRef - if true then we add verse marker inline
  */
-export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null, addVerseRef = false) {
+export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null) {
   if (contextId) {
     if (!contextId.quote || !glBibles || !Object.keys(glBibles).length) {
       return contextId.quote || '';
@@ -43,7 +42,7 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
           const bible = glBibles[bibleId];
 
           if (bible) { // if bible present, see if we can find GL text
-            const alignedText = getAlignedTextFromBible(contextId, bible, addVerseRef);
+            const alignedText = getAlignedTextFromBible(contextId, bible);
 
             if (alignedText) {
               return alignedText; // we succeeded and we are done
@@ -58,7 +57,7 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
 
     for (let i = 0; i < sortedBibleIds.length; ++i) {
       const bible = glBibles[sortedBibleIds[i]];
-      const alignedText = getAlignedTextFromBible(contextId, bible, addVerseRef);
+      const alignedText = getAlignedTextFromBible(contextId, bible);
 
       if (alignedText) {
         return alignedText;
@@ -86,24 +85,16 @@ export function bibleIdSort(a, b) {
 
 /**
  * appends a verse to verseObjects
- * @param chapterData
- * @param verseObjects
- * @param history
- * @param verse
- * @param {boolean} addVerseRef - if true then we add verse marker inline
+ * @param {object} chapterData
+ * @param {array} verseObjects
+ * @param {array} history
+ * @param {string} verse
  * @returns {*}
  */
-function addVerse(chapterData, verseObjects, history, verse, addVerseRef) {
+function addVerse(chapterData, verseObjects, history, verse) {
   const { verseData, verseLabel } = getVerse(chapterData, verse);
 
   if (verseData?.verseObjects && !history.includes(verseLabel)) {
-    if (addVerseRef && verseObjects.length) {
-      verseObjects.push({
-        type: 'text',
-        text: verse + ' ',
-      });
-    }
-
     history.push(verseLabel + '');
     const verseObjects_ = verseData.verseObjects;
     Array.prototype.push.apply(verseObjects, verseObjects_);
@@ -114,10 +105,9 @@ function addVerse(chapterData, verseObjects, history, verse, addVerseRef) {
  * Gets the aligned GL text from the given bible
  * @param {object} contextId
  * @param {object} bible
- * @param {boolean} addVerseRef - if true then we add verse marker inline
  * @returns {string}
  */
-export function getAlignedTextFromBible(contextId, bible, addVerseRef) {
+export function getAlignedTextFromBible(contextId, bible) {
   if (bible && contextId?.reference) {
     const chapter = contextId.reference.chapter;
     const chapterData = bible[chapter];
@@ -138,10 +128,10 @@ export function getAlignedTextFromBible(contextId, bible, addVerseRef) {
           const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
           for (let i = low; i <= high; i++) {
-            addVerse(chapterData, verseObjects, history, i, addVerseRef);
+            verseObjects = addVerse(chapterData, verseObjects, history, i);
           }
         } else { // not a verse span
-          addVerse(chapterData, verseObjects, history, verse_, addVerseRef);
+          verseObjects = addVerse(chapterData, verseObjects, history, verse_);
         }
       }
     }

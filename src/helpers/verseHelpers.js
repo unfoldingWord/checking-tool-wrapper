@@ -48,12 +48,37 @@ export function getVerse(chapterData, verse ) {
 }
 
 /**
+ * append verse to verses array
+ * @param {object} chapterData
+ * @param {string} verse - verse to fetch (could be verse span)
+ * @param {array} history
+ * @param {array} verses - array of verses text
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
+ */
+function addVerse(chapterData, verse, history, verses, addVerseRef) {
+  const { verseData, verseLabel } = getVerse(chapterData, verse);
+
+  if (verseData && !history.includes(verseLabel)) {
+    if (addVerseRef && verses.length) {
+      verses.push({
+        type: 'text',
+        text: verse + ' ',
+      });
+    }
+
+    history.push(verseLabel + '');
+    verses.push(verseData);
+  }
+}
+
+/**
  * find verse data from verse or verse span
  * @param {object} chapterData
  * @param {string|number} verse
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
  * @return {null|*}
  */
-export function getBestVerseFromChapter(chapterData, verse) {
+export function getBestVerseFromChapter(chapterData, verse, addVerseRef) {
   if (chapterData) {
     let verseData = chapterData?.[verse];
 
@@ -68,20 +93,10 @@ export function getBestVerseFromChapter(chapterData, verse) {
           const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
           for (let i = low; i <= high; i++) {
-            const { verseData, verseLabel } = getVerse(chapterData, i );
-
-            if (verseData && !history.includes(verseLabel)) {
-              history.push(verseLabel + '');
-              verses.push(verseData);
-            }
+            addVerse(chapterData, verse_, history, i, addVerseRef);
           }
         } else { // not a verse span
-          const { verseData, verseLabel } = getVerse(chapterData, verse_ );
-
-          if (verseData && !history.includes(verseLabel)) {
-            history.push(verseLabel + '');
-            verses.push(verseData);
-          }
+          addVerse(chapterData, verse_, history, verses, addVerseRef);
         }
       }
       return verses && verses.join('\n') || null;
