@@ -381,7 +381,7 @@ VerseCheckWrapper.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state);
   const targetBible = getTargetBible(ownProps);
-  const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
+  const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId, true);
   const currentGroupItem = getCurrentGroup(state);
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);

@@ -11,7 +11,7 @@ import { isVerseWithinVerseSpan } from './groupDataHelpers';
  * @param {boolean} addVerseRef - if true then we add verse marker inline
  * @return {null|*}
  */
-export function getBestVerseFromBook(currentBible, chapter, verse, addVerseRef) {
+export function getBestVerseFromBook(currentBible, chapter, verse, addVerseRef=false) {
   const chapterData = currentBible && currentBible[chapter];
   let verseData = getBestVerseFromChapter(chapterData, verse, addVerseRef);
 
@@ -56,7 +56,7 @@ export function getVerse(chapterData, verse ) {
  * @param {array} verses - array of verses text
  * @param {boolean} addVerseRef - if true then we add verse marker inline
  */
-function addVerse(chapterData, verse, history, verses, addVerseRef) {
+function addVerse(chapterData, verse, history, verses, addVerseRef=false) {
   const { verseData, verseLabel } = getVerse(chapterData, verse);
 
   if (verseData && !history.includes(verseLabel)) {
@@ -79,7 +79,7 @@ function addVerse(chapterData, verse, history, verses, addVerseRef) {
  * @param {boolean} addVerseRef - if true then we add verse marker inline
  * @return {null|*}
  */
-export function getBestVerseFromChapter(chapterData, verse, addVerseRef) {
+export function getBestVerseFromChapter(chapterData, verse, addVerseRef=false) {
   if (chapterData) {
     let verseData = chapterData?.[verse];
 
@@ -111,8 +111,9 @@ export function getBestVerseFromChapter(chapterData, verse, addVerseRef) {
  *  Gets both the verse text without usfm markers and unfilteredVerseText.
  * @param {object} targetBible - target bible
  * @param {object} contextId - context id
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
  */
-export function getVerseText(targetBible, contextId) {
+export function getVerseText(targetBible, contextId, addVerseRef=false) {
   let unfilteredVerseText = '';
   let verseText = '';
 
@@ -120,7 +121,7 @@ export function getVerseText(targetBible, contextId) {
     const { chapter, verse } = contextId.reference;
 
     if (targetBible && targetBible[chapter]) {
-      unfilteredVerseText = getBestVerseFromBook(targetBible, chapter, verse);
+      unfilteredVerseText = getBestVerseFromBook(targetBible, chapter, verse, addVerseRef);
 
       if (Array.isArray(unfilteredVerseText)) {
         unfilteredVerseText = unfilteredVerseText[0];
