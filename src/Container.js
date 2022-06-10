@@ -128,7 +128,7 @@ export const mapStateToProps = (state, ownProps) => {
   const glBibles = getGatewayLanguageBibles(ownProps);
   const toolName = getCurrentToolName(ownProps);
   const tsvRelation = getThelpsManifestRelation(gatewayLanguageCode, toolName);
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation, true);
   const tc = getTcState(ownProps);
   const toolApi = getToolApi(ownProps);
 

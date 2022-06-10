@@ -11,7 +11,7 @@ import { getVerse } from './verseHelpers';
  * @return {{gatewayLanguageCode: *, gatewayLanguageQuote: *}}
  */
 export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBibles, tsvRelation) => {
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation, true);
 
   return {
     gatewayLanguageCode,
@@ -25,8 +25,9 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
  * @param {*} glBibles - gateway language Bibles.
  * @param {string} glID - current GL
  * @param {array|null} tsvRelation - list of relationship items in manifest
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
  */
-export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null) {
+export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null, addVerseRef = false) {
   if (contextId) {
     if (!contextId.quote || !glBibles || !Object.keys(glBibles).length) {
       return contextId.quote || '';
@@ -42,7 +43,7 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
           const bible = glBibles[bibleId];
 
           if (bible) { // if bible present, see if we can find GL text
-            const alignedText = getAlignedTextFromBible(contextId, bible);
+            const alignedText = getAlignedTextFromBible(contextId, bible, addVerseRef);
 
             if (alignedText) {
               return alignedText; // we succeeded and we are done
@@ -57,7 +58,7 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
 
     for (let i = 0; i < sortedBibleIds.length; ++i) {
       const bible = glBibles[sortedBibleIds[i]];
-      const alignedText = getAlignedTextFromBible(contextId, bible);
+      const alignedText = getAlignedTextFromBible(contextId, bible, addVerseRef);
 
       if (alignedText) {
         return alignedText;
