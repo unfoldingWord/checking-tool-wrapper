@@ -61,10 +61,7 @@ function addVerse(chapterData, verse, history, verses, addVerseRef=false) {
 
   if (verseData && !history.includes(verseLabel)) {
     if (addVerseRef && verses.length) {
-      verses.push({
-        type: 'text',
-        text: verse + ' ',
-      });
+      verses.push(verse + ' ');
     }
 
     history.push(verseLabel + '');
