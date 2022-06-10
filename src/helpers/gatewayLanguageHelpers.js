@@ -84,12 +84,39 @@ export function bibleIdSort(a, b) {
 }
 
 /**
+ * appends a verse to verseObjects
+ * @param chapterData
+ * @param verseObjects
+ * @param history
+ * @param verse
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
+ * @returns {*}
+ */
+function addVerse(chapterData, verseObjects, history, verse, addVerseRef) {
+  const { verseData, verseLabel } = getVerse(chapterData, verse);
+
+  if (verseData?.verseObjects && !history.includes(verseLabel)) {
+    if (addVerseRef && verseObjects.length) {
+      verseObjects.push({
+        type: 'text',
+        text: verse + ' ',
+      });
+    }
+
+    history.push(verseLabel + '');
+    const verseObjects_ = verseData.verseObjects;
+    Array.prototype.push.apply(verseObjects, verseObjects_);
+  }
+}
+
+/**
  * Gets the aligned GL text from the given bible
  * @param {object} contextId
  * @param {object} bible
+ * @param {boolean} addVerseRef - if true then we add verse marker inline
  * @returns {string}
  */
-export function getAlignedTextFromBible(contextId, bible) {
+export function getAlignedTextFromBible(contextId, bible, addVerseRef) {
   if (bible && contextId?.reference) {
     const chapter = contextId.reference.chapter;
     const chapterData = bible[chapter];
@@ -110,22 +137,10 @@ export function getAlignedTextFromBible(contextId, bible) {
           const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
           for (let i = low; i <= high; i++) {
-            const { verseData, verseLabel } = getVerse(chapterData, i);
-
-            if (verseData?.verseObjects && !history.includes(verseLabel)) {
-              history.push(verseLabel + '');
-              const verseObjects_ = verseData.verseObjects;
-              verseObjects = verseObjects.concat(verseObjects_);
-            }
+            addVerse(chapterData, verseObjects, history, i, addVerseRef);
           }
         } else { // not a verse span
-          const { verseData, verseLabel } = getVerse(chapterData, verse_);
-
-          if (verseData?.verseObjects && !history.includes(verseLabel)) {
-            history.push(verseLabel + '');
-            const verseObjects_ = verseData.verseObjects;
-            verseObjects = verseObjects.concat(verseObjects_);
-          }
+          addVerse(chapterData, verseObjects, history, verse_, addVerseRef);
         }
       }
     }
