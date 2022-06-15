@@ -72,6 +72,7 @@ function VerseCheckWrapper({
   },
   commentsReducer: { text: commentText },
   bookmarksReducer: { enabled: bookmarkEnabled },
+  editVerseInScripturePane,
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -161,7 +162,47 @@ function VerseCheckWrapper({
     }
   }
 
+  /**
+   * see if current verse is part of a list or a verse range that is not an
+   *    exact match in the target bible.  In that case there is more than one
+   *    verse to be edited, so return first verse to be edited.  Otherwise we
+   *    have an exact match to in the target bible and will just return null.
+   * @returns {null|string}
+   */
+  function checkIfMultipartVerseToEdit() {
+    const { reference: { chapter, verse } } = contextId;
+    const verseRef = contextId.verseSpan || verse; // if in verse span, use it
+    const isVerseRefExactMatch = !targetBible[chapter][verseRef]; // reference is not exact match to single verse or span
+    let editVerse = null;
+
+    if (isVerseRefExactMatch) {
+      const verseList = VerseCheck.getVerseList(verseRef); // get the parts
+
+      if (verseList?.length) {
+        editVerse = verseList[0];
+
+        if (VerseCheck.isVerseSpan(editVerse)) {
+          const { low } = VerseCheck.getVerseSpanRange(editVerse);
+
+          if (low) {
+            editVerse = low;
+          }
+        }
+      }
+    }
+    return editVerse;
+  }
+
   function changeMode(mode) {
+    if (mode === 'edit') {
+      let editFirstVerse = checkIfMultipartVerseToEdit();
+
+      if (editFirstVerse) {
+        editVerseInScripturePane(editFirstVerse);
+        return;
+      }
+    }
+
     setLocalState({
       mode,
       newSelections: selections,
@@ -376,6 +417,7 @@ VerseCheckWrapper.propTypes = {
   showAlert: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
+  editVerseInScripturePane: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

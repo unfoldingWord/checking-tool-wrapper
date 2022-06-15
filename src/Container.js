@@ -63,11 +63,25 @@ function Container({
   gatewayLanguageQuote,
 }) {
   const [showHelps, setShowHelps] = useState(true);
+  const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function editVerseInExpandedScripturePane(verseRef) {
+    if (verseRef) {
+      setEditVerseInScrPane(setEditVerseInScrPane);
+    }
+  }
+
+  function onExpandedScripturePaneShow(shown) {
+    if (!shown) {
+      // when expanded scripture pane is closed, clear edit mode
+      setEditVerseInScrPane(null);
+    }
+  }
 
   return (
     <TcuiThemeProvider theme={theme}>
@@ -83,6 +97,8 @@ function Container({
               tc={tc}
               toolApi={toolApi}
               translate={translate}
+              onExpandedScripturePaneShow={onExpandedScripturePaneShow}
+              editVerse={editVerseInScrPane}
             />
           </div>
           <CheckInfoCardWrapper
@@ -97,6 +113,7 @@ function Container({
             translate={translate}
             contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
+            editVerseInScripturePane={editVerseInExpandedScripturePane}
           />
         </div>
         <TranslationHelpsWrapper

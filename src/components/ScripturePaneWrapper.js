@@ -32,6 +32,8 @@ function ScripturePaneWrapper({
   projectDetailsReducer,
   addObjectPropertyToManifest,
   makeSureBiblesLoadedForTool,
+  onExpandedScripturePaneShow,
+  editVerse,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -83,6 +85,8 @@ function ScripturePaneWrapper({
         addObjectPropertyToManifest={addObjectPropertyToManifest}
         makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
         getAvailableScripturePaneSelections={getScripturePaneSelections}
+        onExpandedScripturePaneShow={onExpandedScripturePaneShow}
+        editVerse={editVerse}
       />
     );
   } else {
@@ -104,6 +108,8 @@ ScripturePaneWrapper.propTypes = {
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
   makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
+  editVerse: PropTypes.string, // if given then open verse for edit (single verse)
+  onExpandedScripturePaneShow: PropTypes.func.isRequired, // called when expanded Scripture Pane as shown or hidden
 };
 
 export const mapStateToProps = (state, ownProps) => ({
