@@ -64,11 +64,21 @@ function Container({
 }) {
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
+  const {
+    checkId,
+    groupId,
+    reference,
+  } = contextId || {};
+  const { chapter, verse } = reference || {};
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => { // if context changes, clear edit verse
+    setEditVerseInScrPane(null);
+  }, [checkId, groupId, chapter, verse]);
 
   function editVerseInExpandedScripturePane(verseRef) {
     if (verseRef) {
