@@ -181,7 +181,7 @@ function VerseCheckWrapper({
       if (verseList?.length) {
         editVerse = verseList[0];
 
-        if (VerseCheck.isVerseSpan(editVerse)) {
+        if (verseHelpers.isVerseSpan(editVerse)) {
           const { low } = verseHelpers.getVerseSpanRange(editVerse);
 
           if (low) {
