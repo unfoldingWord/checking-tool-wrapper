@@ -76,6 +76,7 @@ function ScripturePaneWrapper({
   if (contextNotEmpty(contextId)) {
     return (
       <ScripturePane
+        editVerse={editVerse}
         bibles={bibles}
         contextId={contextId_}
         translate={translate}
@@ -92,7 +93,6 @@ function ScripturePaneWrapper({
         makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
         getAvailableScripturePaneSelections={getScripturePaneSelections}
         onExpandedScripturePaneShow={onExpandedScripturePaneShow}
-        editVerse={editVerse}
       />
     );
   } else {
