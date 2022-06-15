@@ -72,7 +72,7 @@ function Container({
 
   function editVerseInExpandedScripturePane(verseRef) {
     if (verseRef) {
-      setEditVerseInScrPane(setEditVerseInScrPane);
+      setEditVerseInScrPane(verseRef);
     }
   }
 

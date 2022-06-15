@@ -198,7 +198,8 @@ function VerseCheckWrapper({
       let editFirstVerse = checkIfMultipartVerseToEdit();
 
       if (editFirstVerse) {
-        editVerseInScripturePane(editFirstVerse);
+        // eslint-disable-next-line no-unused-expressions
+        editVerseInScripturePane && editVerseInScripturePane(editFirstVerse);
         return;
       }
     }
