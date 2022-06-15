@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { VerseCheck } from 'tc-ui-toolkit';
+import { VerseCheck, verseHelpers } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
 // helpers
 import { optimizeSelections } from '../helpers/selectionHelpers';
@@ -172,17 +172,17 @@ function VerseCheckWrapper({
   function checkIfMultipartVerseToEdit() {
     const { reference: { chapter, verse } } = contextId;
     const verseRef = contextId.verseSpan || verse; // if in verse span, use it
-    const isVerseRefExactMatch = targetBible?.[chapter]?.[verseRef]; // reference is exact match to single verse or span
+    const verseFound = targetBible?.[chapter]?.[verseRef];
     let editVerse = null;
 
-    if (!isVerseRefExactMatch) {
-      const verseList = VerseCheck.getVerseList(verseRef); // get the parts
+    if (!verseFound) { // reference is not exact match to single verse or span
+      const verseList = verseHelpers.getVerseList(verseRef); // get the parts
 
       if (verseList?.length) {
         editVerse = verseList[0];
 
         if (VerseCheck.isVerseSpan(editVerse)) {
-          const { low } = VerseCheck.getVerseSpanRange(editVerse);
+          const { low } = verseHelpers.getVerseSpanRange(editVerse);
 
           if (low) {
             editVerse = low;
