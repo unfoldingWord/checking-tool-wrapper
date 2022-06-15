@@ -172,10 +172,10 @@ function VerseCheckWrapper({
   function checkIfMultipartVerseToEdit() {
     const { reference: { chapter, verse } } = contextId;
     const verseRef = contextId.verseSpan || verse; // if in verse span, use it
-    const isVerseRefExactMatch = !targetBible[chapter][verseRef]; // reference is not exact match to single verse or span
+    const isVerseRefExactMatch = targetBible?.[chapter]?.[verseRef]; // reference is exact match to single verse or span
     let editVerse = null;
 
-    if (isVerseRefExactMatch) {
+    if (!isVerseRefExactMatch) {
       const verseList = VerseCheck.getVerseList(verseRef); // get the parts
 
       if (verseList?.length) {
