@@ -82,7 +82,7 @@ function Container({
 
   function editVerseInExpandedScripturePane(verseRef) {
     if (verseRef) {
-      setEditVerseInScrPane(verseRef);
+      setEditVerseInScrPane(verseRef + '');
     }
   }
 
@@ -108,7 +108,7 @@ function Container({
               toolApi={toolApi}
               translate={translate}
               onExpandedScripturePaneShow={onExpandedScripturePaneShow}
-              editVerse={editVerseInScrPane}
+              editVerseInScrPane={editVerseInScrPane}
             />
           </div>
           <CheckInfoCardWrapper

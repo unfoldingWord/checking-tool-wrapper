@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ScripturePane } from 'tc-ui-toolkit';
@@ -33,8 +33,14 @@ function ScripturePaneWrapper({
   addObjectPropertyToManifest,
   makeSureBiblesLoadedForTool,
   onExpandedScripturePaneShow,
-  editVerse,
+  editVerseInScrPane,
 }) {
+  const [editVerse, setEditVerse] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
+
+  useEffect(() => {
+    setEditVerse(editVerseInScrPane);
+  }, [editVerseInScrPane]);
+
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
 
@@ -108,7 +114,7 @@ ScripturePaneWrapper.propTypes = {
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
   makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
-  editVerse: PropTypes.string, // if given then open verse for edit (single verse)
+  editVerseInScrPane: PropTypes.string, // if given then open verse for edit (single verse)
   onExpandedScripturePaneShow: PropTypes.func.isRequired, // called when expanded Scripture Pane as shown or hidden
 };
 
