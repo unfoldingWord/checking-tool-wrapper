@@ -67,31 +67,35 @@ function ScripturePaneWrapper({
 
   const expandedScripturePaneTitle = makeTitle(manifest);
 
-  if (contextNotEmpty(contextId)) {
-    return (
-      <ScripturePane
-        editVerse={editVerseInScrPane}
-        bibles={bibles}
-        contextId={contextId_}
-        translate={translate}
-        selections={selections}
-        showPopover={showPopover}
-        getLexiconData={getLexiconData}
-        editTargetVerse={editTargetVerse}
-        setToolSettings={setToolSettings}
-        complexScriptFonts={complexScriptFonts}
-        currentPaneSettings={currentPaneSettings}
-        projectDetailsReducer={projectDetailsReducer}
-        expandedScripturePaneTitle={expandedScripturePaneTitle}
-        addObjectPropertyToManifest={addObjectPropertyToManifest}
-        makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
-        getAvailableScripturePaneSelections={getScripturePaneSelections}
-        onExpandedScripturePaneShow={onExpandedScripturePaneShow}
-      />
-    );
-  } else {
-    return null;
+  function renderScripturePane() {
+    if (contextNotEmpty(contextId)) {
+      return (
+        <ScripturePane
+          editVerse={editVerseInScrPane}
+          bibles={bibles}
+          contextId={contextId_}
+          translate={translate}
+          selections={selections}
+          showPopover={showPopover}
+          getLexiconData={getLexiconData}
+          editTargetVerse={editTargetVerse}
+          setToolSettings={setToolSettings}
+          complexScriptFonts={complexScriptFonts}
+          currentPaneSettings={currentPaneSettings}
+          projectDetailsReducer={projectDetailsReducer}
+          expandedScripturePaneTitle={expandedScripturePaneTitle}
+          addObjectPropertyToManifest={addObjectPropertyToManifest}
+          makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
+          getAvailableScripturePaneSelections={getScripturePaneSelections}
+          onExpandedScripturePaneShow={onExpandedScripturePaneShow}
+        />
+      );
+    } else {
+      return null;
+    }
   }
+
+  return renderScripturePane();
 }
 
 ScripturePaneWrapper.propTypes = {
