@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ScripturePane } from 'tc-ui-toolkit';
@@ -35,12 +35,6 @@ function ScripturePaneWrapper({
   onExpandedScripturePaneShow,
   editVerseInScrPane,
 }) {
-  const [editVerse, setEditVerse] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
-
-  useEffect(() => {
-    setEditVerse(editVerseInScrPane);
-  }, [editVerseInScrPane]);
-
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
 
@@ -76,7 +70,7 @@ function ScripturePaneWrapper({
   if (contextNotEmpty(contextId)) {
     return (
       <ScripturePane
-        editVerse={editVerse}
+        editVerse={editVerseInScrPane}
         bibles={bibles}
         contextId={contextId_}
         translate={translate}
