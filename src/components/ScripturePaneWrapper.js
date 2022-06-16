@@ -71,7 +71,7 @@ function ScripturePaneWrapper({
     if (contextNotEmpty(contextId)) {
       return (
         <ScripturePane
-          editVerse={editVerseInScrPane}
+          editVerseRef={editVerseInScrPane}
           bibles={bibles}
           contextId={contextId_}
           translate={translate}
