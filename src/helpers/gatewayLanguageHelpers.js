@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
-import { getAlignedText } from 'tc-ui-toolkit';
-import { getVerseSpanRange, isVerseSpan } from './groupDataHelpers';
+import { getAlignedText, verseHelpers } from 'tc-ui-toolkit';
+import { getVerse } from './verseHelpers';
 
 /**
  * Returns the gateway language code and quote.
@@ -84,6 +84,24 @@ export function bibleIdSort(a, b) {
 }
 
 /**
+ * appends a verse to verseObjects
+ * @param {object} chapterData
+ * @param {array} verseObjects
+ * @param {array} history
+ * @param {string} verse
+ * @returns {*}
+ */
+function addVerse(chapterData, verseObjects, history, verse) {
+  const { verseData, verseLabel } = getVerse(chapterData, verse);
+
+  if (verseData?.verseObjects && !history.includes(verseLabel)) {
+    history.push(verseLabel + '');
+    const verseObjects_ = verseData.verseObjects;
+    Array.prototype.push.apply(verseObjects, verseObjects_);
+  }
+}
+
+/**
  * Gets the aligned GL text from the given bible
  * @param {object} contextId
  * @param {object} bible
@@ -91,26 +109,30 @@ export function bibleIdSort(a, b) {
  */
 export function getAlignedTextFromBible(contextId, bible) {
   if (bible && contextId?.reference) {
-    const chapterData = bible[contextId.reference.chapter];
+    const chapter = contextId.reference.chapter;
+    const chapterData = bible[chapter];
     const verseRef = contextId.reference.verse;
     const verseData = chapterData?.[verseRef];
     let verseObjects = null;
+    const history = []; // to guard against duplicate verses
 
     if (verseData) { // if we found verse
       verseObjects = verseData.verseObjects;
-    } else if (isVerseSpan(verseRef)) { // if we didn't find verse, check if verse span
+    } else { // if we didn't find exact verse match
+      const verseList = verseHelpers.getVerseList(verseRef);
       verseObjects = [];
-      // iterate through all verses in span
-      const { low, high } = getVerseSpanRange(verseRef);
 
-      for (let i = low; i <= high; i++) {
-        const verseObjects_ = chapterData?.[i]?.verseObjects;
+      for (const verse_ of verseList) {
+        if (verseHelpers.isVerseSpan(verse_)) {
+          // iterate through all verses in span
+          const { low, high } = verseHelpers.getVerseSpanRange(verse_);
 
-        if (!verseObjects_) { // if verse missing, abort
-          verseObjects = null;
-          break;
+          for (let i = low; i <= high; i++) {
+            addVerse(chapterData, verseObjects, history, i);
+          }
+        } else { // not a verse span
+          addVerse(chapterData, verseObjects, history, verse_);
         }
-        verseObjects = verseObjects.concat(verseObjects_);
       }
     }
     return getAlignedText(verseObjects, contextId.quote, contextId.occurrence);

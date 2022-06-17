@@ -63,11 +63,35 @@ function Container({
   gatewayLanguageQuote,
 }) {
   const [showHelps, setShowHelps] = useState(true);
+  const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
+  const {
+    checkId,
+    groupId,
+    reference,
+  } = contextId || {};
+  const { chapter, verse } = reference || {};
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => { // if context changes, clear edit verse
+    setEditVerseInScrPane(null);
+  }, [checkId, groupId, chapter, verse]);
+
+  function editVerseInExpandedScripturePane(verseRef) {
+    if (verseRef) {
+      setEditVerseInScrPane(verseRef + '');
+    }
+  }
+
+  function onExpandedScripturePaneShow(shown) {
+    if (!shown) {
+      // when expanded scripture pane is closed, clear edit mode
+      setEditVerseInScrPane(null);
+    }
+  }
 
   return (
     <TcuiThemeProvider theme={theme}>
@@ -83,6 +107,8 @@ function Container({
               tc={tc}
               toolApi={toolApi}
               translate={translate}
+              onExpandedScripturePaneShow={onExpandedScripturePaneShow}
+              editVerseInScrPane={editVerseInScrPane}
             />
           </div>
           <CheckInfoCardWrapper
@@ -97,6 +123,7 @@ function Container({
             translate={translate}
             contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
+            editVerseInScripturePane={editVerseInExpandedScripturePane}
           />
         </div>
         <TranslationHelpsWrapper
@@ -128,7 +155,7 @@ export const mapStateToProps = (state, ownProps) => {
   const glBibles = getGatewayLanguageBibles(ownProps);
   const toolName = getCurrentToolName(ownProps);
   const tsvRelation = getThelpsManifestRelation(gatewayLanguageCode, toolName);
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
+  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation, true);
   const tc = getTcState(ownProps);
   const toolApi = getToolApi(ownProps);
 

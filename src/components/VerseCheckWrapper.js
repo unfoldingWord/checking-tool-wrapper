@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { VerseCheck } from 'tc-ui-toolkit';
+import { VerseCheck, verseHelpers } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
 // helpers
 import { optimizeSelections } from '../helpers/selectionHelpers';
@@ -72,6 +72,7 @@ function VerseCheckWrapper({
   },
   commentsReducer: { text: commentText },
   bookmarksReducer: { enabled: bookmarkEnabled },
+  editVerseInScripturePane,
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -161,7 +162,48 @@ function VerseCheckWrapper({
     }
   }
 
+  /**
+   * see if current verse is part of a list or a verse range that is not an
+   *    exact match in the target bible.  In that case there is more than one
+   *    verse to be edited, so return first verse to be edited.  Otherwise we
+   *    have an exact match to in the target bible and will just return null.
+   * @returns {null|string}
+   */
+  function checkIfMultipartVerseToEdit() {
+    const { reference: { chapter, verse } } = contextId;
+    const verseRef = contextId.verseSpan || verse; // if in verse span, use it
+    const verseFound = targetBible?.[chapter]?.[verseRef];
+    let editVerse = null;
+
+    if (!verseFound) { // reference is not exact match to single verse or span
+      const verseList = verseHelpers.getVerseList(verseRef); // get the parts
+
+      if (verseList?.length) {
+        editVerse = verseList[0];
+
+        if (verseHelpers.isVerseSpan(editVerse)) {
+          const { low } = verseHelpers.getVerseSpanRange(editVerse);
+
+          if (low) {
+            editVerse = low;
+          }
+        }
+      }
+    }
+    return editVerse;
+  }
+
   function changeMode(mode) {
+    if (mode === 'edit') {
+      let editFirstVerse = checkIfMultipartVerseToEdit();
+
+      if (editFirstVerse) {
+        // eslint-disable-next-line no-unused-expressions
+        editVerseInScripturePane && editVerseInScripturePane(editFirstVerse);
+        return;
+      }
+    }
+
     setLocalState({
       mode,
       newSelections: selections,
@@ -376,12 +418,13 @@ VerseCheckWrapper.propTypes = {
   showAlert: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   editTargetVerse: PropTypes.func.isRequired,
+  editVerseInScripturePane: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state);
   const targetBible = getTargetBible(ownProps);
-  const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId);
+  const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId, true);
   const currentGroupItem = getCurrentGroup(state);
   const isVerseEdited = !!(currentGroupItem && currentGroupItem.verseEdits);
   const isVerseInvalidated = !!(currentGroupItem && currentGroupItem.invalidated);

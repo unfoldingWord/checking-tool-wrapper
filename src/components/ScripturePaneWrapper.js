@@ -32,6 +32,8 @@ function ScripturePaneWrapper({
   projectDetailsReducer,
   addObjectPropertyToManifest,
   makeSureBiblesLoadedForTool,
+  onExpandedScripturePaneShow,
+  editVerseInScrPane,
 }) {
   function makeTitle(manifest) {
     const { target_language, project } = manifest;
@@ -65,29 +67,35 @@ function ScripturePaneWrapper({
 
   const expandedScripturePaneTitle = makeTitle(manifest);
 
-  if (contextNotEmpty(contextId)) {
-    return (
-      <ScripturePane
-        bibles={bibles}
-        contextId={contextId_}
-        translate={translate}
-        selections={selections}
-        showPopover={showPopover}
-        getLexiconData={getLexiconData}
-        editTargetVerse={editTargetVerse}
-        setToolSettings={setToolSettings}
-        complexScriptFonts={complexScriptFonts}
-        currentPaneSettings={currentPaneSettings}
-        projectDetailsReducer={projectDetailsReducer}
-        expandedScripturePaneTitle={expandedScripturePaneTitle}
-        addObjectPropertyToManifest={addObjectPropertyToManifest}
-        makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
-        getAvailableScripturePaneSelections={getScripturePaneSelections}
-      />
-    );
-  } else {
-    return null;
+  function renderScripturePane() {
+    if (contextNotEmpty(contextId)) {
+      return (
+        <ScripturePane
+          editVerseRef={editVerseInScrPane}
+          bibles={bibles}
+          contextId={contextId_}
+          translate={translate}
+          selections={selections}
+          showPopover={showPopover}
+          getLexiconData={getLexiconData}
+          editTargetVerse={editTargetVerse}
+          setToolSettings={setToolSettings}
+          complexScriptFonts={complexScriptFonts}
+          currentPaneSettings={currentPaneSettings}
+          projectDetailsReducer={projectDetailsReducer}
+          expandedScripturePaneTitle={expandedScripturePaneTitle}
+          addObjectPropertyToManifest={addObjectPropertyToManifest}
+          makeSureBiblesLoadedForTool={ensureBiblesAreLoadedForTool}
+          getAvailableScripturePaneSelections={getScripturePaneSelections}
+          onExpandedScripturePaneShow={onExpandedScripturePaneShow}
+        />
+      );
+    } else {
+      return null;
+    }
   }
+
+  return renderScripturePane();
 }
 
 ScripturePaneWrapper.propTypes = {
@@ -104,6 +112,8 @@ ScripturePaneWrapper.propTypes = {
   editTargetVerse: PropTypes.func.isRequired,
   setToolSettings: PropTypes.func.isRequired,
   makeSureBiblesLoadedForTool: PropTypes.func.isRequired,
+  editVerseInScrPane: PropTypes.string, // if given then open verse for edit (single verse)
+  onExpandedScripturePaneShow: PropTypes.func.isRequired, // called when expanded Scripture Pane as shown or hidden
 };
 
 export const mapStateToProps = (state, ownProps) => ({

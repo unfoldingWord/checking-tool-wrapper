@@ -1,6 +1,7 @@
 import isEqual from 'deep-equal';
 import path from 'path-extra';
 import fs from 'fs-extra';
+import { verseHelpers } from 'tc-ui-toolkit';
 import { saveGroupsDataItem } from '../localStorage/saveMethods';
 import ProjectAPI from './ProjectAPI';
 import { sameContext } from './contextIdHelpers';
@@ -157,8 +158,8 @@ export function getVerseSpans(targetBook) {
     for (let j = 0, lv = verses.length; j < lv; j++) {
       const verse = verses[j];
 
-      if (isVerseSpan(verse)) {
-        const range = getVerseSpanRange(verse);
+      if (verseHelpers.isVerseSpan(verse)) {
+        const range = verseHelpers.getVerseSpanRange(verse);
         const { low, high } = range;
 
         for (let i = low; i <= high; i++) {
@@ -192,7 +193,7 @@ export function tagGroupDataSpans(targetBook, groupsData) {
         const { reference: { chapter, verse } } = contextId;
         const verseSpansForChapter = verseSpans[chapter];
 
-        if (isVerseSpan(verse)) {
+        if (verseHelpers.isVerseSet(verse)) {
           groupItem.contextId.verseSpan = verse;
         } else if (verseSpansForChapter) {
           const verseSpan = verseSpansForChapter[verse + ''];
@@ -206,28 +207,6 @@ export function tagGroupDataSpans(targetBook, groupsData) {
       } catch (e) { }
     }
   }
-}
-
-/**
- * get verse range from span
- * @param {string} verseSpan
- * @return {{high: number, low: number}}
- */
-export function getVerseSpanRange(verseSpan) {
-  let [low, high] = verseSpan.split('-');
-  low = parseInt(low);
-  high = parseInt(high);
-  return { low, high };
-}
-
-/**
- * test if verse is valid verse number or verse span string
- * @param {string|number} verse
- * @return {boolean}
- */
-export function isVerseSpan(verse) {
-  const isSpan = (typeof verse === 'string') && verse.includes('-');
-  return isSpan;
 }
 
 /**
@@ -254,7 +233,7 @@ export function normalizeRef(verse) {
  */
 export function isVerseWithinVerseSpan(verseSpan, verse) {
   if (typeof verseSpan === 'string') {
-    const { low, high } = getVerseSpanRange(verseSpan);
+    const { low, high } = verseHelpers.getVerseSpanRange(verseSpan);
 
     if ((low > 0) && (high > 0)) {
       return ((verse >= low) && (verse <= high));
@@ -278,7 +257,7 @@ export function isSameVerse(contextId1, contextId2) {
     match = (verse1 === verse2);
 
     if (!match) { // if not exact match, check for verseSpan
-      if (isVerseSpan(verse2)) {
+      if (verseHelpers.isVerseSpan(verse2)) {
         match = isVerseWithinVerseSpan(verse2, verse1);
       }
     }
