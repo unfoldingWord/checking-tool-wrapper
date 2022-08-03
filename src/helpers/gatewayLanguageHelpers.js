@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { getAlignedText } from 'tc-ui-toolkit';
 import { getVerses } from 'bible-reference-range';
+import _ from 'lodash';
 
 /**
  * Returns the gateway language code and quote.
@@ -84,6 +85,42 @@ export function bibleIdSort(a, b) {
 }
 
 /**
+ * count original words in verseObjects - it is nested so this is recursive
+ * @param {array} verseObjects
+ * @param {number} verseCnt
+ * @param {boolean} multiVerse
+ * @param {object} previousVerseWordCounts
+ * @param {object} currentVerseCounts
+ */
+function updateOriginalWordsOccurrence(verseObjects, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts) {
+  if (verseObjects) {
+    for (const vo of verseObjects) {
+      if ( multiVerse && (vo?.tag === 'zaln')) {
+        vo.verseCnt = verseCnt;
+        const origWord = vo?.content;
+
+        if (origWord) {
+          const previousCount = previousVerseWordCounts[origWord] || 0;
+          const currentCount = currentVerseCounts[origWord] || 0;
+
+          if (!currentCount) {
+            currentVerseCounts[origWord] = vo.occurrences + previousCount;
+          }
+
+          if (verseCnt && previousCount) { // if not verse verse, update counts to include previous verse counts
+            vo.occurrence += previousCount;
+          }
+
+          if (vo.children) {
+            updateOriginalWordsOccurrence(vo.children, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
  * Gets the aligned GL text from the given bible
  * @param {object} contextId
  * @param {object} bookData
@@ -95,14 +132,30 @@ export function getAlignedTextFromBible(contextId, bookData) {
     const verseRef = contextId.reference.verse;
     const refs = getVerses(bookData, `${chapter}:${verseRef}`);
     let verseObjects = [];
+    const verseWordCounts = [];
+    const multiVerse = refs.length > 1;
 
     for (let verseCnt = 0; verseCnt < refs.length; verseCnt++) {
+      const previousVerseWordCounts = verseCnt > 0 ? verseWordCounts[verseCnt-1] : {};
+      const currentVerseCounts = {};
+      verseWordCounts.push(currentVerseCounts);
       const ref = refs[verseCnt];
       const verseData = ref.verseData;
 
       if (verseData?.verseObjects) { // if we found verse objects
-        const verseObjects_ = verseData.verseObjects;
+        let verseObjects_ = multiVerse ? _.cloneDeep(verseData.verseObjects) : verseData.verseObjects;
+        updateOriginalWordsOccurrence(verseObjects_, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts, verseWordCounts);
         Array.prototype.push.apply(verseObjects, verseObjects_);
+
+        if (multiVerse && verseCnt < refs.length-1) {
+          const words = Object.keys(previousVerseWordCounts);
+
+          for (const word of words) { // update current verse with counts from previous verse
+            if (!currentVerseCounts[word]) {
+              currentVerseCounts[word] = previousVerseWordCounts[word];
+            }
+          }
+        }
       }
     }
     return getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
