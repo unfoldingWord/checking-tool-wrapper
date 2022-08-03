@@ -101,7 +101,6 @@ export function getAlignedTextFromBible(contextId, bookData) {
       const verseData = ref.verseData;
 
       if (verseData?.verseObjects) { // if we found verse objects
-        verseObjects = verseData.verseObjects;
         const verseObjects_ = verseData.verseObjects;
         Array.prototype.push.apply(verseObjects, verseObjects_);
       }
