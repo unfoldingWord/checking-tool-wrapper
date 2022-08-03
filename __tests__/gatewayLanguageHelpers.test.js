@@ -408,6 +408,47 @@ describe('gatewayLanguageHelpers.getAlignedGLText', () => {
     expect(alignedGLText).toEqual(expectedAlignedGLText);
   });
 
+  test('should return text from ult and ignore hi reference in tsv_relation with multiverse', () => {
+    // given
+    const contextId = {
+      groupId: 'blameless',
+      occurrence: 1,
+      quote: 'ἀνέγκλητος',
+      reference: {
+        bookId: 'tit',
+        chapter: 1,
+        verse: '6-8',
+      },
+      strong: ['G04100'],
+    };
+    const bibles = {
+      'ult': {
+        1: {
+          6: { verseObjects: verseObjects },
+          7: { verseObjects: verseObjects.slice(0, verseObjects.length-2) }, // make 2nd verse shorter
+          8: { verseObjects: verseObjects.slice(0, verseObjects.length-4) }, // make 3rd verse even shorter
+        },
+      },
+      'zzz': { 1: { 6: { verseObjects: verseObjects2 } } },
+      'ulb': [],
+    };
+    const expectedAlignedGLText = 'without blame';
+    const tsv_relation = [
+      'hi/zzz',
+      'en/ust',
+      'en/obs',
+      'el-x-koine/ugnt?v=0.13',
+      'hbo/uhb?v=2.1.14',
+    ];
+    const glID = 'en';
+
+    // when
+    const alignedGLText = gatewayLanguageHelpers.getAlignedGLTextHelper( contextId, bibles, glID, tsv_relation);
+
+    // then
+    expect(alignedGLText).toEqual(expectedAlignedGLText);
+  });
+
   test('should return text from tsv_relation and not ult', () => {
     // given
     const contextId = {
