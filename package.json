@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "7.4.1-alpha",
+  "version": "7.4.1",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -37,7 +37,7 @@
     "string-punctuation-tokenizer": "^2.0.0",
     "tc-electron-env": "^0.10.0",
     "tc-source-content-updater": "^1.2.12",
-    "tc-ui-toolkit": "^6.1.1",
+    "tc-ui-toolkit": "^6.2.0",
     "tsv-groupdata-parser": "^0.10.0",
     "usfm-js": "^2.1.0",
     "word-aligner": "^0.4.0"
@@ -86,7 +86,7 @@
     "tc-electron-env": "0.10.0",
     "tc-source-content-updater": "1.2.12",
     "tc-tool": "4.0.1",
-    "tc-ui-toolkit": "6.1.1",
+    "tc-ui-toolkit": "6.2.0",
     "tsv-groupdata-parser": "0.10.3",
     "usfm-js": "2.1.0",
     "word-aligner": "0.4.0"
