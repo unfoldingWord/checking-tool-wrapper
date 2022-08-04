@@ -95,8 +95,13 @@ function CheckInfoCardWrapper({
     const {
       groupId, occurrenceNote, tool,
     } = contextId;
-    const title = groupsIndex.filter(item => item.id === groupId)[0].name;
+    let groupItem = groupsIndex.filter(item => item.id === groupId);
     let phrase = '';
+    const title = groupItem?.[0]?.name;
+
+    if (!title) {
+      console.warn(`CheckInfoCardWrapper - could not find title for ${groupId}`);
+    }
 
     switch (tool) {
     case TRANSLATION_WORDS: {
