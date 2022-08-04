@@ -95,7 +95,8 @@ function CheckInfoCardWrapper({
     const {
       groupId, occurrenceNote, tool,
     } = contextId;
-    const title = groupsIndex.filter(item => item.id === groupId)[0].name;
+    let groupItem = groupsIndex.filter(item => item.id === groupId);
+    const title = groupItem?.[0]?.name;
     let phrase = '';
 
     switch (tool) {
