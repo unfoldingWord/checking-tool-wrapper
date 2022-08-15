@@ -49,7 +49,6 @@ function TranslationHelpsWrapper({
   resourcesReducer: resourcesReducerProp,
 }) {
   resourcesReducer = resourcesReducerProp;
-  console.log('gatewayLanguageOwner', gatewayLanguageOwner);
 
   const initialState = {
     showHelpsModal: false,
