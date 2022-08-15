@@ -100,7 +100,9 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    loadResourceArticle(currentToolName, groupId, gatewayLanguageCode, '', true, gatewayLanguageOwner); // do asynchronous load
+    if (groupId) {
+      loadResourceArticle(currentToolName, groupId, gatewayLanguageCode, '', true, gatewayLanguageOwner); // do asynchronous load
+    }
   }, [currentToolName, groupId, gatewayLanguageCode]);
 
   useEffect(() => {
