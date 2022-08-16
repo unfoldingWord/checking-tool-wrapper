@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
-import { getAlignedText, verseHelpers } from 'tc-ui-toolkit';
-import { getVerse } from './verseHelpers';
+import { getAlignedText } from 'tc-ui-toolkit';
+import { getVerses } from 'bible-reference-range';
+import _ from 'lodash';
 
 /**
  * Returns the gateway language code and quote.
@@ -84,54 +85,76 @@ export function bibleIdSort(a, b) {
 }
 
 /**
- * appends a verse to verseObjects
- * @param {object} chapterData
+ * count original words in verseObjects - it is nested so this is recursive
  * @param {array} verseObjects
- * @param {array} history
- * @param {string} verse
- * @returns {*}
+ * @param {number} verseCnt
+ * @param {boolean} multiVerse
+ * @param {object} previousVerseWordCounts
+ * @param {object} currentVerseCounts
  */
-function addVerse(chapterData, verseObjects, history, verse) {
-  const { verseData, verseLabel } = getVerse(chapterData, verse);
+function updateOriginalWordsOccurrence(verseObjects, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts) {
+  if (verseObjects) {
+    for (const vo of verseObjects) {
+      if ( multiVerse && (vo?.tag === 'zaln')) {
+        vo.verseCnt = verseCnt;
+        const origWord = vo?.content;
 
-  if (verseData?.verseObjects && !history.includes(verseLabel)) {
-    history.push(verseLabel + '');
-    const verseObjects_ = verseData.verseObjects;
-    Array.prototype.push.apply(verseObjects, verseObjects_);
+        if (origWord) {
+          const previousCount = previousVerseWordCounts[origWord] || 0;
+          const currentCount = currentVerseCounts[origWord] || 0;
+
+          if (!currentCount) {
+            currentVerseCounts[origWord] = vo.occurrences + previousCount;
+          }
+
+          if (verseCnt && previousCount) { // if not verse verse, update counts to include previous verse counts
+            vo.occurrence += previousCount;
+          }
+
+          if (vo.children) {
+            updateOriginalWordsOccurrence(vo.children, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts);
+          }
+        }
+      }
+    }
   }
 }
 
 /**
  * Gets the aligned GL text from the given bible
  * @param {object} contextId
- * @param {object} bible
+ * @param {object} bookData
  * @returns {string}
  */
-export function getAlignedTextFromBible(contextId, bible) {
-  if (bible && contextId?.reference) {
+export function getAlignedTextFromBible(contextId, bookData) {
+  if (bookData && contextId?.reference) {
     const chapter = contextId.reference.chapter;
-    const chapterData = bible[chapter];
     const verseRef = contextId.reference.verse;
-    const verseData = chapterData?.[verseRef];
-    let verseObjects = null;
-    const history = []; // to guard against duplicate verses
+    const refs = getVerses(bookData, `${chapter}:${verseRef}`);
+    let verseObjects = [];
+    const verseWordCounts = [];
+    const multiVerse = refs.length > 1;
 
-    if (verseData) { // if we found verse
-      verseObjects = verseData.verseObjects;
-    } else { // if we didn't find exact verse match
-      const verseList = verseHelpers.getVerseList(verseRef);
-      verseObjects = [];
+    for (let verseCnt = 0; verseCnt < refs.length; verseCnt++) {
+      const previousVerseWordCounts = verseCnt > 0 ? verseWordCounts[verseCnt-1] : {};
+      const currentVerseCounts = {};
+      verseWordCounts.push(currentVerseCounts);
+      const ref = refs[verseCnt];
+      const verseData = ref.verseData;
 
-      for (const verse_ of verseList) {
-        if (verseHelpers.isVerseSpan(verse_)) {
-          // iterate through all verses in span
-          const { low, high } = verseHelpers.getVerseSpanRange(verse_);
+      if (verseData?.verseObjects) { // if we found verse objects
+        let verseObjects_ = multiVerse ? _.cloneDeep(verseData.verseObjects) : verseData.verseObjects;
+        updateOriginalWordsOccurrence(verseObjects_, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts, verseWordCounts);
+        Array.prototype.push.apply(verseObjects, verseObjects_);
 
-          for (let i = low; i <= high; i++) {
-            addVerse(chapterData, verseObjects, history, i);
+        if (multiVerse && verseCnt < refs.length-1) {
+          const words = Object.keys(previousVerseWordCounts);
+
+          for (const word of words) { // update current verse with counts from previous verse
+            if (!currentVerseCounts[word]) {
+              currentVerseCounts[word] = previousVerseWordCounts[word];
+            }
           }
-        } else { // not a verse span
-          addVerse(chapterData, verseObjects, history, verse_);
         }
       }
     }
