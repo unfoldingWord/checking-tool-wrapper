@@ -7,11 +7,12 @@ import { connect } from 'react-redux';
 import * as tHelpsHelpers from '../helpers/tHelpsHelpers';
 // selectors
 import {
-  getTranslationHelpsArticle,
-  getGatewayLanguageCode,
   getContextId,
-  getResourcesReducer,
   getCurrentToolName,
+  getGatewayLanguageCode,
+  getGatewayLanguageOwner,
+  getResourcesReducer,
+  getTranslationHelpsArticle,
 } from '../selectors/index';
 
 // resourcesReducer needs to be global so that the followTHelpsLink has the new article's content
@@ -42,6 +43,7 @@ function TranslationHelpsWrapper({
   translate,
   currentFile,
   gatewayLanguageCode,
+  gatewayLanguageOwner,
   currentToolName,
   loadResourceArticle,
   resourcesReducer: resourcesReducerProp,
@@ -84,7 +86,7 @@ function TranslationHelpsWrapper({
     let articleData = getArticleFromReducer(resourceSubDir, article);
 
     if (!articleData) { // if not cached
-      loadResourceArticle(resourceSubDir, article, lang, category); // do synchronous load
+      loadResourceArticle(resourceSubDir, article, lang, category, false, gatewayLanguageOwner); // do synchronous load
       articleData = getArticleFromReducer(resourceSubDir, article);
     }
     setThState({
@@ -97,7 +99,9 @@ function TranslationHelpsWrapper({
   window.followLink = followTHelpsLink;
 
   useEffect(() => {
-    loadResourceArticle(currentToolName, groupId, gatewayLanguageCode, '', true); // do asynchronous load
+    if (groupId) {
+      loadResourceArticle(currentToolName, groupId, gatewayLanguageCode, '', true, gatewayLanguageOwner); // do asynchronous load
+    }
   }, [currentToolName, groupId, gatewayLanguageCode]);
 
   useEffect(() => {
@@ -140,6 +144,7 @@ TranslationHelpsWrapper.propTypes = {
   toggleHelps: PropTypes.func.isRequired,
   currentFile: PropTypes.string,
   gatewayLanguageCode: PropTypes.string.isRequired,
+  gatewayLanguageOwner: PropTypes.string.isRequired,
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
   loadResourceArticle: PropTypes.func.isRequired,
@@ -152,6 +157,7 @@ export const mapStateToProps = (state, ownProps) => {
     contextId,
     currentToolName: getCurrentToolName(ownProps),
     gatewayLanguageCode: getGatewayLanguageCode(ownProps),
+    gatewayLanguageOwner: getGatewayLanguageOwner(ownProps),
     resourcesReducer: getResourcesReducer(ownProps),
     loadResourceArticle: ownProps.tc.loadResourceArticle,
     currentFile: getTranslationHelpsArticle(ownProps, contextId),
