@@ -1,4 +1,5 @@
 import usfmjs from 'usfm-js';
+import { getVerses } from 'bible-reference-range';
 import { verseHelpers } from 'tc-ui-toolkit';
 import { normalizeString } from './stringHelpers';
 import { isVerseWithinVerseSpan } from './groupDataHelpers';
@@ -106,27 +107,47 @@ export function getBestVerseFromChapter(chapterData, verse, addVerseRef=false) {
 
 /**
  *  Gets both the verse text without usfm markers and unfilteredVerseText.
- * @param {object} targetBible - target bible
+ * @param {object} bookData - current book data
  * @param {object} contextId - context id
  * @param {boolean} addVerseRef - if true then we add verse marker inline
  */
-export function getVerseText(targetBible, contextId, addVerseRef=false) {
+export function getVerseText(bookData, contextId, addVerseRef=false) {
   let unfilteredVerseText = '';
   let verseText = '';
 
   if (contextId && contextId.reference) {
     const { chapter, verse } = contextId.reference;
+    const refs = getVerses(bookData, `${chapter}:${verse}`);
+    let initialChapter;
 
-    if (targetBible && targetBible[chapter]) {
-      unfilteredVerseText = getBestVerseFromBook(targetBible, chapter, verse, addVerseRef);
-
-      if (Array.isArray(unfilteredVerseText)) {
-        unfilteredVerseText = unfilteredVerseText[0];
-      }
-      verseText = usfmjs.removeMarker(unfilteredVerseText);
-      // normalize whitespace in case selection has contiguous whitespace _this isn't captured
-      verseText = normalizeString(verseText);
+    if (refs && refs.length) {
+      initialChapter = refs[0].chapter;
     }
+
+    for (let verseCnt = 0; verseCnt < refs.length; verseCnt++) {
+      const ref = refs[verseCnt];
+      const chapter = ref.chapter;
+      const data = ref.verseData;
+      let label = ref.verse;
+
+      if (chapter !== initialChapter) {
+        label = `${chapter}:${label}`;
+      }
+
+      if (verseCnt > 0) {
+        unfilteredVerseText += '\n';
+
+        if (addVerseRef) {
+          unfilteredVerseText += label + ' ';
+        }
+      }
+
+      unfilteredVerseText += data;
+    }
+
+    verseText = usfmjs.removeMarker(unfilteredVerseText);
+    // normalize whitespace in case selection has contiguous whitespace _this isn't captured
+    verseText = normalizeString(verseText);
   }
 
   return { unfilteredVerseText, verseText };
