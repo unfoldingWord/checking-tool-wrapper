@@ -13,7 +13,13 @@ import { isVerseWithinVerseSpan } from './groupDataHelpers';
  * @return {null|*}
  */
 export function getBestVerseFromBook(currentBible, chapter, verse, addVerseRef=false) {
-  const chapterData = currentBible && currentBible[chapter];
+  let chapterData = currentBible && currentBible[chapter];
+
+  if (!chapterData) {
+    const c = parseInt(chapter, 10);
+    chapterData = currentBible && currentBible[c];
+  }
+
   let verseData = getBestVerseFromChapter(chapterData, verse, addVerseRef);
 
   if (verseData) {
@@ -29,7 +35,7 @@ export function getBestVerseFromBook(currentBible, chapter, verse, addVerseRef=f
  * @returns {{ verseData, verseLabel }}
  */
 export function getVerse(chapterData, verse ) {
-  const verseNum = parseInt(verse);
+  const verseNum = parseInt(verse, 10);
   let verseData = chapterData[verseNum];
   let verseLabel = null;
 
@@ -98,7 +104,29 @@ export function getBestVerseFromChapter(chapterData, verse, addVerseRef=false) {
           addVerse(chapterData, verses, history, verse_, addVerseRef);
         }
       }
-      return verses && verses.join('\n') || null;
+
+      let allStrings = true;
+      let verseObjects = [];
+
+      for (const verse of verses) {
+        if (typeof verse !== 'string') {
+          allStrings = false;
+          break;
+        }
+      }
+
+      if (allStrings) {
+        return verses && verses.join('\n') || null;
+      }
+
+      for (const verse of verses) {
+        if (typeof verse !== 'string') {
+          verseObjects.push({ type: 'text', text: '\n' + verse });
+        } else if (verse.verseObjects) {
+          verseObjects.push(verse.verseObjects);
+        }
+      }
+      return { verseObjects };
     }
     return verseData;
   }

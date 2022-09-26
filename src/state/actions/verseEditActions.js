@@ -229,7 +229,7 @@ export const recordTargetVerseEdit = (bookId, chapter, verse, before, after, tag
   gatewayLanguageQuote: glQuote,
   reference: {
     bookId,
-    chapter: parseInt(chapter),
+    chapter: parseInt(chapter, 10),
     verse: verse,
     groupId,
   },

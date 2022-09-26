@@ -66,7 +66,7 @@ export default class Api extends ToolApi {
     for (let i = 0, l = chapters.length; i < l; i++) {
       const chapter = chapters[i];
 
-      if (isNaN(chapter) || parseInt(chapter) === -1) {
+      if (isNaN(chapter) || parseInt(chapter, 10) === -1) {
         continue;
       }
       this.validateChapter(chapter, groupsData, groupsDataKeys, silent, modifiedTimestamp);
