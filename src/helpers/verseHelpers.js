@@ -123,7 +123,7 @@ export function getBestVerseFromChapter(chapterData, verse, addVerseRef=false) {
         if (typeof verse === 'string') {
           verseObjects.push({ type: 'text', text: '\n' + verse });
         } else if (verse.verseObjects) {
-          verseObjects.push(verse.verseObjects);
+          Array.prototype.push.apply(verseObjects, verse.verseObjects);
         }
       }
       return { verseObjects };
