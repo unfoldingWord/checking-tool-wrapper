@@ -148,7 +148,7 @@ export function getVerseSpans(targetBook) {
     const verseSpansForChapter = {};
     const chapter = chapters[i];
 
-    if (isNaN(parseInt(chapter))) {
+    if (isNaN(parseInt(chapter, 10))) {
       continue;
     }
 
@@ -219,7 +219,7 @@ export function normalizeRef(verse) {
 
   if (isString) {
     if (!verse.includes('-')) { // if not verse span convert to number
-      verse = parseInt(verse);
+      verse = parseInt(verse, 10);
     }
   }
   return verse;

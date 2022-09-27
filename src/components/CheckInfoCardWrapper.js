@@ -50,9 +50,8 @@ function CheckInfoCardWrapper({
     const biblesForLanguage = resourcesReducer.bibles[lang];
     const verseData = getBestVerse_(biblesForLanguage, id, chapter, verse);
 
-    if (verseData) {
-      const { verseObjects } = verseData;
-      const verseText = VerseObjectUtils.mergeVerseData(verseObjects).trim();
+    if (verseData?.verseObjects) {
+      const verseText = VerseObjectUtils.mergeVerseData(verseData?.verseObjects).trim();
       return verseText;
     }
   }
