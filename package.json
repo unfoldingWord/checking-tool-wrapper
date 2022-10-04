@@ -98,7 +98,7 @@
     "gogs-client": "0.5.2",
     "isEqual": "1.0.3",
     "lodash": "4.17.15",
-    "marked": "0.6.2",
+    "marked": "4.0.10",
     "ospath": "1.2.2",
     "path-extra": "4.3.0",
     "prop-types": "15.7.2",
