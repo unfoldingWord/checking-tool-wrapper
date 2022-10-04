@@ -59,7 +59,14 @@ function CheckInfoCardWrapper({
   function handleClickLink(href) {
     if (href.startsWith('rc://')) {
       // TRICKY: the translation helps wrapper requires a custom link format
-      const link = href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      let link;
+
+      if (href.includes(`/ta/man/`)) {
+        link = href.replace(/rc:\/\/([^/]+)\/ta\/man\/([^/)]+)\/([^/)]+)/g, '$1/ta/$2/$3');
+      } else {
+        link = href.replace(/rc:\/\/([^/]+)\/tw\/dict\/bible\/([^/)]+)\/([^/)]+)/g, '$1/tw/$2/$3');
+      }
+
       window.followLink(link);
 
       // TRICKY: open the helps so the modal mounts.
