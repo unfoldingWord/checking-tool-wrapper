@@ -30,7 +30,7 @@ export const OT_ORIG_LANG_BIBLE = 'uhb';
 export const DEFAULT_MAX_SELECTIONS = 4;
 export const TN_MAX_SELECTIONS = 10;
 // url strings
-export const DCS_BASE_URL = 'https://git.door43.org';
+export const DCS_BASE_URL = 'https://qa.door43.org';
 // alerts strings
 export const ALERT_ALIGNMENTS_RESET_ID = 'alignments_reset';
 export const ALERT_SELECTIONS_INVALIDATED_ID = 'selections_invalidated_id';
