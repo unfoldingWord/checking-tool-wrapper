@@ -36,9 +36,10 @@ function GroupMenuComponent({
   /**
    * Preprocess a menu item
    * @param {object} item - an item in the groups data
+   * @param {boolean} sortingByRef - if true then we are ordering by reference
    * @returns {object} the updated item
    */
-  function onProcessItem(item) {
+  function onProcessItem(item, sortingByRef) {
     const {
       contextId: {
         quote,
@@ -63,7 +64,9 @@ function GroupMenuComponent({
     const refStr = getReferenceStr(chapter, verseLabel);
     let title = refStr;
 
-    if (selectionText) {
+    if (sortingByRef) {
+      title = item.groupName;
+    } else if (selectionText) {
       title = `${refStr} ${selectionText}`;
     }
 
@@ -154,17 +157,19 @@ function GroupMenuComponent({
     },
   ];
 
+  const sortByRef = true;
   const entries = generateMenuData(
     groupsIndex,
     groupsData,
     'selections',
     direction,
     onProcessItem,
-    'nothingToSelect'
+    'nothingToSelect',
+    sortByRef
   );
 
   const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
-  const sorted = sortEntries(entries);
+  const sorted = sortByRef ? entries : sortEntries(entries);
 
   return (
     <GroupedMenu
