@@ -24,6 +24,7 @@ function GroupMenuComponent({
   targetLanguageFont,
   changeCurrentContextId,
   direction,
+  orderHelpsByRef,
 }) {
   /**
    * Handles click events from the menu
@@ -65,7 +66,7 @@ function GroupMenuComponent({
     let title = refStr;
 
     if (sortingByRef) {
-      title = item.groupName;
+      title = `${item.groupName} - ${item?.contextId?.quoteString}`;
     } else if (selectionText) {
       title = `${refStr} ${selectionText}`;
     }
@@ -157,7 +158,6 @@ function GroupMenuComponent({
     },
   ];
 
-  const sortByRef = true;
   const entries = generateMenuData(
     groupsIndex,
     groupsData,
@@ -165,11 +165,11 @@ function GroupMenuComponent({
     direction,
     onProcessItem,
     'nothingToSelect',
-    sortByRef
+    orderHelpsByRef
   );
 
   const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
-  const sorted = sortByRef ? entries : sortEntries(entries);
+  const sorted = orderHelpsByRef ? entries : sortEntries(entries);
 
   return (
     <GroupedMenu
@@ -194,6 +194,7 @@ GroupMenuComponent.propTypes = {
   targetLanguageFont: PropTypes.string,
   changeCurrentContextId: PropTypes.func.isRequired,
   direction: PropTypes.oneOf(['ltr', 'rtl']),
+  orderHelpsByRef: PropTypes.bool,
 };
 
 GroupMenuComponent.defaultProps = { direction: 'ltr' };

@@ -70,6 +70,7 @@ function Container({
     reference,
   } = contextId || {};
   const { chapter, verse } = reference || {};
+  const orderHelpsByRef = tc?.settingsReducer?.currentSettings?.orderHelpsByRef;
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
@@ -100,6 +101,7 @@ function Container({
           tc={tc}
           translate={translate}
           gatewayLanguageQuote={gatewayLanguageQuote}
+          orderHelpsByRef={orderHelpsByRef}
         />
         <div style={styles.centerDiv}>
           <div style={styles.scripturePaneDiv}>

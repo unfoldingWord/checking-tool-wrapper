@@ -41,6 +41,7 @@ function GroupMenuContainer({
   changeCurrentContextId,
   clearContextId,
   manifest,
+  orderHelpsByRef,
 }) {
   useEffect(() => {
     loadGroupsIndex(gatewayLanguageCode, currentToolName, projectSaveLocation, translate);
@@ -81,6 +82,7 @@ function GroupMenuContainer({
         targetLanguageFont={projectFont}
         changeCurrentContextId={changeCurrentContextId}
         direction={direction}
+        orderHelpsByRef={orderHelpsByRef}
       />
     );
   } else {
@@ -106,6 +108,7 @@ GroupMenuContainer.propTypes = {
   clearGroupsData: PropTypes.func.isRequired,
   loadCurrentContextId: PropTypes.func.isRequired,
   clearContextId: PropTypes.func.isRequired,
+  orderHelpsByRef: PropTypes.bool,
 };
 
 const mapStateToProps = (state, ownProps) => ({
