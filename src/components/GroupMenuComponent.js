@@ -168,7 +168,12 @@ function GroupMenuComponent({
     orderHelpsByRef
   );
 
-  const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
+  const activeEntry = generateMenuItem(
+    contextId,
+    direction,
+    onProcessItem,
+    orderHelpsByRef,
+  );
   const sorted = orderHelpsByRef ? entries : sortEntries(entries);
 
   return (
