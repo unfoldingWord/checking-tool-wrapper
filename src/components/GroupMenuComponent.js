@@ -7,12 +7,12 @@ import BlockIcon from '@material-ui/icons/Block';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
 import EditIcon from '@material-ui/icons/Edit';
 import {
-  GroupedMenu,
+  CheckIcon,
   generateMenuData,
   generateMenuItem,
-  InvalidatedIcon,
-  CheckIcon,
   getReferenceStr,
+  GroupedMenu,
+  InvalidatedIcon,
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
@@ -66,7 +66,14 @@ function GroupMenuComponent({
     let title = refStr;
 
     if (sortingByRef) {
-      title = `${item.groupName} - ${item?.contextId?.quoteString}`;
+      const contextId_ = item?.contextId;
+      let quoteString = contextId_?.quoteString;
+
+      if (!quoteString) {
+        quoteString = contextId_?.quote.toString();
+      }
+
+      title = `${item.groupName} - ${quoteString}`;
     } else if (selectionText) {
       title = `${refStr} ${selectionText}`;
     }
