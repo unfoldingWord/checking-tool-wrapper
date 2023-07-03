@@ -95,7 +95,6 @@ function GroupMenuComponent({
    * @param {array} newFilters
    */
   function onFiltersChanged(newFilters) {
-    console.log(`newFilters`, newFilters);
     newFilters = newFilters || [];
     let groupingOn = false;
 
