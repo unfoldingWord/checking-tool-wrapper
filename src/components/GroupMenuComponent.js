@@ -225,7 +225,6 @@ GroupMenuComponent.propTypes = {
   targetLanguageFont: PropTypes.string,
   changeCurrentContextId: PropTypes.func.isRequired,
   direction: PropTypes.oneOf(['ltr', 'rtl']),
-  onFiltersChanged: PropTypes.func,
 };
 
 GroupMenuComponent.defaultProps = { direction: 'ltr' };
