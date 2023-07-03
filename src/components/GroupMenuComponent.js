@@ -1,18 +1,19 @@
 /* eslint-disable no-extra-boolean-cast */
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BlockIcon from '@material-ui/icons/Block';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
+import CategoryIcon from '@material-ui/icons/Category';
 import EditIcon from '@material-ui/icons/Edit';
 import {
-  GroupedMenu,
+  CheckIcon,
   generateMenuData,
   generateMenuItem,
-  InvalidatedIcon,
-  CheckIcon,
   getReferenceStr,
+  GroupedMenu,
+  InvalidatedIcon,
 } from 'tc-ui-toolkit';
 import { generateItemId } from '../helpers/groupMenuHelpers';
 
@@ -25,6 +26,8 @@ function GroupMenuComponent({
   changeCurrentContextId,
   direction,
 }) {
+  const [orderHelpsByRef, setOrderHelpsByRef] = useState(false);
+
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
@@ -36,9 +39,10 @@ function GroupMenuComponent({
   /**
    * Preprocess a menu item
    * @param {object} item - an item in the groups data
+   * @param {boolean} sortingByRef - if true then we are ordering by reference
    * @returns {object} the updated item
    */
-  function onProcessItem(item) {
+  function onProcessItem(item, sortingByRef) {
     const {
       contextId: {
         quote,
@@ -61,10 +65,11 @@ function GroupMenuComponent({
     // build passage title
     const verseLabel = verseSpan || verse;
     const refStr = getReferenceStr(chapter, verseLabel);
-    let title = refStr;
+    const groupName = sortingByRef ? item.groupName : refStr;
+    let title = groupName;
 
     if (selectionText) {
-      title = `${refStr} ${selectionText}`;
+      title = `${groupName} ${selectionText}`;
     }
 
     return {
@@ -83,6 +88,24 @@ function GroupMenuComponent({
       const bName = (b.title || b.id).toLowerCase();
       return (aName < bName) ? -1 : (aName > bName) ? 1 : 0;
     });
+  }
+
+  /**
+   * callback for when filters change
+   * @param {array} newFilters
+   */
+  function onFiltersChanged(newFilters) {
+    console.log(`newFilters`, newFilters);
+    newFilters = newFilters || [];
+    let groupingOn = false;
+
+    for (let i = 0; i < newFilters.length; i++) {
+      if (newFilters[i].key === 'grouping') {
+        groupingOn = true;
+        break;
+      }
+    }
+    setOrderHelpsByRef(groupingOn);
   }
 
   const filters = [
@@ -125,6 +148,12 @@ function GroupMenuComponent({
       key: 'comments',
       icon: <ModeCommentIcon />,
     },
+    {
+      label: translate('menu.grouping'),
+      key: 'grouping',
+      icon: <CategoryIcon />,
+      nonFilter: true,
+    },
   ];
 
   const statusIcons = [
@@ -160,11 +189,17 @@ function GroupMenuComponent({
     'selections',
     direction,
     onProcessItem,
-    'nothingToSelect'
+    'nothingToSelect',
+    orderHelpsByRef
   );
 
-  const activeEntry = generateMenuItem(contextId, direction, onProcessItem);
-  const sorted = sortEntries(entries);
+  const activeEntry = generateMenuItem(
+    contextId,
+    direction,
+    onProcessItem,
+    orderHelpsByRef,
+  );
+  const sorted = orderHelpsByRef ? entries : sortEntries(entries);
 
   return (
     <GroupedMenu
@@ -176,6 +211,7 @@ function GroupMenuComponent({
       targetLanguageFont={targetLanguageFont}
       title={translate('menu.menu')}
       emptyNotice={translate('menu.no_results')}
+      onFiltersChanged={onFiltersChanged}
     />
   );
 }
