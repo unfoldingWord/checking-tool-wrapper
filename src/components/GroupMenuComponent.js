@@ -1,10 +1,11 @@
 /* eslint-disable no-extra-boolean-cast */
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BlockIcon from '@material-ui/icons/Block';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
+import CategoryIcon from '@material-ui/icons/Category';
 import EditIcon from '@material-ui/icons/Edit';
 import {
   CheckIcon,
@@ -24,8 +25,12 @@ function GroupMenuComponent({
   targetLanguageFont,
   changeCurrentContextId,
   direction,
-  orderHelpsByRef,
 }) {
+  const [
+    orderHelpsByRef,
+    setOrderHelpsByRef,
+  ] = useState(false);
+
   /**
    * Handles click events from the menu
    * @param {object} contextId - the menu item's context id
@@ -96,6 +101,23 @@ function GroupMenuComponent({
     });
   }
 
+  /**
+   * callback for when filters change
+   * @param {array} newFilters
+   */
+  function onFiltersChanged(newFilters) {
+    console.log(`newFilters`, newFilters);
+    newFilters = newFilters || [];
+    let groupingOn = false;
+
+    for (let i = 0; i < newFilters.length; i++) {
+      if (newFilters[i].key === 'grouping') {
+        groupingOn = true;
+      }
+    }
+    setOrderHelpsByRef(groupingOn);
+  }
+
   const filters = [
     {
       label: translate('menu.invalidated'),
@@ -135,6 +157,12 @@ function GroupMenuComponent({
       label: translate('menu.comments'),
       key: 'comments',
       icon: <ModeCommentIcon />,
+    },
+    {
+      label: translate('menu.grouping'),
+      key: 'grouping',
+      icon: <CategoryIcon />,
+      nonFilter: true,
     },
   ];
 
@@ -193,6 +221,7 @@ function GroupMenuComponent({
       targetLanguageFont={targetLanguageFont}
       title={translate('menu.menu')}
       emptyNotice={translate('menu.no_results')}
+      onFiltersChanged={onFiltersChanged}
     />
   );
 }
@@ -206,7 +235,7 @@ GroupMenuComponent.propTypes = {
   targetLanguageFont: PropTypes.string,
   changeCurrentContextId: PropTypes.func.isRequired,
   direction: PropTypes.oneOf(['ltr', 'rtl']),
-  orderHelpsByRef: PropTypes.bool,
+  onFiltersChanged: PropTypes.func,
 };
 
 GroupMenuComponent.defaultProps = { direction: 'ltr' };
