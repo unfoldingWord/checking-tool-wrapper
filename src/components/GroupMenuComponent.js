@@ -26,10 +26,7 @@ function GroupMenuComponent({
   changeCurrentContextId,
   direction,
 }) {
-  const [
-    orderHelpsByRef,
-    setOrderHelpsByRef,
-  ] = useState(false);
+  const [orderHelpsByRef, setOrderHelpsByRef] = useState(false);
 
   /**
    * Handles click events from the menu
@@ -68,19 +65,11 @@ function GroupMenuComponent({
     // build passage title
     const verseLabel = verseSpan || verse;
     const refStr = getReferenceStr(chapter, verseLabel);
-    let title = refStr;
+    const groupName = sortingByRef ? item.groupName : refStr;
+    let title = groupName;
 
-    if (sortingByRef) {
-      const contextId_ = item?.contextId;
-      let quoteString = contextId_?.quoteString;
-
-      if (!quoteString) {
-        quoteString = contextId_?.quote.toString();
-      }
-
-      title = `${item.groupName} - ${quoteString}`;
-    } else if (selectionText) {
-      title = `${refStr} ${selectionText}`;
+    if (selectionText) {
+      title = `${groupName} ${selectionText}`;
     }
 
     return {
@@ -113,6 +102,7 @@ function GroupMenuComponent({
     for (let i = 0; i < newFilters.length; i++) {
       if (newFilters[i].key === 'grouping') {
         groupingOn = true;
+        break;
       }
     }
     setOrderHelpsByRef(groupingOn);
