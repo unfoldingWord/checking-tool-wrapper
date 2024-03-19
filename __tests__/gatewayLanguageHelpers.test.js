@@ -1048,7 +1048,7 @@ describe('gatewayLanguageHelpers.getAlignedGLText', () => {
       'occurrence': 1,
     };
     const bibles = { 'ult': { 22: { 30: { verseObjects: verseObjects } } } };
-    const expectedAlignedGLText = 'judging … twelve tribes of Israel';
+    const expectedAlignedGLText = 'judging & twelve tribes of Israel';
 
     // when
     const alignedGLText = gatewayLanguageHelpers.getAlignedGLTextHelper( contextId, bibles);

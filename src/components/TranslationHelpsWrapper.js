@@ -135,6 +135,7 @@ function TranslationHelpsWrapper({
       sidebarToggle={toggleHelps}
       isShowHelpsExpanded={showHelpsModal}
       expandedHelpsButtonHoverText={expandedHelpsButtonHoverText}
+      direction={direction}
     />
   );
 }
@@ -150,7 +151,7 @@ TranslationHelpsWrapper.propTypes = {
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
   loadResourceArticle: PropTypes.func.isRequired,
-  direction: PropTypes.oneOf(['ltr', 'rtl', '']),
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -158,8 +159,8 @@ export const mapStateToProps = (state, ownProps) => {
 
   function getLanguageDirection() {
     const manifest = getProjectManifest(ownProps);
-    const direction = manifest.target_language && manifest.target_language.direction || '';
-    return direction
+    const direction = manifest.target_language && manifest.target_language.direction || 'ltr';
+    return direction;
   }
 
   return {
@@ -174,6 +175,6 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 
-TranslationHelpsWrapper.defaultProps = { direction: '' };
+TranslationHelpsWrapper.defaultProps = { direction: 'ltr' };
 
 export default connect(mapStateToProps)(TranslationHelpsWrapper);

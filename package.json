@@ -85,7 +85,7 @@
     "tc-electron-env": "0.10.0",
     "tc-source-content-updater": "1.2.12",
     "tc-tool": "4.0.1",
-    "tc-ui-toolkit": "6.2.2",
+    "tc-ui-toolkit": "6.2.8",
     "tsv-groupdata-parser": "0.10.3",
     "usfm-js": "2.1.0",
     "word-aligner": "0.4.0"
