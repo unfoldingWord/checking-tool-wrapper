@@ -11,6 +11,7 @@ import {
   getCurrentToolName,
   getGatewayLanguageCode,
   getGatewayLanguageOwner,
+  getProjectManifest,
   getResourcesReducer,
   getTranslationHelpsArticle,
 } from '../selectors/index';
@@ -47,6 +48,7 @@ function TranslationHelpsWrapper({
   currentToolName,
   loadResourceArticle,
   resourcesReducer: resourcesReducerProp,
+  direction,
 }) {
   resourcesReducer = resourcesReducerProp;
 
@@ -148,10 +150,17 @@ TranslationHelpsWrapper.propTypes = {
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
   loadResourceArticle: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['ltr', 'rtl', '']),
 };
 
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
+
+  function getLanguageDirection() {
+    const manifest = getProjectManifest(ownProps);
+    const direction = manifest.target_language && manifest.target_language.direction || '';
+    return direction
+  }
 
   return {
     contextId,
@@ -161,7 +170,10 @@ export const mapStateToProps = (state, ownProps) => {
     resourcesReducer: getResourcesReducer(ownProps),
     loadResourceArticle: ownProps.tc.loadResourceArticle,
     currentFile: getTranslationHelpsArticle(ownProps, contextId),
+    direction: getLanguageDirection(),
   };
 };
+
+TranslationHelpsWrapper.defaultProps = { direction: '' };
 
 export default connect(mapStateToProps)(TranslationHelpsWrapper);
