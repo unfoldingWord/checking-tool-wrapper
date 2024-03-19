@@ -10,6 +10,7 @@ import {
   getContextId,
   getCurrentToolName,
   getGatewayLanguageCode,
+  getGatewayLanguageDirection,
   getGatewayLanguageOwner,
   getResourcesReducer,
   getTranslationHelpsArticle,
@@ -47,6 +48,7 @@ function TranslationHelpsWrapper({
   currentToolName,
   loadResourceArticle,
   resourcesReducer: resourcesReducerProp,
+  direction,
 }) {
   resourcesReducer = resourcesReducerProp;
 
@@ -133,6 +135,7 @@ function TranslationHelpsWrapper({
       sidebarToggle={toggleHelps}
       isShowHelpsExpanded={showHelpsModal}
       expandedHelpsButtonHoverText={expandedHelpsButtonHoverText}
+      direction={direction}
     />
   );
 }
@@ -148,6 +151,7 @@ TranslationHelpsWrapper.propTypes = {
   currentToolName: PropTypes.string.isRequired,
   resourcesReducer: PropTypes.object.isRequired,
   loadResourceArticle: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -161,7 +165,10 @@ export const mapStateToProps = (state, ownProps) => {
     resourcesReducer: getResourcesReducer(ownProps),
     loadResourceArticle: ownProps.tc.loadResourceArticle,
     currentFile: getTranslationHelpsArticle(ownProps, contextId),
+    direction: getGatewayLanguageDirection(ownProps),
   };
 };
+
+TranslationHelpsWrapper.defaultProps = { direction: 'ltr' };
 
 export default connect(mapStateToProps)(TranslationHelpsWrapper);

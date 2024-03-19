@@ -53,6 +53,7 @@ export const getSelections = (state) =>
 
 export const getProjectManifest = (ownProps) => ownProps.tc.projectDetailsReducer.manifest;
 export const getGatewayLanguageCode = (ownProps) => ownProps.tc.gatewayLanguageCode || '';
+export const getGatewayLanguageDirection = (ownProps) => ownProps.tc.gatewayLanguageDirection || 'ltr';
 export const getGatewayLanguageOwner = (ownProps) => ownProps.tc.gatewayLanguageOwner || '';
 export const getCurrentToolName = (ownProps) => ownProps.tc.currentToolName;
 export const getProjectPath = (ownProps) => ownProps.tc.projectSaveLocation;
