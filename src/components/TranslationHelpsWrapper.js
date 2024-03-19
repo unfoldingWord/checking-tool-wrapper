@@ -10,8 +10,8 @@ import {
   getContextId,
   getCurrentToolName,
   getGatewayLanguageCode,
+  getGatewayLanguageDirection,
   getGatewayLanguageOwner,
-  getProjectManifest,
   getResourcesReducer,
   getTranslationHelpsArticle,
 } from '../selectors/index';
@@ -157,12 +157,6 @@ TranslationHelpsWrapper.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
   const contextId = getContextId(state) || {};
 
-  function getLanguageDirection() {
-    const manifest = getProjectManifest(ownProps);
-    const direction = manifest.target_language && manifest.target_language.direction || 'ltr';
-    return direction;
-  }
-
   return {
     contextId,
     currentToolName: getCurrentToolName(ownProps),
@@ -171,7 +165,7 @@ export const mapStateToProps = (state, ownProps) => {
     resourcesReducer: getResourcesReducer(ownProps),
     loadResourceArticle: ownProps.tc.loadResourceArticle,
     currentFile: getTranslationHelpsArticle(ownProps, contextId),
-    direction: getLanguageDirection(),
+    direction: getGatewayLanguageDirection(ownProps),
   };
 };
 
