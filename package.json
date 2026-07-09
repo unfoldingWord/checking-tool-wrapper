@@ -1,8 +1,21 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "7.4.10",
+  "version": "7.4.11",
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unfoldingWord/checking-tool-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unfoldingWord/checking-tool-wrapper/issues"
+  },
+  "homepage": "https://github.com/unfoldingWord/checking-tool-wrapper#readme",
   "scripts": {
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
@@ -26,9 +39,14 @@
       ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
     }
   },
-  "author": "@unfoldingWord",
+  "author": "unfoldingWord",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "translationcore",
+    "checking-tool",
+    "wrapper",
+    "unfoldingword"
+  ],
   "peerDependencies": {
     "bible-reference-range": "^1.0.1",
     "react": "^16.14.0",
