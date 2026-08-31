@@ -93,9 +93,18 @@ function Container({
     }
   }
 
-  function getSuggestions(contextId) {
-    console.log(`Container contextId`, contextId);
-    return 'Got Suggestions';
+  function getSuggestions(data) {
+    console.log(`Container contextId`, data.contextId, data);
+    return [
+      {
+        confidence: 99, selections: [
+          {
+            'text': 'faith',
+            'occurrence': 1,
+          },
+        ],
+      },
+    ];
   }
 
   return (
@@ -129,7 +138,7 @@ function Container({
             contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
             editVerseInScripturePane={editVerseInExpandedScripturePane}
-            getSuggestions={contextId => getSuggestions(contextId)}
+            getSuggestions={data => getSuggestions(data)}
           />
         </div>
         <TranslationHelpsWrapper
