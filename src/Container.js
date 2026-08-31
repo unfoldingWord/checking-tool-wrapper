@@ -93,6 +93,11 @@ function Container({
     }
   }
 
+  function getSuggestions(contextId) {
+    console.log(`Container contextId`, contextId);
+    return 'Got Suggestions';
+  }
+
   return (
     <TcuiThemeProvider theme={theme}>
       <div style={styles.containerDiv}>
@@ -124,6 +129,7 @@ function Container({
             contextId={contextId}
             gatewayLanguageQuote={gatewayLanguageQuote}
             editVerseInScripturePane={editVerseInExpandedScripturePane}
+            getSuggestions={contextId => getSuggestions(contextId)}
           />
         </div>
         <TranslationHelpsWrapper
