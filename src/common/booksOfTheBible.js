@@ -143,6 +143,11 @@ export const BIBLES_ABBRV_INDEX = {
   'rev': '67',
 };
 
+export const ALL_BIBLE_BOOKS = {
+  ...BIBLE_BOOKS.oldTestament,
+  ...BIBLE_BOOKS.newTestament,
+};
+
 export function getAllBibleBooks(translate=k=>k) {
   const bibleBooks = {};
 
@@ -155,4 +160,11 @@ export function getAllBibleBooks(translate=k=>k) {
   return bibleBooks;
 }
 
-export default BIBLE_BOOKS;
+export function isNT(bookId) {
+  return Object.keys(BIBLE_BOOKS.newTestament).includes(bookId)
+}
+
+export function isBibleBookId(bookId) {
+  return Object.keys(ALL_BIBLE_BOOKS).includes(bookId)
+}
+

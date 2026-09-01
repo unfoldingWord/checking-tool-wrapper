@@ -26,7 +26,12 @@ import {
   getToolApi,
   getTranslateState,
 } from './selectors';
-import { getAlignedGLTextHelper } from './helpers/gatewayLanguageHelpers';
+import { getAlignedGLTextHelper, getAlignedGLTextHelperMajor } from './helpers/gatewayLanguageHelpers';
+import { getDetailsFromProjectNameMini, getMostRecentVersionInFolder, readJsonFile } from './helpers/fileHelpers';
+import { isBibleBookId, isNT } from './common/booksOfTheBible';
+import { getSelectionsForBook } from './helpers/autoCheckingUtils';
+import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
+import { apiHelpers } from 'tc-source-content-updater';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -53,32 +58,42 @@ const styles = {
   },
 };
 
+let selectionData = {
+  tWord: null,
+  selections: {},
+};
+
 function Container({
-  tc,
   bibles,
-  toolApi,
-  translate,
   contextId,
-  setToolSettings,
-  gatewayLanguageCode,
   currentPaneSettings,
+  gatewayLanguageCode,
   gatewayLanguageQuote,
+  glBibles,
+  setToolSettings,
+  tc,
+  toolApi,
+  toolName,
+  translate,
+  tsvRelation,
 }) {
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
-  const {
-    checkId,
-    groupId,
-    reference,
-  } = contextId || {};
+  const { checkId, groupId, reference } = contextId || {};
   const { chapter, verse } = reference || {};
 
   useEffect(() => {
-    settingsHelper.loadCorrectPaneSettings(setToolSettings, bibles, gatewayLanguageCode, currentPaneSettings);
+    settingsHelper.loadCorrectPaneSettings(
+      setToolSettings,
+      bibles,
+      gatewayLanguageCode,
+      currentPaneSettings
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => { // if context changes, clear edit verse
+  useEffect(() => {
+    // if context changes, clear edit verse
     setEditVerseInScrPane(null);
   }, [checkId, groupId, chapter, verse]);
 
@@ -95,28 +110,102 @@ function Container({
     }
   }
 
+  /**
+   *
+   * @param data
+   * @return {[{confidence: number, selections: [{text: string, occurrence: number}]}]}
+   */
   function getSuggestions(data) {
+    const contextId = data?.contextId;
+    const groupId = contextId?.groupId || '';
     const projectSaveLocation = tc?.projectSaveLocation;
     const parsed = path.parse(projectSaveLocation);
     const projectName = parsed.base;
-    const projectFolder = parsed.dir;
-    const projects = tc?.projects;
+    const projectsFolder = parsed.dir;
+    const projects = fs.readdirSync(projectsFolder);
 
-    console.log(`Container ${projects?.length} projects, contextId`, data.contextId,
+    const {
+      bookId: currentBookId,
+      languageId: currentLanguageId,
+      resourceId: currentResourceId
+    } = getDetailsFromProjectNameMini(projectName);
+
+    const { alignedText, bible: foundBible } = getAlignedGLTextHelperMajor(
+      contextId,
+      glBibles,
+      tsvRelation,
+      currentLanguageId
+    );
+
+    const bibleIds = Object.keys(glBibles);
+    const sortedBibleIds = bibleIds.sort(gatewayLanguageHelpers.bibleIdSort);
+    const glBibleId = sortedBibleIds[0];
+
+    const usingNT = isNT(currentBookId);
+    let selectionsForWord = {};
+    console.log('projects', projects);
+
+    for (const projectName_ of projects) {
+      const { bookId, languageId, resourceId } = getDetailsFromProjectNameMini(
+        projectName_
+      );
+
+      const isBible = isBibleBookId(bookId);
+      const isNt = isNT(bookId);
+
+      const matchingResource =
+        isBible &&
+        isNt === usingNT &&
+        languageId === currentLanguageId &&
+        resourceId === currentResourceId;
+
+      if (!matchingResource) {
+        continue; // skip
+      }
+
+      const projectPath = path.join(projectsFolder, projectName_);
+
+      //    '.apps/translationCore/index/translationWords/gal/faith.json'
+      const selectionsPath = path.join(
+        projectPath,
+        `.apps/translationCore/index/${toolName}/${bookId}/${groupId}.json`
+      );
+
+      console.log('selectionsPath', selectionsPath);
+
+      const checks = readJsonFile(selectionsPath);
+      const resourcesFolder = path.join(projectsFolder, '../resources', gatewayLanguageQuote, 'bible', glBibleId);
+
+      const mostRecent = getMostRecentVersionInFolder(resourcesFolder, apiHelpers.UNFOLDING_WORD);
+
+      getSelectionsForBook(
+        checks,
+        glBibles,
+        gatewayLanguageCode,
+        tsvRelation,
+        foundBible,
+        selectionsForWord
+      );
+    }
+    console.log(
+      `Container ${projects?.length} projects, contextId`,
+      data.contextId,
       {
         data,
         projectSaveLocation,
         parsed,
-      });
+      }
+    );
     return [
       {
-        confidence: 99, selections: [
+        confidence: 99,
+        selections: [
           {
-            'text': 'faith',
-            'occurrence': 1,
-          },
-        ],
-      },
+            text: 'faith',
+            occurrence: 1
+          }
+        ]
+      }
     ];
   }
 
@@ -166,15 +255,18 @@ function Container({
 }
 
 Container.propTypes = {
-  tc: PropTypes.object.isRequired,
   bibles: PropTypes.object.isRequired,
-  toolApi: PropTypes.object.isRequired,
-  translate: PropTypes.func.isRequired,
   contextId: PropTypes.object.isRequired,
-  setToolSettings: PropTypes.func.isRequired,
   currentPaneSettings: PropTypes.array.isRequired,
   gatewayLanguageCode: PropTypes.string.isRequired,
   gatewayLanguageQuote: PropTypes.string.isRequired,
+  glBibles: PropTypes.array.isRequired,
+  setToolSettings: PropTypes.func.isRequired,
+  tc: PropTypes.object.isRequired,
+  toolApi: PropTypes.object.isRequired,
+  toolName: PropTypes.string.isRequired,
+  translate: PropTypes.func.isRequired,
+  tsvRelation: PropTypes.array.isRequired,
 };
 
 export const mapStateToProps = (state, ownProps) => {
@@ -188,15 +280,18 @@ export const mapStateToProps = (state, ownProps) => {
   const toolApi = getToolApi(ownProps);
 
   return {
-    tc,
-    toolApi,
+    bibles: getBibles(ownProps),
     contextId,
+    currentPaneSettings: getCurrentPaneSettings(ownProps),
     gatewayLanguageCode,
     gatewayLanguageQuote,
-    bibles: getBibles(ownProps),
-    translate: getTranslateState(ownProps),
+    glBibles,
     setToolSettings: tc.setToolSettings,
-    currentPaneSettings: getCurrentPaneSettings(ownProps),
+    tc,
+    toolApi,
+    toolName,
+    translate: getTranslateState(ownProps),
+    tsvRelation,
   };
 };
 

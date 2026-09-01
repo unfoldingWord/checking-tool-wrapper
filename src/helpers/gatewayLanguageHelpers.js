@@ -21,52 +21,90 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
 };
 
 /**
- * get the selected text from the GL resource for this context
- * @param {*} contextId - current context id.
- * @param {*} glBibles - gateway language Bibles.
- * @param {string} glID - current GL
- * @param {array|null} tsvRelation - list of relationship items in manifest
+ * Helper function to retrieve aligned gateway language text from GL Bibles.
+ * Searches for aligned text first in TSV relations (if provided), then falls back to searching all available GL Bibles in priority order.
+ * @param {object} contextId - Current context id containing reference information and quote details.
+ * @param {object} glBibles - Gateway language Bibles organized by Bible ID.
+ * @param {array|null} tsvRelation - List of relationship items from the manifest specifying preferred GL Bible sources.
+ * @param {string} glID - Current gateway language identifier (e.g., 'en', 'es').
+ * @param {string|null} bibleId - Bible ID to be populated during search.
+ * @param {object|null} bible - Bible object to be populated during search.
+ * @return {{alignedText: string, bibleId: string|null, bible: object|null}} Object containing the aligned text, Bible ID, and Bible object.
  */
-export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null) {
-  if (contextId) {
-    if (!contextId.quote || !glBibles || !Object.keys(glBibles).length) {
-      return contextId.quote || '';
-    }
+export function getAlignedGLTextHelperMajor(contextId, glBibles, tsvRelation, glID) {
+  let bible = null;
+  let alignedText = '';
+  let bibleId = null;
 
-    if (Array.isArray(tsvRelation)) { // look for GL text in TSV relations
+  if (!contextId.quote || !glBibles || !Object.keys(glBibles).length) {
+    alignedText = contextId.quote || '';
+  }
+
+  if (!alignedText) { // if no match, check TSV relations in order
+    if (Array.isArray(tsvRelation)) {
+      // look for GL text in TSV relations
       for (let relation of tsvRelation) {
         const parts = relation.split('/');
 
-        if ((parts.length === 2) && (parts[0] === glID)) { // make sure it is for same gl and has the expected number of levels
-          let bibleId = parts[1];
+        if (parts.length === 2 && parts[0] === glID) {
+          // make sure it is for same gl and has the expected number of levels
+          bibleId = parts[1];
           bibleId = bibleId.split('?')[0];
-          const bible = glBibles[bibleId];
+          bible = glBibles[bibleId];
 
-          if (bible) { // if bible present, see if we can find GL text
-            const alignedText = getAlignedTextFromBible(contextId, bible);
+          if (bible) {
+            // if bible present, see if we can find GL text
+            alignedText = getAlignedTextFromBible(contextId, bible);
 
-            if (alignedText) {
-              return alignedText; // we succeeded and we are done
+            if (alignedText) { // we succeeded and we are done
+              break;
             }
           }
         }
       }
     }
+  }
 
+  if (!alignedText) { // if no match, check aligned text in any glBible
     // fall back to searching for GL text in default priority
     const sortedBibleIds = Object.keys(glBibles).sort(bibleIdSort);
 
     for (let i = 0; i < sortedBibleIds.length; ++i) {
-      const bible = glBibles[sortedBibleIds[i]];
-      const alignedText = getAlignedTextFromBible(contextId, bible);
+      bibleId = sortedBibleIds[i];
+      bible = glBibles[bibleId];
+      alignedText = getAlignedTextFromBible(contextId, bible);
 
-      if (alignedText) {
-        return alignedText;
+      if (alignedText) { // we succeeded and we are done
+        break;
       }
     }
   }
+  return { alignedText, bibleId, bible };
+}
 
-  return '';
+/**
+ * Retrieves the aligned gateway language text for the given context from the available GL Bibles.
+ * Searches through TSV relations first (if provided), then falls back to searching all available GL Bibles.
+ * @param {object} contextId - Current context id containing reference information and quote details.
+ * @param {object} glBibles - Gateway language Bibles organized by Bible ID.
+ * @param {string} glID - Current gateway language identifier (e.g., 'en', 'es').
+ * @param {array|null} tsvRelation - List of relationship items from the manifest specifying preferred GL Bible sources.
+ * @return {string} The aligned gateway language text, or an empty string if not found.
+ */
+export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null) {
+  let alignedText = '';
+
+  if (contextId) {
+    const __ret = getAlignedGLTextHelperMajor(
+      contextId,
+      glBibles,
+      tsvRelation,
+      glID
+    );
+    alignedText = __ret.alignedText;
+  }
+
+  return alignedText || '';
 }
 
 /**

@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "7.4.12-beta.11",
+  "version": "7.4.12-beta.20",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -54,11 +54,12 @@
     "react-redux": "^7.1.1",
     "string-punctuation-tokenizer": "^2.0.0",
     "tc-electron-env": "^0.10.0",
-    "tc-source-content-updater": "^1.2.12",
+    "tc-source-content-updater": "^1.4.34",
     "tc-ui-toolkit": "^6.2.1",
     "tsv-groupdata-parser": "^0.10.0",
     "usfm-js": "^2.1.0",
-    "word-aligner": "^0.4.0"
+    "word-aligner": "^0.4.0",
+    "wordmap-lexer": "0.3.6"
   },
   "devDependencies": {
     "@babel/cli": "7.4.4",
@@ -101,12 +102,13 @@
     "string-punctuation-tokenizer": "2.0.0",
     "style-loader": "0.23.1",
     "tc-electron-env": "0.10.0",
-    "tc-source-content-updater": "1.2.12",
+    "tc-source-content-updater": "^1.4.34",
     "tc-tool": "4.0.1",
     "tc-ui-toolkit": "6.2.8",
     "tsv-groupdata-parser": "0.10.3",
     "usfm-js": "2.1.0",
-    "word-aligner": "0.4.0"
+    "word-aligner": "0.4.0",
+    "wordmap-lexer": "0.3.6"
   },
   "dependencies": {
     "@material-ui/icons": "3.0.2",
