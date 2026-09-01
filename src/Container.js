@@ -1,4 +1,6 @@
 /* eslint-env jest */
+import fs from 'fs-extra';
+import path from 'path-extra';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
@@ -94,7 +96,18 @@ function Container({
   }
 
   function getSuggestions(data) {
-    console.log(`Container contextId`, data.contextId, data);
+    const projectSaveLocation = tc?.projectSaveLocation;
+    const parsed = path.parse(projectSaveLocation);
+    const projectName = parsed.base;
+    const projectFolder = parsed.dir;
+    const projects = tc?.projects;
+
+    console.log(`Container ${projects?.length} projects, contextId`, data.contextId,
+      {
+        data,
+        projectSaveLocation,
+        parsed,
+      });
     return [
       {
         confidence: 99, selections: [
