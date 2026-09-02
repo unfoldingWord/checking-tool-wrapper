@@ -52,9 +52,16 @@ const styles = {
   },
 };
 
-let selectionData = {
+const selectionsData = {
   groupId: null,
   selections: {},
+};
+
+const glBiblesCache = {
+  glBibleId: null,
+  targetLangId: null,
+  resourceId: null,
+  bibles: {},
 };
 
 function Container({
@@ -115,13 +122,22 @@ function Container({
     const projectSaveLocation = tc?.projectSaveLocation;
     const glOwnerStr = tc.gatewayLanguageOwner;
 
-    if (selectionData?.groupId !== groupId) {
-      const selectionsForWord = fetchPreviousSelectionData(projectSaveLocation, contextId, glBibles, tsvRelation, toolName, groupId, gatewayLanguageCode, glOwnerStr, data);
-
-      selectionData = {
+    if (selectionsData?.groupId !== groupId) {
+      const selectionsForWord = fetchPreviousSelectionData(
+        projectSaveLocation,
+        contextId,
+        glBibles,
+        tsvRelation,
+        toolName,
         groupId,
-        selections: selectionsForWord
-      };
+        gatewayLanguageCode,
+        glOwnerStr,
+        data,
+        glBiblesCache
+      );
+
+      selectionsData.groupId = groupId;
+      selectionsData.selections = selectionsForWord;
     }
 
     return [

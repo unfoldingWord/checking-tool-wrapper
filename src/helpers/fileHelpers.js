@@ -83,6 +83,16 @@ export function getDetailsFromProjectNameMini(projectName) {
   };
 }
 
+function getNestedResourcesHelpers() {
+  let resourcesHelpers_ = resourcesHelpers;
+
+  if (resourcesHelpers?.resourcesHelpers) {
+    // TRICKY - check if nested
+    resourcesHelpers_ = resourcesHelpers.resourcesHelpers;
+  }
+  return resourcesHelpers_;
+}
+
 /**
  * Returns the versioned folder within the directory with the highest value.
  * e.g. `v10` is greater than `v9`
@@ -91,14 +101,8 @@ export function getDetailsFromProjectNameMini(projectName) {
  * @returns {string|null} the latest version found
  */
 export function getLatestVersion(versions, ownerStr) {
-  let resourcesHelpers_ = resourcesHelpers;
-
-  if (resourcesHelpers?.resourcesHelpers) {
-    // TRICKY - check if nested
-    resourcesHelpers_ = resourcesHelpers.resourcesHelpers;
-  }
-
-  return resourcesHelpers_.getLatestVersionFromList(versions, ownerStr);
+  const resourcesHelpers = getNestedResourcesHelpers();
+  return resourcesHelpers.getLatestVersionFromList(versions, ownerStr);
 }
 
 /**

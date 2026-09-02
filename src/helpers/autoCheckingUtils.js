@@ -1572,7 +1572,8 @@ export function fetchPreviousSelectionData(
   groupId,
   gatewayLanguageCode,
   glOwnerStr,
-  data
+  data,
+  glBiblesCache,
 ) {
   const parsed = path.parse(projectSaveLocation);
   const projectName = parsed.base;
@@ -1582,8 +1583,19 @@ export function fetchPreviousSelectionData(
   const {
     bookId: currentBookId,
     languageId: currentLanguageId,
-    resourceId: currentResourceId
+    resourceId: currentResourceId,
   } = getDetailsFromProjectNameMini(projectName);
+
+  if (
+    glBiblesCache?.targetLangId !== currentLanguageId ||
+    glBiblesCache?.resourceId !== currentResourceId
+  ) {
+    // if targetLangId or resourceId has changed, clear cache
+    glBiblesCache.targetLangId = currentLanguageId;
+    glBiblesCache.resourceId = currentResourceId;
+    glBiblesCache.glBibleId = null;
+    glBiblesCache.bibles = {};
+  }
 
   let { bible: foundBible } = gatewayLanguageHelpers.getAlignedGLTextHelperMajor(
     contextId,
@@ -1645,16 +1657,35 @@ export function fetchPreviousSelectionData(
       continue;
     }
 
-    const glBibleFolder = path.join(resourcesFolder, mostRecent, bookId);
-    foundBible = readHelpsFolder(glBibleFolder);
+    let foundBible = null;
 
-    getSelectionsForBook(
-      checks,
-      gatewayLanguageCode,
-      tsvRelation,
-      foundBible,
-      selectionsForWord
-    );
+    if ( glBiblesCache?.glBibleId === glBibleId) {
+      foundBible = glBiblesCache?.bibles[bookId];
+    }
+
+    if (!foundBible) {
+      const glBibleFolder = path.join(resourcesFolder, mostRecent, bookId);
+      foundBible = readHelpsFolder(glBibleFolder);
+
+      if (foundBible) {
+        if (glBiblesCache?.glBibleId !== glBibleId) { // if bibleId has changed, clear cache
+          glBiblesCache.glBibleId = glBibleId;
+          glBiblesCache.bibles = {};
+        }
+
+        glBiblesCache.bibles[bookId] = foundBible;
+      }
+    }
+
+    if (foundBible) {
+      getSelectionsForBook(
+        checks,
+        gatewayLanguageCode,
+        tsvRelation,
+        foundBible,
+        selectionsForWord
+      );
+    }
   }
   console.log(
     `Container ${projects?.length} projects, contextId`,
