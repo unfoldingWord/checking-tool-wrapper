@@ -3,7 +3,6 @@ import path from 'path-extra';
 import { resourcesHelpers } from 'tc-source-content-updater';
 import { isBibleBookId } from '../common/booksOfTheBible';
 
-
 export function readJsonFile(jsonPath) {
   if (fs.existsSync(jsonPath)) {
     try {
@@ -85,6 +84,24 @@ export function getDetailsFromProjectNameMini(projectName) {
 }
 
 /**
+ * Returns the versioned folder within the directory with the highest value.
+ * e.g. `v10` is greater than `v9`
+ * @param {Array} versions - list of versions found
+ * @param {string} ownerStr - optional owner, if not given defaults to Door43-Catalog
+ * @returns {string|null} the latest version found
+ */
+export function getLatestVersion(versions, ownerStr) {
+  let resourcesHelpers_ = resourcesHelpers;
+
+  if (resourcesHelpers?.resourcesHelpers) {
+    // TRICKY - check if nested
+    resourcesHelpers_ = resourcesHelpers.resourcesHelpers;
+  }
+
+  return resourcesHelpers_.getLatestVersionFromList(versions, ownerStr);
+}
+
+/**
  * Search folder for most recent version
  * @param {string} bibleFolderPath
  * @param {string} ownerStr - optional owner, if not given defaults to Door43-Catalog
@@ -94,11 +111,18 @@ export function getMostRecentVersionInFolder(bibleFolderPath, ownerStr = apiHelp
   const versionNumbers = fs.readdirSync(bibleFolderPath).filter(folder => folder !== '.DS_Store'); // ex. v9
 
   if (versionNumbers && versionNumbers.length) {
-    const latestVersion = resourcesHelpers.getLatestVersion(
+    const latestVersion = getLatestVersion(
       versionNumbers,
       ownerStr
     );
     return latestVersion;
+  }
+  return null;
+}
+
+export function getMostRecentVersionInFolderMajor(bibleFolderPath, ownerStr = apiHelpers.DOOR43_CATALOG) {
+  if (fs.existsSync(bibleFolderPath)) {
+    return getMostRecentVersionInFolder(bibleFolderPath, ownerStr);
   }
   return null;
 }

@@ -1,6 +1,4 @@
 /* eslint-env jest */
-import fs from 'fs-extra';
-import path from 'path-extra';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
@@ -26,12 +24,8 @@ import {
   getToolApi,
   getTranslateState,
 } from './selectors';
-import { getAlignedGLTextHelper, getAlignedGLTextHelperMajor } from './helpers/gatewayLanguageHelpers';
-import { getDetailsFromProjectNameMini, getMostRecentVersionInFolder, readJsonFile } from './helpers/fileHelpers';
-import { isBibleBookId, isNT } from './common/booksOfTheBible';
-import { getSelectionsForBook } from './helpers/autoCheckingUtils';
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
-import { apiHelpers } from 'tc-source-content-updater';
+import { fetchPreviousSelectionData } from "./helpers/autoCheckingUtils";
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -59,7 +53,7 @@ const styles = {
 };
 
 let selectionData = {
-  tWord: null,
+  groupId: null,
   selections: {},
 };
 
@@ -119,83 +113,17 @@ function Container({
     const contextId = data?.contextId;
     const groupId = contextId?.groupId || '';
     const projectSaveLocation = tc?.projectSaveLocation;
-    const parsed = path.parse(projectSaveLocation);
-    const projectName = parsed.base;
-    const projectsFolder = parsed.dir;
-    const projects = fs.readdirSync(projectsFolder);
+    const glOwnerStr = tc.gatewayLanguageOwner;
 
-    const {
-      bookId: currentBookId,
-      languageId: currentLanguageId,
-      resourceId: currentResourceId
-    } = getDetailsFromProjectNameMini(projectName);
+    if (selectionData?.groupId !== groupId) {
+      const selectionsForWord = fetchPreviousSelectionData(projectSaveLocation, contextId, glBibles, tsvRelation, toolName, groupId, gatewayLanguageCode, glOwnerStr, data);
 
-    const { alignedText, bible: foundBible } = getAlignedGLTextHelperMajor(
-      contextId,
-      glBibles,
-      tsvRelation,
-      currentLanguageId
-    );
-
-    const bibleIds = Object.keys(glBibles);
-    const sortedBibleIds = bibleIds.sort(gatewayLanguageHelpers.bibleIdSort);
-    const glBibleId = sortedBibleIds[0];
-
-    const usingNT = isNT(currentBookId);
-    let selectionsForWord = {};
-    console.log('projects', projects);
-
-    for (const projectName_ of projects) {
-      const { bookId, languageId, resourceId } = getDetailsFromProjectNameMini(
-        projectName_
-      );
-
-      const isBible = isBibleBookId(bookId);
-      const isNt = isNT(bookId);
-
-      const matchingResource =
-        isBible &&
-        isNt === usingNT &&
-        languageId === currentLanguageId &&
-        resourceId === currentResourceId;
-
-      if (!matchingResource) {
-        continue; // skip
-      }
-
-      const projectPath = path.join(projectsFolder, projectName_);
-
-      //    '.apps/translationCore/index/translationWords/gal/faith.json'
-      const selectionsPath = path.join(
-        projectPath,
-        `.apps/translationCore/index/${toolName}/${bookId}/${groupId}.json`
-      );
-
-      console.log('selectionsPath', selectionsPath);
-
-      const checks = readJsonFile(selectionsPath);
-      const resourcesFolder = path.join(projectsFolder, '../resources', gatewayLanguageQuote, 'bible', glBibleId);
-
-      const mostRecent = getMostRecentVersionInFolder(resourcesFolder, apiHelpers.UNFOLDING_WORD);
-
-      getSelectionsForBook(
-        checks,
-        glBibles,
-        gatewayLanguageCode,
-        tsvRelation,
-        foundBible,
-        selectionsForWord
-      );
+      selectionData = {
+        groupId,
+        selections: selectionsForWord
+      };
     }
-    console.log(
-      `Container ${projects?.length} projects, contextId`,
-      data.contextId,
-      {
-        data,
-        projectSaveLocation,
-        parsed,
-      }
-    );
+
     return [
       {
         confidence: 99,
@@ -275,7 +203,13 @@ export const mapStateToProps = (state, ownProps) => {
   const glBibles = getGatewayLanguageBibles(ownProps);
   const toolName = getCurrentToolName(ownProps);
   const tsvRelation = getThelpsManifestRelation(gatewayLanguageCode, toolName);
-  const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation, true);
+  const gatewayLanguageQuote = gatewayLanguageHelpers.getAlignedGLTextHelper(
+    contextId,
+    glBibles,
+    gatewayLanguageCode,
+    tsvRelation,
+    true
+  );
   const tc = getTcState(ownProps);
   const toolApi = getToolApi(ownProps);
 

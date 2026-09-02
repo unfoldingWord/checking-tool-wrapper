@@ -1,7 +1,16 @@
 /* eslint-env jest */
+import fs from 'fs-extra';
+import path from 'path-extra';
 import Lexer from 'wordmap-lexer';
 import { normalizer } from 'string-punctuation-tokenizer';
-import { getAlignedGLTextHelper, getAlignedTextFromBible } from './gatewayLanguageHelpers';
+import { isBibleBookId, isNT } from '../common/booksOfTheBible';
+import {
+  getDetailsFromProjectNameMini,
+  getMostRecentVersionInFolderMajor,
+  readHelpsFolder,
+  readJsonFile
+} from "./fileHelpers";
+import * as gatewayLanguageHelpers from './gatewayLanguageHelpers';
 
 
 const LM_STUDIO_URL = 'http://192.168.142.70:1234';
@@ -1505,7 +1514,7 @@ export function selectionsToString(selections) {
   return selectionWords.join(' ');
 }
 
-export function getSelectionsForBook(checks, glBibles, gatewayLanguageCode, tsvRelation, bible, selectionsForWord ) {
+export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForWord ) {
   for (const check of checks) {
     const contextId = check?.contextId;
     const selectionsForCheck = check?.selections;
@@ -1517,20 +1526,12 @@ export function getSelectionsForBook(checks, glBibles, gatewayLanguageCode, tsvR
         let glText = null;
 
         if (bible) { // if already have bible use it
-          glText = getAlignedTextFromBible(contextId, bible);
-        }
-
-        if (!glText) { // if that didn't work, try getting it from glBibles
-          glText = getAlignedGLTextHelper(
+          glText = gatewayLanguageHelpers.getAlignedTextFromBible(
             contextId,
-            glBibles,
-            gatewayLanguageCode,
-            tsvRelation,
-            true
+            bible
           );
         }
 
-        // console.log(glText);
         if (glText) {
           glText = removePunctuation(glText);
           glQuote = glText;
@@ -1562,3 +1563,107 @@ export function getSelectionsForBook(checks, glBibles, gatewayLanguageCode, tsvR
   return selectionsForWord;
 }
 
+export function fetchPreviousSelectionData(
+  projectSaveLocation,
+  contextId,
+  glBibles,
+  tsvRelation,
+  toolName,
+  groupId,
+  gatewayLanguageCode,
+  glOwnerStr,
+  data
+) {
+  const parsed = path.parse(projectSaveLocation);
+  const projectName = parsed.base;
+  const projectsFolder = parsed.dir;
+  const projects = fs.readdirSync(projectsFolder);
+
+  const {
+    bookId: currentBookId,
+    languageId: currentLanguageId,
+    resourceId: currentResourceId
+  } = getDetailsFromProjectNameMini(projectName);
+
+  let { bible: foundBible } = gatewayLanguageHelpers.getAlignedGLTextHelperMajor(
+    contextId,
+    glBibles,
+    tsvRelation,
+    currentLanguageId
+  );
+
+  const bibleIds = Object.keys(glBibles);
+  const sortedBibleIds = bibleIds.sort(gatewayLanguageHelpers.bibleIdSort);
+  const glBibleId = sortedBibleIds[0];
+
+  const usingNT = isNT(currentBookId);
+  let selectionsForWord = {};
+  console.log('projects', projects);
+
+  for (const projectName_ of projects) {
+    const { bookId, languageId, resourceId } = getDetailsFromProjectNameMini(
+      projectName_
+    );
+
+    const isBible = isBibleBookId(bookId);
+    const isNt = isNT(bookId);
+
+    const matchingResource =
+      isBible &&
+      isNt === usingNT &&
+      languageId === currentLanguageId &&
+      resourceId === currentResourceId;
+
+    if (!matchingResource) {
+      continue; // skip
+    }
+
+    const projectPath = path.join(projectsFolder, projectName_);
+
+    //    '.apps/translationCore/index/translationWords/gal/faith.json'
+    const selectionsPath = path.join(
+      projectPath,
+      `.apps/translationCore/index/${toolName}/${bookId}/${groupId}.json`
+    );
+
+    console.log('selectionsPath', selectionsPath);
+
+    const checks = readJsonFile(selectionsPath);
+    const resourcesFolder = path.join(
+      projectsFolder,
+      '../resources',
+      gatewayLanguageCode,
+      'bibles',
+      glBibleId
+    );
+    const mostRecent = getMostRecentVersionInFolderMajor(
+      resourcesFolder,
+      glOwnerStr
+    );
+
+    if (!mostRecent) {
+      continue;
+    }
+
+    const glBibleFolder = path.join(resourcesFolder, mostRecent, bookId);
+    foundBible = readHelpsFolder(glBibleFolder);
+
+    getSelectionsForBook(
+      checks,
+      gatewayLanguageCode,
+      tsvRelation,
+      foundBible,
+      selectionsForWord
+    );
+  }
+  console.log(
+    `Container ${projects?.length} projects, contextId`,
+    data.contextId,
+    {
+      data,
+      projectSaveLocation,
+      parsed
+    }
+  );
+  return selectionsForWord;
+}
