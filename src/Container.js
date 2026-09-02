@@ -25,7 +25,11 @@ import {
   getTranslateState,
 } from './selectors';
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
-import { fetchPreviousSelectionData } from "./helpers/autoCheckingUtils";
+import {
+  fetchPreviousSelectionData,
+  getBestTWordSelectionWithConfidenceAlgorithm,
+  getWordList,
+} from './helpers/autoCheckingUtils';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -116,8 +120,11 @@ function Container({
    * @param data
    * @return {[{confidence: number, selections: [{text: string, occurrence: number}]}]}
    */
-  function getSuggestions(data) {
+  async function getSuggestions(data) {
     const contextId = data?.contextId;
+    const verseText = data?.verseText;
+    const targetLanguageDetails = data?.targetLanguageDetails;
+    const alignedGLText = data?.alignedGLText;
     const groupId = contextId?.groupId || '';
     const projectSaveLocation = tc?.projectSaveLocation;
     const glOwnerStr = tc.gatewayLanguageOwner;
@@ -140,17 +147,16 @@ function Container({
       selectionsData.selections = selectionsForWord;
     }
 
-    return [
-      {
-        confidence: 99,
-        selections: [
-          {
-            text: 'faith',
-            occurrence: 1
-          }
-        ]
-      }
-    ];
+    const wordList = getWordList(verseText);
+    const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
+      wordList,
+      targetLanguageDetails.id,
+      alignedGLText,
+      gatewayLanguageCode,
+      selectionsData?.selections
+    );
+
+    return bestSelections;
   }
 
   return (

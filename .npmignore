@@ -2,3 +2,7 @@ node_modules
 __tests__
 .github
 src
+coverage
+dist
+.git
+*.tgz
