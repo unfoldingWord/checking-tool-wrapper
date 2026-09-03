@@ -27,8 +27,8 @@ import {
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
   fetchPreviousSelectionData,
-  getBestTWordSelectionWithConfidenceAlgorithm,
-  getWordList,
+  getBestSelections,
+  updatedPreviousSelectionsData,
 } from './helpers/autoCheckingUtils';
 
 const theme = createTcuiTheme({
@@ -68,6 +68,24 @@ const glBiblesCache = {
   bibles: {},
 };
 
+/**
+ * Top-level checking-tool layout: group menu, scripture pane, check info card, verse check,
+ * and translation helps, wired together with the auto-suggestion and selection-history helpers.
+ * @param {object} props
+ * @param {object} props.bibles - target-language bible resources
+ * @param {object} props.contextId - current check's context (checkId, groupId, reference)
+ * @param {Array} props.currentPaneSettings - scripture pane display settings
+ * @param {string} props.gatewayLanguageCode - gateway language code
+ * @param {string} props.gatewayLanguageQuote - aligned gateway-language quote for the current check
+ * @param {Array} props.glBibles - available gateway-language bibles
+ * @param {Function} props.setToolSettings - persists tool settings to the host app
+ * @param {object} props.tc - host tCore state (target book, resources, project info)
+ * @param {object} props.toolApi - this tool's Api instance
+ * @param {string} props.toolName - current tool name
+ * @param {Function} props.translate - localization function
+ * @param {Array} props.tsvRelation - tHelps manifest relation data
+ * @returns {JSX.Element}
+ */
 function Container({
   bibles,
   contextId,
@@ -102,12 +120,20 @@ function Container({
     setEditVerseInScrPane(null);
   }, [checkId, groupId, chapter, verse]);
 
+  /**
+   * Triggers edit mode for a verse in the Expanded Scripture Pane.
+   * @param {string|number} verseRef - verse reference to edit
+   */
   function editVerseInExpandedScripturePane(verseRef) {
     if (verseRef) {
       setEditVerseInScrPane(verseRef + '');
     }
   }
 
+  /**
+   * Clears edit mode when the Expanded Scripture Pane closes.
+   * @param {boolean} shown - whether the pane is now shown
+   */
   function onExpandedScripturePaneShow(shown) {
     if (!shown) {
       // when expanded scripture pane is closed, clear edit mode
@@ -116,9 +142,31 @@ function Container({
   }
 
   /**
-   *
-   * @param data
-   * @return {[{confidence: number, selections: [{text: string, occurrence: number}]}]}
+   * Updates the cached previous-selection history when a check's selections change.
+   * @param {object} data
+   * @param {object} data.contextId - context of the changed check
+   * @param {string} data.alignedGLText - aligned gateway-language text for the check
+   * @param {Array} data.newSelections - selections after the change
+   * @param {Array} data.oldSelections - selections before the change
+   */
+  function updateSelectionsData(data) {
+    const contextId = data?.contextId;
+    const alignedGLText = data?.alignedGLText;
+    const newSelections = data?.newSelections;
+    const oldSelections = data?.oldSelections;
+    const savedSelections = selectionsData?.selections;
+    updatedPreviousSelectionsData(oldSelections, savedSelections, alignedGLText, newSelections);
+  }
+
+  /**
+   * Computes auto-select suggestions for the current check, fetching and caching previous
+   * selection history for the group the first time it's needed.
+   * @param {object} data
+   * @param {object} data.contextId - context of the check being suggested for
+   * @param {string} data.verseText - target-language verse text
+   * @param {object} data.targetLanguageDetails - target language details, including `id`
+   * @param {string} data.alignedGLText - aligned gateway-language quote to translate
+   * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>}
    */
   async function getSuggestions(data) {
     const contextId = data?.contextId;
@@ -128,6 +176,9 @@ function Container({
     const groupId = contextId?.groupId || '';
     const projectSaveLocation = tc?.projectSaveLocation;
     const glOwnerStr = tc.gatewayLanguageOwner;
+    const llmSuggestionsEnabled = data?.llmSuggestionsEnabled;
+    const llmQueryUrl_ = data?.llmQueryUrl;
+    const llmQueryUrl = (llmSuggestionsEnabled && llmQueryUrl_) || null;
 
     if (selectionsData?.groupId !== groupId) {
       const selectionsForWord = fetchPreviousSelectionData(
@@ -147,13 +198,13 @@ function Container({
       selectionsData.selections = selectionsForWord;
     }
 
-    const wordList = getWordList(verseText);
-    const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
-      wordList,
-      targetLanguageDetails.id,
+    const bestSelections = await getBestSelections(
+      verseText,
+      llmQueryUrl,
+      targetLanguageDetails,
       alignedGLText,
       gatewayLanguageCode,
-      selectionsData?.selections
+      selectionsData
     );
 
     return bestSelections;
@@ -191,6 +242,7 @@ function Container({
             gatewayLanguageQuote={gatewayLanguageQuote}
             editVerseInScripturePane={editVerseInExpandedScripturePane}
             getSuggestions={data => getSuggestions(data)}
+            updateSelectionsData={data => updateSelectionsData(data)}
           />
         </div>
         <TranslationHelpsWrapper
@@ -219,6 +271,13 @@ Container.propTypes = {
   tsvRelation: PropTypes.array.isRequired,
 };
 
+/**
+ * Redux `mapStateToProps` for `Container`, deriving gateway-language quote/context/tool data
+ * from the host `tc` state and this tool's own selectors.
+ * @param {object} state - redux state
+ * @param {object} ownProps - own props, including the host `tc` state
+ * @returns {object} - props consumed by `Container`
+ */
 export const mapStateToProps = (state, ownProps) => {
   const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);

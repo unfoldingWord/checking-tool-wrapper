@@ -71,9 +71,8 @@ function VerseCheckWrapper({
   bookmarksReducer: { enabled: bookmarkEnabled },
   editVerseInScripturePane,
   getSuggestions, // if defined will call to get suggestions
+  updateSelectionsData, // if defined will call to get suggestions
 }) {
-  console.log(`VerseCheckWrapper: getSuggestions=${getSuggestions}`);
-
   // Determine screen mode
   const initialMode = getInitialMode();
   const {
@@ -327,8 +326,15 @@ function VerseCheckWrapper({
 
   function saveSelection() {
     // optimize the selections to address potential issues and save
-    const selections = optimizeSelections(verseText, newSelections);
-    changeSelections(selections, newNothingToSelect);
+    const selections_ = optimizeSelections(verseText, newSelections);
+
+    updateSelectionsData({
+      alignedGLText,
+      contextId,
+      newSelections,
+      oldSelections: selections,
+    });
+    changeSelections(selections_, newNothingToSelect);
     changeMode("default");
   }
 
@@ -425,6 +431,7 @@ VerseCheckWrapper.propTypes = {
   editTargetVerse: PropTypes.func.isRequired,
   editVerseInScripturePane: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func,
+  updateSelectionsData: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {

@@ -8,8 +8,8 @@ import {
   getDetailsFromProjectNameMini,
   getMostRecentVersionInFolderMajor,
   readHelpsFolder,
-  readJsonFile
-} from "./fileHelpers";
+  readJsonFile,
+} from './fileHelpers';
 import * as gatewayLanguageHelpers from './gatewayLanguageHelpers';
 
 
@@ -18,6 +18,121 @@ const LM_STUDIO_URL = 'http://192.168.142.70:1234';
 //////////////////////////////
 // Testing Support functions
 //////////////////////////////
+
+/**
+ * Streams a chat completion request to an LM Studio server and accumulates the response.
+ *
+ * This function sends a POST request to the LM Studio chat completions endpoint with streaming
+ * enabled, then reads the Server-Sent Events (SSE) stream to accumulate the full response text.
+ * It handles both standard content and reasoning content (thinking mode) from the AI model.
+ *
+ * The function processes the SSE stream line by line, parsing JSON chunks and extracting text
+ * from either `delta.content` or `delta.reasoning_content` fields. It accumulates partial lines
+ * in a buffer to handle chunks that arrive split across multiple reads.
+ *
+ * @param {string} baseUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234')
+ * @param {string} model - Model identifier as configured in LM Studio (e.g., 'local-model')
+ * @param {string} systemPrompt - System prompt that sets the AI's behavior and context
+ * @param {string} query - User query/prompt to send to the model
+ * @param {number} temperature - Sampling temperature (0.0-1.0); higher values increase randomness
+ * @param {number} maxTokens - Maximum number of tokens to generate in the response
+ * @param {boolean} enable_thinking - Whether to enable thinking mode via chat_template_kwargs
+ * @returns {Promise<{startTime: number, replyText: string, actualModel: string}>} Object containing:
+ *   - startTime: Timestamp when the request was initiated (milliseconds since epoch)
+ *   - replyText: Complete accumulated response text from the model
+ *   - actualModel: Actual model name reported by the server (may differ from requested model)
+ * @throws {Error} If the server is unreachable, returns a non-OK status, or the response is malformed
+ * @example
+ * const result = await streamChatMessage(
+ *   'http://localhost:1234',
+ *   'local-model',
+ *   'You are a helpful assistant.',
+ *   'What is the capital of France?',
+ *   0.7,
+ *   2048,
+ *   false
+ * );
+ * console.log(result.replyText); // "The capital of France is Paris."
+ * console.log(`Request took ${Date.now() - result.startTime}ms`);
+ *
+ * @see {@link queryLmStudio} - Higher-level wrapper function that calls this internally
+ */
+async function streamChatMessage(options) {
+  const { baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking } = options;
+  const url = `${baseUrl}/v1/chat/completions`;
+  let response;
+
+  try {
+    response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: query }
+        ],
+        temperature,
+        max_tokens: maxTokens,
+        stream: true,
+        chat_template_kwargs: { enable_thinking }
+      })
+    });
+  } catch (error) {
+    const message1 = `Failed to reach LM Studio server at ${url}: ${error.message}`;
+    console.error(message1);
+    throw new Error(message1);
+  }
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    const message = `AI request failed (${response.status}): ${errorText}`;
+    throw new Error(message);
+  }
+
+  // Read the SSE stream and accumulate the full response
+  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+  let replyText = '';
+  let buffer = '';
+  let actualModel = '';
+
+  while (true) {
+    // eslint-disable-next-line no-await-in-loop
+    const { value, done } = await reader.read();
+
+    if (done) break;
+
+    buffer += value;
+    const lines = buffer.split('\n');
+    buffer = lines.pop() || ''; // keep incomplete last line in buffer
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      if (!trimmed || !trimmed.startsWith('data: ')) continue;
+
+      const dataStr = trimmed.slice(6);
+
+      if (dataStr === '[DONE]') break;
+
+      try {
+        const chunk = JSON.parse(dataStr);
+        actualModel = actualModel || chunk?.model || '';
+        const delta = chunk?.choices?.[0]?.delta;
+        const text = delta?.content || delta?.reasoning_content;
+
+        if (text) {
+          replyText += text;
+        }
+      } catch {
+        // ignore malformed chunks
+      }
+    }
+  }
+  return { replyText, actualModel };
+}
 
 /**
  * Sends a text query to a locally running LM Studio server and returns the model's response text.
@@ -47,92 +162,55 @@ export async function queryLmStudio(query, options = {}) {
     enable_thinking = true,
     systemPrompt = 'You are a helpful assistant.',
   } = options;
+  const startTime = Date.now();
 
   if (!enable_thinking) {
     query = query + '\n/no_think';
   }
 
-  const url = `${baseUrl}/v1/chat/completions`;
-  const startTime = Date.now();
+  let replyText_ = null;
+  let actualModel_ = null;
 
-  let response;
-  try {
-    response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: query },
-        ],
-        temperature,
-        max_tokens: maxTokens,
-        stream: true,
-        chat_template_kwargs: { enable_thinking },
-      }),
-    });
-  } catch (error) {
-    const message1 = `Failed to reach LM Studio server at ${url}: ${error.message}`;
-    console.error(message1);
-    throw new Error(message1);
-  }
+  const lmQueryOptions = {
+    baseUrl,
+    enable_thinking,
+    maxTokens,
+    model,
+    query,
+    systemPrompt,
+    temperature,
+  };
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    const message = `AI request failed (${response.status}): ${errorText}`;
-    throw new Error(message);
-  }
+  const isLmStudioQueryAvailable =
+    typeof window !== 'undefined' &&
+    typeof window.lmStudio?.query === 'function';
 
-  // Read the SSE stream and accumulate the full response
-  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
-  let replyText = '';
-  let buffer = '';
-  let actualModel = '';
+  console.log('isLmStudioQueryAvailable', isLmStudioQueryAvailable);
 
-  while (true) {
-    // eslint-disable-next-line no-await-in-loop
-    const { value, done } = await reader.read();
-    if (done) break;
-
-    buffer += value;
-    const lines = buffer.split('\n');
-    buffer = lines.pop() || ''; // keep incomplete last line in buffer
-
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (!trimmed || !trimmed.startsWith('data: ')) continue;
-
-      const dataStr = trimmed.slice(6);
-      if (dataStr === '[DONE]') break;
-
-      try {
-        const chunk = JSON.parse(dataStr);
-        actualModel = actualModel || chunk?.model || '';
-        const delta = chunk?.choices?.[0]?.delta;
-        const text = delta?.content || delta?.reasoning_content;
-
-        if (text) {
-          replyText += text;
-        }
-      } catch {
-        // ignore malformed chunks
-      }
-    }
+  if (isLmStudioQueryAvailable) { // calling Electron process
+    const answer = await window.lmStudio.query(query, lmQueryOptions);
+    console.log(answer);
+    replyText_ = answer.replyText;
+    actualModel_ = answer.actualModel;
+  } else { // no electron process
+    const {
+      replyText,
+      actualModel,
+    } = await streamChatMessage(lmQueryOptions);
+    replyText_ = replyText;
+    actualModel_ = actualModel;
   }
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-  console.log(`Query using model "${actualModel || model}" took ${elapsed}s`);
+  console.log(`Query using model "${actualModel_ || model}" took ${elapsed}s`);
 
-  if (!replyText) {
+  if (!replyText_) {
     const message = `Unexpected LM Studio response shape: received empty content`;
     console.log(message);
     throw new Error(message);
   }
 
-  return replyText;
+  return replyText_;
 }
 
 /**
@@ -1103,10 +1181,23 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
   return []
 }
 
+/**
+ * Strips a single pair of surrounding double quotes from a value, trimming whitespace first.
+ * @param {string} value
+ * @returns {string} - the value without surrounding quotes, or '' if value is falsy
+ */
 function removeQuotes(value) {
   return value?.trim().replace(/^"|"$/g, '') || ''
 }
 
+/**
+ * Counts how many times `text` occurs in `wordList` before (and not including) `position`,
+ * returning the 1-based occurrence index for the word at `position`.
+ * @param {number} position - 1-based position in wordList being resolved
+ * @param {Array<string>} wordList - verse words
+ * @param {string} text - word text to count occurrences of
+ * @returns {number} - 1-based occurrence index, defaulting to 1 if none counted
+ */
 function findOccurrenceForPos(position, wordList, text) {
   let occurrence = 0
   for (let i = 0; i < position; i++) {
@@ -1118,6 +1209,16 @@ function findOccurrenceForPos(position, wordList, text) {
   return occurrence
 }
 
+/**
+ * Parses one CSV response row of the form `"word word",confidence` (no positions) into a
+ * `{selections, confidence}` entry pushed onto `selectionWords`, resolving each word's
+ * occurrence by finding the tightest grouping of matching positions in `wordList`.
+ * @param {string} response - one CSV row of the AI response
+ * @param {Array<string>} wordList - target-language verse words in reading order
+ * @param {string} answer - full AI response text, used only for logging
+ * @param {Array<object>} selectionWords - accumulator array the parsed entry is pushed onto
+ * @returns {boolean} - true on success, false if the row was malformed or a word wasn't found
+ */
 function parseResponseRowNoPositions(response, wordList, answer, selectionWords) {
   let error = false;
   const rowParts = normalizer(response).split(',')
@@ -1216,6 +1317,16 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
   return !error
 }
 
+/**
+ * Parses one CSV response row of the form `"word:position word:position",confidence` into a
+ * `{selections, confidence}` entry pushed onto `selectionWords`, converting each word's
+ * position (or bare occurrence number, when positions are missing) into an occurrence index.
+ * @param {string} response - one CSV row of the AI response
+ * @param {Array<string>} wordList - target-language verse words in reading order
+ * @param {string} answer - full AI response text, used only for logging
+ * @param {Array<object>} selectionWords - accumulator array the parsed entry is pushed onto
+ * @returns {boolean} - true on success, false if the row was malformed or a word wasn't found
+ */
 function parseResponseRow(response, wordList, answer, selectionWords) {
   let error = false;
   let missingPos = false;
@@ -1444,21 +1555,42 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
   return []
 }
 
+/**
+ * Builds the check-data filename for a language/book pair.
+ * @param {string} langId
+ * @param {string} bookId
+ * @returns {string} - e.g. 'en_tit.json'
+ */
 export function getCheckDataFilename(langId, bookId) {
   return langId + '_' + bookId + '.json'
 }
 
+/**
+ * Tokenizes verse text into a list of word strings using the wordmap-lexer.
+ * @param {string} verseText
+ * @returns {Array<string>} - words in reading order
+ */
 export function getWordList(verseText) {
   const tokenList = Lexer.tokenize(verseText)
   const wordList = tokenList.map(token => (token.text))
   return wordList
 }
 
+/**
+ * Strips punctuation from gateway-language text by tokenizing it into words and rejoining.
+ * @param {string} glText
+ * @returns {string} - text with punctuation removed
+ */
 export function removePunctuation(glText) {
   const wordList = getWordList(glText)
   return wordList.join(' ')
 }
 
+/**
+ * Removes brace, punctuation, and quote characters from a gateway-language quote.
+ * @param {string} glQuote
+ * @returns {string} - cleaned quote
+ */
 export function cleanQuote(glQuote) {
   const replaceChars = ['{', '}', '.', ',', ';', ':', "\""];
   let cleanedQuote = glQuote
@@ -1470,6 +1602,12 @@ export function cleanQuote(glQuote) {
   return cleanedQuote
 }
 
+/**
+ * Cleans a gateway-language quote that may contain ellipsis (`…`) and ampersand (` & `)
+ * separated parts, running `removePunctuation` on each sub-part while preserving those separators.
+ * @param {string} glQuote
+ * @returns {string} - cleaned quote with ellipsis/ampersand separators preserved
+ */
 export function cleanQuote2(glQuote) {
   const AMPERSAND = ' & '
   const ELLIPSIS = '\u2026'
@@ -1493,6 +1631,12 @@ export function cleanQuote2(glQuote) {
   return cleanedString
 }
 
+/**
+ * Normalizes a previous-translation-history object by running `normalizer` over every
+ * gateway-language quote key and every target-language rendering key.
+ * @param {object} selectionsForTWordsRaw - nested `{glQuote: {rendering: count}}` object
+ * @returns {object} - same shape, with all keys normalized
+ */
 export function normalizeHistory(selectionsForTWordsRaw) {
   const selectionsForTWords = { }
   for (const glQuote of Object.keys(selectionsForTWordsRaw)) {
@@ -1509,11 +1653,26 @@ export function normalizeHistory(selectionsForTWordsRaw) {
   return selectionsForTWords
 }
 
+/**
+ * Joins an array of selection objects into a single space-separated string of their text.
+ * @param {Array<{text: string}>} selections
+ * @returns {string} - the selected words joined by spaces
+ */
 export function selectionsToString(selections) {
   const selectionWords = selections.map( selection => (selection.text));
   return selectionWords.join(' ');
 }
 
+/**
+ * Tallies each check's target-language selection against its gateway-language quote, updating
+ * `selectionsForWord` in place with `{glQuote: {selectedText: count}}` counts.
+ * @param {Array<object>} checks - checking-tool check records, each with `contextId` and `selections`
+ * @param {string} gatewayLanguageCode - gateway language code
+ * @param {object} tsvRelation - TSV relation data used to resolve the aligned gateway-language text
+ * @param {object} bible - gateway-language bible used to resolve the aligned text for each check
+ * @param {object} selectionsForWord - accumulator object mutated in place
+ * @returns {object} - the same `selectionsForWord` object, for convenience
+ */
 export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForWord ) {
   for (const check of checks) {
     const contextId = check?.contextId;
@@ -1563,6 +1722,22 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
   return selectionsForWord;
 }
 
+/**
+ * Scans sibling projects on disk for the same language/resource/testament combination and
+ * aggregates their previous target-language selections for `groupId`, using and updating
+ * `glBiblesCache` to avoid re-reading the gateway-language bible for each project.
+ * @param {string} projectSaveLocation - path to the current project folder
+ * @param {object} contextId - context of the current check
+ * @param {object} glBibles - available gateway-language bibles keyed by bible id
+ * @param {object} tsvRelation - TSV relation data used to resolve aligned gateway-language text
+ * @param {string} toolName - checking tool name, used to build the selections index path
+ * @param {string} groupId - group id (e.g. translationWords entry) to gather selections for
+ * @param {string} gatewayLanguageCode - gateway language code
+ * @param {string} glOwnerStr - owner string for resolving the most recent gateway bible version
+ * @param {object} data - data used only for logging (expects `contextId`)
+ * @param {object} glBiblesCache - mutable cache of loaded gateway-language bibles, keyed by book id
+ * @returns {object} - `{glQuote: {selectedText: count}}` aggregated across matching projects
+ */
 export function fetchPreviousSelectionData(
   projectSaveLocation,
   contextId,
@@ -1697,4 +1872,173 @@ export function fetchPreviousSelectionData(
     }
   );
   return selectionsForWord;
+}
+
+/**
+ * Updates the previous selections data by decrementing the count for old selections
+ * and incrementing the count for new selections.
+ *
+ * This function maintains a history of translation selections, tracking how many times
+ * each target-language rendering has been chosen for a given gateway-language phrase.
+ * The data structure is nested: `{glPhrase: {targetRendering: count}}`.
+ *
+ * When a user changes their selection:
+ * - The count for the old selection is decremented (if it exists)
+ * - The count for the new selection is incremented (creating a new entry if needed)
+ *
+ * This selection history is used by the AI and algorithmic suggestion systems to
+ * prioritize previously-used translations when making new suggestions.
+ *
+ * @param {Array<{text: string, occurrence: number}>} oldSelections - the previous word selections
+ *   being replaced; each object contains `text` (the word) and `occurrence` (1-based index)
+ * @param {object} savedSelections - the nested selection-count object being updated in place;
+ *   structure: `{glPhrase: {targetRendering: count}}`
+ * @param {string} alignedGLText - the gateway-language phrase (key) these selections are for
+ * @param {Array<{text: string, occurrence: number}>} newSelections - the new word selections
+ *   being saved; same structure as `oldSelections`
+ * @returns {void} - mutates `savedSelections` in place
+ * @example
+ * const savedSelections = { 'church': { 'iglesia': 5, 'la iglesia': 2 } };
+ * const oldSelections = [{ text: 'iglesia', occurrence: 1 }];
+ * const newSelections = [{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }];
+ *
+ * updatedPreviousSelectionsData(oldSelections, savedSelections, 'church', newSelections);
+ * // savedSelections is now: { 'church': { 'iglesia': 4, 'la iglesia': 3 } }
+ */
+export function updatedPreviousSelectionsData(
+  oldSelections,
+  savedSelections,
+  alignedGLText,
+  newSelections
+) {
+  if (oldSelections?.length) {
+    let savedSelectionForGL = savedSelections?.[alignedGLText];
+
+    if (savedSelectionForGL) {
+      const oldSelectionsStr = oldSelections.map(s => s.text).join(' ');
+      let savedSelectionForTarget = savedSelectionForGL[oldSelectionsStr];
+
+      if (savedSelectionForTarget) {
+        savedSelectionForGL[oldSelectionsStr] = savedSelectionForTarget - 1;
+      }
+    }
+  }
+
+  if (newSelections?.length) {
+    let savedSelectionForGL = savedSelections?.[alignedGLText];
+
+    if (!savedSelectionForGL) {
+      savedSelectionForGL = {};
+      savedSelections[alignedGLText] = savedSelectionForGL;
+    }
+
+    const newSelectionsStr = newSelections.map(s => s.text).join(' ');
+    const translation = savedSelectionForGL[newSelectionsStr];
+
+    if (!translation) {
+      savedSelectionForGL[newSelectionsStr] = 1;
+    } else {
+      savedSelectionForGL[newSelectionsStr] = translation + 1;
+    }
+  }
+}
+
+/**
+ * Gets the best translation selections for a target-language verse based on a gateway-language phrase.
+ *
+ * This function finds the most appropriate target-language word(s) that correspond to a gateway-language
+ * phrase within the context of a specific verse. It supports two modes:
+ *
+ * 1. **Algorithmic mode** (when `llmQueryUrl` is not provided):
+ *    Uses historical translation data and pattern matching to suggest selections based on previous
+ *    translations. This mode does not require an AI model and works entirely offline.
+ *
+ * 2. **AI-assisted mode** (when `llmQueryUrl` is provided):
+ *    Queries a locally-running LM Studio server to leverage an AI model for more intelligent
+ *    translation suggestions. The AI considers both the semantic meaning and the translation history.
+ *
+ * @param {string} verseText - The target-language verse text to search within
+ * @param {string|null} llmQueryUrl - The base URL of the LM Studio server (e.g., 'http://localhost:1234');
+ *   if null/undefined, uses the algorithmic fallback mode instead
+ * @param {object} targetLanguageDetails - Object containing target language metadata
+ * @param {string} targetLanguageDetails.id - Language code of the target language (e.g., 'es-419')
+ * @param {string} alignedGLText - The gateway-language phrase to translate (e.g., 'church')
+ * @param {string} gatewayLanguageCode - Language code of the gateway language (e.g., 'en')
+ * @param {object} selectionsData - Object containing previous translation history
+ * @param {object} selectionsData.selections - Nested object mapping gateway phrases to target renderings
+ *   with usage counts: `{glPhrase: {targetRendering: count}}`; can also be a flat `{targetRendering: count}`
+ * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>}
+ *   Array of translation options (up to 3), sorted by confidence (highest first). Each option contains:
+ *   - **selections**: Array of word objects, each with:
+ *     - **text**: The normalized word form from the verse
+ *     - **occurrence**: 1-based occurrence index of this word in the verse
+ *   - **confidence**: Integer 0-100 indicating match certainty
+ *   Returns empty array `[]` if no valid translations are found or on error
+ * @example
+ * // Algorithmic mode (offline)
+ * const selections = await getBestSelections(
+ *   'para la iglesia de Éfeso',
+ *   null,  // no AI server
+ *   { id: 'es-419' },
+ *   'church',
+ *   'en',
+ *   { selections: { 'church': { 'iglesia': 7, 'la iglesia': 3 } } }
+ * );
+ * // Returns: [
+ * //   { selections: [{text: 'iglesia', occurrence: 1}], confidence: 98 },
+ * //   { selections: [{text: 'la', occurrence: 1}, {text: 'iglesia', occurrence: 1}], confidence: 70 }
+ * // ]
+ *
+ * @example
+ * // AI-assisted mode
+ * const selections = await getBestSelections(
+ *   'para la iglesia de Éfeso',
+ *   'http://localhost:1234',  // LM Studio server URL
+ *   { id: 'es-419' },
+ *   'church',
+ *   'en',
+ *   { selections: { 'church': { 'iglesia': 7 } } }
+ * );
+ * // Returns AI-generated suggestions with confidence scores
+ *
+ * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} - Algorithmic implementation
+ * @see {@link getBestTWordSelectionWithConfidence} - AI-assisted implementation
+ */
+export async function getBestSelections(
+  verseText,
+  llmQueryUrl,
+  targetLanguageDetails,
+  alignedGLText,
+  gatewayLanguageCode,
+  selectionsData,
+) {
+  const wordList = getWordList(verseText);
+  let bestSelections = null;
+
+  if (!llmQueryUrl) {
+    bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
+      wordList,
+      targetLanguageDetails.id,
+      alignedGLText,
+      gatewayLanguageCode,
+      selectionsData?.selections,
+      llmQueryUrl
+    );
+  } else {
+    const lmOptions = {
+      baseUrl: llmQueryUrl,
+      enable_thinking: false,
+    };
+
+    bestSelections = await getBestTWordSelectionWithConfidence(
+      wordList,
+      targetLanguageDetails.id,
+      alignedGLText,
+      gatewayLanguageCode,
+      selectionsData?.selections,
+      lmOptions,
+    );
+
+    return bestSelections;
+  }
 }

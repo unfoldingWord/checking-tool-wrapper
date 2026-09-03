@@ -3,6 +3,11 @@ import path from 'path-extra';
 import { resourcesHelpers } from 'tc-source-content-updater';
 import { isBibleBookId } from '../common/booksOfTheBible';
 
+/**
+ * Reads and parses a JSON file if it exists.
+ * @param {string} jsonPath - path to the JSON file
+ * @returns {Object|null} parsed JSON contents, or null if the file doesn't exist or fails to parse
+ */
 export function readJsonFile(jsonPath) {
   if (fs.existsSync(jsonPath)) {
     try {
@@ -15,15 +20,31 @@ export function readJsonFile(jsonPath) {
   return null;
 }
 
+/**
+ * Checks whether a path is a directory.
+ * @param {string} fullPath - path to check
+ * @returns {boolean} true if the path is a directory
+ */
 export function isDirectory(fullPath) {
-  return fs.lstatSync(fullPath).isDirectory()
+  return fs.lstatSync(fullPath).isDirectory();
 }
 
+/**
+ * Reads a file's contents as UTF-8 text.
+ * @param {string} filePath - path to the file
+ * @returns {string} file contents
+ */
 export function readTextFile(filePath) {
   const data = fs.readFileSync(filePath, 'UTF-8').toString();
-  return data
+  return data;
 }
 
+/**
+ * Recursively reads a helps folder, parsing JSON and Markdown files and descending into subfolders.
+ * @param {string} folderPath - path to the helps folder
+ * @param {string} [filterBook=''] - when set, limits the 'groups' subfolder to this book's contents
+ * @returns {Object} nested contents of the folder, keyed by file/folder name
+ */
 export function readHelpsFolder(folderPath, filterBook = '') {
   const contents = {}
   const files = fs.readdirSync(folderPath)
@@ -56,6 +77,11 @@ export function readHelpsFolder(folderPath, filterBook = '') {
   return contents
 }
 
+/**
+ * Extracts language, resource, and book IDs from a project name, supporting both old and new naming formats.
+ * @param {string} projectName - project name, e.g. 'en_ult_tit_book' or 'aaw_php_text_reg'
+ * @returns {{bookId: string, languageId: string, resourceId: string}} extracted details
+ */
 export function getDetailsFromProjectNameMini(projectName) {
   let bookId = '';
   let languageId = '';
@@ -83,6 +109,10 @@ export function getDetailsFromProjectNameMini(projectName) {
   };
 }
 
+/**
+ * Resolves the actual resourcesHelpers module, unwrapping a nested `resourcesHelpers.resourcesHelpers` if present.
+ * @returns {Object} the resourcesHelpers module
+ */
 function getNestedResourcesHelpers() {
   let resourcesHelpers_ = resourcesHelpers;
 
@@ -124,6 +154,12 @@ export function getMostRecentVersionInFolder(bibleFolderPath, ownerStr = apiHelp
   return null;
 }
 
+/**
+ * Search folder for most recent version, if the folder exists.
+ * @param {string} bibleFolderPath
+ * @param {string} ownerStr - optional owner, if not given defaults to Door43-Catalog
+ * @returns {string|null} latest version found, or null if the folder doesn't exist
+ */
 export function getMostRecentVersionInFolderMajor(bibleFolderPath, ownerStr = apiHelpers.DOOR43_CATALOG) {
   if (fs.existsSync(bibleFolderPath)) {
     return getMostRecentVersionInFolder(bibleFolderPath, ownerStr);
