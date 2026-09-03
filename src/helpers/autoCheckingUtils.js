@@ -284,7 +284,7 @@ vejez,95
 "tu:6 vejez:7",95
 `;
 
-  const input = `Target Verse language: ${targetLangCode}
+  const query = `Target Verse language: ${targetLangCode}
 
 Target Verse:
 \`\`\`
@@ -298,7 +298,7 @@ Gateway Phrase:
 ${phrase}
 \`\`\``;
 
-  return { systemPrompt, input };
+  return { systemPrompt, query };
 }
 
 /**
@@ -314,11 +314,74 @@ function normalizeForCompare(word) {
   return normalizer(word || '').toLowerCase();
 }
 
+/**
+ * Formats and filters previous translation data for AI prompt inclusion.
+ *
+ * This function processes historical translation data to prepare it for use in AI prompts.
+ * It performs two levels of filtering to provide the most relevant previous translations:
+ *
+ * 1. **Verse-level filtering**: For each gateway-language phrase, it filters to include only
+ *    target-language renderings whose words all appear in the current verse. This ensures
+ *    the AI only considers renderings that are actually possible given the verse's vocabulary.
+ *
+ * 2. **Phrase-level filtering** (optional): When `filter` is true, it further narrows results
+ *    to only include gateway-language phrases whose words are all present in `glPhrase`. This
+ *    helps focus on the most relevant translation history when the gateway phrase is a subset
+ *    of previous phrases.
+ *
+ * The function normalizes all words for comparison using case-insensitive, punctuation-free
+ * matching, ensuring that capitalization and punctuation differences don't prevent matches.
+ *
+ * After filtering, entries are sorted by usage count (descending) to prioritize the most
+ * frequently used translations, helping the AI make suggestions based on strongest evidence.
+ *
+ * @param {object} previousTranslationData - Prior translation history in nested format
+ *   `{glPhrase: {targetRendering: count}}` or flat format `{targetRendering: count}`
+ * @param {string} glPhrase - Current gateway-language phrase being translated; used for
+ *   phrase-level filtering when `filter` is true
+ * @param {string} verseContent - Target-language verse text (space-separated words) to check
+ *   which renderings are possible in this verse
+ * @param {boolean} [filter=false] - If true, applies phrase-level filtering to only include
+ *   gateway phrases whose words are all present in `glPhrase`
+ * @returns {string} JSON string containing filtered and sorted translation entries in format
+ *   `[{phrase: string, rendering: string, usageCount: number}, ...]`, or empty string `""`
+ *   if no valid translations are found
+ * @example
+ * const data = {
+ *   'the church': { 'la iglesia': 5, 'la congregación': 2 },
+ *   'church': { 'iglesia': 10 }
+ * };
+ * const result = formatPreviousTranslations(
+ *   data,
+ *   'church',
+ *   'para la iglesia de Éfeso',
+ *   true  // enable phrase filtering
+ * );
+ * // Returns JSON string (prettified for readability):
+ * // [
+ * //   {"phrase": "church", "rendering": "iglesia", "usageCount": 10}
+ * // ]
+ * // Note: 'the church' renderings are filtered out because 'the' is not in 'church'
+ *
+ * @example
+ * // Without phrase filtering
+ * const result = formatPreviousTranslations(
+ *   data,
+ *   'church',
+ *   'para la iglesia de Éfeso',
+ *   false  // no phrase filtering
+ * );
+ * // Returns all renderings whose words appear in verse, sorted by usage count:
+ * // [
+ * //   {"phrase": "church", "rendering": "iglesia", "usageCount": 10},
+ * //   {"phrase": "the church", "rendering": "la iglesia", "usageCount": 5}
+ * // ]
+ */
 function formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, filter = false) {
   const data = previousTranslationData || {};
 
   // Default to using data directly as counts map
-  let filteredMatches = { };
+  let filteredMatches = {};
   const keys = Object.keys(data);
   const wordList = verseContent.split(' ');
   const normalizedWordList = wordList.map(word => normalizeForCompare(word));
@@ -326,7 +389,7 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
   for (const glPhrase of keys) {
     const translations = data[glPhrase];
     const translationKeys = Object.keys(translations);
-    const filteredMatchesEntries = { };
+    const filteredMatchesEntries = {};
 
     for (const translation of translationKeys) {
       const translationWords = translation.split(/\s+/).filter(Boolean);
@@ -351,7 +414,6 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
   if (!Object.keys(filteredMatches).length) {
     filteredMatches = data;
   }
-
 
   // Convert counts object to array of {phrase, rendering, usageCount} entries,
   // filter out empty phrases or zero counts,
@@ -469,7 +531,7 @@ Valid Response:
 Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",98 | "iglesia:3",98 | iglesia,98
 `;
 
-  const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true)
+  const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true);
   console.log(previousTranslations);
 
   // one labeled field per line, in the same order as the example above
@@ -496,7 +558,7 @@ Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",9
  * @param {string} glPhrase - gateway-language phrase being translated
  * @returns {object} - `{targetPhrase: count}` for this phrase, or `{}` when it has no history
  */
-function getPreviousTranslationCounts(previousTranslationData, glPhrase) {
+function getPreviousTranslationExactMatchCounts(previousTranslationData, glPhrase) {
   const data = previousTranslationData || {}
 
   // data is phrase-keyed when its values are count maps rather than counts
@@ -509,10 +571,97 @@ function getPreviousTranslationCounts(previousTranslationData, glPhrase) {
   const keys = Object.keys(data);
 
   // match the gateway phrase exactly, else accent- and case-insensitively
+  const normalizedGL = normalizer(glPhrase).toLowerCase();
   const matchedGL = keys.find(key_ => key_ === glPhrase)
-    || keys.find(key_ => normalizer(key_).toLowerCase() === normalizer(glPhrase).toLowerCase());
+    || keys.find(key_ => normalizer(key_).toLowerCase() === normalizedGL);
 
   return matchedGL ? (data[matchedGL] || {}) : {};
+}
+
+/**
+ * Retrieves the translation count map for a gateway language phrase, supporting both
+ * exact and partial matching strategies.
+ *
+ * This function extracts previous translation history from a nested data structure that
+ * maps gateway language phrases to their target language renderings with usage counts.
+ * It handles two input formats:
+ * - **Nested format**: `{glPhrase: {targetRendering: count}}` (phrase-keyed)
+ * - **Flat format**: `{targetRendering: count}` (already extracted for one phrase)
+ *
+ * The matching strategy proceeds in two steps:
+ * 1. **Exact match**: First attempts to find `glPhrase` as an exact key in the data
+ * 2. **Partial match**: If no exact match is found, searches for any phrase where at least
+ *    one word from `glPhrase` appears in the stored phrase
+ *
+ * All comparisons are performed after normalization (case-insensitive, punctuation-free)
+ * to ensure that formatting differences don't prevent valid matches.
+ *
+ * @param {object} previousTranslationData - Historical translation data; can be:
+ *   - Nested: `{glPhrase: {targetRendering: count}}` where values are count maps
+ *   - Flat: `{targetRendering: count}` where values are integers
+ * @param {string} glPhrase - Gateway language phrase to look up (e.g., 'the church')
+ * @returns {object} Translation count map `{targetRendering: count}` for the matched phrase,
+ *   or empty object `{}` if no match is found or input is invalid
+ * @example
+ * // Nested input with exact match
+ * const data = {
+ *   'the church': { 'la iglesia': 5, 'la congregación': 2 },
+ *   'church': { 'iglesia': 10 }
+ * };
+ * getPreviousTranslationPartialMatchCounts(data, 'the church');
+ * // Returns: { 'la iglesia': 5, 'la congregación': 2 }
+ *
+ * @example
+ * // Nested input with partial match (no exact match for 'church building')
+ * const data = {
+ *   'the church': { 'la iglesia': 5 },
+ *   'church': { 'iglesia': 10 }
+ * };
+ * getPreviousTranslationPartialMatchCounts(data, 'church building');
+ * // Returns: { 'iglesia': 10 } (matched 'church' because it contains the word 'church')
+ *
+ * @example
+ * // Flat input (already extracted for one phrase)
+ * const data = { 'iglesia': 10, 'congregación': 3 };
+ * getPreviousTranslationPartialMatchCounts(data, 'church');
+ * // Returns: { 'iglesia': 10, 'congregación': 3 } (returns input as-is)
+ *
+ * @see {@link getPreviousTranslationExactMatchCounts} - Similar function with exact-match-only strategy
+ * @see {@link normalizer} - String normalization function from string-punctuation-tokenizer
+ */
+function getPreviousTranslationPartialMatchCounts(
+  previousTranslationData,
+  glPhrase
+) {
+  const data = previousTranslationData || {};
+
+  // data is phrase-keyed when its values are count maps rather than counts
+  const isPhraseKeyed = Object.values(data).some(
+    value => value && typeof value === 'object'
+  );
+
+  if (!isPhraseKeyed) {
+    return data;
+  }
+
+  const keys = Object.keys(data);
+
+  // match the gateway phrase exactly, else accent- and case-insensitively
+  const normalizedGlWords = normalizer(glPhrase).toLowerCase().split(' ');
+  const matchedGL =
+    keys.find(key_ => key_ === glPhrase) ||
+    keys.find(key_ => {
+      const translatedWords = normalizer(key_).toLowerCase().split(' ');
+
+      for (let i = 0; i < normalizedGlWords.length; i++) {
+        if (translatedWords.includes(normalizedGlWords[i])) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+  return matchedGL ? data[matchedGL] || {} : {};
 }
 
 /**
@@ -807,7 +956,11 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   // Initialize wordList, defaulting to empty array if null/undefined
   const words = wordList || [];
   // Extract the translation count map for this specific gateway language phrase
-  const counts = getPreviousTranslationCounts(previousTranslationData, glPhrase);
+  let counts = getPreviousTranslationExactMatchCounts(previousTranslationData, glPhrase);
+
+  if (!counts?.length) { // if no exact match using original
+    counts = getPreviousTranslationPartialMatchCounts(previousTranslationData, glPhrase);
+  }
 
   // Sort previous translations by usage count (descending), filtering out empty or zero-count entries
   // Process strongest evidence first so the most-used rendering claims its words before weaker ones
@@ -952,7 +1105,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         candidates: [...candidates.values()],
       })
     } else {
-      console.log('algorithm response: no usable previous translations', { glPhrase })
+      console.log('algorithm response: no usable candidates for ', { glPhrase })
     }
   }
 
@@ -1430,7 +1583,7 @@ function parseResponseRow(response, wordList, answer, selectionWords) {
           }
 
           if (!found) {
-              console.log(`word ${selection.text} not found at ${selection.position} in wordList`, wordList)
+            console.log(`word ${selection.text} not found at ${selection.position} in wordList`, wordList)
           }
         }
       }
@@ -1475,12 +1628,12 @@ function parseResponseRow(response, wordList, answer, selectionWords) {
 export async function translatePhraseWithConfidence(wordList, targetLangCode, phrase, phraseLangCode) {
   let selectionWords = []
   const verseWords = wordList.join(' ')
-  const { systemPrompt, input } = buildVerseMatchPrompt(verseWords, targetLangCode, phrase, phraseLangCode)
+  const { systemPrompt, query } = buildVerseMatchPrompt(verseWords, targetLangCode, phrase, phraseLangCode)
   let success = true;
   let answer = '';
   let responses = null
   try {
-    answer = await queryLmStudio(input, { systemPrompt })
+    answer = await queryLmStudio(query, { systemPrompt })
     responses = answer.split('\n')
     const length = responses.length
     let start = 0
@@ -1674,47 +1827,49 @@ export function selectionsToString(selections) {
  * @returns {object} - the same `selectionsForWord` object, for convenience
  */
 export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForWord ) {
-  for (const check of checks) {
-    const contextId = check?.contextId;
-    const selectionsForCheck = check?.selections;
+  if (checks?.length) {
+    for (const check of checks) {
+      const contextId = check?.contextId;
+      const selectionsForCheck = check?.selections;
 
-    if (selectionsForCheck && contextId) {
-      let glQuote = null;
+      if (selectionsForCheck && contextId) {
+        let glQuote = null;
 
-      if (!glQuote) {// need quote
-        let glText = null;
+        if (!glQuote) {// need quote
+          let glText = null;
 
-        if (bible) { // if already have bible use it
-          glText = gatewayLanguageHelpers.getAlignedTextFromBible(
-            contextId,
-            bible
-          );
+          if (bible) { // if already have bible use it
+            glText = gatewayLanguageHelpers.getAlignedTextFromBible(
+              contextId,
+              bible
+            );
+          }
+
+          if (glText) {
+            glText = removePunctuation(glText);
+            glQuote = glText;
+          }
         }
 
-        if (glText) {
-          glText = removePunctuation(glText);
-          glQuote = glText;
-        }
-      }
+        if (glQuote && selectionsForCheck) {
+          const selectedText = selectionsForCheck
+            ?.map(word => word?.text)
+            ?.join(' ');
 
-      if (glQuote && selectionsForCheck) {
-        const selectedText = selectionsForCheck
-         ?.map(word => word?.text)
-         ?.join(' ');
+          let glQuoteMatches = selectionsForWord[glQuote];
 
-        let glQuoteMatches = selectionsForWord[glQuote];
+          if (!glQuoteMatches) {
+            glQuoteMatches = {};
+            selectionsForWord[glQuote] = glQuoteMatches;
+          }
 
-        if (!glQuoteMatches) {
-          glQuoteMatches = {};
-          selectionsForWord[glQuote] = glQuoteMatches;
-        }
+          let selectedTextCount = glQuoteMatches[selectedText];
 
-        let selectedTextCount = glQuoteMatches[selectedText];
-
-        if (!selectedTextCount) {
-          glQuoteMatches[selectedText] = 1;
-        } else {
-          glQuoteMatches[selectedText]++;
+          if (!selectedTextCount) {
+            glQuoteMatches[selectedText] = 1;
+          } else {
+            glQuoteMatches[selectedText]++;
+          }
         }
       }
     }
@@ -2038,7 +2193,6 @@ export async function getBestSelections(
       selectionsData?.selections,
       lmOptions,
     );
-
-    return bestSelections;
   }
+  return bestSelections;
 }
