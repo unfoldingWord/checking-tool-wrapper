@@ -1878,6 +1878,74 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
 }
 
 /**
+ * Gets the file path for storing checking settings.
+ *
+ * Constructs the path to the checking_settings.json file by navigating up two directories
+ * from the project path to the base tCore folder.
+ *
+ * @param {string} projectPath - The path to the current project directory
+ * @returns {string} The absolute path to the checking_settings.json file
+ * @example
+ * const settingsPath = getSettingsPath('/path/to/tCore/projects/myProject');
+ * // Returns: '/path/to/tCore/checking_settings.json'
+ */
+function getSettingsPath(projectPath) {
+  const baseTCoreFolder = path.join(projectPath, "../..");
+  const settingFilePath = path.join(baseTCoreFolder, "checking_settings.json");
+  return settingFilePath;
+}
+
+/**
+ * Saves checking settings data to a JSON file.
+ *
+ * Writes the provided settings data to checking_settings.json in the base tCore folder,
+ * creating the file and any necessary parent directories if they don't exist.
+ * The JSON is formatted with 2-space indentation for readability.
+ *
+ * @param {string} projectPath - The path to the current project directory
+ * @param {object} data - The settings data object to save
+ * @returns {void}
+ * @throws {Error} Logs error to console if file write fails, but does not throw
+ * @example
+ * saveSattingsForChecking_('/path/to/project', { autoCheck: true, threshold: 80 });
+ * // Creates/updates: /path/to/tCore/checking_settings.json with formatted JSON
+ */
+export function saveSattingsForChecking_(projectPath, data) {
+  const settingFilePath = getSettingsPath(projectPath);
+
+  try {
+    fs.outputJsonSync(settingFilePath, data, { spaces: 2 });
+  } catch (error) {
+    console.error(`Could not save sattings to ${settingFilePath}`, error);
+  }
+}
+
+/**
+ * Reads checking settings data from a JSON file.
+ *
+ * Attempts to read and parse the checking_settings.json file from the base tCore folder.
+ * Returns the parsed settings object if successful, or null if the file doesn't exist
+ * or cannot be read.
+ *
+ * @param {string} projectPath - The path to the current project directory
+ * @returns {object|null} The parsed settings object, or null if reading fails
+ * @example
+ * const settings = readSattingsForChecking_('/path/to/project');
+ * // Returns: { autoCheck: true, threshold: 80 } or null if file doesn't exist
+ */
+export function readSattingsForChecking_(projectPath) {
+  const settingFilePath = getSettingsPath(projectPath);
+
+  try {
+    const data = fs.readJsonSync(settingFilePath, data, { spaces: 2 });
+    return data;
+  } catch (error) {
+    console.error(`Could not save sattings to ${settingFilePath}`, error);
+  }
+  return null;
+}
+
+/**
  * Scans sibling projects on disk for the same language/resource/testament combination and
  * aggregates their previous target-language selections for `groupId`, using and updating
  * `glBiblesCache` to avoid re-reading the gateway-language bible for each project.

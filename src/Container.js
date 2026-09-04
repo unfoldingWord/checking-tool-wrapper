@@ -27,9 +27,9 @@ import {
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
   fetchPreviousSelectionData,
-  getBestSelections,
-  updatedPreviousSelectionsData,
-} from './helpers/autoCheckingUtils';
+  getBestSelections, readSattingsForChecking_, saveSattingsForChecking_,
+  updatedPreviousSelectionsData
+} from "./helpers/autoCheckingUtils";
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -150,12 +150,23 @@ function Container({
    * @param {Array} data.oldSelections - selections before the change
    */
   function updateSelectionsData(data) {
-    const contextId = data?.contextId;
+    // const contextId = data?.contextId;
     const alignedGLText = data?.alignedGLText;
     const newSelections = data?.newSelections;
     const oldSelections = data?.oldSelections;
     const savedSelections = selectionsData?.selections;
     updatedPreviousSelectionsData(oldSelections, savedSelections, alignedGLText, newSelections);
+  }
+
+  function saveSettingsForChecking(data) {
+    const projectSaveLocation = tc?.projectSaveLocation;
+    saveSattingsForChecking_(projectSaveLocation, data);
+  }
+
+  function readSettingsForChecking() {
+    const projectSaveLocation = tc?.projectSaveLocation;
+    const data = readSattingsForChecking_(projectSaveLocation);
+    return data || null;
   }
 
   /**
@@ -243,6 +254,8 @@ function Container({
             editVerseInScripturePane={editVerseInExpandedScripturePane}
             getSuggestions={data => getSuggestions(data)}
             updateSelectionsData={data => updateSelectionsData(data)}
+            saveSattingsForChecking={data => saveSettingsForChecking(data)}
+            readSettingsForChecking={() => readSettingsForChecking()}
           />
         </div>
         <TranslationHelpsWrapper
