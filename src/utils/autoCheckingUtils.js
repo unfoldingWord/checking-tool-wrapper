@@ -9,8 +9,8 @@ import {
   getMostRecentVersionInFolderMajor,
   readHelpsFolder,
   readJsonFile,
-} from './fileHelpers';
-import * as gatewayLanguageHelpers from './gatewayLanguageHelpers';
+} from '../helpers/fileHelpers';
+import * as gatewayLanguageHelpers from '../helpers/gatewayLanguageHelpers';
 
 
 const LM_STUDIO_URL = 'http://192.168.142.70:1234';
