@@ -28,8 +28,9 @@ import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
   fetchPreviousSelectionData,
   getBestSelections,
-  readSattingsForChecking_,
-  saveSattingsForChecking_,
+  queryLmStudioModels,
+  readSettingsForChecking_,
+  saveSettingsForChecking_,
   updatedPreviousSelectionsData,
 } from './utils/autoCheckingUtils';
 
@@ -166,7 +167,7 @@ function Container({
    */
   function saveSettingsForChecking(data) {
     const projectSaveLocation = tc?.projectSaveLocation;
-    saveSattingsForChecking_(projectSaveLocation, data);
+    saveSettingsForChecking_(projectSaveLocation, data);
   }
 
   /**
@@ -175,7 +176,15 @@ function Container({
    */
   function readSettingsForChecking() {
     const projectSaveLocation = tc?.projectSaveLocation;
-    const data = readSattingsForChecking_(projectSaveLocation);
+    const data = readSettingsForChecking_(projectSaveLocation);
+
+    if (data?.llmQueryUrl) {
+      console.log(`readSettingsForChecking has url=${data?.llmQueryUrl}, checking models`);
+      queryLmStudioModels({ baseUrl: data?.llmQueryUrl }).then(model => {
+        console.log(model);
+      });
+    }
+
     return data || null;
   }
 

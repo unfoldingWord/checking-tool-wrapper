@@ -214,6 +214,71 @@ export async function queryLmStudio(query, options = {}) {
 }
 
 /**
+ * Queries a locally running LM Studio server for the list of available AI models.
+ * LM Studio exposes an OpenAI-compatible models endpoint once "Local Server" is started.
+ *
+ * @param {object} [options] - optional overrides
+ * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the LM Studio server
+ * @returns {Promise<Array<object>>} - available model objects returned by LM Studio
+ * @throws {Error} - if the server is unreachable or returns an error status
+ * @example
+ * const models = await queryLmStudioModels();
+ * console.log(models.map(model => model.id));
+ */
+export async function queryLmStudioModels(options = {}) {
+  const {
+    // baseUrl = 'http://localhost:1234',
+    baseUrl = LM_STUDIO_URL,
+  } = options;
+
+  const url = `${baseUrl}/v1/models`;
+  let response;
+
+  const isLmStudioModelsAvailable =
+    typeof window !== 'undefined' &&
+    typeof window.lmStudio?.query === 'function';
+
+  console.log('isLmStudioModelsAvailable', isLmStudioModelsAvailable);
+  let answer;
+
+  if (isLmStudioModelsAvailable) { // calling Electron process
+    answer = await window.lmStudio.query({ baseUrl });
+  } else {
+
+    try {
+      response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {
+      const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
+      console.error(message);
+      throw new Error(message);
+    }
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      const message = `AI models request failed (${response.status}): ${errorText}`;
+      throw new Error(message);
+    }
+
+    answer = await response.json();
+  }
+
+  const models = answer?.data;
+
+  if (!Array.isArray(models)) {
+    const message = 'Unexpected LM Studio models response shape';
+    console.log(message, data);
+    throw new Error(message);
+  }
+
+  return models;
+}
+
+/**
  * Builds the AI prompt for matching a gateway language phrase to the
  * best corresponding word(s) in a target-language verse, returning
  * results as CSV rows of `"word:occurrence ..."`,confidence.
@@ -1914,7 +1979,7 @@ function getSettingsPath(projectPath) {
  * saveSattingsForChecking_('/path/to/project', { autoCheck: true, threshold: 80 });
  * // Creates/updates: /path/to/tCore/checking_settings.json with formatted JSON
  */
-export function saveSattingsForChecking_(projectPath, data) {
+export function saveSettingsForChecking_(projectPath, data) {
   const settingFilePath = getSettingsPath(projectPath);
 
   try {
@@ -1937,7 +2002,7 @@ export function saveSattingsForChecking_(projectPath, data) {
  * const settings = readSattingsForChecking_('/path/to/project');
  * // Returns: { autoCheck: true, threshold: 80 } or null if file doesn't exist
  */
-export function readSattingsForChecking_(projectPath) {
+export function readSettingsForChecking_(projectPath) {
   const settingFilePath = getSettingsPath(projectPath);
 
   try {
