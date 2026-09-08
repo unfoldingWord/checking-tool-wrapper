@@ -1679,23 +1679,27 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
   }
 
   // remove duplicates from selections
-  const seen = new Set()
+  const seen = new Set();
+
   for (const option of selectionWords) {
-    const uniqueSelections = []
+    const uniqueSelections = [];
+
     for (const word of option.selections) {
       if (word.occurrence && word.text) {
-        const key = word.text + ':' + word.occurrence
+        const key = word.text + ':' + word.occurrence;
+
         if (!seen.has(key)) {
-          seen.add(key)
-          uniqueSelections.push(word)
+          seen.add(key);
+          uniqueSelections.push(word);
         }
       } else {
         console.log('invalid word or occurrence found', word);
         success = false
       }
     }
+
     if (option.selections.length != uniqueSelections.length) { // if changed then update
-      option.selections = uniqueSelections
+      option.selections = uniqueSelections;
     }
   }
 

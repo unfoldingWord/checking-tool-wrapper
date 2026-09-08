@@ -27,9 +27,11 @@ import {
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
   fetchPreviousSelectionData,
-  getBestSelections, readSattingsForChecking_, saveSattingsForChecking_,
-  updatedPreviousSelectionsData
-} from "./helpers/autoCheckingUtils";
+  getBestSelections,
+  readSattingsForChecking_,
+  saveSattingsForChecking_,
+  updatedPreviousSelectionsData,
+} from './utils/autoCheckingUtils';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -158,11 +160,19 @@ function Container({
     updatedPreviousSelectionsData(oldSelections, savedSelections, alignedGLText, newSelections);
   }
 
+  /**
+   * Saves checking settings to the tCore folder.
+   * @param {object} data - settings data to save
+   */
   function saveSettingsForChecking(data) {
     const projectSaveLocation = tc?.projectSaveLocation;
     saveSattingsForChecking_(projectSaveLocation, data);
   }
 
+  /**
+   * Reads checking settings from the tCore folder.
+   * @returns {object|null} - saved settings data or null if not found
+   */
   function readSettingsForChecking() {
     const projectSaveLocation = tc?.projectSaveLocation;
     const data = readSattingsForChecking_(projectSaveLocation);
