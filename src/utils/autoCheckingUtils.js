@@ -242,9 +242,9 @@ export async function queryLmStudioModels(options = {}) {
   let answer;
 
   if (isLmStudioModelsAvailable) { // calling Electron process
-    answer = await window.lmStudio.query({ baseUrl });
+    answer = await window.lmStudio.getAvailableModels({ baseUrl });
+    console.log('getAvailableModels answer', answer);
   } else {
-
     try {
       response = await fetch(url, {
         method: 'GET',
@@ -267,13 +267,17 @@ export async function queryLmStudioModels(options = {}) {
     answer = await response.json();
   }
 
-  const models = answer?.data;
+  let models = answer;
 
   if (!Array.isArray(models)) {
     const message = 'Unexpected LM Studio models response shape';
-    console.log(message, data);
+    console.log(message, answer);
     throw new Error(message);
   }
+
+  // filter response by model objects
+  // {id: 'liquid/lfm2-24b-a2b', object: 'model', owned_by: 'organization_owner'}
+  models = models.filter(model => (model.object === 'model' && model.id));
 
   return models;
 }

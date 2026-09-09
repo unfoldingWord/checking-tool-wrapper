@@ -180,9 +180,11 @@ function Container({
 
     if (data?.llmQueryUrl) {
       console.log(`readSettingsForChecking has url=${data?.llmQueryUrl}, checking models`);
-      queryLmStudioModels({ baseUrl: data?.llmQueryUrl }).then(model => {
-        console.log(model);
-      });
+      setTimeout(() => { //TODO - testing - remove
+        queryLmStudioModels({ baseUrl: data?.llmQueryUrl }).then(model => {
+          console.log(model);
+        });
+      }, 10000);
     }
 
     return data || null;
