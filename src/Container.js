@@ -177,17 +177,30 @@ function Container({
   function readSettingsForChecking() {
     const projectSaveLocation = tc?.projectSaveLocation;
     const data = readSettingsForChecking_(projectSaveLocation);
+    return data || null;
+  }
 
-    if (data?.llmQueryUrl) {
-      console.log(`readSettingsForChecking has url=${data?.llmQueryUrl}, checking models`);
-      setTimeout(() => { //TODO - testing - remove
-        queryLmStudioModels({ baseUrl: data?.llmQueryUrl }).then(models => {
-          console.log('models', models);
-        });
-      }, 10000);
+  /**
+   * Queries the LM Studio API to retrieve available models.
+   * @param {object} options - query options
+   * @param {string} options.baseUrl - base URL for the LM Studio API
+   * @returns {Promise<{models: Array|null, error: boolean}>} - object containing models array (or null on error) and error flag
+   */
+  async function getModelsForChecking(options) {
+    let error = false;
+    let models = null;
+
+    try {
+      models = await queryLmStudioModels(options);
+      console.log('getModelsForChecking models', models);
+    } catch (e) {
+      console.log('getModelsForChecking error', e);
+      error = e.toString() || e;
     }
 
-    return data || null;
+    const results = { models, error };
+    console.log('getModelsForChecking results', results);
+    return results;
   }
 
   /**
@@ -201,16 +214,21 @@ function Container({
    * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>}
    */
   async function getSuggestions(data) {
-    const contextId = data?.contextId;
-    const verseText = data?.verseText;
-    const targetLanguageDetails = data?.targetLanguageDetails;
-    const alignedGLText = data?.alignedGLText;
     const groupId = contextId?.groupId || '';
     const projectSaveLocation = tc?.projectSaveLocation;
     const glOwnerStr = tc.gatewayLanguageOwner;
-    const llmSuggestionsEnabled = data?.llmSuggestionsEnabled;
-    const llmQueryUrl_ = data?.llmQueryUrl;
-    const llmQueryUrl = (llmSuggestionsEnabled && llmQueryUrl_) || null;
+
+    const {
+      contextId,
+      currentModel,
+      alignedGLText,
+      llmSuggestionsEnabled,
+      llmQueryUrl,
+      targetLanguageDetails,
+      verseText,
+    } = data || {};
+
+    const llmQueryUrl_ = (llmSuggestionsEnabled && llmQueryUrl_) || null;
 
     if (selectionsData?.groupId !== groupId) {
       const selectionsForWord = fetchPreviousSelectionData(
@@ -236,7 +254,8 @@ function Container({
       targetLanguageDetails,
       alignedGLText,
       gatewayLanguageCode,
-      selectionsData
+      selectionsData,
+      currentModel,
     );
 
     return bestSelections;
@@ -277,7 +296,7 @@ function Container({
             updateSelectionsData={data => updateSelectionsData(data)}
             saveSattingsForChecking={data => saveSettingsForChecking(data)}
             readSettingsForChecking={() => readSettingsForChecking()}
-            getModelsForChecking={() => getModelsForChecking()}
+            getModelsForChecking={options => getModelsForChecking(options)}
           />
         </div>
         <TranslationHelpsWrapper

@@ -2307,6 +2307,7 @@ export async function getBestSelections(
   alignedGLText,
   gatewayLanguageCode,
   selectionsData,
+  model
 ) {
   const wordList = getWordList(verseText);
   let bestSelections = null;
@@ -2324,6 +2325,7 @@ export async function getBestSelections(
     const lmOptions = {
       baseUrl: llmQueryUrl,
       enable_thinking: false,
+      model,
     };
 
     bestSelections = await getBestTWordSelectionWithConfidence(
