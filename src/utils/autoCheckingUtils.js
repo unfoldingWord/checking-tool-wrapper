@@ -277,7 +277,7 @@ export async function queryLmStudioModels(options = {}) {
 
   // filter response by model objects
   // {id: 'liquid/lfm2-24b-a2b', object: 'model', owned_by: 'organization_owner'}
-  models = models.filter(model => (model.object === 'model' && model.id));
+  models = models.filter(model => (model.object === 'model' && model.id)).map(model => (model.id));
 
   return models;
 }

@@ -181,8 +181,8 @@ function Container({
     if (data?.llmQueryUrl) {
       console.log(`readSettingsForChecking has url=${data?.llmQueryUrl}, checking models`);
       setTimeout(() => { //TODO - testing - remove
-        queryLmStudioModels({ baseUrl: data?.llmQueryUrl }).then(model => {
-          console.log(model);
+        queryLmStudioModels({ baseUrl: data?.llmQueryUrl }).then(models => {
+          console.log('models', models);
         });
       }, 10000);
     }
@@ -277,6 +277,7 @@ function Container({
             updateSelectionsData={data => updateSelectionsData(data)}
             saveSattingsForChecking={data => saveSettingsForChecking(data)}
             readSettingsForChecking={() => readSettingsForChecking()}
+            getModelsForChecking={() => getModelsForChecking()}
           />
         </div>
         <TranslationHelpsWrapper

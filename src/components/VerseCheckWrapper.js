@@ -74,6 +74,7 @@ function VerseCheckWrapper({
   updateSelectionsData, // if defined will call to update suggestions
   saveSattingsForChecking, // if defined will call save latest settings
   readSettingsForChecking, // if defined will get latest settings
+  getModelsForChecking, // if defined will fetch available models
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -139,10 +140,10 @@ function VerseCheckWrapper({
 
   function getInitialMode() {
     return (selections && selections.length) || verseText.length === 0
-      ? "default"
+      ? 'default'
       : nothingToSelect
-      ? "default"
-      : "select";
+      ? 'default'
+      : 'select';
   }
 
   function handleOpenDialog(goToNextOrPrevious) {
@@ -334,7 +335,7 @@ function VerseCheckWrapper({
       alignedGLText,
       contextId,
       newSelections,
-      oldSelections: selections,
+      oldSelections: selections
     });
     changeSelections(selections_, newNothingToSelect);
     changeMode("default");
@@ -398,6 +399,7 @@ function VerseCheckWrapper({
         getSuggestions={getSuggestions}
         saveSattingsForChecking={saveSattingsForChecking}
         readSettingsForChecking={readSettingsForChecking}
+        getModelsForChecking={getModelsForChecking}
       />
     );
   } else {
@@ -438,6 +440,7 @@ VerseCheckWrapper.propTypes = {
   updateSelectionsData: PropTypes.func,
   saveSattingsForChecking: PropTypes.func,
   readSettingsForChecking: PropTypes.func,
+  getModelsForChecking: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {
