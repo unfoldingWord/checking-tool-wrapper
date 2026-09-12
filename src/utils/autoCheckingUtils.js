@@ -2027,6 +2027,240 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
 }
 
 /**
+ * Constructs the file path to a data file in the base tCore folder.
+ *
+ * This function navigates up two directory levels from the project path to reach
+ * the base tCore folder, then appends the specified data filename. It is used
+ * internally by multiple functions to build paths to various configuration and
+ * data files stored at the tCore root level.
+ *
+ * @param {string} projectPath - The path to the current project directory (e.g., '/path/to/tCore/projects/myProject')
+ * @param {string} dataFileName - The name of the data file to locate (e.g., 'checking_settings.json', 'llmMetrics.json')
+ * @returns {string} The absolute path to the data file in the base tCore folder
+ * @example
+ * const settingsPath = getTcorePathFromProjectPath(
+ *   '/path/to/tCore/projects/myProject',
+ *   'checking_settings.json'
+ * );
+ * // Returns: '/path/to/tCore/checking_settings.json'
+ *
+ * @example
+ * const metricsPath = getTcorePathFromProjectPath(
+ *   '/path/to/tCore/projects/myProject',
+ *   'llmMetrics.json'
+ * );
+ * // Returns: '/path/to/tCore/llmMetrics.json'
+ *
+ * @see {@link getSettingsPath} - Higher-level function that calls this with 'checking_settings.json'
+ * @see {@link saveLlmMetrics} - Uses this function to construct the metrics file path
+ * @see {@link readLlmMetrics} - Uses this function to construct the metrics file path
+ */
+function getTcorePathFromProjectPath(projectPath, dataFileName) {
+  const baseTCoreFolder = path.join(projectPath, '../..');
+  const settingFilePath = path.join(baseTCoreFolder, dataFileName);
+  return settingFilePath;
+}
+
+const metricsFileName = 'llmMetrics.json';
+
+/**
+ * Saves LLM performance metrics data to a JSON file.
+ *
+ * Writes the provided metrics data to llmMetrics.json in the base tCore folder,
+ * creating the file and any necessary parent directories if they don't exist.
+ * The JSON is formatted with 2-space indentation for readability.
+ *
+ * This function is used to track AI model performance metrics such as response times,
+ * model versions used, confidence scores, and accuracy statistics across translation
+ * checking sessions.
+ *
+ * @param {string} projectPath - The path to the current project directory
+ * @param {object} data - The metrics data object to save, typically containing fields like:
+ *   - modelName: string - Name of the AI model used
+ *   - responseTime: number - Average response time in seconds
+ *   - queries: number - Total number of queries made
+ *   - accuracy: number - Accuracy percentage if available
+ * @returns {void}
+ * @throws Does not throw; logs error to console if file write fails
+ * @example
+ * saveLlmMetrics('/path/to/project', {
+ *   modelName: 'Meta-Llama-3.1-8B',
+ *   avgResponseTime: 1.23,
+ *   totalQueries: 42,
+ *   avgConfidence: 87.5
+ * });
+ * // Creates/updates: /path/to/tCore/llmMetrics.json with formatted JSON
+ *
+ * @see {@link readLlmMetrics} - Corresponding function to read the saved metrics
+ * @see {@link getTcorePathFromProjectPath} - Helper function used to construct the file path
+ */
+export function saveLlmMetrics(projectPath, data) {
+  const metricsFilePath = getTcorePathFromProjectPath(projectPath, metricsFileName);
+
+  try {
+    fs.outputJsonSync(metricsFilePath, data, { spaces: 2 });
+  } catch (error) {
+    console.error(`Could not save metrics to ${metricsFilePath}`, error);
+  }
+}
+
+/**
+ * Updates LLM performance metrics by calculating a rolling average of elapsed times
+ * for each unique URL/model combination.
+ *
+ * This function maintains performance statistics for AI model queries across translation
+ * checking sessions. It tracks the average response time and query count for each
+ * unique combination of server URL and model identifier. The metrics are stored in a
+ * JSON file in the base tCore folder and updated incrementally using a rolling average
+ * algorithm to avoid recalculating from all historical data.
+ *
+ * **Rolling Average Algorithm:**
+ * For each new query, the average is updated using the formula:
+ * ```
+ * newAverage = oldAverage + (newValue - oldAverage) / newCount
+ * ```
+ * This approach maintains accurate averages while only requiring the previous average
+ * and count, making it efficient for long-running sessions with many queries.
+ *
+ * **Metrics Structure:**
+ * The metrics data is keyed by `{url}_{model}` strings, with each entry containing:
+ * - `elapsedTime`: Rolling average response time in seconds
+ * - `count`: Total number of queries recorded for this URL/model combination
+ *
+ * @param {string} projectPath - The path to the current project directory; used to locate
+ *   the base tCore folder where llmMetrics.json is stored
+ * @param {string} [url=''] - Base URL of the LM Studio server (e.g., 'http://localhost:1234');
+ *   combined with `model` to create a unique metrics key
+ * @param {string} [model=''] - AI model identifier (e.g., 'Meta-Llama-3.1-8B'); combined with
+ *   `url` to create a unique metrics key
+ * @param {string|number} [elapsedTime=''] - Response time for the current query; can be:
+ *   - A string representing a decimal number (e.g., "1.23")
+ *   - A numeric value (will be used directly or defaulted to 0 if falsy)
+ * @returns {void} - Mutates the metrics file on disk; does not return a value
+ * @throws Does not throw; logs errors to console if file operations fail
+ * @example
+ * // After a successful AI query
+ * updateLlmMetrics(
+ *   '/path/to/project',
+ *   'http://localhost:1234',
+ *   'Meta-Llama-3.1-8B',
+ *   '2.35'  // 2.35 seconds elapsed
+ * );
+ * // Updates metrics file with new rolling average for this URL/model combination
+ *
+ * @example
+ * // Metrics file structure after several updates:
+ * // {
+ * //   "http://localhost:1234_Meta-Llama-3.1-8B": {
+ * //     "elapsedTime": 2.1,  // average of all queries
+ * //     "count": 15          // total queries recorded
+ * //   },
+ * //   "http://192.168.1.100:1234_different-model": {
+ * //     "elapsedTime": 3.4,
+ * //     "count": 8
+ * //   }
+ * // }
+ *
+ * @see {@link readLlmMetrics} - Function to retrieve saved metrics data
+ * @see {@link saveLlmMetrics} - Function to persist metrics to disk
+ * @see {@link getBestSelections} - Example caller that invokes this function after AI queries
+ */
+export function updateLlmMetrics(projectPath, url = '', model = '', elapsedTime = '') {
+  let elapsedTime_;
+
+  if (typeof elapsedTime === 'string') {
+    elapsedTime_ = parseFloat(elapsedTime);
+  } else {
+    elapsedTime_ = elapsedTime || 0;
+  }
+
+  // console.log('updateLlmMetrics', {
+  //   projectPath,
+  //   url,
+  //   model,
+  //   elapsedTime,
+  //   elapsedTime_,
+  // });
+
+  let metrics = readLlmMetrics(projectPath);
+  const key = `${url}_${model}`;
+
+  // console.log('updateLlmMetrics initial metrics', {
+  //   key,
+  //   metrics,
+  // });
+
+  if (!metrics) {
+    metrics = {};
+  }
+
+  let newAverage = elapsedTime_;
+  let count_ = 1;
+
+  if (!metrics[key]) {
+    metrics[key] = { elapsedTime: elapsedTime_, count: 1 };
+  } else {
+    let { elapsedTime: averageTime, count } = metrics[key];
+    count++;
+    count_ = count;
+    newAverage = averageTime + (elapsedTime_ - averageTime) / count;
+    metrics[key] = { elapsedTime: newAverage, count };
+  }
+
+  console.log('updateLlmMetrics final metrics', {
+    newAverage,
+    newCount: count_,
+    key,
+    metrics,
+  });
+
+  saveLlmMetrics(projectPath, metrics);
+}
+
+/**
+ * Reads LLM performance metrics data from a JSON file.
+ *
+ * Attempts to read and parse the llmMetrics.json file from the base tCore folder.
+ * Returns the parsed metrics object if successful, or null if the file doesn't exist
+ * or cannot be read.
+ *
+ * This function is used to retrieve previously saved AI model performance metrics
+ * for analysis, reporting, or continued tracking across sessions.
+ *
+ * @param {string} projectPath - The path to the current project directory
+ * @returns {object|null} The parsed metrics object containing fields like:
+ *   - modelName: string - Name of the AI model used
+ *   - responseTime: number - Average response time in seconds
+ *   - queries: number - Total number of queries made
+ *   - accuracy: number - Accuracy percentage if available
+ *   Returns null if the file doesn't exist or cannot be read
+ * @example
+ * const metrics = readLlmMetrics('/path/to/project');
+ * if (metrics) {
+ *   console.log(`Average response time: ${metrics.avgResponseTime}s`);
+ *   console.log(`Total queries: ${metrics.totalQueries}`);
+ * } else {
+ *   console.log('No metrics file found');
+ * }
+ * // Returns: { modelName: 'Meta-Llama-3.1-8B', avgResponseTime: 1.23, ... }
+ * // or null if file doesn't exist
+ *
+ * @see {@link saveLlmMetrics} - Corresponding function to save metrics
+ * @see {@link getTcorePathFromProjectPath} - Helper function used to construct the file path
+ */
+export function readLlmMetrics(projectPath) {
+  const metricsFilePath = getTcorePathFromProjectPath(projectPath, metricsFileName);
+
+  try {
+    const data = fs.readJsonSync(metricsFilePath, data, { spaces: 2 });
+    return data;
+  } catch (error) {
+    console.error(`Could not read metrics from ${metricsFilePath}`, error);
+  }
+  return null;
+}
+
+/**
  * Gets the file path for storing checking settings.
  *
  * Constructs the path to the checking_settings.json file by navigating up two directories
@@ -2039,9 +2273,8 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
  * // Returns: '/path/to/tCore/checking_settings.json'
  */
 function getSettingsPath(projectPath) {
-  const baseTCoreFolder = path.join(projectPath, "../..");
-  const settingFilePath = path.join(baseTCoreFolder, "checking_settings.json");
-  return settingFilePath;
+  const settingsFileName = 'checking_settings.json';
+  return getTcorePathFromProjectPath(projectPath, settingsFileName);
 }
 
 /**
@@ -2065,7 +2298,7 @@ export function saveSettingsForChecking_(projectPath, data) {
   try {
     fs.outputJsonSync(settingFilePath, data, { spaces: 2 });
   } catch (error) {
-    console.error(`Could not save sattings to ${settingFilePath}`, error);
+    console.error(`Could not save settings to ${settingFilePath}`, error);
   }
 }
 
@@ -2089,7 +2322,7 @@ export function readSettingsForChecking_(projectPath) {
     const data = fs.readJsonSync(settingFilePath, data, { spaces: 2 });
     return data;
   } catch (error) {
-    console.error(`Could not save sattings to ${settingFilePath}`, error);
+    console.error(`Could not read settings from ${settingFilePath}`, error);
   }
   return null;
 }

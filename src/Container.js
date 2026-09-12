@@ -32,7 +32,9 @@ import {
   readSettingsForChecking_,
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
+  updateLlmMetrics,
 } from './utils/autoCheckingUtils';
+import delay from './utils/delay';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -271,6 +273,10 @@ function Container({
         elapsedStr,
         model,
         suggestionsCount: bestSelections.length,
+      });
+
+      delay(500).then(() => {
+        updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);
       });
     }
 
