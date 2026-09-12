@@ -135,22 +135,61 @@ async function streamChatMessage(options) {
 }
 
 /**
- * Sends a text query to a locally running LM Studio server and returns the model's response text.
- * LM Studio exposes an OpenAI-compatible API (chat completions endpoint) once
- * "Local Server" is started from the LM Studio app (default port 1234).
+ * Sends a text query to a locally running LM Studio server and returns the model's response text
+ * along with timing information.
  *
- * @param {string} query - the text prompt/question to send to the model
- * @param {object} [options] - optional overrides
- * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the LM Studio server
- * @param {string} [options.model='local-model'] - model identifier as loaded in LM Studio
- * @param {number} [options.temperature=0.7] - sampling temperature (0.0-1.0)
- * @param {number} [options.maxTokens=2048] - max tokens to generate in the response
- * @param {boolean} [options.enable_thinking=false] - whether to enable thinking mode in chat template
- * @returns {Promise<string>} - the text of the model's reply
- * @throws {Error} - if the server is unreachable or returns an error status
+ * This function provides a unified interface for querying AI models through LM Studio, supporting
+ * both Electron-based desktop applications and web-based environments. LM Studio exposes an
+ * OpenAI-compatible API (chat completions endpoint) once "Local Server" is started from the
+ * LM Studio app (default port 1234).
+ *
+ * The function automatically detects the execution environment:
+ * - In Electron apps: uses the IPC bridge (window.lmStudio.query) for optimized performance
+ * - In web/Node environments: makes direct HTTP requests via streamChatMessage
+ *
+ * Thinking mode control:
+ * When `enable_thinking` is false, the function appends '/no_think' to the query to disable
+ * the model's chain-of-thought reasoning output, which can reduce response verbosity for
+ * simple queries.
+ *
+ * @param {string} query - The text prompt/question to send to the model
+ * @param {object} [options={}] - Optional configuration overrides
+ * @param {string} [options.baseUrl='http://192.168.142.70:1234'] - Base URL of the LM Studio server;
+ *   defaults to LM_STUDIO_URL constant
+ * @param {string} [options.model='local-model'] - Model identifier as loaded in LM Studio; the actual
+ *   model used may differ and will be reported in the response
+ * @param {number} [options.temperature=0.7] - Sampling temperature (0.0-1.0); higher values increase
+ *   randomness and creativity, lower values make output more deterministic
+ * @param {number} [options.maxTokens=4096] - Maximum number of tokens to generate in the response;
+ *   longer responses may be truncated
+ * @param {boolean} [options.enable_thinking=false] - Whether to enable thinking mode in chat template;
+ *   when false, '/no_think' is appended to the query
+ * @param {string} [options.systemPrompt='You are a helpful assistant.'] - System prompt that sets the
+ *   AI's behavior and context for the conversation
+ * @returns {Promise<{response: string, elapsedStr: string, model: string}>} Object containing:
+ *   - **response**: The complete text of the model's reply
+ *   - **elapsedStr**: Elapsed time in seconds as a string with 2 decimal places (e.g., "2.35")
+ *   - **model**: The actual model name used by the server (may differ from the requested model identifier)
+ * @throws {Error} If the server is unreachable, returns an error status, or the response is empty
  * @example
- * const answer = await queryLmStudio('What is the capital of France?');
- * console.log(answer); // "The capital of France is Paris."
+ * // Basic usage with defaults
+ * const { response, elapsedStr, model } = await queryLmStudio('What is the capital of France?');
+ * console.log(response); // "The capital of France is Paris."
+ * console.log(elapsedStr); // "1.23"
+ * console.log(model); // "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF"
+ *
+ * @example
+ * // Custom configuration
+ * const result = await queryLmStudio('Explain quantum physics', {
+ *   temperature: 0.9,
+ *   maxTokens: 2048,
+ *   enable_thinking: true,
+ *   systemPrompt: 'You are a physics professor.'
+ * });
+ * console.log(`Response took ${result.elapsedStr}s using ${result.model}`);
+ *
+ * @see {@link streamChatMessage} - Lower-level function for direct HTTP streaming
+ * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - Example usage in translation workflows
  */
 export async function queryLmStudio(query, options = {}) {
   const {
@@ -159,7 +198,7 @@ export async function queryLmStudio(query, options = {}) {
     model = 'local-model',
     temperature = 0.7,
     maxTokens = 4096,
-    enable_thinking = true,
+    enable_thinking = false,
     systemPrompt = 'You are a helpful assistant.',
   } = options;
   const startTime = Date.now();
@@ -201,8 +240,10 @@ export async function queryLmStudio(query, options = {}) {
     actualModel_ = actualModel;
   }
 
-  const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-  console.log(`Query using model "${actualModel_ || model}" took ${elapsed}s`);
+  const elapsedStr = ((Date.now() - startTime) / 1000).toFixed(2);
+  console.log(
+    `Query using model "${actualModel_ || model}" took ${elapsedStr}s`
+  );
 
   if (!replyText_) {
     const message = `Unexpected LM Studio response shape: received empty content`;
@@ -210,7 +251,11 @@ export async function queryLmStudio(query, options = {}) {
     throw new Error(message);
   }
 
-  return replyText_;
+  return {
+    response: replyText_,
+    elapsedStr,
+    model: actualModel_ || model,
+  };
 }
 
 /**
@@ -976,7 +1021,7 @@ function levenshteinDistance(a, b) {
 }
 
 /**
- * Algorithmic stand-in for `getBestTWordSelectionWithConfidence`: same parameters, same return
+ * Algorithmic stand-in for `getBestTWordSelectionWithConfidenceFromLlm`: same parameters, same return
  * shape, no AI call.
  *
  * Without a model there is no way to translate the gateway phrase from scratch, so how this
@@ -1242,7 +1287,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
  * @throws Does not throw; logs errors and returns empty array on failure
  * @example
  * const wordList = ['para', 'la', 'iglesia', 'de', 'Éfeso'];
- * const result = await getBestTWordSelectionWithConfidence(
+ * const result = await getBestTWordSelectionWithConfidenceFromLlm(
  *   wordList,
  *   'es-419',
  *   'church',
@@ -1259,8 +1304,8 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
  * @see {@link parseResponseRowNoPositions} for response parsing logic
  * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} for non-AI alternative
  */
-export async function getBestTWordSelectionWithConfidence(wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData, lmOptions = { enable_thinking: false }) {
-  let translationOptions = []
+export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData, lmOptions = { enable_thinking: false }) {
+  let translationOptions = [];
   const { systemPrompt, input } = buildTranslationOptionsPrompt(
     wordList.join(' '),
     targetLangCode,
@@ -1270,16 +1315,27 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
   )
   let success = true;
   let answer = '';
-  let responses = null
+  let responses = null;
+  let elapsedStr = '0';
+  let model = '';
+
   try {
     const options = {
       ...lmOptions,
       systemPrompt,
     }
-    answer = await queryLmStudio(input, options)
-    responses = answer.split('\n')
-    const length = responses.length
-    let start = 0
+    const {
+      response,
+      elapsedStr: elapsed,
+      model: model_,
+    } = await queryLmStudio(input, options);
+    answer = response;
+    elapsedStr = elapsed;
+    model = model_;
+    responses = answer.split('\n');
+    const length = responses.length;
+    let start = 0;
+
     if (length > 5) { // if the response was verbose, like in thinking mode, skip ahead to csv line
       for (let i = start; i < length; i++) {
         const response = responses[i]
@@ -1323,16 +1379,17 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
       const lastNonEmptyLine = responses
         ?.map(response => response?.trim())
         .filter(Boolean)
-        .pop()
+        .pop();
+
       if (lastNonEmptyLine) {
         const quoteParts = lastNonEmptyLine.split('"').filter(part => part.trim() !== '')
 
         if (quoteParts.length >= 3) {
-          const phraseTranslation = quoteParts[quoteParts.length - 2]
+          const phraseTranslation = quoteParts[quoteParts.length - 2];
           const confidencePart = quoteParts[quoteParts.length - 1]
             .split(',')
             .map(part => part.trim())
-            .find(part => part !== '')
+            .find(part => part !== '');
 
           const confidence = removeQuotes(confidencePart)
           const confidenceNum = parseInt(confidence, 10)
@@ -1351,14 +1408,16 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
 
   for (const option of translationOptions) {
     // remove duplicates from selections
-    const seen = new Set()
-    const uniqueSelections = []
+    const seen = new Set();
+    const uniqueSelections = [];
+
     for (const word of option.selections) {
       if (word.occurrence && word.text) {
-        const key = word.text + ':' + word.occurrence
+        const key = word.text + ':' + word.occurrence;
+
         if (!seen.has(key)) {
-          seen.add(key)
-          uniqueSelections.push(word)
+          seen.add(key);
+          uniqueSelections.push(word);
         } else {
           console.log('duplicate word found', word);
         }
@@ -1366,6 +1425,7 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
         console.log('invalid word or occurrence found', word);
       }
     }
+
     if (!uniqueSelections.length) {
       option.selections = false;
     } else {
@@ -1377,7 +1437,8 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
 
   translationOptions = translationOptions.filter(item => (item.selections))
 
-  success = !!translationOptions.length
+  success = !!translationOptions.length;
+
   if (!success) {
     console.log('no selections found', translationOptions);
   }
@@ -1390,17 +1451,28 @@ export async function getBestTWordSelectionWithConfidence(wordList, targetLangCo
       answer,
       matches: translationOptions.length,
       selectionWords: translationOptions
-    })
-    return translationOptions
+    });
+
+    return {
+      error: false,
+      bestSelections: translationOptions,
+      elapsedStr,
+      model,
+    };
   } else {
     console.log('AI response ERROR:', {
       wordList: formatNumberedVerse(wordList.join(' ')),
       glPhrase,
       answer,
       matches: translationOptions.length
-    })
+    });
   }
-  return []
+  return {
+    error: true,
+    bestSelections: [],
+    elapsedStr,
+    model: '',
+  };
 }
 
 /**
@@ -1700,9 +1772,13 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
   const { systemPrompt, query } = buildVerseMatchPrompt(verseWords, targetLangCode, phrase, phraseLangCode)
   let success = true;
   let answer = '';
-  let responses = null
+  let responses = null;
+  let elapsedStr = '0';
+
   try {
-    answer = await queryLmStudio(query, { systemPrompt })
+    const { response, elapsedStr: elapsed } = await queryLmStudio(query, { systemPrompt });
+    answer = response;
+    elapsedStr = elapsed;
     responses = answer.split('\n')
     const length = responses.length
     let start = 0
@@ -2240,65 +2316,91 @@ export function updatedPreviousSelectionsData(
 }
 
 /**
- * Gets the best translation selections for a target-language verse based on a gateway-language phrase.
+ * Finds the best target-language translation selections for a gateway-language phrase within a verse.
  *
- * This function finds the most appropriate target-language word(s) that correspond to a gateway-language
- * phrase within the context of a specific verse. It supports two modes:
+ * This function identifies the most appropriate target-language word(s) that correspond to a gateway-language
+ * phrase in the context of a specific verse. It operates in two distinct modes:
  *
- * 1. **Algorithmic mode** (when `llmQueryUrl` is not provided):
- *    Uses historical translation data and pattern matching to suggest selections based on previous
- *    translations. This mode does not require an AI model and works entirely offline.
+ * **1. Algorithmic mode** (when `llmQueryUrl` is `null` or `undefined`):
+ * - Uses historical translation data and pattern matching algorithms
+ * - Suggests selections based on previous translation choices
+ * - Works entirely offline without requiring an AI model
+ * - Returns immediately with `elapsedStr: '0'` and `model: 'APP'`
  *
- * 2. **AI-assisted mode** (when `llmQueryUrl` is provided):
- *    Queries a locally-running LM Studio server to leverage an AI model for more intelligent
- *    translation suggestions. The AI considers both the semantic meaning and the translation history.
+ * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
+ * - Queries a locally-running LM Studio server
+ * - Leverages an AI language model for intelligent translation suggestions
+ * - Considers both semantic meaning and translation history
+ * - Returns timing information and actual model name used
  *
- * @param {string} verseText - The target-language verse text to search within
- * @param {string|null} llmQueryUrl - The base URL of the LM Studio server (e.g., 'http://localhost:1234');
- *   if null/undefined, uses the algorithmic fallback mode instead
- * @param {object} targetLanguageDetails - Object containing target language metadata
- * @param {string} targetLanguageDetails.id - Language code of the target language (e.g., 'es-419')
- * @param {string} alignedGLText - The gateway-language phrase to translate (e.g., 'church')
- * @param {string} gatewayLanguageCode - Language code of the gateway language (e.g., 'en')
- * @param {object} selectionsData - Object containing previous translation history
- * @param {object} selectionsData.selections - Nested object mapping gateway phrases to target renderings
- *   with usage counts: `{glPhrase: {targetRendering: count}}`; can also be a flat `{targetRendering: count}`
- * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>}
- *   Array of translation options (up to 3), sorted by confidence (highest first). Each option contains:
- *   - **selections**: Array of word objects, each with:
- *     - **text**: The normalized word form from the verse
- *     - **occurrence**: 1-based occurrence index of this word in the verse
- *   - **confidence**: Integer 0-100 indicating match certainty
- *   Returns empty array `[]` if no valid translations are found or on error
+ * The function processes the verse text into individual words, then delegates to either
+ * {@link getBestTWordSelectionWithConfidenceAlgorithm} or {@link getBestTWordSelectionWithConfidenceFromLlm}
+ * depending on the mode.
+ *
+ * @param {string} verseText - The target-language verse text to search within (may contain punctuation)
+ * @param {string|null} llmQueryUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234');
+ *   if `null` or `undefined`, uses algorithmic mode instead of AI
+ * @param {object} targetLanguageDetails - Metadata about the target language
+ * @param {string} targetLanguageDetails.id - Language code (e.g., 'es-419' for Latin American Spanish)
+ * @param {string} alignedGLText - Gateway-language phrase to translate (e.g., 'church', 'the elders')
+ * @param {string} gatewayLanguageCode - Language code of the gateway language (e.g., 'en' for English)
+ * @param {object} selectionsData - Historical translation data from previous user selections
+ * @param {object} selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
+ *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
+ * @param {string} [model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
+ *   the actual model used may differ and is reported in the response
+ * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>}
+ *   Object containing:
+ *   - **error**: `true` if the operation failed or no valid translations were found, `false` otherwise
+ *   - **bestSelections**: Array of translation options (up to 3), sorted by confidence score (highest first). Each option contains:
+ *     - **selections**: Array of word objects representing the matched phrase, each with:
+ *       - **text**: The normalized word form as it appears in the verse (without punctuation)
+ *       - **occurrence**: 1-based occurrence index of this word in the verse (e.g., if 'iglesia' appears twice, first is 1, second is 2)
+ *     - **confidence**: Integer from 0-100 indicating match certainty (100 = exact match, lower = partial/fuzzy match)
+ *   - **elapsedStr**: Elapsed time in seconds as a formatted string (e.g., "1.23" for AI mode, "0" for algorithmic mode)
+ *   - **model**: Model identifier string ('APP' for algorithmic mode, actual AI model name for AI mode, empty string on error)
+ *   Returns `{error: true, bestSelections: [], elapsedStr: '', model: ''}` if no valid translations are found or on error
  * @example
- * // Algorithmic mode (offline)
- * const selections = await getBestSelections(
+ * // Algorithmic mode (offline, no AI server)
+ * const result = await getBestSelections(
  *   'para la iglesia de Éfeso',
- *   null,  // no AI server
+ *   null,  // no AI server URL
  *   { id: 'es-419' },
  *   'church',
  *   'en',
  *   { selections: { 'church': { 'iglesia': 7, 'la iglesia': 3 } } }
  * );
- * // Returns: [
- * //   { selections: [{text: 'iglesia', occurrence: 1}], confidence: 98 },
- * //   { selections: [{text: 'la', occurrence: 1}, {text: 'iglesia', occurrence: 1}], confidence: 70 }
- * // ]
+ * // Returns: {
+ * //   error: false,
+ * //   bestSelections: [
+ * //     { selections: [{text: 'iglesia', occurrence: 1}], confidence: 98 },
+ * //     { selections: [{text: 'la', occurrence: 1}, {text: 'iglesia', occurrence: 1}], confidence: 70 }
+ * //   ],
+ * //   elapsedStr: '0',
+ * //   model: 'APP'
+ * // }
  *
  * @example
- * // AI-assisted mode
- * const selections = await getBestSelections(
+ * // AI-assisted mode (requires LM Studio server running)
+ * const result = await getBestSelections(
  *   'para la iglesia de Éfeso',
  *   'http://localhost:1234',  // LM Studio server URL
  *   { id: 'es-419' },
  *   'church',
  *   'en',
- *   { selections: { 'church': { 'iglesia': 7 } } }
+ *   { selections: { 'church': { 'iglesia': 7 } } },
+ *   'my-model-v1'  // optional custom model identifier
  * );
- * // Returns AI-generated suggestions with confidence scores
+ * // Returns: {
+ * //   error: false,
+ * //   bestSelections: [...], // AI-generated suggestions with confidence scores
+ * //   elapsedStr: '2.35',
+ * //   model: 'lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF'
+ * // }
  *
- * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} - Algorithmic implementation
- * @see {@link getBestTWordSelectionWithConfidence} - AI-assisted implementation
+ * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} - Algorithmic implementation using pattern matching
+ * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - AI-assisted implementation using language models
+ * @see {@link getWordList} - Function used to tokenize the verse text into individual words
  */
 export async function getBestSelections(
   verseText,
@@ -2310,10 +2412,15 @@ export async function getBestSelections(
   model
 ) {
   const wordList = getWordList(verseText);
-  let bestSelections = null;
+  let results = {
+    error: true,
+    bestSelections: [],
+    elapsedStr: '',
+    model: '',
+  };
 
   if (!llmQueryUrl) {
-    bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
+    const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
       wordList,
       targetLanguageDetails.id,
       alignedGLText,
@@ -2321,6 +2428,13 @@ export async function getBestSelections(
       selectionsData?.selections,
       llmQueryUrl
     );
+
+    results = {
+      error: false,
+      bestSelections,
+      elapsedStr: '0',
+      model: 'APP',
+    };
   } else {
     const lmOptions = {
       baseUrl: llmQueryUrl,
@@ -2328,7 +2442,7 @@ export async function getBestSelections(
       model,
     };
 
-    bestSelections = await getBestTWordSelectionWithConfidence(
+    results = await getBestTWordSelectionWithConfidenceFromLlm(
       wordList,
       targetLanguageDetails.id,
       alignedGLText,
@@ -2337,5 +2451,5 @@ export async function getBestSelections(
       lmOptions,
     );
   }
-  return bestSelections;
+  return results;
 }

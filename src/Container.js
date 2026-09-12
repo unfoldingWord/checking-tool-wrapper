@@ -206,12 +206,15 @@ function Container({
   /**
    * Computes auto-select suggestions for the current check, fetching and caching previous
    * selection history for the group the first time it's needed.
-   * @param {object} data
+   * @param {object} data - suggestion request data
    * @param {object} data.contextId - context of the check being suggested for
-   * @param {string} data.verseText - target-language verse text
-   * @param {object} data.targetLanguageDetails - target language details, including `id`
+   * @param {string} data.currentModel - currently selected LLM model identifier
    * @param {string} data.alignedGLText - aligned gateway-language quote to translate
-   * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>}
+   * @param {boolean} data.llmSuggestionsEnabled - whether LLM suggestions are enabled
+   * @param {string} data.llmQueryUrl - URL for LLM query endpoint
+   * @param {object} data.targetLanguageDetails - target language details, including `id`
+   * @param {string} data.verseText - target-language verse text
+   * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string}>} - object containing error status, suggested selections array, elapsed time string, and model used
    */
   async function getSuggestions(data) {
     const groupId = contextId?.groupId || '';
@@ -248,7 +251,12 @@ function Container({
       selectionsData.selections = selectionsForWord;
     }
 
-    const bestSelections = await getBestSelections(
+    const {
+      error,
+      bestSelections,
+      elapsedStr,
+      model,
+    } = await getBestSelections(
       verseText,
       llmQueryUrl,
       targetLanguageDetails,
@@ -258,7 +266,20 @@ function Container({
       currentModel,
     );
 
-    return bestSelections;
+    if (!error) {
+      console.log('getSuggestions metrics', {
+        elapsedStr,
+        model,
+        suggestionsCount: bestSelections.length,
+      });
+    }
+
+    return {
+      error,
+      bestSelections,
+      elapsedStr,
+      model,
+    };
   }
 
   return (
