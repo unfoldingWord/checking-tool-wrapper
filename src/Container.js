@@ -30,6 +30,7 @@ import {
   getBestSelections,
   queryLmStudioModels,
   readSettingsForChecking_,
+  saveAlignmentData,
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
   updateLlmMetrics,
@@ -219,7 +220,6 @@ function Container({
    * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string}>} - object containing error status, suggested selections array, elapsed time string, and model used
    */
   async function getSuggestions(data) {
-    const groupId = contextId?.groupId || '';
     const projectSaveLocation = tc?.projectSaveLocation;
     const glOwnerStr = tc.gatewayLanguageOwner;
 
@@ -233,6 +233,7 @@ function Container({
       verseText,
     } = data || {};
 
+    const groupId = contextId?.groupId || '';
     const llmQueryUrl_ = (llmSuggestionsEnabled && llmQueryUrl_) || null;
 
     if (selectionsData?.groupId !== groupId) {
@@ -252,6 +253,12 @@ function Container({
       selectionsData.groupId = groupId;
       selectionsData.selections = selectionsForWord;
     }
+
+    await delay(500);
+
+    saveAlignmentData(projectSaveLocation, selectionsData);
+
+    await delay(500);
 
     const {
       error,

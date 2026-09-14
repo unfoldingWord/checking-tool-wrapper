@@ -225,12 +225,14 @@ export async function queryLmStudio(query, options = {}) {
     typeof window.lmStudio?.query === 'function';
 
   console.log('isLmStudioQueryAvailable', isLmStudioQueryAvailable);
+  let error = false;
 
   if (isLmStudioQueryAvailable) { // calling Electron process
     const answer = await window.lmStudio.query(query, lmQueryOptions);
     console.log(answer);
     replyText_ = answer.replyText;
     actualModel_ = answer.actualModel;
+    error = answer.error;
   } else { // no electron process
     const {
       replyText,
@@ -241,13 +243,14 @@ export async function queryLmStudio(query, options = {}) {
   }
 
   const elapsedStr = ((Date.now() - startTime) / 1000).toFixed(2);
+
   console.log(
     `Query using model "${actualModel_ || model}" took ${elapsedStr}s`
   );
 
-  if (!replyText_) {
-    const message = `Unexpected LM Studio response shape: received empty content`;
-    console.log(message);
+  if (error || !replyText_) {
+    const message = `Unexpected LM Studio response shape: received error or empty content`;
+    console.log(`${message}, replyText`, replyText_);
     throw new Error(message);
   }
 
@@ -287,8 +290,14 @@ export async function queryLmStudioModels(options = {}) {
   let answer;
 
   if (isLmStudioModelsAvailable) { // calling Electron process
-    answer = await window.lmStudio.getAvailableModels({ baseUrl });
-    console.log('getAvailableModels answer', answer);
+    try {
+      answer = await window.lmStudio.getAvailableModels({ baseUrl });
+      console.log('getAvailableModels answer', answer);
+    } catch (error) {
+      const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
+      console.error(message);
+      throw new Error(message);
+    }
   } else {
     try {
       response = await fetch(url, {
@@ -590,6 +599,16 @@ function formatNumberedVerse(verseContent) {
     .join(' ');
 }
 
+export function saveAlignmentData(projectPath, data) {
+  const metricsFilePath = getTcorePathFromProjectPath(projectPath, `translation_data.json`);
+
+  try {
+    fs.outputJsonSync(metricsFilePath, data, { spaces: 2 });
+  } catch (error) {
+    console.error(`Could not save metrics to ${metricsFilePath}`, error);
+  }
+}
+
 /**
  * Builds the AI prompt for selecting the best target-language translation option(s)
  * for a gateway-language phrase, using only words found in the target-language verse.
@@ -646,7 +665,7 @@ Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",9
 `;
 
   const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true);
-  console.log(previousTranslations);
+  console.log(`previousTranslations length= ${previousTranslations.length}`);
 
   // one labeled field per line, in the same order as the example above
   const lines = [
