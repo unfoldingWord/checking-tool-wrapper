@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VerseCheck, verseHelpers } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
+import isEqual from 'deep-equal';
+
 // helpers
 import { optimizeSelections } from '../helpers/selectionHelpers';
 import { getInvalidQuoteMessage } from '../helpers/checkAreaHelpers';
@@ -306,13 +308,15 @@ function VerseCheckWrapper({
     editTargetVerse(chapter, verseRef, before, newVerseText, newTags);
   }
 
-  function changeSelectionsInLocalState(newSelections) {
-    if (newSelections.length > 0) {
-      setLocalState({ newNothingToSelect: false });
-    } else {
-      setLocalState({ newNothingToSelect: nothingToSelect });
+  function changeSelectionsInLocalState(_newSelections) {
+    if (!isEqual(_newSelections, newSelections)) {
+      if (_newSelections.length > 0) {
+        setLocalState({ newNothingToSelect: false });
+      } else {
+        setLocalState({ newNothingToSelect: nothingToSelect });
+      }
+      setLocalState({ newSelections: _newSelections });
     }
-    setLocalState({ newSelections });
   }
 
   function cancelSelection() {

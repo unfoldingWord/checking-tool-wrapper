@@ -254,11 +254,11 @@ function Container({
       selectionsData.selections = selectionsForWord;
     }
 
-    await delay(500);
+    await delay(1);
 
     saveAlignmentData(projectSaveLocation, selectionsData);
 
-    await delay(500);
+    await delay(1);
 
     const {
       error,
@@ -282,7 +282,7 @@ function Container({
         suggestionsCount: bestSelections.length,
       });
 
-      delay(500).then(() => {
+      delay(100).then(() => {
         updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);
       });
     } else {

@@ -203,9 +203,8 @@ export async function queryLmStudio(query, options = {}) {
   } = options;
   const startTime = Date.now();
 
-  if (!enable_thinking) {
-    query = query + '\n/no_think';
-  }
+  const finalQuery = enable_thinking ? query : `/no_think\n${query}`;
+  const finalSystemPrompt = enable_thinking ? systemPrompt : `/no_think\n${systemPrompt}`;
 
   let replyText_ = null;
   let actualModel_ = null;
@@ -215,8 +214,8 @@ export async function queryLmStudio(query, options = {}) {
     enable_thinking,
     maxTokens,
     model,
-    query,
-    systemPrompt,
+    query: finalQuery,
+    systemPrompt: finalSystemPrompt,
     temperature,
   };
 
@@ -1448,10 +1447,10 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
           seen.add(key);
           uniqueSelections.push(word);
         } else {
-          console.log('duplicate word found', word);
+          // console.log('duplicate word found', word);
         }
       } else {
-        console.log('invalid word or occurrence found', word);
+        // console.log('invalid word or occurrence found', word);
       }
     }
 
@@ -1867,8 +1866,8 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
           uniqueSelections.push(word);
         }
       } else {
-        console.log('invalid word or occurrence found', word);
-        success = false
+        // console.log('invalid word or occurrence found', word);
+        success = false;
       }
     }
 
