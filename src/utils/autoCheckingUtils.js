@@ -228,18 +228,28 @@ export async function queryLmStudio(query, options = {}) {
   let error = false;
 
   if (isLmStudioQueryAvailable) { // calling Electron process
-    const answer = await window.lmStudio.query(query, lmQueryOptions);
-    console.log(answer);
-    replyText_ = answer.replyText;
-    actualModel_ = answer.actualModel;
-    error = answer.error;
+    try {
+      const answer = await window.lmStudio.query(query, lmQueryOptions);
+      console.log(answer);
+      replyText_ = answer.replyText;
+      actualModel_ = answer.actualModel;
+      error = answer.error;
+    } catch (e) {
+      console.error(`queryLmStudio - window.lmStudio.query error`, e);
+      error = true;
+    }
   } else { // no electron process
-    const {
-      replyText,
-      actualModel,
-    } = await streamChatMessage(lmQueryOptions);
-    replyText_ = replyText;
-    actualModel_ = actualModel;
+    try {
+      const {
+        replyText,
+        actualModel,
+      } = await streamChatMessage(lmQueryOptions);
+      replyText_ = replyText;
+      actualModel_ = actualModel;
+    } catch (e) {
+      console.error(`queryLmStudio - streamChatMessage error`, e);
+      error = true;
+    }
   }
 
   const elapsedStr = ((Date.now() - startTime) / 1000).toFixed(2);
@@ -2663,7 +2673,7 @@ export async function getBestSelections(
   selectionsData,
   model
 ) {
-  const wordList = getWordList(verseText);
+  // eslint-disable-next-line no-unused-vars
   let results = {
     error: true,
     bestSelections: [],
@@ -2671,37 +2681,45 @@ export async function getBestSelections(
     model: '',
   };
 
-  if (!llmQueryUrl) {
-    const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
-      wordList,
-      targetLanguageDetails.id,
-      alignedGLText,
-      gatewayLanguageCode,
-      selectionsData?.selections,
-      llmQueryUrl
-    );
+  try {
+    const wordList = getWordList(verseText);
 
-    results = {
-      error: false,
-      bestSelections,
-      elapsedStr: '0',
-      model: 'APP',
-    };
-  } else {
-    const lmOptions = {
-      baseUrl: llmQueryUrl,
-      enable_thinking: false,
-      model,
-    };
+    if (!llmQueryUrl) {
+      const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
+        wordList,
+        targetLanguageDetails.id,
+        alignedGLText,
+        gatewayLanguageCode,
+        selectionsData?.selections,
+        llmQueryUrl
+      );
 
-    results = await getBestTWordSelectionWithConfidenceFromLlm(
-      wordList,
-      targetLanguageDetails.id,
-      alignedGLText,
-      gatewayLanguageCode,
-      selectionsData?.selections,
-      lmOptions,
-    );
+      results = {
+        error: false,
+        bestSelections,
+        elapsedStr: '0',
+        model: 'APP',
+      };
+    } else {
+      const lmOptions = {
+        baseUrl: llmQueryUrl,
+        enable_thinking: false,
+        model,
+      };
+
+      results = await getBestTWordSelectionWithConfidenceFromLlm(
+        wordList,
+        targetLanguageDetails.id,
+        alignedGLText,
+        gatewayLanguageCode,
+        selectionsData?.selections,
+        lmOptions
+      );
+    }
+  } catch (e) {
+    console.error(`getBestSelections - error`, e);
+    return { error: true };
   }
+
   return results;
 }

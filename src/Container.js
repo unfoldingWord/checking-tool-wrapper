@@ -285,6 +285,9 @@ function Container({
       delay(500).then(() => {
         updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);
       });
+    } else {
+      console.log('getSuggestions error', {});
+      return { error: true };
     }
 
     return {
