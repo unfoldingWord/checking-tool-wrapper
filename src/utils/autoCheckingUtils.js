@@ -224,7 +224,7 @@ export async function queryLmStudio(query, options = {}) {
     typeof window !== 'undefined' &&
     typeof window.lmStudio?.query === 'function';
 
-  console.log('isLmStudioQueryAvailable', isLmStudioQueryAvailable);
+  console.log('queryLmStudio - starting fetch isLmStudioQueryAvailable', isLmStudioQueryAvailable);
   let error = false;
 
   if (isLmStudioQueryAvailable) { // calling Electron process
@@ -675,7 +675,7 @@ Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",9
 `;
 
   const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true);
-  console.log(`previousTranslations length= ${previousTranslations.length}`);
+  console.log(`previousTranslations string length= ${previousTranslations.length}`);
 
   // one labeled field per line, in the same order as the example above
   const lines = [
