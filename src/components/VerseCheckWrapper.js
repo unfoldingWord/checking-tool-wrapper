@@ -92,7 +92,7 @@ function VerseCheckWrapper({
     isDialogOpen,
     goToNextOrPrevious,
     setLocalState,
-    alignedGlTextState
+    alignedGlTextState,
   } = useLocalState({
     mode: initialMode,
     newComment: null,
@@ -105,14 +105,14 @@ function VerseCheckWrapper({
     isDialogOpen: false,
     goToNextOrPrevious: null,
     lastContextId: null,
-    alignedGlTextState: ""
+    alignedGlTextState: '',
   });
 
   useEffect(() => {
     // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
     setLocalState({
       mode: getInitialMode(),
-      newSelections: selections
+      newSelections: selections,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selections]);
@@ -135,7 +135,7 @@ function VerseCheckWrapper({
       newNothingToSelect: nothingToSelect,
       newTags: [],
       lastContextId: null,
-      alignedGlTextState
+      alignedGlTextState,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextId]);
@@ -144,8 +144,8 @@ function VerseCheckWrapper({
     return (selections && selections.length) || verseText.length === 0
       ? 'default'
       : nothingToSelect
-      ? 'default'
-      : 'select';
+        ? 'default'
+        : 'select';
   }
 
   function handleOpenDialog(goToNextOrPrevious) {
@@ -160,9 +160,9 @@ function VerseCheckWrapper({
     e.preventDefault();
     setLocalState({ isDialogOpen: false });
 
-    if (goToNextOrPrevious == "next") {
+    if (goToNextOrPrevious == 'next') {
       goToNext();
-    } else if (goToNextOrPrevious == "previous") {
+    } else if (goToNextOrPrevious == 'previous') {
       goToPrevious();
     }
   }
@@ -175,9 +175,7 @@ function VerseCheckWrapper({
    * @returns {null|string}
    */
   function checkIfMultipartVerseToEdit() {
-    const {
-      reference: { chapter, verse }
-    } = contextId;
+    const { reference: { chapter, verse } } = contextId;
     const verseRef = contextId.verseSpan || verse; // if in verse span, use it
     const verseFound = targetBible?.[chapter]?.[verseRef];
     let editVerse = null;
@@ -202,7 +200,7 @@ function VerseCheckWrapper({
   }
 
   function changeMode(mode) {
-    if (mode === "edit") {
+    if (mode === 'edit') {
       let editFirstVerse = checkIfMultipartVerseToEdit();
 
       if (editFirstVerse) {
@@ -214,7 +212,7 @@ function VerseCheckWrapper({
 
     setLocalState({
       mode,
-      newSelections: selections
+      newSelections: selections,
     });
   }
 
@@ -224,25 +222,25 @@ function VerseCheckWrapper({
   }
 
   function checkIfCommentChanged(e) {
-    const newcomment = e.target.value || "";
-    const oldcomment = commentText || "";
+    const newcomment = e.target.value || '';
+    const oldcomment = commentText || '';
 
     setLocalState({ isCommentChanged: newcomment !== oldcomment });
   }
 
   function cancelComment() {
     setLocalState({
-      mode: "default",
+      mode: 'default',
       newSelections: selections,
       newComment: null,
-      isCommentChanged: false
+      isCommentChanged: false,
     });
   }
 
   function saveComment() {
     addComment(newComment);
     setLocalState({
-      mode: "default",
+      mode: 'default',
       newSelections: selections,
       newComment: null,
       isCommentChanged: false
@@ -270,13 +268,13 @@ function VerseCheckWrapper({
 
   function checkIfVerseChanged(e) {
     const { chapter, verse } = contextId.reference;
-    const newverse = e.target.value || "";
-    const oldverse = targetBible[chapter][verse] || "";
+    const newverse = e.target.value || '';
+    const oldverse = targetBible[chapter][verse] || '';
 
     if (newverse === oldverse) {
       setLocalState({
         isVerseChanged: false,
-        newTags: []
+        newTags: [],
       });
     } else {
       setLocalState({ isVerseChanged: true });
@@ -285,11 +283,11 @@ function VerseCheckWrapper({
 
   function cancelEditVerse() {
     setLocalState({
-      mode: "default",
+      mode: 'default',
       newSelections: selections,
       newVerseText: null,
       isVerseChanged: false,
-      newTags: []
+      newTags: [],
     });
   }
 
@@ -299,11 +297,11 @@ function VerseCheckWrapper({
     const before = targetBible[chapter][verseRef];
 
     setLocalState({
-      mode: "default",
+      mode: 'default',
       newSelections: selections,
       newVerseText: null,
       isVerseChanged: false,
-      newTags: []
+      newTags: [],
     });
     editTargetVerse(chapter, verseRef, before, newVerseText, newTags);
   }
@@ -321,9 +319,9 @@ function VerseCheckWrapper({
 
   function cancelSelection() {
     setLocalState({
-      mode: "default",
+      mode: 'default',
       newNothingToSelect: nothingToSelect,
-      newSelections: selections
+      newSelections: selections,
     });
   }
 
@@ -339,10 +337,10 @@ function VerseCheckWrapper({
       alignedGLText,
       contextId,
       newSelections,
-      oldSelections: selections
+      oldSelections: selections,
     });
     changeSelections(selections_, newNothingToSelect);
-    changeMode("default");
+    changeMode('default');
   }
 
   function toggleNothingToSelect(newNothingToSelect) {

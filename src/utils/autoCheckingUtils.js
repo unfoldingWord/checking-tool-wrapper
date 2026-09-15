@@ -30,15 +30,15 @@ const LM_STUDIO_URL = 'http://192.168.142.70:1234';
  * from either `delta.content` or `delta.reasoning_content` fields. It accumulates partial lines
  * in a buffer to handle chunks that arrive split across multiple reads.
  *
- * @param {string} baseUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234')
- * @param {string} model - Model identifier as configured in LM Studio (e.g., 'local-model')
- * @param {string} systemPrompt - System prompt that sets the AI's behavior and context
- * @param {string} query - User query/prompt to send to the model
- * @param {number} temperature - Sampling temperature (0.0-1.0); higher values increase randomness
- * @param {number} maxTokens - Maximum number of tokens to generate in the response
- * @param {boolean} enable_thinking - Whether to enable thinking mode via chat_template_kwargs
- * @returns {Promise<{startTime: number, replyText: string, actualModel: string}>} Object containing:
- *   - startTime: Timestamp when the request was initiated (milliseconds since epoch)
+ * @param {object} options - Configuration options for the chat completion request
+ * @param {string} options.baseUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234')
+ * @param {string} options.model - Model identifier as configured in LM Studio (e.g., 'local-model')
+ * @param {string} options.systemPrompt - System prompt that sets the AI's behavior and context
+ * @param {string} options.query - User query/prompt to send to the model
+ * @param {number} options.temperature - Sampling temperature (0.0-1.0); higher values increase randomness
+ * @param {number} options.maxTokens - Maximum number of tokens to generate in the response
+ * @param {boolean} options.enable_thinking - Whether to enable thinking mode via chat_template_kwargs
+ * @returns {Promise<{replyText: string, actualModel: string}>} Object containing:
  *   - replyText: Complete accumulated response text from the model
  *   - actualModel: Actual model name reported by the server (may differ from requested model)
  * @throws {Error} If the server is unreachable, returns a non-OK status, or the response is malformed
@@ -58,27 +58,27 @@ const LM_STUDIO_URL = 'http://192.168.142.70:1234';
  * @see {@link queryLmStudio} - Higher-level wrapper function that calls this internally
  */
 async function streamChatMessage(options) {
-  const { baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking } = options;
+  const {
+    baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking,
+  } = options;
   const url = `${baseUrl}/v1/chat/completions`;
   let response;
 
   try {
     response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model,
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: query }
+          { role: 'user', content: query },
         ],
         temperature,
         max_tokens: maxTokens,
         stream: true,
-        chat_template_kwargs: { enable_thinking }
-      })
+        chat_template_kwargs: { enable_thinking },
+      }),
     });
   } catch (error) {
     const message1 = `Failed to reach LM Studio server at ${url}: ${error.message}`;
@@ -93,29 +93,38 @@ async function streamChatMessage(options) {
   }
 
   // Read the SSE stream and accumulate the full response
-  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
   let replyText = '';
   let buffer = '';
   let actualModel = '';
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     // eslint-disable-next-line no-await-in-loop
     const { value, done } = await reader.read();
 
-    if (done) break;
+    if (done) {
+      buffer += decoder.decode();
+      break;
+    }
 
-    buffer += value;
+    buffer += decoder.decode(value, { stream: true });
     const lines = buffer.split('\n');
     buffer = lines.pop() || ''; // keep incomplete last line in buffer
 
     for (const line of lines) {
       const trimmed = line.trim();
 
-      if (!trimmed || !trimmed.startsWith('data: ')) continue;
+      if (!trimmed || !trimmed.startsWith('data: ')) {
+        continue;
+      };
 
       const dataStr = trimmed.slice(6);
 
-      if (dataStr === '[DONE]') break;
+      if (dataStr === '[DONE]') {
+        break;
+      };
 
       try {
         const chunk = JSON.parse(dataStr);
@@ -311,9 +320,7 @@ export async function queryLmStudioModels(options = {}) {
     try {
       response = await fetch(url, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
       });
     } catch (error) {
       const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
@@ -701,7 +708,7 @@ Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",9
  * @returns {object} - `{targetPhrase: count}` for this phrase, or `{}` when it has no history
  */
 function getPreviousTranslationExactMatchCounts(previousTranslationData, glPhrase) {
-  const data = previousTranslationData || {}
+  const data = previousTranslationData || {};
 
   // data is phrase-keyed when its values are count maps rather than counts
   const isPhraseKeyed = Object.values(data).some(value => value && typeof value === 'object');
@@ -817,7 +824,7 @@ function getPreviousTranslationPartialMatchCounts(
  */
 function buildSelectionsFromPositions(wordList, positions) {
   return positions.map(position => {
-    const text = normalizer(wordList[position])
+    const text = normalizer(wordList[position]);
     return {
       text,
       occurrence: findOccurrenceForPos(position + 1, wordList, text),
@@ -839,14 +846,14 @@ function findContiguousMatchPositions(normalizedWordList, phraseWords) {
   }
 
   for (let start = 0; start <= normalizedWordList.length - phraseWords.length; start++) {
-    const matches = phraseWords.every((word, offset) => normalizedWordList[start + offset] === word)
+    const matches = phraseWords.every((word, offset) => normalizedWordList[start + offset] === word);
 
     if (matches) {
       return phraseWords.map((_, offset) => start + offset);
     }
   }
 
-  return null
+  return null;
 }
 
 /**
@@ -861,7 +868,7 @@ function findContiguousMatchPositions(normalizedWordList, phraseWords) {
  */
 function findBestOrderedMatchPositions(normalizedWordList, phraseWords) {
   if (!phraseWords.length) {
-    return null
+    return null;
   }
 
   const positionsPerWord = phraseWords.map(word => {
@@ -872,11 +879,11 @@ function findBestOrderedMatchPositions(normalizedWordList, phraseWords) {
         positions.push(i);
       }
     }
-    return positions
-  })
+    return positions;
+  });
 
   if (positionsPerWord.some(positions => !positions.length)) {
-    return null // a word of the rendering is not in this verse at all
+    return null; // a word of the rendering is not in this verse at all
   }
 
   let bestPositions = null;
@@ -1000,8 +1007,13 @@ function scoreAlgorithmicMatch(matchedWordCount, phraseWordCount, isContiguous, 
  * @returns {number} - similarity in [0, 1]
  */
 function fuzzyStringSimilarity(a, b) {
-  if (a === b) return 1;
-  if (!a.length || !b.length) return 0;
+  if (a === b) {
+    return 1;
+  }
+
+  if (!a.length || !b.length) {
+    return 0;
+  }
 
   const maxLen = Math.max(a.length, b.length);
   const dist = levenshteinDistance(a, b);
@@ -1029,23 +1041,25 @@ function levenshteinDistance(a, b) {
   const bLen = b.length;
 
   // prev[j] = edit distance between a[0..i-1] and b[0..j-1] from the previous row
-  let prev = Array.from({ length: aLen + 1 }, (_, i) => i)
-  let curr = new Array(aLen + 1)
+  let prev = Array.from({ length: aLen + 1 }, (_, i) => i);
+  let curr = new Array(aLen + 1);
 
   for (let j = 1; j <= bLen; j++) {
-    curr[0] = j
+    curr[0] = j;
+
     for (let i = 1; i <= aLen; i++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+
       curr[i] = Math.min(
-        curr[i - 1] + 1,    // insertion
-        prev[i] + 1,        // deletion
+        curr[i - 1] + 1, // insertion
+        prev[i] + 1, // deletion
         prev[i - 1] + cost, // substitution
-      )
+      );
     }
-    ;[prev, curr] = [curr, prev]
+    ;[prev, curr] = [curr, prev];
   }
 
-  return prev[aLen]
+  return prev[aLen];
 }
 
 /**
@@ -1131,20 +1145,20 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     }
 
     // Calculate span (distance between first and last matched word)
-    const span = positions[positions.length - 1] - positions[0]
+    const span = positions[positions.length - 1] - positions[0];
     // Check if words are adjacent (contiguous) in the verse
-    const isContiguous = span === positions.length - 1
+    const isContiguous = span === positions.length - 1;
     // Calculate confidence score (0-100) based on match quality
-    const confidence = scoreAlgorithmicMatch(positions.length, phraseWordCount, isContiguous, span, count, maxCount)
+    const confidence = scoreAlgorithmicMatch(positions.length, phraseWordCount, isContiguous, span, count, maxCount);
     // Create unique key from positions for deduplication
-    const key = positions.join(':')
-    const existing = candidates.get(key)
+    const key = positions.join(':');
+    const existing = candidates.get(key);
 
     // Keep only the best match for these positions (highest confidence, then highest count)
     // These words may already have been matched by another rendering - keep the stronger reading
     if (existing && (existing.confidence > confidence
       || (existing.confidence === confidence && existing.count >= count))) {
-      return
+      return;
     }
 
     // Store or update the candidate with its metadata
@@ -1154,79 +1168,83 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       count,
       span,
       matchedWordCount: positions.length,
-    })
+    });
   }
 
   // Try to match each previous translation against the verse, from most-used to least-used
   for (const [phrase, count] of countEntries) {
     // Normalize the previous translation into individual words
-    const phraseWords = phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word))
+    const phraseWords = phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
 
     // Skip empty translations
     if (!phraseWords.length) {
-      continue
+      continue;
     }
 
     // First attempt: find exact verbatim match (all words adjacent and in order)
-    const exactPositions = findContiguousMatchPositions(normalizedWordList, phraseWords)
+    const exactPositions = findContiguousMatchPositions(normalizedWordList, phraseWords);
 
     if (exactPositions) { // verbatim match, nothing weaker from this rendering can beat it
-      considerCandidate(exactPositions, phraseWords.length, count)
-      continue
+      considerCandidate(exactPositions, phraseWords.length, count);
+      continue;
     }
 
     // Second attempt: find all words in order but possibly with gaps between them
-    const orderedPositions = findBestOrderedMatchPositions(normalizedWordList, phraseWords)
+    const orderedPositions = findBestOrderedMatchPositions(normalizedWordList, phraseWords);
 
     if (orderedPositions) { // all the words, but the verse spreads them out
-      considerCandidate(orderedPositions, phraseWords.length, count)
-      continue
+      considerCandidate(orderedPositions, phraseWords.length, count);
+      continue;
     }
 
     // Fallback: find the best subset of the translation that exists in the verse
     // Fall back to the best ordered subset of the rendering that the verse actually contains.
     // It is still scored against the full previous translation length, so confidence is reduced
     // when one or more words from the previous translation are missing from wordList.
-    const availablePositions = findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords)
-    considerCandidate(availablePositions, phraseWords.length, count)
+    const availablePositions = findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords);
+    considerCandidate(availablePositions, phraseWords.length, count);
   }
 
   if (!candidates.size) {
     // Use fuzzy compares to do closest matches for translated target words in word list and calculate confidence
     // For each previous translation, try fuzzy matching each phrase word against verse words
     for (const [phrase, count] of countEntries) {
-      const phraseWords = phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word))
-      if (!phraseWords.length) continue
+      const phraseWords = phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
 
-      const matchedPositions = []
-      let totalSimilarity = 0
+      if (!phraseWords.length) {
+        continue;
+      };
+
+      const matchedPositions = [];
+      let totalSimilarity = 0;
 
       for (const phraseWord of phraseWords) {
-        let bestPos = -1
-        let bestSim = -1
+        let bestPos = -1;
+        let bestSim = -1;
 
         for (let i = 0; i < normalizedWordList.length; i++) {
-          const sim = fuzzyStringSimilarity(phraseWord, normalizedWordList[i])
+          const sim = fuzzyStringSimilarity(phraseWord, normalizedWordList[i]);
+
           if (sim > bestSim) {
-            bestSim = sim
-            bestPos = i
+            bestSim = sim;
+            bestPos = i;
           }
         }
 
         if (bestPos >= 0 && bestSim > 0.5) { // only accept reasonably similar words
-          matchedPositions.push(bestPos)
-          totalSimilarity += bestSim
+          matchedPositions.push(bestPos);
+          totalSimilarity += bestSim;
         }
       }
 
       if (matchedPositions.length) {
         // Deduplicate positions, keeping order
-        const uniquePositions = [...new Set(matchedPositions)].sort((a, b) => a - b)
-        const avgSimilarity = totalSimilarity / phraseWords.length
+        const uniquePositions = [...new Set(matchedPositions)].sort((a, b) => a - b);
+        const avgSimilarity = totalSimilarity / phraseWords.length;
         // Scale confidence: fuzzy matches are always weaker than exact ones (capped below 50)
-        const fuzzyConfidence = Math.round(avgSimilarity * 45)
-        const key = uniquePositions.join(':')
-        const existing = candidates.get(key)
+        const fuzzyConfidence = Math.round(avgSimilarity * 45);
+        const key = uniquePositions.join(':');
+        const existing = candidates.get(key);
 
         if (!existing || existing.confidence < fuzzyConfidence) {
           candidates.set(key, {
@@ -1235,7 +1253,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
             count,
             span: uniquePositions[uniquePositions.length - 1] - uniquePositions[0],
             matchedWordCount: uniquePositions.length,
-          })
+          });
         }
       }
     }
@@ -1245,9 +1263,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         wordList: formatNumberedVerse(words.join(' ')),
         glPhrase,
         candidates: [...candidates.values()],
-      })
+      });
     } else {
-      console.log('algorithm response: no usable candidates for ', { glPhrase })
+      console.log('algorithm response: no usable candidates for ', { glPhrase });
     }
   }
 
@@ -1261,7 +1279,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       || a.span - b.span
     ))
     .slice(0, 3)
-    .map(({ selections, confidence }) => ({ selections, confidence }))
+    .map(({ selections, confidence }) => ({ selections, confidence }));
 
   // Log the results for debugging
   console.log('algorithm response:', {
@@ -1269,9 +1287,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     glPhrase,
     matches: bestSelections.length,
     bestSelections,
-  })
+  });
 
-  return bestSelections
+  return bestSelections;
 }
 
 /**
@@ -1340,7 +1358,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     glPhrase,
     glLangCode,
     previousTranslationData,
-  )
+  );
   let success = true;
   let answer = '';
   let responses = null;
@@ -1351,7 +1369,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     const options = {
       ...lmOptions,
       systemPrompt,
-    }
+    };
     const {
       response,
       elapsedStr: elapsed,
@@ -1366,31 +1384,36 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
 
     if (length > 5) { // if the response was verbose, like in thinking mode, skip ahead to csv line
       for (let i = start; i < length; i++) {
-        const response = responses[i]
-        const parts = response?.split(',')
+        const response = responses[i];
+        const parts = response?.split(',');
+
         if (parts?.length == 2) {
-          let confidence = removeQuotes(parts[1])
-          confidence = parseInt(confidence, 10)
+          let confidence = removeQuotes(parts[1]);
+          confidence = parseInt(confidence, 10);
+
           if (!Number.isNaN(confidence)) {
-            start = i
-            break
+            start = i;
+            break;
           }
         }
       }
     }
+
     for (let i = start; i < length; i++) {
-      const response = responses[i]
+      const response = responses[i];
+
       if (response) {
-        if (!response.includes('\`\`\`')) {
-          const success_ = parseResponseRowNoPositions(response, wordList, answer, translationOptions)
+        if (!response.includes('```')) {
+          const success_ = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
+
           if (!success_) {
-            success = false
+            success = false;
           }
         }
       }
     }
   } catch (e) {
-    console.log('query failed',e)
+    console.log('query failed',e);
     success = false;
   }
 
@@ -1398,9 +1421,9 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     if (!answer.includes(',')) {
       //handle case where AI did not use CSV format, but fields are separated by newlines
       if (responses?.length === 2) {
-        translationOptions = []
-        const response = answer.replace('\n', ',')
-        success = parseResponseRowNoPositions(response, wordList, answer, translationOptions)
+        translationOptions = [];
+        const response = answer.replace('\n', ',');
+        success = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
       }
     } else {
       // Handle verbose responses by retrying with the last non-empty CSV-looking line.
@@ -1410,7 +1433,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
         .pop();
 
       if (lastNonEmptyLine) {
-        const quoteParts = lastNonEmptyLine.split('"').filter(part => part.trim() !== '')
+        const quoteParts = lastNonEmptyLine.split('"').filter(part => part.trim() !== '');
 
         if (quoteParts.length >= 3) {
           const phraseTranslation = quoteParts[quoteParts.length - 2];
@@ -1419,15 +1442,15 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
             .map(part => part.trim())
             .find(part => part !== '');
 
-          const confidence = removeQuotes(confidencePart)
-          const confidenceNum = parseInt(confidence, 10)
+          const confidence = removeQuotes(confidencePart);
+          const confidenceNum = parseInt(confidence, 10);
 
           if (Number.isNaN(confidenceNum) || confidenceNum < 0 || confidenceNum > 100) {
-            success = false
+            success = false;
           } else {
-            translationOptions = []
-            const response = `"${phraseTranslation}",${confidence}`
-            success = parseResponseRowNoPositions(response, wordList, answer, translationOptions)
+            translationOptions = [];
+            const response = `"${phraseTranslation}",${confidence}`;
+            success = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
           }
         }
       }
@@ -1458,12 +1481,12 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       option.selections = false;
     } else {
       if (option.selections.length != uniqueSelections.length) { // if changed then update
-        option.selections = uniqueSelections
+        option.selections = uniqueSelections;
       }
     }
   }
 
-  translationOptions = translationOptions.filter(item => (item.selections))
+  translationOptions = translationOptions.filter(item => (item.selections));
 
   success = !!translationOptions.length;
 
@@ -1472,13 +1495,13 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
   }
 
   if (success) {
-    translationOptions.sort((a, b) => b.confidence - a.confidence)
+    translationOptions.sort((a, b) => b.confidence - a.confidence);
     console.log('AI response:', {
       wordList: formatNumberedVerse(wordList.join(' ')),
       glPhrase,
       answer,
       matches: translationOptions.length,
-      selectionWords: translationOptions
+      selectionWords: translationOptions,
     });
 
     return {
@@ -1492,7 +1515,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       wordList: formatNumberedVerse(wordList.join(' ')),
       glPhrase,
       answer,
-      matches: translationOptions.length
+      matches: translationOptions.length,
     });
   }
   return {
@@ -1509,7 +1532,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
  * @returns {string} - the value without surrounding quotes, or '' if value is falsy
  */
 function removeQuotes(value) {
-  return value?.trim().replace(/^"|"$/g, '') || ''
+  return value?.trim().replace(/^"|"$/g, '') || '';
 }
 
 /**
@@ -1521,14 +1544,15 @@ function removeQuotes(value) {
  * @returns {number} - 1-based occurrence index, defaulting to 1 if none counted
  */
 function findOccurrenceForPos(position, wordList, text) {
-  let occurrence = 0
+  let occurrence = 0;
+
   for (let i = 0; i < position; i++) {
     if (wordList[i] === text) {
-      occurrence++
+      occurrence++;
     }
   }
-  occurrence = occurrence || 1 // fallback if AI got mixed up
-  return occurrence
+  occurrence = occurrence || 1; // fallback if AI got mixed up
+  return occurrence;
 }
 
 /**
@@ -1543,18 +1567,20 @@ function findOccurrenceForPos(position, wordList, text) {
  */
 function parseResponseRowNoPositions(response, wordList, answer, selectionWords) {
   let error = false;
-  const rowParts = normalizer(response).split(',')
+  const rowParts = normalizer(response).split(',');
+
   if (rowParts.length === 2) {
-    let [phraseTranslation, confidence] = rowParts
-    confidence = confidence ? parseInt(removeQuotes(confidence), 10) : 0
-    phraseTranslation = normalizer(removeQuotes(phraseTranslation))
-    const selections = []
-    const words = phraseTranslation.split(' ')
+    let [phraseTranslation, confidence] = rowParts;
+    confidence = confidence ? parseInt(removeQuotes(confidence), 10) : 0;
+    phraseTranslation = normalizer(removeQuotes(phraseTranslation));
+    const selections = [];
+    const words = phraseTranslation.split(' ');
+
     for (const word of words) {
-      const text = word.trim()
+      const text = word.trim();
 
       if (text) {
-        selections.push({ text })
+        selections.push({ text });
       }
     }
 
@@ -1563,80 +1589,87 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
       // such that the positions are grouped closest together
 
       // Build a map of word -> array of positions in wordList
-      const wordPositionsMap = new Map()
+      const wordPositionsMap = new Map();
+
       for (const selection of selections) {
-        const normalizedWord = normalizeForCompare(selection.text)
-        const positions = []
+        const normalizedWord = normalizeForCompare(selection.text);
+        const positions = [];
+
         for (let i = 0; i < wordList.length; i++) {
           if (normalizeForCompare(wordList[i]) === normalizedWord) {
-            positions.push(i)
+            positions.push(i);
           }
         }
-        wordPositionsMap.set(selection.text, positions)
+        wordPositionsMap.set(selection.text, positions);
       }
 
       // Verify all words exist in wordList
-      let allWordsFound = true
+      let allWordsFound = true;
+
       for (const selection of selections) {
-        const positions = wordPositionsMap.get(selection.text)
+        const positions = wordPositionsMap.get(selection.text);
+
         if (!positions || positions.length === 0) {
-          allWordsFound = false
-          break
+          allWordsFound = false;
+          break;
         }
       }
 
       if (!allWordsFound) {
-        error = true
+        error = true;
       } else {
         // Find the combination of positions that minimizes the span
         // (distance between first and last selected position)
-        let bestCombination = null
-        let minSpan = Infinity
+        let bestCombination = null;
+        let minSpan = Infinity;
 
+        // eslint-disable-next-line no-inner-declarations
         function findBestGrouping(selectionIndex, currentPositions) {
           if (selectionIndex === selections.length) {
             // Calculate span of current combination
-            const sorted = [...currentPositions].sort((a, b) => a - b)
-            const span = sorted[sorted.length - 1] - sorted[0]
+            const sorted = [...currentPositions].sort((a, b) => a - b);
+            const span = sorted[sorted.length - 1] - sorted[0];
+
             if (span < minSpan) {
-              minSpan = span
-              bestCombination = [...currentPositions]
+              minSpan = span;
+              bestCombination = [...currentPositions];
             }
-            return
+            return;
           }
 
-          const word = selections[selectionIndex].text
-          const availablePositions = wordPositionsMap.get(word)
+          const word = selections[selectionIndex].text;
+          const availablePositions = wordPositionsMap.get(word);
+
           for (const pos of availablePositions) {
-            findBestGrouping(selectionIndex + 1, [...currentPositions, pos])
+            findBestGrouping(selectionIndex + 1, [...currentPositions, pos]);
           }
         }
 
-        findBestGrouping(0, [])
+        findBestGrouping(0, []);
 
         // Assign the best positions and convert to occurrences
         if (bestCombination) {
           for (let i = 0; i < selections.length; i++) {
-            const position = bestCombination[i]
-            selections[i].text = normalizer(wordList[position])
-            selections[i].occurrence = findOccurrenceForPos(position + 1, wordList, selections[i].text)
+            const position = bestCombination[i];
+            selections[i].text = normalizer(wordList[position]);
+            selections[i].occurrence = findOccurrenceForPos(position + 1, wordList, selections[i].text);
             // delete selections[i].position
           }
         } else {
-          error = true
+          error = true;
         }
       }
 
-      selectionWords.push({ selections, confidence })
+      selectionWords.push({ selections, confidence });
     } else {
-      error = true
+      error = true;
     }
-    console.log('translation', { translation: phraseTranslation, confidence })
+    console.log('translation', { translation: phraseTranslation, confidence });
   } else {
-    console.log("row is not in csv format", response)
-    error = true
+    console.log('row is not in csv format', response);
+    error = true;
   }
-  return !error
+  return !error;
 }
 
 /**
@@ -1652,62 +1685,70 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
 function parseResponseRow(response, wordList, answer, selectionWords) {
   let error = false;
   let missingPos = false;
-  const rowParts = response.split(',')
+  const rowParts = response.split(',');
+
   if (rowParts.length === 2) {
-    let [phraseTranslation, confidence] = rowParts
-    confidence = confidence ? parseInt(removeQuotes(confidence), 10) : 0
-    phraseTranslation = removeQuotes(phraseTranslation)
-    const selections = []
-    const words = phraseTranslation.split(' ')
+    let [phraseTranslation, confidence] = rowParts;
+    confidence = confidence ? parseInt(removeQuotes(confidence), 10) : 0;
+    phraseTranslation = removeQuotes(phraseTranslation);
+    const selections = [];
+    const words = phraseTranslation.split(' ');
+
     for (const word of words) {
-      let selectionFound = null
-      const wordParts = word.split(':')
-      let [text, position] = wordParts
-      text = normalizer(text)
+      let selectionFound = null;
+      const wordParts = word.split(':');
+      let [text, position] = wordParts;
+      text = normalizer(text);
+
       if (wordParts.length === 2) {
-        position = parseInt(position, 10)
-        selectionFound = { text, position }
+        position = parseInt(position, 10);
+        selectionFound = { text, position };
       } else if (wordParts.length === 1) {
-        position = -1
-        selectionFound = { text, position }
-        missingPos = true
+        position = -1;
+        selectionFound = { text, position };
+        missingPos = true;
       } else {
         // invalid number of columns
-        error = true
+        error = true;
       }
 
       if (selectionFound) {
-        selections.push(selectionFound)
+        selections.push(selectionFound);
       } else {
-        console.log('invalid response', answer)
-        error = true
+        console.log('invalid response', answer);
+        error = true;
       }
     }
 
     if (selections.length) {
       if (missingPos && !error) { // fill in missing positions
-        missingPos = false // clear before second pass
+        missingPos = false; // clear before second pass
+
         for (let i = 0; i < selections.length; i++) {
-          const selection = selections[i]
+          const selection = selections[i];
+
           if (selection.position < 0) {
             // look ahead for last of contiguous words
-            let startPos = 0
-            let lastOfContig = 0
+            let startPos = 0;
+            let lastOfContig = 0;
+
             for (let j = i + 1; j < selections.length; j++) {
-              const selection_ = selections[j]
+              const selection_ = selections[j];
+
               if (selection_.position >= 0) {
-                startPos = selection_.position
-                lastOfContig = j
+                startPos = selection_.position;
+                lastOfContig = j;
                 break;
               }
             }
+
             if (startPos) {
               for (let j = i; j <= lastOfContig; j++) {
-                const selection_ = selections[j]
-                selection_.position = startPos++
+                const selection_ = selections[j];
+                selection_.position = startPos++;
               }
             } else {
-              error = true
+              error = true;
               break;
             }
           }
@@ -1716,57 +1757,64 @@ function parseResponseRow(response, wordList, answer, selectionWords) {
 
       // convert positions to occurrences
       for (const selection of selections) {
-        let found = false
+        let found = false;
+
         if (selection.position > 0) {
-          let wordlistWord = wordList[selection.position - 1]
+          let wordlistWord = wordList[selection.position - 1];
+
           if (selection.text !== normalizer(wordlistWord)) {
-            wordlistWord = wordList[selection.position - 2]
+            wordlistWord = wordList[selection.position - 2];
+
             if (selection.text === normalizer(wordlistWord)) { // try offset index
-              selection.position--
-              found = true
+              selection.position--;
+              found = true;
             }
           } else {
-            found = true
+            found = true;
           }
+
           if (found) {
-            const occurrence = findOccurrenceForPos(selection.position, wordList, selection.text)
+            const occurrence = findOccurrenceForPos(selection.position, wordList, selection.text);
+
             if (occurrence > 0) {
-              delete selection.position
-              selection.occurrence = occurrence
+              delete selection.position;
+              selection.occurrence = occurrence;
             }
           } else if (selection.position > 0) {
             // see if AI sent occurrence rather than position
-            const matchOccurrence = selection.position
-            let occurrence = 0
+            const matchOccurrence = selection.position;
+            let occurrence = 0;
+
             for (let i = 0; i < wordList.length; i++) {
-              const word = wordList[i]
+              const word = wordList[i];
+
               if (selection.text === normalizer(word)) {
                 if (++occurrence >= matchOccurrence) {
-                  found = true
-                  delete selection.position
-                  selection.occurrence = i + 1
-                  break
+                  found = true;
+                  delete selection.position;
+                  selection.occurrence = i + 1;
+                  break;
                 }
               }
             }
           }
 
           if (!found) {
-            console.log(`word ${selection.text} not found at ${selection.position} in wordList`, wordList)
+            console.log(`word ${selection.text} not found at ${selection.position} in wordList`, wordList);
           }
         }
       }
 
-      selectionWords.push({ selections, confidence })
+      selectionWords.push({ selections, confidence });
     } else {
-      error = true
+      error = true;
     }
-    console.log('translation', { translation: phraseTranslation, confidence })
+    console.log('translation', { translation: phraseTranslation, confidence });
   } else {
-    console.log("row is not in csv format", response)
-    error = true
+    console.log('row is not in csv format', response);
+    error = true;
   }
-  return !error
+  return !error;
 }
 
 /**
@@ -1795,48 +1843,52 @@ function parseResponseRow(response, wordList, answer, selectionWords) {
  * // ]
  */
 export async function translatePhraseWithConfidence(wordList, targetLangCode, phrase, phraseLangCode) {
-  let selectionWords = []
-  const verseWords = wordList.join(' ')
-  const { systemPrompt, query } = buildVerseMatchPrompt(verseWords, targetLangCode, phrase, phraseLangCode)
+  let selectionWords = [];
+  const verseWords = wordList.join(' ');
+  const { systemPrompt, query } = buildVerseMatchPrompt(verseWords, targetLangCode, phrase, phraseLangCode);
   let success = true;
   let answer = '';
   let responses = null;
-  let elapsedStr = '0';
 
   try {
-    const { response, elapsedStr: elapsed } = await queryLmStudio(query, { systemPrompt });
+    const { response } = await queryLmStudio(query, { systemPrompt });
     answer = response;
-    elapsedStr = elapsed;
-    responses = answer.split('\n')
-    const length = responses.length
-    let start = 0
+    responses = answer.split('\n');
+    const length = responses.length;
+    let start = 0;
+
     if (length > 5) { // if the response was verbose, like in thinking mode, skip ahead to csv line
       for (let i = start; i < length; i++) {
-        const response = responses[i]
-        const parts = response?.split(',')
+        const response = responses[i];
+        const parts = response?.split(',');
+
         if (parts?.length == 2) {
-          let confidence = removeQuotes(parts[1])
-          confidence = parseInt(confidence, 10)
+          let confidence = removeQuotes(parts[1]);
+          confidence = parseInt(confidence, 10);
+
           if (!Number.isNaN(confidence)) {
-            start = i
-            break
+            start = i;
+            break;
           }
         }
       }
     }
+
     for (let i = start; i < length; i++) {
-      const response = responses[i]
+      const response = responses[i];
+
       if (response) {
-        if (!response.includes('\`\`\`')) {
-          const success_ = parseResponseRow(response, wordList, answer, selectionWords)
+        if (!response.includes('```')) {
+          const success_ = parseResponseRow(response, wordList, answer, selectionWords);
+
           if (!success_) {
-            success = false
+            success = false;
           }
         }
       }
     }
   } catch (e) {
-    console.log('query failed',e)
+    console.log('query failed',e);
     success = false;
   }
 
@@ -1844,9 +1896,9 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
     if (!answer.includes(',')) {
       //handle case where AI did not use CSV format, by fields are separated by newlines
       if (responses?.length === 2) {
-        selectionWords = []
-        const response = answer.replace('\n', ',')
-        success = parseResponseRow(response, wordList, answer, selectionWords)
+        selectionWords = [];
+        const response = answer.replace('\n', ',');
+        success = parseResponseRow(response, wordList, answer, selectionWords);
       }
     }
   }
@@ -1877,12 +1929,16 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
   }
 
   if (success) {
-    console.log('AI response:', { verseWords, phrase, answer, matches: selectionWords.length })
-    return selectionWords
+    console.log('AI response:', {
+      verseWords, phrase, answer, matches: selectionWords.length,
+    });
+    return selectionWords;
   } else {
-    console.log('AI response ERROR:', { verseWords, phrase, answer, matches: selectionWords.length })
+    console.log('AI response ERROR:', {
+      verseWords, phrase, answer, matches: selectionWords.length,
+    });
   }
-  return []
+  return [];
 }
 
 /**
@@ -1892,7 +1948,7 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
  * @returns {string} - e.g. 'en_tit.json'
  */
 export function getCheckDataFilename(langId, bookId) {
-  return langId + '_' + bookId + '.json'
+  return langId + '_' + bookId + '.json';
 }
 
 /**
@@ -1901,9 +1957,9 @@ export function getCheckDataFilename(langId, bookId) {
  * @returns {Array<string>} - words in reading order
  */
 export function getWordList(verseText) {
-  const tokenList = Lexer.tokenize(verseText)
-  const wordList = tokenList.map(token => (token.text))
-  return wordList
+  const tokenList = Lexer.tokenize(verseText);
+  const wordList = tokenList.map(token => (token.text));
+  return wordList;
 }
 
 /**
@@ -1912,8 +1968,8 @@ export function getWordList(verseText) {
  * @returns {string} - text with punctuation removed
  */
 export function removePunctuation(glText) {
-  const wordList = getWordList(glText)
-  return wordList.join(' ')
+  const wordList = getWordList(glText);
+  return wordList.join(' ');
 }
 
 /**
@@ -1922,14 +1978,14 @@ export function removePunctuation(glText) {
  * @returns {string} - cleaned quote
  */
 export function cleanQuote(glQuote) {
-  const replaceChars = ['{', '}', '.', ',', ';', ':', "\""];
-  let cleanedQuote = glQuote
+  const replaceChars = ['{', '}', '.', ',', ';', ':', '"'];
+  let cleanedQuote = glQuote;
 
   // remove any characters in replaceChars
   for (const char of replaceChars) {
-    cleanedQuote = cleanedQuote.split(char).join('')
+    cleanedQuote = cleanedQuote.split(char).join('');
   }
-  return cleanedQuote
+  return cleanedQuote;
 }
 
 /**
@@ -1939,26 +1995,30 @@ export function cleanQuote(glQuote) {
  * @returns {string} - cleaned quote with ellipsis/ampersand separators preserved
  */
 export function cleanQuote2(glQuote) {
-  const AMPERSAND = ' & '
-  const ELLIPSIS = '\u2026'
-  let cleanedString = ''
-  const parts = glQuote.split(ELLIPSIS)
+  const AMPERSAND = ' & ';
+  const ELLIPSIS = '\u2026';
+  let cleanedString = '';
+  const parts = glQuote.split(ELLIPSIS);
+
   for (const part of parts) {
-    let cleanedString2 = ''
-    const parts2 = part.split(AMPERSAND)
+    let cleanedString2 = '';
+    const parts2 = part.split(AMPERSAND);
+
     for (const part2 of parts2) {
-      const cleanedPart2 = removePunctuation(part2)
+      const cleanedPart2 = removePunctuation(part2);
+
       if (cleanedString2) {
-        cleanedString2 += AMPERSAND
+        cleanedString2 += AMPERSAND;
       }
-      cleanedString2 += cleanedPart2
+      cleanedString2 += cleanedPart2;
     }
+
     if (cleanedString) {
-      cleanedString += ELLIPSIS
+      cleanedString += ELLIPSIS;
     }
-    cleanedString += cleanedString2
+    cleanedString += cleanedString2;
   }
-  return cleanedString
+  return cleanedString;
 }
 
 /**
@@ -1968,19 +2028,21 @@ export function cleanQuote2(glQuote) {
  * @returns {object} - same shape, with all keys normalized
  */
 export function normalizeHistory(selectionsForTWordsRaw) {
-  const selectionsForTWords = { }
-  for (const glQuote of Object.keys(selectionsForTWordsRaw)) {
-    const glQuote_ = normalizer(glQuote)
-    const translations_ = {}
+  const selectionsForTWords = { };
 
-    const translations = selectionsForTWordsRaw[glQuote]
+  for (const glQuote of Object.keys(selectionsForTWordsRaw)) {
+    const glQuote_ = normalizer(glQuote);
+    const translations_ = {};
+
+    const translations = selectionsForTWordsRaw[glQuote];
+
     for (const translation of Object.keys(translations)) {
-      const translation_ = normalizer(translation)
-      translations_[translation_] = translations[translation]
+      const translation_ = normalizer(translation);
+      translations_[translation_] = translations[translation];
     }
-    selectionsForTWords[glQuote_] = translations_
+    selectionsForTWords[glQuote_] = translations_;
   }
-  return selectionsForTWords
+  return selectionsForTWords;
 }
 
 /**
@@ -2405,6 +2467,7 @@ export function fetchPreviousSelectionData(
     glBiblesCache.bibles = {};
   }
 
+  // eslint-disable-next-line no-unused-vars
   let { bible: foundBible } = gatewayLanguageHelpers.getAlignedGLTextHelperMajor(
     contextId,
     glBibles,
@@ -2421,7 +2484,9 @@ export function fetchPreviousSelectionData(
   console.log('projects', projects);
 
   for (const projectName_ of projects) {
-    const { bookId, languageId, resourceId } = getDetailsFromProjectNameMini(
+    const {
+      bookId, languageId, resourceId,
+    } = getDetailsFromProjectNameMini(
       projectName_
     );
 
@@ -2501,7 +2566,7 @@ export function fetchPreviousSelectionData(
     {
       data,
       projectSaveLocation,
-      parsed
+      parsed,
     }
   );
   return selectionsForWord;

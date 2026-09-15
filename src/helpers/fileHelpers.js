@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path-extra';
-import { resourcesHelpers } from 'tc-source-content-updater';
+import { apiHelpers, resourcesHelpers } from 'tc-source-content-updater';
 import { isBibleBookId } from '../common/booksOfTheBible';
 
 /**
@@ -46,35 +46,39 @@ export function readTextFile(filePath) {
  * @returns {Object} nested contents of the folder, keyed by file/folder name
  */
 export function readHelpsFolder(folderPath, filterBook = '') {
-  const contents = {}
-  const files = fs.readdirSync(folderPath)
+  const contents = {};
+  const files = fs.readdirSync(folderPath);
+
   for (const file of files) {
-    const filePath = path.join(folderPath, file)
-    const parts = path.parse(file)
-    const key = parts.name
-    const type = parts.ext
+    const filePath = path.join(folderPath, file);
+    const parts = path.parse(file);
+    const key = parts.name;
+    const type = parts.ext;
+
     if (type === '.json') {
-      const data = readJsonFile(filePath)
+      const data = readJsonFile(filePath);
+
       if (data) {
-        contents[key] = data
+        contents[key] = data;
       }
     } else if (type === '.md') {
-      const data = readTextFile(filePath)
+      const data = readTextFile(filePath);
+
       if (data) {
-        contents[key] = data
+        contents[key] = data;
       }
     } else if (isDirectory(filePath)) {
       if ((key === 'groups') && filterBook) {
-        const bookPath = path.join(filePath, filterBook)
-        const data = readHelpsFolder(bookPath)
-        contents[key] = data
+        const bookPath = path.join(filePath, filterBook);
+        const data = readHelpsFolder(bookPath);
+        contents[key] = data;
       } else {
-        const data = readHelpsFolder(filePath, filterBook)
-        contents[key] = data
+        const data = readHelpsFolder(filePath, filterBook);
+        contents[key] = data;
       }
     }
   }
-  return contents
+  return contents;
 }
 
 /**

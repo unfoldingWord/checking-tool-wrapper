@@ -79,7 +79,9 @@ export function getAlignedGLTextHelperMajor(contextId, glBibles, tsvRelation, gl
       }
     }
   }
-  return { alignedText, bibleId, bible };
+  return {
+    alignedText, bibleId, bible,
+  };
 }
 
 /**
