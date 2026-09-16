@@ -238,7 +238,7 @@ function Container({
     } = data || {};
 
     const groupId = contextId?.groupId || '';
-    const llmQueryUrl_ = (llmSuggestionsEnabled && llmQueryUrl_) || null;
+    const llmQueryUrl_ = (llmSuggestionsEnabled && llmQueryUrl) || null;
 
     if (selectionsData?.groupId !== groupId) {
       const selectionsForWord = fetchPreviousSelectionData(
