@@ -26,8 +26,10 @@ import {
 } from './selectors';
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
+  compareUnicodeStrings,
   fetchPreviousSelectionData,
   getBestSelections,
+  normalizeForCompare,
   queryLmStudioModels,
   readSettingsForChecking_,
   saveAlignmentData,
@@ -283,6 +285,34 @@ function Container({
         model,
         suggestionsCount: bestSelections.length,
       });
+
+      const _bestSuggestion = (bestSelections?.length && bestSelections[0]) || { selections: [] };
+      const isSelectionCurrentlyEmpty = _bestSuggestion?.length === 0;
+
+      if (!isSelectionCurrentlyEmpty) {
+        // warn if selections don't exactly match verse
+        for (const selection of _bestSuggestion.selections) {
+          if (!verseText.includes(selection.text)) {
+            console.log(`cannot find ${selection.text}`);
+            const normalizedVerseText = normalizeForCompare(verseText);
+            const normalizedSelection = normalizeForCompare(selection.text);
+
+            if (!normalizedVerseText.includes(normalizedSelection)) {
+              console.log(`cannot find ${selection.text}`);
+            } else {
+              if (normalizedVerseText !== verseText) {
+                console.log(`not normalized verseText: ${verseText}`);
+                compareUnicodeStrings(normalizedVerseText, verseText);
+              }
+
+              if (normalizedSelection !== selection.text) {
+                console.log(`not normalized selection.text: ${selection.text}`);
+                compareUnicodeStrings(normalizedSelection, selection.text);
+              }
+            }
+          }
+        }
+      }
 
       delay(100).then(() => {
         updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);

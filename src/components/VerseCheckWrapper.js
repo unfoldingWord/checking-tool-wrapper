@@ -243,7 +243,7 @@ function VerseCheckWrapper({
       mode: 'default',
       newSelections: selections,
       newComment: null,
-      isCommentChanged: false
+      isCommentChanged: false,
     });
   }
 
@@ -426,7 +426,7 @@ VerseCheckWrapper.propTypes = {
   unfilteredVerseText: PropTypes.string.isRequired,
   selectionsReducer: PropTypes.shape({
     selections: PropTypes.array.isRequired,
-    nothingToSelect: PropTypes.bool.isRequired
+    nothingToSelect: PropTypes.bool.isRequired,
   }).isRequired,
   changeSelections: PropTypes.func.isRequired,
   goToNext: PropTypes.func.isRequired,

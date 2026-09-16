@@ -449,7 +449,7 @@ ${phrase}
  * @param {string} word
  * @returns {string}
  */
-function normalizeForCompare(word) {
+export function normalizeForCompare(word) {
   return normalizer(word || '').toLowerCase();
 }
 
@@ -1660,6 +1660,25 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
         }
       }
 
+      //TRICKY - now need to de-normalize the selections so that they are exactly the same as in the verse text
+      for (const selection of selections) {
+        const normalizedWord = normalizeForCompare(selection.text);
+        let occurrence = 0;
+
+        for (let i = 0; i < wordList.length; i++) {
+          const wordListElement = wordList[i];
+
+          if (normalizeForCompare(wordListElement) === normalizedWord) {
+            if (selection.occurrence === ++occurrence) {
+              if (wordListElement !== selection.text) { // if not exactly the same format, though they match when normalized
+                selection.text = wordListElement; // make word exactly the same
+                break;
+              }
+            }
+          }
+        }
+      }
+
       selectionWords.push({ selections, confidence });
     } else {
       error = true;
@@ -2786,4 +2805,45 @@ export async function getBestSelections(
   }
 
   return results;
+}
+
+/**
+ * Compares two Unicode strings character by character and logs every difference.
+ *
+ * Uses `Array.from()` so surrogate pairs, such as emoji and other non-BMP code points,
+ * are handled as single characters instead of separate UTF-16 code units.
+ *
+ * @param {string} firstString - first string to compare
+ * @param {string} secondString - second string to compare
+ * @returns {Array<object>} - list of differences found
+ */
+export function compareUnicodeStrings(firstString = '', secondString = '') {
+  const firstChars = Array.from(firstString);
+  const secondChars = Array.from(secondString);
+  const maxLength = Math.max(firstChars.length, secondChars.length);
+  const differences = [];
+
+  for (let index = 0; index < maxLength; index++) {
+    const firstChar = firstChars[index] || '';
+    const secondChar = secondChars[index] || '';
+
+    if (firstChar !== secondChar) {
+      const difference = {
+        index,
+        first: firstChar,
+        firstCodePoint: firstChar ? `U+${firstChar.codePointAt(0).toString(16).toUpperCase()}` : null,
+        second: secondChar,
+        secondCodePoint: secondChar ? `U+${secondChar.codePointAt(0).toString(16).toUpperCase()}` : null,
+      };
+
+      differences.push(difference);
+      console.log('Unicode string difference:', difference);
+    }
+  }
+
+  if (!differences.length) {
+    console.log('Unicode strings match.');
+  }
+
+  return differences;
 }
