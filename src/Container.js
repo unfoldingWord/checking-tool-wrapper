@@ -271,12 +271,12 @@ function Container({
       model,
     } = await getBestSelections(
       verseText,
-      llmQueryUrl,
+      llmQueryUrl_,
       targetLanguageDetails,
       alignedGLText,
       gatewayLanguageCode,
       selectionsData,
-      currentModel,
+      currentModel
     );
 
     if (!error) {
