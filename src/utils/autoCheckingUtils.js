@@ -2636,7 +2636,11 @@ export function updatedPreviousSelectionsData(
       let savedSelectionForTarget = savedSelectionForGL[oldSelectionsStr];
 
       if (savedSelectionForTarget) {
-        savedSelectionForGL[oldSelectionsStr] = savedSelectionForTarget - 1;
+        if (--savedSelectionForTarget > 0 ) {
+          savedSelectionForGL[oldSelectionsStr] = savedSelectionForTarget;
+        } else { // when zero count is reached remove entirely
+          delete savedSelectionForGL[oldSelectionsStr];
+        }
       }
     }
   }
@@ -2656,6 +2660,19 @@ export function updatedPreviousSelectionsData(
       savedSelectionForGL[newSelectionsStr] = 1;
     } else {
       savedSelectionForGL[newSelectionsStr] = translation + 1;
+    }
+  }
+
+  // do cleanup of empty counts
+  for (const glWord of Object.keys(savedSelections)) {
+    const translations = savedSelections[glWord];
+
+    for (const translationWord of Object.keys(translations)) {
+      const count = translations[translationWord];
+
+      if (!(count > 0)) {
+        delete translations[translationWord];
+      }
     }
   }
 }
