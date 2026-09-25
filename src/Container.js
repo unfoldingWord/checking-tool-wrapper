@@ -218,6 +218,7 @@ function Container({
    * @param {string} data.currentModel - currently selected LLM model identifier
    * @param {string} data.alignedGLText - aligned gateway-language quote to translate
    * @param {boolean} data.llmSuggestionsEnabled - whether LLM suggestions are enabled
+   * @param {number} data.llmTemperature - 0.0 to 1.0
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
    * @param {object} data.targetLanguageDetails - target language details, including `id`
    * @param {string} data.verseText - target-language verse text
@@ -232,6 +233,7 @@ function Container({
       currentModel,
       alignedGLText,
       llmSuggestionsEnabled,
+      llmTemperature,
       llmQueryUrl,
       targetLanguageDetails,
       verseText,
@@ -258,6 +260,19 @@ function Container({
       selectionsData.selections = selectionsForWord;
     }
 
+    const reference = contextId?.reference;
+    const {
+      bookId,
+      chapter,
+      verse,
+    } = reference || {};
+
+    const targetLanguageId = targetLanguageDetails?.id;
+    const checkId = contextId?.checkId;
+
+    const key = `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_${groupId}_${bookId}_${chapter}_${verse}_${checkId}`;
+    console.log(key);
+
     await delay(1);
 
     saveAlignmentData(projectSaveLocation, selectionsData);
@@ -276,7 +291,8 @@ function Container({
       alignedGLText,
       gatewayLanguageCode,
       selectionsData,
-      currentModel
+      currentModel,
+      llmTemperature,
     );
 
     if (!error) {

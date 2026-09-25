@@ -2437,6 +2437,93 @@ export function readSettingsForChecking_(projectPath) {
 }
 
 /**
+ * Extracts project metadata from a project save location path.
+ *
+ * This function parses the project directory path to extract key metadata components including
+ * the project name, parent projects folder, book ID, language ID, and resource ID. It serves
+ * as a convenience wrapper around path parsing and project name detail extraction.
+ *
+ * The function performs two main operations:
+ * 1. **Path parsing**: Uses `path.parse()` to break down the full project path into its
+ *    components (directory, base name, extension, etc.)
+ * 2. **Name parsing**: Calls {@link getDetailsFromProjectNameMini} to extract structured
+ *    metadata from the project folder name
+ *
+ * Project naming conventions:
+ * - **New format**: `{languageId}_{resourceId}_{bookId}_book` (e.g., 'en_ult_tit_book')
+ * - **Old formats**: Various legacy formats like `{languageId}_{bookId}` or
+ *   `{languageId}_{resourceId}_text_reg`
+ *
+ * The function is commonly used at the start of project-level operations to establish context
+ * for subsequent file system operations, resource lookups, and cross-project analysis.
+ *
+ * @param {string} projectSaveLocation - Absolute or relative path to the project directory
+ *   (e.g., '/path/to/tCore/projects/en_ult_tit_book')
+ * @returns {{parsed: object, projectsFolder: string, currentBookId: string, currentLanguageId: string, currentResourceId: string}}
+ *   Object containing:
+ *   - **parsed**: The full parsed path object from `path.parse()` with properties:
+ *     - **root**: Root directory (e.g., '/' on Unix)
+ *     - **dir**: Parent directory path
+ *     - **base**: Full filename/folder name (the project name)
+ *     - **ext**: File extension (typically empty for directories)
+ *     - **name**: Filename without extension
+ *   - **projectsFolder**: Absolute path to the parent projects directory
+ *   - **currentBookId**: Bible book identifier (e.g., 'tit', 'gen', 'mat'); empty string if not
+ *     a valid book or cannot be determined
+ *   - **currentLanguageId**: Language code (e.g., 'en', 'es-419'); the first component of the
+ *     project name
+ *   - **currentResourceId**: Resource identifier (e.g., 'ult', 'ust', 'reg'); empty string if
+ *     not present in the project name (common for old format projects)
+ * @example
+ * const info = getProjectInfo('/path/to/tCore/projects/en_ult_tit_book');
+ * // Returns: {
+ * //   parsed: {
+ * //     root: '/',
+ * //     dir: '/path/to/tCore/projects',
+ * //     base: 'en_ult_tit_book',
+ * //     ext: '',
+ * //     name: 'en_ult_tit_book'
+ * //   },
+ * //   projectsFolder: '/path/to/tCore/projects',
+ * //   currentBookId: 'tit',
+ * //   currentLanguageId: 'en',
+ * //   currentResourceId: 'ult'
+ * // }
+ *
+ * @example
+ * // Old format project
+ * const info = getProjectInfo('/path/to/tCore/projects/aaw_php_text_reg');
+ * // Returns: {
+ * //   parsed: { ... },
+ * //   projectsFolder: '/path/to/tCore/projects',
+ * //   currentBookId: 'php',  // 'php' is recognized as book ID for Philippians
+ * //   currentLanguageId: 'aaw',
+ * //   currentResourceId: ''  // Old format lacks explicit resource ID
+ * // }
+ *
+ * @see {@link getDetailsFromProjectNameMini} - Used internally to parse project name components
+ * @see {@link fetchPreviousSelectionData} - Example usage in project scanning operations
+ */
+export function getProjectInfo(projectSaveLocation) {
+  const parsed = path.parse(projectSaveLocation);
+  const projectName = parsed.base;
+  const projectsFolder = parsed.dir;
+
+  const {
+    bookId: currentBookId,
+    languageId: currentLanguageId,
+    resourceId: currentResourceId,
+  } = getDetailsFromProjectNameMini(projectName);
+  return {
+    parsed,
+    projectsFolder,
+    currentBookId,
+    currentLanguageId,
+    currentResourceId,
+  };
+}
+
+/**
  * Scans sibling projects on disk for the same language/resource/testament combination and
  * aggregates their previous target-language selections for `groupId`, using and updating
  * `glBiblesCache` to avoid re-reading the gateway-language bible for each project.
@@ -2464,16 +2551,15 @@ export function fetchPreviousSelectionData(
   data,
   glBiblesCache,
 ) {
-  const parsed = path.parse(projectSaveLocation);
-  const projectName = parsed.base;
-  const projectsFolder = parsed.dir;
-  const projects = fs.readdirSync(projectsFolder);
-
   const {
-    bookId: currentBookId,
-    languageId: currentLanguageId,
-    resourceId: currentResourceId,
-  } = getDetailsFromProjectNameMini(projectName);
+    parsed,
+    projectsFolder,
+    currentBookId,
+    currentLanguageId,
+    currentResourceId,
+  } = getProjectInfo(projectSaveLocation);
+
+  const projects = fs.readdirSync(projectsFolder);
 
   if (
     glBiblesCache?.targetLangId !== currentLanguageId ||
@@ -2711,8 +2797,10 @@ export function updatedPreviousSelectionsData(
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
  * @param {string} [model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
+ * @param {number} [llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase
+ *   randomness and creativity in suggestions, lower values make output more deterministic; only applies in AI mode
  * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>}
- *   Object containing:
+ *   Promise resolving to an object containing:
  *   - **error**: `true` if the operation failed or no valid translations were found, `false` otherwise
  *   - **bestSelections**: Array of translation options (up to 3), sorted by confidence score (highest first). Each option contains:
  *     - **selections**: Array of word objects representing the matched phrase, each with:
@@ -2751,7 +2839,8 @@ export function updatedPreviousSelectionsData(
  *   'church',
  *   'en',
  *   { selections: { 'church': { 'iglesia': 7 } } },
- *   'my-model-v1'  // optional custom model identifier
+ *   'my-model-v1',  // optional custom model identifier
+ *   0.9  // optional temperature for more creative suggestions
  * );
  * // Returns: {
  * //   error: false,
@@ -2771,7 +2860,8 @@ export async function getBestSelections(
   alignedGLText,
   gatewayLanguageCode,
   selectionsData,
-  model
+  model,
+  llmTemperature
 ) {
   // eslint-disable-next-line no-unused-vars
   let results = {
@@ -2805,6 +2895,7 @@ export async function getBestSelections(
         baseUrl: llmQueryUrl,
         enable_thinking: false,
         model,
+        temperature: (llmTemperature || 0.7),
       };
 
       results = await getBestTWordSelectionWithConfidenceFromLlm(
