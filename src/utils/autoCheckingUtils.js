@@ -1413,8 +1413,13 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       }
     }
   } catch (e) {
-    console.log('query failed',e);
-    success = false;
+    console.log('AI query error',e);
+    return {
+      error: true,
+      bestSelections: [],
+      elapsedStr,
+      model: '',
+    };
   }
 
   if (!success) {
@@ -1511,7 +1516,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       model,
     };
   } else {
-    console.log('AI response ERROR:', {
+    console.log('AI response ERROR decoding:', {
       wordList: formatNumberedVerse(wordList.join(' ')),
       glPhrase,
       answer,
@@ -1519,7 +1524,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     });
   }
   return {
-    error: true,
+    error: false,
     bestSelections: [],
     elapsedStr,
     model: '',
@@ -2954,4 +2959,186 @@ export function compareUnicodeStrings(firstString = '', secondString = '') {
   }
 
   return differences;
+}
+
+/**
+ * A queue for managing AI-powered translation suggestion requests with priority support.
+ *
+ * This class implements a priority queue designed to manage requests for AI-generated
+ * translation suggestions in the tCore checking workflow. It ensures orderly processing
+ * of translation queries while preventing race conditions through a busy-flag mechanism.
+ *
+ * **Key Features:**
+ * - **Priority handling**: High-priority requests (via `addPriorityRequest`) are placed
+ *   at the front of the queue, while standard requests are appended to the back
+ * - **Busy-flag locking**: Prevents concurrent processing of multiple requests through
+ *   a simple busy state that must be manually cleared after each request completes
+ * - **FIFO/LIFO hybrid**: Standard requests follow FIFO (first-in-first-out) ordering,
+ *   but priority requests can "jump the line" using LIFO (last-in-first-out) insertion
+ *
+ * **Usage Pattern:**
+ * 1. Add requests using `addRequest()` or `addPriorityRequest()`
+ * 2. Retrieve next request with `getNextRequest()` (sets busy flag automatically)
+ * 3. Process the request
+ * 4. Call `clearBusy()` to allow next request to be retrieved
+ * 5. Repeat steps 2-4 until queue is empty
+ *
+ * **Queue State:**
+ * The queue maintains two pieces of state:
+ * - `queue`: Array holding pending request objects in processing order
+ * - `busy`: Boolean flag indicating whether a request is currently being processed
+ *
+ * **Typical Request Object Structure:**
+ * Request objects are opaque to the queue and typically contain:
+ * - `verseText`: Target-language verse text
+ * - `alignedGLText`: Gateway-language phrase to translate
+ * - `contextId`: Context information (book, chapter, verse, etc.)
+ * - `selectionsData`: Historical translation data
+ * - Other metadata needed for AI suggestion generation
+ *
+ * @example
+ * // Basic usage with standard requests
+ * const queue = new RequestQueue();
+ *
+ * queue.addRequest({ verseText: '...', alignedGLText: 'church' });
+ * queue.addRequest({ verseText: '...', alignedGLText: 'elder' });
+ *
+ * const request = queue.getNextRequest();  // Returns first request, sets busy=true
+ * // ... process request ...
+ * queue.clearBusy();  // Ready for next request
+ *
+ * @example
+ * // Priority request handling
+ * const queue = new RequestQueue();
+ *
+ * queue.addRequest({ id: 1, type: 'normal' });
+ * queue.addRequest({ id: 2, type: 'normal' });
+ * queue.addPriorityRequest({ id: 3, type: 'urgent' });
+ *
+ * queue.getNextRequest();  // Returns { id: 3, type: 'urgent' } (priority)
+ * queue.clearBusy();
+ * queue.getNextRequest();  // Returns { id: 1, type: 'normal' } (FIFO order)
+ *
+ * @example
+ * // Complete processing loop
+ * const queue = new RequestQueue();
+ *
+ * // Populate queue
+ * queue.addRequest({ phrase: 'church' });
+ * queue.addRequest({ phrase: 'faith' });
+ *
+ * // Process all requests
+ * while (queue.hasRequests()) {
+ *   const request = queue.getNextRequest();
+ *   if (request) {
+ *     await processTranslationRequest(request);
+ *     queue.clearBusy();
+ *   }
+ * }
+ *
+ * @example
+ * // Queue state inspection
+ * const queue = new RequestQueue();
+ * queue.addRequest({ phrase: 'church' });
+ * queue.addRequest({ phrase: 'elder' });
+ *
+ * console.log(queue.size());          // 2
+ * console.log(queue.hasRequests());   // true
+ * console.log(queue.isBusy());        // false
+ *
+ * const req = queue.getNextRequest();
+ * console.log(queue.size());          // 1
+ * console.log(queue.isBusy());        // true
+ *
+ * queue.clearQueue();
+ * console.log(queue.size());          // 0
+ * console.log(queue.hasRequests());   // false
+ *
+ * @see {@link getBestSelections} - Main consumer of queued translation requests
+ * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - AI function that processes requests
+ * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} - Non-AI function that processes requests
+ */
+export default class RequestQueue {
+  constructor() {
+    this.queue = [];
+    this.busy = false;
+  }
+
+  /**
+   * Adds a high-priority request to the front of the queue.
+   *
+   * @param {object} request - Request object to queue.
+   */
+  addPriorityRequest(request) {
+    if (request) {
+      this.queue.unshift(request);
+    }
+  }
+
+  /**
+   * Adds a low-priority request to the back of the queue.
+   *
+   * @param {object} request - Request object to queue.
+   */
+  addRequest(request) {
+    if (request) {
+      this.queue.push(request);
+    }
+  }
+
+  /**
+   * Gets the next request from the queue.
+   * Removes the request from the queue and marks the queue as busy.
+   *
+   * @returns {object|null} The next request, or null if busy or empty.
+   */
+  getNextRequest() {
+    if (this.busy || !this.queue.length) {
+      return null;
+    }
+
+    this.busy = true;
+    return this.queue.shift();
+  }
+
+  /**
+   * Clears the busy flag so the next request can be processed.
+   */
+  clearBusy() {
+    this.busy = false;
+  }
+
+  /**
+   * Clears all queued requests.
+   */
+  clearQueue() {
+    this.queue = [];
+  }
+
+  /**
+   * Returns whether the queue is currently busy.
+   *
+   * @returns {boolean}
+   */
+  isBusy() {
+    return this.busy;
+  }
+
+  /**
+   * Returns the number of queued requests.
+   *
+   * @returns {number}
+   */
+  size() {
+    return this.queue.length;
+  }
+
+  /**
+   * Returns whether the queue has pending requests.
+   *
+   * @returns {boolean}
+   */
+  hasRequests() {
+    return this.queue.length > 0;
+  }
 }

@@ -1,5 +1,9 @@
 /* eslint-env jest */
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
@@ -32,6 +36,7 @@ import {
   normalizeForCompare,
   queryLmStudioModels,
   readSettingsForChecking_,
+  RequestQueue,
   saveAlignmentData,
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
@@ -110,9 +115,9 @@ function Container({
 }) {
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
-  const {
-    checkId, groupId, reference,
-  } = contextId || {};
+  const suggestionsRequestQueueRef = useRef(new RequestQueue());
+  const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+  const { checkId, groupId, reference } = contextId || {};
   const { chapter, verse } = reference || {};
 
   useEffect(() => {
@@ -165,7 +170,13 @@ function Container({
     const newSelections = data?.newSelections;
     const oldSelections = data?.oldSelections;
     const savedSelections = selectionsData?.selections;
-    updatedPreviousSelectionsData(oldSelections, savedSelections, alignedGLText, newSelections);
+
+    updatedPreviousSelectionsData(
+      oldSelections,
+      savedSelections,
+      alignedGLText,
+      newSelections
+    );
   }
 
   /**
@@ -261,11 +272,7 @@ function Container({
     }
 
     const reference = contextId?.reference;
-    const {
-      bookId,
-      chapter,
-      verse,
-    } = reference || {};
+    const { bookId, chapter, verse } = reference || {};
 
     const targetLanguageId = targetLanguageDetails?.id;
     const checkId = contextId?.checkId;
@@ -292,7 +299,7 @@ function Container({
       gatewayLanguageCode,
       selectionsData,
       currentModel,
-      llmTemperature,
+      llmTemperature
     );
 
     if (!error) {
@@ -339,8 +346,9 @@ function Container({
     }
 
     return {
-      error,
       bestSelections,
+      contextId,
+      error,
       elapsedStr,
       model,
     };
