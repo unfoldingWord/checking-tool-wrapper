@@ -3058,7 +3058,7 @@ export function compareUnicodeStrings(firstString = '', secondString = '') {
  * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - AI function that processes requests
  * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} - Non-AI function that processes requests
  */
-export default class RequestQueue {
+export class RequestQueue {
   constructor() {
     this.queue = [];
     this.busy = false;
