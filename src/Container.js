@@ -202,23 +202,56 @@ function Container({
    * @param {string} options.baseUrl - base URL for the LM Studio API
    * @returns {Promise<{models: Array|null, error: boolean}>} - object containing models array (or null on error) and error flag
    */
+  // eslint-disable-next-line require-await
   async function getModelsForChecking(options) {
-    let error = false;
-    let models = null;
+    return new Promise((resolve, reject) => {
+      let error = false;
+      let models = null;
 
-    try {
-      models = await queryLmStudioModels(options);
-      console.log('getModelsForChecking models', models);
-    } catch (e) {
-      console.log('getModelsForChecking error', e);
-      error = e.toString() || e;
-    }
+      const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
 
-    const results = { models, error };
-    console.log('getModelsForChecking results', results);
-    return results;
+      if (suggestionsRequestQueue) {
+        suggestionsRequestQueue.requestPause(async () => {
+          try {
+            models = await queryLmStudioModels(options);
+            console.log('getModelsForChecking models', models);
+          } catch (e) {
+            console.log('getModelsForChecking error', e);
+            error = e.toString() || e;
+          }
+
+          const results = { models, error };
+          console.log('getModelsForChecking results', results);
+          resolve(results);
+        });
+      } else {
+        reject();
+      }
+    });
   }
 
+  /**
+   * Makes an LLM suggestion request and waits for the response via the suggestion queue.
+   * This function enqueues a suggestion request and returns a promise that resolves when
+   * the LLM processing completes.
+   *
+   * @param {object} request - The LLM request configuration object
+   * @param {string} request.alignedGLText - Aligned gateway-language text to translate
+   * @param {string} request.currentModel - Currently selected LLM model identifier
+   * @param {string} request.gatewayLanguageCode - Gateway language code
+   * @param {string} request.key - Unique key identifying this request
+   * @param {string|null} request.llmQueryUrl - URL for LLM query endpoint (or null if disabled)
+   * @param {number} request.llmTemperature - LLM temperature parameter (0.0 to 1.0)
+   * @param {object} request.selectionsData - Previous selection history data
+   * @param {object} request.targetLanguageDetails - Target language details, including `id`
+   * @param {string} request.verseText - Target-language verse text
+   * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string}>}
+   *          Promise that resolves with an object containing:
+   *          - error: error message string or false if successful
+   *          - bestSelections: array of suggested selections
+   *          - elapsedStr: string representation of elapsed time
+   *          - model: model identifier used for the suggestion
+   */
   // eslint-disable-next-line require-await
   async function makeLlmRequestAndWaitForResponse(request) {
     return new Promise((resolve, reject) => {

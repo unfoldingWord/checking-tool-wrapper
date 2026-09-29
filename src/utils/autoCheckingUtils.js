@@ -3122,13 +3122,198 @@ export class RequestQueue {
   }
 }
 
+/**
+ * A queue for managing AI-powered translation suggestion requests with pause/resume support.
+ *
+ * This class orchestrates the processing of AI-generated translation suggestion requests in the
+ * tCore checking workflow. It manages request queuing, processing state, and provides mechanisms
+ * for pausing request processing when needed (e.g., during configuration changes).
+ *
+ * **Architecture:**
+ * - **Composition**: Uses a {@link RequestQueue} instance for actual queue management
+ * - **State machine**: Maintains `busy` (processing) and `pause` (suspended) flags
+ * - **Async processing**: Handles asynchronous AI requests with automatic retry/resume
+ * - **Callback pattern**: Executes callbacks when results are ready, supporting event-driven workflows
+ *
+ * **Processing Flow:**
+ * 1. Requests are added via `makeSuggestionRequest()` (standard or priority)
+ * 2. After a 100ms delay, `processNextRequest()` is called automatically
+ * 3. If not busy/paused, the next request is retrieved and the busy flag is set
+ * 4. The request is processed by calling `getBestSelections()` (AI or algorithmic)
+ * 5. When complete, the callback is invoked with results
+ * 6. After another 100ms delay, busy flag clears and next request is processed
+ *
+ * **Pause Mechanism:**
+ * The `requestPause()` method allows external code to temporarily suspend request processing:
+ * - Sets the pause flag to block new processing
+ * - Waits for any in-progress request to complete (polls busy flag)
+ * - Executes the provided callback while processing is guaranteed paused
+ * - Resumes processing automatically after callback completes
+ *
+ * **Use Cases:**
+ * - **Configuration updates**: Pause queue to change AI model or server settings
+ * - **Resource management**: Pause during high system load
+ * - **Batch operations**: Pause to perform bulk data updates
+ * - **Error recovery**: Pause to reset connection state after failures
+ *
+ * @example
+ * // Basic request processing
+ * const queue = new LlmRequestQueue();
+ *
+ * const request = {
+ *   verseText: 'para la iglesia de Éfeso',
+ *   alignedGLText: 'church',
+ *   targetLanguageDetails: { id: 'es-419' },
+ *   gatewayLanguageCode: 'en',
+ *   selectionsData: { selections: {...} },
+ *   llmQueryUrl: 'http://localhost:1234',
+ *   currentModel: 'my-model',
+ *   llmTemperature: 0.7
+ * };
+ *
+ * queue.makeSuggestionRequest(request, (results) => {
+ *   if (!results.error) {
+ *     console.log('Suggestions:', results.bestSelections);
+ *   }
+ * });
+ *
+ * @example
+ * // Priority request (jumps queue)
+ * queue.makeSuggestionRequest(urgentRequest, urgentCallback, true);
+ *
+ * @example
+ * // Pausing to change configuration
+ * await queue.requestPause(async () => {
+ *   // Queue is guaranteed paused here
+ *   await updateAIServerSettings();
+ *   console.log('Configuration updated');
+ * });
+ * // Queue automatically resumes after callback
+ *
+ * @example
+ * // Complete workflow with error handling
+ * const queue = new LlmRequestQueue();
+ *
+ * function processTranslation(phrase) {
+ *   const request = buildRequestData(phrase);
+ *
+ *   queue.makeSuggestionRequest(request, (results) => {
+ *     if (results.error) {
+ *       console.error('Translation failed:', phrase);
+ *       retryOrFallback(phrase);
+ *     } else {
+ *       displaySuggestions(results.bestSelections);
+ *       updateMetrics(results.elapsedStr, results.model);
+ *     }
+ *   });
+ * }
+ *
+ * // Process multiple phrases
+ * phrases.forEach(processTranslation);
+ *
+ * @see {@link RequestQueue} - Underlying queue implementation for managing requests
+ * @see {@link getBestSelections} - Main function that processes each queued request
+ * @see {@link delay} - Utility function for async timing control between processing steps
+ */
 export class LlmRequestQueue {
+  /**
+   * Constructs and initializes a new LLM request queue manager.
+   *
+   * This constructor creates a new instance of the request queue system for managing
+   * AI-powered translation suggestion requests. It initializes the internal state needed
+   * for request processing and pause/resume functionality.
+   *
+   * **Initialized State:**
+   * - `requestQueue`: A new {@link RequestQueue} instance for managing the FIFO/priority queue
+   * - `busy`: Boolean flag set to `false`, indicating no request is currently being processed
+   * - `pause`: Boolean flag set to `false`, indicating request processing is not suspended
+   *
+   * **Usage:**
+   * This constructor is called when creating a new queue manager instance to handle
+   * translation suggestion workflows in the tCore checking tool.
+   *
+   * @constructor
+   * @returns {void} - Does not return a value; initializes instance state
+   * @example
+   * // Create a new queue manager for handling AI translation requests
+   * const llmQueue = new LlmRequestQueue();
+   *
+   * // Queue is now ready to accept requests
+   * llmQueue.makeSuggestionRequest(requestData, callback);
+   *
+   * @see {@link RequestQueue} - The underlying queue data structure class
+   * @see {@link makeSuggestionRequest} - Primary method for adding requests to this queue
+   * @see {@link processNextRequest} - Internal method that processes queued requests
+   * @see {@link requestPause} - Method for temporarily suspending request processing
+   */
   constructor() {
     this.requestQueue = new RequestQueue();
     this.busy = false;
     this.pause = false;
   }
 
+  /**
+   * Temporarily pauses request processing and executes a callback while paused.
+   *
+   * This method provides a safe way to suspend request processing to perform operations
+   * that require the queue to be idle (e.g., changing AI server configuration, updating
+   * models, or performing maintenance tasks).
+   *
+   * **Pause Mechanism:**
+   * 1. Sets the `pause` flag to prevent new requests from being processed
+   * 2. Polls the `busy` flag every 100ms until any in-progress request completes
+   * 3. Executes the provided async callback once the queue is confirmed idle
+   * 4. Clears the `pause` flag to resume normal processing
+   * 5. Schedules `processNextRequest()` to handle any queued requests
+   *
+   * **Use Cases:**
+   * - **Configuration changes**: Update AI model or server settings without race conditions
+   * - **Resource management**: Pause during system maintenance or high load periods
+   * - **Batch operations**: Perform bulk data updates while ensuring queue consistency
+   * - **Error recovery**: Reset connection state or clear cached data after failures
+   *
+   * **Important Notes:**
+   * - The callback is guaranteed to execute while no requests are being processed
+   * - Request processing resumes automatically after the callback completes
+   * - Any requests added during the pause will be processed once resumed
+   * - The method is async and should be awaited to ensure pause/resume sequencing
+   *
+   * @async
+   * @param {Function} asyncCallback - An async function to execute while processing is paused.
+   *   The callback receives no arguments and its return value is ignored. Common operations
+   *   include updating configuration, clearing caches, or resetting state.
+   * @returns {Promise<void>} - Resolves when the pause cycle completes (callback finishes
+   *   and processing is scheduled to resume)
+   * @example
+   * // Update AI server configuration safely
+   * await llmQueue.requestPause(async () => {
+   *   await updateAIServerSettings({
+   *     baseUrl: 'http://new-server:1234',
+   *     model: 'updated-model'
+   *   });
+   *   console.log('Configuration updated successfully');
+   * });
+   * // Queue automatically resumes processing after this point
+   *
+   * @example
+   * // Clear cached data during maintenance window
+   * await llmQueue.requestPause(async () => {
+   *   await clearTranslationCache();
+   *   await resetMetrics();
+   *   console.log('Maintenance completed');
+   * });
+   *
+   * @example
+   * // Synchronous operation (wrapped in async for consistency)
+   * await llmQueue.requestPause(async () => {
+   *   llmQueue.requestQueue.clearQueue();
+   *   console.log('Queue cleared');
+   * });
+   *
+   * @see {@link processNextRequest} - Internal method that respects the pause flag
+   * @see {@link makeSuggestionRequest} - Method that schedules request processing (will be paused if flag is set)
+   * @see {@link delay} - Utility function used for polling the busy flag
+   */
   async requestPause(asyncCallback) {
     if (asyncCallback) {
       let count = 0;
@@ -3152,6 +3337,97 @@ export class LlmRequestQueue {
     }
   }
 
+  /**
+   * Adds a translation suggestion request to the queue and schedules processing.
+   *
+   * This method enqueues a new request for AI-powered or algorithmic translation suggestions,
+   * optionally marking it as high-priority to jump the queue. After adding the request, it
+   * automatically schedules `processNextRequest()` after a 100ms delay to initiate processing.
+   *
+   * **Priority Handling:**
+   * - **Standard requests** (`priority=false`): Added to the back of the queue (FIFO order)
+   * - **Priority requests** (`priority=true`): Added to the front of the queue, bypassing
+   *   any pending standard requests
+   *
+   * **Request Object Structure:**
+   * The `request` parameter should contain all data needed for translation suggestion:
+   * - `verseText`: Target-language verse text to search within
+   * - `alignedGLText`: Gateway-language phrase to translate
+   * - `targetLanguageDetails`: Object with `id` field (language code, e.g., 'es-419')
+   * - `gatewayLanguageCode`: Gateway language code (e.g., 'en')
+   * - `selectionsData`: Historical translation data with `selections` field
+   * - `llmQueryUrl`: LM Studio server URL (or `null` for algorithmic mode)
+   * - `currentModel`: AI model identifier (only used if `llmQueryUrl` is set)
+   * - `llmTemperature`: AI temperature setting (only used if `llmQueryUrl` is set)
+   *
+   * **Callback Pattern:**
+   * The `callback` function is invoked when results are ready, receiving a results object:
+   * ```javascript
+   * {
+   *   error: boolean,           // true if processing failed
+   *   bestSelections: [...],    // array of suggestion objects (empty on error)
+   *   elapsedStr: string,       // processing time in seconds ("0" for algorithmic mode)
+   *   model: string            // model identifier ("APP" for algorithmic, actual name for AI)
+   * }
+   * ```
+   *
+   * **Processing Flow:**
+   * 1. Request is wrapped with callback and added to the internal queue
+   * 2. After 100ms delay, `processNextRequest()` is scheduled
+   * 3. If queue is not busy/paused, request is retrieved and processed
+   * 4. Upon completion, callback is invoked with results
+   * 5. Next request is automatically processed after another 100ms delay
+   *
+   * @param {object} request - Request data object containing all fields needed for translation
+   *   suggestion generation (see structure details above)
+   * @param {Function} callback - Function to call when results are ready; receives a single
+   *   `results` object parameter with error status, suggestions, timing, and model info
+   * @param {boolean} [priority=false] - If `true`, adds request to front of queue (high-priority);
+   *   if `false`, adds to back (standard priority)
+   * @returns {void} - Does not return a value; processing happens asynchronously
+   * @example
+   * // Standard priority request
+   * const request = {
+   *   verseText: 'para la iglesia de Éfeso',
+   *   alignedGLText: 'church',
+   *   targetLanguageDetails: { id: 'es-419' },
+   *   gatewayLanguageCode: 'en',
+   *   selectionsData: { selections: {...} },
+   *   llmQueryUrl: 'http://localhost:1234',
+   *   currentModel: 'my-model',
+   *   llmTemperature: 0.7
+   * };
+   *
+   * llmQueue.makeSuggestionRequest(request, (results) => {
+   *   if (!results.error) {
+   *     console.log('Suggestions:', results.bestSelections);
+   *     displaySuggestions(results.bestSelections);
+   *   } else {
+   *     console.error('Translation failed');
+   *   }
+   * });
+   *
+   * @example
+   * // High-priority request (jumps queue)
+   * llmQueue.makeSuggestionRequest(urgentRequest, urgentCallback, true);
+   *
+   * @example
+   * // Algorithmic mode (no AI server)
+   * const algorithmicRequest = {
+   *   ...request,
+   *   llmQueryUrl: null  // triggers algorithmic processing
+   * };
+   *
+   * llmQueue.makeSuggestionRequest(algorithmicRequest, (results) => {
+   *   console.log(`Processed in ${results.elapsedStr}s using ${results.model}`);
+   *   // results.model will be "APP" for algorithmic mode
+   * });
+   *
+   * @see {@link processNextRequest} - Internal method that processes queued requests
+   * @see {@link getBestSelections} - Function called to generate translation suggestions
+   * @see {@link RequestQueue#addRequest} - Underlying queue method used for enqueueing
+   * @see {@link delay} - Utility function used for scheduling processing
+   */
   makeSuggestionRequest(request, callback, priority = false) {
     if (request) {
       console.log(`makeSuggestionRequest adding to queue - ${request}`);
@@ -3165,6 +3441,83 @@ export class LlmRequestQueue {
     });
   }
 
+  /**
+   * Processes the next request in the queue if not busy or paused.
+   *
+   * This internal method implements the core processing loop for the request queue. It
+   * checks the queue state, retrieves the next pending request, processes it by calling
+   * {@link getBestSelections}, invokes the result callback, and schedules itself to
+   * process subsequent requests.
+   *
+   * **Processing State Machine:**
+   * - **Idle state** (`!busy && !pause`): Ready to process next request
+   *   - Retrieves next request from queue
+   *   - Sets `busy=true` to prevent concurrent processing
+   *   - Calls `getBestSelections()` with request data
+   *   - Invokes callback with results
+   *   - Sets `busy=false` and schedules next processing cycle
+   * - **Busy state** (`busy=true`): Request currently being processed
+   *   - Logs status and returns without action
+   *   - Will be called again after current request completes
+   * - **Paused state** (`pause=true`): Processing suspended
+   *   - Logs status and returns without action
+   *   - Resumes when `pause` flag is cleared by {@link requestPause}
+   *
+   * **Error Handling:**
+   * - Catches exceptions during `getBestSelections()` call
+   * - Converts errors to result object: `{ error: errorMessage.toString() }`
+   * - Always invokes callback even on error to maintain flow
+   * - Ensures `busy` flag is cleared even if processing fails
+   *
+   * **Processing Flow:**
+   * 1. Check if queue is ready (not busy, not paused)
+   * 2. Retrieve next request using `requestQueue.getNextRequest()`
+   * 3. Set `busy=true` to block concurrent processing
+   * 4. Call `getBestSelections()` with request parameters:
+   *    - `verseText`: Target-language verse text
+   *    - `llmQueryUrl`: AI server URL or `null` for algorithmic mode
+   *    - `targetLanguageDetails`: Language metadata
+   *    - `alignedGLText`: Gateway-language phrase
+   *    - `gatewayLanguageCode`: Gateway language code
+   *    - `selectionsData`: Historical translation data
+   *    - `currentModel`: AI model identifier
+   *    - `llmTemperature`: AI temperature setting
+   * 5. Await results (either AI or algorithmic suggestions)
+   * 6. Invoke `callback(results)` to deliver results to requester
+   * 7. After 100ms delay, set `busy=false` and call `processNextRequest()` again
+   *
+   * **Automatic Continuation:**
+   * This method schedules itself recursively after each request completes, creating a
+   * continuous processing loop that automatically handles all queued requests until the
+   * queue is empty.
+   *
+   * @async
+   * @returns {Promise<void>} - Resolves when processing cycle completes (or immediately
+   *   if busy/paused)
+   * @example
+   * // Typical internal flow (called automatically by makeSuggestionRequest)
+   * // User adds request:
+   * llmQueue.makeSuggestionRequest(request, callback);
+   *
+   * // After 100ms delay, processNextRequest() is called:
+   * // 1. Checks busy=false, pause=false
+   * // 2. Gets next request from queue
+   * // 3. Sets busy=true
+   * // 4. Calls getBestSelections(...)
+   * // 5. Results ready, calls callback(results)
+   * // 6. After 100ms, sets busy=false and calls processNextRequest() again
+   * // 7. Repeat until queue is empty
+   *
+   * @example
+   * // Manual invocation (normally not needed, called automatically)
+   * await llmQueue.processNextRequest();
+   *
+   * @see {@link makeSuggestionRequest} - Public method that adds requests and schedules this method
+   * @see {@link getBestSelections} - Core function that generates translation suggestions
+   * @see {@link RequestQueue#getNextRequest} - Method used to retrieve next pending request
+   * @see {@link requestPause} - Method that sets the pause flag to suspend processing
+   * @see {@link delay} - Utility function used for scheduling continuation
+   */
   async processNextRequest() {
     if (!this.busy && !this.pause) {
       console.log(`processNextRequest - not busy getting request`);
