@@ -32,11 +32,10 @@ import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
   compareUnicodeStrings,
   fetchPreviousSelectionData,
-  getBestSelections,
+  LlmRequestQueue,
   normalizeForCompare,
   queryLmStudioModels,
   readSettingsForChecking_,
-  RequestQueue,
   saveAlignmentData,
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
@@ -115,8 +114,7 @@ function Container({
 }) {
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
-  const suggestionsRequestQueueRef = useRef(new RequestQueue());
-  const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+  const suggestionsRequestQueueRef = useRef(new LlmRequestQueue());
   const { checkId, groupId, reference } = contextId || {};
   const { chapter, verse } = reference || {};
 
@@ -221,6 +219,37 @@ function Container({
     return results;
   }
 
+  function makeLlmRequestAndWaitForResponse(request) {
+    return new Promise((resolve, reject) => {
+      const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+
+      if (suggestionsRequestQueue) {
+        console.log(`makeLlmRequestAndWaitForResponse request`, request);
+        suggestionsRequestQueue.makeSuggestionRequest(
+          request,
+          (data) => { // callback function
+            const {
+              error,
+              bestSelections,
+              elapsedStr,
+              model,
+            } = data;
+            console.log(`makeLlmRequestAndWaitForResponse result`, data);
+            resolve({
+              error,
+              bestSelections,
+              elapsedStr,
+              model,
+            });
+          },
+          true);
+      } else {
+        console.error(`makeLlmRequestAndWaitForResponse suggestionsRequestQueue not defined`);
+        reject();
+      }
+    });
+  }
+
   /**
    * Computes auto-select suggestions for the current check, fetching and caching previous
    * selection history for the group the first time it's needed.
@@ -291,16 +320,17 @@ function Container({
       bestSelections,
       elapsedStr,
       model,
-    } = await getBestSelections(
-      verseText,
-      llmQueryUrl_,
-      targetLanguageDetails,
+    } = makeLlmRequestAndWaitForResponse({
       alignedGLText,
-      gatewayLanguageCode,
-      selectionsData,
       currentModel,
-      llmTemperature
-    );
+      gatewayLanguageCode,
+      key,
+      llmQueryUrl: llmQueryUrl_,
+      llmTemperature,
+      selectionsData,
+      targetLanguageDetails,
+      verseText,
+    });
 
     if (!error) {
       console.log('getSuggestions metrics', {

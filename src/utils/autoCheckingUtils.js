@@ -11,7 +11,7 @@ import {
   readJsonFile,
 } from '../helpers/fileHelpers';
 import * as gatewayLanguageHelpers from '../helpers/gatewayLanguageHelpers';
-
+import delay from './delay';
 
 const LM_STUDIO_URL = 'http://192.168.142.70:1234';
 
@@ -3061,28 +3061,24 @@ export function compareUnicodeStrings(firstString = '', secondString = '') {
 export class RequestQueue {
   constructor() {
     this.queue = [];
-    this.busy = false;
   }
 
   /**
-   * Adds a high-priority request to the front of the queue.
+   * Adds a request to the queue.
+   *
+   * If `priority` is true, the request is added to the front of the queue (high-priority).
+   * Otherwise, the request is added to the back of the queue (low-priority).
    *
    * @param {object} request - Request object to queue.
+   * @param {boolean} [priority=false] - If true, adds request to front of queue; otherwise adds to back.
    */
-  addPriorityRequest(request) {
+  addRequest(request, priority = false) {
     if (request) {
-      this.queue.unshift(request);
-    }
-  }
-
-  /**
-   * Adds a low-priority request to the back of the queue.
-   *
-   * @param {object} request - Request object to queue.
-   */
-  addRequest(request) {
-    if (request) {
-      this.queue.push(request);
+      if (priority) {
+        this.queue.unshift(request);
+      } else {
+        this.queue.push(request);
+      }
     }
   }
 
@@ -3097,15 +3093,7 @@ export class RequestQueue {
       return null;
     }
 
-    this.busy = true;
     return this.queue.shift();
-  }
-
-  /**
-   * Clears the busy flag so the next request can be processed.
-   */
-  clearBusy() {
-    this.busy = false;
   }
 
   /**
@@ -3113,15 +3101,6 @@ export class RequestQueue {
    */
   clearQueue() {
     this.queue = [];
-  }
-
-  /**
-   * Returns whether the queue is currently busy.
-   *
-   * @returns {boolean}
-   */
-  isBusy() {
-    return this.busy;
   }
 
   /**
@@ -3140,5 +3119,91 @@ export class RequestQueue {
    */
   hasRequests() {
     return this.queue.length > 0;
+  }
+}
+
+export class LlmRequestQueue {
+  constructor() {
+    this.requestQueue = new RequestQueue();
+    this.busy = false;
+    this.pause = false;
+  }
+
+  async requestPause(asyncCallback) {
+    if (asyncCallback) {
+      let count = 0;
+      console.log(`requestPause`);
+      this.pause = true; // pause processing
+
+      while (this.busy) { // wait while busy
+        console.log(`requestPause - busy ${++count}`);
+        // eslint-disable-next-line no-await-in-loop
+        await delay(100);
+      }
+
+      console.log(`requestPause - now ready`);
+      await asyncCallback(); // let caller know they can call the API
+      this.pause = false;
+
+      delay(100).then(() => {
+        console.log(`requestPause - after delay calling processNextRequest`);
+        this.processNextRequest();
+      });
+    }
+  }
+
+  makeSuggestionRequest(request, callback, priority = false) {
+    if (request) {
+      console.log(`makeSuggestionRequest adding to queue - ${request}`);
+      const requestData = { request, callback };
+      this.requestQueue.addRequest(requestData, priority);
+    }
+
+    delay(100).then(() => {
+      console.log(`makeSuggestionRequest - after delay calling processNextRequest`);
+      this.processNextRequest();
+    });
+  }
+
+  async processNextRequest() {
+    if (!this.busy && !this.pause) {
+      console.log(`processNextRequest - not busy getting request`);
+      const nextLlmRequest = this.requestQueue.getNextRequest();
+      const requestData = nextLlmRequest?.request;
+      let results = { error: true };
+
+      if (requestData) {
+        try {
+          this.busy = true;
+          results = await getBestSelections(
+            requestData.verseText,
+            requestData.llmQueryUrl,
+            requestData.targetLanguageDetails,
+            requestData.alignedGLText,
+            requestData.gatewayLanguageCode,
+            requestData.selectionsData,
+            requestData.model,
+            requestData.llmTemperature
+          );
+        } catch (e) {
+          console.error(`processNextRequest - getBestSelections ERROR`, e);
+          results = { error: e.toString() };
+        }
+
+        if (nextLlmRequest?.callback) {
+          console.log(`processNextRequest - doing callback`);
+          await nextLlmRequest.callback(results);
+          console.log(`processNextRequest - callback finished`);
+        }
+
+        delay(100).then(() => {
+          console.log(`processNextRequest - after delay calling processNextRequest`);
+          this.busy = false;
+          this.processNextRequest();
+        });
+      }
+    } else {
+      console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
+    }
   }
 }
