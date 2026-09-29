@@ -3182,7 +3182,7 @@ export class LlmRequestQueue {
             requestData.alignedGLText,
             requestData.gatewayLanguageCode,
             requestData.selectionsData,
-            requestData.model,
+            requestData.currentModel,
             requestData.llmTemperature
           );
         } catch (e) {

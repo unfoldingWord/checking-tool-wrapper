@@ -219,7 +219,8 @@ function Container({
     return results;
   }
 
-  function makeLlmRequestAndWaitForResponse(request) {
+  // eslint-disable-next-line require-await
+  async function makeLlmRequestAndWaitForResponse(request) {
     return new Promise((resolve, reject) => {
       const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
 
@@ -320,7 +321,7 @@ function Container({
       bestSelections,
       elapsedStr,
       model,
-    } = makeLlmRequestAndWaitForResponse({
+    } = await makeLlmRequestAndWaitForResponse({
       alignedGLText,
       currentModel,
       gatewayLanguageCode,
