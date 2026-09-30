@@ -3367,11 +3367,23 @@ export class LlmRequestQueue {
         this.requestQueue.addRequest(requestData, priority);
       }
     }
+    this.processNextRequestIfNotBusy();
+  }
 
-    delay(100).then(() => {
-      console.log(`makeSuggestionRequest - after delay calling processNextRequest`);
-      this.processNextRequest();
-    });
+  /**
+   * Schedules processing of the next queued request if the queue is not currently busy or paused.
+   *
+   * After a 100ms delay, calls processNextRequest() to handle the next pending translation
+   * suggestion request. This method is invoked after adding requests to the queue to trigger
+   * processing without blocking the caller.
+   */
+  processNextRequestIfNotBusy() {
+    if (!this.busy && !this.pause) {
+      delay(100).then(() => {
+        console.log(`processNextRequestIfNotBusy - after delay calling processNextRequest`);
+        this.processNextRequest();
+      });
+    }
   }
 
   /**
@@ -3467,6 +3479,7 @@ export class LlmRequestQueue {
             requestData.currentModel,
             requestData.llmTemperature
           );
+          results.request = requestData;
         } catch (e) {
           console.error(`processNextRequest - getBestSelections ERROR`, e);
           results = { error: e.toString() };
@@ -3474,9 +3487,17 @@ export class LlmRequestQueue {
 
         if (nextLlmRequest?.callback) {
           console.log(`processNextRequest - doing callback`);
-          await nextLlmRequest.callback(results);
+
+          try {
+            await nextLlmRequest.callback(results);
+          } catch (e) {
+            console.error(`processNextRequest - callback ERROR`, e);
+          }
+
           console.log(`processNextRequest - callback finished`);
         }
+
+        this.busy = false;
 
         const _bestSuggestion = (results?.bestSelections?.length &&
           results?.bestSelections[0]) || { selections: [] };
@@ -3486,11 +3507,7 @@ export class LlmRequestQueue {
           this.saveSuggestionsMemoryForKey(requestData.key, results);
         }
 
-        delay(100).then(() => {
-          console.log(`processNextRequest - after delay calling processNextRequest`);
-          this.busy = false;
-          this.processNextRequest();
-        });
+        this.processNextRequestIfNotBusy();
       }
     } else {
       console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);

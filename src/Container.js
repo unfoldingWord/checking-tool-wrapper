@@ -138,6 +138,7 @@ function Container({
     const glOwnerStr = tc.gatewayLanguageOwner;
     const targetLanguageDetails= manifest.target_language;
     const targetLanguageId = targetLanguageDetails?.id;
+    const force = false;
     await delay(1);
 
     const groupsData = toolApi._getGroupData();
@@ -183,7 +184,9 @@ function Container({
               alignedGLText: gatewayLanguageQuote_,
               contextId,
               currentModel: settingsForChecking.currentModel,
-              force: false,
+              force,
+              gatewayLanguageCode,
+              key,
               llmSuggestionsEnabled: settingsForChecking.llmSuggestionsEnabled,
               llmTemperature: settingsForChecking.llmTemperature,
               llmQueryUrl: settingsForChecking.llmQueryUrl,
@@ -205,7 +208,22 @@ function Container({
             );
             console.log(selectionsForWord);
 
-            //TODO call suggestionsRequestQueue.makeSuggestionRequest
+            const request = {
+              ...data,
+              selectionsData,
+            };
+
+            // eslint-disable-next-line no-await-in-loop
+            await delay(1);
+
+            suggestionsRequestQueue.makeSuggestionRequest(
+              request,
+              data => { // callback function
+                console.log(`makeLlmRequestAndWaitForResponse result`, data);
+              },
+              false,
+              force,
+            );
           }
         }
       }
@@ -391,14 +409,8 @@ function Container({
         suggestionsRequestQueue.makeSuggestionRequest(
           request,
           data => { // callback function
-            const { error, bestSelections, elapsedStr, model } = data;
             console.log(`makeLlmRequestAndWaitForResponse result`, data);
-            resolve({
-              error,
-              bestSelections,
-              elapsedStr,
-              model,
-            });
+            resolve(data);
           },
           true,
           request.force,
@@ -481,13 +493,7 @@ function Container({
 
     await delay(1);
 
-    const {
-      error,
-      bestSelections,
-      elapsedStr,
-      model,
-      cached,
-    } = await makeLlmRequestAndWaitForResponse({
+    const results = await makeLlmRequestAndWaitForResponse({
       alignedGLText,
       currentModel,
       force,
@@ -499,6 +505,14 @@ function Container({
       targetLanguageDetails,
       verseText,
     });
+
+    const {
+      error,
+      bestSelections,
+      elapsedStr,
+      model,
+      cached,
+    } = results || {};
 
     if (!error) {
       console.log('getSuggestions metrics', {
@@ -546,11 +560,8 @@ function Container({
     }
 
     return {
-      bestSelections,
+      ...results,
       contextId,
-      error,
-      elapsedStr,
-      model,
     };
   }
 
