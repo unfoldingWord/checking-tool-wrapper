@@ -7,6 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
+import isEqual from 'deep-equal';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
 import { getThelpsManifestRelation } from './helpers/resourcesHelpers';
@@ -80,6 +81,8 @@ const glBiblesCache = {
   bibles: {},
 };
 
+const __suggestionsCache = {};
+
 /**
  * Top-level checking-tool layout: group menu, scripture pane, check info card, verse check,
  * and translation helps, wired together with the auto-suggestion and selection-history helpers.
@@ -114,9 +117,57 @@ function Container({
 }) {
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
-  const suggestionsRequestQueueRef = useRef(new LlmRequestQueue());
+  const [settingsForChecking, setSettingsForChecking] = useState(null);
+  const [triggerGenerateSuggestionsStart, setTriggerGenerateSuggestionsStart] = useRef(false);
+  const generateSuggestionsRestartRef = useRef(false);
+  const generateSuggestionsRunningRef = useRef(false);
+  const suggestionsRequestQueueRef = useRef(new LlmRequestQueue(__suggestionsCache));
   const { checkId, groupId, reference } = contextId || {};
   const { chapter, verse } = reference || {};
+
+  async function generateSuggestionsForGroups() {
+    setTriggerGenerateSuggestionsStart(false);
+    generateSuggestionsRestartRef.current = false;
+    generateSuggestionsRunningRef.current = true;
+    await delay(1);
+
+    const groupsData = toolApi._getGroupData();
+    console.log(`got groupsData`);
+    const groupIds = Object.keys(groupsData) || [];
+
+    for (const groupId of groupIds) {
+      if (generateSuggestionsRestartRef.current) {
+        break;
+      }
+
+      const group = groupsData[groupId];
+      // eslint-disable-next-line no-await-in-loop
+      await delay(1);
+      console.log(`generateSuggestionsForGroups for group ${groupId}`);
+
+      for (const check of group) {
+        if (generateSuggestionsRestartRef.current) {
+          break;
+        }
+
+        if (!check?.selections?.length) {
+          console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
+          //TODO get key
+          // if no suggestions
+          // get verse text for check.contextId - alignedGLText
+          // get glQuote?
+          // call fetchPreviousSelectionData
+          // call suggestionsRequestQueue.makeSuggestionRequest
+        }
+      }
+    }
+
+    if (generateSuggestionsRestartRef.current) {
+      generateSuggestionsForGroups().then(() => { });
+    } else {
+      generateSuggestionsRunningRef.current = false;
+    }
+  }
 
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(
@@ -127,6 +178,18 @@ function Container({
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (triggerGenerateSuggestionsStart) {
+      if (!generateSuggestionsRunningRef.current) {
+        if (settingsForChecking?.suggestionsEnabled) {
+          generateSuggestionsForGroups().then(() => { });
+        }
+      } else { // currently running, need to restart
+        generateSuggestionsRestartRef.current = true;
+      }
+    }
+  }, [triggerGenerateSuggestionsStart]);
 
   useEffect(() => {
     // if context changes, clear edit verse
@@ -183,6 +246,13 @@ function Container({
    */
   function saveSettingsForChecking(data) {
     const projectSaveLocation = tc?.projectSaveLocation;
+
+    if (!isEqual(data, settingsForChecking)) {
+      setTriggerGenerateSuggestionsStart(true);
+    }
+
+    setSettingsForChecking(data);
+
     saveSettingsForChecking_(projectSaveLocation, data);
   }
 
@@ -231,26 +301,24 @@ function Container({
   }
 
   /**
-   * Makes an LLM suggestion request and waits for the response via the suggestion queue.
-   * This function enqueues a suggestion request and returns a promise that resolves when
-   * the LLM processing completes.
+   * Enqueues a suggestion request to the LLM processing queue and returns a promise
+   * that resolves with the suggestion results. The function waits for the LLM to
+   * process the request and return the best selections based on the provided context.
    *
    * @param {object} request - The LLM request configuration object
    * @param {string} request.alignedGLText - Aligned gateway-language text to translate
    * @param {string} request.currentModel - Currently selected LLM model identifier
    * @param {string} request.gatewayLanguageCode - Gateway language code
    * @param {string} request.key - Unique key identifying this request
+   * @param {boolean} request.force - force request of new suggestion
    * @param {string|null} request.llmQueryUrl - URL for LLM query endpoint (or null if disabled)
    * @param {number} request.llmTemperature - LLM temperature parameter (0.0 to 1.0)
    * @param {object} request.selectionsData - Previous selection history data
    * @param {object} request.targetLanguageDetails - Target language details, including `id`
    * @param {string} request.verseText - Target-language verse text
    * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string}>}
-   *          Promise that resolves with an object containing:
-   *          - error: error message string or false if successful
-   *          - bestSelections: array of suggested selections
-   *          - elapsedStr: string representation of elapsed time
-   *          - model: model identifier used for the suggestion
+   *          Promise that resolves with an object containing error status, array of suggested
+   *          selections, elapsed time string, and model identifier used for the suggestion
    */
   // eslint-disable-next-line require-await
   async function makeLlmRequestAndWaitForResponse(request) {
@@ -259,15 +327,11 @@ function Container({
 
       if (suggestionsRequestQueue) {
         console.log(`makeLlmRequestAndWaitForResponse request`, request);
+
         suggestionsRequestQueue.makeSuggestionRequest(
           request,
-          (data) => { // callback function
-            const {
-              error,
-              bestSelections,
-              elapsedStr,
-              model,
-            } = data;
+          data => { // callback function
+            const {error, bestSelections, elapsedStr, model} = data;
             console.log(`makeLlmRequestAndWaitForResponse result`, data);
             resolve({
               error,
@@ -276,12 +340,19 @@ function Container({
               model,
             });
           },
-          true);
+          true,
+          request.force,
+        );
       } else {
         console.error(`makeLlmRequestAndWaitForResponse suggestionsRequestQueue not defined`);
         reject();
       }
     });
+  }
+
+  function generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId) {
+    const key = `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_${groupId}_${bookId}_${chapter}_${verse}_${checkId}`;
+    return key;
   }
 
   /**
@@ -291,6 +362,7 @@ function Container({
    * @param {object} data.contextId - context of the check being suggested for
    * @param {string} data.currentModel - currently selected LLM model identifier
    * @param {string} data.alignedGLText - aligned gateway-language quote to translate
+   * @param {boolean} data.force - force request of new suggestion
    * @param {boolean} data.llmSuggestionsEnabled - whether LLM suggestions are enabled
    * @param {number} data.llmTemperature - 0.0 to 1.0
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
@@ -303,9 +375,10 @@ function Container({
     const glOwnerStr = tc.gatewayLanguageOwner;
 
     const {
+      alignedGLText,
       contextId,
       currentModel,
-      alignedGLText,
+      force,
       llmSuggestionsEnabled,
       llmTemperature,
       llmQueryUrl,
@@ -339,8 +412,7 @@ function Container({
 
     const targetLanguageId = targetLanguageDetails?.id;
     const checkId = contextId?.checkId;
-
-    const key = `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_${groupId}_${bookId}_${chapter}_${verse}_${checkId}`;
+    const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
     console.log(key);
 
     await delay(1);
@@ -354,9 +426,11 @@ function Container({
       bestSelections,
       elapsedStr,
       model,
+      cached,
     } = await makeLlmRequestAndWaitForResponse({
       alignedGLText,
       currentModel,
+      force,
       gatewayLanguageCode,
       key,
       llmQueryUrl: llmQueryUrl_,
@@ -401,9 +475,11 @@ function Container({
         }
       }
 
-      delay(100).then(() => {
-        updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);
-      });
+      if (!cached) {
+        delay(100).then(() => {
+          updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);
+        });
+      }
     } else {
       console.log('getSuggestions error', {});
       return { error: true };

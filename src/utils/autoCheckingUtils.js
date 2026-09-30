@@ -3246,10 +3246,11 @@ export class LlmRequestQueue {
    * @see {@link processNextRequest} - Internal method that processes queued requests
    * @see {@link requestPause} - Method for temporarily suspending request processing
    */
-  constructor() {
+  constructor(suggestionsCache) {
     this.requestQueue = new RequestQueue();
     this.busy = false;
     this.pause = false;
+    this.suggestionsCache = suggestionsCache;
   }
 
   /**
@@ -3338,107 +3339,71 @@ export class LlmRequestQueue {
   }
 
   /**
-   * Adds a translation suggestion request to the queue and schedules processing.
+   * Queues a translation suggestion request and schedules processing. If cached suggestions
+   * exist for the request's key and force is false, returns cached results immediately via callback.
+   * Otherwise adds request to queue (front if priority is true, back if false) and triggers
+   * processing after 100ms delay.
    *
-   * This method enqueues a new request for AI-powered or algorithmic translation suggestions,
-   * optionally marking it as high-priority to jump the queue. After adding the request, it
-   * automatically schedules `processNextRequest()` after a 100ms delay to initiate processing.
-   *
-   * **Priority Handling:**
-   * - **Standard requests** (`priority=false`): Added to the back of the queue (FIFO order)
-   * - **Priority requests** (`priority=true`): Added to the front of the queue, bypassing
-   *   any pending standard requests
-   *
-   * **Request Object Structure:**
-   * The `request` parameter should contain all data needed for translation suggestion:
-   * - `verseText`: Target-language verse text to search within
-   * - `alignedGLText`: Gateway-language phrase to translate
-   * - `targetLanguageDetails`: Object with `id` field (language code, e.g., 'es-419')
-   * - `gatewayLanguageCode`: Gateway language code (e.g., 'en')
-   * - `selectionsData`: Historical translation data with `selections` field
-   * - `llmQueryUrl`: LM Studio server URL (or `null` for algorithmic mode)
-   * - `currentModel`: AI model identifier (only used if `llmQueryUrl` is set)
-   * - `llmTemperature`: AI temperature setting (only used if `llmQueryUrl` is set)
-   *
-   * **Callback Pattern:**
-   * The `callback` function is invoked when results are ready, receiving a results object:
-   * ```javascript
-   * {
-   *   error: boolean,           // true if processing failed
-   *   bestSelections: [...],    // array of suggestion objects (empty on error)
-   *   elapsedStr: string,       // processing time in seconds ("0" for algorithmic mode)
-   *   model: string            // model identifier ("APP" for algorithmic, actual name for AI)
-   * }
-   * ```
-   *
-   * **Processing Flow:**
-   * 1. Request is wrapped with callback and added to the internal queue
-   * 2. After 100ms delay, `processNextRequest()` is scheduled
-   * 3. If queue is not busy/paused, request is retrieved and processed
-   * 4. Upon completion, callback is invoked with results
-   * 5. Next request is automatically processed after another 100ms delay
-   *
-   * @param {object} request - Request data object containing all fields needed for translation
-   *   suggestion generation (see structure details above)
-   * @param {Function} callback - Function to call when results are ready; receives a single
-   *   `results` object parameter with error status, suggestions, timing, and model info
-   * @param {boolean} [priority=false] - If `true`, adds request to front of queue (high-priority);
-   *   if `false`, adds to back (standard priority)
-   * @returns {void} - Does not return a value; processing happens asynchronously
-   * @example
-   * // Standard priority request
-   * const request = {
-   *   verseText: 'para la iglesia de Éfeso',
-   *   alignedGLText: 'church',
-   *   targetLanguageDetails: { id: 'es-419' },
-   *   gatewayLanguageCode: 'en',
-   *   selectionsData: { selections: {...} },
-   *   llmQueryUrl: 'http://localhost:1234',
-   *   currentModel: 'my-model',
-   *   llmTemperature: 0.7
-   * };
-   *
-   * llmQueue.makeSuggestionRequest(request, (results) => {
-   *   if (!results.error) {
-   *     console.log('Suggestions:', results.bestSelections);
-   *     displaySuggestions(results.bestSelections);
-   *   } else {
-   *     console.error('Translation failed');
-   *   }
-   * });
-   *
-   * @example
-   * // High-priority request (jumps queue)
-   * llmQueue.makeSuggestionRequest(urgentRequest, urgentCallback, true);
-   *
-   * @example
-   * // Algorithmic mode (no AI server)
-   * const algorithmicRequest = {
-   *   ...request,
-   *   llmQueryUrl: null  // triggers algorithmic processing
-   * };
-   *
-   * llmQueue.makeSuggestionRequest(algorithmicRequest, (results) => {
-   *   console.log(`Processed in ${results.elapsedStr}s using ${results.model}`);
-   *   // results.model will be "APP" for algorithmic mode
-   * });
-   *
-   * @see {@link processNextRequest} - Internal method that processes queued requests
-   * @see {@link getBestSelections} - Function called to generate translation suggestions
-   * @see {@link RequestQueue#addRequest} - Underlying queue method used for enqueueing
-   * @see {@link delay} - Utility function used for scheduling processing
+   * @param {object} request - Request data for translation suggestion
+   * @param {Function} callback - Function called when results ready
+   * @param {boolean} [priority=false] - If true, adds to front of queue
+   * @param {boolean} [force=false] - If true, bypasses cache
+   * @returns {void}
    */
-  makeSuggestionRequest(request, callback, priority = false) {
+  makeSuggestionRequest(request, callback, priority = false, force = false) {
     if (request) {
-      console.log(`makeSuggestionRequest adding to queue - ${request}`);
-      const requestData = { request, callback };
-      this.requestQueue.addRequest(requestData, priority);
+      const memory = this.getSuggestionsMemoryForKey(request.key);
+
+      if (memory && !force) { // if we have a cached value, then use it
+        console.log(`makeSuggestionRequest found cached suggestion`);
+        memory.cached = true;
+        delay(1).then(() => {
+          callback(memory);
+        });
+        return;
+      } else {
+        console.log(`makeSuggestionRequest adding to queue - ${request}`);
+        const requestData = {request, callback};
+        this.requestQueue.addRequest(requestData, priority);
+      }
     }
 
     delay(100).then(() => {
       console.log(`makeSuggestionRequest - after delay calling processNextRequest`);
       this.processNextRequest();
     });
+  }
+
+  /**
+   * Clears all pending requests from the queue.
+   *
+   * This method removes all queued translation suggestion requests by delegating to the
+   * internal `RequestQueue.clearQueue()` method. It provides a clean interface for external
+   * code to cancel all pending AI or algorithmic translation requests without affecting
+   * any currently processing request.
+   *
+   * **Use Cases:**
+   * - **User navigation**: Clear queue when user switches to a different verse or book
+   * - **Configuration changes**: Reset queue when changing AI model or server settings
+   * - **Error recovery**: Clear stale requests after connection failures or timeouts
+   * - **Resource management**: Free queue memory during low-priority operations
+   *
+   * **Important Notes:**
+   * - Does NOT affect the currently processing request (if `busy=true`)
+   * - Does NOT modify the `busy` or `pause` flags
+   * - Callbacks for cleared requests will never be invoked
+   * - Queue size immediately becomes 0 after this call
+   *
+   * **Behavioral Details:**
+   * - **Queue state after clearing**: `requestQueue.size() === 0` and `requestQueue.hasRequests() === false`
+   * - **Processing state**: `busy` and `pause` flags remain unchanged
+   * - **Current request**: If a request is currently being processed, it continues until completion
+   * - **Future requests**: New requests can be added immediately after clearing
+   *
+   * @returns {void} - Does not return a value; mutates the internal queue state
+  */
+  clearPendingRequests() {
+    this.requestQueue.clearQueue();
   }
 
   /**
@@ -3494,24 +3459,6 @@ export class LlmRequestQueue {
    * @async
    * @returns {Promise<void>} - Resolves when processing cycle completes (or immediately
    *   if busy/paused)
-   * @example
-   * // Typical internal flow (called automatically by makeSuggestionRequest)
-   * // User adds request:
-   * llmQueue.makeSuggestionRequest(request, callback);
-   *
-   * // After 100ms delay, processNextRequest() is called:
-   * // 1. Checks busy=false, pause=false
-   * // 2. Gets next request from queue
-   * // 3. Sets busy=true
-   * // 4. Calls getBestSelections(...)
-   * // 5. Results ready, calls callback(results)
-   * // 6. After 100ms, sets busy=false and calls processNextRequest() again
-   * // 7. Repeat until queue is empty
-   *
-   * @example
-   * // Manual invocation (normally not needed, called automatically)
-   * await llmQueue.processNextRequest();
-   *
    * @see {@link makeSuggestionRequest} - Public method that adds requests and schedules this method
    * @see {@link getBestSelections} - Core function that generates translation suggestions
    * @see {@link RequestQueue#getNextRequest} - Method used to retrieve next pending request
@@ -3549,6 +3496,14 @@ export class LlmRequestQueue {
           console.log(`processNextRequest - callback finished`);
         }
 
+        const _bestSuggestion = (results?.bestSelections?.length &&
+          results?.bestSelections[0]) || { selections: [] };
+
+        if (!results.error && _bestSuggestion?.selections?.length) {
+          // if we have at least one suggestion, save it
+          this.saveSuggestionsMemoryForKey(requestData.key, results);
+        }
+
         delay(100).then(() => {
           console.log(`processNextRequest - after delay calling processNextRequest`);
           this.busy = false;
@@ -3558,5 +3513,62 @@ export class LlmRequestQueue {
     } else {
       console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
     }
+  }
+
+  /**
+   * Retrieves the suggestions cache memory object.
+   *
+   * @returns {object} The suggestions cache object containing cached translation suggestions
+   */
+  getSuggestionsMemory() {
+    return this.suggestionsCache;
+  }
+
+  /**
+   * Retrieves cached suggestion data for a specific key.
+   *
+   * @param {string} key - The unique identifier for the cached suggestion data
+   * @returns {object|undefined} The cached suggestion data for the key, or undefined if not found
+   */
+  getSuggestionsMemoryForKey(key) {
+    const cache = this.getSuggestionsMemory();
+    return cache[key];
+  }
+
+  /**
+   * Checks if cached suggestion data exists for the specified key.
+   *
+   * This method verifies whether translation suggestions have been previously cached
+   * for a given gateway-language phrase/context combination. It is used to determine
+   * if a new AI or algorithmic query is needed, or if cached results can be reused.
+   *
+   * **Use Cases:**
+   * - **Performance optimization**: Avoid redundant AI queries by checking cache first
+   * - **Instant feedback**: Return cached suggestions immediately without processing delay
+   * - **Resource management**: Reduce load on AI server by serving cached results
+   *
+   * @param {string} key - The unique identifier for the cached suggestion data, typically
+   *   constructed from context information (e.g., `{bookId}_{chapter}_{verse}_{glPhrase}`)
+   * @returns {boolean} - `true` if cached suggestions exist for the key, `false` otherwise
+   */
+  alreadyHaveSuggestionsForKey(key) {
+    const suggestions = this.getSuggestionsMemoryForKey(key);
+    return !!suggestions;
+  }
+
+  /**
+   * Saves suggestion data to the cache for a specific key.
+   *
+   * @param {string} key - The unique identifier for caching the suggestion data
+   * @param {object} data - The suggestion data to cache, typically containing:
+   *   - error: boolean indicating if an error occurred
+   *   - bestSelections: array of translation suggestions
+   *   - elapsedStr: string representation of processing time
+   *   - model: model identifier used for the suggestion
+   * @returns {void}
+   */
+  saveSuggestionsMemoryForKey(key, data) {
+    const cache = this.getSuggestionsMemory();
+    cache[key] = data;
   }
 }
