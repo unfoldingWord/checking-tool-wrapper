@@ -143,97 +143,148 @@ function Container({
 
     const groupsData = toolApi._getGroupData();
     console.log(`got groupsData`);
-    const groupIds = Object.keys(groupsData) || [];
-
-    for (const groupId of groupIds) {
-      if (generateSuggestionsRestartRef.current) {
-        break;
-      }
-
-      const group = groupsData[groupId];
-      // eslint-disable-next-line no-await-in-loop
-      await delay(1);
-      console.log(`generateSuggestionsForGroups for group ${groupId}`);
-
-      for (const check of group) {
-        if (generateSuggestionsRestartRef.current) {
-          break;
-        }
-
-        if (!check?.selections?.length) {
-          const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
-
-          console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
-          const contextId = check?.contextId;
-          const reference = contextId?.reference;
-          const { bookId, chapter, verse } = reference || {};
-          const checkId = contextId?.checkId;
-          const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
-
-          if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
-            const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId, true);
-            const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
-              contextId,
-              glBibles,
-              gatewayLanguageCode,
-              tsvRelation,
-              true
-            );
-
-            const data ={
-              alignedGLText: gatewayLanguageQuote_,
-              contextId,
-              currentModel: settingsForChecking.currentModel,
-              force,
-              gatewayLanguageCode,
-              key,
-              llmSuggestionsEnabled: settingsForChecking.llmSuggestionsEnabled,
-              llmTemperature: settingsForChecking.llmTemperature,
-              llmQueryUrl: settingsForChecking.llmQueryUrl,
-              targetLanguageDetails,
-              verseText,
-            };
-
-            const selectionsForWord = fetchPreviousSelectionData(
-              projectSaveLocation,
-              contextId,
-              glBibles,
-              tsvRelation,
-              toolName,
-              groupId,
-              gatewayLanguageCode,
-              glOwnerStr,
-              data,
-              glBiblesCache
-            );
-            console.log(selectionsForWord);
-
-            const request = {
-              ...data,
-              selectionsData,
-            };
-
-            // eslint-disable-next-line no-await-in-loop
-            await delay(1);
-
-            suggestionsRequestQueue.makeSuggestionRequest(
-              request,
-              data => { // callback function
-                console.log(`makeLlmRequestAndWaitForResponse result`, data);
-              },
-              false,
-              force,
-            );
-          }
-        }
-      }
-    }
+    await generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr);
 
     if (generateSuggestionsRestartRef.current) {
       generateSuggestionsForGroups().then(() => { });
     } else {
       generateSuggestionsRunningRef.current = false;
     }
+  }
+
+  async function generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr) {
+    async function generateSuggestionForSubgroup(matchGroupId = null, matchAfterGroupId = null, matchBeforeGroupId = null) {
+      let findGroupId = matchGroupId;
+      let count = 0;
+
+      if (matchAfterGroupId) {
+        findGroupId = matchAfterGroupId;
+      } else if (matchBeforeGroupId) {
+        findGroupId = matchBeforeGroupId;
+      }
+
+      if (generateSuggestionsRestartRef.current) {
+        return;
+      }
+
+      const groupIds = Object.keys(groupsData) || [];
+      let foundMatch = false;
+
+      for (const groupId of groupIds) {
+        if (generateSuggestionsRestartRef.current) {
+          break;
+        }
+
+        const matchedGroupId = groupId === findGroupId;
+
+        if (matchedGroupId) {
+          foundMatch = true;
+        }
+
+        if (matchGroupId) { // in this case we are only processing the same group
+          if (!foundMatch) {
+            continue;
+          } else if (!matchedGroupId) {
+            break;
+          }
+        } else if (matchAfterGroupId) { // in this case we process only groups after this groupId
+          if (!foundMatch) {
+            continue;
+          } else if (matchedGroupId) {
+            continue;
+          }
+        } else if (matchBeforeGroupId) {
+          if (foundMatch) {
+            break;
+          }
+        }
+
+        const group = groupsData[groupId];
+        // eslint-disable-next-line no-await-in-loop
+        await delay(1);
+        console.log(`generateSuggestionsForGroups for group ${groupId}`);
+
+        for (const check of group) {
+          if (generateSuggestionsRestartRef.current) {
+            break;
+          }
+
+          count++;
+
+          if (!check?.selections?.length) {
+            const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+
+            console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
+            const contextId = check?.contextId;
+            const reference = contextId?.reference;
+            const { bookId, chapter, verse } = reference || {};
+            const checkId = contextId?.checkId;
+            const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
+
+            if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
+              const {verseText } = getVerseText(targetBible, contextId, true);
+              const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
+                contextId,
+                glBibles,
+                gatewayLanguageCode,
+                tsvRelation,
+                true
+              );
+
+              const data = {
+                alignedGLText: gatewayLanguageQuote_,
+                contextId,
+                currentModel: settingsForChecking.currentModel,
+                force,
+                gatewayLanguageCode,
+                key,
+                llmSuggestionsEnabled: settingsForChecking.llmSuggestionsEnabled,
+                llmTemperature: settingsForChecking.llmTemperature,
+                llmQueryUrl: settingsForChecking.llmQueryUrl,
+                targetLanguageDetails,
+                verseText,
+              };
+
+              const selectionsForWord = fetchPreviousSelectionData(
+                projectSaveLocation,
+                contextId,
+                glBibles,
+                tsvRelation,
+                toolName,
+                groupId,
+                gatewayLanguageCode,
+                glOwnerStr,
+                data,
+                glBiblesCache
+              );
+              console.log(selectionsForWord);
+
+              const request = {
+                ...data,
+                selectionsData,
+              };
+
+              // eslint-disable-next-line no-await-in-loop
+              await delay(1);
+
+              suggestionsRequestQueue.makeSuggestionRequest(
+                request,
+                data => { // callback function
+                  console.log(`makeLlmRequestAndWaitForResponse result`, data);
+                },
+                false,
+                force,
+              );
+            }
+          }
+        }
+      }
+      console.log(`generateSuggestionForSubgroup added ${count} checks`);
+    }
+
+    await generateSuggestionForSubgroup(groupId);
+    await generateSuggestionForSubgroup(null, groupId);
+    await generateSuggestionForSubgroup(null, null, groupId);
   }
 
   useEffect(() => {
