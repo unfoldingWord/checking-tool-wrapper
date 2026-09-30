@@ -25,6 +25,8 @@ import {
   getCurrentToolName,
   getGatewayLanguageBibles,
   getGatewayLanguageCode,
+  getProjectManifest,
+  getTargetBible,
   getTcState,
   getToolApi,
   getTranslateState,
@@ -43,6 +45,7 @@ import {
   updateLlmMetrics,
 } from './utils/autoCheckingUtils';
 import delay from './utils/delay';
+import { getVerseText } from './helpers/verseHelpers';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -108,7 +111,9 @@ function Container({
   gatewayLanguageCode,
   gatewayLanguageQuote,
   glBibles,
+  manifest,
   setToolSettings,
+  targetBible,
   tc,
   toolApi,
   toolName,
@@ -118,7 +123,7 @@ function Container({
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
   const [settingsForChecking, setSettingsForChecking] = useState(null);
-  const [triggerGenerateSuggestionsStart, setTriggerGenerateSuggestionsStart] = useRef(false);
+  const [triggerGenerateSuggestionsStart, setTriggerGenerateSuggestionsStart] = useState(false);
   const generateSuggestionsRestartRef = useRef(false);
   const generateSuggestionsRunningRef = useRef(false);
   const suggestionsRequestQueueRef = useRef(new LlmRequestQueue(__suggestionsCache));
@@ -129,6 +134,10 @@ function Container({
     setTriggerGenerateSuggestionsStart(false);
     generateSuggestionsRestartRef.current = false;
     generateSuggestionsRunningRef.current = true;
+    const projectSaveLocation = tc?.projectSaveLocation;
+    const glOwnerStr = tc.gatewayLanguageOwner;
+    const targetLanguageDetails= manifest.target_language;
+    const targetLanguageId = targetLanguageDetails?.id;
     await delay(1);
 
     const groupsData = toolApi._getGroupData();
@@ -151,13 +160,53 @@ function Container({
         }
 
         if (!check?.selections?.length) {
+          const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+
           console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
-          //TODO get key
-          // if no suggestions
-          // get verse text for check.contextId - alignedGLText
-          // get glQuote?
-          // call fetchPreviousSelectionData
-          // call suggestionsRequestQueue.makeSuggestionRequest
+          const contextId = check?.contextId;
+          const reference = contextId?.reference;
+          const { bookId, chapter, verse } = reference || {};
+          const checkId = contextId?.checkId;
+          const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
+
+          if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
+            const { verseText, unfilteredVerseText } = getVerseText(targetBible, contextId, true);
+            const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
+              contextId,
+              glBibles,
+              gatewayLanguageCode,
+              tsvRelation,
+              true
+            );
+
+            const data ={
+              alignedGLText: gatewayLanguageQuote_,
+              contextId,
+              currentModel: settingsForChecking.currentModel,
+              force: false,
+              llmSuggestionsEnabled: settingsForChecking.llmSuggestionsEnabled,
+              llmTemperature: settingsForChecking.llmTemperature,
+              llmQueryUrl: settingsForChecking.llmQueryUrl,
+              targetLanguageDetails,
+              verseText,
+            };
+
+            const selectionsForWord = fetchPreviousSelectionData(
+              projectSaveLocation,
+              contextId,
+              glBibles,
+              tsvRelation,
+              toolName,
+              groupId,
+              gatewayLanguageCode,
+              glOwnerStr,
+              data,
+              glBiblesCache
+            );
+            console.log(selectionsForWord);
+
+            //TODO call suggestionsRequestQueue.makeSuggestionRequest
+          }
         }
       }
     }
@@ -247,13 +296,14 @@ function Container({
   function saveSettingsForChecking(data) {
     const projectSaveLocation = tc?.projectSaveLocation;
 
+    saveSettingsForChecking_(projectSaveLocation, data);
+
+    // save settings  to state
+    setSettingsForChecking(data);
+
     if (!isEqual(data, settingsForChecking)) {
       setTriggerGenerateSuggestionsStart(true);
     }
-
-    setSettingsForChecking(data);
-
-    saveSettingsForChecking_(projectSaveLocation, data);
   }
 
   /**
@@ -263,6 +313,16 @@ function Container({
   function readSettingsForChecking() {
     const projectSaveLocation = tc?.projectSaveLocation;
     const data = readSettingsForChecking_(projectSaveLocation);
+
+    // save settings  to state
+    saveSettingsForChecking_(projectSaveLocation, data);
+
+    setSettingsForChecking(data);
+
+    if (!isEqual(data, settingsForChecking)) {
+      setTriggerGenerateSuggestionsStart(true);
+    }
+
     return data || null;
   }
 
@@ -331,7 +391,7 @@ function Container({
         suggestionsRequestQueue.makeSuggestionRequest(
           request,
           data => { // callback function
-            const {error, bestSelections, elapsedStr, model} = data;
+            const { error, bestSelections, elapsedStr, model } = data;
             console.log(`makeLlmRequestAndWaitForResponse result`, data);
             resolve({
               error,
@@ -550,7 +610,9 @@ Container.propTypes = {
   gatewayLanguageCode: PropTypes.string.isRequired,
   gatewayLanguageQuote: PropTypes.string.isRequired,
   glBibles: PropTypes.array.isRequired,
+  manifest: PropTypes.object.isRequired,
   setToolSettings: PropTypes.func.isRequired,
+  targetBible: PropTypes.object.isRequired,
   tc: PropTypes.object.isRequired,
   toolApi: PropTypes.object.isRequired,
   toolName: PropTypes.string.isRequired,
@@ -568,6 +630,7 @@ Container.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
   const gatewayLanguageCode = getGatewayLanguageCode(ownProps);
   const contextId = getContextId(state);
+  const targetBible = getTargetBible(ownProps);
   const glBibles = getGatewayLanguageBibles(ownProps);
   const toolName = getCurrentToolName(ownProps);
   const tsvRelation = getThelpsManifestRelation(gatewayLanguageCode, toolName);
@@ -588,7 +651,9 @@ export const mapStateToProps = (state, ownProps) => {
     gatewayLanguageCode,
     gatewayLanguageQuote,
     glBibles,
+    manifest: getProjectManifest(ownProps),
     setToolSettings: tc.setToolSettings,
+    targetBible,
     tc,
     toolApi,
     toolName,

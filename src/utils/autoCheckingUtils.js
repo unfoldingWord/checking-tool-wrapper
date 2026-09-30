@@ -3382,24 +3382,6 @@ export class LlmRequestQueue {
    * code to cancel all pending AI or algorithmic translation requests without affecting
    * any currently processing request.
    *
-   * **Use Cases:**
-   * - **User navigation**: Clear queue when user switches to a different verse or book
-   * - **Configuration changes**: Reset queue when changing AI model or server settings
-   * - **Error recovery**: Clear stale requests after connection failures or timeouts
-   * - **Resource management**: Free queue memory during low-priority operations
-   *
-   * **Important Notes:**
-   * - Does NOT affect the currently processing request (if `busy=true`)
-   * - Does NOT modify the `busy` or `pause` flags
-   * - Callbacks for cleared requests will never be invoked
-   * - Queue size immediately becomes 0 after this call
-   *
-   * **Behavioral Details:**
-   * - **Queue state after clearing**: `requestQueue.size() === 0` and `requestQueue.hasRequests() === false`
-   * - **Processing state**: `busy` and `pause` flags remain unchanged
-   * - **Current request**: If a request is currently being processed, it continues until completion
-   * - **Future requests**: New requests can be added immediately after clearing
-   *
    * @returns {void} - Does not return a value; mutates the internal queue state
   */
   clearPendingRequests() {
