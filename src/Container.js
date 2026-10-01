@@ -122,7 +122,7 @@ function Container({
 }) {
   const [showHelps, setShowHelps] = useState(true);
   const [editVerseInScrPane, setEditVerseInScrPane] = useState(null); // trigger to edit first verse in Expanded Scripture Pane
-  const [settingsForChecking, setSettingsForChecking] = useState(null);
+  const settingsForSuggestionsRef = useRef(null);
   const [triggerGenerateSuggestionsStart, setTriggerGenerateSuggestionsStart] = useState(false);
   const generateSuggestionsRestartRef = useRef(false);
   const generateSuggestionsRunningRef = useRef(false);
@@ -130,29 +130,72 @@ function Container({
   const { checkId, groupId, reference } = contextId || {};
   const { chapter, verse } = reference || {};
 
-  async function generateSuggestionsForGroups() {
+  /**
+   * Generates auto-select suggestions for all groups in the checking tool. Manages a suggestion
+   * generation process that can be paused, restarted, and prioritized. When invoked while already
+   * running, it shuts down the current process and restarts.
+   *
+   * The function processes groups sequentially, creating suggestion requests for checks that lack
+   * selections. It respects priority flags and scope options to control which groups are processed.
+   *
+   * @param {boolean} [priority=false] - whether to prioritize these requests in the suggestion queue
+   * @param {boolean} [force=false] - whether to force regeneration of suggestions even if they exist in cache
+   * @param {boolean} [currentGroupOnly=false] - whether to limit processing to only the current group
+   * @param {boolean} [skipCurrentGroup=false] - whether to skip the current group and process only other groups
+   * @returns {Promise<void>}
+   */
+  async function generateSuggestionsForGroups(priority = false, force = false, currentGroupOnly = false, skipCurrentGroup = false) {
+    if (generateSuggestionsRunningRef.current) { // if process already running, shut it down first
+      console.log(`generateSuggestionsForGroups - alreading running, restarting`);
+      generateSuggestionsRestartRef.current = true;
+
+      while (generateSuggestionsRunningRef.current) {
+        // eslint-disable-next-line no-await-in-loop
+        await delay(100); // waiting
+      }
+    }
+
     setTriggerGenerateSuggestionsStart(false);
     generateSuggestionsRestartRef.current = false;
     generateSuggestionsRunningRef.current = true;
     const projectSaveLocation = tc?.projectSaveLocation;
     const glOwnerStr = tc.gatewayLanguageOwner;
-    const targetLanguageDetails= manifest.target_language;
+    const targetLanguageDetails = manifest.target_language;
     const targetLanguageId = targetLanguageDetails?.id;
-    const force = false;
     await delay(1);
 
     const groupsData = toolApi._getGroupData();
-    console.log(`got groupsData`);
-    await generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr);
-
-    if (generateSuggestionsRestartRef.current) {
-      generateSuggestionsForGroups().then(() => { });
-    } else {
-      generateSuggestionsRunningRef.current = false;
-    }
+    console.log(`generateSuggestionsForGroups - got groupsData`);
+    await generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr, priority, currentGroupOnly, skipCurrentGroup);
+    // eslint-disable-next-line require-atomic-updates
+    generateSuggestionsRunningRef.current = false;
   }
 
-  async function generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr) {
+  /**
+   * Processes groups of checks to generate LLM suggestions for items without selections.
+   * Manages scope and ordering of group processing based on match criteria.
+   *
+   * @param {object} groupsData - all groups data containing checks to process
+   * @param {string} targetLanguageId - target language identifier
+   * @param {boolean} force - whether to force regeneration of existing suggestions
+   * @param {object} targetLanguageDetails - complete target language metadata
+   * @param {string} projectSaveLocation - file system path to project save directory
+   * @param {string} glOwnerStr - gateway language owner identifier
+   * @param {boolean} priority - whether these requests should be prioritized in queue
+   * @param {boolean} currentGroupOnly - limits processing to only the current group
+   * @param {boolean} skipCurrentGroup - skips the current group and processes others
+   * @returns {Promise<void>}
+   */
+  async function generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr, priority, currentGroupOnly, skipCurrentGroup) {
+    /**
+     * Generates suggestions for a subset of groups based on match criteria.
+     * Iterates through groups and creates suggestion requests for checks lacking selections.
+     *
+     * @param {string|null} matchGroupId - processes only this specific group when provided
+     * @param {string|null} matchAfterGroupId - processes only groups after this group ID
+     * @param {string|null} matchBeforeGroupId - processes only groups before this group ID
+     * @returns {Promise<void>}
+     */
     async function generateSuggestionForSubgroup(matchGroupId = null, matchAfterGroupId = null, matchBeforeGroupId = null) {
       let findGroupId = matchGroupId;
       let count = 0;
@@ -163,7 +206,9 @@ function Container({
         findGroupId = matchBeforeGroupId;
       }
 
-      if (generateSuggestionsRestartRef.current) {
+      if (generateSuggestionsRestartRef.current
+        || !settingsForSuggestionsRef.current.llmSuggestionsEnabled
+        || !settingsForSuggestionsRef.current.suggestionsEnabled) {
         return;
       }
 
@@ -205,7 +250,9 @@ function Container({
         console.log(`generateSuggestionsForGroups for group ${groupId}`);
 
         for (const check of group) {
-          if (generateSuggestionsRestartRef.current) {
+          if (generateSuggestionsRestartRef.current
+            || !settingsForSuggestionsRef.current.llmSuggestionsEnabled
+            || !settingsForSuggestionsRef.current.suggestionsEnabled) {
             break;
           }
 
@@ -222,7 +269,7 @@ function Container({
             const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
 
             if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
-              const {verseText } = getVerseText(targetBible, contextId, true);
+              const { verseText } = getVerseText(targetBible, contextId, true);
               const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
                 contextId,
                 glBibles,
@@ -231,50 +278,54 @@ function Container({
                 true
               );
 
-              const data = {
-                alignedGLText: gatewayLanguageQuote_,
-                contextId,
-                currentModel: settingsForChecking.currentModel,
-                force,
-                gatewayLanguageCode,
-                key,
-                llmSuggestionsEnabled: settingsForChecking.llmSuggestionsEnabled,
-                llmTemperature: settingsForChecking.llmTemperature,
-                llmQueryUrl: settingsForChecking.llmQueryUrl,
-                targetLanguageDetails,
-                verseText,
-              };
+              if (gatewayLanguageQuote_) {
+                const data = {
+                  alignedGLText: gatewayLanguageQuote_,
+                  contextId,
+                  currentModel: settingsForSuggestionsRef.current.currentModel,
+                  force,
+                  gatewayLanguageCode,
+                  key,
+                  llmSuggestionsEnabled: settingsForSuggestionsRef.current.llmSuggestionsEnabled,
+                  llmTemperature: settingsForSuggestionsRef.current.llmTemperature,
+                  llmQueryUrl: settingsForSuggestionsRef.current.llmQueryUrl,
+                  targetLanguageDetails,
+                  verseText,
+                };
 
-              const selectionsForWord = fetchPreviousSelectionData(
-                projectSaveLocation,
-                contextId,
-                glBibles,
-                tsvRelation,
-                toolName,
-                groupId,
-                gatewayLanguageCode,
-                glOwnerStr,
-                data,
-                glBiblesCache
-              );
-              console.log(selectionsForWord);
+                const selectionsForWord = fetchPreviousSelectionData(
+                  projectSaveLocation,
+                  contextId,
+                  glBibles,
+                  tsvRelation,
+                  toolName,
+                  groupId,
+                  gatewayLanguageCode,
+                  glOwnerStr,
+                  data,
+                  glBiblesCache
+                );
+                console.log(selectionsForWord);
 
-              const request = {
-                ...data,
-                selectionsData,
-              };
+                const request = {
+                  ...data,
+                  selectionsData,
+                };
 
-              // eslint-disable-next-line no-await-in-loop
-              await delay(1);
+                // eslint-disable-next-line no-await-in-loop
+                await delay(1);
 
-              suggestionsRequestQueue.makeSuggestionRequest(
-                request,
-                data => { // callback function
-                  console.log(`makeLlmRequestAndWaitForResponse result`, data);
-                },
-                false,
-                force,
-              );
+                suggestionsRequestQueue.makeSuggestionRequest(
+                  request,
+                  data => { // callback function
+                    console.log(`makeLlmRequestAndWaitForResponse result`, data);
+                  },
+                  false,
+                  force,
+                );
+              } else {
+                console.log(`makeLlmRequestAndWaitForResponse no glQuote`, check);
+              }
             }
           }
         }
@@ -282,9 +333,14 @@ function Container({
       console.log(`generateSuggestionForSubgroup added ${count} checks`);
     }
 
-    await generateSuggestionForSubgroup(groupId);
-    await generateSuggestionForSubgroup(null, groupId);
-    await generateSuggestionForSubgroup(null, null, groupId);
+    if (!skipCurrentGroup) {
+      await generateSuggestionForSubgroup(groupId);
+    }
+
+    if (!currentGroupOnly) {
+      await generateSuggestionForSubgroup(null, groupId);
+      await generateSuggestionForSubgroup(null, null, groupId);
+    }
   }
 
   useEffect(() => {
@@ -294,13 +350,30 @@ function Container({
       gatewayLanguageCode,
       currentPaneSettings
     );
+
+    if (settingsForSuggestionsRef.current) { // if we already have loaded settings
+      setTriggerGenerateSuggestionsStart(false);
+      delay(100).then(() => {
+        setTriggerGenerateSuggestionsStart(true);
+      });
+    }
+
+    return () => {
+      console.log('Container is closing');
+      generateSuggestionsRestartRef.current = true;
+      const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+      suggestionsRequestQueue.clearPendingRequests();
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (triggerGenerateSuggestionsStart) {
       if (!generateSuggestionsRunningRef.current) {
-        if (settingsForChecking?.suggestionsEnabled) {
+        if (settingsForSuggestionsRef.current?.suggestionsEnabled) {
+          const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
+          suggestionsRequestQueue.clearPendingRequests();
           generateSuggestionsForGroups().then(() => { });
         }
       } else { // currently running, need to restart
@@ -356,6 +429,12 @@ function Container({
       alignedGLText,
       newSelections
     );
+
+    // force resuggest current group with new alignment data
+    generateSuggestionsForGroups(true, true, true).then(() => {
+      // continue processing other groups
+      generateSuggestionsForGroups(false, false, false, true).then(() => {});
+    });
   }
 
   /**
@@ -367,11 +446,15 @@ function Container({
 
     saveSettingsForChecking_(projectSaveLocation, data);
 
-    // save settings  to state
-    setSettingsForChecking(data);
+    if (!isEqual(data, settingsForSuggestionsRef.current)) {
+      // save current settings
+      settingsForSuggestionsRef.current = data;
 
-    if (!isEqual(data, settingsForChecking)) {
-      setTriggerGenerateSuggestionsStart(true);
+      // force resuggest current group
+      generateSuggestionsForGroups(true, true, true).then(() => {
+        // continue processing other groups
+        generateSuggestionsForGroups(false, true, false, true).then(() => {});
+      });
     }
   }
 
@@ -386,11 +469,11 @@ function Container({
     // save settings  to state
     saveSettingsForChecking_(projectSaveLocation, data);
 
-    setSettingsForChecking(data);
-
-    if (!isEqual(data, settingsForChecking)) {
-      setTriggerGenerateSuggestionsStart(true);
+    if (!isEqual(data, settingsForSuggestionsRef.current)) {
+      // save current settings
+      settingsForSuggestionsRef.current = data;
     }
+    setTriggerGenerateSuggestionsStart(true);
 
     return data || null;
   }

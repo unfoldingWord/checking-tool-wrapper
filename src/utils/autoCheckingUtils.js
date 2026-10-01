@@ -1293,6 +1293,70 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 }
 
 /**
+ * Parses LLM response lines to extract translation suggestions with confidence scores.
+ *
+ * This function processes responses from an AI language model that returns translation
+ * suggestions in CSV format. It handles both standard responses and verbose responses
+ * (such as those from thinking mode) by detecting the start of valid CSV data before
+ * parsing.
+ *
+ * The function performs two main operations:
+ * 1. **Response detection**: If the response contains more than 5 lines, it scans forward
+ *    to find the first valid CSV line (containing a comma-separated confidence value).
+ *    This skips any verbose reasoning or thinking output that precedes the actual data.
+ * 2. **Line-by-line parsing**: Processes each line from the detected start position,
+ *    filtering out lines containing markdown code fences (```), and delegates parsing
+ *    of valid CSV rows to `parseResponseRowNoPositions`.
+ *
+ * @param {Array<string>} responses - Array of response lines from the AI model
+ * @param {Array<string>} wordList - Target-language verse words in reading order
+ * @param {string} answer - Full AI response text (used for logging by parseResponseRowNoPositions)
+ * @param {Array<object>} translationOptions - Accumulator array for parsed translation entries;
+ *   each entry contains `{selections, confidence}` where selections is an array of
+ *   `{text, occurrence}` objects
+ * @param {boolean} success - Initial success state flag
+ * @returns {boolean} Returns false if any line failed to parse, otherwise returns the
+ *   input success value. A line fails parsing if it's malformed CSV or contains words
+ *   not found in the verse
+ */
+function parseLlmResponse(responses, wordList, answer, translationOptions, success) {
+  const length = responses.length;
+  let start = 0;
+
+  if (length > 5) { // if the response was verbose, like in thinking mode, skip ahead to csv line
+    for (let i = start; i < length; i++) {
+      const response = responses[i];
+      const parts = response?.split(',');
+
+      if (parts?.length == 2) {
+        let confidence = removeQuotes(parts[1]);
+        confidence = parseInt(confidence, 10);
+
+        if (!Number.isNaN(confidence)) {
+          start = i;
+          break;
+        }
+      }
+    }
+  }
+
+  for (let i = start; i < length; i++) {
+    const response = responses[i];
+
+    if (response) {
+      if (!response.includes('```')) {
+        const success_ = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
+
+        if (!success_) {
+          success = false;
+        }
+      }
+    }
+  }
+  return success;
+}
+
+/**
  * Translates a gateway language phrase to target-language word(s) within a verse
  * using an AI model, returning an array of selection objects with confidence scores.
  *
@@ -1378,39 +1442,14 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     answer = response;
     elapsedStr = elapsed;
     model = model_;
+    const startParse = Date.now();
     responses = answer.split('\n');
-    const length = responses.length;
-    let start = 0;
+    success = parseLlmResponse(responses, wordList, answer, translationOptions, success);
 
-    if (length > 5) { // if the response was verbose, like in thinking mode, skip ahead to csv line
-      for (let i = start; i < length; i++) {
-        const response = responses[i];
-        const parts = response?.split(',');
+    const elapsedParse = (Date.now() - startParse);
 
-        if (parts?.length == 2) {
-          let confidence = removeQuotes(parts[1]);
-          confidence = parseInt(confidence, 10);
-
-          if (!Number.isNaN(confidence)) {
-            start = i;
-            break;
-          }
-        }
-      }
-    }
-
-    for (let i = start; i < length; i++) {
-      const response = responses[i];
-
-      if (response) {
-        if (!response.includes('```')) {
-          const success_ = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
-
-          if (!success_) {
-            success = false;
-          }
-        }
-      }
+    if (elapsedParse > 1000) {
+      console.warn(`parsing took over a second: ${elapsedParse / 1000}`);
     }
   } catch (e) {
     console.log('AI query error',e);
@@ -1421,6 +1460,8 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       model: '',
     };
   }
+
+  const startParse2 = Date.now();
 
   if (!success) {
     if (!answer.includes(',')) {
@@ -1497,6 +1538,12 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
 
   if (!success) {
     console.log('no selections found', translationOptions);
+  }
+
+  const elapsedParse2 = (Date.now() - startParse2);
+
+  if (elapsedParse2 > 1000) {
+    console.warn(`2nd parsing took over a second: ${elapsedParse2/ 1000}`);
   }
 
   if (success) {
@@ -1578,7 +1625,7 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
     let [phraseTranslation, confidence] = rowParts;
     confidence = confidence ? parseInt(removeQuotes(confidence), 10) : 0;
     phraseTranslation = normalizer(removeQuotes(phraseTranslation));
-    const selections = [];
+    let selections = [];
     const words = phraseTranslation.split(' ');
 
     for (const word of words) {
@@ -1590,103 +1637,66 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
     }
 
     if (selections.length) {
-      // Find the best positions for each word in selections within wordList
-      // such that the positions are grouped closest together
+      const normalizedWordList = wordList.map(word => normalizeForCompare(word));
+      const phraseWords = selections.map(selection => normalizeForCompare(selection.text));
+      let bestPositions = findContiguousMatchPositions(normalizedWordList, phraseWords);
 
-      // Build a map of word -> array of positions in wordList
-      const wordPositionsMap = new Map();
-
-      for (const selection of selections) {
-        const normalizedWord = normalizeForCompare(selection.text);
-        const positions = [];
-
-        for (let i = 0; i < wordList.length; i++) {
-          if (normalizeForCompare(wordList[i]) === normalizedWord) {
-            positions.push(i);
-          }
-        }
-        wordPositionsMap.set(selection.text, positions);
+      if (!bestPositions) {
+        bestPositions = findBestOrderedMatchPositions(normalizedWordList, phraseWords);
       }
 
-      // Verify all words exist in wordList
-      let allWordsFound = true;
+      if (bestPositions) {
+        selections = buildSelectionsFromPositions(wordList, bestPositions);
 
-      for (const selection of selections) {
-        const positions = wordPositionsMap.get(selection.text);
-
-        if (!positions || positions.length === 0) {
-          allWordsFound = false;
-          break;
-        }
-      }
-
-      if (!allWordsFound) {
-        error = true;
+        selectionWords.push({ selections, confidence });
       } else {
-        // Find the combination of positions that minimizes the span
-        // (distance between first and last selected position)
-        let bestCombination = null;
-        let minSpan = Infinity;
+        const newSelections = [];
 
-        // eslint-disable-next-line no-inner-declarations
-        function findBestGrouping(selectionIndex, currentPositions) {
-          if (selectionIndex === selections.length) {
-            // Calculate span of current combination
-            const sorted = [...currentPositions].sort((a, b) => a - b);
-            const span = sorted[sorted.length - 1] - sorted[0];
+        for (const selection of selections) {
+          const normalizedSelectionText = normalizeForCompare(selection.text);
+          const matchIndex = normalizedWordList.indexOf(normalizedSelectionText);
 
-            if (span < minSpan) {
-              minSpan = span;
-              bestCombination = [...currentPositions];
-            }
-            return;
-          }
-
-          const word = selections[selectionIndex].text;
-          const availablePositions = wordPositionsMap.get(word);
-
-          for (const pos of availablePositions) {
-            findBestGrouping(selectionIndex + 1, [...currentPositions, pos]);
+          if (matchIndex >= 0) {
+            newSelections.push({
+              text: normalizer(wordList[matchIndex]),
+              occurrence: findOccurrenceForPos(
+                matchIndex + 1,
+                wordList,
+                normalizer(wordList[matchIndex])
+              ),
+            });
           }
         }
 
-        findBestGrouping(0, []);
-
-        // Assign the best positions and convert to occurrences
-        if (bestCombination) {
-          for (let i = 0; i < selections.length; i++) {
-            const position = bestCombination[i];
-            selections[i].text = normalizer(wordList[position]);
-            selections[i].occurrence = findOccurrenceForPos(position + 1, wordList, selections[i].text);
-            // delete selections[i].position
-          }
+        if (newSelections && (newSelections.length > 0)) {
+          selections = newSelections;
+          selectionWords.push({ selections, confidence });
         } else {
           error = true;
         }
       }
 
-      //TRICKY - now need to de-normalize the selections so that they are exactly the same as in the verse text
-      for (const selection of selections) {
-        const normalizedWord = normalizeForCompare(selection.text);
-        let occurrence = 0;
+      if (!error) {
+        //TRICKY - now need to de-normalize the selections so that they are exactly the same as in the verse text
+        for (const selection of selections) {
+          const normalizedWord = normalizeForCompare(selection.text);
+          let occurrence = 0;
 
-        for (let i = 0; i < wordList.length; i++) {
-          const wordListElement = wordList[i];
+          for (let i = 0; i < wordList.length; i++) {
+            const wordListElement = wordList[i];
 
-          if (normalizeForCompare(wordListElement) === normalizedWord) {
-            if (selection.occurrence === ++occurrence) {
-              if (wordListElement !== selection.text) { // if not exactly the same format, though they match when normalized
-                selection.text = wordListElement; // make word exactly the same
-                break;
+            if (normalizeForCompare(wordListElement) === normalizedWord) {
+              if (selection.occurrence === ++occurrence) {
+                if (wordListElement !== selection.text) { // if not exactly the same format, though they match when normalized
+                  selection.text = wordListElement; // make word exactly the same
+                  break;
+                }
               }
             }
           }
         }
       }
 
-      selectionWords.push({ selections, confidence });
-    } else {
-      error = true;
     }
     console.log('translation', { translation: phraseTranslation, confidence });
   } else {
@@ -3284,36 +3294,6 @@ export class LlmRequestQueue {
    *   The callback receives no arguments and its return value is ignored. Common operations
    *   include updating configuration, clearing caches, or resetting state.
    * @returns {Promise<void>} - Resolves when the pause cycle completes (callback finishes
-   *   and processing is scheduled to resume)
-   * @example
-   * // Update AI server configuration safely
-   * await llmQueue.requestPause(async () => {
-   *   await updateAIServerSettings({
-   *     baseUrl: 'http://new-server:1234',
-   *     model: 'updated-model'
-   *   });
-   *   console.log('Configuration updated successfully');
-   * });
-   * // Queue automatically resumes processing after this point
-   *
-   * @example
-   * // Clear cached data during maintenance window
-   * await llmQueue.requestPause(async () => {
-   *   await clearTranslationCache();
-   *   await resetMetrics();
-   *   console.log('Maintenance completed');
-   * });
-   *
-   * @example
-   * // Synchronous operation (wrapped in async for consistency)
-   * await llmQueue.requestPause(async () => {
-   *   llmQueue.requestQueue.clearQueue();
-   *   console.log('Queue cleared');
-   * });
-   *
-   * @see {@link processNextRequest} - Internal method that respects the pause flag
-   * @see {@link makeSuggestionRequest} - Method that schedules request processing (will be paused if flag is set)
-   * @see {@link delay} - Utility function used for polling the busy flag
    */
   async requestPause(asyncCallback) {
     if (asyncCallback) {
@@ -3339,6 +3319,51 @@ export class LlmRequestQueue {
   }
 
   /**
+   * Searches the request queue for a request matching the specified key.
+   *
+   * This method iterates through the internal queue to find a request whose embedded key
+   * property matches the provided search key. The key is typically constructed from context
+   * information (e.g., book, chapter, verse, and gateway-language phrase) to uniquely identify
+   * translation suggestion requests.
+   *
+   * @param {string} key - The unique identifier to search for in the queue
+   * @returns {number} The zero-based index of the matching request in the queue, or -1 if not found
+   */
+  findKeyInQueue(key) {
+    if (key) {
+      for (let i = 0; i < this.requestQueue.queue.length; i++) {
+        const item = this.requestQueue.queue[i];
+        const itemKey = item?.request?.key;
+
+        if (itemKey === key) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * Removes a request from the queue by its key.
+   *
+   * Searches the queue for a request matching the provided key and removes it if found.
+   * Uses findKeyInQueue to locate the request's position, then removes it from the queue
+   * array using splice.
+   *
+   * @param {string} key - The unique identifier of the request to remove
+   * @returns {boolean} - Returns true if request was found and removed, false otherwise
+   */
+  removeKeyInQueue(key) {
+    const index = this.findKeyInQueue(key);
+
+    if (index >= 0) {
+      this.requestQueue.queue.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Queues a translation suggestion request and schedules processing. If cached suggestions
    * exist for the request's key and force is false, returns cached results immediately via callback.
    * Otherwise adds request to queue (front if priority is true, back if false) and triggers
@@ -3361,11 +3386,12 @@ export class LlmRequestQueue {
           callback(memory);
         });
         return;
-      } else {
-        console.log(`makeSuggestionRequest adding to queue - ${request}`);
-        const requestData = {request, callback};
-        this.requestQueue.addRequest(requestData, priority);
       }
+
+      this.removeKeyInQueue(request.key); // remove previous metching queries
+      console.log(`makeSuggestionRequest adding to queue - ${request}`);
+      const requestData = { request, callback };
+      this.requestQueue.addRequest(requestData, priority);
     }
     this.processNextRequestIfNotBusy();
   }
