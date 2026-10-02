@@ -1696,7 +1696,6 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
           }
         }
       }
-
     }
     console.log('translation', { translation: phraseTranslation, confidence });
   } else {

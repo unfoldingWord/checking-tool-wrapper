@@ -127,7 +127,9 @@ function Container({
   const generateSuggestionsRestartRef = useRef(false);
   const generateSuggestionsRunningRef = useRef(false);
   const suggestionsRequestQueueRef = useRef(new LlmRequestQueue(__suggestionsCache));
-  const { checkId, groupId, reference } = contextId || {};
+  const {
+    checkId, groupId, reference,
+  } = contextId || {};
   const { chapter, verse } = reference || {};
 
   /**
@@ -264,7 +266,9 @@ function Container({
             console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
             const contextId = check?.contextId;
             const reference = contextId?.reference;
-            const { bookId, chapter, verse } = reference || {};
+            const {
+              bookId, chapter, verse,
+            } = reference || {};
             const checkId = contextId?.checkId;
             const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
 
@@ -614,7 +618,9 @@ function Container({
     }
 
     const reference = contextId?.reference;
-    const { bookId, chapter, verse } = reference || {};
+    const {
+      bookId, chapter, verse,
+    } = reference || {};
 
     const targetLanguageId = targetLanguageDetails?.id;
     const checkId = contextId?.checkId;
