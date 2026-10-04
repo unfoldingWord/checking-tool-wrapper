@@ -258,9 +258,11 @@ function Container({
             break;
           }
 
-          count++;
+          // if llm suggestions turned off, don't use previous llm suggestion in memory
+          const force_ = force || !settingsForSuggestionsRef.current.llmSuggestionsEnabled;
 
           if (!check?.selections?.length) {
+            count++;
             const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
 
             console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
@@ -283,6 +285,7 @@ function Container({
               );
 
               if (gatewayLanguageQuote_) {
+                const llmQueryUrl_ = settingsForSuggestionsRef.current.llmQueryUrl && settingsForSuggestionsRef.current.llmSuggestionsEnabled || '';
                 const data = {
                   alignedGLText: gatewayLanguageQuote_,
                   contextId,
@@ -292,7 +295,7 @@ function Container({
                   key,
                   llmSuggestionsEnabled: settingsForSuggestionsRef.current.llmSuggestionsEnabled,
                   llmTemperature: settingsForSuggestionsRef.current.llmTemperature,
-                  llmQueryUrl: settingsForSuggestionsRef.current.llmQueryUrl,
+                  llmQueryUrl: llmQueryUrl_,
                   targetLanguageDetails,
                   verseText,
                 };
@@ -325,7 +328,7 @@ function Container({
                     console.log(`makeLlmRequestAndWaitForResponse result`, data);
                   },
                   false,
-                  force,
+                  force_,
                 );
               } else {
                 console.log(`makeLlmRequestAndWaitForResponse no glQuote`, check);

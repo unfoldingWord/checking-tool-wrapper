@@ -3510,24 +3510,33 @@ export class LlmRequestQueue {
           results = { error: e.toString() };
         }
 
+        const _bestSuggestion = (results?.bestSelections?.length &&
+          results?.bestSelections[0]) || { selections: [] };
+
+        const haveAsuggestion = !results.error && _bestSuggestion?.selections?.length;
+
         if (nextLlmRequest?.callback) {
-          console.log(`processNextRequest - doing callback`);
+          if (!haveAsuggestion && requestData.llmSuggestionsEnabled) { // fall back to algorithmic suggestion
+            console.log(`processNextRequest - empty suggestion, trying algorithm`);
+            requestData.llmSuggestionsEnabled = false;
+            requestData.llmQueryUrl = '';
+            this.requestQueue.addRequest(requestData, true);
+          } else {
+            console.log(`processNextRequest - doing callback`);
 
-          try {
-            await nextLlmRequest.callback(results);
-          } catch (e) {
-            console.error(`processNextRequest - callback ERROR`, e);
+            try {
+              await nextLlmRequest.callback(results);
+            } catch (e) {
+              console.error(`processNextRequest - callback ERROR`, e);
+            }
+
+            console.log(`processNextRequest - callback finished`);
           }
-
-          console.log(`processNextRequest - callback finished`);
         }
 
         this.busy = false;
 
-        const _bestSuggestion = (results?.bestSelections?.length &&
-          results?.bestSelections[0]) || { selections: [] };
-
-        if (!results.error && _bestSuggestion?.selections?.length) {
+        if (haveAsuggestion) {
           // if we have at least one suggestion, save it
           this.saveSuggestionsMemoryForKey(requestData.key, results);
         }
