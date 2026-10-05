@@ -108,6 +108,7 @@ function VerseCheckWrapper({
     alignedGlTextState: '',
   });
 
+  // Updates mode and selections when selections change asynchronously (e.g., from file system loads)
   useEffect(() => {
     // TRICKY: for async fs loads, need to update mode and selection state when new selection loads
     setLocalState({
@@ -117,6 +118,7 @@ function VerseCheckWrapper({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selections]);
 
+  // Resets component state and validates aligned GL text when context changes to a new verse
   useEffect(() => {
     let alignedGlTextState = alignedGLText;
 

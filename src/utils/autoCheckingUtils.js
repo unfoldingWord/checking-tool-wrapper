@@ -1415,7 +1415,7 @@ function parseLlmResponse(responses, wordList, answer, translationOptions, succe
  * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} for non-AI alternative
  */
 export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData, lmOptions = { enable_thinking: false }) {
-  let translationOptions = [];
+  let selectionOptions = [];
   const { systemPrompt, input } = buildTranslationOptionsPrompt(
     wordList.join(' '),
     targetLangCode,
@@ -1444,7 +1444,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     model = model_;
     const startParse = Date.now();
     responses = answer.split('\n');
-    success = parseLlmResponse(responses, wordList, answer, translationOptions, success);
+    success = parseLlmResponse(responses, wordList, answer, selectionOptions, success);
 
     const elapsedParse = (Date.now() - startParse);
 
@@ -1467,9 +1467,9 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     if (!answer.includes(',')) {
       //handle case where AI did not use CSV format, but fields are separated by newlines
       if (responses?.length === 2) {
-        translationOptions = [];
+        selectionOptions = [];
         const response = answer.replace('\n', ',');
-        success = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
+        success = parseResponseRowNoPositions(response, wordList, answer, selectionOptions);
       }
     } else {
       // Handle verbose responses by retrying with the last non-empty CSV-looking line.
@@ -1494,21 +1494,21 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
           if (Number.isNaN(confidenceNum) || confidenceNum < 0 || confidenceNum > 100) {
             success = false;
           } else {
-            translationOptions = [];
+            selectionOptions = [];
             const response = `"${phraseTranslation}",${confidence}`;
-            success = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
+            success = parseResponseRowNoPositions(response, wordList, answer, selectionOptions);
           }
         }
       }
     }
   }
 
-  for (const option of translationOptions) {
-    // remove duplicates from selections
+  for (const selectionOption of selectionOptions) {
+    // remove duplicates from each selection
     const seen = new Set();
     const uniqueSelections = [];
 
-    for (const word of option.selections) {
+    for (const word of selectionOption.selections) {
       if (word.occurrence && word.text) {
         const key = word.text + ':' + word.occurrence;
 
@@ -1524,20 +1524,20 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     }
 
     if (!uniqueSelections.length) {
-      option.selections = false;
+      selectionOption.selections = false;
     } else {
-      if (option.selections.length != uniqueSelections.length) { // if changed then update
-        option.selections = uniqueSelections;
+      if (selectionOption.selections.length !== uniqueSelections.length) { // if changed then update
+        selectionOption.selections = uniqueSelections;
       }
     }
   }
 
-  translationOptions = translationOptions.filter(item => (item.selections));
+  let _selectionOptions = selectionOptions.filter(item => (item.selections));
 
-  success = !!translationOptions.length;
+  success = !!_selectionOptions.length;
 
   if (!success) {
-    console.log('no selections found', translationOptions);
+    console.log('no selections found', _selectionOptions);
   }
 
   const elapsedParse2 = (Date.now() - startParse2);
@@ -1547,18 +1547,18 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
   }
 
   if (success) {
-    translationOptions.sort((a, b) => b.confidence - a.confidence);
+    selectionOptions.sort((a, b) => b.confidence - a.confidence);
     console.log('AI response:', {
       wordList: formatNumberedVerse(wordList.join(' ')),
       glPhrase,
       answer,
-      matches: translationOptions.length,
-      selectionWords: translationOptions,
+      matches: selectionOptions.length,
+      selectionWords: selectionOptions,
     });
 
     return {
       error: false,
-      bestSelections: translationOptions,
+      bestSelections: selectionOptions,
       elapsedStr,
       model,
     };
@@ -1567,7 +1567,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       wordList: formatNumberedVerse(wordList.join(' ')),
       glPhrase,
       answer,
-      matches: translationOptions.length,
+      matches: _selectionOptions.length,
     });
   }
   return {
@@ -1605,6 +1605,76 @@ function findOccurrenceForPos(position, wordList, text) {
   }
   occurrence = occurrence || 1; // fallback if AI got mixed up
   return occurrence;
+}
+
+/**
+ * De-normalizes word selections to match the exact formatting in the verse text.
+ *
+ * This function restores the original word forms from the verse after selections have been
+ * processed using normalized (lowercase, punctuation-free) text. During selection matching,
+ * words are normalized to ignore case and punctuation differences, but the final selections
+ * must contain the exact word forms as they appear in the verse (preserving capitalization,
+ * accents, etc.).
+ *
+ * **Processing Logic:**
+ * For each selection in the selections array:
+ * 1. Normalizes the selection's text using `normalizeForCompare` (lowercase, no punctuation)
+ * 2. Iterates through the verse wordList to find matching words
+ * 3. When a normalized match is found, checks if it's the correct occurrence
+ * 4. If the occurrence matches and the word forms differ, replaces the selection's text
+ *    with the exact word form from the verse
+ *
+ * **Why De-normalization is Necessary:**
+ * - AI responses contain normalized word forms for consistency
+ * - The checking tool stores and displays exact verse word forms
+ * - Capitalization matters for proper display (e.g., verse-initial words)
+ * - Accents and special characters must be preserved (e.g., Spanish á, ñ)
+ *
+ * @param {Array<{text: string, occurrence: number}>} selections - Array of selection objects
+ *   to de-normalize. Each object contains:
+ *   - **text**: Normalized word form (lowercase, no punctuation)
+ *   - **occurrence**: 1-based occurrence index of this word in the verse
+ * @param {Array<string>} wordList - Target-language verse words in reading order, containing
+ *   the original word forms with exact capitalization and punctuation
+ * @returns {void} - Mutates the selections array in place by updating the `text` property
+ *   of each selection to match the exact word form from wordList
+ * @example
+ * const selections = [
+ *   {text: 'la', occurrence: 1},
+ *   {text: 'iglesia', occurrence: 1}
+ * ];
+ * const wordList = ['Para', 'la', 'Iglesia', 'de', 'Éfeso'];
+ *
+ * deNormalizeSelections(selections, wordList);
+ * // selections is now:
+ * // [
+ * //   {text: 'la', occurrence: 1},      // unchanged (already matches)
+ * //   {text: 'Iglesia', occurrence: 1}  // updated to capital I
+ * // ]
+ *
+ * @see {@link normalizeForCompare} - Function used to normalize words for comparison
+ * @see {@link parseResponseRowNoPositions} - Caller that uses this function to restore exact word forms
+ * @see {@link buildSelectionsFromPositions} - Another caller that creates selections needing de-normalization
+ */
+function deNormalizeSelections(selections, wordList) {
+  //TRICKY - now need to de-normalize the selections so that they are exactly the same as in the verse text
+  for (const selection of selections) {
+    const normalizedWord = normalizeForCompare(selection.text);
+    let occurrence = 0;
+
+    for (let i = 0; i < wordList.length; i++) {
+      const wordListElement = wordList[i];
+
+      if (normalizeForCompare(wordListElement) === normalizedWord) {
+        if (selection.occurrence === ++occurrence) {
+          if (wordListElement !== selection.text) { // if not exactly the same format, though they match when normalized
+            selection.text = wordListElement; // make word exactly the same
+            break;
+          }
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -1677,24 +1747,7 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
       }
 
       if (!error) {
-        //TRICKY - now need to de-normalize the selections so that they are exactly the same as in the verse text
-        for (const selection of selections) {
-          const normalizedWord = normalizeForCompare(selection.text);
-          let occurrence = 0;
-
-          for (let i = 0; i < wordList.length; i++) {
-            const wordListElement = wordList[i];
-
-            if (normalizeForCompare(wordListElement) === normalizedWord) {
-              if (selection.occurrence === ++occurrence) {
-                if (wordListElement !== selection.text) { // if not exactly the same format, though they match when normalized
-                  selection.text = wordListElement; // make word exactly the same
-                  break;
-                }
-              }
-            }
-          }
-        }
+        deNormalizeSelections(selections, wordList);
       }
     }
     console.log('translation', { translation: phraseTranslation, confidence });
@@ -3492,36 +3545,19 @@ export class LlmRequestQueue {
       let results = { error: true };
 
       if (requestData) {
-        try {
-          this.busy = true;
-          results = await getBestSelections(
-            requestData.verseText,
-            requestData.llmQueryUrl,
-            requestData.targetLanguageDetails,
-            requestData.alignedGLText,
-            requestData.gatewayLanguageCode,
-            requestData.selectionsData,
-            requestData.currentModel,
-            requestData.llmTemperature
-          );
-          results.request = requestData;
-        } catch (e) {
-          console.error(`processNextRequest - getBestSelections ERROR`, e);
-          results = { error: e.toString() };
-        }
-
-        const _bestSuggestion = (results?.bestSelections?.length &&
-          results?.bestSelections[0]) || { selections: [] };
-
-        const haveAsuggestion = !results.error && _bestSuggestion?.selections?.length;
+        results = await this.doQuery(results, requestData);
+        let haveAsuggestion = this.testIfWeHaveASuggestion(results);
+        console.log(haveAsuggestion);
 
         if (nextLlmRequest?.callback) {
-          if (!haveAsuggestion && requestData.llmSuggestionsEnabled) { // fall back to algorithmic suggestion
+          if (!haveAsuggestion && requestData.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
             console.log(`processNextRequest - empty suggestion, trying algorithm`);
-            requestData.llmSuggestionsEnabled = false;
             requestData.llmQueryUrl = '';
-            this.requestQueue.addRequest(requestData, true);
-          } else {
+            results = await this.doQuery(results, requestData);
+            haveAsuggestion = this.testIfWeHaveASuggestion(results);
+          }
+
+          if (haveAsuggestion) {
             console.log(`processNextRequest - doing callback`);
 
             try {
@@ -3546,6 +3582,79 @@ export class LlmRequestQueue {
     } else {
       console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
     }
+  }
+
+  /**
+   * Validates whether a translation suggestion result contains at least one valid selection.
+   *
+   * This method examines a results object from either AI or algorithmic translation suggestion
+   * processes to determine if it contains usable translation data. A suggestion is considered
+   * valid when it contains at least one non-empty selection and no error flag is set.
+   *
+   * The validation checks two conditions:
+   * 1. The results object must not have an error flag set
+   * 2. The first (best) selection must contain at least one word selection
+   *
+   * @param {object} results - The results object from getBestSelections or related functions
+   * @param {boolean} results.error - Error flag indicating if the query failed
+   * @param {Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>} results.bestSelections -
+   *   Array of translation options sorted by confidence, where each option contains:
+   *   - selections: Array of {text, occurrence} objects representing matched words
+   *   - confidence: Integer 0-100 indicating match certainty
+   * @returns {boolean} Returns true if results contain at least one valid selection with no errors,
+   *   false otherwise
+   */
+  testIfWeHaveASuggestion(results) {
+    const _bestSuggestion = (results?.bestSelections?.length &&
+      results?.bestSelections[0]) || {selections: []};
+    const haveSelections = _bestSuggestion?.selections?.length;
+    const haveAsuggestion = !results.error && haveSelections;
+    return haveAsuggestion;
+  }
+
+  /**
+   * Processes a single translation suggestion request by querying the AI model or algorithmic fallback.
+   *
+   * This method executes the core translation suggestion logic by calling getBestSelections with the
+   * request parameters. It handles both AI-powered and algorithmic suggestion modes based on the
+   * llmQueryUrl parameter in the request data.
+   *
+   * The method manages the busy state by setting it to true before processing and relies on the
+   * calling code to clear it after completion. It attaches the original request data to the results
+   * for context tracking and error correlation.
+   *
+   * @param {object} results - Initial results object to populate, typically `{error: true}`
+   * @param {object} requestData - Request parameters containing:
+   *   - verseText: Target-language verse text
+   *   - llmQueryUrl: AI server URL or null for algorithmic mode
+   *   - targetLanguageDetails: Language metadata
+   *   - alignedGLText: Gateway-language phrase
+   *   - gatewayLanguageCode: Gateway language code
+   *   - selectionsData: Historical translation data
+   *   - currentModel: AI model identifier
+   *   - llmTemperature: AI temperature setting
+   * @returns {Promise<object>} Results object containing error status, best selections, elapsed time,
+   *   model name, and the original request data. Returns `{error: errorMessage}` if an exception occurs
+   */
+  async doQuery(results, requestData) {
+    try {
+      this.busy = true;
+      results = await getBestSelections(
+        requestData.verseText,
+        requestData.llmQueryUrl,
+        requestData.targetLanguageDetails,
+        requestData.alignedGLText,
+        requestData.gatewayLanguageCode,
+        requestData.selectionsData,
+        requestData.currentModel,
+        requestData.llmTemperature
+      );
+      results.request = requestData;
+    } catch (e) {
+      console.error(`processNextRequest - getBestSelections ERROR`, e);
+      return { error: e.toString() };
+    }
+    return results;
   }
 
   /**

@@ -209,7 +209,6 @@ function Container({
       }
 
       if (generateSuggestionsRestartRef.current
-        || !settingsForSuggestionsRef.current.llmSuggestionsEnabled
         || !settingsForSuggestionsRef.current.suggestionsEnabled) {
         return;
       }
@@ -218,7 +217,8 @@ function Container({
       let foundMatch = false;
 
       for (const groupId of groupIds) {
-        if (generateSuggestionsRestartRef.current) {
+        if (generateSuggestionsRestartRef.current
+          || !settingsForSuggestionsRef.current.suggestionsEnabled) {
           break;
         }
 
@@ -253,7 +253,6 @@ function Container({
 
         for (const check of group) {
           if (generateSuggestionsRestartRef.current
-            || !settingsForSuggestionsRef.current.llmSuggestionsEnabled
             || !settingsForSuggestionsRef.current.suggestionsEnabled) {
             break;
           }
@@ -285,7 +284,7 @@ function Container({
               );
 
               if (gatewayLanguageQuote_) {
-                const llmQueryUrl_ = settingsForSuggestionsRef.current.llmQueryUrl && settingsForSuggestionsRef.current.llmSuggestionsEnabled || '';
+                const llmQueryUrl_ = settingsForSuggestionsRef.current.llmSuggestionsEnabled ? settingsForSuggestionsRef.current.llmQueryUrl : '';
                 const data = {
                   alignedGLText: gatewayLanguageQuote_,
                   contextId,
@@ -325,19 +324,24 @@ function Container({
                 suggestionsRequestQueue.makeSuggestionRequest(
                   request,
                   data => { // callback function
-                    console.log(`makeLlmRequestAndWaitForResponse result`, data);
+                    console.log(`generateSuggestionForSubgroup result`, data);
                   },
                   false,
                   force_,
                 );
               } else {
-                console.log(`makeLlmRequestAndWaitForResponse no glQuote`, check);
+                console.log(`generateSuggestionForSubgroup no glQuote`, check);
               }
             }
           }
         }
       }
       console.log(`generateSuggestionForSubgroup added ${count} checks`);
+    }
+
+    if (generateSuggestionsRestartRef.current
+      || !settingsForSuggestionsRef.current.suggestionsEnabled) {
+      return;
     }
 
     if (!skipCurrentGroup) {
@@ -350,6 +354,10 @@ function Container({
     }
   }
 
+  // Effect hook that runs once on component mount to:
+  // 1. Load and apply correct scripture pane display settings
+  // 2. Restart suggestion generation if settings were previously loaded
+  // 3. Clean up by stopping suggestion generation and clearing pending requests on unmount
   useEffect(() => {
     settingsHelper.loadCorrectPaneSettings(
       setToolSettings,
@@ -375,6 +383,11 @@ function Container({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Effect hook that triggers suggestion generation when requested.
+  // Monitors `triggerGenerateSuggestionsStart` state to initiate or restart
+  // the suggestion generation process for all groups in the checking tool.
+  // If generation is already running, sets a restart flag to stop the current
+  // process and begin a new one. Only proceeds if suggestions are enabled in settings.
   useEffect(() => {
     if (triggerGenerateSuggestionsStart) {
       if (!generateSuggestionsRunningRef.current) {
@@ -389,6 +402,10 @@ function Container({
     }
   }, [triggerGenerateSuggestionsStart]);
 
+  // Effect hook that clears verse edit mode when the check context changes.
+  // Monitors changes to checkId, groupId, chapter, or verse and resets
+  // the editVerseInScrPane state to null, ensuring the Expanded Scripture Pane
+  // exits edit mode when navigating to a different check or verse.
   useEffect(() => {
     // if context changes, clear edit verse
     setEditVerseInScrPane(null);
@@ -414,6 +431,7 @@ function Container({
       setEditVerseInScrPane(null);
     }
   }
+
 
   /**
    * Updates the cached previous-selection history when a check's selections change.
@@ -600,7 +618,7 @@ function Container({
     } = data || {};
 
     const groupId = contextId?.groupId || '';
-    const llmQueryUrl_ = (llmSuggestionsEnabled && llmQueryUrl) || null;
+    const llmQueryUrl_ = llmSuggestionsEnabled ? llmQueryUrl : null;
 
     if (selectionsData?.groupId !== groupId) {
       const selectionsForWord = fetchPreviousSelectionData(
