@@ -1114,7 +1114,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   // Extract the translation count map for this specific gateway language phrase
   let counts = getPreviousTranslationExactMatchCounts(previousTranslationData, glPhrase);
 
-  if (!counts?.length) { // if no exact match using original
+  if (!Object.keys(counts)?.length) { // if no exact match using original
     counts = getPreviousTranslationPartialMatchCounts(previousTranslationData, glPhrase);
   }
 
@@ -1205,7 +1205,11 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     considerCandidate(availablePositions, phraseWords.length, count);
   }
 
-  if (!candidates.size) {
+  const minimumConfidenceLevel = 80;
+  const haveConfidentCandidate = [...candidates.values()]
+    .some(candidate => candidate.confidence > minimumConfidenceLevel);
+
+  if (!haveConfidentCandidate) {
     // Use fuzzy compares to do closest matches for translated target words in word list and calculate confidence
     // For each previous translation, try fuzzy matching each phrase word against verse words
     for (const [phrase, count] of countEntries) {
@@ -1241,8 +1245,8 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         // Deduplicate positions, keeping order
         const uniquePositions = [...new Set(matchedPositions)].sort((a, b) => a - b);
         const avgSimilarity = totalSimilarity / phraseWords.length;
-        // Scale confidence: fuzzy matches are always weaker than exact ones (capped below 50)
-        const fuzzyConfidence = Math.round(avgSimilarity * 45);
+        // Scale confidence: fuzzy matches are always weaker than exact ones (capped below 90)
+        const fuzzyConfidence = Math.round(avgSimilarity * 90);
         const key = uniquePositions.join(':');
         const existing = candidates.get(key);
 
@@ -1735,6 +1739,34 @@ function parseResponseRowNoPositions(response, wordList, answer, selectionWords)
                 normalizer(wordList[matchIndex])
               ),
             });
+          } else { // find best match with fuzzy compare
+            let bestMatchIndex = -1;
+            let bestSimilarity = 0;
+
+            for (let i = 0; i < normalizedWordList.length; i++) {
+              const similarity = fuzzyStringSimilarity(
+                normalizedSelectionText,
+                normalizedWordList[i]
+              );
+
+              if (similarity > bestSimilarity) {
+                bestSimilarity = similarity;
+                bestMatchIndex = i;
+              }
+            }
+
+            if (bestMatchIndex >= 0 && bestSimilarity > 0.3) {
+              const bestMatch = wordList[bestMatchIndex];
+
+              newSelections.push({
+                text: bestMatch,
+                occurrence: findOccurrenceForPos(
+                  bestMatchIndex + 1,
+                  normalizedWordList,
+                  normalizer(bestMatch)
+                ),
+              });
+            }
           }
         }
 
@@ -3456,7 +3488,7 @@ export class LlmRequestQueue {
    * processing without blocking the caller.
    */
   processNextRequestIfNotBusy() {
-    if (!this.busy && !this.pause) {
+    if (!this.busy && !this.pause && this.requestQueue.hasRequests()) {
       delay(100).then(() => {
         console.log(`processNextRequestIfNotBusy - after delay calling processNextRequest`);
         this.processNextRequest();
@@ -3538,7 +3570,7 @@ export class LlmRequestQueue {
    * @see {@link delay} - Utility function used for scheduling continuation
    */
   async processNextRequest() {
-    if (!this.busy && !this.pause) {
+    if (!this.busy && !this.pause && this.requestQueue.hasRequests()) {
       console.log(`processNextRequest - not busy getting request`);
       const nextLlmRequest = this.requestQueue.getNextRequest();
       const requestData = nextLlmRequest?.request;
@@ -3547,7 +3579,6 @@ export class LlmRequestQueue {
       if (requestData) {
         results = await this.doQuery(results, requestData);
         let haveAsuggestion = this.testIfWeHaveASuggestion(results);
-        console.log(haveAsuggestion);
 
         if (nextLlmRequest?.callback) {
           if (!haveAsuggestion && requestData.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
@@ -3557,17 +3588,15 @@ export class LlmRequestQueue {
             haveAsuggestion = this.testIfWeHaveASuggestion(results);
           }
 
-          if (haveAsuggestion) {
-            console.log(`processNextRequest - doing callback`);
+          console.log(`processNextRequest - doing callback`);
 
-            try {
-              await nextLlmRequest.callback(results);
-            } catch (e) {
-              console.error(`processNextRequest - callback ERROR`, e);
-            }
-
-            console.log(`processNextRequest - callback finished`);
+          try {
+            await nextLlmRequest.callback(results);
+          } catch (e) {
+            console.error(`processNextRequest - callback ERROR`, e);
           }
+
+          console.log(`processNextRequest - callback finished`);
         }
 
         this.busy = false;
