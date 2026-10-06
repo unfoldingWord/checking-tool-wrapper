@@ -455,11 +455,15 @@ function Container({
       newSelections
     );
 
-    // force resuggest current group with new alignment data
-    generateSuggestionsForGroups(true, true, true).then(() => {
-      // continue processing other groups
-      generateSuggestionsForGroups(false, false, false, true).then(() => {});
-    });
+    // only regenerate if using llm suggestions
+    if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
+      // force resuggest current group with new alignment data
+      generateSuggestionsForGroups(true, true, true).then(() => {
+        // continue processing other groups
+        generateSuggestionsForGroups(false, false, false, true).then(() => {
+        });
+      });
+    }
   }
 
   /**
@@ -475,11 +479,15 @@ function Container({
       // save current settings
       settingsForSuggestionsRef.current = data;
 
-      // force resuggest current group
-      generateSuggestionsForGroups(true, true, true).then(() => {
-        // continue processing other groups
-        generateSuggestionsForGroups(false, true, false, true).then(() => {});
-      });
+      // only regenerate if using llm suggestions
+      if (data.llmSuggestionsEnabled) {
+        // force resuggest current group
+        generateSuggestionsForGroups(true, true, true).then(() => {
+          // continue processing other groups
+          generateSuggestionsForGroups(false, true, false, true).then(() => {
+          });
+        });
+      }
     }
   }
 

@@ -3635,7 +3635,7 @@ export class LlmRequestQueue {
    */
   testIfWeHaveASuggestion(results) {
     const _bestSuggestion = (results?.bestSelections?.length &&
-      results?.bestSelections[0]) || {selections: []};
+      results?.bestSelections[0]) || { selections: [] };
     const haveSelections = _bestSuggestion?.selections?.length;
     const haveAsuggestion = !results.error && haveSelections;
     return haveAsuggestion;
