@@ -824,7 +824,7 @@ function getPreviousTranslationPartialMatchCounts(
  */
 function buildSelectionsFromPositions(wordList, positions) {
   return positions.map(position => {
-    const text = normalizer(wordList[position]);
+    const text = wordList[position];
     return {
       text,
       occurrence: findOccurrenceForPos(position + 1, wordList, text),
