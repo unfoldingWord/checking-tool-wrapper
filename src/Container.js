@@ -394,7 +394,8 @@ function Container({
         if (settingsForSuggestionsRef.current?.suggestionsEnabled) {
           const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
           suggestionsRequestQueue.clearPendingRequests();
-          generateSuggestionsForGroups().then(() => { });
+          const currentGroupOnly = !settingsForSuggestionsRef.current.llmMaximizeRequests;
+          generateSuggestionsForGroups(true, true, currentGroupOnly).then(() => { });
         }
       } else { // currently running, need to restart
         generateSuggestionsRestartRef.current = true;
@@ -459,9 +460,10 @@ function Container({
     if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
       // force resuggest current group with new alignment data
       generateSuggestionsForGroups(true, true, true).then(() => {
-        // continue processing other groups
-        generateSuggestionsForGroups(false, false, false, true).then(() => {
-        });
+        if (settingsForSuggestionsRef.current.llmMaximizeRequests) {
+          // continue processing other groups
+          generateSuggestionsForGroups(false, false, false, true).then(() => { });
+        }
       });
     }
   }
@@ -470,7 +472,7 @@ function Container({
    * Saves checking settings to the tCore folder.
    * @param {object} data - settings data to save
    */
-  function saveSettingsForChecking(data) {
+  function saveSettingsForChecking(data, noRestart = false) {
     const projectSaveLocation = tc?.projectSaveLocation;
 
     saveSettingsForChecking_(projectSaveLocation, data);
@@ -480,12 +482,13 @@ function Container({
       settingsForSuggestionsRef.current = data;
 
       // only regenerate if using llm suggestions
-      if (data.llmSuggestionsEnabled) {
+      if (data.llmSuggestionsEnabled && !noRestart) {
         // force resuggest current group
         generateSuggestionsForGroups(true, true, true).then(() => {
-          // continue processing other groups
-          generateSuggestionsForGroups(false, true, false, true).then(() => {
-          });
+          if (settingsForSuggestionsRef.current.llmMaximizeRequests) {
+            // continue processing other groups
+            generateSuggestionsForGroups(false, true, false, true).then(() => { });
+          }
         });
       }
     }

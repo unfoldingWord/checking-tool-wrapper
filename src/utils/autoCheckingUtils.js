@@ -3582,10 +3582,14 @@ export class LlmRequestQueue {
 
         if (nextLlmRequest?.callback) {
           if (!haveAsuggestion && requestData.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
+            const llmResults = results; // save llm results
             console.log(`processNextRequest - empty suggestion, trying algorithm`);
             requestData.llmQueryUrl = '';
             results = await this.doQuery(results, requestData);
-            haveAsuggestion = this.testIfWeHaveASuggestion(results);
+            results.llmError = llmResults?.error;
+            results.algorithmFallback = true;
+            // we don't want to save algorithm suggestions
+            // haveAsuggestion = this.testIfWeHaveASuggestion(results);
           }
 
           console.log(`processNextRequest - doing callback`);
