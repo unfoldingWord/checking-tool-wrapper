@@ -39,6 +39,7 @@ import {
   normalizeForCompare,
   queryLmStudioModels,
   readSettingsForChecking_,
+  redactOptions,
   saveAlignmentData,
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
@@ -574,7 +575,7 @@ function Container({
       const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
 
       if (suggestionsRequestQueue) {
-        console.log(`makeLlmRequestAndWaitForResponse request`, request);
+        console.log(`makeLlmRequestAndWaitForResponse request`, redactOptions(request));
 
         suggestionsRequestQueue.makeSuggestionRequest(
           request,
@@ -621,6 +622,7 @@ function Container({
       contextId,
       currentModel,
       force,
+      llmApiToken,
       llmSuggestionsEnabled,
       llmTemperature,
       llmQueryUrl,
@@ -657,7 +659,7 @@ function Container({
     const targetLanguageId = targetLanguageDetails?.id;
     const checkId = contextId?.checkId;
     const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
-    console.log(key);
+    // console.log(key);
 
     await delay(1);
 
@@ -666,6 +668,7 @@ function Container({
     await delay(1);
 
     const results = await makeLlmRequestAndWaitForResponse({
+      apiToken: llmApiToken,
       alignedGLText,
       currentModel,
       force,

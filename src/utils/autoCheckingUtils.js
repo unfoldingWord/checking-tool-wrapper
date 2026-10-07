@@ -2960,13 +2960,14 @@ export async function getBestSelections(
   gatewayLanguageCode,
   selectionsData,
   model,
-  llmTemperature
+  llmTemperature,
+  apiToken
 ) {
   // eslint-disable-next-line no-unused-vars
   let results = {
-    error: true,
     bestSelections: [],
     elapsedStr: '',
+    error: true,
     model: '',
   };
 
@@ -2991,6 +2992,7 @@ export async function getBestSelections(
       };
     } else {
       const lmOptions = {
+        apiToken,
         baseUrl: llmQueryUrl,
         enable_thinking: false,
         model,
@@ -3473,7 +3475,7 @@ export class LlmRequestQueue {
       }
 
       this.removeKeyInQueue(request.key); // remove previous metching queries
-      console.log(`makeSuggestionRequest adding to queue - ${request}`);
+      console.log(`makeSuggestionRequest adding to queue - `, redactOptions(request));
       const requestData = { request, callback };
       this.requestQueue.addRequest(requestData, priority);
     }
@@ -3747,3 +3749,21 @@ export class LlmRequestQueue {
     cache[key] = data;
   }
 }
+
+/**
+ * Copies options with the API token masked so it is never written to the logs.
+ *
+ * @param {Object} [options={}] - Configuration options
+ * @returns {Object} Options safe to log
+ */
+export function redactOptions(options = {}) {
+  if (!options.apiToken) {
+    return options;
+  }
+
+  return {
+    ...options,
+    apiToken: '***',
+  };
+}
+
