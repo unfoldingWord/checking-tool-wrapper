@@ -287,6 +287,7 @@ function Container({
               if (gatewayLanguageQuote_) {
                 const llmQueryUrl_ = settingsForSuggestionsRef.current.llmSuggestionsEnabled ? settingsForSuggestionsRef.current.llmQueryUrl : '';
                 const data = {
+                  apiToken: settingsForSuggestionsRef.current.llmApiToken,
                   alignedGLText: gatewayLanguageQuote_,
                   contextId,
                   currentModel: settingsForSuggestionsRef.current.currentModel,
@@ -475,6 +476,11 @@ function Container({
    */
   function saveSettingsForChecking(data, noRestart = false) {
     const projectSaveLocation = tc?.projectSaveLocation;
+    const llmApiToken = data?.llmApiToken;
+
+    if (!llmApiToken) {
+      console.warn(`saveSettingsForChecking llmApiToken is being cleared ${llmApiToken}`);
+    }
 
     saveSettingsForChecking_(projectSaveLocation, data);
 
@@ -773,7 +779,7 @@ function Container({
             editVerseInScripturePane={editVerseInExpandedScripturePane}
             getSuggestions={data => getSuggestions(data)}
             updateSelectionsData={data => updateSelectionsData(data)}
-            saveSattingsForChecking={data => saveSettingsForChecking(data)}
+            saveSettingsForChecking={data => saveSettingsForChecking(data)}
             readSettingsForChecking={() => readSettingsForChecking()}
             getModelsForChecking={options => getModelsForChecking(options)}
           />

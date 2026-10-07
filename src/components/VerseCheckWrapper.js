@@ -74,7 +74,7 @@ function VerseCheckWrapper({
   editVerseInScripturePane,
   getSuggestions, // if defined will call to get suggestions
   updateSelectionsData, // if defined will call to update suggestions
-  saveSattingsForChecking, // if defined will call save latest settings
+  saveSettingsForChecking, // if defined will call save latest settings
   readSettingsForChecking, // if defined will get latest settings
   getModelsForChecking, // if defined will fetch available models
 }) {
@@ -401,7 +401,7 @@ function VerseCheckWrapper({
         changeSelectionsInLocalState={changeSelectionsInLocalState}
         manifest={manifest}
         getSuggestions={getSuggestions}
-        saveSattingsForChecking={saveSattingsForChecking}
+        saveSettingsForChecking={saveSettingsForChecking}
         readSettingsForChecking={readSettingsForChecking}
         getModelsForChecking={getModelsForChecking}
       />
@@ -442,7 +442,7 @@ VerseCheckWrapper.propTypes = {
   editVerseInScripturePane: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func,
   updateSelectionsData: PropTypes.func,
-  saveSattingsForChecking: PropTypes.func,
+  saveSettingsForChecking: PropTypes.func,
   readSettingsForChecking: PropTypes.func,
   getModelsForChecking: PropTypes.func,
 };

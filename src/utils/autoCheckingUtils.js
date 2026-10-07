@@ -202,6 +202,7 @@ async function streamChatMessage(options) {
  */
 export async function queryLmStudio(query, options = {}) {
   const {
+    apiToken,
     // baseUrl = 'http://localhost:1234',
     baseUrl = LM_STUDIO_URL, // use local server
     model = 'local-model',
@@ -219,6 +220,7 @@ export async function queryLmStudio(query, options = {}) {
   let actualModel_ = null;
 
   const lmQueryOptions = {
+    apiToken,
     baseUrl,
     enable_thinking,
     maxTokens,
@@ -232,7 +234,7 @@ export async function queryLmStudio(query, options = {}) {
     typeof window !== 'undefined' &&
     typeof window.lmStudio?.query === 'function';
 
-  console.log('queryLmStudio - starting fetch isLmStudioQueryAvailable', isLmStudioQueryAvailable);
+  // console.log('queryLmStudio - starting fetch isLmStudioQueryAvailable', isLmStudioQueryAvailable);
   let error = false;
 
   if (isLmStudioQueryAvailable) { // calling Electron process
@@ -309,7 +311,8 @@ export async function queryLmStudioModels(options = {}) {
 
   if (isLmStudioModelsAvailable) { // calling Electron process
     try {
-      answer = await window.lmStudio.getAvailableModels({ baseUrl });
+      const llmOptions = { ...options, baseUrl };
+      answer = await window.lmStudio.getAvailableModels(llmOptions);
       console.log('getAvailableModels answer', answer);
     } catch (error) {
       const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
@@ -2497,7 +2500,7 @@ function getSettingsPath(projectPath) {
  * @returns {void}
  * @throws {Error} Logs error to console if file write fails, but does not throw
  * @example
- * saveSattingsForChecking_('/path/to/project', { autoCheck: true, threshold: 80 });
+ * saveSettingsForChecking_('/path/to/project', { autoCheck: true, threshold: 80 });
  * // Creates/updates: /path/to/tCore/checking_settings.json with formatted JSON
  */
 export function saveSettingsForChecking_(projectPath, data) {
@@ -3682,9 +3685,10 @@ export class LlmRequestQueue {
         requestData.gatewayLanguageCode,
         requestData.selectionsData,
         requestData.currentModel,
-        requestData.llmTemperature
+        requestData.llmTemperature,
+        requestData.apiToken,
       );
-      results.request = requestData;
+      results.request = redactOptions(requestData);
     } catch (e) {
       console.error(`processNextRequest - getBestSelections ERROR`, e);
       return { error: e.toString() };
