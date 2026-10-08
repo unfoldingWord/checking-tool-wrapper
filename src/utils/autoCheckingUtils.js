@@ -14,6 +14,8 @@ import * as gatewayLanguageHelpers from '../helpers/gatewayLanguageHelpers';
 import delay from './delay';
 
 const LM_STUDIO_URL = 'http://192.168.142.70:1234';
+/** most previous-translation entries sent in an AI prompt, strongest evidence first */
+const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
 
 //////////////////////////////
 // Testing Support functions
@@ -31,6 +33,7 @@ const LM_STUDIO_URL = 'http://192.168.142.70:1234';
  * in a buffer to handle chunks that arrive split across multiple reads.
  *
  * @param {object} options - Configuration options for the chat completion request
+ * @param {string} [options.apiToken] - Bearer token sent as the `Authorization` header when set
  * @param {string} options.baseUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234')
  * @param {string} options.model - Model identifier as configured in LM Studio (e.g., 'local-model')
  * @param {string} options.systemPrompt - System prompt that sets the AI's behavior and context
@@ -38,36 +41,42 @@ const LM_STUDIO_URL = 'http://192.168.142.70:1234';
  * @param {number} options.temperature - Sampling temperature (0.0-1.0); higher values increase randomness
  * @param {number} options.maxTokens - Maximum number of tokens to generate in the response
  * @param {boolean} options.enable_thinking - Whether to enable thinking mode via chat_template_kwargs
- * @returns {Promise<{replyText: string, actualModel: string}>} Object containing:
- *   - replyText: Complete accumulated response text from the model
+ * @returns {Promise<{replyText: string, reasoningText: string, actualModel: string}>} Object containing:
+ *   - replyText: Complete accumulated answer text from the model, or its reasoning text when
+ *     the model gave no separate answer
+ *   - reasoningText: Complete accumulated reasoning text from the model
  *   - actualModel: Actual model name reported by the server (may differ from requested model)
  * @throws {Error} If the server is unreachable, returns a non-OK status, or the response is malformed
  * @example
- * const result = await streamChatMessage(
- *   'http://localhost:1234',
- *   'local-model',
- *   'You are a helpful assistant.',
- *   'What is the capital of France?',
- *   0.7,
- *   2048,
- *   false
- * );
+ * const result = await streamChatMessage({
+ *   baseUrl: 'http://localhost:1234',
+ *   model: 'local-model',
+ *   systemPrompt: 'You are a helpful assistant.',
+ *   query: 'What is the capital of France?',
+ *   temperature: 0.7,
+ *   maxTokens: 2048,
+ *   enable_thinking: false,
+ * });
  * console.log(result.replyText); // "The capital of France is Paris."
- * console.log(`Request took ${Date.now() - result.startTime}ms`);
  *
  * @see {@link queryLmStudio} - Higher-level wrapper function that calls this internally
  */
 async function streamChatMessage(options) {
   const {
-    baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking,
+    apiToken, baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking,
   } = options;
   const url = `${baseUrl}/v1/chat/completions`;
+  const headers = { 'Content-Type': 'application/json' };
   let response;
+
+  if (apiToken) { // hosted OpenAI-compatible servers require a bearer token
+    headers.Authorization = `Bearer ${apiToken}`;
+  }
 
   try {
     response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
         model,
         messages: [
@@ -96,6 +105,7 @@ async function streamChatMessage(options) {
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let replyText = '';
+  let reasoningText = '';
   let buffer = '';
   let actualModel = '';
 
@@ -130,17 +140,26 @@ async function streamChatMessage(options) {
         const chunk = JSON.parse(dataStr);
         actualModel = actualModel || chunk?.model || '';
         const delta = chunk?.choices?.[0]?.delta;
-        const text = delta?.content || delta?.reasoning_content;
 
-        if (text) {
-          replyText += text;
+        if (delta?.content) {
+          replyText += delta.content;
+        }
+
+        // reasoning is kept apart so it does not get mixed into the answer
+        const reasoning = delta?.reasoning_content || delta?.reasoning;
+
+        if (reasoning) {
+          reasoningText += reasoning;
         }
       } catch {
         // ignore malformed chunks
       }
     }
   }
-  return { replyText, actualModel };
+  // a model that put everything in its reasoning still gets parsed
+  return {
+    replyText: replyText, reasoningText, actualModel,
+  };
 }
 
 /**
@@ -163,6 +182,7 @@ async function streamChatMessage(options) {
  *
  * @param {string} query - The text prompt/question to send to the model
  * @param {object} [options={}] - Optional configuration overrides
+ * @param {string} [options.apiToken] - Bearer token sent as the `Authorization` header when set
  * @param {string} [options.baseUrl='http://192.168.142.70:1234'] - Base URL of the LM Studio server;
  *   defaults to LM_STUDIO_URL constant
  * @param {string} [options.model='local-model'] - Model identifier as loaded in LM Studio; the actual
@@ -217,6 +237,7 @@ export async function queryLmStudio(query, options = {}) {
   const finalSystemPrompt = enable_thinking ? systemPrompt : `/no_think\n${systemPrompt}`;
 
   let replyText_ = null;
+  let reasoningText_ = null;
   let actualModel_ = null;
 
   const lmQueryOptions = {
@@ -240,8 +261,9 @@ export async function queryLmStudio(query, options = {}) {
   if (isLmStudioQueryAvailable) { // calling Electron process
     try {
       const answer = await window.lmStudio.query(query, lmQueryOptions);
-      console.log(answer);
-      replyText_ = answer.replyText;
+      // console.log(answer);
+      replyText_ = answer.replyText || answer.reasoningText;
+      reasoningText_ = answer.reasoningText;
       actualModel_ = answer.actualModel;
       error = answer.error;
     } catch (e) {
@@ -252,9 +274,11 @@ export async function queryLmStudio(query, options = {}) {
     try {
       const {
         replyText,
+        reasoningText,
         actualModel,
       } = await streamChatMessage(lmQueryOptions);
-      replyText_ = replyText;
+      replyText_ = replyText || reasoningText;
+      reasoningText_ = reasoningText;
       actualModel_ = actualModel;
     } catch (e) {
       console.error(`queryLmStudio - streamChatMessage error`, e);
@@ -265,17 +289,19 @@ export async function queryLmStudio(query, options = {}) {
   const elapsedStr = ((Date.now() - startTime) / 1000).toFixed(2);
 
   console.log(
-    `Query using model "${actualModel_ || model}" took ${elapsedStr}s`
+    `Query using model "${actualModel_ || model}" took ${elapsedStr}s, response`,
+    { replyText_, reasoningText_ }
   );
 
   if (error || !replyText_) {
     const message = `Unexpected LM Studio response shape: received error or empty content`;
-    console.log(`${message}, replyText`, replyText_);
+    console.warn(`${message}, response`, { replyText_, reasoningText_ });
     throw new Error(message);
   }
 
   return {
     response: replyText_,
+    reasoningText: reasoningText_,
     elapsedStr,
     model: actualModel_ || model,
   };
@@ -287,7 +313,7 @@ export async function queryLmStudio(query, options = {}) {
  *
  * @param {object} [options] - optional overrides
  * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the LM Studio server
- * @returns {Promise<Array<object>>} - available model objects returned by LM Studio
+ * @returns {Promise<Array<string>>} - available model identifiers returned by LM Studio
  * @throws {Error} - if the server is unreachable or returns an error status
  * @example
  * const models = await queryLmStudioModels();
@@ -306,14 +332,14 @@ export async function queryLmStudioModels(options = {}) {
     typeof window !== 'undefined' &&
     typeof window.lmStudio?.query === 'function';
 
-  console.log('isLmStudioModelsAvailable', isLmStudioModelsAvailable);
+  // console.log('isLmStudioModelsAvailable', isLmStudioModelsAvailable);
   let answer;
 
   if (isLmStudioModelsAvailable) { // calling Electron process
     try {
       const llmOptions = { ...options, baseUrl };
       answer = await window.lmStudio.getAvailableModels(llmOptions);
-      console.log('getAvailableModels answer', answer);
+      // console.log('getAvailableModels answer', answer);
     } catch (error) {
       const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
       console.error(message);
@@ -364,7 +390,7 @@ export async function queryLmStudioModels(options = {}) {
  * @param {string} targetLangCode - language code of the verse (e.g. 'es-419')
  * @param {string} phrase - gateway language phrase to match (e.g. 'your old age')
  * @param {string} phraseLangCode - language code of the phrase (e.g. 'en')
- * @returns {string} - the fully populated prompt text
+ * @returns {{systemPrompt: string, query: string}} - object containing systemPrompt and query text
  */
 export function buildVerseMatchPrompt(verseContent, targetLangCode, phrase, phraseLangCode) {
   const systemPrompt = `You are an expert in biblical linguistics and cross-language word alignment.
@@ -525,22 +551,21 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
   // Default to using data directly as counts map
   let filteredMatches = {};
   const keys = Object.keys(data);
-  const wordList = verseContent.split(' ');
-  const normalizedWordList = wordList.map(word => normalizeForCompare(word));
+  const normalizedVerseWords = new Set(verseContent.split(' ').map(word => normalizeForCompare(word)));
 
   for (const glPhrase of keys) {
     const translations = data[glPhrase];
+
+    if (!translations || typeof translations !== 'object') {
+      continue;
+    }
+
     const translationKeys = Object.keys(translations);
     const filteredMatchesEntries = {};
 
     for (const translation of translationKeys) {
       const translationWords = translation.split(/\s+/).filter(Boolean);
-      const matchedWords = translationWords.map(word => {
-        const normalizedWord = normalizeForCompare(word);
-        const matchIndex = normalizedWordList.indexOf(normalizedWord);
-        return matchIndex >= 0 ? wordList[matchIndex] : null;
-      });
-      const exactMatch = matchedWords.every(Boolean);
+      const exactMatch = translationWords.every(word => normalizedVerseWords.has(normalizeForCompare(word)));
 
       if (exactMatch) {
         filteredMatchesEntries[translation] = data[glPhrase][translation];
@@ -592,6 +617,10 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
     }
   }
 
+  // Keep only the strongest evidence - every entry adds prompt tokens, and when nothing matched
+  // the verse `entries` falls back to the whole history, which slows every request
+  entries = entries.slice(0, MAX_PROMPT_PREVIOUS_TRANSLATIONS);
+
   // Return JSON string of filtered/sorted entries, or empty string if no entries
   const resultsJson = entries.length
     ? JSON.stringify(entries)
@@ -618,6 +647,13 @@ function formatNumberedVerse(verseContent) {
     .join(' ');
 }
 
+/**
+ * Saves translation alignment data to `translation_data.json` in the base tCore folder.
+ *
+ * @param {string} projectPath - Path to the current project directory
+ * @param {object} data - Alignment data to save
+ * @returns {void}
+ */
 export function saveAlignmentData(projectPath, data) {
   const metricsFilePath = getTcorePathFromProjectPath(projectPath, `translation_data.json`);
 
@@ -684,7 +720,7 @@ Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",9
 `;
 
   const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true);
-  console.log(`previousTranslations string length= ${previousTranslations.length}`);
+  // console.log(`previousTranslations string length= ${previousTranslations.length}`);
 
   // one labeled field per line, in the same order as the example above
   const lines = [
@@ -818,7 +854,7 @@ function getPreviousTranslationPartialMatchCounts(
 
 /**
  * Turns verse positions into the selection shape the checking tool stores, resolving each
- * word's text and occurrence exactly the way the AI path does in `parseResponseRowNoPositions`
+ * word's text and occurrence exactly the way the AI path does in `resolveLlmPhraseInVerse`
  * so selections coming from either path are indistinguishable downstream.
  *
  * @param {Array<string>} wordList - target-language verse words in reading order
@@ -1266,11 +1302,11 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     }
 
     if (candidates.size) {
-      console.log('fuzzy match response:', {
-        wordList: formatNumberedVerse(words.join(' ')),
-        glPhrase,
-        candidates: [...candidates.values()],
-      });
+      // console.log('fuzzy match response:', {
+      //   wordList: formatNumberedVerse(words.join(' ')),
+      //   glPhrase,
+      //   candidates: [...candidates.values()],
+      // });
     } else {
       console.log('algorithm response: no usable candidates for ', { glPhrase });
     }
@@ -1288,99 +1324,383 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     .slice(0, 3)
     .map(({ selections, confidence }) => ({ selections, confidence }));
 
-  // Log the results for debugging
-  console.log('algorithm response:', {
-    wordList: formatNumberedVerse(words.join(' ')),
-    glPhrase,
-    matches: bestSelections.length,
-    bestSelections,
-  });
+  // // Log the results for debugging
+  // console.log('algorithm response:', {
+  //   wordList: formatNumberedVerse(words.join(' ')),
+  //   glPhrase,
+  //   matches: bestSelections.length,
+  //   bestSelections,
+  // });
 
   return bestSelections;
 }
 
+/** most translation options returned from one AI response, matching the algorithmic path */
+const LLM_MAX_OPTIONS = 3;
+/** response cap when thinking is off - the answer is a few short CSV rows, so this only stops runaway output */
+const LLM_DEFAULT_MAX_TOKENS = 2048;
+/** tags some models wrap their reasoning in, e.g. `<think>...</think>` */
+const LLM_REASONING_TAGS = 'think|thinking|reasoning|reflection|thought';
+/** keys AI models commonly use for the rendering and the confidence when they answer in JSON */
+const LLM_JSON_TEXT_KEYS = ['rendering', 'text', 'translation', 'words', 'selection', 'answer', 'phrase', 'option'];
+const LLM_JSON_CONFIDENCE_KEYS = ['confidence', 'score', 'probability', 'certainty'];
+
 /**
- * Parses LLM response lines to extract translation suggestions with confidence scores.
+ * Removes the noise different AI models wrap around their answer so only candidate rows remain:
+ * reasoning blocks (`<think>...</think>` and similar), harmony-format channel tokens
+ * (`<|channel|>final<|message|>`), echoed `/no_think` directives, markdown fences and emphasis.
  *
- * This function processes responses from an AI language model that returns translation
- * suggestions in CSV format. It handles both standard responses and verbose responses
- * (such as those from thinking mode) by detecting the start of valid CSV data before
- * parsing.
- *
- * The function performs two main operations:
- * 1. **Response detection**: If the response contains more than 5 lines, it scans forward
- *    to find the first valid CSV line (containing a comma-separated confidence value).
- *    This skips any verbose reasoning or thinking output that precedes the actual data.
- * 2. **Line-by-line parsing**: Processes each line from the detected start position,
- *    filtering out lines containing markdown code fences (```), and delegates parsing
- *    of valid CSV rows to `parseResponseRowNoPositions`.
- *
- * @param {Array<string>} responses - Array of response lines from the AI model
- * @param {Array<string>} wordList - Target-language verse words in reading order
- * @param {string} answer - Full AI response text (used for logging by parseResponseRowNoPositions)
- * @param {Array<object>} translationOptions - Accumulator array for parsed translation entries;
- *   each entry contains `{selections, confidence}` where selections is an array of
- *   `{text, occurrence}` objects
- * @param {boolean} success - Initial success state flag
- * @returns {boolean} Returns false if any line failed to parse, otherwise returns the
- *   input success value. A line fails parsing if it's malformed CSV or contains words
- *   not found in the verse
+ * @param {string} answer - raw AI response text
+ * @returns {string} - the cleaned text
  */
-function parseLlmResponse(responses, wordList, answer, translationOptions, success) {
-  const length = responses.length;
-  let start = 0;
+function cleanLlmAnswer(answer) {
+  let text = String(answer || '');
 
-  if (length > 5) { // if the response was verbose, like in thinking mode, skip ahead to csv line
-    for (let i = start; i < length; i++) {
-      const response = responses[i];
-      const parts = response?.split(',');
+  // drop complete reasoning blocks
+  text = text.replace(new RegExp(`<(${LLM_REASONING_TAGS})>[\\s\\S]*?</\\1>`, 'gi'), '\n');
 
-      if (parts?.length == 2) {
-        let confidence = removeQuotes(parts[1]);
-        confidence = parseInt(confidence, 10);
+  // a closing tag without its opening tag (opening tag came from the chat template) - keep what follows it
+  const closingTag = new RegExp(`</(${LLM_REASONING_TAGS})>`, 'gi');
+  let lastClosingEnd = -1;
+  let match;
 
-        if (!Number.isNaN(confidence)) {
-          start = i;
-          break;
-        }
+  while ((match = closingTag.exec(text))) {
+    lastClosingEnd = match.index + match[0].length;
+  }
+
+  if (lastClosingEnd >= 0) {
+    text = text.slice(lastClosingEnd);
+  }
+
+  // harmony format (e.g. gpt-oss) - the answer is the message of the final channel
+  const finalChannel = text.lastIndexOf('<|channel|>final');
+
+  if (finalChannel >= 0) {
+    const messageStart = text.indexOf('<|message|>', finalChannel);
+    text = messageStart >= 0 ? text.slice(messageStart) : text.slice(finalChannel);
+  }
+
+  return text
+    .replace(new RegExp(`</?(${LLM_REASONING_TAGS})>`, 'gi'), '\n') // an unclosed tag - drop just the tag
+    .replace(/<\|[^|>]*\|>/g, '\n') // remaining special tokens
+    .replace(/\/no_think/gi, '')
+    .replace(/```[\w-]*/g, '\n')
+    .replace(/[*`]/g, '');
+}
+
+/**
+ * Converts a confidence value from an AI response to an integer 0-100. Accepts `98`, `"98"`,
+ * `98%` and fractional scores such as `0.98`.
+ *
+ * @param {string|number} value - confidence as returned by the AI
+ * @returns {number|null} - integer 0-100, or null when the value is not a number
+ */
+function normalizeLlmConfidence(value) {
+  const valueStr = removeQuotes(String(value ?? '')).replace('%', '').trim();
+  let confidence = parseFloat(valueStr);
+
+  if (Number.isNaN(confidence)) {
+    return null;
+  }
+
+  if (valueStr.includes('.') && confidence > 0 && confidence <= 1) { // fractional score
+    confidence *= 100;
+  }
+  return Math.max(0, Math.min(100, Math.round(confidence)));
+}
+
+/**
+ * Pulls `{phrase, confidence}` rows out of an AI answer given as JSON, e.g.
+ * `[{"rendering":"iglesia","confidence":98}]`, `{"options":[...]}` or `[["iglesia",98]]`.
+ * Entries carrying `usageCount` are echoes of the PREVIOUS TRANSLATIONS and are skipped.
+ *
+ * @param {string} text - cleaned AI answer
+ * @returns {Array<{phrase: string, confidence: number}>} - rows found, empty when not JSON
+ */
+function extractLlmJsonRows(text) {
+  const rows = [];
+  let data = null;
+
+  for (const [open, close] of [['[', ']'], ['{', '}']]) {
+    const start = text.indexOf(open);
+    const end = text.lastIndexOf(close);
+
+    if (start >= 0 && end > start) {
+      try {
+        data = JSON.parse(text.slice(start, end + 1));
+        break;
+      } catch {
+        // not JSON - try the next shape
       }
     }
   }
 
-  for (let i = start; i < length; i++) {
-    const response = responses[i];
+  if (data && !Array.isArray(data) && typeof data === 'object') {
+    data = Object.values(data).find(Array.isArray) || [data];
+  }
 
-    if (response) {
-      if (!response.includes('```')) {
-        const success_ = parseResponseRowNoPositions(response, wordList, answer, translationOptions);
+  if (!Array.isArray(data)) {
+    return rows;
+  }
 
-        if (!success_) {
-          success = false;
+  for (const item of data) {
+    let phrase = null;
+    let confidence = null;
+
+    if (Array.isArray(item) && item.length >= 2) {
+      [phrase, confidence] = item;
+    } else if (item && typeof item === 'object' && !('usageCount' in item)) {
+      phrase = item[LLM_JSON_TEXT_KEYS.find(key => item[key] !== undefined)];
+      confidence = item[LLM_JSON_CONFIDENCE_KEYS.find(key => item[key] !== undefined)];
+    }
+
+    if (Array.isArray(phrase)) {
+      phrase = phrase.join(' ');
+    }
+
+    confidence = normalizeLlmConfidence(confidence);
+
+    if (typeof phrase === 'string' && confidence !== null) {
+      rows.push({ phrase, confidence });
+    }
+  }
+  return rows;
+}
+
+/**
+ * Pulls candidate `{phrase, confidence}` rows out of an AI answer, tolerating the many ways
+ * different models deviate from the requested `"word word",confidence` CSV format:
+ * reasoning text before the answer, JSON instead of CSV, several rows on one line, list
+ * prefixes (`1.`, `-`), curly or single quotes, missing quotes, `;`/`|`/tab separators,
+ * `98%` or `0.98` confidences, or the phrase and confidence on separate lines.
+ *
+ * When reasoning precedes the answer it can contain example rows too, so `finalRows` holds
+ * just the last consecutive run of row lines - where the final answer is - while `rows`
+ * holds every row found, for use when the final run turns out to be unusable.
+ *
+ * @param {string} answer - raw AI response text
+ * @returns {{rows: Array<{phrase: string, confidence: number, strict: boolean}>,
+ *   finalRows: Array<{phrase: string, confidence: number, strict: boolean}>}} - `strict` marks
+ *   rows found without quotes, whose words must all be in the verse to be trusted
+ */
+function extractLlmRows(answer) {
+  const text = cleanLlmAnswer(answer);
+
+  if (/^\s*[[{]/.test(text)) {
+    const jsonRows = extractLlmJsonRows(text);
+
+    if (jsonRows.length) {
+      return { rows: jsonRows, finalRows: jsonRows };
+    }
+  }
+
+  const lines = text.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  const runs = [];
+  let lastRowLine = -2;
+
+  const addRow = (lineIndex, phrase, confidence, strict) => {
+    if (lineIndex !== lastRowLine && lineIndex !== lastRowLine + 1) {
+      runs.push([]); // rows are no longer consecutive - start a new run
+    }
+    runs[runs.length - 1].push({
+      phrase, confidence, strict,
+    });
+    lastRowLine = lineIndex;
+  };
+
+  lines.forEach((line, lineIndex) => {
+    // "phrase",98 - possibly several on one line; quotes may be straight, curly or single
+    const quotedRow = /["“”„«»']([^"“”„«»\n]*?)["“”„«»']\s*[,;|\t:]\s*["']?(\d{1,3}(?:\.\d+)?)\s*%?/g;
+    let found = false;
+    let match;
+
+    while ((match = quotedRow.exec(line))) {
+      const confidence = normalizeLlmConfidence(match[2]);
+
+      if (confidence !== null) {
+        addRow(lineIndex, match[1], confidence, false);
+        found = true;
+      }
+    }
+
+    if (!found) { // phrase,98 - without quotes, optionally as a list item
+      const unquotedRow = line.match(/^(?:[-•]|\d+[.)])?\s*([^,;|\t"]+?)\s*[,;|\t]\s*(\d{1,3}(?:\.\d+)?)\s*%?$/);
+
+      if (unquotedRow) {
+        addRow(lineIndex, unquotedRow[1], normalizeLlmConfidence(unquotedRow[2]), true);
+      } else if (/^\d{1,3}(?:\.\d+)?\s*%?$/.test(line) && lineIndex > 0) {
+        // phrase and confidence on separate lines
+        const phrase = removeQuotes(lines[lineIndex - 1]);
+
+        if (phrase && !/\d/.test(phrase)) {
+          addRow(lineIndex, phrase, normalizeLlmConfidence(line), true);
         }
       }
     }
+  });
+
+  if (!runs.length && lines.length === 1 && !/\d/.test(lines[0])) {
+    // just the words, without a confidence
+    runs.push([{
+      phrase: removeQuotes(lines[0]), confidence: 50, strict: true,
+    }]);
   }
-  return success;
+
+  return {
+    rows: runs.flat(),
+    finalRows: runs[runs.length - 1] || [],
+  };
+}
+
+/**
+ * Strips accents so a word an AI model re-spelled without them (`Efeso`) still finds its
+ * verse word (`Éfeso`).
+ * @param {string} word
+ * @returns {string}
+ */
+function foldAccents(word) {
+  return word.normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+/**
+ * Locates the words of an AI-suggested phrase in the verse and turns them into selections.
+ * Each word is matched exactly first, then ignoring accents, then (unless `strict`) by fuzzy
+ * similarity; words that cannot be found are dropped. The matched words are then placed in
+ * the verse as an adjacent run if possible, otherwise as the tightest in-order placement.
+ *
+ * @param {string} phrase - words suggested by the AI
+ * @param {Array<string>} wordList - target-language verse words in reading order
+ * @param {Array<string>} normalizedWordList - `wordList` through `normalizeForCompare`
+ * @param {Array<string>} foldedWordList - `normalizedWordList` through `foldAccents`
+ * @param {boolean} strict - when true every word must be found, without fuzzy matching
+ * @returns {Array<{text: string, occurrence: number}>|null} - selections, or null if none found
+ */
+function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict) {
+  const phraseWords = (phrase || '')
+    .split(/[\s,]+/)
+    .map(word => normalizeForCompare(word.replace(/:\d+$/, ''))) // drop `word:3` positions
+    .filter(Boolean);
+
+  if (!phraseWords.length) {
+    return null;
+  }
+
+  const verseWords = [];
+
+  for (const word of phraseWords) {
+    let verseWord = null;
+
+    if (normalizedWordList.includes(word)) {
+      verseWord = word;
+    } else {
+      const foldedIndex = foldedWordList.indexOf(foldAccents(word));
+
+      if (foldedIndex >= 0) {
+        verseWord = normalizedWordList[foldedIndex];
+      } else if (!strict) {
+        let bestSimilarity = 0.3; // minimum similarity accepted
+
+        normalizedWordList.forEach(normalizedWord => {
+          const similarity = fuzzyStringSimilarity(word, normalizedWord);
+
+          if (similarity > bestSimilarity) {
+            bestSimilarity = similarity;
+            verseWord = normalizedWord;
+          }
+        });
+      }
+    }
+
+    if (verseWord) {
+      verseWords.push(verseWord);
+    } else if (strict) {
+      return null;
+    }
+  }
+
+  if (!verseWords.length) {
+    return null;
+  }
+
+  let positions = findContiguousMatchPositions(normalizedWordList, verseWords) ||
+    findBestOrderedMatchPositions(normalizedWordList, verseWords);
+
+  if (!positions) { // words are out of verse order - take the first unused position of each
+    const used = new Set();
+
+    for (const word of verseWords) {
+      const index = normalizedWordList.findIndex((verseWord, i) => verseWord === word && !used.has(i));
+
+      if (index >= 0) {
+        used.add(index);
+      }
+    }
+    positions = [...used].sort((a, b) => a - b);
+  }
+
+  return positions.length ? buildSelectionsFromPositions(wordList, positions) : null;
+}
+
+/**
+ * Turns an AI answer into up to `LLM_MAX_OPTIONS` translation options for the verse.
+ * Rows that resolve to the same words are merged keeping the higher confidence.
+ *
+ * @param {string} answer - raw AI response text
+ * @param {Array<string>} wordList - target-language verse words in reading order
+ * @returns {Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>} -
+ *   options sorted by confidence, highest first; empty when nothing usable was found
+ */
+export function parseLlmSelectionOptions(answer, wordList) {
+  const normalizedWordList = wordList.map(word => normalizeForCompare(word));
+  const foldedWordList = normalizedWordList.map(foldAccents);
+  const { rows, finalRows } = extractLlmRows(answer);
+
+  const toOptions = candidateRows => {
+    const optionsByWords = new Map();
+
+    for (const {
+      phrase, confidence, strict,
+    } of candidateRows) {
+      const selections = resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict);
+
+      if (selections) {
+        const key = selections.map(({ text, occurrence }) => `${text}:${occurrence}`).join(' ');
+        const existing = optionsByWords.get(key);
+
+        if (!existing || existing.confidence < confidence) {
+          optionsByWords.set(key, { selections, confidence });
+        }
+      }
+    }
+
+    return [...optionsByWords.values()]
+      .sort((a, b) => b.confidence - a.confidence)
+      .slice(0, LLM_MAX_OPTIONS);
+  };
+
+  const options = toOptions(finalRows);
+  return (options.length || finalRows.length === rows.length) ? options : toOptions(rows);
 }
 
 /**
  * Translates a gateway language phrase to target-language word(s) within a verse
  * using an AI model, returning an array of selection objects with confidence scores.
  *
- * This function queries an LM Studio AI model to find the best target-language translation
- * option(s) for a gateway-language phrase, using only words found in the target verse.
- * The AI is guided by previous translation history to maintain consistency across the project.
+ * This function queries an AI model (LM Studio or any OpenAI-compatible server) to find the
+ * best target-language translation option(s) for a gateway-language phrase, using only words
+ * found in the target verse. The AI is guided by previous translation history to maintain
+ * consistency across the project.
  *
- * Response parsing handles multiple formats:
+ * Response parsing (see {@link parseLlmSelectionOptions}) tolerates the formats different
+ * models actually produce:
  * - Standard CSV: "word word",confidence
- * - Verbose responses (thinking mode): skips to the last valid CSV line
- * - Newline-separated fields: converted to CSV format
- * - Malformed responses: attempts recovery by extracting the last valid line
+ * - Reasoning before the answer (`<think>` blocks, harmony channels, or plain text)
+ * - JSON arrays/objects instead of CSV
+ * - Several rows on one line, list prefixes, other quotes/separators, `98%` or `0.98`
+ * - Phrase and confidence on separate lines, or just the words with no confidence
  *
- * The function validates all returned selections to ensure:
- * - Each word has both text and occurrence fields
- * - No duplicate word:occurrence pairs exist
- * - All words are present in the target verse
+ * Words are matched to the verse exactly, then ignoring accents, then by fuzzy similarity,
+ * and options resolving to the same words are merged.
  *
  * @param {Array<string>} wordList - target-language verse words in reading order
  * @param {string} targetLangCode - language code of the verse (e.g. 'es-419')
@@ -1393,15 +1713,17 @@ function parseLlmResponse(responses, wordList, answer, translationOptions, succe
  * @param {string} [lmOptions.baseUrl] - LM Studio server URL override
  * @param {string} [lmOptions.model] - AI model identifier override
  * @param {number} [lmOptions.temperature] - sampling temperature override
- * @param {number} [lmOptions.maxTokens] - max response tokens override
- * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>} -
- *   array of translation options (up to 3), each containing:
+ * @param {number} [lmOptions.maxTokens] - max response tokens override; defaults to
+ *   `LLM_DEFAULT_MAX_TOKENS` when thinking is off
+ * @param {string} [lmOptions.apiToken] - bearer token for servers that require one
+ * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>} -
+ *   `bestSelections` holds up to 3 options sorted by confidence, each containing:
  *   - selections: array of {text, occurrence} objects representing matched words
- *     - text: the normalized word form from the verse
+ *     - text: the word exactly as it appears in the verse
  *     - occurrence: 1-based occurrence index of this word in the verse
  *   - confidence: integer 0-100 indicating match certainty
- *   Returns empty array [] on failure or when no valid translations are found
- * @throws Does not throw; logs errors and returns empty array on failure
+ *   `error` is true only when the AI request itself failed
+ * @throws Does not throw; logs errors and returns empty bestSelections on failure
  * @example
  * const wordList = ['para', 'la', 'iglesia', 'de', 'Éfeso'];
  * const result = await getBestTWordSelectionWithConfidenceFromLlm(
@@ -1412,17 +1734,16 @@ function parseLlmResponse(responses, wordList, answer, translationOptions, succe
  *   { church: { 'iglesia': 7, 'la iglesia': 3 } },
  *   { enable_thinking: false }
  * );
- * // Returns: [
+ * // result.bestSelections: [
  * //   { selections: [{text: 'iglesia', occurrence: 1}], confidence: 98 },
  * //   { selections: [{text: 'la', occurrence: 1}, {text: 'iglesia', occurrence: 1}], confidence: 70 }
  * // ]
  *
  * @see {@link buildTranslationOptionsPrompt} for the prompt construction
- * @see {@link parseResponseRowNoPositions} for response parsing logic
+ * @see {@link parseLlmSelectionOptions} for response parsing logic
  * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} for non-AI alternative
  */
 export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData, lmOptions = { enable_thinking: false }) {
-  let selectionOptions = [];
   const { systemPrompt, input } = buildTranslationOptionsPrompt(
     wordList.join(' '),
     targetLangCode,
@@ -1430,36 +1751,28 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     glLangCode,
     previousTranslationData,
   );
-  let success = true;
+  const options = {
+    enable_thinking: false,
+    ...lmOptions,
+    systemPrompt,
+  };
+
+  if (!options.maxTokens && !options.enable_thinking) {
+    options.maxTokens = LLM_DEFAULT_MAX_TOKENS;
+  }
+
   let answer = '';
-  let responses = null;
   let elapsedStr = '0';
   let model = '';
 
   try {
-    const options = {
-      ...lmOptions,
-      systemPrompt,
-    };
-    const {
-      response,
-      elapsedStr: elapsed,
-      model: model_,
-    } = await queryLmStudio(input, options);
-    answer = response;
-    elapsedStr = elapsed;
-    model = model_;
-    const startParse = Date.now();
-    responses = answer.split('\n');
-    success = parseLlmResponse(responses, wordList, answer, selectionOptions, success);
-
-    const elapsedParse = (Date.now() - startParse);
-
-    if (elapsedParse > 1000) {
-      console.warn(`parsing took over a second: ${elapsedParse / 1000}`);
-    }
+    ({
+      response: answer,
+      elapsedStr,
+      model,
+    } = await queryLmStudio(input, options));
   } catch (e) {
-    console.log('AI query error',e);
+    console.warn('AI query error', e);
     return {
       error: true,
       bestSelections: [],
@@ -1468,115 +1781,22 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     };
   }
 
-  const startParse2 = Date.now();
+  const bestSelections = parseLlmSelectionOptions(answer, wordList);
 
-  if (!success) {
-    if (!answer.includes(',')) {
-      //handle case where AI did not use CSV format, but fields are separated by newlines
-      if (responses?.length === 2) {
-        selectionOptions = [];
-        const response = answer.replace('\n', ',');
-        success = parseResponseRowNoPositions(response, wordList, answer, selectionOptions);
-      }
-    } else {
-      // Handle verbose responses by retrying with the last non-empty CSV-looking line.
-      const lastNonEmptyLine = responses
-        ?.map(response => response?.trim())
-        .filter(Boolean)
-        .pop();
-
-      if (lastNonEmptyLine) {
-        const quoteParts = lastNonEmptyLine.split('"').filter(part => part.trim() !== '');
-
-        if (quoteParts.length >= 3) {
-          const phraseTranslation = quoteParts[quoteParts.length - 2];
-          const confidencePart = quoteParts[quoteParts.length - 1]
-            .split(',')
-            .map(part => part.trim())
-            .find(part => part !== '');
-
-          const confidence = removeQuotes(confidencePart);
-          const confidenceNum = parseInt(confidence, 10);
-
-          if (Number.isNaN(confidenceNum) || confidenceNum < 0 || confidenceNum > 100) {
-            success = false;
-          } else {
-            selectionOptions = [];
-            const response = `"${phraseTranslation}",${confidence}`;
-            success = parseResponseRowNoPositions(response, wordList, answer, selectionOptions);
-          }
-        }
-      }
-    }
-  }
-
-  for (const selectionOption of selectionOptions) {
-    // remove duplicates from each selection
-    const seen = new Set();
-    const uniqueSelections = [];
-
-    for (const word of selectionOption.selections) {
-      if (word.occurrence && word.text) {
-        const key = word.text + ':' + word.occurrence;
-
-        if (!seen.has(key)) {
-          seen.add(key);
-          uniqueSelections.push(word);
-        } else {
-          // console.log('duplicate word found', word);
-        }
-      } else {
-        // console.log('invalid word or occurrence found', word);
-      }
-    }
-
-    if (!uniqueSelections.length) {
-      selectionOption.selections = false;
-    } else {
-      if (selectionOption.selections.length !== uniqueSelections.length) { // if changed then update
-        selectionOption.selections = uniqueSelections;
-      }
-    }
-  }
-
-  let _selectionOptions = selectionOptions.filter(item => (item.selections));
-
-  success = !!_selectionOptions.length;
-
-  if (!success) {
-    console.log('no selections found', _selectionOptions);
-  }
-
-  const elapsedParse2 = (Date.now() - startParse2);
-
-  if (elapsedParse2 > 1000) {
-    console.warn(`2nd parsing took over a second: ${elapsedParse2/ 1000}`);
-  }
-
-  if (success) {
-    selectionOptions.sort((a, b) => b.confidence - a.confidence);
-    console.log('AI response:', {
-      wordList: formatNumberedVerse(wordList.join(' ')),
-      glPhrase,
-      answer,
-      matches: selectionOptions.length,
-      selectionWords: selectionOptions,
-    });
-
+  if (bestSelections.length) {
     return {
       error: false,
-      bestSelections: selectionOptions,
+      bestSelections,
       elapsedStr,
       model,
     };
-  } else {
-    console.log('AI response ERROR decoding:', {
-      wordList: formatNumberedVerse(wordList.join(' ')),
-      glPhrase,
-      answer,
-      matches: _selectionOptions.length,
-    });
   }
+
+  console.log('AI response ERROR decoding:', {
+    wordList: formatNumberedVerse(wordList.join(' ')),
+    glPhrase,
+    answer,
+  });
   return {
     error: false,
     bestSelections: [],
@@ -1612,185 +1832,6 @@ function findOccurrenceForPos(position, wordList, text) {
   }
   occurrence = occurrence || 1; // fallback if AI got mixed up
   return occurrence;
-}
-
-/**
- * De-normalizes word selections to match the exact formatting in the verse text.
- *
- * This function restores the original word forms from the verse after selections have been
- * processed using normalized (lowercase, punctuation-free) text. During selection matching,
- * words are normalized to ignore case and punctuation differences, but the final selections
- * must contain the exact word forms as they appear in the verse (preserving capitalization,
- * accents, etc.).
- *
- * **Processing Logic:**
- * For each selection in the selections array:
- * 1. Normalizes the selection's text using `normalizeForCompare` (lowercase, no punctuation)
- * 2. Iterates through the verse wordList to find matching words
- * 3. When a normalized match is found, checks if it's the correct occurrence
- * 4. If the occurrence matches and the word forms differ, replaces the selection's text
- *    with the exact word form from the verse
- *
- * **Why De-normalization is Necessary:**
- * - AI responses contain normalized word forms for consistency
- * - The checking tool stores and displays exact verse word forms
- * - Capitalization matters for proper display (e.g., verse-initial words)
- * - Accents and special characters must be preserved (e.g., Spanish á, ñ)
- *
- * @param {Array<{text: string, occurrence: number}>} selections - Array of selection objects
- *   to de-normalize. Each object contains:
- *   - **text**: Normalized word form (lowercase, no punctuation)
- *   - **occurrence**: 1-based occurrence index of this word in the verse
- * @param {Array<string>} wordList - Target-language verse words in reading order, containing
- *   the original word forms with exact capitalization and punctuation
- * @returns {void} - Mutates the selections array in place by updating the `text` property
- *   of each selection to match the exact word form from wordList
- * @example
- * const selections = [
- *   {text: 'la', occurrence: 1},
- *   {text: 'iglesia', occurrence: 1}
- * ];
- * const wordList = ['Para', 'la', 'Iglesia', 'de', 'Éfeso'];
- *
- * deNormalizeSelections(selections, wordList);
- * // selections is now:
- * // [
- * //   {text: 'la', occurrence: 1},      // unchanged (already matches)
- * //   {text: 'Iglesia', occurrence: 1}  // updated to capital I
- * // ]
- *
- * @see {@link normalizeForCompare} - Function used to normalize words for comparison
- * @see {@link parseResponseRowNoPositions} - Caller that uses this function to restore exact word forms
- * @see {@link buildSelectionsFromPositions} - Another caller that creates selections needing de-normalization
- */
-function deNormalizeSelections(selections, wordList) {
-  //TRICKY - now need to de-normalize the selections so that they are exactly the same as in the verse text
-  for (const selection of selections) {
-    const normalizedWord = normalizeForCompare(selection.text);
-    let occurrence = 0;
-
-    for (let i = 0; i < wordList.length; i++) {
-      const wordListElement = wordList[i];
-
-      if (normalizeForCompare(wordListElement) === normalizedWord) {
-        if (selection.occurrence === ++occurrence) {
-          if (wordListElement !== selection.text) { // if not exactly the same format, though they match when normalized
-            selection.text = wordListElement; // make word exactly the same
-            break;
-          }
-        }
-      }
-    }
-  }
-}
-
-/**
- * Parses one CSV response row of the form `"word word",confidence` (no positions) into a
- * `{selections, confidence}` entry pushed onto `selectionWords`, resolving each word's
- * occurrence by finding the tightest grouping of matching positions in `wordList`.
- * @param {string} response - one CSV row of the AI response
- * @param {Array<string>} wordList - target-language verse words in reading order
- * @param {string} answer - full AI response text, used only for logging
- * @param {Array<object>} selectionWords - accumulator array the parsed entry is pushed onto
- * @returns {boolean} - true on success, false if the row was malformed or a word wasn't found
- */
-function parseResponseRowNoPositions(response, wordList, answer, selectionWords) {
-  let error = false;
-  const rowParts = normalizer(response).split(',');
-
-  if (rowParts.length === 2) {
-    let [phraseTranslation, confidence] = rowParts;
-    confidence = confidence ? parseInt(removeQuotes(confidence), 10) : 0;
-    phraseTranslation = normalizer(removeQuotes(phraseTranslation));
-    let selections = [];
-    const words = phraseTranslation.split(' ');
-
-    for (const word of words) {
-      const text = word.trim();
-
-      if (text) {
-        selections.push({ text });
-      }
-    }
-
-    if (selections.length) {
-      const normalizedWordList = wordList.map(word => normalizeForCompare(word));
-      const phraseWords = selections.map(selection => normalizeForCompare(selection.text));
-      let bestPositions = findContiguousMatchPositions(normalizedWordList, phraseWords);
-
-      if (!bestPositions) {
-        bestPositions = findBestOrderedMatchPositions(normalizedWordList, phraseWords);
-      }
-
-      if (bestPositions) {
-        selections = buildSelectionsFromPositions(wordList, bestPositions);
-
-        selectionWords.push({ selections, confidence });
-      } else {
-        const newSelections = [];
-
-        for (const selection of selections) {
-          const normalizedSelectionText = normalizeForCompare(selection.text);
-          const matchIndex = normalizedWordList.indexOf(normalizedSelectionText);
-
-          if (matchIndex >= 0) {
-            newSelections.push({
-              text: normalizer(wordList[matchIndex]),
-              occurrence: findOccurrenceForPos(
-                matchIndex + 1,
-                wordList,
-                normalizer(wordList[matchIndex])
-              ),
-            });
-          } else { // find best match with fuzzy compare
-            let bestMatchIndex = -1;
-            let bestSimilarity = 0;
-
-            for (let i = 0; i < normalizedWordList.length; i++) {
-              const similarity = fuzzyStringSimilarity(
-                normalizedSelectionText,
-                normalizedWordList[i]
-              );
-
-              if (similarity > bestSimilarity) {
-                bestSimilarity = similarity;
-                bestMatchIndex = i;
-              }
-            }
-
-            if (bestMatchIndex >= 0 && bestSimilarity > 0.3) {
-              const bestMatch = wordList[bestMatchIndex];
-
-              newSelections.push({
-                text: bestMatch,
-                occurrence: findOccurrenceForPos(
-                  bestMatchIndex + 1,
-                  normalizedWordList,
-                  normalizer(bestMatch)
-                ),
-              });
-            }
-          }
-        }
-
-        if (newSelections && (newSelections.length > 0)) {
-          selections = newSelections;
-          selectionWords.push({ selections, confidence });
-        } else {
-          error = true;
-        }
-      }
-
-      if (!error) {
-        deNormalizeSelections(selections, wordList);
-      }
-    }
-    console.log('translation', { translation: phraseTranslation, confidence });
-  } else {
-    console.log('row is not in csv format', response);
-    error = true;
-  }
-  return !error;
 }
 
 /**
@@ -1946,8 +1987,8 @@ function parseResponseRow(response, wordList, answer, selectionWords) {
  * @param {string} targetLangCode - language code of the verse (e.g. 'es-419')
  * @param {string} phrase - gateway language phrase to match (e.g. 'your old age')
  * @param {string} phraseLangCode - language code of the phrase (e.g. 'en')
- * @returns {Promise<Array<{selections: Array<{text: string, position: number}>, confidence: number}>>} - array of selection objects, each containing:
- *   - selections: array of {text, position} objects representing matched words, where text is the word and position is its occurrence index in the verse
+ * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>} - array of selection objects, each containing:
+ *   - selections: array of {text, occurrence} objects representing matched words, where text is the word and occurrence is its 1-based occurrence index in the verse
  *   - confidence: integer 0-100 indicating match certainty
  * @throws {Error} - if the AI query fails or returns invalid data
  * @example
@@ -1959,8 +2000,8 @@ function parseResponseRow(response, wordList, answer, selectionWords) {
  *   'en'
  * );
  * // Returns: [
- * //   { selections: [{text: 'tu', position: 1}, {text: 'vejez', position: 1}], confidence: 85 },
- * //   { selections: [{text: 'vejez', position: 1}], confidence: 70 }
+ * //   { selections: [{text: 'tu', occurrence: 1}, {text: 'vejez', occurrence: 1}], confidence: 85 },
+ * //   { selections: [{text: 'vejez', occurrence: 1}], confidence: 70 }
  * // ]
  */
 export async function translatePhraseWithConfidence(wordList, targetLangCode, phrase, phraseLangCode) {
@@ -2523,7 +2564,7 @@ export function saveSettingsForChecking_(projectPath, data) {
  * @param {string} projectPath - The path to the current project directory
  * @returns {object|null} The parsed settings object, or null if reading fails
  * @example
- * const settings = readSattingsForChecking_('/path/to/project');
+ * const settings = readSettingsForChecking_('/path/to/project');
  * // Returns: { autoCheck: true, threshold: 80 } or null if file doesn't exist
  */
 export function readSettingsForChecking_(projectPath) {
@@ -2887,20 +2928,22 @@ export function updatedPreviousSelectionsData(
  * {@link getBestTWordSelectionWithConfidenceAlgorithm} or {@link getBestTWordSelectionWithConfidenceFromLlm}
  * depending on the mode.
  *
- * @param {string} verseText - The target-language verse text to search within (may contain punctuation)
- * @param {string|null} llmQueryUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234');
+ * @param {object} options - Request options
+ * @param {string} options.verseText - The target-language verse text to search within (may contain punctuation)
+ * @param {string|null} [options.llmQueryUrl] - Base URL of the LM Studio server (e.g., 'http://localhost:1234');
  *   if `null` or `undefined`, uses algorithmic mode instead of AI
- * @param {object} targetLanguageDetails - Metadata about the target language
- * @param {string} targetLanguageDetails.id - Language code (e.g., 'es-419' for Latin American Spanish)
- * @param {string} alignedGLText - Gateway-language phrase to translate (e.g., 'church', 'the elders')
- * @param {string} gatewayLanguageCode - Language code of the gateway language (e.g., 'en' for English)
- * @param {object} selectionsData - Historical translation data from previous user selections
- * @param {object} selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
+ * @param {object} options.targetLanguageDetails - Metadata about the target language
+ * @param {string} options.targetLanguageDetails.id - Language code (e.g., 'es-419' for Latin American Spanish)
+ * @param {string} options.alignedGLText - Gateway-language phrase to translate (e.g., 'church', 'the elders')
+ * @param {string} options.gatewayLanguageCode - Language code of the gateway language (e.g., 'en' for English)
+ * @param {object} options.selectionsData - Historical translation data from previous user selections
+ * @param {object} options.selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
- * @param {string} [model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
+ * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
- * @param {number} [llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase
+ * @param {number} [options.llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase
  *   randomness and creativity in suggestions, lower values make output more deterministic; only applies in AI mode
+ * @param {string} [options.apiToken] - Bearer token for LLM API requests when required
  * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>}
  *   Promise resolving to an object containing:
  *   - **error**: `true` if the operation failed or no valid translations were found, `false` otherwise
@@ -2914,14 +2957,14 @@ export function updatedPreviousSelectionsData(
  *   Returns `{error: true, bestSelections: [], elapsedStr: '', model: ''}` if no valid translations are found or on error
  * @example
  * // Algorithmic mode (offline, no AI server)
- * const result = await getBestSelections(
- *   'para la iglesia de Éfeso',
- *   null,  // no AI server URL
- *   { id: 'es-419' },
- *   'church',
- *   'en',
- *   { selections: { 'church': { 'iglesia': 7, 'la iglesia': 3 } } }
- * );
+ * const result = await getBestSelections({
+ *   verseText: 'para la iglesia de Éfeso',
+ *   llmQueryUrl: null, // no AI server URL
+ *   targetLanguageDetails: { id: 'es-419' },
+ *   alignedGLText: 'church',
+ *   gatewayLanguageCode: 'en',
+ *   selectionsData: { selections: { 'church': { 'iglesia': 7, 'la iglesia': 3 } } },
+ * });
  * // Returns: {
  * //   error: false,
  * //   bestSelections: [
@@ -2934,16 +2977,16 @@ export function updatedPreviousSelectionsData(
  *
  * @example
  * // AI-assisted mode (requires LM Studio server running)
- * const result = await getBestSelections(
- *   'para la iglesia de Éfeso',
- *   'http://localhost:1234',  // LM Studio server URL
- *   { id: 'es-419' },
- *   'church',
- *   'en',
- *   { selections: { 'church': { 'iglesia': 7 } } },
- *   'my-model-v1',  // optional custom model identifier
- *   0.9  // optional temperature for more creative suggestions
- * );
+ * const result = await getBestSelections({
+ *   verseText: 'para la iglesia de Éfeso',
+ *   llmQueryUrl: 'http://localhost:1234', // LM Studio server URL
+ *   targetLanguageDetails: { id: 'es-419' },
+ *   alignedGLText: 'church',
+ *   gatewayLanguageCode: 'en',
+ *   selectionsData: { selections: { 'church': { 'iglesia': 7 } } },
+ *   model: 'my-model-v1', // optional custom model identifier
+ *   llmTemperature: 0.9, // optional temperature for more creative suggestions
+ * });
  * // Returns: {
  * //   error: false,
  * //   bestSelections: [...], // AI-generated suggestions with confidence scores
@@ -2955,17 +2998,17 @@ export function updatedPreviousSelectionsData(
  * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - AI-assisted implementation using language models
  * @see {@link getWordList} - Function used to tokenize the verse text into individual words
  */
-export async function getBestSelections(
+export async function getBestSelections({
   verseText,
   llmQueryUrl,
   targetLanguageDetails,
   alignedGLText,
   gatewayLanguageCode,
   selectionsData,
-  model,
+  currentModel,
   llmTemperature,
-  apiToken
-) {
+  apiToken,
+} = {}) {
   // eslint-disable-next-line no-unused-vars
   let results = {
     bestSelections: [],
@@ -2998,7 +3041,7 @@ export async function getBestSelections(
         apiToken,
         baseUrl: llmQueryUrl,
         enable_thinking: false,
-        model,
+        model: currentModel,
         temperature: (llmTemperature || 0.7),
       };
 
@@ -3332,6 +3375,7 @@ export class LlmRequestQueue {
    * translation suggestion workflows in the tCore checking tool.
    *
    * @constructor
+   * @param {object} [suggestionsCache] - Cache memory object for suggestions
    * @returns {void} - Does not return a value; initializes instance state
    * @example
    * // Create a new queue manager for handling AI translation requests
@@ -3382,26 +3426,26 @@ export class LlmRequestQueue {
    * @param {Function} asyncCallback - An async function to execute while processing is paused.
    *   The callback receives no arguments and its return value is ignored. Common operations
    *   include updating configuration, clearing caches, or resetting state.
-   * @returns {Promise<void>} - Resolves when the pause cycle completes (callback finishes
+   * @returns {Promise<void>} - Resolves when the pause cycle completes (callback finishes)
    */
   async requestPause(asyncCallback) {
     if (asyncCallback) {
-      let count = 0;
+      // let count = 0;
       console.log(`requestPause`);
       this.pause = true; // pause processing
 
       while (this.busy) { // wait while busy
-        console.log(`requestPause - busy ${++count}`);
+        // console.log(`requestPause - busy ${++count}`);
         // eslint-disable-next-line no-await-in-loop
         await delay(100);
       }
 
-      console.log(`requestPause - now ready`);
+      // console.log(`requestPause - now ready`);
       await asyncCallback(); // let caller know they can call the API
       this.pause = false;
 
       delay(100).then(() => {
-        console.log(`requestPause - after delay calling processNextRequest`);
+        // console.log(`requestPause - after delay calling processNextRequest`);
         this.processNextRequest();
       });
     }
@@ -3469,7 +3513,7 @@ export class LlmRequestQueue {
       const memory = this.getSuggestionsMemoryForKey(request.key);
 
       if (memory && !force) { // if we have a cached value, then use it
-        console.log(`makeSuggestionRequest found cached suggestion`);
+        // console.log(`makeSuggestionRequest found cached suggestion`);
         memory.cached = true;
         delay(1).then(() => {
           callback(memory);
@@ -3478,7 +3522,7 @@ export class LlmRequestQueue {
       }
 
       this.removeKeyInQueue(request.key); // remove previous metching queries
-      console.log(`makeSuggestionRequest adding to queue - `, redactOptions(request));
+      // console.log(`makeSuggestionRequest adding to queue - `, redactOptions(request));
       const requestData = { request, callback };
       this.requestQueue.addRequest(requestData, priority);
     }
@@ -3495,7 +3539,7 @@ export class LlmRequestQueue {
   processNextRequestIfNotBusy() {
     if (!this.busy && !this.pause && this.requestQueue.hasRequests()) {
       delay(100).then(() => {
-        console.log(`processNextRequestIfNotBusy - after delay calling processNextRequest`);
+        // console.log(`processNextRequestIfNotBusy - after delay calling processNextRequest`);
         this.processNextRequest();
       });
     }
@@ -3547,7 +3591,7 @@ export class LlmRequestQueue {
    * 1. Check if queue is ready (not busy, not paused)
    * 2. Retrieve next request using `requestQueue.getNextRequest()`
    * 3. Set `busy=true` to block concurrent processing
-   * 4. Call `getBestSelections()` with request parameters:
+   * 4. Call `getBestSelections()` with an options object built from the request:
    *    - `verseText`: Target-language verse text
    *    - `llmQueryUrl`: AI server URL or `null` for algorithmic mode
    *    - `targetLanguageDetails`: Language metadata
@@ -3576,7 +3620,7 @@ export class LlmRequestQueue {
    */
   async processNextRequest() {
     if (!this.busy && !this.pause && this.requestQueue.hasRequests()) {
-      console.log(`processNextRequest - not busy getting request`);
+      // console.log(`processNextRequest - not busy getting request`);
       const nextLlmRequest = this.requestQueue.getNextRequest();
       const requestData = nextLlmRequest?.request;
       let results = { error: true };
@@ -3588,7 +3632,7 @@ export class LlmRequestQueue {
         if (nextLlmRequest?.callback) {
           if (!haveAsuggestion && requestData.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
             const llmResults = results; // save llm results
-            console.log(`processNextRequest - empty suggestion, trying algorithm`);
+            // console.log(`processNextRequest - empty suggestion, trying algorithm`);
             requestData.llmQueryUrl = '';
             results = await this.doQuery(results, requestData);
             results.llmError = llmResults?.error;
@@ -3597,7 +3641,7 @@ export class LlmRequestQueue {
             // haveAsuggestion = this.testIfWeHaveASuggestion(results);
           }
 
-          console.log(`processNextRequest - doing callback`);
+          // console.log(`processNextRequest - doing callback`);
 
           try {
             await nextLlmRequest.callback(results);
@@ -3605,7 +3649,7 @@ export class LlmRequestQueue {
             console.error(`processNextRequest - callback ERROR`, e);
           }
 
-          console.log(`processNextRequest - callback finished`);
+          // console.log(`processNextRequest - callback finished`);
         }
 
         this.busy = false;
@@ -3618,7 +3662,7 @@ export class LlmRequestQueue {
         this.processNextRequestIfNotBusy();
       }
     } else {
-      console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
+      // console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
     }
   }
 
@@ -3677,17 +3721,7 @@ export class LlmRequestQueue {
   async doQuery(results, requestData) {
     try {
       this.busy = true;
-      results = await getBestSelections(
-        requestData.verseText,
-        requestData.llmQueryUrl,
-        requestData.targetLanguageDetails,
-        requestData.alignedGLText,
-        requestData.gatewayLanguageCode,
-        requestData.selectionsData,
-        requestData.currentModel,
-        requestData.llmTemperature,
-        requestData.apiToken,
-      );
+      results = await getBestSelections(requestData);
       results.request = redactOptions(requestData);
     } catch (e) {
       console.error(`processNextRequest - getBestSelections ERROR`, e);
