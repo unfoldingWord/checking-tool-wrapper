@@ -625,7 +625,13 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
   const resultsJson = entries.length
     ? JSON.stringify(entries)
     : '';
-  return resultsJson;
+
+  // one plain line per rendering - easier for small models to read than JSON, and fewer tokens
+  return entries.map(({
+    phrase, rendering, usageCount,
+  }) =>
+    `"${rendering}" (chosen ${usageCount} time${usageCount === 1 ? '' : 's'} for "${phrase}")`)
+    .join('\n');
 }
 
 /**
@@ -686,51 +692,59 @@ export function buildTranslationOptionsPrompt(
   glLangCode,
   previousTranslationData = {},
 ) {
-  const systemPrompt = `You are an expert in biblical linguistics and cross-language translation consistency.
+  // Kept short and literal for small models: plain-language rules, worked examples in exactly
+  // the layout of the real input, and the input ending in "Answer:" so the reply is a completion.
+  const systemPrompt = `You find the words in a Bible verse that translate a phrase.
 
-Pick the word(s) of the TARGET VERSE that best translate the GATEWAY PHRASE.
-
-The TARGET VERSE is given as plain words in reading order.
+You are given:
+TARGET VERSE - the words of the verse, in order.
+PREVIOUS TRANSLATIONS - how the phrase was translated before, most used first (may be missing).
+GATEWAY PHRASE - the phrase to find in the verse.
 
 Rules:
-1. Use only words of the TARGET VERSE. Never invent, translate, inflect, or re-spell a word, and never output the gateway phrase itself.
-2. Copy each word exactly as the TARGET VERSE spells it, keeping its accents and its casing.
-3. Output the words on their own, separated by single spaces. Never add a number, a colon, or any punctuation to a word.
-4. PREVIOUS TRANSLATIONS is an array of objects. Each object has a "phrase" field (a previous GATEWAY PHRASE) a "rendering" field (a previous TARGET VERSE translation for the current GATEWAY PHRASE) and a "usageCount" field (how many times that rendering was chosen). Prefer renderings with a higher usageCount whose words all occur in the TARGET VERSE; discard any that use words the TARGET VERSE does not have. Use usageCount only to inform your confidence score — do not copy it into your output.
-5. Keep the words in TARGET VERSE order, and prefer the shortest option that carries the meaning.
-6. Output at most 3 rows, one per plausible option, highest confidence first. "confidence" is an integer 0-100 that YOU assign based on how well the option fits this verse; it is unrelated to the usage counts in PREVIOUS TRANSLATIONS.
-7. If no words of the TARGET VERSE can express the phrase, output exactly: "",0
-8. Output only CSV rows: no header, no explanation, no markdown fences.
+1. Answer only with words copied from TARGET VERSE, spelled exactly as written there.
+2. Choose the fewest words that carry the meaning of GATEWAY PHRASE, kept in verse order.
+3. A previous translation whose words are all in TARGET VERSE is usually the right answer. Ignore any that use words not in TARGET VERSE.
+4. Give 1 to 3 options, best first, one per line, written as: "words",confidence
+5. confidence is a whole number from 0 to 100 for how sure you are that the option is right in this verse.
+6. If no words in TARGET VERSE fit, answer: "",0
+7. Output only as CSV rows: no header, no explanation, no markdown fences.
 
 Required output format:
 "word word",confidence
 
-Example
-GATEWAY PHRASE: church
-TARGET VERSE: para la iglesia de Éfeso
+Example:
+TARGET VERSE (es-419): para la iglesia de Éfeso
+
 PREVIOUS TRANSLATIONS:
-    [{"phrase":"church","rendering":"iglesia","usageCount":7},{"phrase":"the church","rendering":"la iglesia","usageCount":3},{"phrase":"the churches","rendering":"las iglesias","usageCount":1}]
+"iglesia" (chosen 7 times for "church")
+"la iglesia" (chosen 3 times for "the church")
+"las iglesias" (chosen 31 time for "the churches")
 
+GATEWAY PHRASE (en): church
 
-Valid Response:
+Output:
 "iglesia",98
 "la iglesia",70
 
-Invalid Response: "church",98 | "congregación",90 | "iglesias",85 | "Iglesia",98 | "iglesia:3",98 | iglesia,98
+Wrong output for Example:
+"church",98 - gateway words are not in TARGET VERSE
+"congregación",90 - word is not in TARGET VERSE
+iglesia,98 - missing the quotes
 `;
 
   const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true);
   // console.log(`previousTranslations string length= ${previousTranslations.length}`);
 
-  // one labeled field per line, in the same order as the example above
-  const lines = [
-    `GATEWAY PHRASE (${glLangCode}): ${glPhrase}`,
-    `TARGET VERSE (${targetLangCode}): ${verseContent}`,
-  ];
+  // one labeled field per line, in the same order as the examples above
+  const lines = [`\nTARGET VERSE (${targetLangCode}): ${verseContent}`];
 
   if (previousTranslations) {
-    lines.push(`PREVIOUS TRANSLATIONS: ${previousTranslations}`);
+    lines.push(`\nPREVIOUS TRANSLATIONS:\n${previousTranslations}`);
   }
+
+  lines.push(`\nGATEWAY PHRASE (${glLangCode}): ${glPhrase}`);
+  lines.push('\nAnswer:');
 
   return { systemPrompt, input: lines.join('\n') };
 }
