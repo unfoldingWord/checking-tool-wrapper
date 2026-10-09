@@ -621,11 +621,6 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
   // the verse `entries` falls back to the whole history, which slows every request
   entries = entries.slice(0, MAX_PROMPT_PREVIOUS_TRANSLATIONS);
 
-  // Return JSON string of filtered/sorted entries, or empty string if no entries
-  const resultsJson = entries.length
-    ? JSON.stringify(entries)
-    : '';
-
   // one plain line per rendering - easier for small models to read than JSON, and fewer tokens
   return entries.map(({
     phrase, rendering, usageCount,
@@ -3445,7 +3440,7 @@ export class LlmRequestQueue {
   async requestPause(asyncCallback) {
     if (asyncCallback) {
       // let count = 0;
-      console.log(`requestPause`);
+      // console.log(`requestPause`);
       this.pause = true; // pause processing
 
       while (this.busy) { // wait while busy

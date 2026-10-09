@@ -149,7 +149,7 @@ function Container({
    */
   async function generateSuggestionsForGroups(priority = false, force = false, currentGroupOnly = false, skipCurrentGroup = false) {
     if (generateSuggestionsRunningRef.current) { // if process already running, shut it down first
-      console.log(`generateSuggestionsForGroups - alreading running, restarting`);
+      // console.log(`generateSuggestionsForGroups - alreading running, restarting`);
       generateSuggestionsRestartRef.current = true;
 
       while (generateSuggestionsRunningRef.current) {
@@ -168,7 +168,7 @@ function Container({
     await delay(1);
 
     const groupsData = toolApi._getGroupData();
-    console.log(`generateSuggestionsForGroups - got groupsData`);
+    // console.log(`generateSuggestionsForGroups - got groupsData`);
     await generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr, priority, currentGroupOnly, skipCurrentGroup);
     // eslint-disable-next-line require-atomic-updates
     generateSuggestionsRunningRef.current = false;
@@ -201,7 +201,7 @@ function Container({
      */
     async function generateSuggestionForSubgroup(matchGroupId = null, matchAfterGroupId = null, matchBeforeGroupId = null) {
       let findGroupId = matchGroupId;
-      let count = 0;
+      // let count = 0;
 
       if (matchAfterGroupId) {
         findGroupId = matchAfterGroupId;
@@ -250,7 +250,7 @@ function Container({
         const group = groupsData[groupId];
         // eslint-disable-next-line no-await-in-loop
         await delay(1);
-        console.log(`generateSuggestionsForGroups for group ${groupId}`);
+        // console.log(`generateSuggestionsForGroups for group ${groupId}`);
 
         for (const check of group) {
           if (generateSuggestionsRestartRef.current
@@ -262,10 +262,10 @@ function Container({
           const force_ = force || !settingsForSuggestionsRef.current.llmSuggestionsEnabled;
 
           if (!check?.selections?.length) {
-            count++;
+            // count++;
             const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
 
-            console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
+            // console.log(`generateSuggestionsForGroups - no selection for check ${check}`);
             const contextId = check?.contextId;
             const reference = contextId?.reference;
             const {
@@ -313,7 +313,11 @@ function Container({
                   data,
                   glBiblesCache
                 );
-                console.log(selectionsForWord);
+
+                selectionsData.groupId = groupId;
+                selectionsData.selections = selectionsForWord;
+
+                // console.log(selectionsForWord);
 
                 const request = {
                   ...data,
@@ -325,8 +329,8 @@ function Container({
 
                 suggestionsRequestQueue.makeSuggestionRequest(
                   request,
-                  data => { // callback function
-                    console.log(`generateSuggestionForSubgroup result`, data);
+                  () => { // callback function
+                    // console.log(`generateSuggestionForSubgroup result`, data);
                   },
                   false,
                   force_,
@@ -338,7 +342,7 @@ function Container({
           }
         }
       }
-      console.log(`generateSuggestionForSubgroup added ${count} checks`);
+      // console.log(`generateSuggestionForSubgroup added ${count} checks`);
     }
 
     if (generateSuggestionsRestartRef.current
