@@ -37,7 +37,7 @@ import {
   fetchPreviousSelectionData,
   LlmRequestQueue,
   normalizeForCompare,
-  queryLmStudioModels,
+  queryAiAPIModels,
   readSettingsForChecking_,
   redactOptions,
   saveAlignmentData,
@@ -542,7 +542,7 @@ function Container({
       if (suggestionsRequestQueue) {
         suggestionsRequestQueue.requestPause(async () => {
           try {
-            models = await queryLmStudioModels(options);
+            models = await queryAiAPIModels(options);
             console.log('getModelsForChecking models', models);
           } catch (e) {
             console.log('getModelsForChecking error', e);

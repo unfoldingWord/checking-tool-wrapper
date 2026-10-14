@@ -59,7 +59,7 @@ const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
  * });
  * console.log(result.replyText); // "The capital of France is Paris."
  *
- * @see {@link queryLmStudio} - Higher-level wrapper function that calls this internally
+ * @see {@link queryAiAPI} - Higher-level wrapper function that calls this internally
  */
 async function streamChatMessage(options) {
   const {
@@ -172,7 +172,7 @@ async function streamChatMessage(options) {
  * LM Studio app (default port 1234).
  *
  * The function automatically detects the execution environment:
- * - In Electron apps: uses the IPC bridge (window.lmStudio.query) for optimized performance
+ * - In Electron apps: uses the IPC bridge (window.AiAPIs.query) for optimized performance
  * - In web/Node environments: makes direct HTTP requests via streamChatMessage
  *
  * Thinking mode control:
@@ -202,14 +202,14 @@ async function streamChatMessage(options) {
  * @throws {Error} If the server is unreachable, returns an error status, or the response is empty
  * @example
  * // Basic usage with defaults
- * const { response, elapsedStr, model } = await queryLmStudio('What is the capital of France?');
+ * const { response, elapsedStr, model } = await queryAiAPI('What is the capital of France?');
  * console.log(response); // "The capital of France is Paris."
  * console.log(elapsedStr); // "1.23"
  * console.log(model); // "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF"
  *
  * @example
  * // Custom configuration
- * const result = await queryLmStudio('Explain quantum physics', {
+ * const result = await queryAiAPI('Explain quantum physics', {
  *   temperature: 0.9,
  *   maxTokens: 2048,
  *   enable_thinking: true,
@@ -220,7 +220,7 @@ async function streamChatMessage(options) {
  * @see {@link streamChatMessage} - Lower-level function for direct HTTP streaming
  * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - Example usage in translation workflows
  */
-export async function queryLmStudio(query, options = {}) {
+export async function queryAiAPI(query, options = {}) {
   const {
     apiToken,
     // baseUrl = 'http://localhost:1234',
@@ -251,23 +251,23 @@ export async function queryLmStudio(query, options = {}) {
     temperature,
   };
 
-  const isLmStudioQueryAvailable =
+  const isAiAPIQueryAvailable =
     typeof window !== 'undefined' &&
-    typeof window.lmStudio?.query === 'function';
+    typeof window.AiAPIs?.query === 'function';
 
-  // console.log('queryLmStudio - starting fetch isLmStudioQueryAvailable', isLmStudioQueryAvailable);
+  // console.log('queryAiAPI - starting fetch isAiAPIQueryAvailable', isAiAPIQueryAvailable);
   let error = false;
 
-  if (isLmStudioQueryAvailable) { // calling Electron process
+  if (isAiAPIQueryAvailable) { // calling Electron process
     try {
-      const answer = await window.lmStudio.query(query, lmQueryOptions);
+      const answer = await window.AiAPIs.query(query, lmQueryOptions);
       // console.log(answer);
       replyText_ = answer.replyText || answer.reasoningText;
       reasoningText_ = answer.reasoningText;
       actualModel_ = answer.actualModel;
       error = answer.error;
     } catch (e) {
-      console.error(`queryLmStudio - window.lmStudio.query error`, e);
+      console.error(`queryAiAPI - window.AiAPIs.query error`, e);
       error = true;
     }
   } else { // no electron process
@@ -281,7 +281,7 @@ export async function queryLmStudio(query, options = {}) {
       reasoningText_ = reasoningText;
       actualModel_ = actualModel;
     } catch (e) {
-      console.error(`queryLmStudio - streamChatMessage error`, e);
+      console.error(`queryAiAPI - streamChatMessage error`, e);
       error = true;
     }
   }
@@ -308,6 +308,29 @@ export async function queryLmStudio(query, options = {}) {
 }
 
 /**
+ * Filters and extracts sorted model identifiers from a list of model objects.
+ *
+ * Evaluates model entries from an OpenAI-compatible or LM Studio models endpoint,
+ * retaining objects that possess a valid `id` (either explicitly typed as `'model'`
+ * or lacking an `object` type specifier), and returns their IDs sorted alphabetically.
+ *
+ * @param {Array<object>} models - Array of raw model objects from the API response
+ * @returns {Array<string>} Alphabetically sorted array of model ID strings
+ */
+function extractModels(models) {
+  // filter response by model objects
+  // {id: 'liquid/lfm2-24b-a2b', object: 'model', owned_by: 'organization_owner'}
+  return models.filter(model => {
+    let validModel = model.object === 'model' && model.id; // LmStudio format
+
+    if (!validModel) {
+      validModel = !model.object && model.id;
+    }
+    return validModel;
+  }).map(model => (model.id)).sort();
+}
+
+/**
  * Queries a locally running LM Studio server for the list of available AI models.
  * LM Studio exposes an OpenAI-compatible models endpoint once "Local Server" is started.
  *
@@ -316,10 +339,10 @@ export async function queryLmStudio(query, options = {}) {
  * @returns {Promise<Array<string>>} - available model identifiers returned by LM Studio
  * @throws {Error} - if the server is unreachable or returns an error status
  * @example
- * const models = await queryLmStudioModels();
+ * const models = await queryAiAPIModels();
  * console.log(models.map(model => model.id));
  */
-export async function queryLmStudioModels(options = {}) {
+export async function queryAiAPIModels(options = {}) {
   const {
     // baseUrl = 'http://localhost:1234',
     baseUrl = LM_STUDIO_URL,
@@ -328,17 +351,17 @@ export async function queryLmStudioModels(options = {}) {
   const url = `${baseUrl}/v1/models`;
   let response;
 
-  const isLmStudioModelsAvailable =
+  const isAiAPIModelsAvailable =
     typeof window !== 'undefined' &&
-    typeof window.lmStudio?.query === 'function';
+    typeof window.AiAPIs?.query === 'function';
 
-  // console.log('isLmStudioModelsAvailable', isLmStudioModelsAvailable);
+  // console.log('isAiAPIModelsAvailable', isAiAPIModelsAvailable);
   let answer;
 
-  if (isLmStudioModelsAvailable) { // calling Electron process
+  if (isAiAPIModelsAvailable) { // calling Electron process
     try {
       const llmOptions = { ...options, baseUrl };
-      answer = await window.lmStudio.getAvailableModels(llmOptions);
+      answer = await window.AiAPIs.getAvailableModels(llmOptions);
       // console.log('getAvailableModels answer', answer);
     } catch (error) {
       const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
@@ -373,11 +396,7 @@ export async function queryLmStudioModels(options = {}) {
     console.log(message, answer);
     throw new Error(message);
   }
-
-  // filter response by model objects
-  // {id: 'liquid/lfm2-24b-a2b', object: 'model', owned_by: 'organization_owner'}
-  models = models.filter(model => (model.object === 'model' && model.id)).map(model => (model.id));
-
+  models = extractModels(models);
   return models;
 }
 
@@ -1717,7 +1736,7 @@ export function parseLlmSelectionOptions(answer, wordList) {
  * @param {string} glLangCode - language code of the gateway phrase (e.g. 'en')
  * @param {object} previousTranslationData - prior translation counts; can be nested
  *   `{glPhrase: {targetPhrase: count}}` or flat `{targetPhrase: count}`
- * @param {object} [lmOptions={enable_thinking: false}] - options passed to queryLmStudio
+ * @param {object} [lmOptions={enable_thinking: false}] - options passed to queryAiAPI
  * @param {boolean} [lmOptions.enable_thinking=false] - whether to enable AI thinking mode
  * @param {string} [lmOptions.baseUrl] - LM Studio server URL override
  * @param {string} [lmOptions.model] - AI model identifier override
@@ -1779,7 +1798,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
       response: answer,
       elapsedStr,
       model,
-    } = await queryLmStudio(input, options));
+    } = await queryAiAPI(input, options));
   } catch (e) {
     console.warn('AI query error', e);
     return {
@@ -2022,7 +2041,7 @@ export async function translatePhraseWithConfidence(wordList, targetLangCode, ph
   let responses = null;
 
   try {
-    const { response } = await queryLmStudio(query, { systemPrompt });
+    const { response } = await queryAiAPI(query, { systemPrompt });
     answer = response;
     responses = answer.split('\n');
     const length = responses.length;
