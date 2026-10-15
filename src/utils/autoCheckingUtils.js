@@ -13,7 +13,7 @@ import {
 import * as gatewayLanguageHelpers from '../helpers/gatewayLanguageHelpers';
 import delay from './delay';
 
-const LM_STUDIO_URL = 'http://192.168.142.70:1234';
+const AI_API_URL = 'http://192.168.142.70:1234';
 /** most previous-translation entries sent in an AI prompt, strongest evidence first */
 const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
 
@@ -24,7 +24,7 @@ const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
 /**
  * Streams a chat completion request to an LM Studio server and accumulates the response.
  *
- * This function sends a POST request to the LM Studio chat completions endpoint with streaming
+ * This function sends a POST request to the OpenAI-compatible chat completions endpoint with streaming
  * enabled, then reads the Server-Sent Events (SSE) stream to accumulate the full response text.
  * It handles both standard content and reasoning content (thinking mode) from the AI model.
  *
@@ -34,8 +34,8 @@ const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
  *
  * @param {object} options - Configuration options for the chat completion request
  * @param {string} [options.apiToken] - Bearer token sent as the `Authorization` header when set
- * @param {string} options.baseUrl - Base URL of the LM Studio server (e.g., 'http://localhost:1234')
- * @param {string} options.model - Model identifier as configured in LM Studio (e.g., 'local-model')
+ * @param {string} options.baseUrl - Base URL of the OpenAI-compatible server (e.g., 'http://localhost:1234')
+ * @param {string} options.model - Model identifier as configured in OpenAI-compatible (e.g., 'local-model')
  * @param {string} options.systemPrompt - System prompt that sets the AI's behavior and context
  * @param {string} options.query - User query/prompt to send to the model
  * @param {number} options.temperature - Sampling temperature (0.0-1.0); higher values increase randomness
@@ -90,7 +90,7 @@ async function streamChatMessage(options) {
       }),
     });
   } catch (error) {
-    const message1 = `Failed to reach LM Studio server at ${url}: ${error.message}`;
+    const message1 = `Failed to reach OpenAI-compatible server at ${url}: ${error.message}`;
     console.error(message1);
     throw new Error(message1);
   }
@@ -163,13 +163,13 @@ async function streamChatMessage(options) {
 }
 
 /**
- * Sends a text query to a locally running LM Studio server and returns the model's response text
+ * Sends a text query to a locally running OpenAI-compatible server and returns the model's response text
  * along with timing information.
  *
- * This function provides a unified interface for querying AI models through LM Studio, supporting
+ * This function provides a unified interface for querying AI models through OpenAI-compatible, supporting
  * both Electron-based desktop applications and web-based environments. LM Studio exposes an
  * OpenAI-compatible API (chat completions endpoint) once "Local Server" is started from the
- * LM Studio app (default port 1234).
+ * OpenAI-compatible app (default port 1234).
  *
  * The function automatically detects the execution environment:
  * - In Electron apps: uses the IPC bridge (window.AiAPIs.query) for optimized performance
@@ -183,9 +183,9 @@ async function streamChatMessage(options) {
  * @param {string} query - The text prompt/question to send to the model
  * @param {object} [options={}] - Optional configuration overrides
  * @param {string} [options.apiToken] - Bearer token sent as the `Authorization` header when set
- * @param {string} [options.baseUrl='http://192.168.142.70:1234'] - Base URL of the LM Studio server;
- *   defaults to LM_STUDIO_URL constant
- * @param {string} [options.model='local-model'] - Model identifier as loaded in LM Studio; the actual
+ * @param {string} [options.baseUrl='http://localhost:1234'] - Base URL of the OpenAI-compatible server;
+ *   defaults to AI_API_URL constant
+ * @param {string} [options.model='local-model'] - Model identifier as loaded in OpenAI-compatible; the actual
  *   model used may differ and will be reported in the response
  * @param {number} [options.temperature=0.7] - Sampling temperature (0.0-1.0); higher values increase
  *   randomness and creativity, lower values make output more deterministic
@@ -224,7 +224,7 @@ export async function queryAiAPI(query, options = {}) {
   const {
     apiToken,
     // baseUrl = 'http://localhost:1234',
-    baseUrl = LM_STUDIO_URL, // use local server
+    baseUrl = AI_API_URL, // use local server
     model = 'local-model',
     temperature = 0.7,
     maxTokens = 4096,
@@ -294,7 +294,7 @@ export async function queryAiAPI(query, options = {}) {
   );
 
   if (error || !replyText_) {
-    const message = `Unexpected LM Studio response shape: received error or empty content`;
+    const message = `Unexpected OpenAI-compatible response shape: received error or empty content`;
     console.warn(`${message}, response`, { replyText_, reasoningText_ });
     throw new Error(message);
   }
@@ -331,12 +331,12 @@ function extractModels(models) {
 }
 
 /**
- * Queries a locally running LM Studio server for the list of available AI models.
+ * Queries a running OpenAI-compatible server for the list of available AI models.
  * LM Studio exposes an OpenAI-compatible models endpoint once "Local Server" is started.
  *
  * @param {object} [options] - optional overrides
- * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the LM Studio server
- * @returns {Promise<Array<string>>} - available model identifiers returned by LM Studio
+ * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the OpenAI-compatible server
+ * @returns {Promise<Array<string>>} - available model identifiers returned by OpenAI-compatible
  * @throws {Error} - if the server is unreachable or returns an error status
  * @example
  * const models = await queryAiAPIModels();
@@ -345,7 +345,7 @@ function extractModels(models) {
 export async function queryAiAPIModels(options = {}) {
   const {
     // baseUrl = 'http://localhost:1234',
-    baseUrl = LM_STUDIO_URL,
+    baseUrl = AI_API_URL,
   } = options;
 
   const url = `${baseUrl}/v1/models`;
@@ -364,7 +364,7 @@ export async function queryAiAPIModels(options = {}) {
       answer = await window.AiAPIs.getAvailableModels(llmOptions);
       // console.log('getAvailableModels answer', answer);
     } catch (error) {
-      const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
+      const message = `Failed to reach OpenAI-compatible server at ${url}: ${error.message}`;
       console.error(message);
       throw new Error(message);
     }
@@ -375,7 +375,7 @@ export async function queryAiAPIModels(options = {}) {
         headers: { 'Content-Type': 'application/json' },
       });
     } catch (error) {
-      const message = `Failed to reach LM Studio server at ${url}: ${error.message}`;
+      const message = `Failed to reach OpenAI-compatible server at ${url}: ${error.message}`;
       console.error(message);
       throw new Error(message);
     }
@@ -392,7 +392,7 @@ export async function queryAiAPIModels(options = {}) {
   let models = answer;
 
   if (!Array.isArray(models)) {
-    const message = 'Unexpected LM Studio models response shape';
+    const message = 'Unexpected OpenAI-compatible models response shape';
     console.log(message, answer);
     throw new Error(message);
   }
@@ -1714,7 +1714,7 @@ export function parseLlmSelectionOptions(answer, wordList) {
  * Translates a gateway language phrase to target-language word(s) within a verse
  * using an AI model, returning an array of selection objects with confidence scores.
  *
- * This function queries an AI model (LM Studio or any OpenAI-compatible server) to find the
+ * This function queries an AI model (any OpenAI-compatible server) to find the
  * best target-language translation option(s) for a gateway-language phrase, using only words
  * found in the target verse. The AI is guided by previous translation history to maintain
  * consistency across the project.
@@ -1738,7 +1738,7 @@ export function parseLlmSelectionOptions(answer, wordList) {
  *   `{glPhrase: {targetPhrase: count}}` or flat `{targetPhrase: count}`
  * @param {object} [lmOptions={enable_thinking: false}] - options passed to queryAiAPI
  * @param {boolean} [lmOptions.enable_thinking=false] - whether to enable AI thinking mode
- * @param {string} [lmOptions.baseUrl] - LM Studio server URL override
+ * @param {string} [lmOptions.baseUrl] - OpenAI-compatible server URL override
  * @param {string} [lmOptions.model] - AI model identifier override
  * @param {number} [lmOptions.temperature] - sampling temperature override
  * @param {number} [lmOptions.maxTokens] - max response tokens override; defaults to
@@ -2409,7 +2409,7 @@ export function saveLlmMetrics(projectPath, data) {
  *
  * @param {string} projectPath - The path to the current project directory; used to locate
  *   the base tCore folder where llmMetrics.json is stored
- * @param {string} [url=''] - Base URL of the LM Studio server (e.g., 'http://localhost:1234');
+ * @param {string} [url=''] - Base URL of the OpenAI-compatible server (e.g., 'http://localhost:1234');
  *   combined with `model` to create a unique metrics key
  * @param {string} [model=''] - AI model identifier (e.g., 'Meta-Llama-3.1-8B'); combined with
  *   `url` to create a unique metrics key
@@ -2958,7 +2958,7 @@ export function updatedPreviousSelectionsData(
  *
  * @param {object} options - Request options
  * @param {string} options.verseText - The target-language verse text to search within (may contain punctuation)
- * @param {string|null} [options.llmQueryUrl] - Base URL of the LM Studio server (e.g., 'http://localhost:1234');
+ * @param {string|null} [options.llmQueryUrl] - Base URL of the OpenAI-compatible server (e.g., 'http://localhost:1234');
  *   if `null` or `undefined`, uses algorithmic mode instead of AI
  * @param {object} options.targetLanguageDetails - Metadata about the target language
  * @param {string} options.targetLanguageDetails.id - Language code (e.g., 'es-419' for Latin American Spanish)
@@ -3004,10 +3004,10 @@ export function updatedPreviousSelectionsData(
  * // }
  *
  * @example
- * // AI-assisted mode (requires LM Studio server running)
+ * // AI-assisted mode (requires OpenAI-compatible server running)
  * const result = await getBestSelections({
  *   verseText: 'para la iglesia de Éfeso',
- *   llmQueryUrl: 'http://localhost:1234', // LM Studio server URL
+ *   llmQueryUrl: 'http://localhost:1234', // OpenAI-compatible server URL
  *   targetLanguageDetails: { id: 'es-419' },
  *   alignedGLText: 'church',
  *   gatewayLanguageCode: 'en',

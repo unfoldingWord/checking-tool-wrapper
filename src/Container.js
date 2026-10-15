@@ -526,9 +526,9 @@ function Container({
   }
 
   /**
-   * Queries the LM Studio API to retrieve available models.
+   * Queries the OpenAI-compatible to retrieve available models.
    * @param {object} options - query options
-   * @param {string} options.baseUrl - base URL for the LM Studio API
+   * @param {string} options.baseUrl - base URL for the OpenAI-compatible
    * @returns {Promise<{models: Array|null, error: boolean}>} - object containing models array (or null on error) and error flag
    */
   // eslint-disable-next-line require-await

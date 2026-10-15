@@ -38,7 +38,7 @@ Most business logic lives here as plain functions, organized by concern rather t
 
 `autoCheckingUtils.js` implements "auto-select" translationWords suggestions — matching a gateway-language phrase to word(s) in the target verse. It has two interchangeable paths with matching signatures:
 - `getBestTWordSelectionWithConfidenceAlgorithm(...)` — deterministic, no network call; matches against previous-translation history (exact/ordered/fuzzy matching + Levenshtein), used as the default/offline path.
-- `getBestTWordSelectionWithConfidence(...)` / `translatePhraseWithConfidence(...)` — query a local LM Studio server (OpenAI-compatible chat-completions endpoint, `LM_STUDIO_URL` constant) for AI-assisted matching; response parsing is defensive (handles verbose/thinking-mode output, missing CSV formatting, etc.).
+- `getBestTWordSelectionWithConfidence(...)` / `translatePhraseWithConfidence(...)` — query a local OpenAI-compatible server (chat-completions endpoint, `AI_API_URL` constant) for AI-assisted matching; response parsing is defensive (handles verbose/thinking-mode output, missing CSV formatting, etc.).
 Both return `{ selections: [{text, occurrence}], confidence }[]`, so callers (`Container.js`) can swap between them.
 
 `GitApi.js`, `GogsApiHelpers.js`, `Repo.js`, `ProjectAPI.js`, `ResourceAPI.js` deal with git/DCS (Door43 Content Service) interactions for project/resource management, largely wrapping `simple-git` and `gogs-client`.
