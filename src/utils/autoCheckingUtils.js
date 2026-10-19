@@ -128,13 +128,13 @@ async function streamChatMessage(options) {
 
       if (!trimmed || !trimmed.startsWith('data: ')) {
         continue;
-      };
+      }
 
       const dataStr = trimmed.slice(6);
 
       if (dataStr === '[DONE]') {
         break;
-      };
+      }
 
       try {
         const chunk = JSON.parse(dataStr);
@@ -1284,7 +1284,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
       if (!phraseWords.length) {
         continue;
-      };
+      }
 
       const matchedPositions = [];
       let totalSimilarity = 0;
@@ -1730,21 +1730,27 @@ export function parseLlmSelectionOptions(answer, wordList) {
  * Words are matched to the verse exactly, then ignoring accents, then by fuzzy similarity,
  * and options resolving to the same words are merged.
  *
- * @param {Array<string>} wordList - target-language verse words in reading order
- * @param {string} targetLangCode - language code of the verse (e.g. 'es-419')
- * @param {string} glPhrase - gateway language phrase to translate (e.g. 'church')
- * @param {string} glLangCode - language code of the gateway phrase (e.g. 'en')
- * @param {object} previousTranslationData - prior translation counts; can be nested
+ * Passing an array of request objects instead of one sends them all to the AI in a single
+ * `queryAiAPI` call (see {@link getBestTWordSelectionsBatchFromLlm}) and resolves to an array
+ * of results in the same order.
+ *
+ * @param {object|Array<object>} options - Request options, or an array of them to batch
+ * @param {Array<string>} options.wordList - target-language verse words in reading order
+ * @param {string} options.targetLangCode - language code of the verse (e.g. 'es-419')
+ * @param {string} options.glPhrase - gateway language phrase to translate (e.g. 'church')
+ * @param {string} options.glLangCode - language code of the gateway phrase (e.g. 'en')
+ * @param {object} options.previousTranslationData - prior translation counts; can be nested
  *   `{glPhrase: {targetPhrase: count}}` or flat `{targetPhrase: count}`
- * @param {object} [lmOptions={enable_thinking: false}] - options passed to queryAiAPI
- * @param {boolean} [lmOptions.enable_thinking=false] - whether to enable AI thinking mode
- * @param {string} [lmOptions.baseUrl] - OpenAI-compatible server URL override
- * @param {string} [lmOptions.model] - AI model identifier override
- * @param {number} [lmOptions.temperature] - sampling temperature override
- * @param {number} [lmOptions.maxTokens] - max response tokens override; defaults to
+ * @param {object} [options.lmOptions={enable_thinking: false}] - options passed to queryAiAPI
+ * @param {boolean} [options.lmOptions.enable_thinking=false] - whether to enable AI thinking mode
+ * @param {string} [options.lmOptions.baseUrl] - OpenAI-compatible server URL override
+ * @param {string} [options.lmOptions.model] - AI model identifier override
+ * @param {number} [options.lmOptions.temperature] - sampling temperature override
+ * @param {number} [options.lmOptions.maxTokens] - max response tokens override; defaults to
  *   `LLM_DEFAULT_MAX_TOKENS` when thinking is off
- * @param {string} [lmOptions.apiToken] - bearer token for servers that require one
- * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>} -
+ * @param {string} [options.lmOptions.apiToken] - bearer token for servers that require one
+ * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}|Array<object>>} -
+ *   an array of these results when `options` is an array.
  *   `bestSelections` holds up to 3 options sorted by confidence, each containing:
  *   - selections: array of {text, occurrence} objects representing matched words
  *     - text: the word exactly as it appears in the verse
@@ -1754,14 +1760,14 @@ export function parseLlmSelectionOptions(answer, wordList) {
  * @throws Does not throw; logs errors and returns empty bestSelections on failure
  * @example
  * const wordList = ['para', 'la', 'iglesia', 'de', 'Éfeso'];
- * const result = await getBestTWordSelectionWithConfidenceFromLlm(
+ * const result = await getBestTWordSelectionWithConfidenceFromLlm({
  *   wordList,
- *   'es-419',
- *   'church',
- *   'en',
- *   { church: { 'iglesia': 7, 'la iglesia': 3 } },
- *   { enable_thinking: false }
- * );
+ *   targetLangCode: 'es-419',
+ *   glPhrase: 'church',
+ *   glLangCode: 'en',
+ *   previousTranslationData: { church: { 'iglesia': 7, 'la iglesia': 3 } },
+ *   lmOptions: { enable_thinking: false },
+ * });
  * // result.bestSelections: [
  * //   { selections: [{text: 'iglesia', occurrence: 1}], confidence: 98 },
  * //   { selections: [{text: 'la', occurrence: 1}, {text: 'iglesia', occurrence: 1}], confidence: 70 }
@@ -1771,7 +1777,19 @@ export function parseLlmSelectionOptions(answer, wordList) {
  * @see {@link parseLlmSelectionOptions} for response parsing logic
  * @see {@link getBestTWordSelectionWithConfidenceAlgorithm} for non-AI alternative
  */
-export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData, lmOptions = { enable_thinking: false }) {
+export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
+  if (Array.isArray(request)) {
+    return getBestTWordSelectionsBatchFromLlm(request);
+  }
+
+  const {
+    wordList,
+    targetLangCode,
+    glPhrase,
+    glLangCode,
+    previousTranslationData,
+    lmOptions = { enable_thinking: false },
+  } = request;
   const { systemPrompt, input } = buildTranslationOptionsPrompt(
     wordList.join(' '),
     targetLangCode,
@@ -1779,15 +1797,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     glLangCode,
     previousTranslationData,
   );
-  const options = {
-    enable_thinking: false,
-    ...lmOptions,
-    systemPrompt,
-  };
-
-  if (!options.maxTokens && !options.enable_thinking) {
-    options.maxTokens = LLM_DEFAULT_MAX_TOKENS;
-  }
+  const options = buildLlmQueryOptions(lmOptions, systemPrompt, LLM_DEFAULT_MAX_TOKENS);
 
   let answer = '';
   let elapsedStr = '0';
@@ -1831,6 +1841,156 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(wordList, targe
     elapsedStr,
     model: '',
   };
+}
+
+/** response tokens allowed per request when several requests share one AI query */
+const LLM_BATCH_MAX_TOKENS_PER_REQUEST = 256;
+
+/** appended to the system prompt when several requests are sent in one AI query */
+const LLM_BATCH_SYSTEM_PROMPT = `
+Several requests may be given, each starting with a line "### REQUEST n".
+Answer every request in the same order. Start each answer with its "### REQUEST n" line, then its CSV rows.
+
+Batch example output:
+### REQUEST 1
+"iglesia",98
+### REQUEST 2
+"",0
+`;
+
+/**
+ * Builds the options passed to `queryAiAPI`: thinking off by default, and a response length
+ * cap of `defaultMaxTokens` when thinking is off and no `maxTokens` was given.
+ *
+ * @param {object} lmOptions - caller's AI options
+ * @param {string} systemPrompt - system prompt for the query
+ * @param {number} defaultMaxTokens - max response tokens used when none was given
+ * @returns {object} - options for `queryAiAPI`
+ */
+function buildLlmQueryOptions(lmOptions, systemPrompt, defaultMaxTokens) {
+  const options = {
+    enable_thinking: false,
+    ...lmOptions,
+    systemPrompt,
+  };
+
+  if (!options.maxTokens && !options.enable_thinking) {
+    options.maxTokens = defaultMaxTokens;
+  }
+  return options;
+}
+
+/**
+ * Splits a batched AI answer into the answer text for each request, keyed by its
+ * `### REQUEST n` marker. When a marker appears more than once (e.g. reasoning echoed it
+ * before the final answer) the last section wins, since that is where the final answer is.
+ *
+ * @param {string} answer - raw AI response text
+ * @param {number} count - number of requests in the batch
+ * @returns {Array<string>} - answer text per request, '' when the request was not answered
+ */
+function splitLlmBatchAnswer(answer, count) {
+  const text = cleanLlmAnswer(answer);
+  const sections = new Array(count).fill('');
+  const marker = /^[\s#]*REQUEST\s*(\d+)\s*:?\s*$/gim;
+  const markers = [];
+  let match;
+
+  while ((match = marker.exec(text))) {
+    markers.push({
+      index: parseInt(match[1], 10) - 1, start: match.index, end: match.index + match[0].length,
+    });
+  }
+
+  if (!markers.length) {
+    if (count === 1) {
+      sections[0] = text; // model ignored the markers - the whole answer is for the one request
+    }
+    return sections;
+  }
+
+  markers.forEach(({ index, end }, i) => {
+    if (index >= 0 && index < count) {
+      const next = markers[i + 1];
+      sections[index] = text.slice(end, next ? next.start : text.length);
+    }
+  });
+  return sections;
+}
+
+/**
+ * Batched form of {@link getBestTWordSelectionWithConfidenceFromLlm}: sends all the requests
+ * to the AI in a single `queryAiAPI` call and splits the answer back out per request.
+ * The `lmOptions` of the first request are used for the shared query.
+ *
+ * @param {Array<object>} requests - each with the same fields as the single-request options
+ * @returns {Promise<Array<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>>} -
+ *   one result per request, in the same order; `elapsedStr` is the time for the whole batch
+ */
+async function getBestTWordSelectionsBatchFromLlm(requests) {
+  if (!requests.length) {
+    return [];
+  }
+
+  let systemPrompt = '';
+  const inputs = requests.map(({
+    wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData,
+  }, i) => {
+    const prompt = buildTranslationOptionsPrompt(
+      wordList.join(' '),
+      targetLangCode,
+      glPhrase,
+      glLangCode,
+      previousTranslationData,
+    );
+    systemPrompt = prompt.systemPrompt;
+    return `### REQUEST ${i + 1}${prompt.input.replace(/\n*Answer:\s*$/, '')}`;
+  });
+  const input = `${inputs.join('\n\n')}\n\nAnswer:`;
+  const lmOptions = requests[0].lmOptions || { enable_thinking: false };
+  const maxTokens = Math.max(LLM_DEFAULT_MAX_TOKENS, requests.length * LLM_BATCH_MAX_TOKENS_PER_REQUEST);
+  const options = buildLlmQueryOptions(lmOptions, systemPrompt + LLM_BATCH_SYSTEM_PROMPT, maxTokens);
+
+  let answer = '';
+  let elapsedStr = '0';
+  let model = '';
+
+  try {
+    ({
+      response: answer,
+      elapsedStr,
+      model,
+    } = await queryAiAPI(input, options));
+  } catch (e) {
+    console.warn('AI batch query error', e);
+    return requests.map(() => ({
+      error: true,
+      bestSelections: [],
+      elapsedStr,
+      model: '',
+    }));
+  }
+
+  const sections = splitLlmBatchAnswer(answer, requests.length);
+
+  return requests.map(({ wordList, glPhrase }, i) => {
+    const bestSelections = sections[i] ? parseLlmSelectionOptions(sections[i], wordList) : [];
+
+    if (!bestSelections.length) {
+      console.log('AI batch response ERROR decoding:', {
+        request: i + 1,
+        wordList: formatNumberedVerse(wordList.join(' ')),
+        glPhrase,
+        answer: sections[i],
+      });
+    }
+    return {
+      error: false,
+      bestSelections,
+      elapsedStr,
+      model: bestSelections.length ? model : '',
+    };
+  });
 }
 
 /**
@@ -3026,68 +3186,113 @@ export function updatedPreviousSelectionsData(
  * @see {@link getBestTWordSelectionWithConfidenceFromLlm} - AI-assisted implementation using language models
  * @see {@link getWordList} - Function used to tokenize the verse text into individual words
  */
-export async function getBestSelections({
-  verseText,
-  llmQueryUrl,
-  targetLanguageDetails,
-  alignedGLText,
-  gatewayLanguageCode,
-  selectionsData,
-  currentModel,
-  llmTemperature,
-  apiToken,
-} = {}) {
-  // eslint-disable-next-line no-unused-vars
-  let results = {
-    bestSelections: [],
-    elapsedStr: '',
-    error: true,
-    model: '',
-  };
+export async function getBestSelections(options = {}) {
+  let jobs = [options];
+
+  if (Array.isArray(options)) {
+    jobs = options;
+  }
+
+  const jobResults = [];
+  // TRICKY - llmQueryUrl assumed the same in all jobs
+  const llmQueryUrl = jobs[0]?.llmQueryUrl;
 
   try {
-    const wordList = getWordList(verseText);
-
     if (!llmQueryUrl) {
-      const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
-        wordList,
-        targetLanguageDetails.id,
-        alignedGLText,
-        gatewayLanguageCode,
-        selectionsData?.selections,
-        llmQueryUrl
-      );
+      for (const job of jobs) {
+        let results = {
+          bestSelections: [],
+          elapsedStr: '',
+          error: true,
+          model: '',
+        };
 
-      results = {
-        error: false,
-        bestSelections,
-        elapsedStr: '0',
-        model: 'APP',
-      };
-    } else {
-      const lmOptions = {
-        apiToken,
-        baseUrl: llmQueryUrl,
-        enable_thinking: false,
-        model: currentModel,
-        temperature: (llmTemperature || 0.7),
-      };
+        try {
+          const {
+            verseText,
+            targetLanguageDetails,
+            alignedGLText,
+            gatewayLanguageCode,
+            selectionsData,
+          } = job;
 
-      results = await getBestTWordSelectionWithConfidenceFromLlm(
-        wordList,
-        targetLanguageDetails.id,
-        alignedGLText,
-        gatewayLanguageCode,
-        selectionsData?.selections,
-        lmOptions
-      );
+          const wordList = getWordList(verseText);
+
+          // eslint-disable-next-line no-await-in-loop
+          const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
+            wordList,
+            targetLanguageDetails.id,
+            alignedGLText,
+            gatewayLanguageCode,
+            selectionsData?.selections,
+            llmQueryUrl
+          );
+
+          results = {
+            error: false,
+            bestSelections,
+            elapsedStr: '0',
+            model: 'APP',
+          };
+        } catch (error) {
+          console.error(`getBestSelections - error`, error, job);
+          results = { error: true };
+        }
+        jobResults.push(results);
+      }
+    } else { // querying AI Model
+      for (const job of jobs) {
+        let results = {
+          bestSelections: [],
+          elapsedStr: '',
+          error: true,
+          model: '',
+        };
+
+        try {
+          const {
+            verseText,
+            targetLanguageDetails,
+            alignedGLText,
+            gatewayLanguageCode,
+            selectionsData,
+            currentModel,
+            llmTemperature,
+            apiToken,
+          } = job;
+
+          const wordList = getWordList(verseText);
+
+          const lmOptions = {
+            apiToken,
+            baseUrl: llmQueryUrl,
+            enable_thinking: false,
+            model: currentModel,
+            temperature: (llmTemperature || 0.7),
+          };
+
+          // eslint-disable-next-line no-await-in-loop
+          results = await getBestTWordSelectionWithConfidenceFromLlm({
+            wordList,
+            targetLangCode: targetLanguageDetails.id,
+            glPhrase: alignedGLText,
+            glLangCode: gatewayLanguageCode,
+            previousTranslationData: selectionsData?.selections,
+            lmOptions,
+          });
+        } catch (error) {
+          console.error(`getBestSelections - error`, error, job);
+          results = { error: true };
+        }
+        jobResults.push(results);
+      }
     }
   } catch (e) {
     console.error(`getBestSelections - error`, e);
     return { error: true };
   }
 
-  return results;
+  return jobResults;
 }
 
 /**
@@ -3530,7 +3735,7 @@ export class LlmRequestQueue {
    * Otherwise adds request to queue (front if priority is true, back if false) and triggers
    * processing after 100ms delay.
    *
-   * @param {object} request - Request data for translation suggestion
+   * @param {object|Array} request - Request data for translation suggestion
    * @param {Function} callback - Function called when results ready
    * @param {boolean} [priority=false] - If true, adds to front of queue
    * @param {boolean} [force=false] - If true, bypasses cache
@@ -3538,22 +3743,36 @@ export class LlmRequestQueue {
    */
   makeSuggestionRequest(request, callback, priority = false, force = false) {
     if (request) {
-      const memory = this.getSuggestionsMemoryForKey(request.key);
+      const nonMemoryRequests = [];
+      const requests = Array.isArray(request) ? request : [request];
 
-      if (memory && !force) { // if we have a cached value, then use it
-        // console.log(`makeSuggestionRequest found cached suggestion`);
-        memory.cached = true;
-        delay(1).then(() => {
-          callback(memory);
-        });
-        return;
+      for (const _request of requests) {
+        const memory = this.getSuggestionsMemoryForKey(request.key);
+
+        if (memory && !force) { // if we have a cached value, then use it
+          // console.log(`makeSuggestionRequest found cached suggestion`);
+          memory.cached = true;
+          delay(1).then(() => {
+            callback(memory);
+          });
+        } else {
+          nonMemoryRequests.push(_request);
+          this.removeKeyInQueue(_request.key); // remove previous metching queries
+          // console.log(`makeSuggestionRequest adding to queue - `, redactOptions(_request));
+        }
       }
 
-      this.removeKeyInQueue(request.key); // remove previous metching queries
-      // console.log(`makeSuggestionRequest adding to queue - `, redactOptions(request));
-      const requestData = { request, callback };
-      this.requestQueue.addRequest(requestData, priority);
+      if (nonMemoryRequests?.length) {
+        if (nonMemoryRequests?.length > 1) {
+          const requestData = { request: nonMemoryRequests, callback };
+          this.requestQueue.addRequest(requestData, priority);
+        } else {
+          const requestData = { request: nonMemoryRequests[0], callback };
+          this.requestQueue.addRequest(requestData, priority);
+        }
+      }
     }
+
     this.processNextRequestIfNotBusy();
   }
 
@@ -3650,44 +3869,50 @@ export class LlmRequestQueue {
     if (!this.busy && !this.pause && this.requestQueue.hasRequests()) {
       // console.log(`processNextRequest - not busy getting request`);
       const nextLlmRequest = this.requestQueue.getNextRequest();
-      const requestData = nextLlmRequest?.request;
-      let results = { error: true };
+      const requestData_ = nextLlmRequest?.request;
+      const callback = nextLlmRequest?.callback;
 
-      if (requestData) {
-        results = await this.doQuery(results, requestData);
-        let haveAsuggestion = this.testIfWeHaveASuggestion(results);
+      if (requestData_) {
+        let results = await this.doQuery(results, requestData_);
 
-        if (nextLlmRequest?.callback) {
+        for (let result of results) {
+          const requestData = result?.request;
+          let haveAsuggestion = this.testIfWeHaveASuggestion(result);
+
           if (!haveAsuggestion && requestData.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
-            const llmResults = results; // save llm results
+            const llmResults = result; // save llm results
             // console.log(`processNextRequest - empty suggestion, trying algorithm`);
             requestData.llmQueryUrl = '';
-            results = await this.doQuery(results, requestData);
-            results.llmError = llmResults?.error;
-            results.algorithmFallback = true;
-            // we don't want to save algorithm suggestions
-            // haveAsuggestion = this.testIfWeHaveASuggestion(results);
+            // eslint-disable-next-line no-await-in-loop
+            result = await this.doQuery(result, requestData);
+            result.llmError = llmResults?.error;
+            result.algorithmFallback = true;
           }
 
-          // console.log(`processNextRequest - doing callback`);
+          if (callback) {
+            // console.log(`processNextRequest - doing callback`);
 
-          try {
-            await nextLlmRequest.callback(results);
-          } catch (e) {
-            console.error(`processNextRequest - callback ERROR`, e);
+            try {
+              // eslint-disable-next-line no-await-in-loop
+              await callback(result);
+            } catch (e) {
+              console.error(`processNextRequest - callback ERROR`, e);
+            }
+
+            // eslint-disable-next-line no-await-in-loop
+            await delay(10);
+
+            // console.log(`processNextRequest - callback finished`);
+
+            if (haveAsuggestion) {
+              // if we have at least one suggestion, save it
+              this.saveSuggestionsMemoryForKey(requestData.key, result);
+            }
           }
 
-          // console.log(`processNextRequest - callback finished`);
+          this.busy = false;
+          this.processNextRequestIfNotBusy();
         }
-
-        this.busy = false;
-
-        if (haveAsuggestion) {
-          // if we have at least one suggestion, save it
-          this.saveSuggestionsMemoryForKey(requestData.key, results);
-        }
-
-        this.processNextRequestIfNotBusy();
       }
     } else {
       // console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
@@ -3733,7 +3958,7 @@ export class LlmRequestQueue {
    * calling code to clear it after completion. It attaches the original request data to the results
    * for context tracking and error correlation.
    *
-   * @param {object} results - Initial results object to populate, typically `{error: true}`
+   * @param {Array<object>} results - Initial results object to populate, typically `{error: true}`
    * @param {object} requestData - Request parameters containing:
    *   - verseText: Target-language verse text
    *   - llmQueryUrl: AI server URL or null for algorithmic mode
@@ -3743,17 +3968,27 @@ export class LlmRequestQueue {
    *   - selectionsData: Historical translation data
    *   - currentModel: AI model identifier
    *   - llmTemperature: AI temperature setting
-   * @returns {Promise<object>} Results object containing error status, best selections, elapsed time,
+   * @returns {Promise<Array<object>>} Array of Results objects containing error status, best selections, elapsed time,
    *   model name, and the original request data. Returns `{error: errorMessage}` if an exception occurs
    */
   async doQuery(results, requestData) {
     try {
       this.busy = true;
-      results = await getBestSelections(requestData);
-      results.request = redactOptions(requestData);
+      const _results = await getBestSelections(requestData);
+
+      if (!Array.isArray(requestData)) {
+        _results[0].request = redactOptions(requestData);
+        results = _results;
+      } else {
+        for (let i = 0; i < results.length; i++) {
+          const result = _results[i];
+          result.request = redactOptions(requestData[i]);
+          results.push(result);
+        }
+      }
     } catch (e) {
       console.error(`processNextRequest - getBestSelections ERROR`, e);
-      return { error: e.toString() };
+      return [{ error: e.toString() }];
     }
     return results;
   }

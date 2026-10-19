@@ -217,6 +217,17 @@ function Container({
       const groupIds = Object.keys(groupsData) || [];
       let foundMatch = false;
 
+      function submitSuggestionRequest(suggestionsRequestQueue, request, force_) {
+        suggestionsRequestQueue.makeSuggestionRequest(
+          request,
+          () => { // callback function
+            // console.log(`generateSuggestionForSubgroup result`, data);
+          },
+          false,
+          force_,
+        );
+      }
+
       for (const groupId of groupIds) {
         if (generateSuggestionsRestartRef.current
           || !settingsForSuggestionsRef.current.suggestionsEnabled) {
@@ -326,15 +337,7 @@ function Container({
 
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
-
-                suggestionsRequestQueue.makeSuggestionRequest(
-                  request,
-                  () => { // callback function
-                    // console.log(`generateSuggestionForSubgroup result`, data);
-                  },
-                  false,
-                  force_,
-                );
+                submitSuggestionRequest(suggestionsRequestQueue, request, force_);
               } else {
                 console.log(`generateSuggestionForSubgroup no glQuote`, check);
               }
