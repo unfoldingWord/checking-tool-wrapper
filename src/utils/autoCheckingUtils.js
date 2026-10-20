@@ -722,7 +722,8 @@ Rules:
 4. Give 1 to 3 options, best first, one per line, written as: "words",confidence
 5. confidence is a whole number from 0 to 100 for how sure you are that the option is right in this verse.
 6. If no words in TARGET VERSE fit, answer: "",0
-7. Output only as CSV rows: no header, no explanation, no markdown fences.
+7. Do not include reasoning in answer.
+8. Answer only as CSV rows: no header, no explanation, no markdown fences.
 
 Required output format:
 "word word",confidence
@@ -737,11 +738,11 @@ PREVIOUS TRANSLATIONS:
 
 GATEWAY PHRASE (en): church
 
-Output:
+Answer:
 "iglesia",98
 "la iglesia",70
 
-Wrong output for Example:
+Wrong answer for Example:
 "church",98 - gateway words are not in TARGET VERSE
 "congregación",90 - word is not in TARGET VERSE
 iglesia,98 - missing the quotes
@@ -3240,56 +3241,49 @@ export async function getBestSelections(options = {}) {
         }
         jobResults.push(results);
       }
-    } else { // querying AI Model
-      for (const job of jobs) {
-        let results = {
-          bestSelections: [],
-          elapsedStr: '',
-          error: true,
-          model: '',
-        };
+    } else { // querying AI Model - all jobs are sent in a single query
+      const llmRequests = jobs.map(job => {
+        const {
+          alignedGLText,
+          apiToken,
+          currentModel,
+          gatewayLanguageCode,
+          key,
+          llmTemperature,
+          selectionsData,
+          targetLanguageDetails,
+          verseText,
+        } = job;
 
-        try {
-          const {
-            verseText,
-            targetLanguageDetails,
-            alignedGLText,
-            gatewayLanguageCode,
-            selectionsData,
-            currentModel,
-            llmTemperature,
-            apiToken,
-          } = job;
-
-          const wordList = getWordList(verseText);
-
-          const lmOptions = {
+        return {
+          wordList: getWordList(verseText),
+          key,
+          targetLangCode: targetLanguageDetails.id,
+          glPhrase: alignedGLText,
+          glLangCode: gatewayLanguageCode,
+          previousTranslationData: selectionsData?.selections,
+          lmOptions: {
             apiToken,
             baseUrl: llmQueryUrl,
             enable_thinking: false,
             model: currentModel,
             temperature: (llmTemperature || 0.7),
-          };
+          },
+        };
+      });
 
-          // eslint-disable-next-line no-await-in-loop
-          results = await getBestTWordSelectionWithConfidenceFromLlm({
-            wordList,
-            targetLangCode: targetLanguageDetails.id,
-            glPhrase: alignedGLText,
-            glLangCode: gatewayLanguageCode,
-            previousTranslationData: selectionsData?.selections,
-            lmOptions,
-          });
-        } catch (error) {
-          console.error(`getBestSelections - error`, error, job);
-          results = { error: true };
-        }
+      const llmRequests_ = llmRequests?.length > 1 ? llmRequests : llmRequests[0];
+      const results = await getBestTWordSelectionWithConfidenceFromLlm(llmRequests_);
+
+      if (Array.isArray(results)) {
+        jobResults.push(...results);
+      } else {
         jobResults.push(results);
       }
     }
   } catch (e) {
     console.error(`getBestSelections - error`, e);
-    return { error: true };
+    return jobs.map(() => ({ error: true }));
   }
 
   return jobResults;
@@ -3699,9 +3693,9 @@ export class LlmRequestQueue {
     if (key) {
       for (let i = 0; i < this.requestQueue.queue.length; i++) {
         const item = this.requestQueue.queue[i];
-        const itemKey = item?.request?.key;
+        const itemRequests = Array.isArray(item?.request) ? item.request : [item?.request];
 
-        if (itemKey === key) {
+        if (itemRequests.some(itemRequest => itemRequest?.key === key)) {
           return i;
         }
       }
@@ -3723,7 +3717,15 @@ export class LlmRequestQueue {
     const index = this.findKeyInQueue(key);
 
     if (index >= 0) {
-      this.requestQueue.queue.splice(index, 1);
+      const item = this.requestQueue.queue[index];
+
+      if (Array.isArray(item.request)) { // batched - drop just the matching request
+        item.request = item.request.filter(itemRequest => itemRequest?.key !== key);
+      }
+
+      if (!Array.isArray(item.request) || !item.request.length) {
+        this.requestQueue.queue.splice(index, 1);
+      }
       return true;
     }
     return false;
@@ -3747,7 +3749,7 @@ export class LlmRequestQueue {
       const requests = Array.isArray(request) ? request : [request];
 
       for (const _request of requests) {
-        const memory = this.getSuggestionsMemoryForKey(request.key);
+        const memory = this.getSuggestionsMemoryForKey(_request.key);
 
         if (memory && !force) { // if we have a cached value, then use it
           // console.log(`makeSuggestionRequest found cached suggestion`);
@@ -3873,18 +3875,18 @@ export class LlmRequestQueue {
       const callback = nextLlmRequest?.callback;
 
       if (requestData_) {
-        let results = await this.doQuery(results, requestData_);
+        const results = await this.doQuery([], requestData_);
 
         for (let result of results) {
           const requestData = result?.request;
           let haveAsuggestion = this.testIfWeHaveASuggestion(result);
 
-          if (!haveAsuggestion && requestData.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
+          if (!haveAsuggestion && requestData?.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
             const llmResults = result; // save llm results
             // console.log(`processNextRequest - empty suggestion, trying algorithm`);
             requestData.llmQueryUrl = '';
             // eslint-disable-next-line no-await-in-loop
-            result = await this.doQuery(result, requestData);
+            [result] = await this.doQuery([], requestData);
             result.llmError = llmResults?.error;
             result.algorithmFallback = true;
           }
@@ -3903,16 +3905,16 @@ export class LlmRequestQueue {
             await delay(10);
 
             // console.log(`processNextRequest - callback finished`);
-
-            if (haveAsuggestion) {
-              // if we have at least one suggestion, save it
-              this.saveSuggestionsMemoryForKey(requestData.key, result);
-            }
           }
 
-          this.busy = false;
-          this.processNextRequestIfNotBusy();
+          if (haveAsuggestion) {
+            // if we have at least one suggestion, save it
+            this.saveSuggestionsMemoryForKey(requestData.key, result);
+          }
         }
+
+        this.busy = false;
+        this.processNextRequestIfNotBusy();
       }
     } else {
       // console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
@@ -3980,7 +3982,7 @@ export class LlmRequestQueue {
         _results[0].request = redactOptions(requestData);
         results = _results;
       } else {
-        for (let i = 0; i < results.length; i++) {
+        for (let i = 0; i < _results.length; i++) {
           const result = _results[i];
           result.request = redactOptions(requestData[i]);
           results.push(result);
@@ -3988,7 +3990,8 @@ export class LlmRequestQueue {
       }
     } catch (e) {
       console.error(`processNextRequest - getBestSelections ERROR`, e);
-      return [{ error: e.toString() }];
+      const requests = Array.isArray(requestData) ? requestData : [requestData];
+      return requests.map(request => ({ error: e.toString(), request: redactOptions(request) }));
     }
     return results;
   }

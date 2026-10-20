@@ -86,6 +86,8 @@ const glBiblesCache = {
 };
 
 const __suggestionsCache = {};
+/** number of suggestion requests bundled into each AI query */
+const DEFAULT_SUGGESTION_REQUESTS_PER_CALL = 1;
 
 /**
  * Top-level checking-tool layout: group menu, scripture pane, check info card, verse check,
@@ -190,6 +192,8 @@ function Container({
    * @returns {Promise<void>}
    */
   async function generateSuggestionsForGroupSub(groupsData, targetLanguageId, force, targetLanguageDetails, projectSaveLocation, glOwnerStr, priority, currentGroupOnly, skipCurrentGroup) {
+    const defaultsuggestionrequestspercall = settingsForSuggestionsRef.current?.llmGrouping || DEFAULT_SUGGESTION_REQUESTS_PER_CALL;
+
     /**
      * Generates suggestions for a subset of groups based on match criteria.
      * Iterates through groups and creates suggestion requests for checks lacking selections.
@@ -216,6 +220,8 @@ function Container({
 
       const groupIds = Object.keys(groupsData) || [];
       let foundMatch = false;
+      let pendingRequests = [];
+      let pendingForce = false;
 
       function submitSuggestionRequest(suggestionsRequestQueue, request, force_) {
         suggestionsRequestQueue.makeSuggestionRequest(
@@ -226,6 +232,15 @@ function Container({
           false,
           force_,
         );
+      }
+
+      // bundles requests so that DEFAULT_SUGGESTION_REQUESTS_PER_CALL are sent per AI query
+      function flushPendingRequests() {
+        if (pendingRequests.length) {
+          submitSuggestionRequest(suggestionsRequestQueueRef?.current, pendingRequests, pendingForce);
+          pendingRequests = [];
+          pendingForce = false;
+        }
       }
 
       for (const groupId of groupIds) {
@@ -332,18 +347,28 @@ function Container({
 
                 const request = {
                   ...data,
-                  selectionsData,
+                  selectionsData: { ...selectionsData }, // copy - selectionsData is reused for each check
                 };
 
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
-                submitSuggestionRequest(suggestionsRequestQueue, request, force_);
+                pendingRequests.push(request);
+                pendingForce = pendingForce || force_;
+
+                if (pendingRequests.length >= defaultsuggestionrequestspercall) {
+                  flushPendingRequests();
+                }
               } else {
                 console.log(`generateSuggestionForSubgroup no glQuote`, check);
               }
             }
           }
         }
+      }
+
+      if (!generateSuggestionsRestartRef.current
+        && settingsForSuggestionsRef.current.suggestionsEnabled) {
+        flushPendingRequests(); // send the remainder
       }
       // console.log(`generateSuggestionForSubgroup added ${count} checks`);
     }
