@@ -1674,12 +1674,20 @@ function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWor
  * Turns an AI answer into up to `LLM_MAX_OPTIONS` translation options for the verse.
  * Rows that resolve to the same words are merged keeping the higher confidence.
  *
+ * A batched answer with `### REQUEST n` markers - on their own lines or run together, e.g.
+ * `###REQUEST1"quyn",98###REQUEST2"",0` - is parsed for the request at `requestIndex` only.
+ *
  * @param {string} answer - raw AI response text
  * @param {Array<string>} wordList - target-language verse words in reading order
+ * @param {number} [requestIndex=0] - 0-based request to parse when the answer is batched
  * @returns {Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>} -
  *   options sorted by confidence, highest first; empty when nothing usable was found
  */
-export function parseLlmSelectionOptions(answer, wordList) {
+export function parseLlmSelectionOptions(answer, wordList, requestIndex = 0) {
+  if (new RegExp(LLM_BATCH_MARKER.source, 'im').test(cleanLlmAnswer(answer))) {
+    answer = splitLlmBatchAnswer(answer, requestIndex + 1)[requestIndex];
+  }
+
   const normalizedWordList = wordList.map(word => normalizeForCompare(word));
   const foldedWordList = normalizedWordList.map(foldAccents);
   const { rows, finalRows } = extractLlmRows(answer);
@@ -1844,6 +1852,13 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
   };
 }
 
+/**
+ * `### REQUEST n` marker starting each answer in a batched AI response; found at the start of
+ * a line or after a `#`, so markers run together on one line (`###REQUEST1"quyn",98###REQUEST2`)
+ * are found too
+ */
+const LLM_BATCH_MARKER = /(?:^|#)[#\s]*REQUEST\s*(\d+)\s*:?/gim;
+
 /** response tokens allowed per request when several requests share one AI query */
 const LLM_BATCH_MAX_TOKENS_PER_REQUEST = 256;
 
@@ -1883,8 +1898,9 @@ function buildLlmQueryOptions(lmOptions, systemPrompt, defaultMaxTokens) {
 
 /**
  * Splits a batched AI answer into the answer text for each request, keyed by its
- * `### REQUEST n` marker. When a marker appears more than once (e.g. reasoning echoed it
- * before the final answer) the last section wins, since that is where the final answer is.
+ * `### REQUEST n` marker (see `LLM_BATCH_MARKER`). When a marker appears more than once (e.g.
+ * reasoning echoed it before the final answer) the last section wins, since that is where the
+ * final answer is.
  *
  * @param {string} answer - raw AI response text
  * @param {number} count - number of requests in the batch
@@ -1893,7 +1909,7 @@ function buildLlmQueryOptions(lmOptions, systemPrompt, defaultMaxTokens) {
 function splitLlmBatchAnswer(answer, count) {
   const text = cleanLlmAnswer(answer);
   const sections = new Array(count).fill('');
-  const marker = /^[\s#]*REQUEST\s*(\d+)\s*:?\s*$/gim;
+  const marker = new RegExp(LLM_BATCH_MARKER.source, 'gim');
   const markers = [];
   let match;
 

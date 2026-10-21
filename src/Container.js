@@ -446,6 +446,20 @@ function Container({
     setEditVerseInScrPane(null);
   }, [checkId, groupId, chapter, verse]);
 
+  // Effect hook that runs when the current groupId in contextId changes,
+  // i.e. when the user navigates to a different check group.
+  useEffect(() => {
+    if (!groupId) {
+      return;
+    }
+
+    console.log(`Container - groupId changed to ${groupId}`);
+    setTriggerGenerateSuggestionsStart(false);
+    delay(100).then(() => {
+      setTriggerGenerateSuggestionsStart(true);
+    });
+  }, [groupId]);
+
   /**
    * Triggers edit mode for a verse in the Expanded Scripture Pane.
    * @param {string|number} verseRef - verse reference to edit
@@ -508,11 +522,11 @@ function Container({
    */
   function saveSettingsForChecking(data, noRestart = false) {
     const projectSaveLocation = tc?.projectSaveLocation;
-    const llmApiToken = data?.llmApiToken;
+    // const llmApiToken = data?.llmApiToken;
 
-    if (!llmApiToken) {
-      console.warn(`saveSettingsForChecking llmApiToken is being cleared ${llmApiToken}`);
-    }
+    // if (!llmApiToken) {
+    //   console.warn(`saveSettingsForChecking llmApiToken is being cleared ${llmApiToken}`);
+    // }
 
     saveSettingsForChecking_(projectSaveLocation, data);
 
