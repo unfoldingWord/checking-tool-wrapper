@@ -26,7 +26,7 @@ The host app (translationCore) passes down a large `tc` prop (see `getTcState`/`
 1. reading from that `tc` state plus its own Redux slice (`state.tool.*`, combined in `src/state/reducers/index.js`: contextId, groupsIndex, groupsData, groupMenu, comments, selections, bookmarks, verseEdit, invalidated), or
 2. reading/writing project files on disk directly via `fs-extra`/`path-extra` (check data, selections, group data JSON under `.apps/translationCore/...` in the project folder — see `src/common/constants.js` for the path constants).
 
-`Container.js` is the top-level React component (function component using hooks) that lays out the checking UI: `ScripturePaneWrapper`, `VerseCheckWrapper`, `TranslationHelpsWrapper`, `CheckInfoCardWrapper`, `GroupMenuContainer`, wrapped in `TcuiThemeProvider`.
+`src/Container.js` is the top-level React component (function component using hooks) that lays out the checking UI: `ScripturePaneWrapper`, `VerseCheckWrapper`, `TranslationHelpsWrapper`, `CheckInfoCardWrapper`, `GroupMenuContainer`, wrapped in `TcuiThemeProvider`.
 
 `Api.js` (`class Api extends ToolApi` from `tc-tool`) is the tool's lifecycle/API surface — validating verse alignments/selections when the book changes, loading verse/book selections and check data, and reacting to changes in other tools (e.g. word alignment invalidating selections).
 
@@ -36,10 +36,19 @@ Most business logic lives here as plain functions, organized by concern rather t
 
 `fileHelpers.js` has low-level JSON/text/folder-tree read helpers plus version-folder resolution (`v9` vs `v10`-style comparisons) used when picking the most recent gateway-language bible resource.
 
-`autoCheckingUtils.js` implements "auto-select" translationWords suggestions — matching a gateway-language phrase to word(s) in the target verse. It has two interchangeable paths with matching signatures:
-- `getBestTWordSelectionWithConfidenceAlgorithm(...)` — deterministic, no network call; matches against previous-translation history (exact/ordered/fuzzy matching + Levenshtein), used as the default/offline path.
-- `getBestTWordSelectionWithConfidence(...)` / `translatePhraseWithConfidence(...)` — query a local OpenAI-compatible server (chat-completions endpoint, `AI_API_URL` constant) for AI-assisted matching; response parsing is defensive (handles verbose/thinking-mode output, missing CSV formatting, etc.).
-Both return `{ selections: [{text, occurrence}], confidence }[]`, so callers (`Container.js`) can swap between them.
+### Auto-select suggestions (`src/utils/autoCheckingUtils.js`)
+
+Note this lives in `src/utils/`, not `src/helpers/`. It implements "auto-select" translationWords suggestions — matching a gateway-language (GL) phrase (`alignedGLText`) to word(s) in the target-language verse. Its tests are in `__tests__/autoCheckingUtils.test.js`.
+
+Flow: `Container.js` → `LlmRequestQueue` (wraps `RequestQueue`; caches results by key, see `alreadyHaveSuggestionsForKey`) → `getBestSelections(jobs)`, which picks one of two paths:
+- No `llmQueryUrl` → `getBestTWordSelectionWithConfidenceAlgorithm(wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData)` for each job. This path is deterministic and makes no network call. It looks up the GL phrase in the history (exact key first, then `getPreviousTranslationPartialMatchCounts`). Then it searches the verse for each previous rendering: contiguous match (confidence 100, the only way to reach 100), then ordered with gaps, then best sub-phrase. If no candidate scores above 80, it falls back to Levenshtein fuzzy matching (`scoreAlgorithmicMatch` documents the scoring).
+- With `llmQueryUrl` → `getBestTWordSelectionWithConfidenceFromLlm(requests)`, which sends all jobs in a single batched request to an OpenAI-compatible chat-completions server (default `AI_API_URL`). Response parsing (`parseLlmSelectionOptions`, `extractLlmRows`) is defensive: it handles thinking/reasoning tags, JSON or CSV rows, and missing formatting. `translatePhraseWithConfidence` is an older single-phrase AI path.
+
+Both paths return up to 3 `{ selections: [{text, occurrence}], confidence }`, best first, so they are interchangeable. Keep that contract when changing either one.
+
+Previous-selection history comes from `fetchPreviousSelectionData(...)`. It scans the other projects in the tCore projects folder and returns `{ normalizedGlQuote: { selectedTargetText: count } }`, e.g. `{ 'faith': { 'fe': 12, 'la fe': 3 } }`.
+
+Target languages can be any language, including ones with no linguistic resources: compound or inflected words, any script, any word order. Don't add matching logic that assumes English-like or Latin-script target text, or that needs target-language word lists.
 
 `GitApi.js`, `GogsApiHelpers.js`, `Repo.js`, `ProjectAPI.js`, `ResourceAPI.js` deal with git/DCS (Door43 Content Service) interactions for project/resource management, largely wrapping `simple-git` and `gogs-client`.
 
@@ -56,3 +65,22 @@ Component/container strings are translated via `react-localize-redux` (`translat
 - Single quotes, 2-space indent, semicolons required, trailing commas on multiline.
 - `no-unused-vars`, `no-undef`, `require-await`, `no-return-await`, and `array-callback-return` are errors, not just style — CI lint will fail on these.
 - `react/prop-types` is enforced for components.
+
+## Dependent unfoldingWord modules
+
+These are `peerDependencies`: translationCore supplies them at runtime. `devDependencies` pins the versions used for local tests. When behavior depends on one of them (e.g. how `normalizer` handles punctuation or accents), read the installed code in `node_modules/<pkg>`, which matches the pinned version. Don't assume the GitHub default branch matches.
+
+| Package | Dev version | Used for | Imported in |
+|---|---|---|---|
+| [string-punctuation-tokenizer](https://github.com/unfoldingWord/string-punctuation-tokenizer) | 2.2.0 | `normalizer` for word comparison in auto-select | `utils/autoCheckingUtils.js` |
+| [wordmap-lexer](https://github.com/unfoldingWord/wordmap-lexer) | 0.3.6 | Tokenizing verse text into words | `utils/autoCheckingUtils.js` |
+| [tc-ui-toolkit](https://github.com/unfoldingWord/tc-ui-toolkit) | 6.2.8 | UI components (`ScripturePane`, `VerseCheck`, `TranslationHelps`, `CheckInfoCard`) and `verseHelpers` | `components/*Wrapper.js`, others |
+| [tc-source-content-updater](https://github.com/unfoldingWord/tc-source-content-updater) | 1.4.34 | Resource download/lookup helpers (`apiHelpers`, `resourcesHelpers`) | `helpers/fileHelpers.js`, `helpers/resourcesHelpers.js`, `helpers/ResourceAPI.js` |
+| [usfm-js](https://github.com/unfoldingWord/usfm-js) | 2.1.0 | Parsing/converting USFM verse text | `Api.js`, `helpers/verseHelpers.js`, `state/actions/selectionsActions.js` |
+| [word-aligner](https://github.com/unfoldingWord/word-aligner) | 0.4.0 | `VerseObjectUtils` for aligned verse objects | `components/CheckInfoCardWrapper.js` |
+| [bible-reference-range](https://github.com/unfoldingWord/bible-reference-range) | 1.0.1 | `getVerses` for verse ranges in references | `helpers/verseHelpers.js`, `helpers/gatewayLanguageHelpers.js` |
+| [tc-electron-env](https://github.com/unfoldingWord/tc-electron-env) | 0.10.0 | Electron environment paths (e.g. user home for resources) | `common/constants.js`, `helpers/ResourceAPI.js` |
+| [tsv-groupdata-parser](https://github.com/unfoldingWord/tsv-groupdata-parser) | 0.10.3 | Declared as a peer dependency, but not imported anywhere in `src/` | — |
+
+Also `tc-tool` (4.0.1, [translationCoreApps/tc-tool](https://github.com/translationCoreApps/tc-tool)): it provides `ToolApi` and `connectTool`, and `src/Api.js` imports it.
+
