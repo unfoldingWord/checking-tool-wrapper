@@ -17,6 +17,64 @@ const AI_API_URL = 'http://192.168.142.70:1234';
 /** most previous-translation entries sent in an AI prompt, strongest evidence first */
 const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
 
+/**
+ * Identifies one check in a checking tool. The same shape is used for the current check
+ * (`state.tool.contextId`) and for the `contextId` saved with each check record in
+ * `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json`.
+ * The same typedef is in `src/helpers/gatewayLanguageHelpers.js`; keep both in sync.
+ *
+ * @typedef {object} ContextId
+ * @property {object} reference - where the check is
+ * @property {string} reference.bookId - book id (e.g. 'tit')
+ * @property {number|string} reference.chapter - chapter number; sometimes saved as a string
+ *   (e.g. '12')
+ * @property {number|string} reference.verse - verse number. It can also be a string: a number
+ *   (e.g. '1'), 'front' for a chapter introduction, or a verse range (e.g. '3-4')
+ * @property {string} tool - checking tool name (e.g. 'translationWords', 'translationNotes')
+ * @property {string} groupId - check group id: a translationWords entry (e.g. 'humble') or a
+ *   translationNotes category (e.g. 'figs-metaphor')
+ * @property {string} [checkId] - short id of the check from the helps TSV (e.g. 'xrq8')
+ * @property {string|Array<{word: string, occurrence: number}>} [quote] - original-language
+ *   words being checked. translationWords usually uses a single string (e.g. 'πραΰτητα').
+ *   translationNotes usually uses an array of words, each with its occurrence in the verse,
+ *   including separators such as '־'.
+ * @property {string} [quoteString] - `quote` as a single string
+ * @property {number} [occurrence] - which occurrence of `quote` in the verse this check is for
+ *   (1-based)
+ * @property {string} [glQuote] - gateway-language quote from the helps TSV; often `''`
+ * @property {string} [occurrenceNote] - note text for this check (translationNotes); `''` for
+ *   translationWords
+ * @property {string} [verseSpan] - verse range when the check spans verses (e.g. '3-4'); same
+ *   as `reference.verse`
+ * @example
+ * // translationWords
+ * {
+ *   checkId: 'xrq8',
+ *   occurrenceNote: '',
+ *   reference: { bookId: 'tit', chapter: 3, verse: 2 },
+ *   tool: 'translationWords',
+ *   groupId: 'humble',
+ *   quote: 'πραΰτητα',
+ *   quoteString: 'πραΰτητα',
+ *   glQuote: '',
+ *   occurrence: 1,
+ * }
+ * @example
+ * // translationNotes, spanning two verses
+ * {
+ *   checkId: 'whh9',
+ *   occurrenceNote: 'If it would be more natural in your language, ...',
+ *   reference: { bookId: 'jos', chapter: 3, verse: '3-4' },
+ *   tool: 'translationNotes',
+ *   groupId: 'figs-infostructure',
+ *   quote: [{ word: 'אַֽל', occurrence: 1 }, { word: '־', occurrence: 1 }, ...],
+ *   quoteString: '...',
+ *   glQuote: '',
+ *   occurrence: 1,
+ *   verseSpan: '3-4',
+ * }
+ */
+
 //////////////////////////////
 // Testing Support functions
 //////////////////////////////
@@ -2435,7 +2493,7 @@ export function selectionsToString(selections) {
  * Calling this once per book with the same `selectionsForWord` adds up the counts across books
  * (see {@link fetchPreviousSelectionData}).
  *
- * @param {Array<{contextId: object, selections: Array<{text: string, occurrence: number}>}>} checks
+ * @param {Array<{contextId: ContextId, selections: Array<{text: string, occurrence: number}>}>} checks
  *   - checking-tool check records, e.g. the contents of
  *   `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json`; may be null or empty
  * @param {string} gatewayLanguageCode - gateway language code (currently unused)
@@ -2920,7 +2978,7 @@ export function getProjectInfo(projectSaveLocation) {
  *
  * @param {string} projectSaveLocation - path to the current project folder; its parent folder
  *   is scanned for sibling projects
- * @param {object} contextId - context of the current check
+ * @param {ContextId} contextId - context of the current check
  * @param {object} glBibles - available gateway-language bibles keyed by bible id; the first id
  *   in `bibleIdSort` order picks which gateway-language bible is loaded for each project
  * @param {object} tsvRelation - TSV relation data used to resolve aligned gateway-language text

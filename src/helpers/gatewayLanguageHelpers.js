@@ -4,11 +4,71 @@ import { getVerses } from 'bible-reference-range';
 import _ from 'lodash';
 
 /**
+ * Identifies one check in a checking tool. The same shape is used for the current check
+ * (`state.tool.contextId`) and for the `contextId` saved with each check record in
+ * `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json`.
+ * The same typedef is in `src/utils/autoCheckingUtils.js`; keep both in sync.
+ *
+ * The functions in this file only read `reference`, `quote` and `occurrence`.
+ *
+ * @typedef {object} ContextId
+ * @property {object} reference - where the check is
+ * @property {string} reference.bookId - book id (e.g. 'tit')
+ * @property {number|string} reference.chapter - chapter number; sometimes saved as a string
+ *   (e.g. '12')
+ * @property {number|string} reference.verse - verse number. It can also be a string: a number
+ *   (e.g. '1'), 'front' for a chapter introduction, or a verse range (e.g. '3-4')
+ * @property {string} tool - checking tool name (e.g. 'translationWords', 'translationNotes')
+ * @property {string} groupId - check group id: a translationWords entry (e.g. 'humble') or a
+ *   translationNotes category (e.g. 'figs-metaphor')
+ * @property {string} [checkId] - short id of the check from the helps TSV (e.g. 'xrq8')
+ * @property {string|Array<{word: string, occurrence: number}>} [quote] - original-language
+ *   words being checked. translationWords usually uses a single string (e.g. 'πραΰτητα').
+ *   translationNotes usually uses an array of words, each with its occurrence in the verse,
+ *   including separators such as '־'.
+ * @property {string} [quoteString] - `quote` as a single string
+ * @property {number} [occurrence] - which occurrence of `quote` in the verse this check is for
+ *   (1-based)
+ * @property {string} [glQuote] - gateway-language quote from the helps TSV; often `''`
+ * @property {string} [occurrenceNote] - note text for this check (translationNotes); `''` for
+ *   translationWords
+ * @property {string} [verseSpan] - verse range when the check spans verses (e.g. '3-4'); same
+ *   as `reference.verse`
+ * @example
+ * // translationWords
+ * {
+ *   checkId: 'xrq8',
+ *   occurrenceNote: '',
+ *   reference: { bookId: 'tit', chapter: 3, verse: 2 },
+ *   tool: 'translationWords',
+ *   groupId: 'humble',
+ *   quote: 'πραΰτητα',
+ *   quoteString: 'πραΰτητα',
+ *   glQuote: '',
+ *   occurrence: 1,
+ * }
+ * @example
+ * // translationNotes, spanning two verses
+ * {
+ *   checkId: 'whh9',
+ *   occurrenceNote: 'If it would be more natural in your language, ...',
+ *   reference: { bookId: 'jos', chapter: 3, verse: '3-4' },
+ *   tool: 'translationNotes',
+ *   groupId: 'figs-infostructure',
+ *   quote: [{ word: 'אַֽל', occurrence: 1 }, { word: '־', occurrence: 1 }, ...],
+ *   quoteString: '...',
+ *   glQuote: '',
+ *   occurrence: 1,
+ *   verseSpan: '3-4',
+ * }
+ */
+
+/**
  * Looks up the gateway-language text aligned to the current check and returns it together with
  * the gateway language code. This wraps {@link getAlignedGLTextHelper}.
  * @param {string} gatewayLanguageCode - gateway language code (e.g. 'en'); returned unchanged
  *   and used to pick matching entries in `tsvRelation`
- * @param {object} contextId - context of the current check; see {@link getAlignedGLTextHelperMajor}
+ * @param {ContextId} contextId - context of the current check
  * @param {Object<string, object>} glBibles - gateway-language bibles keyed by bible id
  *   (e.g. `{ult: {...}, ust: {...}}`)
  * @param {Array<string>|null} tsvRelation - `relation` list from the helps resource manifest
@@ -44,10 +104,8 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
  *
  * The first bible that gives non-empty text wins (see {@link getAlignedTextFromBible}).
  *
- * @param {object} contextId - context of the current check. Must not be null. Uses:
- *   - **reference**: `{bookId, chapter, verse}`; `verse` may be a range such as '1-2'
- *   - **quote**: original-language quote (string, or array of words)
- *   - **occurrence**: which occurrence of `quote` in the verse (1-based)
+ * @param {ContextId} contextId - context of the current check. Must not be null. Uses
+ *   `reference`, `quote` and `occurrence`; if `quote` is missing or empty, see case 1 above.
  * @param {Object<string, object>|null} glBibles - gateway-language bibles keyed by bible id
  *   (e.g. `{ult: {...}, ust: {...}}`); each value is book data keyed by chapter then verse.
  *   If `contextId.quote` is empty, this must not be null, or `Object.keys()` will throw.
@@ -128,7 +186,7 @@ export function getAlignedGLTextHelperMajor(contextId, glBibles, tsvRelation, gl
  * Returns just the aligned gateway-language text for a check. This is a null-safe wrapper around
  * {@link getAlignedGLTextHelperMajor}, which has the full search order. Note the different
  * argument order: here `glID` comes before `tsvRelation`.
- * @param {object|null} contextId - context of the current check (`reference`, `quote`,
+ * @param {ContextId|null} contextId - context of the current check (uses `reference`, `quote`,
  *   `occurrence`); if null, `''` is returned
  * @param {Object<string, object>|null} glBibles - gateway-language bibles keyed by bible id
  * @param {string} [glID=''] - gateway language code (e.g. 'en'), used to match `tsvRelation` entries
@@ -231,10 +289,9 @@ function updateOriginalWordsOccurrence(verseObjects, verseCnt, multiVerse, curre
  * (see `updateOriginalWordsOccurrence`), so `bookData` is not changed. The joined verse objects
  * are then passed to `getAlignedText()` from tc-ui-toolkit with `contextId.quote` and
  * `contextId.occurrence`.
- * @param {object|null} contextId - context of the current check. Uses:
- *   - **reference**: `{chapter, verse}`; `verse` may be a single verse or a range (e.g. '16-17')
- *   - **quote**: original-language quote (string, or array of words)
- *   - **occurrence**: which occurrence of `quote` to match (1-based)
+ * @param {ContextId|null} contextId - context of the current check. Uses `reference.chapter`,
+ *   `reference.verse` (a single verse or a range such as '16-17'), `quote` and `occurrence`;
+ *   `bookId` is not used, since `bookData` is already one book.
  * @param {object|null} bookData - one book of a gateway-language bible, keyed by chapter then
  *   verse, where each verse has `verseObjects` with alignment milestones
  * @returns {string|undefined} the aligned gateway-language text as returned by `getAlignedText()`
