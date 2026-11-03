@@ -4,12 +4,22 @@ import { getVerses } from 'bible-reference-range';
 import _ from 'lodash';
 
 /**
- * Returns the gateway language code and quote.
- * @param {string} gatewayLanguageCode - gateway language code.
- * @param {object} contextId - context id.
- * @param {object} glBibles - gateway language bibles.
- * @param {array|null} tsvRelation - list of relationship items in manifest
- * @return {{gatewayLanguageCode: *, gatewayLanguageQuote: *}}
+ * Looks up the gateway-language text aligned to the current check and returns it together with
+ * the gateway language code. This wraps {@link getAlignedGLTextHelper}.
+ * @param {string} gatewayLanguageCode - gateway language code (e.g. 'en'); returned unchanged
+ *   and used to pick matching entries in `tsvRelation`
+ * @param {object} contextId - context of the current check; see {@link getAlignedGLTextHelperMajor}
+ * @param {Object<string, object>} glBibles - gateway-language bibles keyed by bible id
+ *   (e.g. `{ult: {...}, ust: {...}}`)
+ * @param {Array<string>|null} tsvRelation - `relation` list from the helps resource manifest
+ *   (e.g. `['en/tw', 'en/ult?v=45', 'hbo/uhb?v=2.1.30']`); see {@link getAlignedGLTextHelperMajor}
+ * @return {{gatewayLanguageCode: string, gatewayLanguageQuote: string}}
+ *   - **gatewayLanguageCode**: the `gatewayLanguageCode` argument, unchanged
+ *   - **gatewayLanguageQuote**: the aligned gateway-language text, the original-language quote if
+ *     there are no gateway-language bibles, or `''` if nothing was found
+ * @example
+ * getGatewayLanguageCodeAndQuote('en', contextId, glBibles, ['en/ult']);
+ * // Returns: { gatewayLanguageCode: 'en', gatewayLanguageQuote: 'faith' }
  */
 export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, glBibles, tsvRelation) => {
   const gatewayLanguageQuote = getAlignedGLTextHelper(contextId, glBibles, gatewayLanguageCode, tsvRelation);
@@ -21,15 +31,45 @@ export const getGatewayLanguageCodeAndQuote = (gatewayLanguageCode, contextId, g
 };
 
 /**
- * Helper function to retrieve aligned gateway language text from GL Bibles.
- * Searches for aligned text first in TSV relations (if provided), then falls back to searching all available GL Bibles in priority order.
- * @param {object} contextId - Current context id containing reference information and quote details.
- * @param {object} glBibles - Gateway language Bibles organized by Bible ID.
- * @param {array|null} tsvRelation - List of relationship items from the manifest specifying preferred GL Bible sources.
- * @param {string} glID - Current gateway language identifier (e.g., 'en', 'es').
- * @param {string|null} bibleId - Bible ID to be populated during search.
- * @param {object|null} bible - Bible object to be populated during search.
- * @return {{alignedText: string, bibleId: string|null, bible: object|null}} Object containing the aligned text, Bible ID, and Bible object.
+ * Finds the gateway-language text aligned to the original-language quote of a check, and reports
+ * which gateway-language bible it came from.
+ *
+ * Search order:
+ * 1. If `contextId.quote` is set but `glBibles` is missing or empty, the original-language quote
+ *    itself is returned as `alignedText` and no bible is searched.
+ * 2. Each `tsvRelation` entry of the form `{glID}/{bibleId}` (an optional `?v=...` suffix is
+ *    ignored) is tried in list order, using `glBibles[bibleId]` if present.
+ * 3. If nothing was found, every bible in `glBibles` is tried in {@link bibleIdSort} order
+ *    (glt, irv, ult, ulb, then any others alphabetically).
+ *
+ * The first bible that gives non-empty text wins (see {@link getAlignedTextFromBible}).
+ *
+ * @param {object} contextId - context of the current check. Must not be null. Uses:
+ *   - **reference**: `{bookId, chapter, verse}`; `verse` may be a range such as '1-2'
+ *   - **quote**: original-language quote (string, or array of words)
+ *   - **occurrence**: which occurrence of `quote` in the verse (1-based)
+ * @param {Object<string, object>|null} glBibles - gateway-language bibles keyed by bible id
+ *   (e.g. `{ult: {...}, ust: {...}}`); each value is book data keyed by chapter then verse.
+ *   If `contextId.quote` is empty, this must not be null, or `Object.keys()` will throw.
+ * @param {Array<string>|null} tsvRelation - `relation` list from the helps resource manifest,
+ *   giving the preferred bibles (e.g. `['en/tw', 'en/ult?v=45', 'hbo/uhb?v=2.1.30']`). Entries for
+ *   other languages, or with more or fewer than one `/`, are skipped.
+ * @param {string} glID - gateway language code (e.g. 'en', 'es-419'), matched against the part of
+ *   each `tsvRelation` entry before the `/`
+ * @return {{alignedText: string, bibleId: string|null, bible: object|null}}
+ *   - **alignedText**: the aligned gateway-language text; the original-language quote in case 1
+ *     above; or `''` (or possibly `undefined`) if no bible gave any text
+ *   - **bibleId**: id of the bible that gave `alignedText`. `null` in case 1. If no bible gave any
+ *     text, this is the *last* bible id tried, not `null`, so check `alignedText` first.
+ *   - **bible**: the book data for `bibleId` (`glBibles[bibleId]`), with the same caveats as `bibleId`
+ * @example
+ * const { alignedText, bibleId } = getAlignedGLTextHelperMajor(
+ *   { reference: { bookId: 'gal', chapter: 2, verse: 16 }, quote: 'πίστεως', occurrence: 1 },
+ *   { ult: ultGal, ust: ustGal },
+ *   ['en/tw', 'en/ult?v=45'],
+ *   'en',
+ * );
+ * // alignedText: 'faith', bibleId: 'ult'
  */
 export function getAlignedGLTextHelperMajor(contextId, glBibles, tsvRelation, glID) {
   let bible = null;
@@ -85,13 +125,17 @@ export function getAlignedGLTextHelperMajor(contextId, glBibles, tsvRelation, gl
 }
 
 /**
- * Retrieves the aligned gateway language text for the given context from the available GL Bibles.
- * Searches through TSV relations first (if provided), then falls back to searching all available GL Bibles.
- * @param {object} contextId - Current context id containing reference information and quote details.
- * @param {object} glBibles - Gateway language Bibles organized by Bible ID.
- * @param {string} glID - Current gateway language identifier (e.g., 'en', 'es').
- * @param {array|null} tsvRelation - List of relationship items from the manifest specifying preferred GL Bible sources.
- * @return {string} The aligned gateway language text, or an empty string if not found.
+ * Returns just the aligned gateway-language text for a check. This is a null-safe wrapper around
+ * {@link getAlignedGLTextHelperMajor}, which has the full search order. Note the different
+ * argument order: here `glID` comes before `tsvRelation`.
+ * @param {object|null} contextId - context of the current check (`reference`, `quote`,
+ *   `occurrence`); if null, `''` is returned
+ * @param {Object<string, object>|null} glBibles - gateway-language bibles keyed by bible id
+ * @param {string} [glID=''] - gateway language code (e.g. 'en'), used to match `tsvRelation` entries
+ * @param {Array<string>|null} [tsvRelation=null] - `relation` list from the helps resource manifest
+ *   (e.g. `['en/tw', 'en/ult?v=45']`)
+ * @return {string} the aligned gateway-language text; the original-language quote if there are no
+ *   gateway-language bibles; or `''` if nothing was found. Never `undefined`.
  */
 export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelation = null) {
   let alignedText = '';
@@ -110,9 +154,15 @@ export function getAlignedGLTextHelper(contextId, glBibles, glID = '', tsvRelati
 }
 
 /**
- * Return book code with highest precedence
- * @param {*} a - First book code of 2
- * @param {*} b - second book code
+ * Comparator for `Array.prototype.sort()` that orders gateway-language bible ids by preference.
+ * The resulting order is 'glt', 'irv', 'ult', 'ulb', then any other ids in alphabetical order.
+ * @param {string} a - first bible id (e.g. 'ult')
+ * @param {string} b - second bible id
+ * @return {number} negative if `a` should come first, positive if `b` should come first, `0` if
+ *   they are the same
+ * @example
+ * ['ust', 'ulb', 'ult', 'glt'].sort(bibleIdSort);
+ * // Returns: ['glt', 'ult', 'ulb', 'ust']
  */
 export function bibleIdSort(a, b) {
   const biblePrecedence = ['ulb', 'ult', 'irv', 'glt']; // TRICKY: we search in this order if more than one aligned Bible for GL, the last in this list is the first checked
@@ -125,12 +175,24 @@ export function bibleIdSort(a, b) {
 }
 
 /**
- * count original words in verseObjects - it is nested so this is recursive
- * @param {array} verseObjects
- * @param {number} verseCnt
- * @param {boolean} multiVerse
- * @param {object} previousVerseWordCounts
- * @param {object} currentVerseCounts
+ * For a multi-verse reference (e.g. 'gal 2:16-17'), renumbers the `occurrence` of each aligned
+ * original-language word so that numbering continues across verses instead of restarting at 1 in
+ * each verse. This lets a quote's `occurrence` be matched against the joined verses.
+ *
+ * Only alignment milestones (`tag === 'zaln'`) are changed, recursing into their `children`.
+ * Does nothing if `multiVerse` is false.
+ *
+ * Changes `verseObjects` and `currentVerseCounts` in place; the caller should pass a deep copy
+ * of the bible's verse objects.
+ * @param {Array<object>|null} verseObjects - USFM verse objects for one verse
+ * @param {number} verseCnt - 0-based position of this verse in the range; each milestone gets
+ *   `vo.verseCnt` set to this value
+ * @param {boolean} multiVerse - true if the reference covers more than one verse
+ * @param {Object<string, number>} currentVerseCounts - running total of occurrences per
+ *   original-language word up to and including this verse; filled in by this function
+ * @param {Object<string, number>} previousVerseWordCounts - the same totals up to and including the
+ *   previous verse (`{}` for the first verse); added to each milestone's `occurrence`
+ * @return {void}
  */
 function updateOriginalWordsOccurrence(verseObjects, verseCnt, multiVerse, currentVerseCounts, previousVerseWordCounts) {
   if (verseObjects) {
@@ -161,10 +223,29 @@ function updateOriginalWordsOccurrence(verseObjects, verseCnt, multiVerse, curre
 }
 
 /**
- * Gets the aligned GL text from the given bible
- * @param {object} contextId
- * @param {object} bookData
- * @returns {string}
+ * Gets the gateway-language words in one bible book that are aligned to a check's
+ * original-language quote.
+ *
+ * The verse (or verse range) in `contextId.reference` is looked up with `getVerses()`. For a
+ * range, the verse objects are deep-copied, joined, and their occurrence numbers made continuous
+ * (see `updateOriginalWordsOccurrence`), so `bookData` is not changed. The joined verse objects
+ * are then passed to `getAlignedText()` from tc-ui-toolkit with `contextId.quote` and
+ * `contextId.occurrence`.
+ * @param {object|null} contextId - context of the current check. Uses:
+ *   - **reference**: `{chapter, verse}`; `verse` may be a single verse or a range (e.g. '16-17')
+ *   - **quote**: original-language quote (string, or array of words)
+ *   - **occurrence**: which occurrence of `quote` to match (1-based)
+ * @param {object|null} bookData - one book of a gateway-language bible, keyed by chapter then
+ *   verse, where each verse has `verseObjects` with alignment milestones
+ * @returns {string|undefined} the aligned gateway-language text as returned by `getAlignedText()`
+ *   (e.g. 'faith'), which is empty if no words are aligned to the quote; `undefined` if
+ *   `bookData` or `contextId.reference` is missing
+ * @example
+ * getAlignedTextFromBible(
+ *   { reference: { chapter: 2, verse: 16 }, quote: 'πίστεως', occurrence: 1 },
+ *   ultGal,
+ * );
+ * // Returns: 'faith'
  */
 export function getAlignedTextFromBible(contextId, bookData) {
   if (bookData && contextId?.reference) {

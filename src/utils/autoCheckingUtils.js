@@ -2425,12 +2425,44 @@ export function selectionsToString(selections) {
 /**
  * Tallies each check's target-language selection against its gateway-language quote, updating
  * `selectionsForWord` in place with `{glQuote: {selectedText: count}}` counts.
- * @param {Array<object>} checks - checking-tool check records, each with `contextId` and `selections`
- * @param {string} gatewayLanguageCode - gateway language code
- * @param {object} tsvRelation - TSV relation data used to resolve the aligned gateway-language text
- * @param {object} bible - gateway-language bible used to resolve the aligned text for each check
- * @param {object} selectionsForWord - accumulator object mutated in place
- * @returns {object} - the same `selectionsForWord` object, for convenience
+ *
+ * For each check, the gateway-language quote is found with
+ * `gatewayLanguageHelpers.getAlignedTextFromBible()`: the gateway-language words in `bible`
+ * aligned to `contextId.quote` / `contextId.occurrence` at `contextId.reference`. That text then
+ * goes through {@link removePunctuation} and `normalizer`. Checks are skipped if they have no
+ * `contextId` or `selections`, if `bible` is missing, or if no aligned text is found.
+ *
+ * Calling this once per book with the same `selectionsForWord` adds up the counts across books
+ * (see {@link fetchPreviousSelectionData}).
+ *
+ * @param {Array<{contextId: object, selections: Array<{text: string, occurrence: number}>}>} checks
+ *   - checking-tool check records, e.g. the contents of
+ *   `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json`; may be null or empty
+ * @param {string} gatewayLanguageCode - gateway language code (currently unused)
+ * @param {object} tsvRelation - TSV relation data (currently unused)
+ * @param {object} bible - gateway-language book used to find the aligned text for each check
+ * @param {Object<string, Object<string, number>>} selectionsForWord - accumulator in the same
+ *   format as the return value; changed in place. Pass `{}` to start a new tally.
+ * @returns {Object<string, Object<string, number>>} the same `selectionsForWord` object, nested
+ *   two levels:
+ *   - **outer key** (`glQuote`): the check's aligned gateway-language text, with punctuation
+ *     removed and passed through `normalizer` (e.g. 'faith', 'by faith')
+ *   - **inner key** (`selectedText`): the `text` of each of the check's selections, joined by
+ *     single spaces (e.g. 'fe', 'la fe'). It is not normalized. A check whose `selections` is an
+ *     empty array is counted under the key `''`.
+ *   - **value**: how many checks so far had that selection for that gateway-language text
+ *     (always 1 or more), including counts already in `selectionsForWord` when it was passed in
+ * @example
+ * const checks = [
+ *   { contextId: { reference: { chapter: 2, verse: 16 }, quote: 'πίστεως', occurrence: 1 },
+ *     selections: [{ text: 'fe', occurrence: 1 }] },
+ *   { contextId: { reference: { chapter: 3, verse: 7 }, quote: 'πίστεως', occurrence: 1 },
+ *     selections: [{ text: 'la', occurrence: 1 }, { text: 'fe', occurrence: 1 }] },
+ * ];
+ * const selectionsForWord = { 'faith': { 'fe': 2 } };
+ * getSelectionsForBook(checks, 'en', tsvRelation, glBook, selectionsForWord);
+ * // If both checks align to 'faith', selectionsForWord is now:
+ * // { 'faith': { 'fe': 3, 'la fe': 1 } }
  */
 export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForWord ) {
   if (checks?.length) {
@@ -2452,7 +2484,7 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
           }
 
           if (glText) {
-            glText = removePunctuation(glText);
+            glText = normalizer(removePunctuation(glText));
             glQuote = glText;
           }
         }
@@ -2875,17 +2907,55 @@ export function getProjectInfo(projectSaveLocation) {
  * Scans sibling projects on disk for the same language/resource/testament combination and
  * aggregates their previous target-language selections for `groupId`, using and updating
  * `glBiblesCache` to avoid re-reading the gateway-language bible for each project.
- * @param {string} projectSaveLocation - path to the current project folder
+ *
+ * A sibling project is included when it is in the same projects folder as the current project,
+ * is a Bible book in the same testament (OT vs NT), and has the same `languageId` and
+ * `resourceId`. The current project is included too. Projects are skipped if no installed
+ * version of the gateway-language bible can be found for them.
+ *
+ * For each included project, the checks in
+ * `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json` are tallied by
+ * {@link getSelectionsForBook}: each check's gateway-language text (from its `contextId`) is
+ * paired with the target-language words the user selected.
+ *
+ * @param {string} projectSaveLocation - path to the current project folder; its parent folder
+ *   is scanned for sibling projects
  * @param {object} contextId - context of the current check
- * @param {object} glBibles - available gateway-language bibles keyed by bible id
+ * @param {object} glBibles - available gateway-language bibles keyed by bible id; the first id
+ *   in `bibleIdSort` order picks which gateway-language bible is loaded for each project
  * @param {object} tsvRelation - TSV relation data used to resolve aligned gateway-language text
  * @param {string} toolName - checking tool name, used to build the selections index path
- * @param {string} groupId - group id (e.g. translationWords entry) to gather selections for
- * @param {string} gatewayLanguageCode - gateway language code
+ *   (e.g. 'translationWords')
+ * @param {string} groupId - group id (e.g. translationWords entry like 'faith') to gather
+ *   selections for
+ * @param {string} gatewayLanguageCode - gateway language code (e.g. 'en')
  * @param {string} glOwnerStr - owner string for resolving the most recent gateway bible version
  * @param {object} data - data used only for logging (expects `contextId`)
- * @param {object} glBiblesCache - mutable cache of loaded gateway-language bibles, keyed by book id
- * @returns {object} - `{glQuote: {selectedText: count}}` aggregated across matching projects
+ * @param {{targetLangId: string|null, resourceId: string|null, glBibleId: string|null,
+ *   bibles: Object<string, object>}} glBiblesCache - cache that is changed in place and must
+ *   be an object (not null). `bibles` maps book id to a loaded gateway-language book. The cache
+ *   is cleared when `targetLangId`, `resourceId` or `glBibleId` no longer match the current
+ *   project.
+ * @returns {Object<string, Object<string, number>>} previous selections, nested two levels:
+ *   - **outer key** (`glQuote`): the gateway-language text aligned to a check, with punctuation
+ *     removed and then passed through `normalizer` (e.g. 'faith', 'by faith'). The inner keys
+ *     are normalized.
+ *   - **inner key** (`selectedText`): the target-language words the user selected for that
+ *     check, joined by single spaces (e.g. 'fe', 'la fe')
+ *   - **value**: how many checks across all included projects used that selection for that
+ *     gateway-language text (always 1 or more)
+ *
+ *   Returns `{}` if no included project has checks for `groupId`.
+ * @example
+ * const selectionsForWord = fetchPreviousSelectionData(
+ *   '/path/to/tCore/projects/es-419_glt_gal_book',
+ *   contextId, glBibles, tsvRelation, 'translationWords', 'faith', 'en',
+ *   'unfoldingWord', data, glBiblesCache,
+ * );
+ * // Returns: {
+ * //   'faith': { 'fe': 12, 'la fe': 3 },
+ * //   'by faith': { 'por la fe': 4 },
+ * // }
  */
 export function fetchPreviousSelectionData(
   projectSaveLocation,
@@ -3775,7 +3845,7 @@ export class LlmRequestQueue {
           });
         } else {
           nonMemoryRequests.push(_request);
-          this.removeKeyInQueue(_request.key); // remove previous metching queries
+          this.removeKeyInQueue(_request.key); // remove previous matching queries
           // console.log(`makeSuggestionRequest adding to queue - `, redactOptions(_request));
         }
       }
