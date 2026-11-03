@@ -339,3 +339,21 @@ export function getAlignedTextFromBible(contextId, bookData) {
     return getAlignedText(verseObjects, contextId.quote, contextId.occurrence);
   }
 }
+
+/**
+ * Converts a quote value into a single string.
+ *
+ * If the quote is an array, its items are joined with spaces. If the quote is already a string,
+ * it is returned unchanged. Any other value returns an empty string.
+ *
+ * @param {Array<string>|string} quote - Quote value to convert.
+ * @returns {string} The quote as a string, or an empty string when the quote is not a string or array.
+ */
+export function getQuoteAsString(quote) {
+  if (Array.isArray(quote)) {
+    return quote.join(' ');
+  } else if (typeof quote === 'string') {
+    return quote;
+  }
+  return '';
+}

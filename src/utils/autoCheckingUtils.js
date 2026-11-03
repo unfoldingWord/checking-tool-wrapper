@@ -728,17 +728,23 @@ function formatNumberedVerse(verseContent) {
 /**
  * Saves translation alignment data to `translation_data.json` in the base tCore folder.
  *
- * @param {string} projectPath - Path to the current project directory
- * @param {object} data - Alignment data to save
+ * The saved data is keyed by `data.quoteString`. If `quoteString` is missing or empty,
+ * the data is stored under an empty-string key.
+ *
+ * @param {string} projectPath - Path to the current project directory.
+ * @param {Object<string, object>} previousData - Existing alignment data keyed by quote string.
+ * @param {object} data - Alignment data to save.
+ * @param {string} [data.quoteString] - Quote string used as the key for the saved alignment data.
  * @returns {void}
  */
-export function saveAlignmentData(projectPath, data) {
-  const metricsFilePath = getTcorePathFromProjectPath(projectPath, `translation_data.json`);
+export function saveAlignmentData(projectPath, previousData, data) {
+  const dataFilePath = getTcorePathFromProjectPath(projectPath, `translation_data.json`);
+  previousData[data.quoteString || ''] = data;
 
   try {
-    fs.outputJsonSync(metricsFilePath, data, { spaces: 2 });
+    fs.outputJsonSync(dataFilePath, previousData, { spaces: 2 });
   } catch (error) {
-    console.error(`Could not save metrics to ${metricsFilePath}`, error);
+    console.error(`Could not save TranslationData to ${dataFilePath}`, error);
   }
 }
 

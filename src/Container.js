@@ -47,6 +47,7 @@ import {
 } from './utils/autoCheckingUtils';
 import delay from './utils/delay';
 import { getVerseText } from './helpers/verseHelpers';
+import {getQuoteAsString} from "./helpers/checkAreaHelpers";
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -86,6 +87,8 @@ const glBiblesCache = {
 };
 
 const __suggestionsCache = {};
+const __previousSelectionsCache = {};
+
 /** number of suggestion requests bundled into each AI query */
 const DEFAULT_SUGGESTION_REQUESTS_PER_CALL = 1;
 
@@ -340,8 +343,15 @@ function Container({
                   glBiblesCache
                 );
 
+                selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
                 selectionsData.groupId = groupId;
                 selectionsData.selections = selectionsForWord;
+
+                await delay(1);
+
+                saveAlignmentData(projectSaveLocation, __previousSelectionsCache, selectionsData);
+
+                await delay(1);
 
                 // console.log(selectionsForWord);
 
@@ -699,6 +709,7 @@ function Container({
         glBiblesCache
       );
 
+      selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
       selectionsData.groupId = groupId;
       selectionsData.selections = selectionsForWord;
     }
@@ -715,7 +726,7 @@ function Container({
 
     await delay(1);
 
-    saveAlignmentData(projectSaveLocation, selectionsData);
+    saveAlignmentData(projectSaveLocation, __previousSelectionsCache, selectionsData);
 
     await delay(1);
 

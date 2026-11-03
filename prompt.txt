@@ -1,0 +1,11 @@
+Write up a plan for how
+ getBestTWordSelectionWithConfidenceAlgorithm() can be improved
+
+Note:
+- It is currently using fuzzy matching when exact matches are not found.  
+- It gets previous selection data from fetchPreviousSelectionData()
+- The alignedGLText is in the gateway language
+- The verseText may and
+
+Desired Improvement:
+- It needs to do better with finding the best partial match for the alignedGLText when there is previous selection data, since the match for alignedGLText is likely in the verse text
