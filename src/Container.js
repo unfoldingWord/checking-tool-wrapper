@@ -347,10 +347,12 @@ function Container({
                 selectionsData.groupId = groupId;
                 selectionsData.selections = selectionsForWord;
 
+                // eslint-disable-next-line no-await-in-loop
                 await delay(1);
 
                 saveAlignmentData(projectSaveLocation, __previousSelectionsCache, selectionsData);
 
+                // eslint-disable-next-line no-await-in-loop
                 await delay(1);
 
                 // console.log(selectionsForWord);

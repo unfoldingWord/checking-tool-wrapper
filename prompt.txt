@@ -1,11 +1,66 @@
-Write up a plan for how
- getBestTWordSelectionWithConfidenceAlgorithm() can be improved
+Write a plan for improving `getBestTWordSelectionWithConfidenceAlgorithm()` in
+`src/utils/autoCheckingUtils.js`. Deliver the plan only. Do not change any code yet.
 
-Note:
-- It is currently using fuzzy matching when exact matches are not found.  
-- It gets previous selection data from fetchPreviousSelectionData()
-- The alignedGLText is in the gateway language
-- The verseText may and
+## Background
 
-Desired Improvement:
-- It needs to do better with finding the best partial match for the alignedGLText when there is previous selection data, since the match for alignedGLText is likely in the verse text
+This function suggests which word(s) in a target-language verse translate a
+gateway-language (GL) phrase for a translationWords check. It does not call a model.
+Its only evidence is how translators rendered GL phrases in earlier checks.
+
+Inputs:
+- `wordList`: the target-language verse split into words (from `getWordList(verseText)`).
+- `glPhrase`: the `alignedGLText` for the current check, in the gateway language (e.g. 'by faith').
+- `previousTranslationData`: comes from `fetchPreviousSelectionData()`, shaped
+  `{ normalizedGlPhrase: { targetLanguageSelection: count } }`,
+  e.g. `{ 'faith': { 'fe': 12, 'la fe': 3 }, 'by faith': { 'por la fe': 4 } }`.
+  Outer keys are GL text. Inner keys are target-language text.
+
+How it works now:
+1. It looks up an exact GL key with `getPreviousTranslationExactMatchCounts`. If none is
+   found, it uses `getPreviousTranslationPartialMatchCounts`.
+2. For each previous rendering, it searches the verse for: a contiguous match (confidence 100),
+   then an ordered match with gaps, then the best ordered sub-phrase.
+3. If no candidate scores above 80, it falls back to Levenshtein fuzzy matching
+   word by word.
+4. It returns up to 3 `{ selections: [{text, occurrence}], confidence }`, sorted best first.
+
+## The problem
+
+When `glPhrase` has no exact key in the history but related history exists, the
+function does a poor job of finding the best partial match, even though the correct
+target words are probably in the verse. Improve this case.
+
+Things I have noticed. Check each one against the code before relying on it:
+- `getPreviousTranslationPartialMatchCounts` returns the *first* key that shares *any one*
+  word with `glPhrase`. That word can be a function word such as 'the' or 'of'. It uses only
+  that one key, and it does not rank keys by how much they overlap.
+- Renderings found through a partial GL match are scored the same way as exact GL matches.
+  This means they can reach confidence 100.
+- The fuzzy fallback picks the best verse position for each word on its own, with no
+  ordering or adjacency check. It also runs only when no candidate is above 80.
+
+## What the plan should cover
+
+1. Diagnosis: confirm or correct the observations above, and list any other weaknesses
+   in the partial-match and fuzzy paths. Cite line numbers.
+2. Proposed approach for partial GL matching. For example:
+   - rank GL keys by word overlap (consider down-weighting common words)
+   - pool renderings from several related keys
+   - check which rendering words actually appear in the verse
+   - lower the confidence of anything reached through a partial GL match
+   Explain the trade-offs and recommend one approach.
+3. Confidence rules: keep 100 for "exact GL key and verbatim contiguous match in the verse".
+   State how partial and fuzzy matches are capped and ordered relative to each other.
+4. Test cases to add to `__tests__/autoCheckingUtils.test.js`. Give concrete
+   `wordList` / `glPhrase` / history inputs and the expected top result. Include:
+   - cases where the current code picks the wrong match
+   - regression cases that must not change
+5. Risks: performance on long verses and large histories (the current ordered search is
+   exponential in the worst case), and false positives from common words.
+
+## Constraints
+
+- Keep the signature and return shape. The function must stay interchangeable with
+  `getBestTWordSelectionWithConfidenceFromLlm`.
+- No network calls and no new dependencies.
+- Keep the change inside `autoCheckingUtils.js`. `npm test` (eslint + jest) must pass.
