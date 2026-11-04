@@ -741,6 +741,8 @@ export function saveAlignmentData(projectPath, previousData, data) {
   const dataFilePath = getTcorePathFromProjectPath(projectPath, `translation_data.json`);
   previousData[data.quoteString || ''] = data;
 
+  //logIfContainsOpeningBrace(previousData);
+
   try {
     fs.outputJsonSync(dataFilePath, previousData, { spaces: 2 });
   } catch (error) {
@@ -2409,7 +2411,7 @@ export function removePunctuation(glText) {
  * @returns {string} - cleaned quote
  */
 export function cleanQuote(glQuote) {
-  const replaceChars = ['{', '}', '.', ',', ';', ':', '"'];
+  const replaceChars = ['{', '}', '.', ',', ';', ':', '"', '(', ')'];
   let cleanedQuote = glQuote;
 
   // remove any characters in replaceChars
@@ -2486,6 +2488,62 @@ export function selectionsToString(selections) {
   return selectionWords.join(' ');
 }
 
+//TODO write a function that walk's through an object (and it's all its content including arrays) and prints an error if any key or string value contains `{`
+// /**
+//  * Walks through an object and all nested content, including arrays, and logs an error
+//  * when any object key or string value contains `{`.
+//  *
+//  * @param {*} value - value to inspect
+//  * @param {string} [path_='root'] - current path used in error messages
+//  * @returns {boolean} true if a brace was found, false otherwise
+//  */
+// export function logIfContainsOpeningBrace(value, path_ = 'root') {
+//   let found = false;
+//
+//   function walk(currentValue, currentPath) {
+//     if (typeof currentValue === 'string') {
+//       if (currentValue.includes('{')) {
+//         console.error(`String value contains "{": ${currentPath}`, currentValue);
+//         found = true;
+//       }
+//       return;
+//     }
+//
+//     if (!currentValue || typeof currentValue !== 'object') {
+//       return;
+//     }
+//
+//     if (Array.isArray(currentValue)) {
+//       currentValue.forEach((item, index) => {
+//         walk(item, `${currentPath}[${index}]`);
+//       });
+//       return;
+//     }
+//
+//     Object.keys(currentValue).forEach(key => {
+//       if (key.includes('{')) {
+//         console.error(`Object key contains "{": ${currentPath}.${key}`);
+//         found = true;
+//       }
+//
+//       walk(currentValue[key], `${currentPath}.${key}`);
+//     });
+//   }
+//
+//   walk(value, path_);
+//   return found;
+// }
+
+/**
+ * Cleans a gateway-language quote by removing punctuation, normalizing the text,
+ * and removing remaining brace, punctuation, and quote characters.
+ * @param {string} glText - gateway-language quote to clean
+ * @returns {string} - cleaned and normalized quote
+ */
+export function cleanGlQuote(glText) {
+  return cleanQuote(removePunctuation(normalizer(glText)));
+}
+
 /**
  * Tallies each check's target-language selection against its gateway-language quote, updating
  * `selectionsForWord` in place with `{glQuote: {selectedText: count}}` counts.
@@ -2548,10 +2606,14 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
           }
 
           if (glText) {
-            glText = normalizer(removePunctuation(glText));
+            glText = cleanGlQuote(glText);
             glQuote = glText;
           }
         }
+
+        // if (glQuote.includes('{')) {
+        //   console.log('glQuote includes {');
+        // }
 
         if (glQuote && selectionsForCheck) {
           const selectedText = selectionsForCheck
@@ -2572,6 +2634,8 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
           } else {
             glQuoteMatches[selectedText]++;
           }
+
+          //logIfContainsOpeningBrace(selectionsForWord);
         }
       }
     }

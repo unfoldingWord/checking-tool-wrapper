@@ -33,6 +33,8 @@ import {
 } from './selectors';
 import * as gatewayLanguageHelpers from './helpers/gatewayLanguageHelpers';
 import {
+  cleanGlQuote,
+  cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
   LlmRequestQueue,
@@ -47,7 +49,7 @@ import {
 } from './utils/autoCheckingUtils';
 import delay from './utils/delay';
 import { getVerseText } from './helpers/verseHelpers';
-import {getQuoteAsString} from "./helpers/checkAreaHelpers";
+import { getQuoteAsString } from './helpers/checkAreaHelpers';
 
 const theme = createTcuiTheme({
   typography: { useNextVariants: true },
@@ -504,7 +506,7 @@ function Container({
    */
   function updateSelectionsData(data) {
     // const contextId = data?.contextId;
-    const alignedGLText = data?.alignedGLText;
+    const alignedGLText = cleanGlQuote(data?.alignedGLText);
     const newSelections = data?.newSelections;
     const oldSelections = data?.oldSelections;
     const savedSelections = selectionsData?.selections;
@@ -682,7 +684,7 @@ function Container({
     const glOwnerStr = tc.gatewayLanguageOwner;
 
     const {
-      alignedGLText,
+      alignedGLText: _alignedGLText,
       contextId,
       currentModel,
       force,
@@ -694,6 +696,7 @@ function Container({
       verseText,
     } = data || {};
 
+    const alignedGLText = cleanQuote(_alignedGLText);
     const groupId = contextId?.groupId || '';
     const llmQueryUrl_ = llmSuggestionsEnabled ? llmQueryUrl : null;
 
