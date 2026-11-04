@@ -46,12 +46,12 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
       const glPhrase = 'holiness';
       const glLangCode = 'en';
       const previousTranslationData = normalizePreviousTranslationData( {
-        "Holy": { 'Nơi Thánh': 1 },
+        'Holy': { 'Nơi Thánh': 1 },
         'the Holy': { 'Nơi Thánh': 1 },
         'sanctification': { 'sự nên thánh': 1 },
       });
       const wordList = getWordList(normalizer(verseText));
-      const expectedText = normalizer('thánh');
+      const expectedText = normalizer('với thánh');
 
       //when
       const results = await getBestTWordSelectionWithConfidenceAlgorithm(

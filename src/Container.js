@@ -37,7 +37,6 @@ import {
   cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
-  LlmRequestQueue,
   normalizeForCompare,
   queryAiAPIModels,
   readSettingsForChecking_,
@@ -47,6 +46,7 @@ import {
   updatedPreviousSelectionsData,
   updateLlmMetrics,
 } from './utils/autoCheckingUtils';
+import { LlmRequestQueue } from './utils/LlmRequestQueue';
 import delay from './utils/delay';
 import { getVerseText } from './helpers/verseHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
