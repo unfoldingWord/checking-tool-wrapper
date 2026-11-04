@@ -66,9 +66,11 @@ Component/container strings are translated via `react-localize-redux` (`translat
 - `no-unused-vars`, `no-undef`, `require-await`, `no-return-await`, and `array-callback-return` are errors, not just style — CI lint will fail on these.
 - `react/prop-types` is enforced for components.
 
-## Dependent unfoldingWord modules
+## Dependency Modules from unfoldingWord
 
 These are `peerDependencies`: translationCore supplies them at runtime. `devDependencies` pins the versions used for local tests. When behavior depends on one of them (e.g. how `normalizer` handles punctuation or accents), read the installed code in `node_modules/<pkg>`, which matches the pinned version. Don't assume the GitHub default branch matches.
+
+These modules are under our control and may need to be modified as well to implement features or fix bugs.
 
 | Package | Dev version | Used for | Imported in |
 |---|---|---|---|

@@ -1,6 +1,22 @@
 Write a plan for improving `getBestTWordSelectionWithConfidenceAlgorithm()` in
 `src/utils/autoCheckingUtils.js`. Deliver the plan only. Do not change any code yet.
 
+## Who will read the plan
+
+Claude Opus 5.5 will carry out the plan in a later session, with no access to this
+conversation. It will have this repo and `CLAUDE.md`. So the plan has to stand on its own:
+- Name exact functions, files and line numbers (as of the current commit), and include the
+  commit hash so drift can be spotted.
+- Make each step small enough to finish and verify on its own, and give a concrete "done
+  when" check for it (a test that passes, a command and its expected output).
+- Write down every decision you made and why, so the executor doesn't re-open it.
+  List anything that needs the author's input under "Open questions" instead of guessing.
+
+## Where to save it
+
+Publish the plan as Markdown at
+`plans/algorithm-partial-match.md` so the executor can read it from the repo.
+
 ## Background
 
 This function suggests which word(s) in a target-language verse translate a
@@ -83,6 +99,14 @@ Things I have noticed. Check each one against the code before relying on it:
 5. Risks: performance on long verses and large histories (the current ordered search is
    exponential in the worst case), false positives from common words, and false
    positives from loose substring matching on short words.
+6. Implementation steps, in order:
+   - Step 0: run `npm test` and record the baseline. Add the new test cases first and
+     confirm which ones fail on the current code.
+   - Then one step per change, each ending with `npx jest __tests__/autoCheckingUtils.test.js`
+     passing and `npm run lint` clean.
+   - Last step: full `npm test`.
+   Note which steps could be reverted on their own if a later step fails.
+7. Open questions for the author, each with your recommended answer.
 
 ## Constraints
 
