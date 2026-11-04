@@ -2488,52 +2488,6 @@ export function selectionsToString(selections) {
   return selectionWords.join(' ');
 }
 
-//TODO write a function that walk's through an object (and it's all its content including arrays) and prints an error if any key or string value contains `{`
-// /**
-//  * Walks through an object and all nested content, including arrays, and logs an error
-//  * when any object key or string value contains `{`.
-//  *
-//  * @param {*} value - value to inspect
-//  * @param {string} [path_='root'] - current path used in error messages
-//  * @returns {boolean} true if a brace was found, false otherwise
-//  */
-// export function logIfContainsOpeningBrace(value, path_ = 'root') {
-//   let found = false;
-//
-//   function walk(currentValue, currentPath) {
-//     if (typeof currentValue === 'string') {
-//       if (currentValue.includes('{')) {
-//         console.error(`String value contains "{": ${currentPath}`, currentValue);
-//         found = true;
-//       }
-//       return;
-//     }
-//
-//     if (!currentValue || typeof currentValue !== 'object') {
-//       return;
-//     }
-//
-//     if (Array.isArray(currentValue)) {
-//       currentValue.forEach((item, index) => {
-//         walk(item, `${currentPath}[${index}]`);
-//       });
-//       return;
-//     }
-//
-//     Object.keys(currentValue).forEach(key => {
-//       if (key.includes('{')) {
-//         console.error(`Object key contains "{": ${currentPath}.${key}`);
-//         found = true;
-//       }
-//
-//       walk(currentValue[key], `${currentPath}.${key}`);
-//     });
-//   }
-//
-//   walk(value, path_);
-//   return found;
-// }
-
 /**
  * Cleans a gateway-language quote by removing punctuation, normalizing the text,
  * and removing remaining brace, punctuation, and quote characters.

@@ -1,0 +1,110 @@
+{
+  "ἅγια": {
+    "groupId": "holy",
+    "selections": {
+      "holy": {
+        "thánh khiết": 2
+      },
+      "of the holy place": {
+        "của nơi thánh": 1
+      },
+      "holy place": {
+        "một nơi thánh": 1
+      },
+      "Holy": {
+        "Nơi Thánh": 1
+      },
+      "the Holy": {
+        "Nơi Thánh": 1
+      },
+      "of Holies": {
+        "Chí Thánh": 1
+      },
+      "of the holy places": {
+        "các nơi thánh": 1
+      }
+    },
+    "quoteString": "ἅγια"
+  },
+  "ἁγίων": {
+    "groupId": "holy",
+    "selections": {
+      "holy": {
+        "thánh khiết": 2
+      },
+      "of the holy place": {
+        "của nơi thánh": 1
+      },
+      "holy place": {
+        "một nơi thánh": 1
+      },
+      "Holy": {
+        "Nơi Thánh": 1
+      },
+      "the Holy": {
+        "Nơi Thánh": 1
+      },
+      "of Holies": {
+        "Chí Thánh": 1
+      },
+      "of the holy places": {
+        "các nơi thánh": 1
+      }
+    },
+    "quoteString": "ἅγια"
+  },
+  "τῆς ἁγιότητος": {
+    "groupId": "holy",
+    "selections": {
+      "holy": {
+        "thánh khiết": 2
+      },
+      "of the holy place": {
+        "của nơi thánh": 1
+      },
+      "holy place": {
+        "một nơi thánh": 1
+      },
+      "Holy": {
+        "Nơi Thánh": 1
+      },
+      "the Holy": {
+        "Nơi Thánh": 1
+      },
+      "of Holies": {
+        "Chí Thánh": 1
+      },
+      "of the holy places": {
+        "các nơi thánh": 1
+      }
+    },
+    "quoteString": "ἅγια"
+  },
+  "ἁγιασμόν": {
+    "groupId": "holy",
+    "selections": {
+      "holy": {
+        "thánh khiết": 2
+      },
+      "of the holy place": {
+        "của nơi thánh": 1
+      },
+      "holy place": {
+        "một nơi thánh": 1
+      },
+      "Holy": {
+        "Nơi Thánh": 1
+      },
+      "the Holy": {
+        "Nơi Thánh": 1
+      },
+      "of Holies": {
+        "Chí Thánh": 1
+      },
+      "of the holy places": {
+        "các nơi thánh": 1
+      }
+    },
+    "quoteString": "ἅγια"
+  }
+}
