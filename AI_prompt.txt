@@ -114,3 +114,7 @@ Things I have noticed. Check each one against the code before relying on it:
   `getBestTWordSelectionWithConfidenceFromLlm`.
 - No network calls and no new dependencies.
 - Keep the change inside `autoCheckingUtils.js`. `npm test` (eslint + jest) must pass.
+
+## References
+
+./CLAUDE.md
