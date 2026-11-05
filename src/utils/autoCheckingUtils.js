@@ -1140,6 +1140,110 @@ function firstPositionAfter(positions, after) {
   return positions[low];
 }
 
+/** most extra verse words allowed inside an out-of-order placement of a rendering */
+const MAX_UNORDERED_GAP = 1;
+/** confidence taken off a rendering found only with its words out of order */
+const ORDER_PENALTY = 10;
+/** highest confidence an out-of-order placement can report */
+const UNORDERED_MAX_CONFIDENCE = 89;
+
+/**
+ * Finds the smallest verse window holding one position of every word, in any order, for target
+ * languages whose word order varies between verses (e.g. 'святой дух' read as 'дух святой').
+ * Only accepted when the window has at most `MAX_UNORDERED_GAP` extra words, so far-apart words are
+ * never paired up. Sorts every (position, word) pair and slides two pointers over them.
+ *
+ * @param {Array<Array<number>>} positionsPerWord - for each word, its ascending candidate positions
+ * @returns {Array<number>|null} - ascending distinct positions, one per word, or `null`
+ */
+function findTightestUnorderedWindow(positionsPerWord) {
+  const wordCount = positionsPerWord.length;
+
+  if (!wordCount || positionsPerWord.some(positions => !positions?.length)) {
+    return null;
+  }
+
+  const pairs = [];
+
+  positionsPerWord.forEach((positions, wordIndex) => {
+    positions.forEach(position => pairs.push([position, wordIndex]));
+  });
+  pairs.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+
+  const wordsInWindow = new Map();
+  let coveredWords = 0;
+  let left = 0;
+  let best = null;
+
+  for (let right = 0; right < pairs.length; right++) {
+    const rightWord = pairs[right][1];
+    wordsInWindow.set(rightWord, (wordsInWindow.get(rightWord) || 0) + 1);
+
+    if (wordsInWindow.get(rightWord) === 1) {
+      coveredWords++;
+    }
+
+    while (coveredWords === wordCount) {
+      const span = pairs[right][0] - pairs[left][0];
+
+      if (!best || span < best.span) {
+        best = {
+          span, left, right,
+        };
+      }
+
+      const leftWord = pairs[left][1];
+      wordsInWindow.set(leftWord, wordsInWindow.get(leftWord) - 1);
+
+      if (!wordsInWindow.get(leftWord)) {
+        coveredWords--;
+      }
+      left++;
+    }
+  }
+
+  if (!best || best.span - (wordCount - 1) > MAX_UNORDERED_GAP) {
+    return null;
+  }
+
+  // give each word a distinct position inside the window
+  const chosen = new Map();
+  const used = new Set();
+
+  for (let i = best.left; i <= best.right; i++) {
+    const [position, wordIndex] = pairs[i];
+
+    if (!chosen.has(wordIndex) && !used.has(position)) {
+      chosen.set(wordIndex, position);
+      used.add(position);
+    }
+  }
+
+  if (chosen.size < wordCount) {
+    return null; // a repeated rendering word could not get its own verse word
+  }
+
+  return [...used].sort((a, b) => a - b);
+}
+
+/**
+ * Places the words of a rendering in the verse: in reading order if possible (tightest placement),
+ * otherwise in a tight out-of-order window (see `findTightestUnorderedWindow`).
+ *
+ * @param {Array<Array<number>>} positionsPerWord - for each word, its ascending candidate positions
+ * @returns {{positions: Array<number>, inOrder: boolean}|null} - ascending positions, or `null` when the words cannot be placed
+ */
+function placeWords(positionsPerWord) {
+  const ordered = findTightestOrderedPlacement(positionsPerWord);
+
+  if (ordered) {
+    return { positions: ordered, inOrder: true };
+  }
+
+  const unordered = findTightestUnorderedWindow(positionsPerWord);
+  return unordered ? { positions: unordered, inOrder: false } : null;
+}
+
 /**
  * Finds the best ordered subset of a previous rendering whose words are present in the verse.
  * The subset is scored later against the full rendering length, so confidence is reduced when
@@ -1192,9 +1296,11 @@ function findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords)
  * Only a complete rendering found adjacently and in order scores 100 - that is the exact match.
  * Every weaker match is capped at 99 so a caller applying a confidence threshold can tell an
  * exact hit from a fallback, built from:
- * - coverage: how much of the rendering was found, worth up to 60
+ * - coverage: how much of the rendering was found, worth up to 60. For a partial match each found word
+ *   counts as `matchedWeight / matchedWordCount`, so a fragment made of words the verse repeats counts less
  * - completeness: 20 more when every word of the rendering was found
- * - adjacency: 15 more when the matched words are adjacent in the verse
+ * - adjacency: 15 more when two or more matched words are adjacent in the verse (a single word is
+ *   trivially "adjacent", so it earns nothing)
  * - compactness: up to 10 for a gapped match, shrinking as the words spread further apart
  * - usage: up to 5 for how often this rendering was chosen before, relative to the most-used one
  *
@@ -1204,18 +1310,27 @@ function findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords)
  * @param {number} span - distance between the first and last matched position
  * @param {number} count - times this rendering was used before
  * @param {number} maxCount - times the most-used rendering of this phrase was used
+ * @param {number} [matchedWeight=matchedWordCount] - weighted number of matched words used for coverage
  * @returns {number} - 100 for an exact match, otherwise 1-99
  */
-function scoreAlgorithmicMatch(matchedWordCount, phraseWordCount, isContiguous, span, count, maxCount) {
+function scoreAlgorithmicMatch(
+  matchedWordCount,
+  phraseWordCount,
+  isContiguous,
+  span,
+  count,
+  maxCount,
+  matchedWeight = matchedWordCount,
+) {
   const isFullMatch = matchedWordCount === phraseWordCount;
 
   if (isFullMatch && isContiguous) {
     return 100;
   }
 
-  const coverageScore = Math.round((matchedWordCount / phraseWordCount) * 60);
+  const coverageScore = Math.round((matchedWeight / phraseWordCount) * 60);
   const fullMatchBonus = isFullMatch ? 20 : 0;
-  const contiguousBonus = isContiguous ? 15 : 0;
+  const contiguousBonus = (isContiguous && matchedWordCount >= 2) ? 15 : 0;
   const gap = span - (matchedWordCount - 1);
   const compactnessBonus = isContiguous ? 0 : Math.max(0, 10 - gap);
   const usageBonus = maxCount > 0 ? Math.round((count / maxCount) * 5) : 0;
@@ -1412,11 +1527,18 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   const maxCount = countEntries[0].count;
   // Normalize all verse words for case-insensitive, punctuation-free comparison
   const normalizedWordList = words.map(word => normalizeForCompare(word));
+  // how often each word occurs in the verse, so fragments made of common words count for less
+  const verseWordCounts = new Map();
+
+  for (const word of normalizedWordList) {
+    verseWordCounts.set(word, (verseWordCounts.get(word) || 0) + 1);
+  }
+
   // Map to store candidates, keyed by position string (e.g. "2:3:5") to deduplicate same words
   const candidates = new Map(); // keyed by matched positions, so the same words appear once
 
-  // Helper function to evaluate and store a candidate match
-  function considerCandidate(positions, phraseWordCount, entry) {
+  // Helper function to evaluate and store a candidate match; `inOrder` is false for an out-of-order placement
+  function considerCandidate(positions, phraseWordCount, entry, inOrder = true) {
     // Skip if no positions found
     if (!positions?.length) {
       return;
@@ -1424,15 +1546,22 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
     // Calculate span (distance between first and last matched word)
     const span = positions[positions.length - 1] - positions[0];
-    // Check if words are adjacent (contiguous) in the verse
-    const isContiguous = span === positions.length - 1;
+    // Check if words are adjacent (contiguous) and in reading order in the verse
+    const isContiguous = inOrder && span === positions.length - 1;
+    // a partial match is discounted when its words occur many times in the verse
+    const matchedWeight = positions.length < phraseWordCount
+      ? positions.reduce((total, position) => total + 1 / verseWordCounts.get(normalizedWordList[position]), 0)
+      : positions.length;
     // Calculate confidence score (0-100) based on match quality
     const { count } = entry;
+    let score = scoreAlgorithmicMatch(positions.length, phraseWordCount, isContiguous, span, count, maxCount, matchedWeight);
+
+    if (!inOrder) {
+      score = Math.max(1, Math.min(UNORDERED_MAX_CONFIDENCE, score - ORDER_PENALTY));
+    }
+
     // capped here, before candidates are compared, so ordering reflects the reported confidence
-    const confidence = Math.min(
-      scoreAlgorithmicMatch(positions.length, phraseWordCount, isContiguous, span, count, maxCount),
-      capForRendering(entry),
-    );
+    const confidence = Math.min(score, capForRendering(entry));
     // Create unique key from positions for deduplication
     const key = positions.join(':');
     const existing = candidates.get(key);
@@ -1472,18 +1601,40 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       continue;
     }
 
-    // Second attempt: find all words in order but possibly with gaps between them
-    const orderedPositions = findBestOrderedMatchPositions(normalizedWordList, phraseWords);
+    const positionsPerWord = phraseWords.map(word => {
+      const positions = [];
 
-    if (orderedPositions) { // all the words, but the verse spreads them out
-      considerCandidate(orderedPositions, phraseWords.length, entry);
+      normalizedWordList.forEach((verseWord, position) => {
+        if (verseWord === word) {
+          positions.push(position);
+        }
+      });
+      return positions;
+    });
+
+    // Second attempt: all the words, in order with gaps between them, else slightly out of order
+    const placement = placeWords(positionsPerWord);
+
+    if (placement) {
+      considerCandidate(placement.positions, phraseWords.length, entry, placement.inOrder);
       continue;
     }
 
-    // Fallback: find the best subset of the translation that exists in the verse
-    // Fall back to the best ordered subset of the rendering that the verse actually contains.
-    // It is still scored against the full previous translation length, so confidence is reduced
+    // Third attempt: every rendering word the verse does contain, wherever the missing ones were.
+    // Partial matches are still scored against the full rendering length, so confidence is reduced
     // when one or more words from the previous translation are missing from wordList.
+    const presentPositions = positionsPerWord.filter(positions => positions.length);
+
+    if (presentPositions.length) {
+      const presentPlacement = placeWords(presentPositions);
+
+      if (presentPlacement) {
+        considerCandidate(presentPlacement.positions, phraseWords.length, entry, presentPlacement.inOrder);
+        continue;
+      }
+    }
+
+    // Fallback: the best ordered contiguous slice of the rendering that exists in the verse
     const availablePositions = findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords);
     considerCandidate(availablePositions, phraseWords.length, entry);
   }
