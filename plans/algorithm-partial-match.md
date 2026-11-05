@@ -7,6 +7,10 @@ The working tree at that time also had an uncommitted version bump in `package.j
 
 **Baseline recorded on 2026-11-05:** `npm test` → eslint clean, `Test Suites: 14 passed, 14 total`, `Tests: 89 passed, 89 total`, `Snapshots: 7 passed`.
 
+**Implemented on 2026-11-05 (Steps 0–6, one commit each):** `npm test` → eslint 0 errors (1 pre-existing warning in `src/Container.js`), `Test Suites: 14 passed, 14 total`, `Tests: 103 passed, 103 total`, `Snapshots: 7 passed`. Every top result and confidence matches the prototype values in section 5. Deviations from the plan:
+- N9 asserts elapsed time (< 2000 ms) instead of relying on the jest timeout: the algorithm runs synchronously, so jest cannot interrupt it and the old code passed the 10 s timeout test while taking 9 s.
+- Tests passed earlier than the plan predicted: N6 after Step 1, N7 and the changed Heb 12:10 test after Step 3 (both because the old fuzzy pass used `wordSimilarity` from Step 1). N8 passed only after Step 5, because the old fuzzy pass re-added `la` at 45 until it was replaced.
+
 This plan is self-contained. Every design decision is settled in section 3 and 4; only the items in section 8 need the author. Expected numbers quoted as "prototype value" come from a throwaway re-implementation of the proposed scoring that was run on the test inputs in section 5; use them to sanity-check your implementation, but the assertions in the tests are ranges, and the ranges are what must hold.
 
 ---
