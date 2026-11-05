@@ -830,147 +830,19 @@ iglesia,98 - missing the quotes
 }
 
 /**
- * Extracts the `{targetPhrase: count}` map belonging to `glPhrase`.
- *
- * Accepts the nested, phrase-keyed shape `{glPhrase: {targetPhrase: count}}` as well as an
- * already-flat `{targetPhrase: count}` map, matching what `formatPreviousTranslations` accepts,
- * so both the AI and the algorithmic path can be handed the same object.
- *
- * @param {object} previousTranslationData - prior translation counts, nested or flat
- * @param {string} glPhrase - gateway-language phrase being translated
- * @returns {object} - `{targetPhrase: count}` for this phrase, or `{}` when it has no history
+ * Lowest confidence cap for a rendering reached only through a history key that is not the exact GL
+ * phrase. Kept above the 80 cutoff that triggers fuzzy target-word matching, so a verbatim target
+ * match found through any key still wins over target-side fuzzy matching.
  */
-function getPreviousTranslationExactMatchCounts(previousTranslationData, glPhrase) {
-  const data = previousTranslationData || {};
-
-  // data is phrase-keyed when its values are count maps rather than counts
-  const isPhraseKeyed = Object.values(data).some(value => value && typeof value === 'object');
-
-  if (!isPhraseKeyed) {
-    return data;
-  }
-
-  const keys = Object.keys(data);
-
-  // match the gateway phrase exactly, else accent- and case-insensitively
-  const normalizedGL = normalizer(glPhrase).toLowerCase();
-  const matchedGL = keys.find(key_ => key_ === glPhrase)
-    || keys.find(key_ => normalizer(key_).toLowerCase() === normalizedGL);
-
-  return matchedGL ? (data[matchedGL] || {}) : {};
-}
-
-/**
- * Retrieves the translation count map for a gateway language phrase, supporting both
- * exact and partial matching strategies.
- *
- * This function extracts previous translation history from a nested data structure that
- * maps gateway language phrases to their target language renderings with usage counts.
- * It handles two input formats:
- * - **Nested format**: `{glPhrase: {targetRendering: count}}` (phrase-keyed)
- * - **Flat format**: `{targetRendering: count}` (already extracted for one phrase)
- *
- * The matching strategy proceeds in three steps:
- * 1. **Exact match**: First attempts to find `glPhrase` as an exact key in the data
- * 2. **Partial match**: If no exact match is found, searches for any phrase where at least
- *    one word from `glPhrase` appears in the stored phrase
- * 3. **Fuzzy match**: If still no match, picks the stored phrase closest to `glPhrase` by
- *    word-level Levenshtein similarity (see `findClosestFuzzyGlPhrase`)
- *
- * All comparisons are performed after normalization (case-insensitive, punctuation-free)
- * to ensure that formatting differences don't prevent valid matches.
- *
- * @param {object} previousTranslationData - Historical translation data; can be:
- *   - Nested: `{glPhrase: {targetRendering: count}}` where values are count maps
- *   - Flat: `{targetRendering: count}` where values are integers
- * @param {string} glPhrase - Gateway language phrase to look up (e.g., 'the church')
- * @param {object} [matchInfo={}] - optional out-parameter; `matchInfo.isFuzzyGlMatch` is set to
- *   `true` when the counts came from the fuzzy match step, `false` otherwise
- * @returns {object} Translation count map `{targetRendering: count}` for the matched phrase,
- *   or empty object `{}` if no match is found or input is invalid
- * @example
- * // Nested input with exact match
- * const data = {
- *   'the church': { 'la iglesia': 5, 'la congregación': 2 },
- *   'church': { 'iglesia': 10 }
- * };
- * getPreviousTranslationPartialMatchCounts(data, 'the church');
- * // Returns: { 'la iglesia': 5, 'la congregación': 2 }
- *
- * @example
- * // Nested input with partial match (no exact match for 'church building')
- * const data = {
- *   'the church': { 'la iglesia': 5 },
- *   'church': { 'iglesia': 10 }
- * };
- * getPreviousTranslationPartialMatchCounts(data, 'church building');
- * // Returns: { 'iglesia': 10 } (matched 'church' because it contains the word 'church')
- *
- * @example
- * // Flat input (already extracted for one phrase)
- * const data = { 'iglesia': 10, 'congregación': 3 };
- * getPreviousTranslationPartialMatchCounts(data, 'church');
- * // Returns: { 'iglesia': 10, 'congregación': 3 } (returns input as-is)
- *
- * @see {@link getPreviousTranslationExactMatchCounts} - Similar function with exact-match-only strategy
- * @see {@link normalizer} - String normalization function from string-punctuation-tokenizer
- */
-function getPreviousTranslationPartialMatchCounts(
-  previousTranslationData,
-  glPhrase,
-  matchInfo = {},
-) {
-  matchInfo.isFuzzyGlMatch = false;
-
-  const data = previousTranslationData || {};
-
-  // data is phrase-keyed when its values are count maps rather than counts
-  const isPhraseKeyed = Object.values(data).some(
-    value => value && typeof value === 'object'
-  );
-
-  if (!isPhraseKeyed) {
-    return data;
-  }
-
-  const glPhrases = Object.keys(data);
-
-  // match the gateway phrase exactly, else accent- and case-insensitively
-  const normalizedGlWords = normalizer(glPhrase).toLowerCase().split(' ');
-  let matchedGL =
-    glPhrases.find(key_ => key_ === glPhrase) ||
-    glPhrases.find(key_ => {
-      const translatedWords = normalizer(key_).toLowerCase().split(' ');
-
-      for (let i = 0; i < normalizedGlWords.length; i++) {
-        if (translatedWords.includes(normalizedGlWords[i])) {
-          return true;
-        }
-      }
-      return false;
-    });
-
-  if (matchedGL) {
-    return data[matchedGL];
-  }
-
-  matchedGL = findClosestFuzzyGlPhrase(glPhrases, glPhrase, 0.2);
-
-  if (matchedGL) {
-    matchInfo.isFuzzyGlMatch = true;
-    return data[matchedGL];
-  }
-
-  return { }; // if no GL matches, use all data for groupId
-}
-
-/** lowest phrase similarity (0..1) that `findClosestFuzzyGlPhrase` accepts as a match */
-const GL_PHRASE_FUZZY_MATCH_THRESHOLD = 0.6;
-/**
- * highest confidence the algorithm reports when the GL phrase was only fuzzy matched in the history.
- * Kept above the 80 cutoff that triggers fuzzy target-word matching, so a verbatim target match still wins.
- */
-const FUZZY_GL_MATCH_MAX_CONFIDENCE = 90;
+const PARTIAL_GL_MATCH_CAP_MIN = 82;
+/** highest confidence cap for a rendering reached through a closely related (but not exact) GL key */
+const PARTIAL_GL_MATCH_CAP_MAX = 95;
+/** highest confidence for any candidate that needed fuzzy target-word matching */
+const FUZZY_TARGET_MAX_CONFIDENCE = 90;
+/** weight of a gateway-language word shorter than `MIN_FUZZY_WORD_LENGTH` - usually a function word */
+const SHORT_GL_WORD_WEIGHT = 0.2;
+/** gateway-language words this long (code points) or longer count fully */
+const FULL_GL_WORD_WEIGHT_LENGTH = 5;
 
 /**
  * Splits a gateway-language phrase into normalized, lower-cased words for fuzzy comparison.
@@ -983,66 +855,146 @@ function getNormalizedGlWords(phrase) {
 }
 
 /**
- * Scores how well the words of `fromWords` are covered by `toWords`: each word in `fromWords`
- * takes its best Levenshtein similarity against any word in `toWords`, and the scores are averaged.
+ * How much a gateway-language word counts when comparing GL phrases. Length is used as a
+ * language-neutral stand-in for "function word" ('the', 'of', 'de', 'la', 'से'), so no per-language
+ * stop list is needed. History frequency is not used: the history only holds one translationWords
+ * group, so the concept word itself ('holy') is the most frequent word in it.
+ *
+ * @param {string} word - normalized gateway-language word
+ * @returns {number} - weight in (0, 1]
+ */
+function glWordWeight(word) {
+  const length = Array.from(word).length;
+
+  if (length < MIN_FUZZY_WORD_LENGTH) {
+    return SHORT_GL_WORD_WEIGHT;
+  }
+  return Math.min(1, length / FULL_GL_WORD_WEIGHT_LENGTH);
+}
+
+/**
+ * Weighted share of `fromWords` that has a similar word in `toWords`.
  *
  * @param {Array<string>} fromWords - normalized words being looked for
  * @param {Array<string>} toWords - normalized words being searched
- * @returns {number} - average best-word similarity in [0, 1]
+ * @returns {number} - in [0, 1]
  */
-function getWordCoverageSimilarity(fromWords, toWords) {
+function getWeightedWordCoverage(fromWords, toWords) {
+  let covered = 0;
   let total = 0;
 
   for (const fromWord of fromWords) {
     let best = 0;
 
     for (const toWord of toWords) {
-      best = Math.max(best, fuzzyStringSimilarity(fromWord, toWord));
+      best = Math.max(best, wordSimilarity(fromWord, toWord));
     }
-    total += best;
+
+    const weight = glWordWeight(fromWord);
+    covered += best * weight;
+    total += weight;
   }
 
-  return total / fromWords.length;
+  return total ? covered / total : 0;
 }
 
 /**
- * Finds the stored gateway-language phrase that is the closest fuzzy match to `glPhrase`, for
- * when no stored phrase shares a whole word with it (e.g. 'churches' vs 'the church', or
- * 'believed' vs 'believing'). Phrases may be multiple words in any order, so phrases are compared
- * word by word: each word takes its best Levenshtein similarity in the other phrase, and the
- * score is averaged in both directions so that extra words on either side lower the score.
- * Character-level comparison keeps this independent of language and script.
+ * Scores every history key against `glPhrase`. A key equal to the phrase (exactly, or ignoring case
+ * and Unicode form) is the exact key. Any other key gets a relatedness in [0, 1]: the F1 of how much
+ * of the phrase the key covers and how much of the key the phrase covers, word by word, with short
+ * words down-weighted (`glWordWeight`) and inflections matched by `wordSimilarity`.
  *
- * @param {Array<string>} glPhrases - stored gateway-language phrases (keys of the history data)
- * @param {string} glPhrase - gateway-language phrase to look up
- * @param {number} [threshold=GL_PHRASE_FUZZY_MATCH_THRESHOLD] - minimum similarity to accept
- * @returns {string|null} - the best matching stored phrase, or `null` if none reaches `threshold`
+ * @param {object} previousTranslationData - nested `{glPhrase: {rendering: count}}`, or flat `{rendering: count}`
+ * @param {string} glPhrase - gateway-language phrase being translated
+ * @returns {Array<{counts: object, relatedness: number, isExact: boolean}>} - one entry per history key
  */
-function findClosestFuzzyGlPhrase(glPhrases, glPhrase, threshold = GL_PHRASE_FUZZY_MATCH_THRESHOLD) {
-  const glWords = getNormalizedGlWords(glPhrase);
+function rankGlKeys(previousTranslationData, glPhrase) {
+  const data = previousTranslationData || {};
+  const keys = Object.keys(data);
 
-  if (!glWords.length) {
-    return null;
+  // data is phrase-keyed when its values are count maps rather than counts
+  const isPhraseKeyed = Object.values(data).some(value => value && typeof value === 'object');
+
+  if (!isPhraseKeyed) { // already the counts for this phrase
+    return keys.length ? [{
+      counts: data, relatedness: 1, isExact: true,
+    }] : [];
   }
 
-  let bestPhrase = null;
-  let bestScore = 0;
+  const normalizedGl = normalizeForCompare(glPhrase).trim();
+  const glWords = getNormalizedGlWords(glPhrase);
 
-  for (const phrase of glPhrases || []) {
-    const phraseWords = getNormalizedGlWords(phrase);
+  return keys.map(key => {
+    const counts = data[key] || {};
 
-    if (phraseWords.length) {
-      const score = (getWordCoverageSimilarity(glWords, phraseWords) +
-        getWordCoverageSimilarity(phraseWords, glWords)) / 2;
+    if (key === glPhrase || normalizeForCompare(key).trim() === normalizedGl) {
+      return {
+        counts, relatedness: 1, isExact: true,
+      };
+    }
 
-      if (score > bestScore) {
-        bestScore = score;
-        bestPhrase = phrase;
+    const keyWords = getNormalizedGlWords(key);
+    let relatedness = 0;
+
+    if (glWords.length && keyWords.length) {
+      const recall = getWeightedWordCoverage(glWords, keyWords);
+      const precision = getWeightedWordCoverage(keyWords, glWords);
+      relatedness = (recall + precision) ? (2 * recall * precision) / (recall + precision) : 0;
+    }
+
+    return {
+      counts, relatedness, isExact: false,
+    };
+  });
+}
+
+/**
+ * Merges the renderings of every ranked history key. The history holds one translationWords group,
+ * so every rendering in it translates the current concept whatever its GL wording; how closely its
+ * key matches `glPhrase` only limits how confident the result can be (see `capForRendering`).
+ * Renderings that differ only by case or Unicode form are merged: counts add up, and the rendering
+ * keeps the best relatedness of any key it came from.
+ *
+ * @param {Array<{counts: object, relatedness: number, isExact: boolean}>} rankedKeys - from `rankGlKeys`
+ * @returns {Array<{rendering: string, count: number, relatedness: number, isExact: boolean}>} - most used first
+ */
+function poolRenderings(rankedKeys) {
+  const pool = new Map();
+
+  for (const {
+    counts, relatedness, isExact,
+  } of rankedKeys) {
+    for (const [rendering, count] of Object.entries(counts || {})) {
+      const normalizedRendering = (rendering || '').split(/\s+/).filter(Boolean)
+        .map(word => normalizeForCompare(word)).join(' ');
+
+      if (normalizedRendering && count > 0) {
+        const entry = pool.get(normalizedRendering) || {
+          rendering: normalizedRendering, count: 0, relatedness: 0, isExact: false,
+        };
+        entry.count += count;
+        entry.relatedness = Math.max(entry.relatedness, relatedness);
+        entry.isExact = entry.isExact || isExact;
+        pool.set(normalizedRendering, entry);
       }
     }
   }
 
-  return bestScore >= threshold ? bestPhrase : null;
+  return [...pool.values()].sort((a, b) => b.count - a.count);
+}
+
+/**
+ * Highest confidence a candidate from this rendering may report: 100 when it came from the exact GL
+ * key, otherwise between `PARTIAL_GL_MATCH_CAP_MIN` and `PARTIAL_GL_MATCH_CAP_MAX` by relatedness.
+ *
+ * @param {{relatedness: number, isExact: boolean}} entry - pooled rendering
+ * @returns {number} - confidence cap
+ */
+function capForRendering(entry) {
+  if (entry.isExact) {
+    return 100;
+  }
+  return Math.round(PARTIAL_GL_MATCH_CAP_MIN + (PARTIAL_GL_MATCH_CAP_MAX - PARTIAL_GL_MATCH_CAP_MIN) * entry.relatedness);
 }
 
 /**
@@ -1395,14 +1347,18 @@ function levenshteinDistance(a, b) {
  * shape, no AI call.
  *
  * Without a model there is no way to translate the gateway phrase from scratch, so how this
- * phrase was rendered before is the only evidence available. Each previous rendering of
- * `glPhrase` is looked for in the verse, strongest usage count first:
- * - found adjacently and in order - the exact match - scores 100
- * - found in order but with other words in between scores below 100
+ * phrase was rendered before is the only evidence available. The history holds one translationWords
+ * group, so every history key is scored against `glPhrase` (`rankGlKeys`) and the renderings of all
+ * keys are pooled (`poolRenderings`). Each pooled rendering is looked for in the verse, strongest
+ * usage count first:
+ * - found adjacently and in order through the exact GL key: 100 (the only way to reach 100)
+ * - found adjacently and in order through a related GL key: 82-95, higher the more weighted GL words
+ *   the key shares with the phrase (`capForRendering`)
+ * - found in order with other verse words in between: below 100, by compactness (and under the key's cap)
  * - when the whole rendering is not there, its sub-phrases are tried and score lower still,
  *   by how much of the rendering they cover and how tightly they sit together
- * - when `glPhrase` itself was only fuzzy matched in the history (e.g. 'churches' vs 'the church'),
- *   every score is capped at `FUZZY_GL_MATCH_MAX_CONFIDENCE`, so 100 is never reported
+ * - found only by fuzzy word matching (inflection, compound, accent): at most 90, scaled by average
+ *   word similarity (`wordSimilarity`)
  *
  * The same verse words can be reached from more than one rendering (`iglesia` is both its own
  * rendering and part of `de la iglesia`), so a candidate keeps the best score any rendering
@@ -1441,22 +1397,10 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 ) {
   // Initialize wordList, defaulting to empty array if null/undefined
   const words = wordList || [];
-  // Extract the translation count map for this specific gateway language phrase
-  let counts = getPreviousTranslationExactMatchCounts(previousTranslationData, glPhrase);
-  const glMatchInfo = { isFuzzyGlMatch: false };
-
-  if (!Object.keys(counts)?.length) { // if no exact match using original
-    counts = getPreviousTranslationPartialMatchCounts(previousTranslationData, glPhrase, glMatchInfo);
-  }
-
-  // when the GL phrase itself was only fuzzy matched, even a verbatim target match is not certain
-  const maxConfidence = glMatchInfo.isFuzzyGlMatch ? FUZZY_GL_MATCH_MAX_CONFIDENCE : 100;
-
-  // Sort previous translations by usage count (descending), filtering out empty or zero-count entries
-  // Process strongest evidence first so the most-used rendering claims its words before weaker ones
-  const countEntries = Object.entries(counts)
-    .filter(([phrase, count]) => phrase && count > 0)
-    .sort((a, b) => b[1] - a[1]);
+  // Score every history key against the GL phrase and pool their renderings, most used first, so the
+  // strongest evidence claims its words before weaker renderings. Each rendering remembers how closely
+  // its GL key matched, which caps its confidence.
+  const countEntries = poolRenderings(rankGlKeys(previousTranslationData, glPhrase));
 
   // Early exit if no previous translations exist or verse has no words
   if (!countEntries.length || !words.length) {
@@ -1465,14 +1409,14 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   }
 
   // Store the highest usage count for relative scoring later
-  const maxCount = countEntries[0][1];
+  const maxCount = countEntries[0].count;
   // Normalize all verse words for case-insensitive, punctuation-free comparison
   const normalizedWordList = words.map(word => normalizeForCompare(word));
   // Map to store candidates, keyed by position string (e.g. "2:3:5") to deduplicate same words
   const candidates = new Map(); // keyed by matched positions, so the same words appear once
 
   // Helper function to evaluate and store a candidate match
-  function considerCandidate(positions, phraseWordCount, count) {
+  function considerCandidate(positions, phraseWordCount, entry) {
     // Skip if no positions found
     if (!positions?.length) {
       return;
@@ -1483,7 +1427,12 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     // Check if words are adjacent (contiguous) in the verse
     const isContiguous = span === positions.length - 1;
     // Calculate confidence score (0-100) based on match quality
-    const confidence = scoreAlgorithmicMatch(positions.length, phraseWordCount, isContiguous, span, count, maxCount);
+    const { count } = entry;
+    // capped here, before candidates are compared, so ordering reflects the reported confidence
+    const confidence = Math.min(
+      scoreAlgorithmicMatch(positions.length, phraseWordCount, isContiguous, span, count, maxCount),
+      capForRendering(entry),
+    );
     // Create unique key from positions for deduplication
     const key = positions.join(':');
     const existing = candidates.get(key);
@@ -1506,9 +1455,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   }
 
   // Try to match each previous translation against the verse, from most-used to least-used
-  for (const [phrase, count] of countEntries) {
+  for (const entry of countEntries) {
     // Normalize the previous translation into individual words
-    const phraseWords = phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
+    const phraseWords = entry.rendering.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
 
     // Skip empty translations
     if (!phraseWords.length) {
@@ -1519,7 +1468,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     const exactPositions = findContiguousMatchPositions(normalizedWordList, phraseWords);
 
     if (exactPositions) { // verbatim match, nothing weaker from this rendering can beat it
-      considerCandidate(exactPositions, phraseWords.length, count);
+      considerCandidate(exactPositions, phraseWords.length, entry);
       continue;
     }
 
@@ -1527,7 +1476,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     const orderedPositions = findBestOrderedMatchPositions(normalizedWordList, phraseWords);
 
     if (orderedPositions) { // all the words, but the verse spreads them out
-      considerCandidate(orderedPositions, phraseWords.length, count);
+      considerCandidate(orderedPositions, phraseWords.length, entry);
       continue;
     }
 
@@ -1536,7 +1485,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     // It is still scored against the full previous translation length, so confidence is reduced
     // when one or more words from the previous translation are missing from wordList.
     const availablePositions = findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords);
-    considerCandidate(availablePositions, phraseWords.length, count);
+    considerCandidate(availablePositions, phraseWords.length, entry);
   }
 
   const minimumConfidenceLevel = 80;
@@ -1546,8 +1495,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   if (!haveConfidentCandidate) {
     // Use fuzzy compares to do closest matches for translated target words in word list and calculate confidence
     // For each previous translation, try fuzzy matching each phrase word against verse words
-    for (const [phrase, count] of countEntries) {
-      const phraseWords = phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
+    for (const entry of countEntries) {
+      const { count } = entry;
+      const phraseWords = entry.rendering.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
 
       if (!phraseWords.length) {
         continue;
@@ -1580,7 +1530,10 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         const uniquePositions = [...new Set(matchedPositions)].sort((a, b) => a - b);
         const avgSimilarity = totalSimilarity / phraseWords.length;
         // Scale confidence: fuzzy matches are always weaker than exact ones (capped below 90)
-        const fuzzyConfidence = Math.round(avgSimilarity * 90);
+        const fuzzyConfidence = Math.min(
+          Math.round(avgSimilarity * FUZZY_TARGET_MAX_CONFIDENCE),
+          capForRendering(entry),
+        );
         const key = uniquePositions.join(':');
         const existing = candidates.get(key);
 
@@ -1617,7 +1570,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       || a.span - b.span
     ))
     .slice(0, 3)
-    .map(({ selections, confidence }) => ({ selections, confidence: Math.min(confidence, maxConfidence) }));
+    .map(({ selections, confidence }) => ({ selections, confidence }));
 
   // // Log the results for debugging
   // console.log('algorithm response:', {
