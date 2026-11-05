@@ -1243,13 +1243,65 @@ function fuzzyStringSimilarity(a, b) {
     return 1;
   }
 
-  if (!a.length || !b.length) {
+  // compare code points, not UTF-16 units, so characters outside the BMP count once
+  const aChars = Array.from(a);
+  const bChars = Array.from(b);
+
+  if (!aChars.length || !bChars.length) {
     return 0;
   }
 
-  const maxLen = Math.max(a.length, b.length);
-  const dist = levenshteinDistance(a, b);
+  const maxLen = Math.max(aChars.length, bChars.length);
+  const dist = levenshteinDistance(aChars, bChars);
   return 1 - dist / maxLen;
+}
+
+/**
+ * lowest similarity (0..1) `wordSimilarity` accepts as a match: about one edit per three code points.
+ * All lengths below are in NFKD code points (what `normalizeForCompare` produces), which vary by
+ * script - Hangul decomposes to 2-3 jamo per syllable, Chinese characters do not decompose.
+ */
+const WORD_FUZZY_THRESHOLD = 0.65;
+/** words shorter than this (in code points) only ever match exactly - mostly function words */
+const MIN_FUZZY_WORD_LENGTH = 4;
+/** a word at least this long that is a whole prefix or suffix of the other counts as related (compounds) */
+const MIN_AFFIX_LENGTH = 6;
+
+/**
+ * Language-neutral similarity of two words already through `normalizeForCompare`, for matching
+ * inflected or compound forms without any word lists. Character-level, so it works for any script.
+ * - identical words score 1
+ * - words shorter than `MIN_FUZZY_WORD_LENGTH` otherwise score 0, since a single edit changes them too much
+ * - otherwise the Levenshtein similarity, raised when the shorter word (at least `MIN_AFFIX_LENGTH`
+ *   long) is a whole prefix or suffix of the longer one, e.g. 'kirche' in 'kirchengemeinde'
+ * - anything under `WORD_FUZZY_THRESHOLD` scores 0
+ *
+ * @param {string} a - normalized word
+ * @param {string} b - normalized word
+ * @returns {number} - 0, or a similarity in [`WORD_FUZZY_THRESHOLD`, 1]
+ */
+function wordSimilarity(a, b) {
+  if (a === b) {
+    return 1;
+  }
+
+  const aLength = Array.from(a || '').length;
+  const bLength = Array.from(b || '').length;
+
+  if (aLength < MIN_FUZZY_WORD_LENGTH || bLength < MIN_FUZZY_WORD_LENGTH) {
+    return 0;
+  }
+
+  let similarity = fuzzyStringSimilarity(a, b);
+  const shorterLength = Math.min(aLength, bLength);
+  const longerLength = Math.max(aLength, bLength);
+  const [shorter, longer] = aLength <= bLength ? [a, b] : [b, a];
+
+  if (shorterLength >= MIN_AFFIX_LENGTH && (longer.startsWith(shorter) || longer.endsWith(shorter))) {
+    similarity = Math.max(similarity, 0.5 + 0.5 * shorterLength / longerLength);
+  }
+
+  return similarity >= WORD_FUZZY_THRESHOLD ? similarity : 0;
 }
 
 /**
@@ -1259,8 +1311,9 @@ function fuzzyStringSimilarity(a, b) {
  *
  * Uses a space-optimised two-row approach, so memory usage is O(min(|a|,|b|)).
  *
- * @param {string} a - first string
- * @param {string} b - second string
+ * @param {string|Array<string>} a - first string, or its characters (pass `Array.from(str)` to
+ *   compare by code point rather than UTF-16 unit)
+ * @param {string|Array<string>} b - second string, or its characters
  * @returns {number} - non-negative integer edit distance
  */
 function levenshteinDistance(a, b) {
@@ -1465,7 +1518,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         let bestSim = -1;
 
         for (let i = 0; i < normalizedWordList.length; i++) {
-          const sim = fuzzyStringSimilarity(phraseWord, normalizedWordList[i]);
+          const sim = wordSimilarity(phraseWord, normalizedWordList[i]);
 
           if (sim > bestSim) {
             bestSim = sim;
@@ -1473,7 +1526,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
           }
         }
 
-        if (bestPos >= 0 && bestSim > 0.5) { // only accept reasonably similar words
+        if (bestPos >= 0 && bestSim > 0) { // wordSimilarity already rejects dissimilar and short words
           matchedPositions.push(bestPos);
           totalSimilarity += bestSim;
         }
