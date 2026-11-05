@@ -1114,35 +1114,78 @@ function findBestOrderedMatchPositions(normalizedWordList, phraseWords) {
     return positions;
   });
 
-  if (positionsPerWord.some(positions => !positions.length)) {
-    return null; // a word of the rendering is not in this verse at all
+  return findTightestOrderedPlacement(positionsPerWord);
+}
+
+/**
+ * Picks one position per word so the positions increase in word order and their span is as small as
+ * possible (earliest start on ties). For a fixed first position, taking the earliest possible position
+ * for each following word is optimal, so trying each start of the first word finds the tightest
+ * placement in polynomial time - O(starts x words x log positions) - instead of enumerating every
+ * placement, which is exponential when the verse repeats rendering words.
+ *
+ * @param {Array<Array<number>>} positionsPerWord - for each word, its ascending candidate positions
+ * @returns {Array<number>|null} - ascending positions, one per word, or `null` when no ordered placement exists
+ */
+function findTightestOrderedPlacement(positionsPerWord) {
+  if (!positionsPerWord.length || positionsPerWord.some(positions => !positions?.length)) {
+    return null;
   }
 
   let bestPositions = null;
   let bestSpan = Infinity;
 
-  function search(wordIndex, lastPosition, currentPositions) {
-    if (wordIndex === positionsPerWord.length) {
-      const span = currentPositions[currentPositions.length - 1] - currentPositions[0];
+  for (const start of positionsPerWord[0]) {
+    const placement = [start];
+    let lastPosition = start;
 
-      if (span < bestSpan) {
-        bestSpan = span;
-        bestPositions = [...currentPositions];
+    for (let wordIndex = 1; wordIndex < positionsPerWord.length; wordIndex++) {
+      const next = firstPositionAfter(positionsPerWord[wordIndex], lastPosition);
+
+      if (next === undefined) {
+        break;
       }
-      return;
+      placement.push(next);
+      lastPosition = next;
     }
 
-    for (const position of positionsPerWord[wordIndex]) {
-      if (position > lastPosition) { // keeps the placement in reading order
-        currentPositions.push(position);
-        search(wordIndex + 1, position, currentPositions);
-        currentPositions.pop();
-      }
+    if (placement.length < positionsPerWord.length) {
+      break; // a later start can only push every following word later still, so it cannot complete either
+    }
+
+    const span = lastPosition - start;
+
+    if (span < bestSpan) {
+      bestSpan = span;
+      bestPositions = placement;
     }
   }
 
-  search(0, -1, []);
   return bestPositions;
+}
+
+/**
+ * Binary search for the first position greater than `after`.
+ *
+ * @param {Array<number>} positions - ascending positions
+ * @param {number} after - position to move past
+ * @returns {number|undefined} - first position greater than `after`, or `undefined` when there is none
+ */
+function firstPositionAfter(positions, after) {
+  let low = 0;
+  let high = positions.length;
+
+  while (low < high) {
+    const middle = (low + high) >> 1;
+
+    if (positions[middle] > after) {
+      high = middle;
+    } else {
+      low = middle + 1;
+    }
+  }
+
+  return positions[low];
 }
 
 /**
