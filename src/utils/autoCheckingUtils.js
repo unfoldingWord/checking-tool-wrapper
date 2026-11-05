@@ -1470,10 +1470,12 @@ function levenshteinDistance(a, b) {
  * - found adjacently and in order through a related GL key: 82-95, higher the more weighted GL words
  *   the key shares with the phrase (`capForRendering`)
  * - found in order with other verse words in between: below 100, by compactness (and under the key's cap)
- * - when the whole rendering is not there, its sub-phrases are tried and score lower still,
- *   by how much of the rendering they cover and how tightly they sit together
+ * - found with its words swapped but within one gap: 10 points below the in-order score, never above 89
+ * - when the whole rendering is not there, the words the verse does contain are tried and score lower
+ *   still, by how much of the rendering they cover (discounted when the verse repeats those words)
+ *   and how tightly they sit together
  * - found only by fuzzy word matching (inflection, compound, accent): at most 90, scaled by average
- *   word similarity (`wordSimilarity`)
+ *   word similarity (`wordSimilarity`); this pass runs only when nothing above scored over 80
  *
  * The same verse words can be reached from more than one rendering (`iglesia` is both its own
  * rendering and part of `de la iglesia`), so a candidate keeps the best score any rendering
@@ -1537,8 +1539,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   // Map to store candidates, keyed by position string (e.g. "2:3:5") to deduplicate same words
   const candidates = new Map(); // keyed by matched positions, so the same words appear once
 
-  // Helper function to evaluate and store a candidate match; `inOrder` is false for an out-of-order placement
-  function considerCandidate(positions, phraseWordCount, entry, inOrder = true) {
+  // Helper function to evaluate and store a candidate match; `inOrder` is false for an out-of-order
+  // placement, and `totalSimilarity` is set (sum of word similarities) when words were fuzzy matched
+  function considerCandidate(positions, phraseWordCount, entry, inOrder = true, totalSimilarity = null) {
     // Skip if no positions found
     if (!positions?.length) {
       return;
@@ -1558,6 +1561,10 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
     if (!inOrder) {
       score = Math.max(1, Math.min(UNORDERED_MAX_CONFIDENCE, score - ORDER_PENALTY));
+    }
+
+    if (totalSimilarity !== null) { // fuzzy matches are scaled by how similar the words are, and capped
+      score = Math.max(1, Math.min(FUZZY_TARGET_MAX_CONFIDENCE, Math.round(score * (totalSimilarity / phraseWordCount))));
     }
 
     // capped here, before candidates are compared, so ordering reflects the reported confidence
@@ -1644,59 +1651,45 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     .some(candidate => candidate.confidence > minimumConfidenceLevel);
 
   if (!haveConfidentCandidate) {
-    // Use fuzzy compares to do closest matches for translated target words in word list and calculate confidence
-    // For each previous translation, try fuzzy matching each phrase word against verse words
-    for (const entry of countEntries) {
-      const { count } = entry;
-      const phraseWords = entry.rendering.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
+    // Fuzzy pass: match each rendering word to similar verse words (inflected, compound or accent-variant
+    // forms, see `wordSimilarity`), then place the matched words like an exact match - in order, else
+    // in a tight out-of-order window - so words scattered across the verse are never paired up.
+    const similarityCache = new Map(); // the same word pairs recur across renderings
 
-      if (!phraseWords.length) {
+    const getSimilarity = (phraseWord, verseWord) => {
+      const cacheKey = phraseWord + '\u0000' + verseWord;
+
+      if (!similarityCache.has(cacheKey)) {
+        similarityCache.set(cacheKey, wordSimilarity(phraseWord, verseWord));
+      }
+      return similarityCache.get(cacheKey);
+    };
+
+    for (const entry of countEntries) {
+      const phraseWords = entry.rendering.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
+      // drop rendering words with no similar verse word; they still count against coverage
+      const presentWords = phraseWords.filter(phraseWord => normalizedWordList.some(verseWord => getSimilarity(phraseWord, verseWord) > 0));
+
+      if (!presentWords.length) {
         continue;
       }
 
-      const matchedPositions = [];
-      let totalSimilarity = 0;
+      const positionsPerWord = presentWords.map(phraseWord => {
+        const positions = [];
 
-      for (const phraseWord of phraseWords) {
-        let bestPos = -1;
-        let bestSim = -1;
-
-        for (let i = 0; i < normalizedWordList.length; i++) {
-          const sim = wordSimilarity(phraseWord, normalizedWordList[i]);
-
-          if (sim > bestSim) {
-            bestSim = sim;
-            bestPos = i;
+        normalizedWordList.forEach((verseWord, position) => {
+          if (getSimilarity(phraseWord, verseWord) > 0) {
+            positions.push(position);
           }
-        }
+        });
+        return positions;
+      });
+      const placement = placeWords(positionsPerWord);
 
-        if (bestPos >= 0 && bestSim > 0) { // wordSimilarity already rejects dissimilar and short words
-          matchedPositions.push(bestPos);
-          totalSimilarity += bestSim;
-        }
-      }
-
-      if (matchedPositions.length) {
-        // Deduplicate positions, keeping order
-        const uniquePositions = [...new Set(matchedPositions)].sort((a, b) => a - b);
-        const avgSimilarity = totalSimilarity / phraseWords.length;
-        // Scale confidence: fuzzy matches are always weaker than exact ones (capped below 90)
-        const fuzzyConfidence = Math.min(
-          Math.round(avgSimilarity * FUZZY_TARGET_MAX_CONFIDENCE),
-          capForRendering(entry),
-        );
-        const key = uniquePositions.join(':');
-        const existing = candidates.get(key);
-
-        if (!existing || existing.confidence < fuzzyConfidence) {
-          candidates.set(key, {
-            selections: buildSelectionsFromPositions(words, uniquePositions),
-            confidence: fuzzyConfidence,
-            count,
-            span: uniquePositions[uniquePositions.length - 1] - uniquePositions[0],
-            matchedWordCount: uniquePositions.length,
-          });
-        }
+      if (placement) {
+        const totalSimilarity = placement.positions.reduce((total, position) => total +
+          Math.max(...presentWords.map(phraseWord => getSimilarity(phraseWord, normalizedWordList[position]))), 0);
+        considerCandidate(placement.positions, phraseWords.length, entry, placement.inOrder, totalSimilarity);
       }
     }
 
