@@ -220,6 +220,41 @@ async function streamChatMessage(options) {
 }
 
 /**
+ * Returns the AI bridge that translationCore puts on `window.AiAPIs` during Electronite startup, so AI
+ * requests can go through the Electron main process instead of a direct HTTP call from this page.
+ *
+ * Only `query` is checked; callers also use `getAvailableModels` and assume the bridge provides it.
+ *
+ * @returns {{
+ *   query: function(string, object): Promise<{replyText: string, reasoningText: string, actualModel: string, error: boolean}>,
+ *   getAvailableModels: function(object): Promise<*>
+ * }|null} - `window.AiAPIs` when it has a `query` function; `null` when there is no `window`
+ *   (e.g. Node or jest) or the bridge is missing, in which case callers fall back to direct HTTP
+ *   (`streamChatMessage` or `fetch`)
+ * @example
+ * const AiAPIs = getAiAPIs();
+ *
+ * if (AiAPIs) {
+ *   const { replyText } = await AiAPIs.query(query, lmQueryOptions);
+ * }
+ */
+function getAiAPIs() {
+  let AiAPIs = null;
+  const isAiAPIQueryAvailable =
+    typeof window !== 'undefined' &&
+    // this is exposed by translationCore during Electronite startup
+    typeof window.AiAPIs?.query === 'function';
+
+  if (isAiAPIQueryAvailable) {
+    AiAPIs = window.AiAPIs;
+  }
+
+  // console.log('isAiAPIModelsAvailable', isAiAPIModelsAvailable);
+
+  return AiAPIs;
+}
+
+/**
  * Sends a text query to a locally running OpenAI-compatible server and returns the model's response text
  * along with timing information.
  *
@@ -307,17 +342,14 @@ export async function queryAiAPI(query, options = {}) {
     systemPrompt: finalSystemPrompt,
     temperature,
   };
-
-  const isAiAPIQueryAvailable =
-    typeof window !== 'undefined' &&
-    typeof window.AiAPIs?.query === 'function';
+  const AiAPIs = getAiAPIs();
 
   // console.log('queryAiAPI - starting fetch isAiAPIQueryAvailable', isAiAPIQueryAvailable);
   let error = false;
 
-  if (isAiAPIQueryAvailable) { // calling Electron process
+  if (AiAPIs) { // calling Electron process
     try {
-      const answer = await window.AiAPIs.query(query, lmQueryOptions);
+      const answer = await AiAPIs.query(query, lmQueryOptions);
       // console.log(answer);
       replyText_ = answer.replyText || answer.reasoningText;
       reasoningText_ = answer.reasoningText;
@@ -408,17 +440,13 @@ export async function queryAiAPIModels(options = {}) {
   const url = `${baseUrl}/v1/models`;
   let response;
 
-  const isAiAPIModelsAvailable =
-    typeof window !== 'undefined' &&
-    typeof window.AiAPIs?.query === 'function';
-
-  // console.log('isAiAPIModelsAvailable', isAiAPIModelsAvailable);
+  const AiAPIs = getAiAPIs();
   let answer;
 
-  if (isAiAPIModelsAvailable) { // calling Electron process
+  if (AiAPIs) { // calling Electron process
     try {
       const llmOptions = { ...options, baseUrl };
-      answer = await window.AiAPIs.getAvailableModels(llmOptions);
+      answer = await AiAPIs.getAvailableModels(llmOptions);
       // console.log('getAvailableModels answer', answer);
     } catch (error) {
       const message = `Failed to reach OpenAI-compatible server at ${url}: ${error.message}`;
