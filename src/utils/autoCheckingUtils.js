@@ -11,6 +11,8 @@ import {
   readJsonFile,
 } from '../helpers/fileHelpers';
 import * as gatewayLanguageHelpers from '../helpers/gatewayLanguageHelpers';
+import { getQuoteAsString } from '../helpers/checkAreaHelpers';
+import { NT_ORIG_LANG, OT_ORIG_LANG } from '../common/constants';
 
 const AI_API_URL = 'http://192.168.142.70:1234';
 /** most previous-translation entries sent in an AI prompt, strongest evidence first */
@@ -580,10 +582,18 @@ ${phrase}
  * an accent is a different word form, and `normalizer` does not fold accents either.
  *
  * @param {string} word
+ * @param {string} [langId=''] - language code of `word` (e.g. 'tr', 'es-419'). When given,
+ *   lowercasing uses that locale's rules (`toLocaleLowerCase`); when empty, plain
+ *   `toLowerCase` is used.
  * @returns {string}
  */
-export function normalizeForCompare(word) {
-  return normalizer(word || '').toLowerCase();
+export function normalizeForCompare(word, langId = '') {
+  const normalizedWord = normalizer(word || '');
+
+  if (langId) {
+    return normalizedWord.toLocaleLowerCase(langId);
+  }
+  return normalizedWord.toLowerCase();
 }
 
 /**
@@ -613,6 +623,8 @@ export function normalizeForCompare(word) {
  *   phrase-level filtering when `filter` is true
  * @param {string} verseContent - Target-language verse text (space-separated words) to check
  *   which renderings are possible in this verse
+ * @param {string} [langId=''] - target-language code of `verseContent`, passed to
+ *   {@link normalizeForCompare} for locale-aware lowercasing of the verse words
  * @param {boolean} [filter=false] - If true, applies phrase-level filtering to only include
  *   gateway phrases whose words are all present in `glPhrase`
  * @returns {string} JSON string containing filtered and sorted translation entries in format
@@ -627,6 +639,7 @@ export function normalizeForCompare(word) {
  *   data,
  *   'church',
  *   'para la iglesia de Éfeso',
+ *   'es-419',
  *   true  // enable phrase filtering
  * );
  * // Returns JSON string (prettified for readability):
@@ -641,6 +654,7 @@ export function normalizeForCompare(word) {
  *   data,
  *   'church',
  *   'para la iglesia de Éfeso',
+ *   'es-419',
  *   false  // no phrase filtering
  * );
  * // Returns all renderings whose words appear in verse, sorted by usage count:
@@ -649,13 +663,13 @@ export function normalizeForCompare(word) {
  * //   {"phrase": "the church", "rendering": "la iglesia", "usageCount": 5}
  * // ]
  */
-function formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, filter = false) {
+function formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, langId = '', filter = false) {
   const data = previousTranslationData || {};
 
   // Default to using data directly as counts map
   let filteredMatches = {};
   const keys = Object.keys(data);
-  const normalizedVerseWords = new Set(verseContent.split(' ').map(word => normalizeForCompare(word)));
+  const normalizedVerseWords = new Set(verseContent.split(' ').map(word => normalizeForCompare(word, langId)));
 
   for (const glPhrase of keys) {
     const translations = data[glPhrase];
@@ -669,7 +683,7 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
 
     for (const translation of translationKeys) {
       const translationWords = translation.split(/\s+/).filter(Boolean);
-      const exactMatch = translationWords.every(word => normalizedVerseWords.has(normalizeForCompare(word)));
+      const exactMatch = translationWords.every(word => normalizedVerseWords.has(normalizeForCompare(word, langId)));
 
       if (exactMatch) {
         filteredMatchesEntries[translation] = data[glPhrase][translation];
@@ -708,11 +722,11 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, verseCont
 
   if (entries.length && filter) {
     // Filter entries removing any lines where the phrase contains words not in glPhrase
-    const glPhraseWords = glPhrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
+    const glPhraseWords = glPhrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word, langId));
     const glPhraseWordSet = new Set(glPhraseWords);
 
     const filteredEntries = entries.filter(entry => {
-      const phraseWords = entry.phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word));
+      const phraseWords = entry.phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word, langId));
       return phraseWords.every(word => glPhraseWordSet.has(word));
     });
 
@@ -841,7 +855,7 @@ Wrong answer for Example:
 iglesia,98 - missing the quotes
 `;
 
-  const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, true);
+  const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, targetLangCode, true);
   // console.log(`previousTranslations string length= ${previousTranslations.length}`);
 
   // one labeled field per line, in the same order as the examples above
@@ -876,10 +890,22 @@ const FULL_GL_WORD_WEIGHT_LENGTH = 5;
  * Splits a gateway-language phrase into normalized, lower-cased words for fuzzy comparison.
  *
  * @param {string} phrase - gateway-language phrase
+ * @param {string} [langId] - gateway-language code; when given, lowercasing uses that locale's
+ *   rules (`toLocaleLowerCase`), otherwise plain `toLowerCase`
  * @returns {Array<string>} - non-empty words
  */
-function getNormalizedGlWords(phrase) {
-  return normalizer(phrase || '').toLowerCase().split(/\s+/).filter(Boolean);
+function getNormalizedGlWords(phrase, langId) {
+  let normalized;
+
+  if (langId) {
+    normalized = normalizer(phrase || '').toLocaleLowerCase(langId);
+  } else {
+    normalized = normalizer(phrase || '').toLowerCase();
+  }
+
+  return normalized
+    .split(/\s+/)
+    .filter(Boolean);
 }
 
 /**
@@ -934,9 +960,11 @@ function getWeightedWordCoverage(fromWords, toWords) {
  *
  * @param {object} previousTranslationData - nested `{glPhrase: {rendering: count}}`, or flat `{rendering: count}`
  * @param {string} glPhrase - gateway-language phrase being translated
+ * @param {string} [glLangId=''] - gateway-language code, used for locale-aware lowercasing when
+ *   splitting `glPhrase` and each history key into words
  * @returns {Array<{counts: object, relatedness: number, isExact: boolean}>} - one entry per history key
  */
-function rankGlKeys(previousTranslationData, glPhrase) {
+function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
   const data = previousTranslationData || {};
   const keys = Object.keys(data);
 
@@ -949,19 +977,19 @@ function rankGlKeys(previousTranslationData, glPhrase) {
     }] : [];
   }
 
-  const normalizedGl = normalizeForCompare(glPhrase).trim();
-  const glWords = getNormalizedGlWords(glPhrase);
+  const normalizedGl = normalizeForCompare(glPhrase, glLangId).trim();
+  const glWords = getNormalizedGlWords(glPhrase, glLangId);
 
   return keys.map(key => {
     const counts = data[key] || {};
 
-    if (key === glPhrase || normalizeForCompare(key).trim() === normalizedGl) {
+    if (key === glPhrase || normalizeForCompare(key, glLangId).trim() === normalizedGl) {
       return {
         counts, relatedness: 1, isExact: true,
       };
     }
 
-    const keyWords = getNormalizedGlWords(key);
+    const keyWords = getNormalizedGlWords(key, glLangId);
     let relatedness = 0;
 
     if (glWords.length && keyWords.length) {
@@ -1513,7 +1541,8 @@ function levenshteinDistance(a, b) {
  * @param {string} targetLangCode - language code of the verse, e.g. 'es-419'; unused, kept so this
  *   function is interchangeable with the AI version
  * @param {string} glPhrase - gateway-language phrase to translate, e.g. 'church'
- * @param {string} glLangCode - language code of the gateway phrase; unused, see `targetLangCode`
+ * @param {string} glLangCode - language code of the gateway phrase, e.g. 'en'; passed to
+ *   {@link rankGlKeys} for locale-aware lowercasing of the GL phrase and history keys
  * @param {object} previousTranslationData - prior translation counts, nested `{glPhrase: {target: count}}`
  *   or flat `{target: count}`
  * @param {boolean} [enable_thinking] - unused, accepted so callers can swap the two functions freely
@@ -1545,7 +1574,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   // Score every history key against the GL phrase and pool their renderings, most used first, so the
   // strongest evidence claims its words before weaker renderings. Each rendering remembers how closely
   // its GL key matched, which caps its confidence.
-  const countEntries = poolRenderings(rankGlKeys(previousTranslationData, glPhrase));
+  const countEntries = poolRenderings(
+    rankGlKeys(previousTranslationData, glPhrase, glLangCode)
+  );
 
   // Early exit if no previous translations exist or verse has no words
   if (!countEntries.length || !words.length) {
@@ -2132,32 +2163,39 @@ export function parseLlmSelectionOptions(answer, wordList, requestIndex = 0) {
  *
  * Passing an array of request objects instead of one sends them all to the AI in a single
  * `queryAiAPI` call (see {@link getBestTWordSelectionsBatchFromLlm}) and resolves to an array
- * of results in the same order.
+ * of results in the same order. In a batch, only the first request's `lmOptions` are used.
  *
- * @param {object|Array<object>} options - Request options, or an array of them to batch
- * @param {Array<string>} options.wordList - target-language verse words in reading order
- * @param {string} options.targetLangCode - language code of the verse (e.g. 'es-419')
- * @param {string} options.glPhrase - gateway language phrase to translate (e.g. 'church')
- * @param {string} options.glLangCode - language code of the gateway phrase (e.g. 'en')
- * @param {object} options.previousTranslationData - prior translation counts; can be nested
- *   `{glPhrase: {targetPhrase: count}}` or flat `{targetPhrase: count}`
- * @param {object} [options.lmOptions={enable_thinking: false}] - options passed to queryAiAPI
- * @param {boolean} [options.lmOptions.enable_thinking=false] - whether to enable AI thinking mode
- * @param {string} [options.lmOptions.baseUrl] - OpenAI-compatible server URL override
- * @param {string} [options.lmOptions.model] - AI model identifier override
- * @param {number} [options.lmOptions.temperature] - sampling temperature override
- * @param {number} [options.lmOptions.maxTokens] - max response tokens override; defaults to
+ * @param {object|Array<object>} request - one request, or an array of them to send as a batch
+ * @param {Array<string>} request.wordList - target-language verse words in reading order
+ * @param {string} request.targetLangCode - language code of the verse (e.g. 'es-419')
+ * @param {string} request.glPhrase - gateway-language phrase to translate (e.g. 'church')
+ * @param {string} request.glLangCode - language code of the gateway phrase (e.g. 'en')
+ * @param {object} [request.previousTranslationData] - prior translation counts; can be nested
+ *   `{glPhrase: {targetPhrase: count}}` or flat `{targetPhrase: count}`. May be missing when
+ *   there is no history.
+ * @param {string} [request.key] - caller's cache key for this job; ignored here
+ * @param {object} [request.lmOptions={enable_thinking: false}] - options passed to `queryAiAPI`
+ * @param {boolean} [request.lmOptions.enable_thinking=false] - whether to enable AI thinking mode
+ * @param {string} [request.lmOptions.baseUrl] - OpenAI-compatible server URL; defaults to `AI_API_URL`
+ * @param {string} [request.lmOptions.model] - AI model identifier
+ * @param {number} [request.lmOptions.temperature] - sampling temperature
+ * @param {number} [request.lmOptions.maxTokens] - max response tokens; defaults to
  *   `LLM_DEFAULT_MAX_TOKENS` when thinking is off
- * @param {string} [options.lmOptions.apiToken] - bearer token for servers that require one
+ * @param {string} [request.lmOptions.apiToken] - bearer token for servers that require one
  * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}|Array<object>>} -
- *   an array of these results when `options` is an array.
+ *   an array of these results, in request order, when `request` is an array.
  *   `bestSelections` holds up to 3 options sorted by confidence, each containing:
  *   - selections: array of {text, occurrence} objects representing matched words
  *     - text: the word exactly as it appears in the verse
  *     - occurrence: 1-based occurrence index of this word in the verse
  *   - confidence: integer 0-100 indicating match certainty
- *   `error` is true only when the AI request itself failed
- * @throws Does not throw; logs errors and returns empty bestSelections on failure
+ *
+ *   `error` is true only when the AI request itself failed. If the answer could not be parsed,
+ *   `error` is false and `bestSelections` is empty. `elapsedStr` is the query time in seconds
+ *   (e.g. '2.35'). `model` is the model name the server reported, or '' on failure or when
+ *   nothing could be parsed.
+ * @throws Does not throw for AI or parsing failures: they are logged and an empty
+ *   `bestSelections` is returned. Throws if `wordList` is missing.
  * @example
  * const wordList = ['para', 'la', 'iglesia', 'de', 'Éfeso'];
  * const result = await getBestTWordSelectionWithConfidenceFromLlm({
@@ -2825,15 +2863,17 @@ export function cleanGlQuote(glText) {
 
 /**
  * Tallies each check's target-language selection against its gateway-language quote, updating
- * `selectionsForWord` in place with `{glQuote: {selectedText: count}}` counts.
+ * `selectionsForGlQuote` in place with `{glQuote: {selectedText: count}}` counts, and, when
+ * given, `selectionsForQuoteString` with `{quoteString: {selectedText: count}}` counts.
  *
  * For each check, the gateway-language quote is found with
  * `gatewayLanguageHelpers.getAlignedTextFromBible()`: the gateway-language words in `bible`
  * aligned to `contextId.quote` / `contextId.occurrence` at `contextId.reference`. That text then
- * goes through {@link removePunctuation} and `normalizer`. Checks are skipped if they have no
- * `contextId` or `selections`, if `bible` is missing, or if no aligned text is found.
+ * goes through {@link removePunctuation} and `normalizer`. Checks with no `contextId` or
+ * `selections` are skipped. A check is left out of `selectionsForGlQuote` if `bible` is missing
+ * or no aligned text is found, but is still counted in `selectionsForQuoteString`.
  *
- * Calling this once per book with the same `selectionsForWord` adds up the counts across books
+ * Calling this once per book with the same accumulators adds up the counts across books
  * (see {@link fetchPreviousSelectionData}).
  *
  * @param {Array<{contextId: ContextId, selections: Array<{text: string, occurrence: number}>}>} checks
@@ -2842,9 +2882,17 @@ export function cleanGlQuote(glText) {
  * @param {string} gatewayLanguageCode - gateway language code (currently unused)
  * @param {object} tsvRelation - TSV relation data (currently unused)
  * @param {object} bible - gateway-language book used to find the aligned text for each check
- * @param {Object<string, Object<string, number>>} selectionsForWord - accumulator in the same
+ * @param {Object<string, Object<string, number>>} selectionsForGlQuote - accumulator in the same
  *   format as the return value; changed in place. Pass `{}` to start a new tally.
- * @returns {Object<string, Object<string, number>>} the same `selectionsForWord` object, nested
+ * @param {Object<string, Object<string, number>>|null} [selectionsForQuoteString] - optional
+ *   accumulator with the same inner format as `selectionsForGlQuote`, but the outer key is the
+ *   check's original-language quote string (`contextId.quoteString`, or `contextId.quote`
+ *   converted with `getQuoteAsString`), lowercased with `origLangId` locale rules but otherwise
+ *   not normalized. Changed in place. Counted even when no aligned gateway-language text is
+ *   found. Omit or pass null to skip.
+ * @param {string} [origLangId=NT_ORIG_LANG] - original-language code used to lowercase the
+ *   quote string: `NT_ORIG_LANG` for New Testament books, `OT_ORIG_LANG` for Old Testament
+ * @returns {Object<string, Object<string, number>>} the same `selectionsForGlQuote` object, nested
  *   two levels:
  *   - **outer key** (`glQuote`): the check's aligned gateway-language text, with punctuation
  *     removed and passed through `normalizer` (e.g. 'faith', 'by faith')
@@ -2852,7 +2900,7 @@ export function cleanGlQuote(glText) {
  *     single spaces (e.g. 'fe', 'la fe'). It is not normalized. A check whose `selections` is an
  *     empty array is counted under the key `''`.
  *   - **value**: how many checks so far had that selection for that gateway-language text
- *     (always 1 or more), including counts already in `selectionsForWord` when it was passed in
+ *     (always 1 or more), including counts already in `selectionsForGlQuote` when it was passed in
  * @example
  * const checks = [
  *   { contextId: { reference: { chapter: 2, verse: 16 }, quote: 'πίστεως', occurrence: 1 },
@@ -2860,12 +2908,16 @@ export function cleanGlQuote(glText) {
  *   { contextId: { reference: { chapter: 3, verse: 7 }, quote: 'πίστεως', occurrence: 1 },
  *     selections: [{ text: 'la', occurrence: 1 }, { text: 'fe', occurrence: 1 }] },
  * ];
- * const selectionsForWord = { 'faith': { 'fe': 2 } };
- * getSelectionsForBook(checks, 'en', tsvRelation, glBook, selectionsForWord);
- * // If both checks align to 'faith', selectionsForWord is now:
+ * const selectionsForGlQuote = { 'faith': { 'fe': 2 } };
+ * const selectionsForQuoteString = {};
+ * getSelectionsForBook(checks, 'en', tsvRelation, glBook, selectionsForGlQuote,
+ *   selectionsForQuoteString, NT_ORIG_LANG);
+ * // If both checks align to 'faith', selectionsForGlQuote is now:
  * // { 'faith': { 'fe': 3, 'la fe': 1 } }
+ * // and selectionsForQuoteString is:
+ * // { 'πίστεως': { 'fe': 1, 'la fe': 1 } }
  */
-export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForWord ) {
+export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForGlQuote, selectionsForQuoteString = null, origLangId = NT_ORIG_LANG) {
   if (checks?.length) {
     for (const check of checks) {
       const contextId = check?.contextId;
@@ -2874,52 +2926,53 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
       if (selectionsForCheck && contextId) {
         let glQuote = null;
 
-        if (!glQuote) {// need quote
-          let glText = null;
-
-          if (bible) { // if already have bible use it
-            glText = gatewayLanguageHelpers.getAlignedTextFromBible(
-              contextId,
-              bible
-            );
-          }
+        if (bible) { // if already have bible use it
+          const glText = gatewayLanguageHelpers.getAlignedTextFromBible(
+            contextId,
+            bible
+          );
 
           if (glText) {
-            glText = cleanGlQuote(glText);
-            glQuote = glText;
+            glQuote = cleanGlQuote(glText);
           }
         }
 
-        // if (glQuote.includes('{')) {
-        //   console.log('glQuote includes {');
-        // }
+        const quoteString =
+          (contextId?.quoteString || getQuoteAsString(contextId?.quote)).toLocaleLowerCase(origLangId);
 
-        if (glQuote && selectionsForCheck) {
-          const selectedText = selectionsForCheck
-            ?.map(word => word?.text)
-            ?.join(' ');
+        const selectedText = selectionsForCheck
+          ?.map(word => word?.text)
+          ?.join(' ');
 
-          let glQuoteMatches = selectionsForWord[glQuote];
+        if (glQuote) {
+          incrementSelectionCount(selectionsForGlQuote, glQuote, selectedText);
+        }
 
-          if (!glQuoteMatches) {
-            glQuoteMatches = {};
-            selectionsForWord[glQuote] = glQuoteMatches;
-          }
-
-          let selectedTextCount = glQuoteMatches[selectedText];
-
-          if (!selectedTextCount) {
-            glQuoteMatches[selectedText] = 1;
-          } else {
-            glQuoteMatches[selectedText]++;
-          }
-
-          //logIfContainsOpeningBrace(selectionsForWord);
+        if (quoteString && selectionsForQuoteString) {
+          incrementSelectionCount(selectionsForQuoteString, quoteString, selectedText);
         }
       }
     }
   }
-  return selectionsForWord;
+  return selectionsForGlQuote;
+}
+
+/**
+ * Adds one to the count of `selectedText` under `key` in a two-level tally, creating the inner
+ * object if needed.
+ * @param {Object<string, Object<string, number>>} tally - changed in place
+ * @param {string} key - outer key (e.g. GL quote or original-language quote string)
+ * @param {string} selectedText - inner key
+ */
+function incrementSelectionCount(tally, key, selectedText) {
+  let matches = tally[key];
+
+  if (!matches) {
+    matches = {};
+    tally[key] = matches;
+  }
+
+  matches[selectedText] = (matches[selectedText] || 0) + 1;
 }
 
 /**
@@ -3410,7 +3463,8 @@ export function fetchPreviousSelectionData(
   const glBibleId = sortedBibleIds[0];
 
   const usingNT = isNT(currentBookId);
-  let selectionsForWord = {};
+  let selectionsForGlQuote = {};
+  let selectionsForQuoteString = {};
   console.log('projects', projects);
 
   for (const projectName_ of projects) {
@@ -3486,7 +3540,9 @@ export function fetchPreviousSelectionData(
         gatewayLanguageCode,
         tsvRelation,
         foundBible,
-        selectionsForWord
+        selectionsForGlQuote,
+        selectionsForQuoteString,
+        (isNt ? NT_ORIG_LANG : OT_ORIG_LANG)
       );
     }
   }
@@ -3499,7 +3555,7 @@ export function fetchPreviousSelectionData(
       parsed,
     }
   );
-  return selectionsForWord;
+  return selectionsForGlQuote;
 }
 
 /**
