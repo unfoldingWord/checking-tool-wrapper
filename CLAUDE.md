@@ -86,5 +86,5 @@ These modules are under our control and may need to be modified as well to imple
 
 Also `tc-tool` (4.0.1, [translationCoreApps/tc-tool](https://github.com/translationCoreApps/tc-tool)): it provides `ToolApi` and `connectTool`, and `src/Api.js` imports it.
 
-This package is consumed by [translationCore](https://github.com/unfoldingWord/translationCore); changes to the `Api`/`Container` contract or to on-disk file formats must stay compatible with it.
+This package is consumed by [translationCore](https://github.com/unfoldingWord/translationCore); changes to the `Api`/`Container` contract or to on-disk file formats must stay compatible with it.  Also `electronite/queryAiApisFromMainProcess.js` contains the code for fetching when running in Electron environment.
 
