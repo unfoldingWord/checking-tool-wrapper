@@ -700,7 +700,10 @@ function Container({
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
    * @param {object} data.targetLanguageDetails - target language details, including `id`
    * @param {string} data.verseText - target-language verse text
-   * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string}>} - object containing error status, suggested selections array, elapsed time string, and model used
+   * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string, contextId: object}>} -
+   *   object containing error status, suggested selections array, elapsed time string, model used, and
+   *   `data.contextId` so the caller can tell which check the result is for. On error only
+   *   `{error: true, contextId}` is returned.
    */
   async function getSuggestions(data) {
     const projectSaveLocation = tc?.projectSaveLocation;
@@ -822,7 +825,7 @@ function Container({
       }
     } else {
       console.log('getSuggestions error', {});
-      return { error: true };
+      return { error: true, contextId };
     }
 
     return {
