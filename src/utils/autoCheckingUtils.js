@@ -1564,7 +1564,6 @@ function levenshteinDistance(a, b) {
  *   {@link rankGlKeys} for locale-aware lowercasing of the GL phrase and history keys
  * @param {object} previousTranslationData - prior translation counts, nested `{glPhrase: {target: count}}`
  *   or flat `{target: count}`
- * @param {boolean} [enable_thinking] - unused, accepted so callers can swap the two functions freely
  * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>} -
  *   up to 3 options, best first; empty when this phrase has no history or nothing in it fits the verse
  * @example

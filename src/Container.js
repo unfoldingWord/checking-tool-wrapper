@@ -532,6 +532,7 @@ function Container({
   /**
    * Saves checking settings to the tCore folder.
    * @param {object} data - settings data to save
+   * @param {boolean} [noRestart=false] - whether to skip restarting suggestion generation after saving
    */
   function saveSettingsForChecking(data, noRestart = false) {
     const projectSaveLocation = tc?.projectSaveLocation;
