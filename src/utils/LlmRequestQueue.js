@@ -565,6 +565,30 @@ export class LlmRequestQueue {
     const cache = this.getSuggestionsMemory();
     cache[key] = data;
   }
+
+  /**
+   * Removes every cached suggestion whose key starts with `prefix`, e.g. all the checks in one
+   * group, so they are suggested again from current data the next time they are needed.
+   *
+   * @param {string} prefix - start of the keys to remove; an empty prefix removes nothing
+   * @returns {number} - how many cached suggestions were removed
+   * @example
+   * llmRequestQueue.clearSuggestionsMemoryForKeyPrefix('translationWords_en_es-419_faith_');
+   */
+  clearSuggestionsMemoryForKeyPrefix(prefix) {
+    const cache = this.getSuggestionsMemory();
+    let removed = 0;
+
+    if (prefix && cache) {
+      for (const key of Object.keys(cache)) {
+        if (key.startsWith(prefix)) {
+          delete cache[key];
+          removed++;
+        }
+      }
+    }
+    return removed;
+  }
 }
 
 /**

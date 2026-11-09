@@ -517,15 +517,27 @@ function Container({
       newSelections
     );
 
-    // only regenerate if using llm suggestions
-    if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
-      // force resuggest current group with new alignment data
-      generateSuggestionsForGroups(true, true, true).then(() => {
-        if (settingsForSuggestionsRef.current.llmMaximizeRequests) {
-          // continue processing other groups
-          generateSuggestionsForGroups(false, false, false, true).then(() => { });
+    if (settingsForSuggestionsRef.current.suggestionsEnabled) {
+      // only regenerate if using llm suggestions
+      if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
+        // force resuggest current group with new alignment data
+        generateSuggestionsForGroups(true, true, true).then(() => {
+          if (settingsForSuggestionsRef.current.llmMaximizeRequests) {
+            // continue processing other groups
+            generateSuggestionsForGroups(false, false, false, true).then(() => { });
+          }
+        });
+      } else {
+        // algorithm suggestions are cheap to recompute - drop this group's cached ones so they
+        // are made again from the updated selection history
+        const groupId = data?.contextId?.groupId;
+        const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
+
+        if (groupId && suggestionsRequestQueue) {
+          const prefix = generateGroupKeyPrefix(manifest?.target_language?.id, groupId);
+          suggestionsRequestQueue.clearSuggestionsMemoryForKeyPrefix(prefix);
         }
-      });
+      }
     }
   }
 
@@ -660,8 +672,19 @@ function Container({
   }
 
   function generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId) {
-    const key = `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_${groupId}_${bookId}_${chapter}_${verse}_${checkId}`;
+    const key = `${generateGroupKeyPrefix(targetLanguageId, groupId)}${bookId}_${chapter}_${verse}_${checkId}`;
     return key;
+  }
+
+  /**
+   * Generates the start shared by the suggestion cache keys of every check in a group
+   * (see {@link generateKey}), ending in `_` so 'god' doesn't also match 'godly'.
+   * @param {string} targetLanguageId - target language code
+   * @param {string} groupId - check group id
+   * @returns {string} - key prefix for the group
+   */
+  function generateGroupKeyPrefix(targetLanguageId, groupId) {
+    return `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_${groupId}_`;
   }
 
   /**
