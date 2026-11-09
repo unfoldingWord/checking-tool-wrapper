@@ -576,24 +576,51 @@ ${phrase}
 }
 
 /**
+ * Base language codes whose lowercasing differs from the default `toLowerCase`, per Unicode
+ * SpecialCasing: Turkish and Azerbaijani (dotted/dotless I) and Lithuanian (keeps the dot on
+ * i/j before accents). Every other language lowercases exactly like `toLowerCase`.
+ */
+const LOCALE_LOWERCASE_LANGS = new Set(['tr', 'az', 'lt']);
+
+/**
+ * Lowercases `text` using the rules of language `langId`. Only Turkish, Azerbaijani and
+ * Lithuanian lowercase differently from the default (see `LOCALE_LOWERCASE_LANGS`), so those
+ * use `toLocaleLowerCase` with the base language code and everything else uses the faster
+ * `toLowerCase`. This also avoids `toLocaleLowerCase` being very slow for codes like 'es-419'
+ * or 'hbo', throwing for `''`, and following the computer's own language when no code is given.
+ *
+ * @param {string} text - text to lowercase
+ * @param {string} [langId] - language code of `text` (e.g. 'tr', 'es-419', 'el-x-koine');
+ *   region, script and other parts after the first '-' are ignored. When missing, the
+ *   default `toLowerCase` rules are used.
+ * @returns {string} - lowercased text
+ * @example
+ * toLowerCaseForLang('Iglesia', 'es-419'); // 'iglesia'
+ * toLowerCaseForLang('Işık', 'tr-TR'); // 'ışık'
+ * toLowerCaseForLang('Işık'); // 'işık'
+ */
+export function toLowerCaseForLang(text, langId) {
+  const baseLang = (langId || '').split('-')[0].toLowerCase();
+
+  if (LOCALE_LOWERCASE_LANGS.has(baseLang)) {
+    return text.toLocaleLowerCase(baseLang);
+  }
+  return text.toLowerCase();
+}
+
+/**
  * Normalizes a word for loose comparison. `normalizer` leaves case alone, and matching a
  * rendering against a verse word has to survive that word being capitalized at the start
  * of the verse, so lowercasing is added. Accents stay significant: a rendering differing by
  * an accent is a different word form, and `normalizer` does not fold accents either.
  *
  * @param {string} word
- * @param {string} [langId=''] - language code of `word` (e.g. 'tr', 'es-419'). When given,
- *   lowercasing uses that locale's rules (`toLocaleLowerCase`); when empty, plain
- *   `toLowerCase` is used.
+ * @param {string} [langId=''] - language code of `word` (e.g. 'tr', 'es-419'), passed to
+ *   {@link toLowerCaseForLang}; when empty, the default lowercasing rules are used
  * @returns {string}
  */
 export function normalizeForCompare(word, langId = '') {
-  const normalizedWord = normalizer(word || '');
-
-  if (langId) {
-    return normalizedWord.toLocaleLowerCase(langId);
-  }
-  return normalizedWord.toLowerCase();
+  return toLowerCaseForLang(normalizer(word || ''), langId);
 }
 
 /**
@@ -890,20 +917,12 @@ const FULL_GL_WORD_WEIGHT_LENGTH = 5;
  * Splits a gateway-language phrase into normalized, lower-cased words for fuzzy comparison.
  *
  * @param {string} phrase - gateway-language phrase
- * @param {string} [langId] - gateway-language code; when given, lowercasing uses that locale's
- *   rules (`toLocaleLowerCase`), otherwise plain `toLowerCase`
+ * @param {string} [langId] - gateway-language code, passed to {@link toLowerCaseForLang};
+ *   when missing, the default lowercasing rules are used
  * @returns {Array<string>} - non-empty words
  */
 function getNormalizedGlWords(phrase, langId) {
-  let normalized;
-
-  if (langId) {
-    normalized = normalizer(phrase || '').toLocaleLowerCase(langId);
-  } else {
-    normalized = normalizer(phrase || '').toLowerCase();
-  }
-
-  return normalized
+  return toLowerCaseForLang(normalizer(phrase || ''), langId)
     .split(/\s+/)
     .filter(Boolean);
 }
@@ -2959,7 +2978,7 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
 /**
  * Gets the key a check is tallied under in `selectionsForQuoteString`: the check's
  * original-language quote string (`contextId.quoteString`, or `contextId.quote` converted with
- * `getQuoteAsString`), lowercased with the original language's locale rules.
+ * `getQuoteAsString`), lowercased with {@link toLowerCaseForLang}.
  *
  * @param {ContextId} contextId - check context
  * @param {string} [origLangId] - original-language code used for lowercasing; when omitted,
@@ -2971,7 +2990,7 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
 export function getQuoteStringKey(contextId, origLangId) {
   const langId = origLangId ||
     (isNT(contextId?.reference?.bookId) ? NT_ORIG_LANG : OT_ORIG_LANG);
-  return (contextId?.quoteString || getQuoteAsString(contextId?.quote)).toLocaleLowerCase(langId);
+  return toLowerCaseForLang(contextId?.quoteString || getQuoteAsString(contextId?.quote), langId);
 }
 
 /**

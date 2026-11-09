@@ -1,7 +1,13 @@
 /* eslint-env jest */
 
 import { normalizer } from 'string-punctuation-tokenizer';
-import { getBestTWordSelectionWithConfidenceAlgorithm, getWordList } from '../src/utils/autoCheckingUtils';
+import {
+  getBestTWordSelectionWithConfidenceAlgorithm,
+  getQuoteStringKey,
+  getWordList,
+  normalizeForCompare,
+  toLowerCaseForLang,
+} from '../src/utils/autoCheckingUtils';
 import viTranslationData from './__fixtures__/tWords/vi_translationData.json';
 
 const fullViHistory = viTranslationData['ἅγια'].selections;
@@ -229,6 +235,37 @@ function getResults(results) {
   const topChoiceText = getSelectionsText(selections);
   return { confidence, topChoiceText };
 }
+
+describe('toLowerCaseForLang', () => {
+  // each row: [test name, text, language code, expected]
+  test.each([
+    ['no language uses default rules', 'Işık İstanbul', undefined, 'işık i̇stanbul'],
+    ['empty language uses default rules', 'Işık', '', 'işık'],
+    ['Turkish dotless and dotted I', 'Işık İstanbul', 'tr', 'ışık istanbul'],
+    ['Turkish with region', 'Işık', 'tr-TR', 'ışık'],
+    ['Azerbaijani with script', 'Işıq', 'az-Latn', 'ışıq'],
+    ['Lithuanian keeps the dot before an accent', 'Ì', 'lt', 'i̇̀'],
+    ['upper-case language code', 'Işık', 'TR', 'ışık'],
+    ['Spanish with region', 'Por La Fe', 'es-419', 'por la fe'],
+    ['Koine Greek', 'Πίστεως ΟΣ', 'el-x-koine', 'πίστεως ος'],
+    ['Hebrew has no case', 'בְּרֵאשִׁ֖ית', 'hbo', 'בְּרֵאשִׁ֖ית'],
+    ['unknown three-letter code', 'Iglesia', 'qaa', 'iglesia'],
+  ])('%s', (name, text, langId, expected) => {
+    expect(toLowerCaseForLang(text, langId)).toBe(expected);
+  });
+
+  // `normalizer` also changes Unicode composition (e.g. 'ş'), so compare against normalized text
+  test('normalizeForCompare passes the language through', () => {
+    expect(normalizeForCompare('Işık', 'tr')).toBe(normalizer('ışık'));
+    expect(normalizeForCompare('Işık')).toBe(normalizer('işık'));
+  });
+
+  test('getQuoteStringKey picks Greek or Hebrew from the book', () => {
+    expect(getQuoteStringKey({ reference: { bookId: 'gal' }, quote: [{ word: 'Τῇ' }, { word: 'Πίστει' }] })).toBe('τῇ πίστει');
+    expect(getQuoteStringKey({ reference: { bookId: 'gen' }, quoteString: 'בְּרֵאשִׁ֖ית' })).toBe('בְּרֵאשִׁ֖ית');
+    expect(getQuoteStringKey({ reference: { bookId: 'gal' } })).toBe('');
+  });
+});
 
 // a function declaration (not a const) so the test.each tables above can call it while jest collects tests
 function normalizePreviousTranslationData(previousTranslationData) {
