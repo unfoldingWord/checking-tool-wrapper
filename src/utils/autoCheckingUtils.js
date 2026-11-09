@@ -2286,11 +2286,12 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
     };
   }
 
-  console.log('AI response ERROR decoding:', {
-    wordList: formatNumberedVerse(wordList.join(' ')),
-    glPhrase,
-    answer,
-  });
+  // console.log('AI response ERROR decoding:', {
+  //   wordList: formatNumberedVerse(wordList.join(' ')),
+  //   glPhrase,
+  //   answer,
+  // });
+
   return {
     error: false,
     bestSelections: [],
@@ -2434,6 +2435,11 @@ async function getBestTWordSelectionsBatchFromLlm(requests) {
       model: '',
     }));
   }
+
+  // console.log('getBestTWordSelectionsBatchFromLlm - AI response:', {
+  //   answer,
+  //   requestCount: requests.length
+  // });
 
   const sections = splitLlmBatchAnswer(answer, requests.length);
 

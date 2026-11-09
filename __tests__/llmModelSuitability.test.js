@@ -436,28 +436,64 @@ function expectOrReport(condition, message, details) {
   }
 }
 
+/**
+ * Sums up the run. Single and batched results get the same accuracy and time-per-suggestion
+ * figures so they can be compared; `batchVsSingle` holds the differences (batch minus single).
+ * A batched query answers several requests at once, so its time per suggestion is the query
+ * time divided by the number of requests in it.
+ * @param {object} run
+ * @returns {object}
+ */
 function summarize(run) {
-  const sum = (results, key) => results.reduce((total, result) => total + result[key], 0);
+  const sum = (items, getValue) => items.reduce((total, item) => total + (getValue(item) || 0), 0);
+  const perAnswer = (total, count) => (count ? Math.round(total / count) : 0);
   const single = run.single;
+  const totalMs = sum(single, result => result.ms);
   const summary = {
     answers: single.length,
     top1: shareOf(single, result => result.top1),
     top3: shareOf(single, result => result.top3),
     confidentlyWrong: shareOf(single, result => result.confidentlyWrong),
+    errors: shareOf(single, result => result.error),
     format: shareOf(single, result => result.format),
     medianMs: median(single.map(result => result.ms)),
-    totalMs: sum(single, 'ms'),
-    promptTokensPerAnswer: single.length ? Math.round(sum(single, 'promptTokens') / single.length) : 0,
-    completionTokensPerAnswer: single.length ? Math.round(sum(single, 'completionTokens') / single.length) : 0,
+    avgMsPerAnswer: perAnswer(totalMs, single.length),
+    totalMs,
+    promptTokensPerAnswer: perAnswer(sum(single, result => result.promptTokens), single.length),
+    completionTokensPerAnswer: perAnswer(sum(single, result => result.completionTokens), single.length),
     warmUpMs: run.warmUp?.ms || 0,
     systemPromptTokens: run.warmUp?.usage?.prompt_tokens || 0,
   };
 
   if (run.batch.length) {
-    summary.batchTop1 = shareOf(run.batch, result => result.top1);
-    summary.batchTotalMs = run.batchCalls.reduce((total, call) => total + (call.ms || 0), 0);
-    summary.batchPromptTokensPerAnswer = Math.round(
-      run.batchCalls.reduce((total, call) => total + (call.usage?.prompt_tokens || 0), 0) / run.batch.length);
+    const batch = run.batch;
+    const calls = run.batchCalls;
+    const batchTotalMs = sum(calls, call => call.ms);
+
+    Object.assign(summary, {
+      batchAnswers: batch.length,
+      batchQueries: calls.length,
+      batchTop1: shareOf(batch, result => result.top1),
+      batchTop3: shareOf(batch, result => result.top3),
+      batchConfidentlyWrong: shareOf(batch, result => result.confidentlyWrong),
+      batchErrors: shareOf(batch, result => result.error),
+      batchMedianMsPerQuery: median(calls.map(call => call.ms || 0)),
+      batchMedianMsPerAnswer: median(calls.map(call => (call.ms || 0) / call.size).map(Math.round)),
+      batchAvgMsPerAnswer: perAnswer(batchTotalMs, batch.length),
+      batchTotalMs,
+      batchPromptTokensPerAnswer: perAnswer(sum(calls, call => call.usage?.prompt_tokens), batch.length),
+      batchCompletionTokensPerAnswer: perAnswer(sum(calls, call => call.usage?.completion_tokens), batch.length),
+    });
+
+    summary.batchVsSingle = {
+      top1: summary.batchTop1 - summary.top1,
+      top3: summary.batchTop3 - summary.top3,
+      confidentlyWrong: summary.batchConfidentlyWrong - summary.confidentlyWrong,
+      avgMsPerAnswer: summary.batchAvgMsPerAnswer - summary.avgMsPerAnswer,
+      // > 1 means batching is faster per suggestion
+      speedup: summary.batchAvgMsPerAnswer ? summary.avgMsPerAnswer / summary.batchAvgMsPerAnswer : 0,
+      promptTokensPerAnswer: summary.batchPromptTokensPerAnswer - summary.promptTokensPerAnswer,
+    };
   }
   return summary;
 }
@@ -472,7 +508,25 @@ function formatReport(run) {
   ];
 
   if (s.batchTop1 !== undefined) {
-    lines.push(`batch (${run.grouping} per query): top-1 ${percent(s.batchTop1)}, total ${s.batchTotalMs} ms, ${s.batchPromptTokensPerAnswer} prompt tokens per request`);
+    const d = s.batchVsSingle;
+    const points = share => `${share >= 0 ? '+' : ''}${Math.round(share * 100)} pts`;
+    const row = cells => `  ${cells[0].padEnd(24)}${cells[1].padStart(10)}${cells[2].padStart(10)}${cells[3].padStart(12)}`;
+
+    lines.push(
+      `batch (${run.grouping} per query): ${s.batchQueries} queries, median ${s.batchMedianMsPerQuery} ms per query, total ${s.batchTotalMs} ms`,
+      `single vs batch (${s.answers} vs ${s.batchAnswers} answers):`,
+      row(['', 'single', 'batch', 'difference']),
+      row(['top-1', percent(s.top1), percent(s.batchTop1), points(d.top1)]),
+      row(['top-3', percent(s.top3), percent(s.batchTop3), points(d.top3)]),
+      row([`wrong at >=${CONFIDENT}`, percent(s.confidentlyWrong), percent(s.batchConfidentlyWrong), points(d.confidentlyWrong)]),
+      row(['errors', percent(s.errors), percent(s.batchErrors), points(s.batchErrors - s.errors)]),
+      row(['avg ms per suggestion', `${s.avgMsPerAnswer}`, `${s.batchAvgMsPerAnswer}`, `${d.avgMsPerAnswer >= 0 ? '+' : ''}${d.avgMsPerAnswer} ms`]),
+      row(['median ms per sugg.', `${s.medianMs}`, `${s.batchMedianMsPerAnswer}`, `${s.batchMedianMsPerAnswer - s.medianMs >= 0 ? '+' : ''}${s.batchMedianMsPerAnswer - s.medianMs} ms`]),
+      row(['prompt tokens per sugg.', `${s.promptTokensPerAnswer}`, `${s.batchPromptTokensPerAnswer}`, `${d.promptTokensPerAnswer >= 0 ? '+' : ''}${d.promptTokensPerAnswer}`]),
+      row(['answer tokens per sugg.', `${s.completionTokensPerAnswer}`, `${s.batchCompletionTokensPerAnswer}`,
+        `${s.batchCompletionTokensPerAnswer - s.completionTokensPerAnswer >= 0 ? '+' : ''}${s.batchCompletionTokensPerAnswer - s.completionTokensPerAnswer}`]),
+      `  batching is ${d.speedup.toFixed(2)}x as fast per suggestion`,
+    );
   }
 
   for (const result of run.single) {
