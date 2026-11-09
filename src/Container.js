@@ -37,7 +37,6 @@ import {
   cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
-  getQuoteStringKey,
   normalizeForCompare,
   queryAiAPIModels,
   readSettingsForChecking_,
@@ -79,8 +78,7 @@ const styles = {
 
 const selectionsData = {
   groupId: null,
-  selections: {}, // {glQuote: {selectedText: count}}
-  selectionsForQuoteString: {}, // {lowercased original-language quote: {selectedText: count}}
+  selections: {},
 };
 
 const glBiblesCache = {
@@ -334,7 +332,7 @@ function Container({
                   verseText,
                 };
 
-                const { selectionsForGlQuote, selectionsForQuoteString } = fetchPreviousSelectionData(
+                const selectionsForWord = fetchPreviousSelectionData(
                   projectSaveLocation,
                   contextId,
                   glBibles,
@@ -349,8 +347,7 @@ function Container({
 
                 selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
                 selectionsData.groupId = groupId;
-                selectionsData.selections = selectionsForGlQuote;
-                selectionsData.selectionsForQuoteString = selectionsForQuoteString;
+                selectionsData.selections = selectionsForWord;
 
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
@@ -360,7 +357,7 @@ function Container({
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
 
-                // console.log(selectionsForGlQuote);
+                // console.log(selectionsForWord);
 
                 const request = {
                   ...data,
@@ -519,19 +516,6 @@ function Container({
       alignedGLText,
       newSelections
     );
-
-    // keep the original-language quote tally in step, keyed the same way as when it was fetched
-    const quoteString = getQuoteStringKey(data?.contextId);
-    const savedSelectionsForQuoteString = selectionsData?.selectionsForQuoteString;
-
-    if (quoteString && savedSelectionsForQuoteString) {
-      updatedPreviousSelectionsData(
-        oldSelections,
-        savedSelectionsForQuoteString,
-        quoteString,
-        newSelections
-      );
-    }
 
     // only regenerate if using llm suggestions
     if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
@@ -716,7 +700,7 @@ function Container({
     const llmQueryUrl_ = llmSuggestionsEnabled ? llmQueryUrl : null;
 
     if (selectionsData?.groupId !== groupId) {
-      const { selectionsForGlQuote, selectionsForQuoteString } = fetchPreviousSelectionData(
+      const selectionsForWord = fetchPreviousSelectionData(
         projectSaveLocation,
         contextId,
         glBibles,
@@ -731,8 +715,7 @@ function Container({
 
       selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
       selectionsData.groupId = groupId;
-      selectionsData.selections = selectionsForGlQuote;
-      selectionsData.selectionsForQuoteString = selectionsForQuoteString;
+      selectionsData.selections = selectionsForWord;
     }
 
     const reference = contextId?.reference;

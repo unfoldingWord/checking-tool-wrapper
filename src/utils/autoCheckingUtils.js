@@ -3601,7 +3601,7 @@ export function fetchPreviousSelectionData(
       parsed,
     }
   );
-  return { selectionsForGlQuote, selectionsForQuoteString };
+  return selectionsForGlQuote;
 }
 
 /**
@@ -3624,7 +3624,7 @@ export function fetchPreviousSelectionData(
  * @param {object} savedSelections - the nested selection-count object being updated in place;
  *   structure: `{glPhrase: {targetRendering: count}}`
  * @param {string} alignedGLText - the outer key these selections are for: the gateway-language
- *   phrase, or, for the `selectionsForQuoteString` tally, the key from {@link getQuoteStringKey}
+ *   phrase
  * @param {Array<{text: string, occurrence: number}>} newSelections - the new word selections
  *   being saved; same structure as `oldSelections`
  * @returns {void} - mutates `savedSelections` in place
@@ -3724,9 +3724,6 @@ export function updatedPreviousSelectionsData(
  * @param {object} options.selectionsData - Historical translation data from previous user selections
  * @param {object} options.selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
- * @param {object} [options.selectionsData.selectionsForQuoteString] - same counts keyed by the
- *   lowercased original-language quote string instead of the GL phrase (see
- *   {@link fetchPreviousSelectionData}); not used for matching yet
  * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
  * @param {number} [options.llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase

@@ -46,7 +46,7 @@ Flow: `Container.js` → `LlmRequestQueue` (in its own module, `src/utils/LlmReq
 
 Both paths return up to 3 `{ selections: [{text, occurrence}], confidence }`, best first, so they are interchangeable. Keep that contract when changing either one.
 
-Previous-selection history comes from `fetchPreviousSelectionData(...)`. It scans the other projects in the tCore projects folder and returns `{ selectionsForGlQuote, selectionsForQuoteString }`. `selectionsForGlQuote` is `{ normalizedGlQuote: { selectedTargetText: count } }`, e.g. `{ 'faith': { 'fe': 12, 'la fe': 3 } }`; `selectionsForQuoteString` has the same shape keyed by the lowercased original-language quote string (e.g. `'πίστεως'`). `Container.js` stores them as `selectionsData.selections` and `selectionsData.selectionsForQuoteString`; matching currently uses only `selections`.
+Previous-selection history comes from `fetchPreviousSelectionData(...)`. It scans the other projects in the tCore projects folder and returns `{ normalizedGlQuote: { selectedTargetText: count } }`, e.g. `{ 'faith': { 'fe': 12, 'la fe': 3 } }`.
 
 Target languages can be any language, including ones with no linguistic resources: compound or inflected words, any script, any word order. Don't add matching logic that assumes English-like or Latin-script target text, or that needs target-language word lists.
 
