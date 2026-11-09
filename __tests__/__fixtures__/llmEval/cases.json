@@ -1,0 +1,213 @@
+[
+  {
+    "id": "es-exact-key",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Pablo saludó a la iglesia en Corinto",
+    "glPhrase": "church",
+    "history": { "church": { "la iglesia": 7, "congregación": 2 } },
+    "expected": ["la iglesia"],
+    "tags": ["exact-key"], "madeUp": true
+  },
+  {
+    "id": "es-no-history",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Pablo saludó a la iglesia en Corinto",
+    "glPhrase": "church",
+    "history": {},
+    "expected": ["iglesia", "la iglesia"],
+    "tags": ["no-history"], "madeUp": true
+  },
+  {
+    "id": "vi-holy-places",
+    "targetLang": "vi", "glLang": "en",
+    "verse": "cũng chẳng phải bởi huyết của dê đực và bò con, nhưng bởi huyết của chính mình, Ngài đã vào trong các nơi thánh một lần đủ cả, tự mình kiếm được sự cứu chuộc đời đời.",
+    "glPhrase": "holy places",
+    "history": { "holy": { "thánh khiết": 2 }, "of the holy place": { "của nơi thánh": 1 }, "holy place": { "một nơi thánh": 1 }, "Holy": { "Nơi Thánh": 1 }, "the Holy": { "Nơi Thánh": 1 }, "of Holies": { "Chí Thánh": 1 }, "of the holy places": { "các nơi thánh": 1 } },
+    "expected": ["các nơi thánh"],
+    "tags": ["related-key", "real-data"], "madeUp": false
+  },
+  {
+    "id": "vi-holiness",
+    "targetLang": "vi", "glLang": "en",
+    "verse": "Vì dù cha phần xác sửa dạy chúng ta trong ít ngày theo điều dường như là tốt nhất đối với họ, nhưng Cha phần tâm linh sửa dạy vì cớ đem ích lợi cho chúng ta, để dự phần vào sự thánh khiết của Ngài.",
+    "glPhrase": "holiness",
+    "history": { "holy": { "thánh khiết": 2 }, "of the holy place": { "của nơi thánh": 1 }, "holy place": { "một nơi thánh": 1 }, "Holy": { "Nơi Thánh": 1 }, "the Holy": { "Nơi Thánh": 1 }, "of Holies": { "Chí Thánh": 1 }, "of the holy places": { "các nơi thánh": 1 } },
+    "expected": ["thánh khiết"],
+    "tags": ["related-key", "real-data"], "madeUp": false
+  },
+  {
+    "id": "es-the-faith",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Por la fe Abraham obedeció y la ley fue dada",
+    "glPhrase": "the faith",
+    "history": { "faith": { "fe": 5 }, "by faith": { "por la fe": 2 } },
+    "expected": ["fe"],
+    "tags": ["related-key"], "madeUp": true
+  },
+  {
+    "id": "hi-the-faith",
+    "targetLang": "hi", "glLang": "en",
+    "verse": "विश्वास से हम समझते हैं कि व्यवस्था दी गई",
+    "glPhrase": "the faith",
+    "history": { "faith": { "विश्वास": 5 } },
+    "expected": ["विश्वास"],
+    "tags": ["related-key", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "de-compound",
+    "targetLang": "de", "glLang": "en",
+    "verse": "und die Kirchengemeinde versammelte sich",
+    "glPhrase": "the church",
+    "history": { "church": { "Kirche": 4 } },
+    "expected": ["Kirchengemeinde"],
+    "tags": ["compound"], "madeUp": true
+  },
+  {
+    "id": "el-inflected",
+    "targetLang": "el", "glLang": "en",
+    "verse": "ο θεός αγαπά τους πιστούς",
+    "glPhrase": "the faithful",
+    "history": { "faithful": { "πιστοί": 2 } },
+    "expected": ["πιστούς"],
+    "tags": ["inflected", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "ru-word-order",
+    "targetLang": "ru", "glLang": "en",
+    "verse": "и дух святой сошёл",
+    "glPhrase": "holy spirit",
+    "history": { "holy spirit": { "святой дух": 3 } },
+    "expected": ["дух святой"],
+    "tags": ["word-order", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "es-gap",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Por lo tanto mis hermanos cuando se reúnan para comer esperen el uno por el otro",
+    "glPhrase": "coming together",
+    "history": { "you come together": { "cuando reúnen": 1 }, "in coming together": { "cuando reúnen": 1 } },
+    "expected": ["cuando reúnan", "cuando se reúnan"],
+    "tags": ["inflected", "gap"], "madeUp": true
+  },
+  {
+    "id": "es-nothing-fits",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "la casa de la madre y la hija",
+    "glPhrase": "church",
+    "history": { "church": { "la iglesia": 5 } },
+    "expected": [],
+    "tags": ["nothing-fits"], "madeUp": true
+  },
+  {
+    "id": "es-nothing-fits-no-history",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Pedro pescaba en el mar con sus amigos",
+    "glPhrase": "church",
+    "history": {},
+    "expected": [],
+    "tags": ["nothing-fits", "no-history"], "madeUp": true
+  },
+  {
+    "id": "hi-inflected",
+    "targetLang": "hi", "glLang": "en",
+    "verse": "सब विश्वासी एक साथ थे",
+    "glPhrase": "faith",
+    "history": { "faith": { "विश्वास": 5 } },
+    "expected": ["विश्वासी"],
+    "tags": ["inflected", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "xx-related-key",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "mo tala vu kirano sema lopa dun",
+    "glPhrase": "holy places",
+    "history": { "of the holy places": { "kirano sema": 1 }, "Holy": { "Sema": 1 }, "the Holy": { "Sema": 1 } },
+    "expected": ["kirano sema"],
+    "tags": ["unknown-language", "related-key"], "madeUp": true
+  },
+  {
+    "id": "xx-inflected",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "ren talo mirunak peso dova",
+    "glPhrase": "faith",
+    "history": { "faith": { "miruna": 6 }, "by faith": { "se miruna": 2 } },
+    "expected": ["mirunak"],
+    "tags": ["unknown-language", "inflected"], "madeUp": true
+  },
+  {
+    "id": "xx-article-kept",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "ren talo e miruna peso dova",
+    "glPhrase": "faith",
+    "history": { "faith": { "e miruna": 6, "miruna": 1 } },
+    "expected": ["e miruna"],
+    "tags": ["unknown-language", "exact-key"], "madeUp": true
+  },
+  {
+    "id": "xx-word-order",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "dun sema kirano lopa vu",
+    "glPhrase": "holy place",
+    "history": { "holy place": { "kirano sema": 2 } },
+    "expected": ["sema kirano"],
+    "tags": ["unknown-language", "word-order"], "madeUp": true
+  },
+  {
+    "id": "fr-no-history",
+    "targetLang": "fr", "glLang": "en",
+    "verse": "Dieu a envoyé son Fils dans le monde",
+    "glPhrase": "the world",
+    "history": {},
+    "expected": ["monde", "le monde"],
+    "tags": ["no-history"], "madeUp": true
+  },
+  {
+    "id": "pt-no-history",
+    "targetLang": "pt-br", "glLang": "en",
+    "verse": "No princípio era o Verbo e o Verbo estava com Deus",
+    "glPhrase": "the Word",
+    "history": {},
+    "expected": ["Verbo", "o Verbo"],
+    "tags": ["no-history"], "madeUp": true
+  },
+  {
+    "id": "fr-gl-es",
+    "targetLang": "fr", "glLang": "es-419",
+    "verse": "Par la foi Abraham obéit quand il fut appelé",
+    "glPhrase": "fe",
+    "history": { "fe": { "foi": 4 }, "la fe": { "la foi": 1 } },
+    "expected": ["foi"],
+    "tags": ["non-english-gl"], "madeUp": true
+  },
+  {
+    "id": "es-gl-hi",
+    "targetLang": "es-419", "glLang": "hi",
+    "verse": "Por la fe Abraham obedeció cuando fue llamado",
+    "glPhrase": "विश्वास",
+    "history": { "विश्वास": { "fe": 3 } },
+    "expected": ["fe"],
+    "tags": ["non-english-gl", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "ar-rtl",
+    "targetLang": "ar", "glLang": "en",
+    "verse": "لأنه هكذا أحب الله العالم",
+    "glPhrase": "God",
+    "history": { "God": { "الله": 6 } },
+    "expected": ["الله"],
+    "tags": ["rtl-script", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "es-long-history",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Los ancianos de la congregación oraron por él",
+    "glPhrase": "elders",
+    "history": {
+      "elder": { "anciano": 3 }, "the elders": { "los ancianos": 5 }, "elders": { "ancianos": 2 },
+      "older": { "mayor": 4 }, "old men": { "viejos": 6 }, "the old": { "los viejos": 7 },
+      "aged": { "de edad": 3 }, "of the elders": { "de los ancianos": 1 }, "older ones": { "los mayores": 2 }
+    },
+    "expected": ["ancianos", "Los ancianos"],
+    "tags": ["long-history"], "madeUp": true
+  }
+]
