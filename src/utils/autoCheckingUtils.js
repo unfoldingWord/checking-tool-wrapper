@@ -2937,8 +2937,7 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
           }
         }
 
-        const quoteString =
-          (contextId?.quoteString || getQuoteAsString(contextId?.quote)).toLocaleLowerCase(origLangId);
+        const quoteString = getQuoteStringKey(contextId, origLangId);
 
         const selectedText = selectionsForCheck
           ?.map(word => word?.text)
@@ -2955,6 +2954,24 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
     }
   }
   return selectionsForGlQuote;
+}
+
+/**
+ * Gets the key a check is tallied under in `selectionsForQuoteString`: the check's
+ * original-language quote string (`contextId.quoteString`, or `contextId.quote` converted with
+ * `getQuoteAsString`), lowercased with the original language's locale rules.
+ *
+ * @param {ContextId} contextId - check context
+ * @param {string} [origLangId] - original-language code used for lowercasing; when omitted,
+ *   `NT_ORIG_LANG` or `OT_ORIG_LANG` is chosen from `contextId.reference.bookId`
+ * @returns {string} - lowercased quote string, or '' when the check has no quote
+ * @example
+ * getQuoteStringKey({ reference: { bookId: 'gal' }, quote: 'Πίστεως' }); // 'πίστεως'
+ */
+export function getQuoteStringKey(contextId, origLangId) {
+  const langId = origLangId ||
+    (isNT(contextId?.reference?.bookId) ? NT_ORIG_LANG : OT_ORIG_LANG);
+  return (contextId?.quoteString || getQuoteAsString(contextId?.quote)).toLocaleLowerCase(langId);
 }
 
 /**
@@ -3587,7 +3604,8 @@ export function fetchPreviousSelectionData(
  *   being replaced; each object contains `text` (the word) and `occurrence` (1-based index)
  * @param {object} savedSelections - the nested selection-count object being updated in place;
  *   structure: `{glPhrase: {targetRendering: count}}`
- * @param {string} alignedGLText - the gateway-language phrase (key) these selections are for
+ * @param {string} alignedGLText - the outer key these selections are for: the gateway-language
+ *   phrase, or, for the `selectionsForQuoteString` tally, the key from {@link getQuoteStringKey}
  * @param {Array<{text: string, occurrence: number}>} newSelections - the new word selections
  *   being saved; same structure as `oldSelections`
  * @returns {void} - mutates `savedSelections` in place
@@ -3689,7 +3707,7 @@ export function updatedPreviousSelectionsData(
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
  * @param {object} [options.selectionsData.selectionsForQuoteString] - same counts keyed by the
  *   lowercased original-language quote string instead of the GL phrase (see
- *   {@link fetchPreviousSelectionData}); not used yet
+ *   {@link fetchPreviousSelectionData}); not used for matching yet
  * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
  * @param {number} [options.llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase

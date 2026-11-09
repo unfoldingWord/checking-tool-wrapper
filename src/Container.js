@@ -37,6 +37,7 @@ import {
   cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
+  getQuoteStringKey,
   normalizeForCompare,
   queryAiAPIModels,
   readSettingsForChecking_,
@@ -507,7 +508,6 @@ function Container({
    * @param {Array} data.oldSelections - selections before the change
    */
   function updateSelectionsData(data) {
-    // const contextId = data?.contextId;
     const alignedGLText = cleanGlQuote(data?.alignedGLText);
     const newSelections = data?.newSelections;
     const oldSelections = data?.oldSelections;
@@ -519,6 +519,19 @@ function Container({
       alignedGLText,
       newSelections
     );
+
+    // keep the original-language quote tally in step, keyed the same way as when it was fetched
+    const quoteString = getQuoteStringKey(data?.contextId);
+    const savedSelectionsForQuoteString = selectionsData?.selectionsForQuoteString;
+
+    if (quoteString && savedSelectionsForQuoteString) {
+      updatedPreviousSelectionsData(
+        oldSelections,
+        savedSelectionsForQuoteString,
+        quoteString,
+        newSelections
+      );
+    }
 
     // only regenerate if using llm suggestions
     if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
