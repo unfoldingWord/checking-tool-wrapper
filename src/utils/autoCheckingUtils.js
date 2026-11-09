@@ -3396,25 +3396,35 @@ export function getProjectInfo(projectSaveLocation) {
  *   be an object (not null). `bibles` maps book id to a loaded gateway-language book. The cache
  *   is cleared when `targetLangId`, `resourceId` or `glBibleId` no longer match the current
  *   project.
- * @returns {Object<string, Object<string, number>>} previous selections, nested two levels:
- *   - **outer key** (`glQuote`): the gateway-language text aligned to a check, with punctuation
- *     removed and then passed through `normalizer` (e.g. 'faith', 'by faith'). The inner keys
- *     are normalized.
- *   - **inner key** (`selectedText`): the target-language words the user selected for that
- *     check, joined by single spaces (e.g. 'fe', 'la fe')
- *   - **value**: how many checks across all included projects used that selection for that
- *     gateway-language text (always 1 or more)
+ * @returns {{selectionsForGlQuote: Object<string, Object<string, number>>,
+ *   selectionsForQuoteString: Object<string, Object<string, number>>}} previous selections,
+ *   tallied two ways (see {@link getSelectionsForBook}):
+ *   - **selectionsForGlQuote**: nested two levels:
+ *     - **outer key** (`glQuote`): the gateway-language text aligned to a check, with
+ *       punctuation removed and then passed through `normalizer` (e.g. 'faith', 'by faith')
+ *     - **inner key** (`selectedText`): the target-language words the user selected for that
+ *       check, joined by single spaces (e.g. 'fe', 'la fe'). Not normalized.
+ *     - **value**: how many checks across all included projects used that selection for that
+ *       gateway-language text (always 1 or more)
+ *   - **selectionsForQuoteString**: same inner keys and values, but the outer key is the
+ *     check's original-language quote string, lowercased with the Greek (NT) or Hebrew (OT)
+ *     locale rules (e.g. 'πίστεως'). Checks are counted here even when no aligned
+ *     gateway-language text is found, but only in books whose gateway-language bible was found.
  *
- *   Returns `{}` if no included project has checks for `groupId`.
+ *   Both are `{}` if no included project has checks for `groupId`.
  * @example
- * const selectionsForWord = fetchPreviousSelectionData(
+ * const { selectionsForGlQuote, selectionsForQuoteString } = fetchPreviousSelectionData(
  *   '/path/to/tCore/projects/es-419_glt_gal_book',
  *   contextId, glBibles, tsvRelation, 'translationWords', 'faith', 'en',
  *   'unfoldingWord', data, glBiblesCache,
  * );
- * // Returns: {
+ * // selectionsForGlQuote: {
  * //   'faith': { 'fe': 12, 'la fe': 3 },
  * //   'by faith': { 'por la fe': 4 },
+ * // }
+ * // selectionsForQuoteString: {
+ * //   'πίστεως': { 'fe': 12, 'la fe': 3 },
+ * //   'πίστει': { 'por la fe': 4 },
  * // }
  */
 export function fetchPreviousSelectionData(
@@ -3555,7 +3565,7 @@ export function fetchPreviousSelectionData(
       parsed,
     }
   );
-  return selectionsForGlQuote;
+  return { selectionsForGlQuote, selectionsForQuoteString };
 }
 
 /**
@@ -3677,6 +3687,9 @@ export function updatedPreviousSelectionsData(
  * @param {object} options.selectionsData - Historical translation data from previous user selections
  * @param {object} options.selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
+ * @param {object} [options.selectionsData.selectionsForQuoteString] - same counts keyed by the
+ *   lowercased original-language quote string instead of the GL phrase (see
+ *   {@link fetchPreviousSelectionData}); not used yet
  * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
  * @param {number} [options.llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase

@@ -78,7 +78,8 @@ const styles = {
 
 const selectionsData = {
   groupId: null,
-  selections: {},
+  selections: {}, // {glQuote: {selectedText: count}}
+  selectionsForQuoteString: {}, // {lowercased original-language quote: {selectedText: count}}
 };
 
 const glBiblesCache = {
@@ -332,7 +333,7 @@ function Container({
                   verseText,
                 };
 
-                const selectionsForWord = fetchPreviousSelectionData(
+                const { selectionsForGlQuote, selectionsForQuoteString } = fetchPreviousSelectionData(
                   projectSaveLocation,
                   contextId,
                   glBibles,
@@ -347,7 +348,8 @@ function Container({
 
                 selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
                 selectionsData.groupId = groupId;
-                selectionsData.selections = selectionsForWord;
+                selectionsData.selections = selectionsForGlQuote;
+                selectionsData.selectionsForQuoteString = selectionsForQuoteString;
 
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
@@ -357,7 +359,7 @@ function Container({
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
 
-                // console.log(selectionsForWord);
+                // console.log(selectionsForGlQuote);
 
                 const request = {
                   ...data,
@@ -701,7 +703,7 @@ function Container({
     const llmQueryUrl_ = llmSuggestionsEnabled ? llmQueryUrl : null;
 
     if (selectionsData?.groupId !== groupId) {
-      const selectionsForWord = fetchPreviousSelectionData(
+      const { selectionsForGlQuote, selectionsForQuoteString } = fetchPreviousSelectionData(
         projectSaveLocation,
         contextId,
         glBibles,
@@ -716,7 +718,8 @@ function Container({
 
       selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
       selectionsData.groupId = groupId;
-      selectionsData.selections = selectionsForWord;
+      selectionsData.selections = selectionsForGlQuote;
+      selectionsData.selectionsForQuoteString = selectionsForQuoteString;
     }
 
     const reference = contextId?.reference;
