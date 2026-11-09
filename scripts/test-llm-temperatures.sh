@@ -80,11 +80,17 @@ for (const folder of fs.readdirSync(base).filter(name => name.startsWith('t')).s
     const run = JSON.parse(fs.readFileSync(path.join(base, folder, file), 'utf8'));
     const s = run.summary || {};
     const t = run.thresholds || {};
-    const passes = s.top1 >= t.minTop1 && s.confidentlyWrong <= t.maxConfidentWrong &&
-      s.format >= t.minFormat && s.medianMs <= t.maxMedianMs &&
-      (s.batchTop1 === undefined || s.batchTop1 >= s.top1 - t.maxBatchTop1Drop);
+    // the same limits the tests use; names match the table's columns
+    const failed = [
+      !(s.top1 >= t.minTop1) && 'top-1',
+      !(s.confidentlyWrong <= t.maxConfidentWrong) && 'wrong>=80',
+      !(s.format >= t.minFormat) && 'format',
+      !(s.medianMs <= t.maxMedianMs) && 'median ms',
+      s.batchTop1 !== undefined && !(s.batchTop1 >= s.top1 - t.maxBatchTop1Drop) && 'batch top-1',
+    ].filter(Boolean);
     rows.push([run.model, run.temperature, percent(s.top1), percent(s.top3), percent(s.confidentlyWrong),
-      percent(s.batchTop1), `${s.medianMs}`, `${s.answers}`, passes ? 'yes' : 'no']);
+      percent(s.consistency), percent(s.batchTop1), percent(s.batchConsistency), `${s.medianMs}`, `${s.answers}`,
+      failed.length ? failed.join(', ') : 'none']);
   }
 }
 
@@ -94,7 +100,7 @@ if (!rows.length) {
 }
 
 rows.sort((a, b) => a[0].localeCompare(b[0]) || a[1] - b[1]);
-const header = ['model', 'temp', 'top-1', 'top-3', 'wrong>=80', 'batch top-1', 'median ms', 'answers', 'meets bars'];
+const header = ['model', 'temp', 'top-1', 'top-3', 'wrong>=80', 'consistent', 'batch top-1', 'batch consistent', 'median ms', 'answers', 'failed bars'];
 const table = [header, ...rows.map(row => row.map(String))];
 const widths = header.map((_, i) => Math.max(...table.map(row => row[i].length)));
 table.forEach((row, i) => {
@@ -103,7 +109,10 @@ table.forEach((row, i) => {
     console.log(widths.map(width => '-'.repeat(width)).join('  '));
   }
 });
-console.log('\n"meets bars" is worked out from the thresholds saved with each result; the');
-console.log('"every request succeeds" and "keeps thinking off" tests are in the logs.');
+console.log('\n"failed bars" lists the limits a run missed, from the thresholds saved with each result:');
+console.log('  top-1 too low, wrong>=80 too high, format (CSV replies) too low, median ms too slow, or');
+console.log('  batch top-1 too far below single top-1. The "every request succeeds", "keeps thinking off"');
+console.log('  and batch marker tests are not included; see the logs for those.');
+console.log('"consistent" is how often the runs gave the same top answer for a case (needs -r 2 or more).');
 EOF
 echo "Results: $OUT_BASE"

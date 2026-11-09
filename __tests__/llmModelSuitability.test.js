@@ -162,7 +162,19 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
             markers: countBatchMarkers(call?.content, group.length),
             ...call,
           });
-          group.forEach((evalCase, j) => run.batch.push({ run: runNumber, ...scoreCase(evalCase, results[j], null) }));
+
+          // the query answered the whole group, so each result gets an equal share of its time and tokens
+          const share = value => Math.round((value || 0) / group.length);
+
+          group.forEach((evalCase, j) => run.batch.push({
+            run: runNumber,
+            ...scoreCase(evalCase, results[j], null),
+            batchSize: group.length,
+            ms: share(call?.ms),
+            promptTokens: share(call?.usage?.prompt_tokens),
+            completionTokens: share(call?.usage?.completion_tokens),
+            callError: call?.error || '',
+          }));
         }
       }
     }
@@ -304,6 +316,49 @@ function numberEnv(name, defaultValue) {
  * @param {string} phrase
  * @returns {string}
  */
+/**
+ * How much the runs agree with each other. For each case, the runs' top answers are compared
+ * (normalized, so case and punctuation don't count); answers matching that case's most common
+ * answer count as consistent. Needs at least 2 runs.
+ * @param {Array<object>} results - scored results from every run
+ * @returns {{consistency: number, unstableCases: Array<string>}|null} consistency is the share of
+ *   answers that match their case's most common answer (1 = every run gave the same answer);
+ *   unstableCases lists the ids of cases where the runs gave more than one answer
+ */
+function measureConsistency(results) {
+  const byCase = new Map();
+
+  for (const result of results) {
+    if (!byCase.has(result.id)) {
+      byCase.set(result.id, []);
+    }
+    byCase.get(result.id).push(result.topAnswer);
+  }
+
+  let compared = 0;
+  let agreeing = 0;
+  const unstableCases = [];
+
+  for (const [id, answers] of byCase) {
+    if (answers.length < 2) {
+      continue;
+    }
+
+    const counts = {};
+
+    answers.forEach(answer => {
+      counts[answer] = (counts[answer] || 0) + 1;
+    });
+    compared += answers.length;
+    agreeing += Math.max(...Object.values(counts));
+
+    if (Object.keys(counts).length > 1) {
+      unstableCases.push(id);
+    }
+  }
+  return compared ? { consistency: agreeing / compared, unstableCases } : null;
+}
+
 function normalizePhrase(phrase) {
   return normalizer(phrase || '').toLowerCase().trim();
 }
@@ -370,6 +425,8 @@ function scoreCase(evalCase, result, call) {
     tags: evalCase.tags || [],
     expected: evalCase.expected,
     got: options.map(option => `"${optionText(option)}" ${option.confidence}`),
+    /** normalized top answer ('' for none), for comparing runs */
+    topAnswer: top ? normalizePhrase(optionText(top)) : '',
     top1,
     top3,
     confidentlyWrong: !top1 && (top?.confidence || 0) >= CONFIDENT,
@@ -464,6 +521,12 @@ function summarize(run) {
     warmUpMs: run.warmUp?.ms || 0,
     systemPromptTokens: run.warmUp?.usage?.prompt_tokens || 0,
   };
+  const singleConsistency = measureConsistency(single);
+
+  if (singleConsistency) {
+    summary.consistency = singleConsistency.consistency;
+    summary.unstableCases = singleConsistency.unstableCases;
+  }
 
   if (run.batch.length) {
     const batch = run.batch;
@@ -478,12 +541,19 @@ function summarize(run) {
       batchConfidentlyWrong: shareOf(batch, result => result.confidentlyWrong),
       batchErrors: shareOf(batch, result => result.error),
       batchMedianMsPerQuery: median(calls.map(call => call.ms || 0)),
-      batchMedianMsPerAnswer: median(calls.map(call => (call.ms || 0) / call.size).map(Math.round)),
+      batchMedianMsPerAnswer: median(batch.map(result => result.ms)),
       batchAvgMsPerAnswer: perAnswer(batchTotalMs, batch.length),
       batchTotalMs,
       batchPromptTokensPerAnswer: perAnswer(sum(calls, call => call.usage?.prompt_tokens), batch.length),
       batchCompletionTokensPerAnswer: perAnswer(sum(calls, call => call.usage?.completion_tokens), batch.length),
     });
+
+    const batchConsistency = measureConsistency(batch);
+
+    if (batchConsistency) {
+      summary.batchConsistency = batchConsistency.consistency;
+      summary.batchUnstableCases = batchConsistency.unstableCases;
+    }
 
     summary.batchVsSingle = {
       top1: summary.batchTop1 - summary.top1,
@@ -494,6 +564,10 @@ function summarize(run) {
       speedup: summary.batchAvgMsPerAnswer ? summary.avgMsPerAnswer / summary.batchAvgMsPerAnswer : 0,
       promptTokensPerAnswer: summary.batchPromptTokensPerAnswer - summary.promptTokensPerAnswer,
     };
+
+    if (summary.consistency !== undefined && summary.batchConsistency !== undefined) {
+      summary.batchVsSingle.consistency = summary.batchConsistency - summary.consistency;
+    }
   }
   return summary;
 }
@@ -505,6 +579,9 @@ function formatReport(run) {
     `single: top-1 ${percent(s.top1)}, top-3 ${percent(s.top3)}, wrong at >=${CONFIDENT} ${percent(s.confidentlyWrong)}, CSV format ${percent(s.format)}`,
     `        median ${s.medianMs} ms, total ${s.totalMs} ms, ${s.promptTokensPerAnswer} prompt + ${s.completionTokensPerAnswer} answer tokens per request`,
     `        first request ${s.warmUpMs} ms, smallest prompt ${s.systemPromptTokens} tokens`,
+    s.consistency === undefined ?
+      '        consistency: needs 2 or more runs' :
+      `        consistency ${percent(s.consistency)} (runs gave different answers for ${s.unstableCases.length} of ${cases.length} cases${s.unstableCases.length ? `: ${s.unstableCases.join(', ')}` : ''})`,
   ];
 
   if (s.batchTop1 !== undefined) {
@@ -520,6 +597,8 @@ function formatReport(run) {
       row(['top-3', percent(s.top3), percent(s.batchTop3), points(d.top3)]),
       row([`wrong at >=${CONFIDENT}`, percent(s.confidentlyWrong), percent(s.batchConfidentlyWrong), points(d.confidentlyWrong)]),
       row(['errors', percent(s.errors), percent(s.batchErrors), points(s.batchErrors - s.errors)]),
+      ...(d.consistency === undefined ? [] :
+        [row(['consistency', percent(s.consistency), percent(s.batchConsistency), points(d.consistency)])]),
       row(['avg ms per suggestion', `${s.avgMsPerAnswer}`, `${s.batchAvgMsPerAnswer}`, `${d.avgMsPerAnswer >= 0 ? '+' : ''}${d.avgMsPerAnswer} ms`]),
       row(['median ms per sugg.', `${s.medianMs}`, `${s.batchMedianMsPerAnswer}`, `${s.batchMedianMsPerAnswer - s.medianMs >= 0 ? '+' : ''}${s.batchMedianMsPerAnswer - s.medianMs} ms`]),
       row(['prompt tokens per sugg.', `${s.promptTokensPerAnswer}`, `${s.batchPromptTokensPerAnswer}`, `${d.promptTokensPerAnswer >= 0 ? '+' : ''}${d.promptTokensPerAnswer}`]),
