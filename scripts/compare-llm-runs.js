@@ -84,10 +84,18 @@ const ROWS = [
   ['settings'],
   ['temperature', run => `${run.temperature}`],
   ['runs x cases', run => `${run.runs} x ${run.summary.answers / run.runs}`],
+  ['cases', run => run.caseSet || 'all'],
   ['grouping', run => `${run.grouping}`],
   ['single requests'],
   ['top-1', run => percent(run.summary.top1)],
   ['top-3', run => percent(run.summary.top3)],
+  ['top-1 per run', run => (run.summary.top1PerRun || []).join(',') || '-'],
+  ['top-1 hand-written', run => percent(run.summary.handTop1)],
+  ['top-1 real projects', run => percent(run.summary.realTop1)],
+  ['user-visible top-1', run => percent(run.summary.userTop1)],
+  ['F1', run => (has(run.summary.f1) ? run.summary.f1.toFixed(2) : '-')],
+  ['empty (answers)', run => (has(run.summary.empty) ? `${run.summary.empty}` : '-')],
+  ['algorithm-certain, AI skipped', run => (has(run.summary.skipped) ? `${run.summary.skipped}` : '-')],
   ['wrong at >=80', run => percent(run.summary.confidentlyWrong)],
   ['consistency', run => percent(run.summary.consistency)],
   ['errors', run => percent(run.summary.errors)],
@@ -100,6 +108,10 @@ const ROWS = [
   ['batched requests'],
   ['top-1', run => percent(run.summary.batchTop1)],
   ['top-3', run => percent(run.summary.batchTop3)],
+  ['top-1 per run', run => (run.summary.batchTop1PerRun || []).join(',') || '-'],
+  ['user-visible top-1', run => percent(run.summary.batchUserTop1)],
+  ['F1', run => (has(run.summary.batchF1) ? run.summary.batchF1.toFixed(2) : '-')],
+  ['empty (answers)', run => (has(run.summary.batchEmpty) ? `${run.summary.batchEmpty}` : '-')],
   ['wrong at >=80', run => percent(run.summary.batchConfidentlyWrong)],
   ['consistency', run => percent(run.summary.batchConsistency)],
   ['errors', run => percent(run.summary.batchErrors)],
@@ -112,6 +124,8 @@ const ROWS = [
   ['wrong at >=80 (points)', run => points(run.summary.batchVsSingle?.confidentlyWrong)],
   ['avg ms per suggestion', run => signed(run.summary.batchVsSingle?.avgMsPerAnswer)],
   ['speed (x as fast)', run => (has(run.summary.batchVsSingle?.speedup) ? run.summary.batchVsSingle.speedup.toFixed(2) : '-')],
+  ['algorithm alone'],
+  ['top-1', run => percent(run.summary.algorithmTop1)],
   ['result'],
   ['failed bars', failedBars],
 ];
@@ -155,6 +169,7 @@ if (runs.length > 1) {
 if (showCases) {
   // per case: how many runs had the expected top answer, single / batched
   const ids = [...new Set(runs.flatMap(run => run.single.map(result => result.id)))];
+
   const tally = (results, id) => {
     const forCase = (results || []).filter(result => result.id === id);
     return forCase.length ? `${forCase.filter(result => result.top1).length}/${forCase.length}` : '-';

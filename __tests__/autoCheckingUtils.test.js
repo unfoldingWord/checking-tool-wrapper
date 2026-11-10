@@ -2,7 +2,9 @@
 
 import { normalizer } from 'string-punctuation-tokenizer';
 import {
+  getBestSelections,
   getBestTWordSelectionWithConfidenceAlgorithm,
+  moveSelectionsToOccurrence,
   getQuoteStringKey,
   getWordList,
   normalizeForCompare,
@@ -291,3 +293,33 @@ function normalizePreviousTranslationData(previousTranslationData) {
     {}
   );
 }
+
+describe('moveSelectionsToOccurrence', () => {
+  const verse = ['Dios', 'amó', 'al', 'mundo', 'y', 'Dios', 'envió', 'a', 'su', 'Hijo', 'al', 'mundo'];
+  const alMundo = [{ text: 'al', occurrence: 1 }, { text: 'mundo', occurrence: 1 }];
+
+  test.each([
+    ['occurrence 1 leaves the selections alone', [{ text: 'Dios', occurrence: 1 }], 1, [{ text: 'Dios', occurrence: 1 }]],
+    ['occurrence 2 moves one word', [{ text: 'Dios', occurrence: 1 }], 2, [{ text: 'Dios', occurrence: 2 }]],
+    ['occurrence 2 moves a run of words', alMundo, 2, [{ text: 'al', occurrence: 2 }, { text: 'mundo', occurrence: 2 }]],
+    ['more occurrences than the verse has leaves them alone', [{ text: 'Dios', occurrence: 1 }], 3, [{ text: 'Dios', occurrence: 1 }]],
+    ['non-adjacent selections are left alone', [{ text: 'Dios', occurrence: 1 }, { text: 'mundo', occurrence: 1 }], 2,
+      [{ text: 'Dios', occurrence: 1 }, { text: 'mundo', occurrence: 1 }]],
+    ['selections not at the first run are left alone', [{ text: 'Dios', occurrence: 2 }], 2, [{ text: 'Dios', occurrence: 2 }]],
+  ])('%s', (_, selections, occurrence, expected) => {
+    expect(moveSelectionsToOccurrence(selections, verse, occurrence)).toEqual(expected);
+  });
+
+  test('getBestSelections suggests the check\'s occurrence of a repeated word', async () => {
+    const [result] = await getBestSelections({
+      verseText: 'Dios amó al mundo y Dios envió a su Hijo',
+      targetLanguageDetails: { id: 'es-419' },
+      alignedGLText: 'God',
+      gatewayLanguageCode: 'en',
+      selectionsData: { selections: { God: { Dios: 9 } } },
+      contextId: { occurrence: 2 },
+    });
+
+    expect(result.bestSelections[0].selections).toEqual([{ text: 'Dios', occurrence: 2 }]);
+  });
+});

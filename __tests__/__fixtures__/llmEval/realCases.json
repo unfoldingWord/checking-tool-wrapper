@@ -1,0 +1,945 @@
+[
+  {
+    "id": "real-vi-heb-7-26-sin",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Vì một thầy tế lễ thượng phẩm như vậy thật đúng là dành cho chúng ta: Đấng thánh khiết, vô tội, thanh sạch, được tách biệt khỏi những kẻ tội lỗi, và trở nên cao trọng hơn các tầng trời;",
+    "glPhrase": "sinners",
+    "history": {
+      "for sins": {
+        "tội lỗi": 1
+      },
+      "sins": {
+        "tội lỗi": 8,
+        "tội": 4,
+        "thì phạm tội": 1
+      },
+      "of sin": {
+        "của tội lỗi": 3,
+        "tội lỗi": 1
+      },
+      "having sinned": {
+        "phạm tội": 1
+      },
+      "sin": {
+        "tội lỗi": 3,
+        "tội": 4
+      },
+      "the sins": {
+        "tội lỗi": 1
+      },
+      "of sins": {
+        "tội lỗi": 1,
+        "về tội lỗi": 1
+      },
+      "sin offerings": {
+        "chuộc tội": 1
+      },
+      "keep on sinning": {
+        "nếu cứ phạm tội": 1
+      },
+      "sinners": {
+        "những kẻ tội lỗi": 1
+      },
+      "you have sinned": {
+        "anh em phạm tội": 1
+      },
+      "she has sinned": {
+        "cô ấy phạm tội": 1
+      },
+      "He is sinning": {
+        "người ấy phạm tội": 1
+      },
+      "sinning": {
+        "khi phạm tội": 1
+      },
+      "do keep sinning": {
+        "tiếp tục phạm tội": 1
+      },
+      "is sin": {
+        "là tội lỗi": 1
+      }
+    },
+    "expected": [
+      "những kẻ tội:2 lỗi"
+    ],
+    "tags": [
+      "real-project",
+      "repeated-word"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_heb_book 7:26, tW sin"
+  },
+  {
+    "id": "real-vi-heb-12-28-awe",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Do đó, chúng ta cần có lòng biết ơn khi nhận lãnh một vương quốc không rúng động, mà qua đó chúng ta có thể thờ phượng theo cách đẹp lòng Thiên Chúa, với thái độ tôn kính lẫn kinh sợ,",
+    "glPhrase": "awe",
+    "history": {},
+    "expected": [
+      "kinh sợ"
+    ],
+    "tags": [
+      "real-project",
+      "no-history"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_heb_book 12:28, tW awe"
+  },
+  {
+    "id": "real-vi-heb-12-17-know",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Bởi anh chị em biết rằng thậm chí sau đó, khi mong muốn hưởng phước lành, thì ông đã bị loại ra, do ông chẳng tìm được cơ hội ăn năn, cho dù tìm kiếm nó chung với nước mắt.\n\\p",
+    "glPhrase": "you know",
+    "history": {
+      "have known": {
+        "đã nhận biết": 1
+      },
+      "being ignorant": {
+        "ngu muội": 1
+      },
+      "Know": {
+        "Hãy nhận biết": 1
+      },
+      "they will know": {
+        "họ sẽ biết": 1
+      },
+      "we know": {
+        "chúng ta biết": 1,
+        "chúng ta học biết": 1
+      },
+      "knowing": {
+        "vì biết": 2
+      },
+      "fully knowing": {
+        "khi biết": 1
+      },
+      "knowledge": {
+        "sự hiểu biết": 1,
+        "tri thức": 4,
+        "tri thức khôn ngoan": 2
+      },
+      "I do know": {
+        "Tôi biết": 1
+      },
+      "did know": {
+        "đã nhận biết": 1
+      },
+      "to know": {
+        "biết": 2
+      },
+      "knows": {
+        "biết được": 1,
+        "nhận biết": 1,
+        "biết": 1
+      },
+      "has known": {
+        "nhận biết": 1
+      },
+      "Do you know": {
+        "Anh chị em biết": 5,
+        "anh chị em biết": 1
+      },
+      "I will find out": {
+        "tôi sẽ nhận biết": 1
+      },
+      "do you know": {
+        "anh chị em biết": 3,
+        "chị em biết": 1,
+        "anh em biết": 1
+      },
+      "you know": {
+        "anh chị em biết": 2
+      },
+      "We know": {
+        "Chúng ta biết": 2
+      },
+      "Knowledge": {
+        "tri thức": 1
+      },
+      "he knows": {
+        "mình biết": 1
+      },
+      "he does know": {
+        "người ấy biết": 2
+      },
+      "is known": {
+        "được nhận biết": 1
+      },
+      "to be ignorant": {
+        "không biết": 1,
+        "chẳng hay biết gì": 1
+      },
+      "to understand": {
+        "hiểu": 1
+      },
+      "You know": {
+        "Anh chị em biết": 1
+      },
+      "I make known": {
+        "tôi tỏ biết": 1,
+        "tôi tỏ cho biết": 1
+      },
+      "of knowledge": {
+        "tri thức": 1
+      },
+      "I know": {
+        "tôi có hiểu biết": 1
+      },
+      "will be known": {
+        "sẽ được nhận biết": 1
+      },
+      "I would know": {
+        "tôi biết": 1
+      },
+      "is ignorant": {
+        "không chịu nhìn biết": 1
+      },
+      "no knowledge": {
+        "chẳng hiểu biết gì": 1
+      }
+    },
+    "expected": [
+      "anh chị em biết"
+    ],
+    "tags": [
+      "real-project",
+      "exact-key"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_heb_book 12:17, tW know"
+  },
+  {
+    "id": "real-vi-heb-11-6-seek",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Thế nhưng, không có đức tin thì không thể làm hài lòng Thiên Chúa, vì điều bắt buộc đối với người đến cùng Thiên Chúa là phải tin rằng Ngài hiện hữu và Ngài là Đấng ban thưởng cho những ai tìm kiếm Ngài.",
+    "glPhrase": "seeking",
+    "history": {
+      "they seek": {
+        "họ đang tìm kiếm": 1
+      },
+      "he sought": {
+        "tìm kiếm": 1
+      },
+      "seek": {
+        "thì tìm kiếm": 1,
+        "hãy tìm kiếm": 1
+      },
+      "Do seek": {
+        "tìm": 2
+      },
+      "Let seek": {
+        "tìm kiếm": 1
+      },
+      "seeking": {
+        "tìm": 1
+      },
+      "it does seek": {
+        "tìm kiếm đòi hỏi": 1
+      }
+    },
+    "expected": [
+      "tìm kiếm"
+    ],
+    "tags": [
+      "real-project",
+      "related-key"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_heb_book 11:6, tW seek"
+  },
+  {
+    "id": "real-vi-heb-13-17-watch",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Hãy vâng lời và thuận phục những người dẫn dắt anh chị em, vì họ thức canh đối với linh hồn anh chị em như thể sẽ đưa ra lời tường trình, hầu cho họ có thể làm việc ấy với lòng hân hoan mà chẳng than thở, bởi điều này chẳng ích lợi cho anh chị em.\n\\p",
+    "glPhrase": "keep watch",
+    "history": {
+      "Stay alert": {
+        "Hãy cảnh giác": 1
+      }
+    },
+    "expected": [
+      "thức canh"
+    ],
+    "tags": [
+      "real-project",
+      "other-form"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_heb_book 13:17, tW watch"
+  },
+  {
+    "id": "real-vi-1co-15-10-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Nhưng bởi ân điển của Thiên Chúa mà tôi là chính mình hiện tại, và ân điển của Ngài trong tôi chẳng phải là vô ích. Thay vào đó, tôi đã lao khổ nhiều hơn hẳn tất cả các vị đó, nhưng không phải tôi, mà là ân điển của Thiên Chúa ở với tôi.",
+    "glPhrase": "of God",
+    "history": {
+      "God": {
+        "Thiên Chúa": 74,
+        "Lạy Thiên Chúa": 1,
+        "thưa Thiên Chúa": 1,
+        "là Thiên Chúa": 1,
+        "thần thánh": 1
+      },
+      "of God": {
+        "thiên của Chúa": 2,
+        "thiên Chúa": 1,
+        "của Thiên Chúa": 33,
+        "Thiên Chúa": 2,
+        "Chúa": 1,
+        "của Ngài": 1,
+        "thuộc Thiên Chúa": 2,
+        "về Thiên Chúa": 1
+      },
+      "God is": {
+        "Thiên Chúa": 1
+      },
+      "the God": {
+        "Thiên Chúa": 2
+      },
+      "of the God": {
+        "của Thiên Chúa": 2,
+        "Thiên Chúa": 1
+      },
+      "to God": {
+        "Thiên Chúa": 6,
+        "cho Thiên Chúa": 2,
+        "cùng Thiên Chúa": 1,
+        "với Thiên Chúa": 4
+      },
+      "is God": {
+        "là Thiên Chúa": 1
+      },
+      "God s": {
+        "thuộc về Thiên Chúa": 2,
+        "của Thiên Chúa": 2
+      },
+      "gods": {
+        "thần": 2
+      },
+      "with the spirit": {
+        "Bằng tâm linh": 1
+      }
+    },
+    "expected": [
+      "của:3 Thiên:2 Chúa:2"
+    ],
+    "tags": [
+      "real-project",
+      "repeated-word"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_1co_book 15:10, tW god"
+  },
+  {
+    "id": "real-vi-1co-15-24-ruler",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Sau đó sẽ là sự cuối cùng, lúc Ngài giao vương quốc lại cho Thiên Chúa là Cha, khi Ngài đã diệt hết thảy quyền cai trị, cùng mọi thẩm quyền và thế lực.",
+    "glPhrase": "rule",
+    "history": {},
+    "expected": [
+      "quyền cai trị"
+    ],
+    "tags": [
+      "real-project",
+      "no-history"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_1co_book 15:24, tW ruler"
+  },
+  {
+    "id": "real-vi-1co-11-33-assembly",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Thế nên, anh chị em của tôi ơi, khi nhóm lại để ăn, hãy chờ đợi nhau.",
+    "glPhrase": "coming together",
+    "history": {
+      "of the assembly": {
+        "hội chúng": 1
+      },
+      "to the assembly": {
+        "với hội trọng thể": 1
+      },
+      "in coming together": {
+        "khi nhóm lại": 1
+      },
+      "coming together": {
+        "khi nhóm lại": 1
+      },
+      "might come together": {
+        "nhóm lại": 1
+      }
+    },
+    "expected": [
+      "khi nhóm lại"
+    ],
+    "tags": [
+      "real-project",
+      "exact-key"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_1co_book 11:33, tW assembly"
+  },
+  {
+    "id": "real-vi-1co-7-5-pray",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Đừng từ chối nhau, trừ phi là bởi sự đồng thuận trong một thời gian nhất định để anh chị em có thể chuyên tâm cầu nguyện, rồi lại ở cùng nhau, hầu cho Sa-tan chẳng có thể cám dỗ anh chị em bởi sự thiếu tự chủ của mình.\n\\p",
+    "glPhrase": "to prayer",
+    "history": {
+      "prayers": {
+        "lời cầu nguyện": 1
+      },
+      "Pray": {
+        "Hãy cầu nguyện": 1
+      },
+      "praying": {
+        "cầu nguyện": 2
+      },
+      "to pray": {
+        "cầu nguyện": 1
+      },
+      "let pray": {
+        "hãy cầu nguyện": 1
+      },
+      "I would pray": {
+        "tôi cầu nguyện": 1
+      },
+      "prays": {
+        "cầu nguyện": 1
+      },
+      "I will pray": {
+        "Tôi sẽ cầu nguyện": 1,
+        "sẽ cầu nguyện": 1
+      }
+    },
+    "expected": [
+      "cầu nguyện"
+    ],
+    "tags": [
+      "real-project",
+      "related-key"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_1co_book 7:5, tW pray"
+  },
+  {
+    "id": "real-vi-1co-7-24-call",
+    "targetLang": "vi",
+    "glLang": "en",
+    "verse": "Thưa anh chị em, mỗi người ở trong tình trạng nào khi được kêu gọi, thì hãy cứ tiếp tục với Thiên Chúa trong tình trạng đó.\n\\p",
+    "glPhrase": "he was called",
+    "history": {
+      "to call": {
+        "để gọi là": 1
+      },
+      "of a calling": {
+        "trong sự kêu gọi": 1
+      },
+      "being called": {
+        "được kêu gọi": 1,
+        "vì được kêu gọi": 1
+      },
+      "is called": {
+        "được gọi là": 2
+      },
+      "called": {
+        "đã được gọi": 1,
+        "được kêu gọi": 3
+      },
+      "to be called": {
+        "để được xưng là": 1,
+        "được gọi là": 1,
+        "để được gọi là": 1
+      },
+      "calling on": {
+        "kêu cầu": 1
+      },
+      "calling": {
+        "sự kêu gọi": 1,
+        "tiếng gọi": 1
+      },
+      "so called": {
+        "được gọi là": 2
+      },
+      "has called": {
+        "đã kêu gọi": 2
+      },
+      "Was called": {
+        "đã được gọi": 2
+      },
+      "having been called as": {
+        "được kêu gọi": 2
+      }
+    },
+    "expected": [
+      "khi được kêu gọi"
+    ],
+    "tags": [
+      "real-project",
+      "other-form"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_1co_book 7:24, tW call"
+  },
+  {
+    "id": "real-id-1ti-1-5-conscience",
+    "targetLang": "id",
+    "glLang": "en",
+    "verse": "Dan tujuan akhir dari perintah adalah kasih dari hati yang murni, dan hati nurani yang baik, dan dari iman yang tulus. \n\\p",
+    "glPhrase": "a conscience",
+    "history": {
+      "a conscience": {
+        "hati nurani": 1
+      },
+      "in conscience": {
+        "hati nurani": 1
+      }
+    },
+    "expected": [
+      "dari hati:2 nurani"
+    ],
+    "tags": [
+      "real-project",
+      "repeated-word"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:5, tW conscience"
+  },
+  {
+    "id": "real-id-1ti-5-21-partial",
+    "targetLang": "id",
+    "glLang": "en",
+    "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
+    "glPhrase": "prejudgment",
+    "history": {},
+    "expected": [
+      "prasangka"
+    ],
+    "tags": [
+      "real-project",
+      "no-history"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:21, tW partial"
+  },
+  {
+    "id": "real-id-1ti-1-19-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "verse": "Mempertahankan iman dan hati nurani yang baik yang beberapa orang telah menolak, berkenaan dengan iman, mereka telah kandas . \n\\p",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "iman": 2
+      },
+      "a faith": {
+        "dari iman": 1
+      },
+      "faith": {
+        "iman": 2
+      },
+      "of the faith": {
+        "iman": 1
+      }
+    },
+    "expected": [
+      "iman"
+    ],
+    "tags": [
+      "real-project",
+      "exact-key"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:19, tW faith"
+  },
+  {
+    "id": "real-id-1ti-6-17-hope",
+    "targetLang": "id",
+    "glLang": "en",
+    "verse": "Perintahkan kepada orang-orang kaya di zaman ini agar tidak sombong, atau berharap kepada kekayaan, yang tidak pasti. tetapi kepada Allah yang menyediakan semua dengan kelimpahan bagi kita untuk kenikmatan. \n\\p",
+    "glPhrase": "to hope",
+    "history": {
+      "hope": {
+        "pengharapan": 1
+      },
+      "hoping": {
+        "berharap": 1
+      },
+      "has hoped": {
+        "ia telah menaruh pengharapannya": 1
+      }
+    },
+    "expected": [
+      "berharap"
+    ],
+    "tags": [
+      "real-project",
+      "related-key"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:17, tW hope"
+  },
+  {
+    "id": "real-id-1ti-3-4-manager",
+    "targetLang": "id",
+    "glLang": "en",
+    "verse": "Ia mampu mengatur rumah tangganya sendiri dengan baik, {dan} memiliki anak-anak dalam ketaatan, dengan penuh hormat. \n\\p",
+    "glPhrase": "leading",
+    "history": {
+      "to lead": {
+        "mengatur": 1
+      }
+    },
+    "expected": [
+      "Ia mampu mengatur"
+    ],
+    "tags": [
+      "real-project",
+      "other-form"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:4, tW manager"
+  },
+  {
+    "id": "real-fa-mrk-14-1-seek",
+    "targetLang": "fa",
+    "glLang": "en",
+    "verse": "و بعد از دو روز، عید فِصَح و فطیر بود که رؤسای کهنه و کاتبان مترصّد بودند که به چه حیله او را دستگیر کرده، به قتل رسانند.",
+    "glPhrase": "were seeking",
+    "history": {
+      "are seeking": {
+        "می طلبند": 1
+      },
+      "seek": {
+        "می طلبند": 1
+      },
+      "seeking": {
+        "خواستند": 1
+      },
+      "does seek": {
+        "می خواهند": 1
+      },
+      "they were seeking": {
+        "در صدد آن شدند": 1,
+        "خواستند": 1
+      },
+      "he was seeking": {
+        "در صدد": 1
+      },
+      "You seek": {
+        "را می طلبید": 1
+      }
+    },
+    "expected": [
+      "مترصّد بودند که:2"
+    ],
+    "tags": [
+      "real-project",
+      "repeated-word"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_mrk_book 14:1, tW seek"
+  },
+  {
+    "id": "real-fa-mrk-11-13-fig",
+    "targetLang": "fa",
+    "glLang": "en",
+    "verse": "ناگاه درخت انجیری که برگ داشت از دور دیده، آمد تا شاید چیزی بر آن بیابد. امّا چون نزد آن رسید، جز برگ بر آن هیچ نیافت زیرا که موسم انجیر نرسیده بود.",
+    "glPhrase": "a fig tree",
+    "history": {},
+    "expected": [
+      "درخت انجیری"
+    ],
+    "tags": [
+      "real-project",
+      "no-history"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_mrk_book 11:13, tW fig"
+  },
+  {
+    "id": "real-fa-mrk-2-5-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "verse": "عیسی چون ایمان ایشان را دید، مفلوج را گفت،ای فرزند، گناهان تو آمرزیده شد.",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "عیسی": 1,
+        "عیسی را": 1
+      },
+      "Jesus": {
+        "عیسی": 34,
+        "عیسی را": 3,
+        "ای عیسی": 3,
+        "عیسی این را": 1,
+        "عیسی با": 1,
+        "از عیسی": 1
+      },
+      "with Jesus": {
+        "با عیسی": 1
+      },
+      "to Jesus": {
+        "به عیسی": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "tags": [
+      "real-project",
+      "exact-key"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_mrk_book 2:5, tW jesus"
+  },
+  {
+    "id": "real-fa-mrk-1-23-cry",
+    "targetLang": "fa",
+    "glLang": "en",
+    "verse": "و در کنیسه ایشان شخصی بود که روح پلید داشت. ناگاه صیحه زده،",
+    "glPhrase": "he cried out",
+    "history": {
+      "having cried out": {
+        "صدا زده": 1,
+        "فریاد برآورده گریه کنان": 1,
+        "صیحه زده": 1
+      },
+      "crying out": {
+        "فریادکنان": 1,
+        "فریاد": 1,
+        "صیحه زده": 1
+      },
+      "they cried out": {
+        "فریاد برآوردند": 1
+      },
+      "to cry out": {
+        "فریاد کردن": 1
+      },
+      "was crying out": {
+        "فریاد برمی آورد": 1
+      },
+      "were crying out": {
+        "فریادکنان می گفتند": 1
+      },
+      "cried out": {
+        "فریاد کردند که": 1,
+        "فریاد برآوردند": 1
+      }
+    },
+    "expected": [
+      "صیحه زده"
+    ],
+    "tags": [
+      "real-project",
+      "related-key"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_mrk_book 1:23, tW cry"
+  },
+  {
+    "id": "real-fa-mrk-1-31-minister",
+    "targetLang": "fa",
+    "glLang": "en",
+    "verse": "پس نزدیک شده، دست او را گرفته، برخیزانیدش که همان وقت تب از او زایل شد و به خدمتگزاری ایشان مشغول گشت.",
+    "glPhrase": "she was serving",
+    "history": {
+      "were serving": {
+        "پرستاری می نمودند": 1
+      },
+      "a servant": {
+        "غلام": 1
+      },
+      "servant": {
+        "خادم": 1
+      },
+      "to be served": {
+        "تا مخدوم شود": 1
+      },
+      "serving": {
+        "خدمت": 1
+      }
+    },
+    "expected": [
+      "خدمتگزاری مشغول گشت"
+    ],
+    "tags": [
+      "real-project",
+      "other-form"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_mrk_book 1:31, tW minister"
+  },
+  {
+    "id": "real-bn-2co-6-16-god",
+    "targetLang": "bn",
+    "glLang": "en",
+    "verse": "আর প্রতিমার {সঙ্গে} ঈশ্বরের মন্দিরের কি চুক্তি {আছে}? কারণ আমরা জীবন্ত ঈশ্বরের মন্দির, যেমন ঈশ্বর বলেছেন:\n\\q1 “আমি তাদের মধ্যে বাস করব এবং {তাদের মধ্যে} হাঁটব;\n\\q1 এবং আমি তাদের ঈশ্বর হব,\n\\q1 এবং তারা নিজেরাই আমার লোক হবে।” \\ts*\n\\m",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "ঈশ্বরের": 19
+      },
+      "the God": {
+        "ঈশ্বর": 1
+      },
+      "God": {
+        "ঈশ্বরের": 9,
+        "ঈশ্বর": 11,
+        "ঈশ্বরকে": 2,
+        "ঈশ্বরই হলেন": 1,
+        "ঈশ্বরের কাছে": 1
+      },
+      "to God": {
+        "ঈশ্বরের": 3,
+        "ঈশ্বরের কাছে": 2,
+        "ঈশ্বরকে": 1
+      },
+      "is God": {
+        "তিনি হলেন ঈশ্বর": 1,
+        "ঈশ্বর": 1
+      },
+      "by God": {
+        "ঈশ্বরের": 1
+      },
+      "it is for God": {
+        "ঈশ্বরের": 1
+      },
+      "God s": {
+        "ঈশ্বরের": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বর:2 হব"
+    ],
+    "tags": [
+      "real-project",
+      "repeated-word"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_2co_book 6:16, tW god"
+  },
+  {
+    "id": "real-bn-2co-4-9-persecute",
+    "targetLang": "bn",
+    "glLang": "en",
+    "verse": "নির্যাতিত হচ্ছে, কিন্তু পরিত্যাক্ত হচ্ছেনা; নিক্ষিপ্ত হচ্ছে, কিন্তু ধ্বংস হচ্ছেনা;",
+    "glPhrase": "being persecuted",
+    "history": {},
+    "expected": [
+      "নির্যাতিত হচ্ছে"
+    ],
+    "tags": [
+      "real-project",
+      "no-history"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_2co_book 4:9, tW persecute"
+  },
+  {
+    "id": "real-bn-2co-4-13-spirit",
+    "targetLang": "bn",
+    "glLang": "en",
+    "verse": "কিন্তু {যা} লেখা আছে সেই অনুসারে বিশ্বাসের একই আত্মা থাকা: “আমি বিশ্বাস করেছি; তাই আমি বললাম,” আমরাও বিশ্বাস করি; তাই আমরাও কথা বলি,",
+    "glPhrase": "spirit",
+    "history": {
+      "in spirit": {
+        "আত্মায়": 1
+      },
+      "spirit": {
+        "আত্মার": 1,
+        "আত্মা": 1
+      },
+      "a spirit": {
+        "ভিন্ন আত্মা": 1
+      }
+    },
+    "expected": [
+      "আত্মা"
+    ],
+    "tags": [
+      "real-project",
+      "exact-key"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_2co_book 4:13, tW spirit"
+  },
+  {
+    "id": "real-bn-2co-3-18-glory",
+    "targetLang": "bn",
+    "glLang": "en",
+    "verse": "এখন আমরা সকলেই, প্রভুর মহিমা প্রতিফলিত করে উন্মোচিত মুখে, যেমন প্রভু, আত্মার কাছ থেকে একই মূর্তিতে, গৌরব থেকে মহিমায় রূপান্তরিত হচ্ছি। \\ts*",
+    "glPhrase": "glory",
+    "history": {
+      "his glory": {
+        "গৌরব হয়": 1
+      },
+      "had glory": {
+        "গৌরবের হয়": 1
+      },
+      "in glory": {
+        "মহিমা": 1
+      },
+      "is glorified": {
+        "গৌরবান্বিত": 1
+      },
+      "glory": {
+        "অতি গৌরবের": 1,
+        "মহিমা চলে আসে": 1,
+        "মহিমা": 1
+      },
+      "of the glory": {
+        "মহিমার": 1
+      },
+      "of glory": {
+        "গৌরব": 1
+      },
+      "honor": {
+        "সম্মান": 1
+      },
+      "a glory": {
+        "মহিমা": 1
+      }
+    },
+    "expected": [
+      "গৌরব"
+    ],
+    "tags": [
+      "real-project",
+      "related-key"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_2co_book 3:18, tW glory"
+  },
+  {
+    "id": "real-bn-2co-3-13-veil",
+    "targetLang": "bn",
+    "glLang": "en",
+    "verse": "এবং মোশি মতো নই যে তার মুখের উপর ঘোমটা দিয়েছিলেন, {যা} ইস্রায়েল-সন্তানরা ম্লান হয়ে যাওয়া শেষের সময় মনোযোগ সহকারে না দেখে। \\ts*",
+    "glPhrase": "a veil",
+    "history": {
+      "veil": {
+        "আবরণ": 1
+      },
+      "a veil": {
+        "একটি আবরণ": 1
+      }
+    },
+    "expected": [
+      "ঘোমটা"
+    ],
+    "tags": [
+      "real-project",
+      "other-form"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_2co_book 3:13, tW veil"
+  }
+]

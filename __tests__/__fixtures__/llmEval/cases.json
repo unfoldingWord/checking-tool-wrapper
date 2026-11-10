@@ -209,5 +209,77 @@
     },
     "expected": ["ancianos", "Los ancianos"],
     "tags": ["long-history"], "madeUp": true
+  },
+  {
+    "id": "fr-long-history",
+    "targetLang": "fr", "glLang": "en",
+    "verse": "Le Seigneur parla à ses disciples sur la montagne",
+    "glPhrase": "disciples",
+    "history": {
+      "apostles": { "apôtres": 9, "les apôtres": 4 }, "the twelve": { "les douze": 5 },
+      "the disciples": { "les disciples": 6 }, "disciples": { "disciples": 3 },
+      "his disciples": { "ses disciples": 2 }, "follower": { "disciple": 2 },
+      "followers": { "ceux qui suivent": 3, "partisans": 1 }, "learners": { "élèves": 2, "apprentis": 1 },
+      "students": { "étudiants": 1, "élèves": 1 }, "his followers": { "ses partisans": 2 },
+      "a disciple": { "un disciple": 2 }
+    },
+    "expected": ["disciples"],
+    "tags": ["long-history"], "madeUp": true
+  },
+  {
+    "id": "es-repeated-word",
+    "targetLang": "es-419", "glLang": "en",
+    "verse": "Dios amó al mundo y Dios envió a su Hijo",
+    "glPhrase": "God",
+    "occurrence": 2,
+    "history": { "God": { "Dios": 9 } },
+    "expected": ["Dios:2"],
+    "tags": ["repeated-word"], "madeUp": true
+  },
+  {
+    "id": "xx-repeated-word",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "toma kirano vu dova ren kirano lopa",
+    "glPhrase": "faith",
+    "occurrence": 2,
+    "history": { "faith": { "kirano": 4 }, "by faith": { "se kirano": 1 } },
+    "expected": ["kirano:2"],
+    "tags": ["repeated-word", "unknown-language"], "madeUp": true
+  },
+  {
+    "id": "he-rtl",
+    "targetLang": "he", "glLang": "en",
+    "verse": "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר",
+    "glPhrase": "God",
+    "history": { "God": { "אֱלֹהִים": 5 }, "of God": { "אֱלֹהִים": 2 } },
+    "expected": ["אֱלֹהִים"],
+    "tags": ["rtl-script", "non-latin"], "madeUp": true
+  },
+  {
+    "id": "xx-compound",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "mo tala kiranosema vu dun",
+    "glPhrase": "holy place",
+    "history": { "holy place": { "kirano sema": 3 }, "holy": { "sema": 2 } },
+    "expected": ["kiranosema"],
+    "tags": ["unknown-language", "compound"], "madeUp": true
+  },
+  {
+    "id": "fr-gl-word-trap",
+    "targetLang": "fr", "glLang": "en",
+    "verse": "Dieu a envoyé son Fils dans le monde",
+    "glPhrase": "Son",
+    "history": {},
+    "expected": ["Fils", "son Fils"],
+    "tags": ["gl-word", "no-history"], "madeUp": true
+  },
+  {
+    "id": "xx-gl-word-in-history",
+    "targetLang": "xx", "glLang": "en",
+    "verse": "to sabu ne Amen ka",
+    "glPhrase": "Amen",
+    "history": { "Amen": { "Amen": 3 }, "truly": { "sabu": 1 } },
+    "expected": ["Amen"],
+    "tags": ["gl-word", "unknown-language"], "madeUp": true
   }
 ]

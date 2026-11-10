@@ -21,6 +21,7 @@
     "lint:fix": "eslint ./src --fix",
     "test": "eslint ./src && jest",
     "test:llm": "jest __tests__/llmModelSuitability.test.js",
+    "build:llm-eval-cases": "LLM_EVAL_BUILD_REAL=1 jest __tests__/buildLlmEvalRealCases.test.js",
     "fix": "eslint ./src --fix",
     "prebuild": "rm -rf ./lib",
     "build": "NODE_ENV=production babel ./src -d ./lib",

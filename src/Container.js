@@ -765,6 +765,7 @@ function Container({
     const results = await makeLlmRequestAndWaitForResponse({
       apiToken: llmApiToken,
       alignedGLText,
+      contextId,
       currentModel,
       force,
       gatewayLanguageCode,

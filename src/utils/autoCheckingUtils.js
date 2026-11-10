@@ -16,7 +16,9 @@ import { NT_ORIG_LANG, OT_ORIG_LANG } from '../common/constants';
 
 const AI_API_URL = 'http://192.168.142.70:1234';
 /** most previous-translation entries sent in an AI prompt, strongest evidence first */
-const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 20;
+const MAX_PROMPT_PREVIOUS_TRANSLATIONS = 10;
+/** previous-translation entries sent when none of them fits the verse */
+const MAX_PROMPT_UNMATCHED_TRANSLATIONS = 5;
 
 /**
  * Identifies one check in a checking tool. The same shape is used for the current check
@@ -624,165 +626,109 @@ export function normalizeForCompare(word, langId = '') {
 }
 
 /**
- * Formats and filters previous translation data for AI prompt inclusion.
+ * Chooses and formats the previous translations sent to the AI, one line per rendering, in the
+ * format `"rendering" (chosen N times for "GL phrase")`.
  *
- * This function processes historical translation data to prepare it for use in AI prompts.
- * It performs two levels of filtering to provide the most relevant previous translations:
+ * The history holds one translationWords group, so every key is the same concept (see
+ * `poolRenderings`); ordering is safer than filtering keys out. Every rendering of every key is
+ * considered:
+ * 1. each history key is scored against `glPhrase` with {@link rankGlKeys} (exact key, or a
+ *    relatedness in [0, 1]);
+ * 2. renderings equal after {@link normalizeForCompare} are merged: counts add up, the first
+ *    spelling is kept, and the GL phrase shown is the key with the better match (exact first, then
+ *    higher relatedness);
+ * 3. each rendering gets a verse fit: 2 when every word is in the verse, 1 when every word is in the
+ *    verse or has a {@link wordSimilarity} match there (an inflected or compound form), else 0;
+ * 4. they are sorted by verse fit, exact key, relatedness, then count, all descending;
+ * 5. the ones with a verse fit are kept, up to `MAX_PROMPT_PREVIOUS_TRANSLATIONS`; when none fits,
+ *    the first `MAX_PROMPT_UNMATCHED_TRANSLATIONS` of the rest are kept instead.
  *
- * 1. **Verse-level filtering**: For each gateway-language phrase, it filters to include only
- *    target-language renderings whose words all appear in the current verse. This ensures
- *    the AI only considers renderings that are actually possible given the verse's vocabulary.
+ * Nothing here assumes a language: words are compared with `normalizeForCompare` and
+ * `wordSimilarity`, which are character-level.
  *
- * 2. **Phrase-level filtering** (optional): When `filter` is true, it further narrows results
- *    to only include gateway-language phrases whose words are all present in `glPhrase`. This
- *    helps focus on the most relevant translation history when the gateway phrase is a subset
- *    of previous phrases.
- *
- * The function normalizes all words for comparison using case-insensitive, punctuation-free
- * matching, ensuring that capitalization and punctuation differences don't prevent matches.
- *
- * After filtering, entries are sorted by usage count (descending) to prioritize the most
- * frequently used translations, helping the AI make suggestions based on strongest evidence.
- *
- * @param {object} previousTranslationData - Prior translation history in nested format
- *   `{glPhrase: {targetRendering: count}}` or flat format `{targetRendering: count}`
- * @param {string} glPhrase - Current gateway-language phrase being translated; used for
- *   phrase-level filtering when `filter` is true
- * @param {string} verseContent - Target-language verse text (space-separated words) to check
- *   which renderings are possible in this verse
- * @param {string} [langId=''] - target-language code of `verseContent`, passed to
- *   {@link normalizeForCompare} for locale-aware lowercasing of the verse words
- * @param {boolean} [filter=false] - If true, applies phrase-level filtering to only include
- *   gateway phrases whose words are all present in `glPhrase`
- * @returns {string} JSON string containing filtered and sorted translation entries in format
- *   `[{phrase: string, rendering: string, usageCount: number}, ...]`, or empty string `""`
- *   if no valid translations are found
+ * @param {object} previousTranslationData - nested `{glPhrase: {rendering: count}}`, or flat
+ *   `{rendering: count}` (taken as the counts for `glPhrase`)
+ * @param {string} glPhrase - gateway-language phrase being translated
+ * @param {string} glLangCode - gateway-language code, for lowercasing GL words
+ * @param {string} verseContent - target-language verse words, separated by spaces
+ * @param {string} [targetLangCode=''] - target-language code, for lowercasing target words
+ * @returns {string} - the lines joined by `\n`, or '' when there is no history
  * @example
- * const data = {
- *   'the church': { 'la iglesia': 5, 'la congregación': 2 },
- *   'church': { 'iglesia': 10 }
- * };
- * const result = formatPreviousTranslations(
- *   data,
- *   'church',
- *   'para la iglesia de Éfeso',
- *   'es-419',
- *   true  // enable phrase filtering
+ * formatPreviousTranslations(
+ *   { 'of the holy places': { 'các nơi thánh': 1 }, 'Holy': { 'Nơi Thánh': 1 } },
+ *   'holy places', 'en', 'Ngài đã vào trong các nơi thánh một lần', 'vi',
  * );
- * // Returns JSON string (prettified for readability):
- * // [
- * //   {"phrase": "church", "rendering": "iglesia", "usageCount": 10}
- * // ]
- * // Note: 'the church' renderings are filtered out because 'the' is not in 'church'
- *
- * @example
- * // Without phrase filtering
- * const result = formatPreviousTranslations(
- *   data,
- *   'church',
- *   'para la iglesia de Éfeso',
- *   'es-419',
- *   false  // no phrase filtering
- * );
- * // Returns all renderings whose words appear in verse, sorted by usage count:
- * // [
- * //   {"phrase": "church", "rendering": "iglesia", "usageCount": 10},
- * //   {"phrase": "the church", "rendering": "la iglesia", "usageCount": 5}
- * // ]
+ * // '"các nơi thánh" (chosen 1 time for "of the holy places")\n"Nơi Thánh" (chosen 1 time for "Holy")'
  */
-function formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, langId = '', filter = false) {
-  const data = previousTranslationData || {};
+function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '') {
+  const normalizeWords = text => (text || '').split(/\s+/).filter(Boolean)
+    .map(word => normalizeForCompare(word, targetLangCode));
+  const verseWords = normalizeWords(verseContent);
+  const verseWordSet = new Set(verseWords);
+  const byRendering = new Map();
 
-  // Default to using data directly as counts map
-  let filteredMatches = {};
-  const keys = Object.keys(data);
-  const normalizedVerseWords = new Set(verseContent.split(' ').map(word => normalizeForCompare(word, langId)));
+  for (const {
+    key, counts, relatedness, isExact,
+  } of rankGlKeys(previousTranslationData, glPhrase, glLangCode)) {
+    for (const [rendering, count] of Object.entries(counts || {})) {
+      const normalized = normalizeWords(rendering).join(' ');
 
-  for (const glPhrase of keys) {
-    const translations = data[glPhrase];
+      if (!normalized || !(count > 0)) {
+        continue;
+      }
 
-    if (!translations || typeof translations !== 'object') {
-      continue;
-    }
+      const entry = byRendering.get(normalized);
 
-    const translationKeys = Object.keys(translations);
-    const filteredMatchesEntries = {};
+      if (!entry) {
+        byRendering.set(normalized, {
+          rendering, phrase: key, count, relatedness, isExact,
+        });
+        continue;
+      }
 
-    for (const translation of translationKeys) {
-      const translationWords = translation.split(/\s+/).filter(Boolean);
-      const exactMatch = translationWords.every(word => normalizedVerseWords.has(normalizeForCompare(word, langId)));
+      entry.count += count;
 
-      if (exactMatch) {
-        filteredMatchesEntries[translation] = data[glPhrase][translation];
+      if ((isExact && !entry.isExact) || (isExact === entry.isExact && relatedness > entry.relatedness)) {
+        Object.assign(entry, {
+          phrase: key, relatedness, isExact,
+        });
       }
     }
+  }
 
-    if (Object.keys(filteredMatchesEntries).length) {
-      // Use only translations whose words are all present in this verse
-      filteredMatches[glPhrase] = filteredMatchesEntries;
+  const entries = [...byRendering.entries()].map(([normalized, entry]) => {
+    const words = normalized.split(' ');
+    let verseFit = 0;
+
+    if (words.every(word => verseWordSet.has(word))) {
+      verseFit = 2;
+    } else if (words.every(word => verseWordSet.has(word) || verseWords.some(verseWord => wordSimilarity(word, verseWord) > 0))) {
+      verseFit = 1;
     }
-  }
+    return { ...entry, verseFit };
+  });
 
-  if (!Object.keys(filteredMatches).length) {
-    filteredMatches = data;
-  }
+  // Array.prototype.sort is stable, so ties keep the order of the history
+  entries.sort((a, b) => (b.verseFit - a.verseFit) || (Number(b.isExact) - Number(a.isExact)) ||
+    (b.relatedness - a.relatedness) || (b.count - a.count));
 
-  // Convert counts object to array of {phrase, rendering, usageCount} entries,
-  // filter out empty phrases or zero counts,
-  // and sort by count descending (strongest evidence first)
-
-  let entries = [];
-
-  for (const glPhrase of Object.keys(filteredMatches)) {
-    const translations = filteredMatches[glPhrase];
-
-    for (const translation of Object.keys(translations)) {
-      entries.push({
-        phrase: glPhrase,
-        rendering: translation,
-        usageCount: translations[translation],
-      });
-    }
-  }
-
-  entries = entries.sort((a, b) => b.usageCount - a.usageCount);
-
-  if (entries.length && filter) {
-    // Filter entries removing any lines where the phrase contains words not in glPhrase
-    const glPhraseWords = glPhrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word, langId));
-    const glPhraseWordSet = new Set(glPhraseWords);
-
-    const filteredEntries = entries.filter(entry => {
-      const phraseWords = entry.phrase.split(/\s+/).filter(Boolean).map(word => normalizeForCompare(word, langId));
-      return phraseWords.every(word => glPhraseWordSet.has(word));
-    });
-
-    if (filteredEntries.length) {
-      entries = filteredEntries;
-    }
-  }
-
-  // Keep only the strongest evidence - every entry adds prompt tokens, and when nothing matched
-  // the verse `entries` falls back to the whole history, which slows every request
-  entries = entries.slice(0, MAX_PROMPT_PREVIOUS_TRANSLATIONS);
+  const fitting = entries.filter(entry => entry.verseFit > 0);
+  const chosen = fitting.length ?
+    fitting.slice(0, MAX_PROMPT_PREVIOUS_TRANSLATIONS) :
+    entries.slice(0, MAX_PROMPT_UNMATCHED_TRANSLATIONS);
 
   // one plain line per rendering - easier for small models to read than JSON, and fewer tokens
-  return entries.map(({
-    phrase, rendering, usageCount,
-  }) =>
-    `"${rendering}" (chosen ${usageCount} time${usageCount === 1 ? '' : 's'} for "${phrase}")`)
+  return chosen.map(({
+    phrase, rendering, count,
+  }) => `"${rendering}" (chosen ${count} time${count === 1 ? '' : 's'} for "${phrase}")`)
     .join('\n');
 }
 
 /**
- * Renders the verse as `word:position` tokens, which is exactly the format the answer
- * must use. Handing the AI the positions removes the need for it to count words - which
- * small models do unreliably - so producing the answer becomes a copy operation.
+ * Renders the verse as `word:position` tokens (1-based positions), for log messages only: it
+ * shows which verse word an AI answer could have meant. Nothing sent to the AI uses it.
  *
- * `verseContent` is `wordList.join(' ')`, so splitting on whitespace recovers the same
- * tokens and the same 1-based indexes that `parseResponseRow` resolves against `wordList`.
- *
- * @param {string} verseContent - the target-language verse text without punctuation
+ * @param {string} verseContent - the target-language verse words, separated by spaces
  * @returns {string} - e.g. `para:1 la:2 iglesia:3 de:4 Éfeso:5`
  */
 function formatNumberedVerse(verseContent) {
@@ -819,30 +765,47 @@ export function saveAlignmentData(projectPath, previousData, data) {
 }
 
 /**
- * Builds the AI prompt for selecting the best target-language translation option(s)
- * for a gateway-language phrase, using only words found in the target-language verse.
- *
- * The system prompt holds no per-call data, so its text is identical on every call and
- * the LM Studio server can reuse its cached prompt prefix across the whole run.
- *
- * @param {string} verseContent - the target-language verse text without punctuation
- * @param {string} targetLangCode - language code of the target words, e.g. 'es-419'
- * @param {string} glPhrase - gateway-language phrase to translate, e.g. 'church'
- * @param {string} glLangCode - language code of the gateway phrase, e.g. 'en'
- * @param {object} previousTranslationData - prior translation-count object; only the
- *   entries for `glPhrase` are sent to the AI
- * @returns {{systemPrompt: string, input: string}} - the fully populated prompt data
+ * Rule 3 of the system prompt for single requests: follow a previous translation found word for
+ * word, without adding or dropping small words. Measured in Step 7 of
+ * plans/improve-llm-suggestions.md (variant P3b): it lowered confident wrong answers and raised the
+ * user-visible top-1 for single requests on qwen3-1.7b and qwen3-4b, but lowered qwen3-4b's
+ * batched top-1, so the batch prompt keeps `LLM_PREVIOUS_TRANSLATION_RULE_BATCH`.
  */
-export function buildTranslationOptionsPrompt(
-  verseContent,
-  targetLangCode,
-  glPhrase,
-  glLangCode,
-  previousTranslationData = {},
-) {
-  // Kept short and literal for small models: plain-language rules, worked examples in exactly
-  // the layout of the real input, and the input ending in "Answer:" so the reply is a completion.
-  const systemPrompt = `You find the words in a Bible verse that translate a phrase.
+const LLM_PREVIOUS_TRANSLATION_RULE_SINGLE = 'If a previous translation is in TARGET VERSE word for word, it is usually the answer. Copy exactly those words: do not add or drop small words.';
+/** Rule 3 of the system prompt for batched requests (the wording before Step 7) */
+const LLM_PREVIOUS_TRANSLATION_RULE_BATCH = 'A previous translation whose words are all in TARGET VERSE is usually the right answer. Ignore any that use words not in TARGET VERSE.';
+
+/**
+ * Second worked example, of a verse word that is another form of a previous translation. Measured
+ * in Step 7 of plans/improve-llm-suggestions.md (variant P5): it raised qwen3-1.7b's top-1 and
+ * lowered its confident wrong answers on single requests, but gave qwen3-4b more confident wrong
+ * answers in batches, so only the single-request prompt has it.
+ */
+const LLM_INFLECTED_FORM_EXAMPLE = `
+Example 2:
+TARGET VERSE (de): alle Gläubigen waren zusammen
+
+PREVIOUS TRANSLATIONS:
+"Glaube" (chosen 5 times for "faith")
+
+GATEWAY PHRASE (en): believers
+
+Answer:
+"Gläubigen",75
+`;
+
+/**
+ * Builds the system prompt. Kept short and literal for small models: plain-language rules, worked
+ * examples in exactly the layout of the real input, and the input ending in "Answer:" so the
+ * reply is a completion. It holds no per-call data.
+ *
+ * @param {string} previousTranslationRule - text of rule 3, which differs between single and
+ *   batched requests
+ * @param {string} [extraExample=''] - another worked example, placed after Example 1
+ * @returns {string}
+ */
+function buildLlmSystemPrompt(previousTranslationRule, extraExample = '') {
+  return `You find the words in a Bible verse that translate a phrase.
 
 You are given:
 TARGET VERSE - the words of the verse, in order.
@@ -852,9 +815,9 @@ GATEWAY PHRASE - the phrase to find in the verse.
 Rules:
 1. Answer only with words copied from TARGET VERSE, spelled exactly as written there.
 2. Choose the fewest words that carry the meaning of GATEWAY PHRASE, kept in verse order.
-3. A previous translation whose words are all in TARGET VERSE is usually the right answer. Ignore any that use words not in TARGET VERSE.
+3. ${previousTranslationRule}
 4. Give 1 to 3 options, best first, one per line, written as: "words",confidence
-5. confidence is a whole number from 0 to 100 for how sure you are that the option is right in this verse.
+5. confidence is a whole number from 0 to 100: 90 or more only when a previous translation is in the verse word for word, 60 to 89 for another form of a previous translation or a clear meaning match, below 60 for a guess.
 6. If no words in TARGET VERSE fit, answer: "",0
 7. Do not include reasoning in answer.
 8. Answer only as CSV rows: no header, no explanation, no markdown fences.
@@ -862,7 +825,7 @@ Rules:
 Required output format:
 "word word",confidence
 
-Example:
+Example 1:
 TARGET VERSE (es-419): para la iglesia de Éfeso
 
 PREVIOUS TRANSLATIONS:
@@ -875,14 +838,46 @@ GATEWAY PHRASE (en): church
 Answer:
 "iglesia",98
 "la iglesia",70
-
-Wrong answer for Example:
+${extraExample}
+Wrong answer for Example 1:
 "church",98 - gateway words are not in TARGET VERSE
 "congregación",90 - word is not in TARGET VERSE
 iglesia,98 - missing the quotes
 `;
+}
 
-  const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, verseContent, targetLangCode, true);
+/** system prompt for one request per query; a constant, so the server can reuse its prompt cache */
+const LLM_SINGLE_SYSTEM_PROMPT = buildLlmSystemPrompt(LLM_PREVIOUS_TRANSLATION_RULE_SINGLE, LLM_INFLECTED_FORM_EXAMPLE);
+/** system prompt for batched requests, before `LLM_BATCH_SYSTEM_PROMPT` is appended; also a constant */
+const LLM_BATCH_BASE_SYSTEM_PROMPT = buildLlmSystemPrompt(LLM_PREVIOUS_TRANSLATION_RULE_BATCH);
+
+/**
+ * Builds the AI prompt for selecting the best target-language translation option(s)
+ * for a gateway-language phrase, using only words found in the target-language verse.
+ *
+ * The system prompt holds no per-call data, so its text is identical on every call (one constant
+ * for single requests, one for batches) and the server can reuse its cached prompt prefix.
+ *
+ * @param {string} verseContent - the target-language verse text without punctuation
+ * @param {string} targetLangCode - language code of the target words, e.g. 'es-419'
+ * @param {string} glPhrase - gateway-language phrase to translate, e.g. 'church'
+ * @param {string} glLangCode - language code of the gateway phrase, e.g. 'en'
+ * @param {object} previousTranslationData - prior translation-count object; the renderings
+ *   are chosen and ordered by `formatPreviousTranslations`
+ * @param {boolean} [forBatch=false] - true when the request is one of several in a query
+ * @returns {{systemPrompt: string, input: string}} - the fully populated prompt data
+ */
+export function buildTranslationOptionsPrompt(
+  verseContent,
+  targetLangCode,
+  glPhrase,
+  glLangCode,
+  previousTranslationData = {},
+  forBatch = false,
+) {
+  const systemPrompt = forBatch ? LLM_BATCH_BASE_SYSTEM_PROMPT : LLM_SINGLE_SYSTEM_PROMPT;
+
+  const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode);
   // console.log(`previousTranslations string length= ${previousTranslations.length}`);
 
   // one labeled field per line, in the same order as the examples above
@@ -981,7 +976,8 @@ function getWeightedWordCoverage(fromWords, toWords) {
  * @param {string} glPhrase - gateway-language phrase being translated
  * @param {string} [glLangId=''] - gateway-language code, used for locale-aware lowercasing when
  *   splitting `glPhrase` and each history key into words
- * @returns {Array<{counts: object, relatedness: number, isExact: boolean}>} - one entry per history key
+ * @returns {Array<{key: string, counts: object, relatedness: number, isExact: boolean}>} - one entry
+ *   per history key; `key` is the history key (`glPhrase` for flat history)
  */
 function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
   const data = previousTranslationData || {};
@@ -992,7 +988,7 @@ function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
 
   if (!isPhraseKeyed) { // already the counts for this phrase
     return keys.length ? [{
-      counts: data, relatedness: 1, isExact: true,
+      key: glPhrase, counts: data, relatedness: 1, isExact: true,
     }] : [];
   }
 
@@ -1004,7 +1000,7 @@ function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
 
     if (key === glPhrase || normalizeForCompare(key, glLangId).trim() === normalizedGl) {
       return {
-        counts, relatedness: 1, isExact: true,
+        key, counts, relatedness: 1, isExact: true,
       };
     }
 
@@ -1018,7 +1014,7 @@ function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
     }
 
     return {
-      counts, relatedness, isExact: false,
+      key, counts, relatedness, isExact: false,
     };
   });
 }
@@ -1089,6 +1085,63 @@ function buildSelectionsFromPositions(wordList, positions) {
       occurrence: findOccurrenceForPos(position + 1, wordList, text),
     };
   });
+}
+
+/**
+ * Moves a suggestion to the occurrence of the check. Both suggestion paths place a rendering at
+ * its first match in the verse, so when the original-language word occurs more than once (the
+ * check's `contextId.occurrence` is above 1), two checks would get the same words. This assumes
+ * the nth occurrence of the original word is rendered by the nth occurrence of the suggested
+ * words - a heuristic, applied only when it is safe:
+ * - `occurrence` is above 1, and the selections are an adjacent run of verse words;
+ * - the selections are the first of the non-overlapping runs of the same words (compared with
+ *   `normalizeForCompare`) in the verse, found left to right;
+ * - the verse has at least `occurrence` such runs.
+ * Otherwise the selections are returned unchanged.
+ *
+ * @param {Array<{text: string, occurrence: number}>} selections - one suggestion option's words
+ * @param {Array<string>} wordList - target-language verse words in reading order
+ * @param {number} occurrence - the check's occurrence of its original-language quote (1-based)
+ * @param {string} [langId=''] - target-language code, for lowercasing
+ * @returns {Array<{text: string, occurrence: number}>} - the selections at run number
+ *   `occurrence`, or `selections` unchanged
+ * @example
+ * moveSelectionsToOccurrence([{ text: 'Dios', occurrence: 1 }],
+ *   ['Dios', 'amó', 'al', 'mundo', 'y', 'Dios', 'envió'], 2);
+ * // [{ text: 'Dios', occurrence: 2 }]
+ */
+export function moveSelectionsToOccurrence(selections, wordList, occurrence, langId = '') {
+  if (!(occurrence > 1) || !selections?.length || !wordList?.length) {
+    return selections;
+  }
+
+  const positions = selections.map(({ text, occurrence: wordOccurrence }) => {
+    let seen = 0;
+    return wordList.findIndex(word => word === text && ++seen === (wordOccurrence || 1));
+  });
+  const adjacent = positions.every((position, i) => position >= 0 && (i === 0 || position === positions[i - 1] + 1));
+
+  if (!adjacent) {
+    return selections;
+  }
+
+  const normalizedWordList = wordList.map(word => normalizeForCompare(word, langId));
+  const runWords = positions.map(position => normalizedWordList[position]);
+  const runStarts = [];
+
+  for (let start = 0; start <= normalizedWordList.length - runWords.length; start++) {
+    if (runWords.every((word, offset) => normalizedWordList[start + offset] === word)) {
+      runStarts.push(start);
+      start += runWords.length - 1; // runs may not overlap
+    }
+  }
+
+  if (runStarts[0] !== positions[0] || runStarts.length < occurrence) {
+    return selections;
+  }
+
+  const start = runStarts[occurrence - 1];
+  return buildSelectionsFromPositions(wordList, runWords.map((_, offset) => start + offset));
 }
 
 /**
@@ -1808,6 +1861,8 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 const LLM_MAX_OPTIONS = 3;
 /** response cap when thinking is off - the answer is a few short CSV rows, so this only stops runaway output */
 const LLM_DEFAULT_MAX_TOKENS = 2048;
+/** sampling temperature used when the caller gives none */
+const LLM_DEFAULT_TEMPERATURE = 0.1;
 /** tags some models wrap their reasoning in, e.g. `<think>...</think>` */
 const LLM_REASONING_TAGS = 'think|thinking|reasoning|reflection|thought';
 /** keys AI models commonly use for the rendering and the confidence when they answer in JSON */
@@ -2033,16 +2088,22 @@ function foldAccents(word) {
 
 /**
  * Locates the words of an AI-suggested phrase in the verse and turns them into selections.
- * Each word is matched exactly first, then ignoring accents, then (unless `strict`) by fuzzy
- * similarity; words that cannot be found are dropped. The matched words are then placed in
- * the verse as an adjacent run if possible, otherwise as the tightest in-order placement.
+ * Each word is matched exactly first, then ignoring accents, then (unless `strict`) to the verse
+ * word with the highest {@link wordSimilarity} (an inflected or compound form, e.g. `Kirche` →
+ * `Kirchengemeinde`; the first such word on a tie). `wordSimilarity` never fuzzy-matches short
+ * words and needs about two thirds of the characters to agree, so a word that is not in the verse
+ * is not mapped onto an unrelated one. Words that cannot be found are dropped, but more than half
+ * of the phrase must be found. The matched words are then placed in the verse as an adjacent run
+ * if possible, otherwise as the tightest in-order placement.
  *
  * @param {string} phrase - words suggested by the AI
  * @param {Array<string>} wordList - target-language verse words in reading order
  * @param {Array<string>} normalizedWordList - `wordList` through `normalizeForCompare`
  * @param {Array<string>} foldedWordList - `normalizedWordList` through `foldAccents`
  * @param {boolean} strict - when true every word must be found, without fuzzy matching
- * @returns {Array<{text: string, occurrence: number}>|null} - selections, or null if none found
+ * @returns {{selections: Array<{text: string, occurrence: number}>, inexact: boolean}|null} -
+ *   the selections, and whether any word was matched by similarity or dropped (a match that only
+ *   ignores accents is exact); null when the phrase could not be placed
  */
 function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict) {
   const phraseWords = (phrase || '')
@@ -2055,6 +2116,7 @@ function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWor
   }
 
   const verseWords = [];
+  let inexact = false;
 
   for (const word of phraseWords) {
     let verseWord = null;
@@ -2067,16 +2129,17 @@ function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWor
       if (foldedIndex >= 0) {
         verseWord = normalizedWordList[foldedIndex];
       } else if (!strict) {
-        let bestSimilarity = 0.3; // minimum similarity accepted
+        let bestSimilarity = 0; // wordSimilarity is 0 below its own threshold
 
         normalizedWordList.forEach(normalizedWord => {
-          const similarity = fuzzyStringSimilarity(word, normalizedWord);
+          const similarity = wordSimilarity(word, normalizedWord);
 
           if (similarity > bestSimilarity) {
             bestSimilarity = similarity;
             verseWord = normalizedWord;
           }
         });
+        inexact = inexact || !!verseWord;
       }
     }
 
@@ -2084,10 +2147,13 @@ function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWor
       verseWords.push(verseWord);
     } else if (strict) {
       return null;
+    } else {
+      inexact = true; // dropped
     }
   }
 
-  if (!verseWords.length) {
+  // an answer mostly made of words that are not in the verse is not about this verse
+  if (!verseWords.length || verseWords.length * 2 <= phraseWords.length) {
     return null;
   }
 
@@ -2107,12 +2173,16 @@ function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWor
     positions = [...used].sort((a, b) => a - b);
   }
 
-  return positions.length ? buildSelectionsFromPositions(wordList, positions) : null;
+  return positions.length ? { selections: buildSelectionsFromPositions(wordList, positions), inexact } : null;
 }
 
 /**
  * Turns an AI answer into up to `LLM_MAX_OPTIONS` translation options for the verse.
- * Rows that resolve to the same words are merged keeping the higher confidence.
+ * Rows that resolve to the same words are merged keeping the higher confidence. Rows with
+ * confidence 0 are the model saying the option does not fit, so they are skipped. When a row's
+ * words had to be matched to the verse by similarity, or some were dropped (see
+ * `resolveLlmPhraseInVerse`), its confidence is capped at `FUZZY_TARGET_MAX_CONFIDENCE`, the cap
+ * the algorithm path uses for fuzzy matches.
  *
  * A batched answer with `### REQUEST n` markers - on their own lines or run together, e.g.
  * `###REQUEST1"quyn",98###REQUEST2"",0` - is parsed for the request at `requestIndex` only.
@@ -2136,11 +2206,14 @@ export function parseLlmSelectionOptions(answer, wordList, requestIndex = 0) {
     const optionsByWords = new Map();
 
     for (const {
-      phrase, confidence, strict,
+      phrase, confidence: rowConfidence, strict,
     } of candidateRows) {
-      const selections = resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict);
+      const resolved = rowConfidence > 0 ?
+        resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict) : null;
 
-      if (selections) {
+      if (resolved) {
+        const { selections, inexact } = resolved;
+        const confidence = inexact ? Math.min(rowConfidence, FUZZY_TARGET_MAX_CONFIDENCE) : rowConfidence;
         const key = selections.map(({ text, occurrence }) => `${text}:${occurrence}`).join(' ');
         const existing = optionsByWords.get(key);
 
@@ -2313,6 +2386,7 @@ const LLM_BATCH_MAX_TOKENS_PER_REQUEST = 256;
 /** appended to the system prompt when several requests are sent in one AI query */
 const LLM_BATCH_SYSTEM_PROMPT = `
 Several requests may be given, each starting with a line "### REQUEST n".
+Each request is separate: use only its own TARGET VERSE and PREVIOUS TRANSLATIONS.
 Answer every request in the same order. Start each answer with its "### REQUEST n" line, then its CSV rows.
 
 Batch example output:
@@ -2344,11 +2418,19 @@ function buildLlmQueryOptions(lmOptions, systemPrompt, defaultMaxTokens) {
   return options;
 }
 
+/** one CSV answer row on its own line: `"words",confidence` (any of the quote marks models use) */
+const LLM_CSV_ROW_LINE = /^\s*["“”][^"“”\n]*["“”]\s*,\s*\d{1,3}\s*$/;
+
 /**
  * Splits a batched AI answer into the answer text for each request, keyed by its
  * `### REQUEST n` marker (see `LLM_BATCH_MARKER`). When a marker appears more than once (e.g.
  * reasoning echoed it before the final answer) the last section wins, since that is where the
  * final answer is.
+ *
+ * Small models sometimes leave the markers out and give one row per request, in order. Such an
+ * answer is split by line, but only when it has exactly one CSV row per request and nothing else;
+ * any other answer without markers is left unanswered, so a row is never given to the wrong
+ * request.
  *
  * @param {string} answer - raw AI response text
  * @param {number} count - number of requests in the batch
@@ -2370,6 +2452,14 @@ function splitLlmBatchAnswer(answer, count) {
   if (!markers.length) {
     if (count === 1) {
       sections[0] = text; // model ignored the markers - the whole answer is for the one request
+    } else {
+      const lines = text.split('\n').filter(line => line.trim());
+
+      if (lines.length === count && lines.every(line => LLM_CSV_ROW_LINE.test(line))) {
+        lines.forEach((line, i) => {
+          sections[i] = line.trim();
+        });
+      }
     }
     return sections;
   }
@@ -2407,6 +2497,7 @@ async function getBestTWordSelectionsBatchFromLlm(requests) {
       glPhrase,
       glLangCode,
       previousTranslationData,
+      true,
     );
     systemPrompt = prompt.systemPrompt;
     return `### REQUEST ${i + 1}${prompt.input.replace(/\n*Answer:\s*$/, '')}`;
@@ -3697,6 +3788,49 @@ export function updatedPreviousSelectionsData(
 }
 
 /**
+ * The algorithm's answer is used without asking the AI when its top option has at least this
+ * confidence, which `capForRendering` allows only for the exact GL key's rendering found word for
+ * word in the verse.
+ */
+const ALGORITHM_CERTAIN_CONFIDENCE = 100;
+
+/**
+ * Runs the algorithm path for one `getBestSelections` job.
+ * @param {object} job - one `getBestSelections` job
+ * @returns {Promise<{error: boolean, bestSelections: Array<object>, elapsedStr: string, model: string}>} -
+ *   `model` is 'APP'; on an exception only `{error: true}`
+ */
+async function getAlgorithmResultForJob(job) {
+  try {
+    const {
+      verseText,
+      targetLanguageDetails,
+      alignedGLText,
+      gatewayLanguageCode,
+      selectionsData,
+    } = job;
+
+    const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
+      getWordList(verseText),
+      targetLanguageDetails.id,
+      alignedGLText,
+      gatewayLanguageCode,
+      selectionsData?.selections,
+    );
+
+    return {
+      error: false,
+      bestSelections,
+      elapsedStr: '0',
+      model: 'APP',
+    };
+  } catch (error) {
+    console.error(`getBestSelections - error`, error, job);
+    return { error: true };
+  }
+}
+
+/**
  * Finds the best target-language translation selections for a gateway-language phrase within a verse.
  *
  * This function identifies the most appropriate target-language word(s) that correspond to a gateway-language
@@ -3709,6 +3843,10 @@ export function updatedPreviousSelectionsData(
  * - Returns immediately with `elapsedStr: '0'` and `model: 'APP'`
  *
  * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
+ * - The algorithm runs first; a job whose top option has confidence 100 (the exact GL key's
+ *   rendering found word for word) gets the algorithm's answer, marked `algorithmFirst: true`,
+ *   and is not sent to the AI
+ * - The other jobs are sent to the AI in one query
  * - Queries a locally-running LM Studio server
  * - Leverages an AI language model for intelligent translation suggestions
  * - Considers both semantic meaning and translation history
@@ -3731,9 +3869,11 @@ export function updatedPreviousSelectionsData(
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
  * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
- * @param {number} [options.llmTemperature=0.7] - Sampling temperature for AI model (0.0-1.0); higher values increase
- *   randomness and creativity in suggestions, lower values make output more deterministic; only applies in AI mode
+ * @param {number} [options.llmTemperature=0.1] - Sampling temperature for AI model (0.0-1.0); higher values increase
+ *   randomness in suggestions, lower values make output more repeatable; 0 is used as given; only applies in AI mode
  * @param {string} [options.apiToken] - Bearer token for LLM API requests when required
+ * @param {object} [options.contextId] - the check's context; when `contextId.occurrence` is above 1,
+ *   each suggestion is moved to that occurrence of its words (see {@link moveSelectionsToOccurrence})
  * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>}
  *   Promise resolving to an object containing:
  *   - **error**: `true` if the operation failed or no valid translations were found, `false` otherwise
@@ -3744,6 +3884,7 @@ export function updatedPreviousSelectionsData(
  *     - **confidence**: Integer from 0-100 indicating match certainty (100 = exact match, lower = partial/fuzzy match)
  *   - **elapsedStr**: Elapsed time in seconds as a formatted string (e.g., "1.23" for AI mode, "0" for algorithmic mode)
  *   - **model**: Model identifier string ('APP' for algorithmic mode, actual AI model name for AI mode, empty string on error)
+ *   - **algorithmFirst**: `true` in AI mode when the algorithm was certain and the AI was not asked (`model` is 'APP')
  *   Returns `{error: true, bestSelections: [], elapsedStr: '', model: ''}` if no valid translations are found or on error
  * @example
  * // Algorithmic mode (offline, no AI server)
@@ -3802,48 +3943,27 @@ export async function getBestSelections(options = {}) {
   try {
     if (!llmQueryUrl) {
       for (const job of jobs) {
-        let results = {
-          bestSelections: [],
-          elapsedStr: '',
-          error: true,
-          model: '',
-        };
-
-        try {
-          const {
-            verseText,
-            targetLanguageDetails,
-            alignedGLText,
-            gatewayLanguageCode,
-            selectionsData,
-          } = job;
-
-          const wordList = getWordList(verseText);
-
-          // eslint-disable-next-line no-await-in-loop
-          const bestSelections = await getBestTWordSelectionWithConfidenceAlgorithm(
-            wordList,
-            targetLanguageDetails.id,
-            alignedGLText,
-            gatewayLanguageCode,
-            selectionsData?.selections,
-            llmQueryUrl
-          );
-
-          results = {
-            error: false,
-            bestSelections,
-            elapsedStr: '0',
-            model: 'APP',
-          };
-        } catch (error) {
-          console.error(`getBestSelections - error`, error, job);
-          results = { error: true };
-        }
-        jobResults.push(results);
+        // eslint-disable-next-line no-await-in-loop
+        jobResults.push(await getAlgorithmResultForJob(job));
       }
-    } else { // querying AI Model - all jobs are sent in a single query
-      const llmRequests = jobs.map(job => {
+    } else { // querying AI Model - all jobs still needing the AI are sent in a single query
+      // when the algorithm is certain (the exact GL key's rendering found word for word), its
+      // answer is used and the job is not sent: it saves a request, and the AI is not more right
+      // there (plans/improve-llm-suggestions.md, Step 10)
+      const aiJobIndexes = [];
+
+      for (let i = 0; i < jobs.length; i++) {
+        // eslint-disable-next-line no-await-in-loop
+        const algorithmResult = await getAlgorithmResultForJob(jobs[i]);
+
+        if (!algorithmResult.error && algorithmResult.bestSelections?.[0]?.confidence >= ALGORITHM_CERTAIN_CONFIDENCE) {
+          jobResults[i] = { ...algorithmResult, algorithmFirst: true };
+        } else {
+          aiJobIndexes.push(i);
+        }
+      }
+
+      const llmRequests = aiJobIndexes.map(i => {
         const {
           alignedGLText,
           apiToken,
@@ -3854,7 +3974,7 @@ export async function getBestSelections(options = {}) {
           selectionsData,
           targetLanguageDetails,
           verseText,
-        } = job;
+        } = jobs[i];
 
         return {
           wordList: getWordList(verseText),
@@ -3868,24 +3988,42 @@ export async function getBestSelections(options = {}) {
             baseUrl: llmQueryUrl,
             enable_thinking: false,
             model: currentModel,
-            temperature: (llmTemperature || 0.7),
+            // ?? so that a setting of 0 is used; 0.1 gave the same accuracy as 0.7 or better, with
+            // repeatable answers (plans/improve-llm-suggestions.md, Step 8)
+            temperature: (llmTemperature ?? LLM_DEFAULT_TEMPERATURE),
           },
         };
       });
 
-      const llmRequests_ = llmRequests?.length > 1 ? llmRequests : llmRequests[0];
-      const results = await getBestTWordSelectionWithConfidenceFromLlm(llmRequests_);
+      if (llmRequests.length) {
+        const llmRequests_ = llmRequests.length > 1 ? llmRequests : llmRequests[0];
+        const results = await getBestTWordSelectionWithConfidenceFromLlm(llmRequests_);
+        const resultList = Array.isArray(results) ? results : [results];
 
-      if (Array.isArray(results)) {
-        jobResults.push(...results);
-      } else {
-        jobResults.push(results);
+        aiJobIndexes.forEach((jobIndex, i) => {
+          jobResults[jobIndex] = resultList[i];
+        });
       }
     }
   } catch (e) {
     console.error(`getBestSelections - error`, e);
     return jobs.map(() => ({ error: true }));
   }
+
+  // both paths place each suggestion at its first match; move it to the check's occurrence
+  jobs.forEach((job, i) => {
+    const occurrence = job?.contextId?.occurrence;
+    const result = jobResults[i];
+
+    if (occurrence > 1 && result?.bestSelections?.length) {
+      const wordList = getWordList(job.verseText);
+
+      result.bestSelections = result.bestSelections.map(option => ({
+        ...option,
+        selections: moveSelectionsToOccurrence(option.selections, wordList, occurrence, job.targetLanguageDetails?.id),
+      }));
+    }
+  });
 
   return jobResults;
 }

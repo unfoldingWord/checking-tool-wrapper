@@ -1,8 +1,14 @@
 /* eslint-env jest */
 /**
- * Checks whether a model on an OpenAI-compatible server (e.g. LM Studio) is suitable for
- * `getBestTWordSelectionWithConfidenceFromLlm`, using the cases in
- * `__fixtures__/llmEval/cases.json`.
+ * Checks whether a model on an OpenAI-compatible server (e.g. LM Studio) is suitable for AI
+ * suggestions, using the cases in `__fixtures__/llmEval/cases.json` (written by hand, mostly
+ * made-up) and `__fixtures__/llmEval/realCases.json` (from translators' aligned projects; rebuild
+ * with `npm run build:llm-eval-cases`, see `buildLlmEvalRealCases.test.js`).
+ *
+ * Requests go through `getBestSelections`, as the app sends them, so the result is what the user
+ * would see. The algorithm's result for every case is also scored: as its own row, and for the
+ * "user-visible" top-1, where an empty AI result is replaced by the algorithm's, as
+ * `LlmRequestQueue` does.
  *
  * The live tests are skipped unless `LLM_EVAL_MODEL` is set, so `npm test` makes no network calls.
  * The case-file checks always run.
@@ -14,9 +20,10 @@
  *   LLM_EVAL_MODEL         model id as the server lists it (required for the live tests)
  *   LLM_EVAL_URL           server base URL (default http://localhost:1234)
  *   LLM_EVAL_API_TOKEN     bearer token, for hosted servers
- *   LLM_EVAL_TEMPERATURE   sampling temperature (default 0.7, the app's default)
+ *   LLM_EVAL_TEMPERATURE   sampling temperature (default 0.1, the app's default)
  *   LLM_EVAL_GROUPING      requests per query for the batched tests; 1 skips them (default 4)
  *   LLM_EVAL_RUNS          times every case is asked; results are pooled (default 2)
+ *   LLM_EVAL_CASES         which cases to ask: all (default), hand or real
  *   LLM_EVAL_OUT           if set, the full results are written to this JSON file
  *   LLM_EVAL_TIMEOUT_MS    time allowed for all queries (default 1800000)
  * Thresholds (all can be overridden):
@@ -35,18 +42,31 @@ import https from 'https';
 import fs from 'fs';
 import { normalizer } from 'string-punctuation-tokenizer';
 import {
-  getBestTWordSelectionWithConfidenceFromLlm,
+  getBestSelections,
   getWordList,
 } from '../src/utils/autoCheckingUtils';
-import cases from './__fixtures__/llmEval/cases.json';
+import handCases from './__fixtures__/llmEval/cases.json';
+import realCases from './__fixtures__/llmEval/realCases.json';
 
 const env = process.env;
 const MODEL = env.LLM_EVAL_MODEL || '';
 const BASE_URL = (env.LLM_EVAL_URL || 'http://localhost:1234').replace(/\/+$/, '');
 const API_TOKEN = env.LLM_EVAL_API_TOKEN || '';
-const TEMPERATURE = numberEnv('LLM_EVAL_TEMPERATURE', 0.7);
+const TEMPERATURE = numberEnv('LLM_EVAL_TEMPERATURE', 0.1);
 const GROUPING = numberEnv('LLM_EVAL_GROUPING', 4);
 const RUNS = Math.max(1, Math.round(numberEnv('LLM_EVAL_RUNS', 2)));
+const CASE_SET = env.LLM_EVAL_CASES || 'all';
+const allCases = [...handCases, ...realCases];
+const cases = { hand: handCases, real: realCases }[CASE_SET] || allCases;
+/**
+ * cases the algorithm path gets right (top-1), measured on 2026-11-10: hand 22 of 28 and real 9 of
+ * 25 at first; hand 24 after `moveSelectionsToOccurrence` (Step 5 of
+ * plans/improve-llm-suggestions.md) got the two repeated-word cases right; hand 25 of 30 after the
+ * two gl-word cases were added (it gets `xx-gl-word-in-history` right and has no answer for
+ * `fr-gl-word-trap`, which has no history). A change here means a change to the algorithm or to
+ * the helpers it shares with the AI path, so update it only on purpose and say why in the plan.
+ */
+const ALGORITHM_TOP1 = { hand: 25, real: 9 };
 
 console.log('LLM eval settings:', {
   MODEL,
@@ -55,6 +75,8 @@ console.log('LLM eval settings:', {
   TEMPERATURE,
   GROUPING,
   RUNS,
+  CASE_SET,
+  cases: cases.length,
 });
 
 const TIMEOUT_MS = numberEnv('LLM_EVAL_TIMEOUT_MS', 1800000);
@@ -77,7 +99,7 @@ describe('llmEval cases', () => {
   test('have unique ids and the required fields', () => {
     const ids = new Set();
 
-    for (const evalCase of cases) {
+    for (const evalCase of allCases) {
       const {
         id, targetLang, glLang, verse, glPhrase, history, expected,
       } = evalCase;
@@ -89,7 +111,7 @@ describe('llmEval cases', () => {
     }
   });
 
-  test.each(cases.map(evalCase => [evalCase.id, evalCase]))('%s: expected answers are verse words', (_, evalCase) => {
+  test.each(allCases.map(evalCase => [evalCase.id, evalCase]))('%s: expected answers are verse words', (_, evalCase) => {
     const verseWords = getCaseWordList(evalCase).map(normalizePhrase);
 
     for (const answer of evalCase.expected) {
@@ -101,7 +123,18 @@ describe('llmEval cases', () => {
 
   test('do not reuse the system prompt example verse, which models copy answers from', () => {
     const exampleVerse = normalizePhrase('para la iglesia de Éfeso');
-    expect(cases.filter(evalCase => normalizePhrase(evalCase.verse) === exampleVerse)).toEqual([]);
+    expect(allCases.filter(evalCase => normalizePhrase(evalCase.verse) === exampleVerse)).toEqual([]);
+  });
+
+  test('the algorithm path gets the measured number of cases right', async () => {
+    const top1 = {};
+
+    for (const [name, list] of [['hand', handCases], ['real', realCases]]) {
+      // eslint-disable-next-line no-await-in-loop
+      const results = await Promise.all(list.map(evalCase => runAlgorithm(evalCase)));
+      top1[name] = results.filter(result => result.top1).length;
+    }
+    expect(top1).toEqual(ALGORITHM_TOP1);
   });
 });
 
@@ -113,8 +146,10 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
     grouping: GROUPING,
     runs: RUNS,
     thresholds: THRESHOLDS,
+    caseSet: CASE_SET,
     available: [],
     warmUp: null,
+    algorithm: [],
     single: [],
     batch: [],
     batchCalls: [],
@@ -128,11 +163,16 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
       return; // the first test reports it
     }
 
+    for (const evalCase of cases) {
+      // eslint-disable-next-line no-await-in-loop
+      run.algorithm.push(await runAlgorithm(evalCase));
+    }
+
     window.AiAPIs = { query: bridgeQuery };
 
     // first request loads the model and fills the prompt cache - timed apart from the rest
     calls = [];
-    await getBestTWordSelectionWithConfidenceFromLlm(toRequest({
+    await getBestSelections(toRequest({
       verse: 'a b', targetLang: 'xx', glLang: 'en', glPhrase: 'a', history: {},
     }));
     // eslint-disable-next-line require-atomic-updates
@@ -143,7 +183,7 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
       for (const evalCase of cases) {
         calls = [];
         // eslint-disable-next-line no-await-in-loop
-        const result = await getBestTWordSelectionWithConfidenceFromLlm(toRequest(evalCase));
+        const [result] = await getBestSelections(toRequest(evalCase));
         run.single.push({ run: runNumber, ...scoreCase(evalCase, result, calls[0]) });
       }
 
@@ -151,15 +191,17 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
         for (let i = 0; i < cases.length; i += GROUPING) {
           const group = cases.slice(i, i + GROUPING);
           calls = [];
-          const request = group.map(toRequest);
+          const request = group.map(evalCase => toRequest(evalCase));
           // eslint-disable-next-line no-await-in-loop
-          const results = await getBestTWordSelectionWithConfidenceFromLlm(request);
+          const results = await getBestSelections(request);
           const call = calls[0];
+          // jobs the algorithm answered (algorithmFirst) are not sent to the AI
+          const sent = results.filter(result => !result?.algorithmFirst).length;
 
           run.batchCalls.push({
             run: runNumber,
-            size: group.length,
-            markers: countBatchMarkers(call?.content, group.length),
+            size: sent,
+            markers: countBatchMarkers(call?.content, sent),
             ...call,
           });
 
@@ -245,11 +287,11 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
   });
 
   test('answers in the requested CSV format', () => {
-    const share = shareOf(run.single, result => result.format);
+    const share = shareOf(run.single.filter(result => result.format !== null), result => result.format);
 
     expectOrReport(share >= THRESHOLDS.minFormat,
       `CSV format ${percent(share)} < ${percent(THRESHOLDS.minFormat)}`,
-      run.single.filter(result => !result.format).map(result => `${result.id}: ${JSON.stringify(result.raw)}`));
+      run.single.filter(result => result.format === false).map(result => `${result.id}: ${JSON.stringify(result.raw)}`));
   });
 
   test('keeps thinking off and stops by itself', () => {
@@ -275,12 +317,13 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
   });
 
   test('responds quickly enough', () => {
-    const ms = median(run.single.map(result => result.ms));
+    const ms = median(run.single.filter(result => !result.skipped).map(result => result.ms));
     expectOrReport(ms <= THRESHOLDS.maxMedianMs, `median ${ms} ms > ${THRESHOLDS.maxMedianMs} ms`, []);
   });
 
   (GROUPING > 1 ? test : test.skip)(`batched (${GROUPING} per query): answers every request under its marker`, () => {
-    const bad = run.batchCalls.filter(call => call.error || call.markers < call.size);
+    // a group of one is sent as a single request, which has no markers
+    const bad = run.batchCalls.filter(call => call.error || (call.size > 1 && call.markers < call.size));
 
     expectOrReport(!bad.length, 'batched answers missing requests',
       bad.map(call => `run ${call.run}, ${call.markers}/${call.size} markers: ${call.error || JSON.stringify(call.content)}`));
@@ -373,25 +416,61 @@ function getCaseWordList(evalCase) {
 }
 
 /**
- * Builds the request `getBestTWordSelectionWithConfidenceFromLlm` takes, as `getBestSelections` does.
+ * Builds the job `getBestSelections` takes, as `Container.js` does.
  * @param {object} evalCase
+ * @param {boolean} [useAi=true] - false for the algorithm path (no `llmQueryUrl`)
  * @returns {object}
  */
-function toRequest(evalCase) {
+function toRequest(evalCase, useAi = true) {
   return {
-    wordList: getCaseWordList(evalCase),
-    targetLangCode: evalCase.targetLang,
-    glPhrase: evalCase.glPhrase,
-    glLangCode: evalCase.glLang,
-    previousTranslationData: evalCase.history,
-    lmOptions: {
-      apiToken: API_TOKEN || undefined,
-      baseUrl: BASE_URL,
-      enable_thinking: false,
-      model: MODEL,
-      temperature: TEMPERATURE,
-    },
+    verseText: getCaseWordList(evalCase).join(' '),
+    targetLanguageDetails: { id: evalCase.targetLang },
+    alignedGLText: evalCase.glPhrase,
+    gatewayLanguageCode: evalCase.glLang,
+    selectionsData: { selections: evalCase.history },
+    contextId: { occurrence: evalCase.occurrence || 1 },
+    llmQueryUrl: useAi ? BASE_URL : null,
+    currentModel: MODEL,
+    llmTemperature: TEMPERATURE,
+    apiToken: API_TOKEN || undefined,
   };
+}
+
+/**
+ * Runs the algorithm path on one case and scores it.
+ * @param {object} evalCase
+ * @returns {Promise<object>} - as from `scoreCase`
+ */
+async function runAlgorithm(evalCase) {
+  const [result] = await getBestSelections(toRequest(evalCase, false));
+  return scoreCase(evalCase, result, null);
+}
+
+/**
+ * Word-position F1 between an option and the best-matching acceptable answer: words are compared
+ * as `text:occurrence`, normalized. 1 when nothing fits and nothing was returned.
+ * @param {object|undefined} option - the top option, or undefined for none
+ * @param {Array<string>} expected - acceptable answers, as in the cases
+ * @returns {number}
+ */
+function bestF1(option, expected) {
+  const toWords = text => normalizePhrase(text).split(/\s+/).filter(Boolean)
+    .map(word => (/:\d+$/.test(word) ? word : `${word}:1`));
+
+  if (!expected.length) {
+    return option ? 0 : 1;
+  }
+
+  if (!option) {
+    return 0;
+  }
+
+  const got = toWords(optionText(option));
+  return Math.max(...expected.map(answer => {
+    const want = toWords(answer);
+    const common = got.filter(word => want.includes(word)).length;
+    return common ? (2 * common) / (got.length + want.length) : 0;
+  }));
 }
 
 /**
@@ -424,7 +503,13 @@ function scoreCase(evalCase, result, call) {
     id: evalCase.id,
     tags: evalCase.tags || [],
     expected: evalCase.expected,
+    real: (evalCase.tags || []).includes('real-project'),
+    /** answered by the algorithm without asking the AI (`algorithmFirst`) */
+    skipped: !!result?.algorithmFirst,
     got: options.map(option => `"${optionText(option)}" ${option.confidence}`),
+    f1: bestF1(top, evalCase.expected),
+    empty: !!evalCase.expected.length && !options.length,
+    model: result?.model || '',
     /** normalized top answer ('' for none), for comparing runs */
     topAnswer: top ? normalizePhrase(optionText(top)) : '',
     top1,
@@ -512,14 +597,16 @@ function summarize(run) {
     top3: shareOf(single, result => result.top3),
     confidentlyWrong: shareOf(single, result => result.confidentlyWrong),
     errors: shareOf(single, result => result.error),
-    format: shareOf(single, result => result.format),
-    medianMs: median(single.map(result => result.ms)),
+    format: shareOf(single.filter(result => result.format !== null), result => result.format),
+    medianMs: median(single.filter(result => !result.skipped).map(result => result.ms)),
+    skipped: single.filter(result => result.skipped).length,
     avgMsPerAnswer: perAnswer(totalMs, single.length),
     totalMs,
     promptTokensPerAnswer: perAnswer(sum(single, result => result.promptTokens), single.length),
     completionTokensPerAnswer: perAnswer(sum(single, result => result.completionTokens), single.length),
     warmUpMs: run.warmUp?.ms || 0,
     systemPromptTokens: run.warmUp?.usage?.prompt_tokens || 0,
+    ...summarizeAccuracy(single, run.algorithm, ''),
   };
   const singleConsistency = measureConsistency(single);
 
@@ -545,6 +632,7 @@ function summarize(run) {
       batchAvgMsPerAnswer: perAnswer(batchTotalMs, batch.length),
       batchTotalMs,
       batchPromptTokensPerAnswer: perAnswer(sum(calls, call => call.usage?.prompt_tokens), batch.length),
+      ...summarizeAccuracy(batch, run.algorithm, 'batch'),
       batchCompletionTokensPerAnswer: perAnswer(sum(calls, call => call.usage?.completion_tokens), batch.length),
     });
 
@@ -572,6 +660,32 @@ function summarize(run) {
   return summary;
 }
 
+/**
+ * Accuracy figures added by Step 2 of plans/improve-llm-suggestions.md.
+ * @param {Array<object>} results - scored results of every run
+ * @param {Array<object>} algorithm - the algorithm's scored result per case
+ * @param {string} prefix - '' for single requests, 'batch' for batched
+ * @returns {object} - `<prefix>F1`, `<prefix>Empty` (count), `<prefix>UserTop1`, per-run top-1
+ *   counts, top-1 of real and of hand-written cases, and `algorithmTop1`
+ */
+function summarizeAccuracy(results, algorithm, prefix) {
+  const key = name => (prefix ? `${prefix}${name[0].toUpperCase()}${name.slice(1)}` : name);
+  const byId = new Map(algorithm.map(result => [result.id, result]));
+  const runs = [...new Set(results.map(result => result.run))].sort((a, b) => a - b);
+  const mean = values => (values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0);
+
+  return {
+    [key('f1')]: mean(results.map(result => result.f1)),
+    [key('empty')]: results.filter(result => result.empty).length,
+    [key('skippedAnswers')]: results.filter(result => result.skipped).length,
+    [key('userTop1')]: shareOf(results, result => (result.got.length ? result.top1 : !!byId.get(result.id)?.top1)),
+    [key('top1PerRun')]: runs.map(n => results.filter(result => result.run === n && result.top1).length),
+    [key('realTop1')]: shareOf(results.filter(result => result.real), result => result.top1),
+    [key('handTop1')]: shareOf(results.filter(result => !result.real), result => result.top1),
+    algorithmTop1: shareOf(algorithm, result => result.top1),
+  };
+}
+
 function formatReport(run) {
   const s = run.summary;
   const lines = [
@@ -582,6 +696,9 @@ function formatReport(run) {
     s.consistency === undefined ?
       '        consistency: needs 2 or more runs' :
       `        consistency ${percent(s.consistency)} (runs gave different answers for ${s.unstableCases.length} of ${cases.length} cases${s.unstableCases.length ? `: ${s.unstableCases.join(', ')}` : ''})`,
+    `        top-1 per run ${s.top1PerRun.join(', ')} of ${cases.length}; F1 ${s.f1.toFixed(2)}; empty ${s.empty}; user-visible top-1 ${percent(s.userTop1)}`,
+    `        answered by the algorithm without asking the AI: ${s.skipped} of ${s.answers} (median time and CSV format leave these out)`,
+    `        top-1 hand-written ${percent(s.handTop1)}, real projects ${percent(s.realTop1)}; algorithm alone ${percent(s.algorithmTop1)}`,
   ];
 
   if (s.batchTop1 !== undefined) {
@@ -595,6 +712,10 @@ function formatReport(run) {
       row(['', 'single', 'batch', 'difference']),
       row(['top-1', percent(s.top1), percent(s.batchTop1), points(d.top1)]),
       row(['top-3', percent(s.top3), percent(s.batchTop3), points(d.top3)]),
+      row(['user-visible top-1', percent(s.userTop1), percent(s.batchUserTop1), points(s.batchUserTop1 - s.userTop1)]),
+      row(['F1', s.f1.toFixed(2), s.batchF1.toFixed(2), (s.batchF1 - s.f1).toFixed(2)]),
+      row(['empty', `${s.empty}`, `${s.batchEmpty}`, `${s.batchEmpty - s.empty}`]),
+      `  batched top-1 per run ${s.batchTop1PerRun.join(', ')} of ${cases.length}`,
       row([`wrong at >=${CONFIDENT}`, percent(s.confidentlyWrong), percent(s.batchConfidentlyWrong), points(d.confidentlyWrong)]),
       row(['errors', percent(s.errors), percent(s.batchErrors), points(s.batchErrors - s.errors)]),
       ...(d.consistency === undefined ? [] :

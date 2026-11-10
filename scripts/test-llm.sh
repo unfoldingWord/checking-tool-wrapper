@@ -13,10 +13,11 @@
 #   LLM_EVAL_MIN_TOP1=0.8 scripts/test-llm.sh qwen/qwen3-14b # stricter bar
 #
 # Options:
-#   -u URL    server base URL (default: $LLM_EVAL_URL or http://localhost:1234)
+#   -u URL    server base URL (default: $LLM_EVAL_URL, or http://localhost:1234 and, if that does
+#             not answer, $LLM_EVAL_FALLBACK_URL or http://192.168.142.56:1234)
 #   -r RUNS   times every case is asked; results are pooled (default: $LLM_EVAL_RUNS or 2)
 #   -g N      requests per query for the batched tests; 1 skips them (default: $LLM_EVAL_GROUPING or 4)
-#   -t TEMP   sampling temperature (default: $LLM_EVAL_TEMPERATURE or 0.7)
+#   -t TEMP   sampling temperature (default: $LLM_EVAL_TEMPERATURE or 0.1, the app's default)
 #   -k TOKEN  bearer token, for hosted servers (default: $LLM_EVAL_API_TOKEN)
 #   -o DIR    where logs and JSON results go (default: llm-eval-results)
 #   -l        list the models the server offers, then exit
@@ -35,10 +36,12 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 TEST_FILE="__tests__/llmModelSuitability.test.js"
-URL="${LLM_EVAL_URL:-http://localhost:1234}"
+URL="${LLM_EVAL_URL:-}"
+DEFAULT_URL="http://localhost:1234"
+FALLBACK_URL="${LLM_EVAL_FALLBACK_URL:-http://192.168.142.56:1234}"
 RUNS="${LLM_EVAL_RUNS:-2}"
 GROUPING="${LLM_EVAL_GROUPING:-4}"
-TEMPERATURE="${LLM_EVAL_TEMPERATURE:-0.7}"
+TEMPERATURE="${LLM_EVAL_TEMPERATURE:-0.1}"
 API_TOKEN="${LLM_EVAL_API_TOKEN:-}"
 OUT_DIR="llm-eval-results"
 LIST_ONLY=0
@@ -63,6 +66,12 @@ while getopts "u:r:g:t:k:o:lvh" opt; do
   esac
 done
 shift $((OPTIND - 1))
+URL_GIVEN=1
+
+if [ -z "$URL" ]; then
+  URL="$DEFAULT_URL"
+  URL_GIVEN=0
+fi
 URL="${URL%/}"
 
 # prints the model ids the server lists, one per line
@@ -90,8 +99,18 @@ list_models() {
 }
 
 if ! AVAILABLE="$(list_models)"; then
-  echo "Cannot get the model list from $URL/v1/models. Is the server running?" >&2
-  exit 2
+  if [ "$URL_GIVEN" = 1 ]; then
+    echo "Cannot get the model list from $URL/v1/models. Is the server running?" >&2
+    exit 2
+  fi
+
+  echo "$URL does not answer - trying $FALLBACK_URL" >&2
+  URL="${FALLBACK_URL%/}"
+
+  if ! AVAILABLE="$(list_models)"; then
+    echo "Cannot get the model list from $DEFAULT_URL or $URL. Is a server running?" >&2
+    exit 2
+  fi
 fi
 
 if [ "$LIST_ONLY" = 1 ]; then

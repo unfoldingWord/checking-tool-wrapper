@@ -23,6 +23,43 @@ numbers as they are at `e856919`.
 Goals, in priority order: **accuracy** (the top suggestion is what a translator would select, and
 the confidence reflects that), then **speed**, then **tokens**.
 
+## Outcome (carried out 2026-11-10, on top of `70d6a8b`, not committed)
+
+All steps were done, Step 10 included (Q3: yes). Reference models per Q1: `qwen/qwen3-1.7b`
+(small) and `qwen/qwen3-4b-2507` (larger), LM Studio at `http://localhost:1234`, temperature 0.1,
+3 runs. The evaluation set grew to 55 cases: 30 hand-written (`cases.json`) and 25 from the
+translators' aligned projects named in Q4 (`realCases.json`, built by
+`__tests__/buildLlmEvalRealCases.test.js`). Full rows are in section 9.
+
+| Single requests | Baseline (53 cases) | Final (55 cases) |
+|---|---|---|
+| 1.7b top-1 | 53% | 62% |
+| 1.7b wrong at confidence ≥ 80 | 42% of answers | 24% |
+| 4b top-1 | 62% | 68% |
+| 4b wrong at confidence ≥ 80 | 34% | 23% |
+| Algorithm alone, top-1 | 58% | 62% |
+| Prompt tokens per suggestion (both) | 495 | 355 (40% of cases need no request) |
+| Smallest prompt | 432 | 532 |
+| Time per suggestion, mean (both models) | 157–182 ms | 130–135 ms |
+
+Adopted: C1 history selection (Step 3), C2/C3 answer mapping and confidence (Step 4), C6 repeated
+words (Step 5), C10 and C4 for batches (Step 6), prompt variants P3b, P4 and P5 (Step 7: P3b and
+P5 in the single-request prompt only, by D10), temperature fallback 0.1 with 0 honoured (Step 8,
+Q6), algorithm-first when it is certain (Step 10). `/no_think` was already back at the start
+(Q11), so Step 2A only added a test. Rejected: P1, P2, P3, P6 and P7 (the W12 rule of Q10: it did
+not fix the trap and pushed the smallest prompt to 556 tokens).
+
+Not met:
+- **Step 10's check fails for 4b batched**: user-visible top-1 at 4 per query fell from 39.3 to
+  37.0. One case is a certain-but-wrong algorithm answer (`real-vi-heb-11-6-seek`: "tìm" at 100,
+  translator chose "tìm kiếm"); three are requests still sent to the AI whose batch neighbours
+  changed. Single requests (the default) meet it (1.7b 34 → 34, 4b 37 → 37.3). See Q12.
+- Neither model passes the suite's bars now (top-1 ≥ 70%, wrong ≥ 80 ≤ 15%): the real-project
+  cases are much harder (1.7b 36%, 4b 45% top-1) than the hand-written ones (83%, 87%).
+- The W12 trap (`fr-gl-word-trap`) is still missed by 4b.
+- tc-ui-toolkit still defaults the temperature to 0.7 (`CheckArea/index.js` line 109); the 0.1
+  fallback here only applies when no setting is passed (D12).
+
 ## 1. Summary
 
 The evidence in section 3 changes what is worth doing. The answer format and parsing are not the
@@ -1061,6 +1098,127 @@ top-1 are not measured yet (Step 2).
 | no_think left out | qwen3-4b-2507 | 1 | 19.7/23 | 59/69 | – | 6/69 | – | – | 252 | 463 / 8 | |
 | no_think left out | qwen3-4b-2507 | 4 | 20/23 | – | – | 3/69 | – | – | – | 184 / – | 0 of 18 without markers |
 
+### Results of carrying out the plan (2026-11-10)
+
+All rows: `http://localhost:1234`, 3 runs, grouping 4 unless the label says g8, through
+`getBestSelections`. Counts are per run (mean of 3), out of the cases in the Top-1 column: 53
+cases (28 hand-written + 25 real) up to `P6`, then 55 (two `gl-word` cases added for P7). Each
+run's figures for grouping 1 come from the single requests, grouping 4 or 8 from the batched ones.
+Full JSON is in `llm-eval-results/plan-*` (untracked, D16).
+
+Notes:
+- **Step 2A**: not measured again; the author had already moved `/no_think` to the start (Q11),
+  which the 2026-11-10 experiment in section 3.6 supports. A test pins it.
+- **Step 3** lost `es-the-faith` and `fr-long-history` on 4b: a longer history rendering that is in
+  the verse ("por la fe", "ses disciples") now reaches the prompt and the model copies it (W4). It
+  gained `xx-related-key`, `real-vi-heb-11-6-seek` and `real-bn-2co-3-18-glory`.
+- **Step 5** is offline; its effect (+2 cases on each model, the `repeated-word` cases) first shows
+  in the `step6.1` rows. The algorithm row went from 22 to 24 hand-written cases.
+- **Step 7**: `P3b` was added during the step: rule 3 alone replaced by the "copy exactly" rule
+  of P3, after P3 cost 1.7b three cases. `P3b` and `P5` helped single requests and hurt 4b batched,
+  so by D10 they are in the single-request prompt only (`LLM_SINGLE_SYSTEM_PROMPT`), and the
+  `split` rows check that. `P7` is the W12 rule of Q10, measured on the 55 cases.
+- **Step 8**: temperatures 0 to 0.7 give the same accuracy within one case on both models;
+  consistency between runs is 99–100% at 0 and 0.1 and 93–98% at 0.7. Recommendation: keep 0.1
+  (Q6) and change tc-ui-toolkit's default to match.
+- **Step 10**: 22 of the 55 cases are answered by the algorithm without a request. See the
+  Outcome for the batched result.
+
+| Label | Model | Grouping | Top-1 mean/cases (min–max) | Top-3 | F1 | Wrong ≥ 80 | Empty | User-visible top-1 | Median ms | Prompt / completion tokens | Temp | Run stamp | Decision |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| baseline | qwen3-1.7b | 1 | 28/53 (28–28) | 28 | 0.63 | 22.3 | 1 | 28 | 149 | 495 / 14 | 0.1 | 20261110-075711 |  |
+| baseline | qwen3-1.7b | 4 | 24/53 (24–24) | 24 | 0.55 | 19 | 9 | 26 | 139 | 212 / 15 | 0.1 | 20261110-075711 | |
+| baseline | qwen3-4b-2507 | 1 | 33/53 (33–33) | 34 | 0.76 | 18 | 1 | 33 | 169 | 495 / 10 | 0.1 | 20261110-075711 |  |
+| baseline | qwen3-4b-2507 | 4 | 36/53 (36–36) | 36 | 0.78 | 13 | 3 | 36 | 184 | 212 / 14 | 0.1 | 20261110-075711 | |
+| baseline t0.7 | qwen3-1.7b | 1 | 27.7/53 (27–28) | 28 | 0.63 | 21.7 | 1.3 | 27.7 | 149 | 495 / 15 | 0.7 | 20261110-075909 |  |
+| baseline t0.7 | qwen3-1.7b | 4 | 23.7/53 (23–24) | 23.7 | 0.55 | 19.7 | 8.3 | 25.7 | 138 | 212 / 15 | 0.7 | 20261110-075909 | |
+| baseline t0.7 | qwen3-4b-2507 | 1 | 32.7/53 (32–33) | 33.7 | 0.76 | 18.3 | 1 | 32.7 | 167 | 495 / 10 | 0.7 | 20261110-075909 |  |
+| baseline t0.7 | qwen3-4b-2507 | 4 | 36/53 (36–36) | 36 | 0.78 | 12 | 3.3 | 36.3 | 180 | 212 / 14 | 0.7 | 20261110-075909 | |
+| step3 | qwen3-1.7b | 1 | 29/53 (29–29) | 29 | 0.67 | 23 | 1 | 29 | 146 | 506 / 16 | 0.1 | 20261110-080243 | meets regression rule |
+| step3 | qwen3-1.7b | 4 | 23.7/53 (23–24) | 27.7 | 0.55 | 22.3 | 7 | 25.7 | 135 | 224 / 16 | 0.1 | 20261110-080243 | |
+| step3 | qwen3-4b-2507 | 1 | 33/53 (33–33) | 36 | 0.77 | 18 | 1 | 33 | 176 | 506 / 12 | 0.1 | 20261110-080243 | meets regression rule |
+| step3 | qwen3-4b-2507 | 4 | 38/53 (38–38) | 40 | 0.80 | 11 | 3 | 38 | 178 | 224 / 17 | 0.1 | 20261110-080243 | |
+| step4 | qwen3-1.7b | 1 | 29/53 (29–29) | 29 | 0.65 | 21 | 3 | 30 | 146 | 506 / 16 | 0.1 | 20261110-080555 | meets both rules |
+| step4 | qwen3-1.7b | 4 | 25/53 (25–25) | 29 | 0.56 | 18 | 10 | 28 | 138 | 224 / 16 | 0.1 | 20261110-080555 | |
+| step4 | qwen3-4b-2507 | 1 | 33.3/53 (33–34) | 36.3 | 0.76 | 16.7 | 2 | 33.3 | 219 | 506 / 12 | 0.1 | 20261110-080555 | meets both rules |
+| step4 | qwen3-4b-2507 | 4 | 37/53 (37–37) | 39 | 0.77 | 10 | 5 | 38 | 219 | 224 / 17 | 0.1 | 20261110-080555 | |
+| step6.1 (C10, after step5) | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.69 | 19 | 3 | 32 | 189 | 506 / 16 | 0.1 | 20261110-081000 |  |
+| step6.1 (C10, after step5) | qwen3-1.7b | 4 | 25.3/53 (25–26) | 29.3 | 0.57 | 17 | 10.7 | 30 | 180 | 224 / 16 | 0.1 | 20261110-081000 | |
+| step6.1 (C10, after step5) | qwen3-4b-2507 | 1 | 35.3/53 (35–36) | 38.3 | 0.80 | 14.7 | 2 | 35.3 | 236 | 506 / 12 | 0.1 | 20261110-081000 |  |
+| step6.1 (C10, after step5) | qwen3-4b-2507 | 4 | 39/53 (39–39) | 41 | 0.81 | 8 | 5 | 40 | 238 | 224 / 17 | 0.1 | 20261110-081000 | |
+| step6.1 (C10) g8 | qwen3-4b-2507 | 1 | 35.3/53 (35–36) | 38.3 | 0.80 | 15 | 2 | 35 | 196 | 506 / 12 | 0.1 | 20261110-081242 |  |
+| step6.1 (C10) g8 | qwen3-4b-2507 | 8 | 37/53 (37–37) | 38 | 0.78 | 8 | 6 | 37 | 197 | 162 / 15 | 0.1 | 20261110-081242 | |
+| step6.2 (C4) | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.69 | 19 | 3 | 32 | 162 | 506 / 16 | 0.1 | 20261110-081404 | adopted |
+| step6.2 (C4) | qwen3-1.7b | 4 | 27/53 (27–27) | 30 | 0.60 | 15 | 11 | 30 | 169 | 229 / 19 | 0.1 | 20261110-081404 | |
+| step6.2 (C4) | qwen3-4b-2507 | 1 | 36/53 (36–36) | 39 | 0.81 | 14 | 2 | 36 | 228 | 506 / 12 | 0.1 | 20261110-081404 | adopted |
+| step6.2 (C4) | qwen3-4b-2507 | 4 | 38.7/53 (38–39) | 40.7 | 0.79 | 7.3 | 6 | 39.7 | 244 | 229 / 16 | 0.1 | 20261110-081404 | |
+| step6.2 (C4) g8 | qwen3-4b-2507 | 1 | 35.7/53 (35–36) | 38.7 | 0.81 | 14.7 | 2 | 35.3 | 214 | 506 / 12 | 0.1 | 20261110-081642 |  |
+| step6.2 (C4) g8 | qwen3-4b-2507 | 8 | 37/53 (37–37) | 38 | 0.77 | 8 | 7 | 38 | 235 | 165 / 16 | 0.1 | 20261110-081642 | |
+| P0 (start of step 7) | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.69 | 19 | 3 | 32 | 188 | 506 / 16 | 0.1 | 20261110-081834 |  |
+| P0 (start of step 7) | qwen3-1.7b | 4 | 27/53 (27–27) | 30 | 0.60 | 15 | 11 | 30 | 193 | 229 / 19 | 0.1 | 20261110-081834 | |
+| P0 (start of step 7) | qwen3-4b-2507 | 1 | 36/53 (36–36) | 39 | 0.81 | 14 | 2 | 36 | 226 | 506 / 12 | 0.1 | 20261110-081834 |  |
+| P0 (start of step 7) | qwen3-4b-2507 | 4 | 39/53 (39–39) | 41 | 0.80 | 7 | 6 | 40 | 252 | 229 / 17 | 0.1 | 20261110-081834 | |
+| P1 | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.69 | 19 | 3 | 32 | 159 | 506 / 16 | 0.1 | 20261110-082134 | rejected |
+| P1 | qwen3-1.7b | 4 | 27/53 (27–27) | 30 | 0.60 | 15 | 11 | 30 | 167 | 229 / 20 | 0.1 | 20261110-082134 | |
+| P1 | qwen3-4b-2507 | 1 | 35/53 (35–35) | 38 | 0.80 | 15 | 2 | 35 | 235 | 506 / 12 | 0.1 | 20261110-082134 | rejected |
+| P1 | qwen3-4b-2507 | 4 | 39/53 (39–39) | 41 | 0.80 | 7 | 6 | 40 | 264 | 229 / 17 | 0.1 | 20261110-082134 | |
+| P2 | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.69 | 19 | 3 | 32 | 199 | 506 / 15 | 0.1 | 20261110-082428 | rejected |
+| P2 | qwen3-1.7b | 4 | 25.7/53 (25–26) | 26.7 | 0.58 | 15.3 | 12 | 30 | 195 | 229 / 19 | 0.1 | 20261110-082428 | |
+| P2 | qwen3-4b-2507 | 1 | 35.3/53 (35–36) | 38.3 | 0.79 | 14.7 | 3 | 35.3 | 240 | 506 / 12 | 0.1 | 20261110-082428 | rejected |
+| P2 | qwen3-4b-2507 | 4 | 38/53 (38–38) | 40 | 0.79 | 8 | 6 | 39 | 264 | 229 / 16 | 0.1 | 20261110-082428 | |
+| P3 | qwen3-1.7b | 1 | 28/53 (28–28) | 29.3 | 0.65 | 18 | 7 | 31 | 185 | 559 / 14 | 0.1 | 20261110-082734 | rejected: 1.7b −3 |
+| P3 | qwen3-1.7b | 4 | 25/53 (25–25) | 25.7 | 0.60 | 17.3 | 10.7 | 28.7 | 193 | 243 / 16 | 0.1 | 20261110-082734 | |
+| P3 | qwen3-4b-2507 | 1 | 38/53 (38–38) | 41 | 0.82 | 11.7 | 2.3 | 38.3 | 262 | 559 / 13 | 0.1 | 20261110-082734 | rejected: 1.7b −3 |
+| P3 | qwen3-4b-2507 | 4 | 39/53 (39–39) | 41 | 0.81 | 8 | 4 | 39 | 264 | 243 / 17 | 0.1 | 20261110-082734 | |
+| P3b (single only) | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.70 | 16 | 6 | 33 | 169 | 510 / 15 | 0.1 | 20261110-083044 | adopted for single requests |
+| P3b (single only) | qwen3-1.7b | 4 | 24.7/53 (24–25) | 25.7 | 0.57 | 16 | 12.3 | 29 | 160 | 230 / 19 | 0.1 | 20261110-083044 | |
+| P3b (single only) | qwen3-4b-2507 | 1 | 36/53 (36–36) | 38 | 0.78 | 13 | 3 | 37 | 208 | 510 / 12 | 0.1 | 20261110-083044 | adopted for single requests |
+| P3b (single only) | qwen3-4b-2507 | 4 | 37.7/53 (37–38) | 40 | 0.78 | 8.3 | 6 | 38.7 | 196 | 230 / 15 | 0.1 | 20261110-083044 | |
+| P3b split | qwen3-1.7b | 1 | 31/53 (31–31) | 31 | 0.71 | 16.3 | 5.7 | 33 | 190 | 510 / 15 | 0.1 | 20261110-083357 | check |
+| P3b split | qwen3-1.7b | 4 | 26.7/53 (26–27) | 29.7 | 0.60 | 15.3 | 11 | 29.7 | 193 | 229 / 19 | 0.1 | 20261110-083357 | |
+| P3b split | qwen3-4b-2507 | 1 | 36/53 (36–36) | 38 | 0.78 | 13 | 3 | 37 | 253 | 510 / 12 | 0.1 | 20261110-083357 | check |
+| P3b split | qwen3-4b-2507 | 4 | 39/53 (39–39) | 41 | 0.80 | 7 | 6 | 40 | 266 | 229 / 17 | 0.1 | 20261110-083357 | |
+| P4 | qwen3-1.7b | 1 | 30.3/53 (30–31) | 30.3 | 0.70 | 16.7 | 5 | 31.3 | 155 | 543 / 15 | 0.1 | 20261110-083704 | adopted |
+| P4 | qwen3-1.7b | 4 | 23.7/53 (23–24) | 23.7 | 0.55 | 14 | 11 | 28.7 | 164 | 238 / 18 | 0.1 | 20261110-083704 | |
+| P4 | qwen3-4b-2507 | 1 | 36/53 (36–36) | 38 | 0.79 | 12 | 3 | 36 | 252 | 543 / 11 | 0.1 | 20261110-083704 | adopted |
+| P4 | qwen3-4b-2507 | 4 | 38/53 (38–38) | 40 | 0.79 | 7 | 6 | 39 | 266 | 238 / 15 | 0.1 | 20261110-083704 | |
+| P5 | qwen3-1.7b | 1 | 32.7/53 (32–33) | 32.7 | 0.71 | 13.7 | 3 | 32.7 | 213 | 606 / 16 | 0.1 | 20261110-083957 | adopted for single requests |
+| P5 | qwen3-1.7b | 4 | 24/53 (24–24) | 24 | 0.55 | 12.3 | 12.7 | 27.7 | 194 | 254 / 16 | 0.1 | 20261110-083957 | |
+| P5 | qwen3-4b-2507 | 1 | 35.3/53 (35–36) | 37.3 | 0.79 | 11.7 | 3 | 35.3 | 253 | 606 / 11 | 0.1 | 20261110-083957 | adopted for single requests |
+| P5 | qwen3-4b-2507 | 4 | 37/53 (37–37) | 38 | 0.77 | 9 | 6 | 38 | 250 | 254 / 15 | 0.1 | 20261110-083957 | |
+| P5 split | qwen3-1.7b | 1 | 32.7/53 (32–33) | 32.7 | 0.71 | 13.3 | 3.3 | 33 | 182 | 606 / 16 | 0.1 | 20261110-084307 | check |
+| P5 split | qwen3-1.7b | 4 | 21.7/53 (21–22) | 21.7 | 0.53 | 18 | 12.3 | 27 | 179 | 240 / 18 | 0.1 | 20261110-084307 | |
+| P5 split | qwen3-4b-2507 | 1 | 36/53 (36–36) | 38 | 0.80 | 11 | 3 | 36 | 221 | 606 / 11 | 0.1 | 20261110-084307 | check |
+| P5 split | qwen3-4b-2507 | 4 | 37.3/53 (37–38) | 39.3 | 0.79 | 7.7 | 6 | 38.3 | 240 | 240 / 16 | 0.1 | 20261110-084307 | |
+| P6 | qwen3-1.7b | 1 | 33/53 (33–33) | 33 | 0.73 | 13 | 4 | 33 | 182 | 600 / 15 | 0.1 | 20261110-084606 | rejected |
+| P6 | qwen3-1.7b | 4 | 28.7/53 (28–29) | 34.3 | 0.65 | 20 | 3.3 | 29.7 | 211 | 238 / 22 | 0.1 | 20261110-084606 | |
+| P6 | qwen3-4b-2507 | 1 | 34/53 (34–34) | 36 | 0.78 | 15 | 2 | 34 | 237 | 600 / 12 | 0.1 | 20261110-084606 | rejected |
+| P6 | qwen3-4b-2507 | 4 | 38/53 (38–38) | 39 | 0.79 | 7 | 6 | 39 | 248 | 238 / 16 | 0.1 | 20261110-084606 | |
+| P5 split, 55 cases | qwen3-1.7b | 1 | 33.3/55 (33–34) | 33.3 | 0.70 | 14.7 | 3.7 | 34 | 205 | 605 / 16 | 0.1 | 20261110-084928 | reference for P7 |
+| P5 split, 55 cases | qwen3-1.7b | 4 | 24/55 (24–24) | 24 | 0.54 | 18 | 10 | 29 | 190 | 233 / 16 | 0.1 | 20261110-084928 | |
+| P5 split, 55 cases | qwen3-4b-2507 | 1 | 37/55 (37–37) | 38.3 | 0.80 | 12.7 | 3 | 37 | 237 | 605 / 11 | 0.1 | 20261110-084928 | reference for P7 |
+| P5 split, 55 cases | qwen3-4b-2507 | 4 | 38.3/55 (38–39) | 40.3 | 0.79 | 9.7 | 5 | 39.3 | 250 | 233 / 15 | 0.1 | 20261110-084928 | |
+| P7 | qwen3-1.7b | 1 | 31.7/55 (30–33) | 32 | 0.65 | 12.3 | 3 | 31 | 209 | 629 / 16 | 0.1 | 20261110-085230 | rejected |
+| P7 | qwen3-1.7b | 4 | 25/55 (25–25) | 25 | 0.59 | 20.7 | 6 | 27 | 211 | 239 / 18 | 0.1 | 20261110-085230 | |
+| P7 | qwen3-4b-2507 | 1 | 37.3/55 (37–38) | 38.3 | 0.80 | 12 | 3 | 37.3 | 224 | 629 / 11 | 0.1 | 20261110-085230 | rejected |
+| P7 | qwen3-4b-2507 | 4 | 37/55 (37–37) | 37 | 0.77 | 10 | 6 | 38 | 238 | 239 / 14 | 0.1 | 20261110-085230 | |
+| final t0 | qwen3-1.7b | 1 | 34/55 (34–34) | 36 | 0.71 | 13.7 | 4 | 34 | 202 | 355 / 11 | 0 | 20261110-085756 |  |
+| final t0 | qwen3-1.7b | 4 | 31/55 (31–31) | 33 | 0.62 | 16 | 8 | 37 | 114 | 176 / 11 | 0 | 20261110-085756 | |
+| final t0 | qwen3-4b-2507 | 1 | 38/55 (38–38) | 40 | 0.81 | 12 | 3 | 38 | 213 | 355 / 6 | 0 | 20261110-085756 |  |
+| final t0 | qwen3-4b-2507 | 4 | 36/55 (36–36) | 39 | 0.77 | 12 | 5 | 37 | 138 | 176 / 8 | 0 | 20261110-085756 | |
+| final t0.1 | qwen3-1.7b | 1 | 34/55 (34–34) | 36 | 0.71 | 13 | 4 | 34 | 189 | 355 / 11 | 0.1 | 20261110-085933 | final |
+| final t0.1 | qwen3-1.7b | 4 | 30/55 (30–30) | 32 | 0.60 | 17 | 8 | 36 | 112 | 176 / 10 | 0.1 | 20261110-085933 | |
+| final t0.1 | qwen3-4b-2507 | 1 | 37.3/55 (37–38) | 39.3 | 0.80 | 12.7 | 3 | 37.3 | 205 | 355 / 6 | 0.1 | 20261110-085933 | final |
+| final t0.1 | qwen3-4b-2507 | 4 | 36/55 (36–36) | 39 | 0.77 | 12 | 5 | 37 | 138 | 176 / 8 | 0.1 | 20261110-085933 | |
+| final t0.3 | qwen3-1.7b | 1 | 34.3/55 (33–36) | 36.3 | 0.71 | 13 | 4 | 34.7 | 170 | 355 / 10 | 0.3 | 20261110-090104 |  |
+| final t0.3 | qwen3-1.7b | 4 | 30.7/55 (30–32) | 32.7 | 0.62 | 16 | 7.7 | 36.3 | 106 | 176 / 11 | 0.3 | 20261110-090104 | |
+| final t0.3 | qwen3-4b-2507 | 1 | 37.7/55 (37–38) | 39.7 | 0.80 | 12.3 | 3 | 37.7 | 197 | 355 / 6 | 0.3 | 20261110-090104 |  |
+| final t0.3 | qwen3-4b-2507 | 4 | 36.7/55 (36–37) | 39.7 | 0.78 | 11.3 | 5 | 37.7 | 137 | 176 / 8 | 0.3 | 20261110-090104 | |
+| final t0.7 | qwen3-1.7b | 1 | 34.3/55 (33–36) | 36.3 | 0.71 | 12.7 | 4.3 | 34.7 | 169 | 355 / 11 | 0.7 | 20261110-090228 |  |
+| final t0.7 | qwen3-1.7b | 4 | 30.3/55 (29–32) | 32.7 | 0.60 | 16 | 8 | 36.3 | 103 | 176 / 11 | 0.7 | 20261110-090228 | |
+| final t0.7 | qwen3-4b-2507 | 1 | 37.3/55 (37–38) | 39.3 | 0.80 | 13 | 3 | 37.3 | 207 | 355 / 6 | 0.7 | 20261110-090228 |  |
+| final t0.7 | qwen3-4b-2507 | 4 | 37/55 (36–38) | 40 | 0.78 | 11.3 | 5 | 38 | 140 | 176 / 8 | 0.7 | 20261110-090228 | |
+
 ## 10. Open questions for the author
 
 - **Q1. Which server and models are the two reference setups?** Until answered, the executor uses
@@ -1135,4 +1293,14 @@ bn_glt_2co_book
   here, name it so Step 2A can include it. And may it be left out of the system prompt altogether
   when the server honours `enable_thinking: false`?
    - Answers: it has been changed back to the start.
+
+- **Q12. Should Step 10 (algorithm first) apply to batched requests too?** With requests one per
+  query (the default) it kept the user-visible top-1 (1.7b 34 → 34 of 55, 4b 37 → 37.3) and saved
+  40% of the requests. With 4b at 4 per query the user-visible top-1 fell from 39.3 to 37.0: one
+  certain-but-wrong algorithm answer, and three requests whose batch neighbours changed. Options:
+  keep it for both (as now), or skip the algorithm-first check when several jobs share a query.
+- **Q13. Should the real-project cases be committed?** `realCases.json` holds 25 checks from the
+  five projects in Q4 (CC0-licensed GLT projects), with each case's history from the other checks
+  of its tW group. Some expected answers are wider than a checker would select (e.g. `leading` →
+  "Ia mampu mengatur"), because they come from the translators' alignments.
 
