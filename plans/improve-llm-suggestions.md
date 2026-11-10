@@ -1,15 +1,24 @@
 # Plan: improve AI suggestions (`getBestTWordSelectionWithConfidenceFromLlm`)
 
-Written 2026-11-09 against commit `7734dae` (`7734daea7cc2d9d435238f53a31c762dfee42a25`) on branch
-`feature-mcleanb-add-suggestions-support`. All line numbers are for that commit. Before starting,
-run `git log --oneline -1` and `git diff 7734dae --stat -- src __tests__`; if the files below have
-changed, find each function by name, not by line number.
+Written 2026-11-09 against commit `7734dae`; brought up to date on 2026-11-10 against commit
+`e856919` ("Add LLM run comparison script") on branch `feature-mcleanb-add-suggestions-support`.
+**All line numbers are for `e856919`.** Before starting, run `git log --oneline -1` and
+`git diff e856919 --stat -- src __tests__ scripts`; if the files below have changed, find each
+function by name, not by line number.
 
-**Revised 2026-11-09 (same commit):** the model suitability suite now exists, uncommitted:
-`__tests__/llmModelSuitability.test.js`, `__tests__/__fixtures__/llmEval/cases.json` (23 cases) and
-the `test:llm` script in `package.json`. Section 3.5 describes it and its results for
-`qwen/qwen3-1.7b`, `qwen/qwen3-4b-2507` and `qwen/qwen3-14b`; section 9 holds those results as the
-baseline. Steps 1 and 2 were rewritten to extend that suite instead of creating `eval/` files.
+What changed between `7734dae` and `e856919` (five commits, all on 2026-11-09):
+- The model suitability suite is committed: `__tests__/llmModelSuitability.test.js`,
+  `__tests__/__fixtures__/llmEval/cases.json` (23 cases), the `test:llm` script in `package.json`,
+  and three helper scripts in `scripts/` (section 3.5).
+- The suite reports batch-against-single figures and run-to-run consistency.
+- `queryAiAPI` now puts `/no_think` at the **end** of the system prompt instead of the start
+  (line 331). Section 3.6 shows this broke batched answers on the small model (W13).
+- Two `console.log` calls were commented out. In `src/utils/autoCheckingUtils.js`, lines up to
+  2288 are unchanged; later lines moved down by 1 (after 2294) or 6 (after 2438).
+
+Evidence in sections 3.1–3.5 was gathered at `7734dae`, before the `/no_think` move. Section 3.6
+holds the evidence gathered at `e856919`. The evidence, sections 3.1–3.5 included, cites line
+numbers as they are at `e856919`.
 
 Goals, in priority order: **accuracy** (the top suggestion is what a translator would select, and
 the confidence reflects that), then **speed**, then **tokens**.
@@ -17,8 +26,10 @@ the confidence reflects that), then **speed**, then **tokens**.
 ## 1. Summary
 
 The evidence in section 3 changes what is worth doing. The answer format and parsing are not the
-problem: in about 360 live request answers from two models there was no parse failure. The losses come from
-what the model is shown and from how its answer is mapped back to the verse.
+main problem: in about 360 live single-request answers from two models there was no parse failure.
+The losses come from what the model is shown and from how its answer is mapped back to the verse.
+The one parsing loss is in batches: when a model leaves out the `### REQUEST n` lines, every
+suggestion in that query is lost (W13, W14).
 
 | # | Change | Goal | Setup | Evidence |
 |---|---|---|---|---|
@@ -28,8 +39,13 @@ what the model is shown and from how its answer is mapped back to the verse.
 | C4 | Tell the model that batched requests are separate. | Accuracy | Larger models (batched) | W6 |
 | C5 | System prompt wording: test variants one at a time, adopt only what the measurements support. | Accuracy | Differs by setup | W4, W5, section 3.4 |
 | C6 | Use the check's `occurrence` so a repeated word is suggested at the right place. | Accuracy | Both, and the algorithm path | W8 |
-| C7 | Treat a temperature of 0 as a real setting; measure 0.2 against 0.7. | Accuracy (repeatable results) | Both | W7 |
+| C7 | Treat a temperature of 0 as a real setting; measure low temperatures against 0.7. | Accuracy (repeatable results) | Both | W7, section 3.6 |
 | C8 | Optional, needs the author's yes: skip the model when the algorithm is certain. | Speed, tokens | Both | section 3.2 |
+| C9 | Put `/no_think` where it does not break batched answers (the start of the system prompt, as before `6abb25b`), chosen by measurement. | Accuracy (batched) | Small models when batched; check larger | W13 |
+| C10 | When a batched answer has no request markers but exactly one CSV row per request, assign the rows in order. | Accuracy (batched) | Both | W14 |
+
+Do the steps in the order of section 6. Step 2A (C9) comes early because it changes every later
+batched measurement.
 
 Nothing in this plan changes the return contract, the on-disk formats, the `Api`/`Container`
 contract, translationCore or tc-ui-toolkit.
@@ -52,9 +68,9 @@ All paths are in `src/utils/autoCheckingUtils.js` unless another file is named.
    (`makeSuggestionRequest`, line 259), otherwise runs requests one at a time through `doQuery`
    (line 489) → `getBestSelections`. If the AI result has no selection, it reruns that request with
    the algorithm and marks it `algorithmFallback` (lines 397–405).
-3. `getBestSelections` (line 3785) sends the jobs to
+3. `getBestSelections` (line 3791) sends the jobs to
    `getBestTWordSelectionWithConfidenceFromLlm` (line 2236) when `llmQueryUrl` is set: one job as a
-   single request, several as one batch. Temperature is `llmTemperature || 0.7` (line 3865).
+   single request, several as one batch. Temperature is `llmTemperature || 0.7` (line 3871).
 4. Single request: `buildTranslationOptionsPrompt` (line 836) returns a fixed system prompt (lines
    845–883: 8 rules, one Spanish example, three wrong answers) and a per-request input: `TARGET
    VERSE (lang): words`, optional `PREVIOUS TRANSLATIONS:` lines, `GATEWAY PHRASE (lang): phrase`,
@@ -67,12 +83,17 @@ All paths are in `src/utils/autoCheckingUtils.js` unless another file is named.
      750–763);
    - keeps the first `MAX_PROMPT_PREVIOUS_TRANSLATIONS` = 20 (lines 19, 767);
    - writes each as `"rendering" (chosen N times for "key")` (lines 770–774).
-6. Batch: `getBestTWordSelectionsBatchFromLlm` (line 2394) prefixes each input with
-   `### REQUEST n`, ends with one `Answer:`, appends `LLM_BATCH_SYSTEM_PROMPT` (line 2313) to the
-   system prompt (line 2416), allows `max(2048, n × 256)` answer tokens (line 2415), and splits the
-   answer with `splitLlmBatchAnswer` (line 2356). The first request's `lmOptions` are used for all.
-7. `queryAiAPI` (line 317) prefixes `/no_think` to the system prompt and the query when thinking is
-   off (lines 330–331). In Electron it calls `window.AiAPIs.query(query, lmQueryOptions)` (line
+6. Batch: `getBestTWordSelectionsBatchFromLlm` (line 2395) prefixes each input with
+   `### REQUEST n`, ends with one `Answer:`, appends `LLM_BATCH_SYSTEM_PROMPT` (line 2314) to the
+   system prompt (line 2417), allows `max(2048, n × 256)` answer tokens (line 2416), and splits the
+   answer with `splitLlmBatchAnswer` (line 2357). The first request's `lmOptions` are used for all.
+   If the answer has no `### REQUEST n` marker and the batch has more than one request,
+   `splitLlmBatchAnswer` returns an empty answer for every request (lines 2370–2375).
+7. `queryAiAPI` (line 317), when thinking is off, puts `/no_think\n` before the query (line 330)
+   and ` /no_think` after the system prompt (line 331; it was before the system prompt until commit
+   `6abb25b`). In a batch the system prompt ends with `LLM_BATCH_SYSTEM_PROMPT`, so `/no_think`
+   comes right after the batch example. In Electron it calls
+   `window.AiAPIs.query(query, lmQueryOptions)` (line
    354); translationCore's `electronite/queryAiApisFromMainProcess.js` (line 154) sends its first
    argument as the user message, so there the user message has no `/no_think` and the system prompt
    has it. Outside Electron `streamChatMessage` (line 123) sends both with `/no_think`. Both send
@@ -84,8 +105,8 @@ All paths are in `src/utils/autoCheckingUtils.js` unless another file is named.
    The words are placed as an adjacent run if possible, else in order, else first unused positions
    (lines 2094–2108). Up to 3 options are returned, highest confidence first.
 
-`translatePhraseWithConfidence` (line 2659), `buildVerseMatchPrompt` (line 501) and
-`parseResponseRow` (line 2499) are the older single-phrase path. Nothing in `src/` calls
+`translatePhraseWithConfidence` (line 2665), `buildVerseMatchPrompt` (line 501) and
+`parseResponseRow` (line 2505) are the older single-phrase path. Nothing in `src/` calls
 `translatePhraseWithConfidence`. **This plan does not touch them.**
 
 ## 3. Evidence
@@ -222,10 +243,10 @@ its 5–6 misses in every single-request run. 4b with history `la iglesia` chose
 - At 12 per query each model lost the Vietnamese case it got right alone (4b: `nơi Thánh`; 14b:
   `"",0`).
 - Batched answers have one option per request in nearly every case. `LLM_BATCH_SYSTEM_PROMPT`'s
-  example (lines 2313–2322) shows one row per request.
+  example (lines 2314–2323) shows one row per request.
 - Speed and token effects are in section 3.2.
 
-**W7. Temperature.** The default is 0.7 (line 3865; tc-ui-toolkit's setting also starts at 0.7).
+**W7. Temperature.** The default is 0.7 (line 3871; tc-ui-toolkit's setting also starts at 0.7).
 On 4b at 0.7 the same request gave `fe` in one run and `la fe` in another, and confidence 85 or 95
 for the same answer. Results are cached per check, so which one the user sees is chance.
 `llmTemperature || 0.7` also turns a setting of 0 into 0.7.
@@ -250,7 +271,8 @@ allowed, and `es-no-history` deliberately keeps `iglesia` so this leak stays vis
 
 **W11. Small faults, noted for accuracy of the record.** The example line at 871 reads `chosen 31
 time`. `formatNumberedVerse`'s JSDoc (lines 777–787) describes an answer format and a
-`parseResponseRow` link that no longer apply; the function is only used in two log messages.
+`parseResponseRow` link that no longer apply; the function is only used in one log message (line
+2452) and in commented-out logging.
 
 ### 3.4 The candidate prompt that was tried
 
@@ -318,6 +340,19 @@ case-file checks always run. Run it with:
 LLM_EVAL_MODEL=qwen/qwen3-4b-2507 LLM_EVAL_RUNS=3 npm run test:llm
 ```
 
+Three scripts wrap it (each has a usage header; `-h` prints it):
+- `scripts/test-llm.sh [-u URL] [-r RUNS] [-g GROUPING] [-t TEMP] [-o DIR] model ...` runs the
+  suite once per model and writes `<stamp>-<model>.log` and `.json` (the full results, raw answers
+  included) to `llm-eval-results/`, which is in `.gitignore`. `-l` lists the server's models.
+- `scripts/compare-llm-runs.js [-c] [DIR [STAMP]]` prints the models of one run side by side;
+  `-c` adds top-1 per case. Its "failed bars" row leaves out three of the suite's tests (request
+  errors, thinking off, batch markers), so read the `.log` for those.
+- `scripts/test-llm-temperatures.sh model ...` runs `test-llm.sh` at temperatures 0.1 to 0.8 and
+  prints a table.
+
+The suite also reports **consistency**: the share of answers that equal their case's most common
+top answer across runs (100% means every run gave the same answer).
+
 A model is suitable when all of these pass (thresholds are environment variables, see the file's
 header):
 
@@ -382,6 +417,88 @@ with high confidence" after Step 7, it should not be offered as a setting.
 was changed to `the world` because it did not tell models apart; the weakness is real for GLs and
 target languages that share spellings, and no step addresses it.
 
+### 3.6 Evidence at `e856919` (2026-11-09 evening and 2026-11-10)
+
+Sources: the author's saved runs in `llm-eval-results/` (untracked), read with
+`scripts/compare-llm-runs.js -c`, and one experiment run on 2026-11-10 for this plan. All use the
+23 cases. Counts are answers with the expected top option, out of runs × 23.
+
+**Runs at `e856919`, temperature 0.1, grouping 4.** The first three columns are run
+`20261109-165617` (3 runs, LM Studio at `http://localhost:1234`); the last two are run
+`20261110-055834` (2 runs, LM Studio at `http://192.168.142.56:1234`).
+
+| | qwen3-1.7b | qwen3-4b-2507 | qwen3-14b | qwen3-8b | qwen3-14b-mlx |
+|---|---|---|---|---|---|
+| Single top-1 | 51/69 (74%) | 60/69 (87%) | 54/69 (78%) | 40/46 (87%) | 36/46 (78%) |
+| Single wrong at ≥ 80 | 15 (22%) | 6 (9%) | 8 (12%) | 6 (13%) | 6 (13%) |
+| Single consistency | 100% | 100% | 100% | 100% | 100% |
+| Median single request | 127 ms | 147 ms | 523 ms | 514 ms | 1,038 ms |
+| Batched top-1 | 33/69 (48%) | 48/69 (70%) | 60/69 (87%) | 34/46 (74%) | 39/46 (85%) |
+| Batched wrong at ≥ 80 | 15 | 4 | 3 | 0 | 2 |
+| Time per suggestion, single / batched | 137 / 132 ms | 156 / 156 ms | 590 / 523 ms | 522 / 474 ms | 1,151 / 1,036 ms |
+| Prompt tokens per suggestion, single / batched | 467 / 185 | 467 / 185 | 467 / 185 | 467 / 185 | 467 / 185 |
+| Batched queries with a request marker missing | 3 of 18 (some markers) | 3 of 18 (no markers at all) | 0 of 18 | 0 of 12 | 0 of 12 |
+
+- Single-request accuracy is the same as at `7734dae` (section 3.5): the `/no_think` move did not
+  change it.
+- Batching helps the 14B models (+7 to +9 points, 10–13% less time) and hurts the smaller ones.
+  This agrees with D4.
+- At temperature 0.1 every model gave the same single answer in every run.
+- Single misses that Steps 3 and 4 target: `xx-related-key` (W1) is missed by all five models in
+  every run; `de-compound` (`"Kirche"` → `sich`, W2) by 1.7b and 8b; `vi-holy-places` (W1) by 1.7b
+  and 8b. All 3 of 8b's single misses are these. `es-nothing-fits` on 4b is `"la iglesia",0` →
+  `la` at 0, which C3 drops.
+- Not targeted by any step: `xx-word-order` (verse `dun sema kirano lopa vu`, history
+  `kirano sema`, expected `sema kirano`). 4b answers `"dun sema",85` and 1.7b a 4-word span in
+  every run; the 8B and 14B models get it right. Watch it in Step 7.
+- A thinking model, `deepseek/deepseek-r1-0528-qwen3-8b` (run `20261109-211000`), ignored the
+  thinking-off switch: all 49 single answers it gave had reasoning, 22 were cut off at the token
+  limit, the median request took 30 s and 1,305 answer tokens, and top-1 was 51%. The suite's
+  "keeps thinking off" test fails it. Such models are unsuitable; no step tries to support them.
+
+**W13. `/no_think` at the end of the system prompt makes the small model drop the batch markers.**
+Experiment on 2026-11-10: `qwen/qwen3-4b-2507` at `http://192.168.142.56:1234`, temperature 0.1,
+grouping 4, 3 runs, with the code at `e856919` unchanged. A temporary copy of the suite (deleted
+afterwards) rewrote only where `/no_think` sits in the system prompt it sent:
+
+| `/no_think` in the system prompt | Single top-1 | Batched top-1 | Batched answers missing markers | Smallest prompt |
+|---|---|---|---|---|
+| At the end (`e856919`) | 60/69 | 48/69 | 3 of 18 | 432 tokens |
+| At the start (`7734dae`) | 60/69 | 59/69 | 0 of 18 | 432 tokens |
+| Left out | 59/69 | 60/69 | 0 of 18 | 428 tokens |
+
+- With `/no_think` at the end, the first query of every run (`es-exact-key`, `es-no-history`,
+  `vi-holy-places`, `vi-holiness`) came back as
+  `"la iglesia",98\n"la iglesia",98\n"thánh khiết",95\n"thánh khiết",95`: no `### REQUEST n`
+  lines, so `splitLlmBatchAnswer` returned nothing for all four. The author's saved runs show the
+  same: 4b had 0 of 96 batched answers without markers in the sweep run before the move
+  (`temperatures-20261109-162705`) and 3 of 18, 3 of 18 and 1 of 12 in the three runs after it.
+- 1.7b's batched top-1 fell from 13/23 per run (`sweep-check`, before) to 11/23 (after).
+- The 8B and 14B models kept their markers in every run after the move.
+- Thinking stayed off in all three variants (no answer had reasoning), because the request also
+  sends `chat_template_kwargs: { enable_thinking: false }`. Servers that ignore that field were not
+  tested.
+- Why the marker was moved is not recorded in the commit; see Open question Q11.
+
+**W14. A batched answer without markers loses every suggestion in the query**
+(`splitLlmBatchAnswer`, lines 2370–2375), even when it has exactly one row per request in order, as
+in W13's example. Assigning that answer's rows in order would have given the right top option for
+3 of the 4 requests (the third is a wrong answer either way).
+
+**Temperature.** Sweep of `qwen/qwen3-4b-2507`, 2 runs per temperature, grouping 4, run before the
+`/no_think` move (`temperatures-20261109-162705`):
+
+| Temperature | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 |
+|---|---|---|---|---|---|---|---|---|
+| Single top-1 (of 46) | 41 | 41 | 41 | 41 | 41 | 41 | 40 | 39 |
+| Single wrong at ≥ 80 | 3 | 3 | 2 | 2 | 2 | 2 | 3 | 4 |
+| Batched top-1 (of 46) | 40 | 40 | 40 | 38 | 40 | 40 | 38 | 39 |
+| Single consistency | 98% | 98% | 98% | 98% | 96% | 98% | 96% | 98% |
+
+A 1-run sweep of 1.7b (`sweep-check`) gave 17/23 at every temperature except 0.3 (18) and 0.8
+(15). So on these two models accuracy is flat from 0.1 to 0.6 and slightly lower at 0.7–0.8. The
+larger model has not been swept (Step 8).
+
 ## 4. Decisions
 
 Each is settled. Do not reopen them unless a step's "done when" check cannot be met.
@@ -389,10 +506,15 @@ Each is settled. Do not reopen them unless a step's "done when" check cannot be 
 - **D1. Keep the CSV answer format and the tolerant parser.** No JSON mode, schema or grammar.
   There were no parse failures in about 360 live request answers, and structured output would need changes
   to translationCore's request code.
-- **D2. Keep thinking off and leave `/no_think` handling as it is.** Reasoning tokens were 0 and 1.
+- **D2. Keep thinking off, and keep sending `/no_think`.** Reasoning tokens were 0 and 1. Only
+  where `/no_think` sits in the system prompt is open, and Step 2A settles it by measurement (W13).
+  Do not remove it without the author's yes (Q11): leaving it out measured as well as the start
+  position, but only on a server that honours `enable_thinking`.
   The evaluation reports reasoning tokens so a model that ignores the switch is noticed.
-- **D3. Keep `LLM_DEFAULT_MAX_TOKENS` at 2048.** No runaway answer was seen. A small cap would cut
-  off models that cannot turn thinking off before they reach their answer.
+- **D3. Keep `LLM_DEFAULT_MAX_TOKENS` at 2048.** No runaway answer was seen from the Qwen3 models.
+  A small cap would cut off models that cannot turn thinking off before they reach their answer.
+  (The one thinking model tried hit the cap in 22 of 49 answers, section 3.6; it is unsuitable
+  either way.)
 - **D4. Keep the default of 1 request per query.** On the small model batching saved no time and
   leaked between requests. Batching stays the user's choice through `llmGrouping`, for larger
   models. Do not clamp `llmGrouping`.
@@ -425,6 +547,17 @@ Each is settled. Do not reopen them unless a step's "done when" check cannot be 
   median ≤ 3,000 ms, batched top-1 at most 15 points below single). With them 4b passes, 14b
   passes close to the line, and 1.7b fails on confidence, which matches what the raw answers show.
   Do not loosen them to make a model pass; raise them once the steps improve the baseline.
+- **D15. Compare changes at temperature 0.1, with 3 runs.** At 0.1 the single-request answers were
+  the same in every run (section 3.6), so a one-case difference is a real difference, not chance.
+  The baseline and the final result are also run at 0.7, the app's default, so the numbers users
+  will see are on record. `scripts/test-llm.sh` defaults to 0.7 and 2 runs, so always pass
+  `-t` and `-r`.
+- **D16. Full results stay in `llm-eval-results/`, untracked.** Only summary rows go into
+  section 9 (unless the author answers Q8 otherwise). Name the run's stamp in each row so the JSON
+  can be found.
+- **D17. C10 assigns rows in order only when the count matches exactly** (as many CSV rows as
+  requests, and no marker at all). Anything else stays unanswered and falls back to the algorithm,
+  as now. A looser rule could give one request another request's answer.
 
 ## 5. Where the two setups differ
 
@@ -435,22 +568,37 @@ Each is settled. Do not reopen them unless a step's "done when" check cannot be 
 | Speed lever | The server's prompt cache; nothing to gain from batching. | Batching: 7–28% less time, 61–77% fewer prompt tokens in section 3.2. |
 | Main accuracy risk | History selection (W1), leakage between batched requests (W6), prompt examples (W10). | Extra function words (W4), over-confidence (W5). |
 | Prompt wording | The current wording did best. | The candidate wording did better. See D10 and Step 7. |
+| `/no_think` at the end of the system prompt | Drops batch markers on 4B; lowers batched top-1 on 1.7B and 4B (W13). | No effect seen on 8B and 14B. |
 
-C1, C2, C3, C6 and C7 apply to both.
+C1, C2, C3, C6 and C7 apply to both. C9 and C10 matter when requests are batched; with the default
+of 1 request per query they change nothing.
 
 ## 6. Steps
 
 After every step: `npm test` passes (lint and jest), and
 `npx eslint --no-ignore __tests__/llmModelSuitability.test.js` reports no errors (`npm test` only
-lints `src`). Add JSDoc for every new or changed function. "Run the suite" below means, for each
-reference model (Q1), `LLM_EVAL_MODEL=<model> LLM_EVAL_RUNS=3 LLM_EVAL_OUT=<file> npm run test:llm`.
+lints `src`). Add JSDoc for every new or changed function.
+
+"Run the suite" below means, with the reference models and server from Q1:
+
+```
+scripts/test-llm.sh -u <server URL> -r 3 -t 0.1 -g 4 <small model> <larger model>
+scripts/compare-llm-runs.js -c
+```
+
+The first command prints each model's report and writes the results to `llm-eval-results/`; the
+second prints the models side by side with top-1 per case. `test-llm.sh` exits 1 when a model
+fails one of the suite's bars; that is a result to record, not an error in the step. Copy the
+figures into section 9 with the run's stamp (D15, D16).
 
 ### Step 0. Check the starting point (OFFLINE)
 
-Run `git log --oneline -1`, `git status --short` and `npm test`.
+Run `git log --oneline -1`, `git status --short` and `npm test`. For the LIVE steps also run
+`scripts/test-llm.sh -u <server URL> -l` to see that the server answers and lists the models.
 
-**Done when:** `npm test` prints `Test Suites: 17 passed` (11 tests skipped: 9 live suitability
-tests and the 2 existing ones) and you have noted any drift from `7734dae`.
+**Done when:** `npm test` prints `Test Suites: 17 passed` and `Tests: 11 skipped, 166 passed`
+(the skipped ones are 9 live suitability tests and 2 older tests), and you have noted any drift
+from `e856919`.
 
 ### Step 1. Finish the evaluation cases and offline checks (OFFLINE)
 
@@ -477,18 +625,55 @@ passes with only the 9 live tests skipped, and `cases.json` has at least 30 case
 
 ### Step 2. Complete the suite's metrics and record the baseline (LIVE)
 
-The suite reports top-1, top-3, wrong at ≥ 80, CSV format, timing and tokens. Add the rest of
-section 7.4 to its `summarize` and `formatReport`, without new pass/fail tests:
+The suite reports top-1, top-3, wrong at ≥ 80, CSV format, consistency, timing and tokens, for
+single and batched requests (`summarize`, line 504, and `formatReport`, line 575, of
+`__tests__/llmModelSuitability.test.js`). Add the rest of section 7.4 to both, without new
+pass/fail tests:
 - **F1**, **Empty**, top-1 **per run** (min–max);
 - **User-visible top-1**: when the AI result has no option, score the algorithm's result instead
   (what `LlmRequestQueue.processNextRequest` does at lines 397–405);
-- the **algorithm-only** top-1;
-- `LLM_EVAL_GROUPING` accepting a comma list (`1,4,8`) and reporting each size.
+- the **algorithm-only** top-1.
 
-Then run the suite on every reference model (Q1) with `LLM_EVAL_GROUPING=4,8` for the larger model.
+Leave `LLM_EVAL_GROUPING` as a single number. To measure another batch size, run
+`scripts/test-llm.sh` again with a different `-g`; each run repeats the single requests, which
+doubles as a consistency check. Add the new summary fields to `scripts/compare-llm-runs.js`'s
+`ROWS` (line 83) so they show in the comparison.
 
-**Done when:** each run's report is copied into section 9 as `baseline` rows, replacing the
-`baseline (partial)` rows, and `npm test` still makes no network call.
+Then run the suite (section 6) on every reference model at `-t 0.1` and again at `-t 0.7`, and
+for the larger model also at `-g 8`.
+
+**Done when:** the figures are in section 9 as `baseline` rows, replacing the
+`baseline e856919 (partial)` rows, and `npm test` still makes no network call.
+
+### Step 2A. Where `/no_think` goes in the system prompt, C9 (LIVE)
+
+W13 shows the end position costs the 4B model 11 of 69 batched answers. This step measures the
+three placements on every reference model and keeps the best. It comes before the other changes
+because it moves every later batched figure.
+
+1. In `__tests__/llmModelSuitability.test.js`, add an environment variable `LLM_EVAL_NO_THINK`
+   (`start`, `end` or `none`; unset means send the system prompt unchanged). In `bridgeQuery`
+   (line 199) pass `options.systemPrompt` through a helper that strips a leading `/no_think\n` or
+   a trailing ` /no_think` and re-adds the marker where the variable says. Document it in the
+   file's header, add `LLM_EVAL_NO_THINK` to the settings the file logs, and store it in `run` so
+   it is saved with the results. `scripts/test-llm.sh` passes it through already, since `npx jest`
+   inherits the environment.
+2. Run the suite three times, with `LLM_EVAL_NO_THINK=start`, `end` and `none`.
+3. Choose with the adoption rule (section 7.4), comparing `start` against `end`: adopt `start` if
+   batched top-1 is at least 1 case per run higher on one setup and single and batched top-1 are
+   not more than 1 case per run lower on the other. If so, change line 331 back to
+   ``const finalSystemPrompt = enable_thinking ? systemPrompt : `/no_think\n${systemPrompt}`;``.
+   If `end` wins or nothing differs, change nothing.
+4. Record the `none` figures in section 9 for Q11. Do not adopt `none` (D2).
+5. Add a test to `__tests__/autoCheckingUtilsLlm.test.js` that fixes the adopted position: with
+   `window.AiAPIs.query` mocked, the `systemPrompt` option it receives starts with (or ends with)
+   `/no_think`, and with `lmOptions: { enable_thinking: true }` contains no `/no_think`.
+
+If no server is reachable, skip this step, leave line 331 as it is, and say so in section 9.
+
+**Done when:** the three rows per model are in section 9 with the decision, the new test passes,
+and `npm test` passes. If the position changed, the later steps' batched "previous step" figures
+are this step's.
 
 ### Step 3. History selection, C1 (OFFLINE, then LIVE check)
 
@@ -584,7 +769,7 @@ the rows to section 9.
    - if the selections are the first run and there are at least `occurrence` runs, return the
      selections for run number `occurrence`, built with `buildSelectionsFromPositions` (line 1084);
      otherwise return `selections` unchanged.
-2. In `getBestSelections` (line 3785), after either path returns, apply it to every option of each
+2. In `getBestSelections` (line 3791), after either path returns, apply it to every option of each
    job using `job.contextId?.occurrence`.
 3. In `src/Container.js`, add `contextId` to the object passed to
    `makeLlmRequestAndWaitForResponse` (line 765). The background request already has it (line 323).
@@ -602,16 +787,34 @@ verse `Dios amó al mundo y Dios envió a su Hijo`, GL `God`, history `{ God: { 
 are top-1 for the algorithm row in `__tests__/llmModelSuitability.test.js` (update its expected count and
 comment).
 
-### Step 6. Batched requests, C4 (LIVE)
+### Step 6. Batched requests, C10 (OFFLINE) and C4 (LIVE)
 
-In `LLM_BATCH_SYSTEM_PROMPT` (line 2313) add one line after the first:
+**6.1, C10 (OFFLINE).** In `splitLlmBatchAnswer` (line 2357), in the branch for an answer with no
+markers (lines 2370–2375), add a case for `count > 1`: split the cleaned text into lines, drop the
+empty ones, and if there are exactly `count` lines and every one is a CSV row (a quoted text, a
+comma and a number, the pattern `CSV_ROW` in the suite uses), set `sections[i]` to line `i`. In
+every other case return the empty sections as now (D17). Update the function's JSDoc.
+
+Tests, in `__tests__/autoCheckingUtilsLlm.test.js`, through
+`getBestTWordSelectionWithConfidenceFromLlm` with an array and `window.AiAPIs.query` mocked, as
+the tests in the `with an array` block (line 114) do:
+- 2 requests on the file's `wordList`, answer `"iglesia",98\n"",0` → the first result's top option
+  is `iglesia` at 98 and the second has no option.
+- 2 requests, answer `"iglesia",98\n"la iglesia",70\n"",0` (3 rows) → both results have no option.
+- 2 requests, answer `"iglesia",98` (1 row) → both results have no option.
+
+On 2026-11-10 no existing test was found that expects a marker-less answer to a multi-request
+batch to stay empty (searched the file for "marker"); if one exists, C10 changes it and that is
+intended.
+
+**6.2, C4 (LIVE).** In `LLM_BATCH_SYSTEM_PROMPT` (line 2314) add one line after the first:
 `Each request is separate: use only its own TARGET VERSE and PREVIOUS TRANSLATIONS.`
 Change nothing else in it.
 
-**Done when:** with the larger model at `LLM_EVAL_GROUPING=4,8` and the small model at `4`,
-the suite meets the adoption rule in section 7.4 against Step 4's batched rows. If it
-does not, revert the line and record that in section 9. `npm test` passes either way (the batch
-tests do not assert the addendum text).
+**Done when:** the 6.1 tests pass and `npm test` passes; and for 6.2, with the larger model at
+`-g 4` and `-g 8` and the small model at `-g 4`, the suite meets the adoption rule in section 7.4
+against the batched rows of the step before. If it does not, revert the 6.2 line and record that
+in section 9. `npm test` passes either way (the batch tests do not assert the addendum text).
 
 ### Step 7. System prompt variants, C5 (LIVE)
 
@@ -638,22 +841,26 @@ passes.
 
 ### Step 8. Temperature, C7 (OFFLINE fix, LIVE measurement)
 
-1. Line 3865: `temperature: (llmTemperature || 0.7)` → `temperature: (llmTemperature ?? 0.7)`, so
+1. Line 3871: `temperature: (llmTemperature || 0.7)` → `temperature: (llmTemperature ?? 0.7)`, so
    a setting of 0 is used. Add a test that a job with `llmTemperature: 0` reaches
    `window.AiAPIs.query` with `temperature` 0.
-2. (LIVE) Run the evaluation on both setups with `LLM_EVAL_TEMPERATURE=0.2` and compare with the
-   0.7 rows: top-1 mean, and the spread between runs (min to max).
+2. (LIVE) The small model was swept before these changes (section 3.6): flat from 0.1 to 0.6,
+   slightly lower at 0.7 and 0.8. Repeat the sweep on the final code for both setups:
+   `LLM_EVAL_TEMPERATURES="0 0.1 0.3 0.7" scripts/test-llm-temperatures.sh -u <server URL> -r 3 <small model> <larger model>`.
+   Compare top-1, wrong at ≥ 80 and consistency across temperatures.
 
 Do not change the default. tc-ui-toolkit owns it; see Open question Q6.
 
-**Done when:** the test passes, `npm test` passes, and the 0.2 rows are in section 9 with a
-one-line recommendation.
+**Done when:** the test passes, `npm test` passes, and the sweep's table is in section 9 with a
+one-line recommendation for Q6.
 
 ### Step 9. Documentation (OFFLINE)
 
 1. `CLAUDE.md`, section "Auto-select suggestions": describe the history selection (C1), the answer
-   mapping and confidence cap (C2, C3), `moveSelectionsToOccurrence` (C6), and where the
-   evaluation lives and how to run it.
+   mapping and confidence cap (C2, C3), `moveSelectionsToOccurrence` (C6), the marker-less batch
+   answer (C10), and where the evaluation lives and how to run it (the suite, the three scripts in
+   `scripts/`, and the untracked `llm-eval-results/` folder; `CLAUDE.md` does not mention them
+   yet).
 2. Fix `formatNumberedVerse`'s JSDoc (W11): say it is used for log messages only.
 3. Fill in section 9 and write a short "Outcome" paragraph at the top of this file: what was
    adopted, what was rejected, baseline against final numbers for both setups.
@@ -756,14 +963,17 @@ Per model and grouping, over all runs:
 - **Wrong at confidence ≥ 80:** top-1 wrong and its confidence 80 or more. Mean per run.
 - **Empty:** cases with an expected answer where the model's result had no option.
 - **User-visible top-1:** top-1 after replacing an empty AI result with the algorithm's.
+- **Consistency:** the share of answers equal to their case's most common top answer across runs.
 - **Time:** total and median ms per case. **Tokens:** mean prompt and completion tokens per case,
   total reasoning tokens, and the smallest-request prompt size.
 - An **algorithm-only** row for comparison.
 
-Runs differ by about one case at temperature 0.7, so:
+Comparisons are made at temperature 0.1 (D15). Runs differ by about one case at temperature 0.7,
+and batched runs differ a little even at 0.1, so the rules keep a one-case margin. "Case" means
+one case per run: with 3 runs, 3 answers of the pooled 69.
 - **Regression rule** (Steps 3, 4): mean top-1 is not more than 1 case lower than the previous
   step's on either setup.
-- **Adoption rule** (Steps 6, 7): mean top-1 is at least 1 case higher on one setup, or "wrong at
+- **Adoption rule** (Steps 2A, 6, 7): mean top-1 is at least 1 case higher on one setup, or "wrong at
   confidence ≥ 80" is at least 1 lower, and neither measure is more than 1 case worse on the other
   setup. Otherwise the change is rejected and reverted.
 
@@ -782,6 +992,12 @@ Risks:
   answer there.
 - **Step 3 sends fewer history lines** (10, or 5 when none fit the verse). If the evaluation's
   `long-history` cases lose, raise `MAX_PROMPT_PREVIOUS_TRANSLATIONS` back toward 20 and note it.
+- **Step 2A rests on one model family.** The `/no_think` marker is a Qwen3 convention. Its best
+  position was measured on Qwen3 models on LM Studio only, and the reason it was moved to the end
+  is not known (Q11). If the author moved it for a model or server not tested here, moving it back
+  could undo that.
+- **Step 6.1 can assign a row to the wrong request** if a model leaves out the markers, skips one
+  request and gives two rows for another. D17 keeps this to the exact-count case; none was seen.
 
 Left out, with reasons:
 - **Structured output (JSON schema, grammar):** no parse failures were seen (D1).
@@ -795,6 +1011,10 @@ Left out, with reasons:
 - **The older path** `translatePhraseWithConfidence` (D11).
 - **Per-request timing for batches:** every request in a batch reports the whole batch's
   `elapsedStr`. Not a suggestion-quality problem.
+- **Thinking models** that ignore the thinking-off switch (section 3.6): slow and cut off at the
+  token limit. The suite fails them; nothing here tries to make them work.
+- **The word-order miss on small models** (`xx-word-order`, section 3.6): no step targets it. It
+  is watched in Step 7, and the algorithm fallback does not apply because the model does answer.
 
 ## 9. Results log
 
@@ -808,52 +1028,88 @@ Preliminary numbers from section 3.2 (different, smaller case sets; not the base
 | prelim, planned history | qwen3-4b-2507 | 1 | 15 | 14, 14 | 0, 0 | 2.5–2.7 s | 477 |
 | prelim, planned history | qwen3-14b | 1 | 15 | 10, 10 | 3, 4 | 10.4–10.9 s | 477 |
 
-The executor adds rows below for `baseline`, `step3`, `step4`, `step6`, each `P` variant of Step 7
-(adopted or rejected), the temperature 0.2 runs, and `final`. The `baseline (partial)` rows were
-recorded with the suite on 2026-11-09 at `7734dae` (23 cases × 3 runs, temperature 0.7); F1, Empty
-and user-visible top-1 were not measured yet (Step 2). Top-1 is shown per run.
+The executor adds rows below for `baseline`, `step2A` (three placements), `step3`, `step4`,
+`step6`, each `P` variant of Step 7 (adopted or rejected), the temperature sweep, and `final`.
+Top-1 is the mean per run out of 23, with the lowest and highest run. F1, Empty and user-visible
+top-1 are not measured yet (Step 2).
+
+- `baseline 7734dae (partial)`: the suite on 2026-11-09 at `7734dae`, 3 runs, temperature 0.7,
+  `http://localhost:1234`. `/no_think` was at the start of the system prompt.
+- `baseline e856919 (partial)`: run `20261109-165617`, 3 runs, temperature 0.1, same server.
+  `/no_think` is at the end. **These are the rows Step 2 replaces and later steps compare with.**
+- `no_think …`: the experiment of 2026-11-10 (W13), 3 runs, temperature 0.1,
+  `http://192.168.142.56:1234`, a different machine, so compare its times only with each other.
 
 | Label | Model | Grouping | Top-1 mean (min–max) | Top-3 | F1 | Wrong ≥ 80 | Empty | User-visible top-1 | Median ms | Prompt / completion tokens | Decision |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| baseline (partial) | qwen3-1.7b (8-bit) | 1 | 16.7/23 (16–17) | 50/69 | – | 16/69 | 0 | – | 131 | 467 / 12 | fails suite |
-| baseline (partial) | qwen3-1.7b (8-bit) | 4 | 13/23 (13–13) | – | – | – | – | – | – | 185 / – | |
-| baseline (partial) | qwen3-4b-2507 | 1 | 20/23 (19–21) | 60/69 | – | 4/69 | 0 | – | 150 | 467 / 9 | passes |
-| baseline (partial) | qwen3-4b-2507 | 4 | 20/23 (20–20) | – | – | – | – | – | – | 185 / – | |
-| baseline (partial) | qwen3-14b | 1 | 18/23 (18–18) | 57/69 | – | 8/69 | 0 | – | 517 | 467 / 15 | passes |
-| baseline (partial) | qwen3-14b | 4 | 19/23 (18–20) | – | – | – | – | – | – | 185 / – | |
+| baseline 7734dae (partial) | qwen3-1.7b (8-bit) | 1 | 16.7/23 (16–17) | 50/69 | – | 16/69 | 0 | – | 131 | 467 / 12 | fails suite |
+| baseline 7734dae (partial) | qwen3-1.7b (8-bit) | 4 | 13/23 (13–13) | – | – | – | – | – | – | 185 / – | |
+| baseline 7734dae (partial) | qwen3-4b-2507 | 1 | 20/23 (19–21) | 60/69 | – | 4/69 | 0 | – | 150 | 467 / 9 | passes |
+| baseline 7734dae (partial) | qwen3-4b-2507 | 4 | 20/23 (20–20) | – | – | – | – | – | – | 185 / – | |
+| baseline 7734dae (partial) | qwen3-14b | 1 | 18/23 (18–18) | 57/69 | – | 8/69 | 0 | – | 517 | 467 / 15 | passes |
+| baseline 7734dae (partial) | qwen3-14b | 4 | 19/23 (18–20) | – | – | – | – | – | – | 185 / – | |
+| baseline e856919 (partial) | qwen3-1.7b | 1 | 17/23 (17–17) | 51/69 | – | 15/69 | – | – | 127 | 467 / 12 | fails: wrong ≥ 80, batch top-1 |
+| baseline e856919 (partial) | qwen3-1.7b | 4 | 11/23 (11–11) | – | – | 15/69 | – | – | – | 185 / – | |
+| baseline e856919 (partial) | qwen3-4b-2507 | 1 | 20/23 (20–20) | 60/69 | – | 6/69 | – | – | 147 | 467 / 8 | fails: batch top-1, batch markers |
+| baseline e856919 (partial) | qwen3-4b-2507 | 4 | 16/23 (16–16) | – | – | 4/69 | – | – | – | 185 / – | |
+| baseline e856919 (partial) | qwen3-14b | 1 | 18/23 (18–18) | 58/69 | – | 8/69 | – | – | 523 | 467 / 15 | passes |
+| baseline e856919 (partial) | qwen3-14b | 4 | 20/23 (20–20) | – | – | 3/69 | – | – | – | 185 / – | |
+| no_think at end (`e856919`) | qwen3-4b-2507 | 1 | 20/23 | 60/69 | – | 6/69 | – | – | 255 | 467 / 8 | |
+| no_think at end (`e856919`) | qwen3-4b-2507 | 4 | 16/23 | – | – | 3/69 | – | – | – | 185 / – | 3 of 18 queries without markers |
+| no_think at start | qwen3-4b-2507 | 1 | 20/23 | 60/69 | – | 5/69 | – | – | 250 | 467 / 9 | |
+| no_think at start | qwen3-4b-2507 | 4 | 19.7/23 | – | – | 4/69 | – | – | – | 185 / – | 0 of 18 without markers |
+| no_think left out | qwen3-4b-2507 | 1 | 19.7/23 | 59/69 | – | 6/69 | – | – | 252 | 463 / 8 | |
+| no_think left out | qwen3-4b-2507 | 4 | 20/23 | – | – | 3/69 | – | – | – | 184 / – | 0 of 18 without markers |
 
 ## 10. Open questions for the author
 
-- **Q1. Which server and models are the two reference setups?** Section 3 used LM Studio at
-  `http://localhost:1234` with `qwen/qwen3-4b-2507` (small) and `qwen/qwen3-14b` (larger);
-  section 3.5 adds `qwen/qwen3-1.7b`, which fails the suite today. Should 1.7b stay a reference
-  model (re-tested after Step 4 and Step 7), or be dropped? `prism-ml/bonsai-27b` was also loaded
-  and not tested. The default `AI_API_URL`
-  (`192.168.142.70:1234`) was not reachable. Is the larger setup a local model like these, or a
+- **Q1. Which server and models are the two reference setups?** Until answered, the executor uses
+  `qwen/qwen3-4b-2507` (small) and a 14B Qwen3 (larger), on whichever server lists them. On
+  2026-11-10 `http://192.168.142.56:1234` listed `qwen/qwen3-4b-2507`, `qwen/qwen3-8b`,
+  `qwen3-14b-mlx` and `prism-ml/bonsai-27b` (not tested); `http://localhost:1234` answered with an
+  empty model list (it served `qwen/qwen3-1.7b`, `qwen/qwen3-4b-2507` and `qwen/qwen3-14b` the day
+  before); the default `AI_API_URL` (`192.168.142.70:1234`) was not reachable on 2026-11-09.
+  `qwen/qwen3-1.7b` fails the suite today: should it stay a reference model (re-tested after
+  Steps 2A, 4 and 7), or be dropped? Is the larger setup a local model like these, or a
   hosted API (which needs `LLM_EVAL_API_TOKEN` and has no free prompt cache)?
+  - Answer:
+    - server should default to `http://localhost:1234` (it is a faster server) and fall back to `http://192.168.142.56:1234` if `http://localhost:1234` is not available.
+    - reference models should be `qwen/qwen3-1.7b` (it is a faster model) and `qwen/qwen3-4b-2507` (slower, but better quality model).
 - **Q2. Will the executor's session be able to reach that server?** If not, the executor does the
-  OFFLINE steps (0, 1, 3, 4, 5, 8.1, 9) and the author runs the LIVE commands.
+  OFFLINE steps (0, 1, 3, 4, 5, 6.1, 8.1, 9) and the author runs the LIVE commands.
+  - Answer: Yes
 - **Q3. Step 10: should the model be skipped when the algorithm reports confidence 100?** It saves
   a request and, in section 3.2, the algorithm was right where 4b preferred a different span. But
   the user turned AI suggestions on, and those results would show `model: 'APP'`.
+  - Answer: yes, that is a great idea.
 - **Q4. May real project data be used for evaluation?** `~/translationCore/projects` on the
   author's machine has 28 projects (Arabic, Bengali, Spanish and others). Every finished check is a
   real case: verse, GL phrase, the translator's selection. A script could build cases from one
   project, with history taken from the others. Should such cases be committed as fixtures, or kept
   in an untracked `eval/local/` folder? Which projects?
+  - Answer: yes, only projects that have alignment data in the wordAlignments folder.  For example `vi_glt_heb_book` has the vi language aligned with the original language `.apps/translationCore/alignmentData/heb`
+
 - **Q5. Should there be a minimum confidence for auto-applying a suggestion?** Today anything above
   0 is applied (tc-ui-toolkit, `CheckArea/index.js` line 423), including `la casa` at 30 and the
   algorithm fallback's `la` at 15. This plan does not change it.
-- **Q6. Should the default temperature drop from 0.7?** Step 8 measures 0.2. The default is set in
+- **Q6. Should the default temperature drop from 0.7?** The small model's sweep (section 3.6)
+  found 0.1–0.6 equal and 0.7–0.8 slightly worse, and at 0.1 the answers repeat exactly. Step 8
+  repeats the sweep on the final code. The default is set in
   tc-ui-toolkit (`CheckArea/index.js` line 109).
 - **Q7. Is Step 5 wanted for the algorithm path too?** As planned it applies to both paths so they
   stay interchangeable. Say so if it should be AI-only or dropped.
-- **Q8. Should the suite's full JSON results (`LLM_EVAL_OUT`) be committed** somewhere, or only
-  the summary rows in section 9?
-- **Q10. Should the GL-word-equals-target-word trap (W12) be addressed?** One option is a prompt
-  rule ("a verse word spelled like a GATEWAY PHRASE word is not the answer unless a previous
-  translation uses it"), tested like the Step 7 variants.
+- **Q8. Should the suite's full JSON results be committed** somewhere, or only the summary rows in
+  section 9? They are written to `llm-eval-results/`, which `.gitignore` excludes (D16).
 - **Q9. Is the expected answer for a phrase with an article the history's span?** The starter cases
   expect `fe` for `the faith` when history has `fe`, and `la iglesia` for `church` when history has
   `la iglesia`. If translators are expected to follow the GL article instead, cases `es-the-faith`
   and `es-exact-key` and prompt variant P3 need to change.
+- **Q10. Should the GL-word-equals-target-word trap (W12) be addressed?** One option is a prompt
+  rule ("a verse word spelled like a GATEWAY PHRASE word is not the answer unless a previous
+  translation uses it"), tested like the Step 7 variants.
+- **Q11. Why was `/no_think` moved to the end of the system prompt (commit `6abb25b`)?** At the
+  end it makes `qwen/qwen3-4b-2507` drop the batch markers (W13: batched top-1 48/69 at the end,
+  59/69 at the start, 60/69 with it left out). Step 2A moves it back to the start if the
+  measurements on the reference models agree. If it was moved for a model or server not tested
+  here, name it so Step 2A can include it. And may it be left out of the system prompt altogether
+  when the server honours `enable_thinking: false`?

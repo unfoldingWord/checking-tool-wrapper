@@ -328,7 +328,7 @@ export async function queryAiAPI(query, options = {}) {
   const startTime = Date.now();
 
   const finalQuery = enable_thinking ? query : `/no_think\n${query}`;
-  const finalSystemPrompt = enable_thinking ? systemPrompt : `${systemPrompt} /no_think`;
+  const finalSystemPrompt = enable_thinking ? systemPrompt : `/no_think\n${systemPrompt}`;
 
   let replyText_ = null;
   let reasoningText_ = null;
