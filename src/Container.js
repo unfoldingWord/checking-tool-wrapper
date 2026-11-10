@@ -219,7 +219,7 @@ function Container({
       }
 
       if (generateSuggestionsRestartRef.current
-        || !settingsForSuggestionsRef.current.suggestionsEnabled) {
+        || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
         return;
       }
 
@@ -250,7 +250,7 @@ function Container({
 
       for (const groupId of groupIds) {
         if (generateSuggestionsRestartRef.current
-          || !settingsForSuggestionsRef.current.suggestionsEnabled) {
+          || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
           break;
         }
 
@@ -285,7 +285,7 @@ function Container({
 
         for (const check of group) {
           if (generateSuggestionsRestartRef.current
-            || !settingsForSuggestionsRef.current.suggestionsEnabled) {
+            || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
             break;
           }
 
@@ -381,14 +381,14 @@ function Container({
       }
 
       if (!generateSuggestionsRestartRef.current
-        && settingsForSuggestionsRef.current.suggestionsEnabled) {
+        && settingsForSuggestionsRef.current?.suggestionsEnabled) {
         flushPendingRequests(); // send the remainder
       }
       // console.log(`generateSuggestionForSubgroup added ${count} checks`);
     }
 
     if (generateSuggestionsRestartRef.current
-      || !settingsForSuggestionsRef.current.suggestionsEnabled) {
+      || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
       return;
     }
 
@@ -517,7 +517,7 @@ function Container({
       newSelections
     );
 
-    if (settingsForSuggestionsRef.current.suggestionsEnabled) {
+    if (settingsForSuggestionsRef.current?.suggestionsEnabled) {
       // the group's cached suggestions were made from the old selection history - drop them so they
       // are made again from the updated history when next needed
       const groupId = data?.contextId?.groupId;
