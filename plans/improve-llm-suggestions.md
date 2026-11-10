@@ -1072,44 +1072,67 @@ top-1 are not measured yet (Step 2).
   `qwen/qwen3-1.7b` fails the suite today: should it stay a reference model (re-tested after
   Steps 2A, 4 and 7), or be dropped? Is the larger setup a local model like these, or a
   hosted API (which needs `LLM_EVAL_API_TOKEN` and has no free prompt cache)?
-  - Answer:
+  - Answers:
     - server should default to `http://localhost:1234` (it is a faster server) and fall back to `http://192.168.142.56:1234` if `http://localhost:1234` is not available.
-    - reference models should be `qwen/qwen3-1.7b` (it is a faster model) and `qwen/qwen3-4b-2507` (slower, but better quality model).
+    - reference models should be `qwen/qwen3-1.7b` (it is a faster, smaller model) and `qwen/qwen3-4b-2507` (larger, slower, but better quality model).  A goal would be to improve the quality of the smaller model.
+
 - **Q2. Will the executor's session be able to reach that server?** If not, the executor does the
   OFFLINE steps (0, 1, 3, 4, 5, 6.1, 8.1, 9) and the author runs the LIVE commands.
   - Answer: Yes
+
 - **Q3. Step 10: should the model be skipped when the algorithm reports confidence 100?** It saves
   a request and, in section 3.2, the algorithm was right where 4b preferred a different span. But
   the user turned AI suggestions on, and those results would show `model: 'APP'`.
   - Answer: yes, that is a great idea.
+
 - **Q4. May real project data be used for evaluation?** `~/translationCore/projects` on the
   author's machine has 28 projects (Arabic, Bengali, Spanish and others). Every finished check is a
   real case: verse, GL phrase, the translator's selection. A script could build cases from one
   project, with history taken from the others. Should such cases be committed as fixtures, or kept
   in an untracked `eval/local/` folder? Which projects?
-  - Answer: yes, only projects that have alignment data in the wordAlignments folder.  For example `vi_glt_heb_book` has the vi language aligned with the original language `.apps/translationCore/alignmentData/heb`
+  - Answers:
+    - yes, only projects that have alignment data in the wordAlignments folder.  This is user aligned data.  This data can be used to map the original language quote to the target language.  For example `vi_glt_heb_book` has the vi language aligned with the original language `.apps/translationCore/alignmentData/heb`
+    - and the en gateway language (GL) translationWords checks are at `~/translationCore/resources/en/translationHelps/translationWordsLinks/v90_unfoldingWord`
+    - projects to use: vi_glt_heb_book, vi_glt_1co_book, id_glt_1ti_book, fa_glt_mrk_book,
+bn_glt_2co_book
+  -
 
 - **Q5. Should there be a minimum confidence for auto-applying a suggestion?** Today anything above
   0 is applied (tc-ui-toolkit, `CheckArea/index.js` line 423), including `la casa` at 30 and the
   algorithm fallback's `la` at 15. This plan does not change it.
+  - Answers: not for now.
+
 - **Q6. Should the default temperature drop from 0.7?** The small model's sweep (section 3.6)
   found 0.1–0.6 equal and 0.7–0.8 slightly worse, and at 0.1 the answers repeat exactly. Step 8
   repeats the sweep on the final code. The default is set in
   tc-ui-toolkit (`CheckArea/index.js` line 109).
+   - Answers: default to 0.1
+
 - **Q7. Is Step 5 wanted for the algorithm path too?** As planned it applies to both paths so they
   stay interchangeable. Say so if it should be AI-only or dropped.
+  - Answers: Yes
+
 - **Q8. Should the suite's full JSON results be committed** somewhere, or only the summary rows in
   section 9? They are written to `llm-eval-results/`, which `.gitignore` excludes (D16).
+  - Answers: no
+
 - **Q9. Is the expected answer for a phrase with an article the history's span?** The starter cases
   expect `fe` for `the faith` when history has `fe`, and `la iglesia` for `church` when history has
   `la iglesia`. If translators are expected to follow the GL article instead, cases `es-the-faith`
   and `es-exact-key` and prompt variant P3 need to change.
+  - Answers: priority should be given to the history's span.
+
 - **Q10. Should the GL-word-equals-target-word trap (W12) be addressed?** One option is a prompt
   rule ("a verse word spelled like a GATEWAY PHRASE word is not the answer unless a previous
   translation uses it"), tested like the Step 7 variants.
+  - Answers: yes, "a verse word spelled like a GATEWAY PHRASE word is not the answer unless a previous
+  translation uses it"
+
 - **Q11. Why was `/no_think` moved to the end of the system prompt (commit `6abb25b`)?** At the
   end it makes `qwen/qwen3-4b-2507` drop the batch markers (W13: batched top-1 48/69 at the end,
   59/69 at the start, 60/69 with it left out). Step 2A moves it back to the start if the
   measurements on the reference models agree. If it was moved for a model or server not tested
   here, name it so Step 2A can include it. And may it be left out of the system prompt altogether
   when the server honours `enable_thinking: false`?
+   - Answers: it has been changed back to the start.
+
