@@ -518,16 +518,6 @@ function Container({
     );
 
     if (settingsForSuggestionsRef.current?.suggestionsEnabled) {
-      // the group's cached suggestions were made from the old selection history - drop them so they
-      // are made again from the updated history when next needed
-      const groupId = data?.contextId?.groupId;
-      const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
-
-      if (groupId && suggestionsRequestQueue) {
-        const prefix = generateGroupKeyPrefix(manifest?.target_language?.id, groupId);
-        suggestionsRequestQueue.clearSuggestionsMemoryForKeyPrefix(prefix);
-      }
-
       // only regenerate right away if using llm suggestions - algorithm suggestions are cheap to
       // recompute when needed
       if (settingsForSuggestionsRef.current.llmSuggestionsEnabled) {
@@ -538,6 +528,16 @@ function Container({
             generateSuggestionsForGroups(false, false, false, true).then(() => { });
           }
         });
+      } else {
+        // algorithm suggestions are cheap to recompute - drop this group's cached ones so they
+        // are made again from the updated selection history
+        const groupId = data?.contextId?.groupId;
+        const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
+
+        if (groupId && suggestionsRequestQueue) {
+          const prefix = generateGroupKeyPrefix(manifest?.target_language?.id, groupId);
+          suggestionsRequestQueue.clearSuggestionsMemoryForKeyPrefix(prefix);
+        }
       }
     }
   }
