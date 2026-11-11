@@ -247,9 +247,7 @@ function Container({
       function submitSuggestionRequest(suggestionsRequestQueue, request, force_) {
         suggestionsRequestQueue.makeSuggestionRequest(
           request,
-          () => { // callback function
-            // console.log(`generateSuggestionForSubgroup result`, data);
-          },
+          null, // nobody waits for these, so clearing the queue may drop them
           false,
           force_,
         );
@@ -439,7 +437,7 @@ function Container({
       console.log('Container is closing');
       generateSuggestionsRestartRef.current = true;
       const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
-      suggestionsRequestQueue.clearPendingRequests();
+      suggestionsRequestQueue.clearPendingRequests(false); // nothing on screen is waiting any more
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

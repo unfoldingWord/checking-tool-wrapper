@@ -134,6 +134,38 @@ export class LlmRequestQueue {
     this.busy = false;
     this.pause = false;
     this.suggestionsCache = suggestionsCache;
+    /**
+     * callbacks waiting for a result, by request key. Kept apart from the queued requests, so a
+     * request replaced by a newer one for the same key, or kept when the queue is cleared, still
+     * answers everyone waiting for that key.
+     * @type {Map<string, Array<Function>>}
+     */
+    this.waitingCallbacks = new Map();
+  }
+
+  /**
+   * Adds a callback to be called with the result for `key`.
+   * @param {string} key - request key
+   * @param {Function} callback - called once with the result
+   */
+  addWaitingCallback(key, callback) {
+    const callbacks = this.waitingCallbacks.get(key) || [];
+    callbacks.push(callback);
+    this.waitingCallbacks.set(key, callbacks);
+  }
+
+  /**
+   * Removes and returns the callbacks waiting for each request. Callbacks added later wait for
+   * the request queued for them.
+   * @param {Array<object>} requests - requests about to be run
+   * @returns {Array<Array<Function>>} - callbacks for each request, in the same order
+   */
+  takeWaitingCallbacks(requests) {
+    return requests.map(request => {
+      const callbacks = this.waitingCallbacks.get(request?.key) || [];
+      this.waitingCallbacks.delete(request?.key);
+      return callbacks;
+    });
   }
 
   /**
@@ -250,8 +282,9 @@ export class LlmRequestQueue {
    * Otherwise adds request to queue (front if priority is true, back if false) and triggers
    * processing after 100ms delay.
    *
-   * @param {object|Array} request - Request data for translation suggestion
-   * @param {Function} callback - Function called when results ready
+   * @param {object|Array} request - Request data for translation suggestion; each needs a `key`
+   * @param {Function|null} callback - Function called with each request's result. Pass null for
+   *   background requests nobody waits for: those are the ones `clearPendingRequests` drops.
    * @param {boolean} [priority=false] - If true, adds to front of queue
    * @param {boolean} [force=false] - If true, bypasses cache
    * @returns {void}
@@ -273,18 +306,21 @@ export class LlmRequestQueue {
           });
         } else {
           nonMemoryRequests.push(_request);
-          this.removeKeyInQueue(_request.key); // remove previous matching queries
+
+          if (callback) {
+            this.addWaitingCallback(_request.key, callback);
+          }
+          // remove previous matching queries; anyone waiting for them gets this one's result
+          this.removeKeyInQueue(_request.key);
           // console.log(`makeSuggestionRequest adding to queue - `, redactOptions(_request));
         }
       }
 
       if (nonMemoryRequests?.length) {
         if (nonMemoryRequests?.length > 1) { // if multiple requests remaining, then process as group
-          const requestData = { request: nonMemoryRequests, callback };
-          this.requestQueue.addRequest(requestData, priority);
+          this.requestQueue.addRequest({ request: nonMemoryRequests }, priority);
         } else { // if only single request left, so don't pass as an array
-          const requestData = { request: nonMemoryRequests[0], callback };
-          this.requestQueue.addRequest(requestData, priority);
+          this.requestQueue.addRequest({ request: nonMemoryRequests[0] }, priority);
         }
       }
     }
@@ -309,17 +345,35 @@ export class LlmRequestQueue {
   }
 
   /**
-   * Clears all pending requests from the queue.
+   * Clears pending requests from the queue, without affecting a request being processed.
    *
-   * This method removes all queued translation suggestion requests by delegating to the
-   * internal `RequestQueue.clearQueue()` method. It provides a clean interface for external
-   * code to cancel all pending AI or algorithmic translation requests without affecting
-   * any currently processing request.
+   * By default a request that a caller is waiting for (it was queued with a callback, e.g. the
+   * check the user is looking at) is kept, so its caller still gets an answer; only background
+   * requests are dropped. Dropping a waited-for request would leave its caller waiting forever.
    *
+   * @param {boolean} [keepWaiting=true] - false drops every request and forgets the waiting
+   *   callbacks without calling them, e.g. when the tool closes
    * @returns {void} - Does not return a value; mutates the internal queue state
   */
-  clearPendingRequests() {
-    this.requestQueue.clearQueue();
+  clearPendingRequests(keepWaiting = true) {
+    if (!keepWaiting) {
+      this.waitingCallbacks.clear();
+      this.requestQueue.clearQueue();
+      return;
+    }
+
+    const kept = [];
+
+    for (const item of this.requestQueue.queue) {
+      const isBatch = Array.isArray(item?.request);
+      const requests = isBatch ? item.request : [item?.request];
+      const waited = requests.filter(request => this.waitingCallbacks.has(request?.key));
+
+      if (waited.length) {
+        kept.push({ ...item, request: isBatch ? waited : waited[0] });
+      }
+    }
+    this.requestQueue.queue = kept;
   }
 
   /**
@@ -386,12 +440,14 @@ export class LlmRequestQueue {
       // console.log(`processNextRequest - not busy getting request`);
       const nextLlmRequest = this.requestQueue.getNextRequest();
       const requestData_ = nextLlmRequest?.request;
-      const callback = nextLlmRequest?.callback;
 
       if (requestData_) {
+        const requests = Array.isArray(requestData_) ? requestData_ : [requestData_];
+        const callbacksPerRequest = this.takeWaitingCallbacks(requests);
         const results = await this.doQuery([], requestData_);
 
-        for (let result of results) {
+        for (let i = 0; i < results.length; i++) {
+          let result = results[i];
           const requestData = result?.request;
           // read before the fallback below clears llmQueryUrl
           const llmMode = isLlmRequest(requestData);
@@ -407,26 +463,24 @@ export class LlmRequestQueue {
             result.algorithmFallback = true;
           }
 
-          if (callback) {
-            // console.log(`processNextRequest - doing callback`);
-
-            try {
-              // eslint-disable-next-line no-await-in-loop
-              await callback(result);
-            } catch (e) {
-              console.error(`processNextRequest - callback ERROR`, e);
-            }
-
-            // eslint-disable-next-line no-await-in-loop
-            await delay(10);
-
-            // console.log(`processNextRequest - callback finished`);
-          }
-
           if (haveAsuggestion && llmMode) {
             // save AI answers (including ones the algorithm gave first in AI mode); algorithm-only
             // suggestions are cheap to make again, and would go stale as selections are saved
             this.saveSuggestionsMemoryForKey(requestData.key, result);
+          }
+
+          // eslint-disable-next-line no-await-in-loop
+          await this.callCallbacks(callbacksPerRequest[i], result);
+          callbacksPerRequest[i] = null;
+        }
+
+        // a request with no result (should not happen) must still answer whoever is waiting
+        for (let i = 0; i < callbacksPerRequest.length; i++) {
+          if (callbacksPerRequest[i]?.length) {
+            // eslint-disable-next-line no-await-in-loop
+            await this.callCallbacks(callbacksPerRequest[i], {
+              error: true, bestSelections: [], request: redactOptions(requests[i]),
+            });
           }
         }
 
@@ -435,6 +489,26 @@ export class LlmRequestQueue {
       }
     } else {
       // console.log(`processNextRequest - not ready busy=${this.busy}, pause=${this.pause}`);
+    }
+  }
+
+  /**
+   * Calls each callback with a result; a callback that throws doesn't stop the others.
+   * @param {Array<Function>|null} callbacks - callbacks to call
+   * @param {object} result - suggestion result
+   * @returns {Promise<void>}
+   */
+  async callCallbacks(callbacks, result) {
+    for (const callback of callbacks || []) {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        await callback(result);
+      } catch (e) {
+        console.error(`processNextRequest - callback ERROR`, e);
+      }
+
+      // eslint-disable-next-line no-await-in-loop
+      await delay(10);
     }
   }
 
