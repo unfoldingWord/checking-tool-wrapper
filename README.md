@@ -39,3 +39,20 @@ Checking tool wrapper for translationCore App.
 - Push your changes.
 - Run `npm i unfoldingWord/checking-tool-wrapper#my-feature-branch` in your translationCore root directory.
 - For subsequent changes run `rm -rf node_modules/checking-tool-wrapper; npm i checking-tool-wrapper;`
+
+## Local Build
+
+***Note:*** In windows use git bash for build
+
+- `npm i --legacy-peer-deps`
+- `npm run build`
+
+### Local Testing with package
+
+- `npm i --legacy-peer-deps`
+- `npm pack`
+
+### Publish
+
+- `npm i --legacy-peer-deps`
+- `npm publish`
