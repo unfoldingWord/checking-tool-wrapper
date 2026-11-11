@@ -304,8 +304,11 @@ function Container({
             } = reference || {};
             const checkId = contextId?.checkId;
             const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
+            // only a suggestion made in the current mode (AI or algorithm) counts as already made
+            const llmMode = !!(settingsForSuggestionsRef.current.llmSuggestionsEnabled
+              && settingsForSuggestionsRef.current.llmQueryUrl);
 
-            if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
+            if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key, llmMode)) {
               const { verseText } = getVerseText(targetBible, contextId, true);
               const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
                 contextId,
@@ -558,8 +561,17 @@ function Container({
     saveSettingsForChecking_(projectSaveLocation, data);
 
     if (!isEqual(data, settingsForSuggestionsRef.current)) {
+      const llmTurnedOn = !!data?.llmSuggestionsEnabled
+        && !settingsForSuggestionsRef.current?.llmSuggestionsEnabled;
       // save current settings
       settingsForSuggestionsRef.current = data;
+
+      const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
+
+      if (llmTurnedOn && suggestionsRequestQueue) {
+        // drop suggestions the algorithm made while AI was off, so checks are suggested by the AI
+        suggestionsRequestQueue.clearAlgorithmSuggestionsMemory();
+      }
 
       // only regenerate if using llm suggestions
       if (data.llmSuggestionsEnabled && !noRestart) {

@@ -258,11 +258,12 @@ export class LlmRequestQueue {
    */
   makeSuggestionRequest(request, callback, priority = false, force = false) {
     if (request) {
-      const nonMemoryRequests = [];
+      const nonMemoryRequests = []; // requests that we don't already have an answer for
       const requests = Array.isArray(request) ? request : [request];
 
       for (const _request of requests) {
-        const memory = this.getSuggestionsMemoryForKey(_request.key);
+        // a suggestion made in the other mode (AI vs algorithm) doesn't count as cached
+        const memory = this.getSuggestionsMemoryForKey(_request.key, isLlmRequest(_request));
 
         if (memory && !force) { // if we have a cached value, then use it
           // console.log(`makeSuggestionRequest found cached suggestion`);
@@ -278,10 +279,10 @@ export class LlmRequestQueue {
       }
 
       if (nonMemoryRequests?.length) {
-        if (nonMemoryRequests?.length > 1) {
+        if (nonMemoryRequests?.length > 1) { // if multiple requests remaining, then process as group
           const requestData = { request: nonMemoryRequests, callback };
           this.requestQueue.addRequest(requestData, priority);
-        } else {
+        } else { // if only single request left, so don't pass as an array
           const requestData = { request: nonMemoryRequests[0], callback };
           this.requestQueue.addRequest(requestData, priority);
         }
@@ -392,6 +393,8 @@ export class LlmRequestQueue {
 
         for (let result of results) {
           const requestData = result?.request;
+          // read before the fallback below clears llmQueryUrl
+          const llmMode = isLlmRequest(requestData);
           let haveAsuggestion = this.testIfWeHaveASuggestion(result);
 
           if (!haveAsuggestion && requestData?.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
@@ -421,7 +424,8 @@ export class LlmRequestQueue {
           }
 
           if (haveAsuggestion) {
-            // if we have at least one suggestion, save it
+            // if we have at least one suggestion, save it with the mode that made it
+            result.llmMode = llmMode;
             this.saveSuggestionsMemoryForKey(requestData.key, result);
           }
         }
@@ -522,11 +526,18 @@ export class LlmRequestQueue {
    * Retrieves cached suggestion data for a specific key.
    *
    * @param {string} key - The unique identifier for the cached suggestion data
+   * @param {boolean} [llmMode] - when given, only a suggestion made in that mode is returned:
+   *   true for AI requests, false for algorithm-only requests
    * @returns {object|undefined} The cached suggestion data for the key, or undefined if not found
    */
-  getSuggestionsMemoryForKey(key) {
+  getSuggestionsMemoryForKey(key, llmMode) {
     const cache = this.getSuggestionsMemory();
-    return cache[key];
+    const memory = cache[key];
+
+    if (memory && llmMode !== undefined && !!memory.llmMode !== llmMode) {
+      return undefined;
+    }
+    return memory;
   }
 
   /**
@@ -543,10 +554,12 @@ export class LlmRequestQueue {
    *
    * @param {string} key - The unique identifier for the cached suggestion data, typically
    *   constructed from context information (e.g., `{bookId}_{chapter}_{verse}_{glPhrase}`)
+   * @param {boolean} [llmMode] - when given, only a suggestion made in that mode counts
+   *   (see {@link getSuggestionsMemoryForKey})
    * @returns {boolean} - `true` if cached suggestions exist for the key, `false` otherwise
    */
-  alreadyHaveSuggestionsForKey(key) {
-    const suggestions = this.getSuggestionsMemoryForKey(key);
+  alreadyHaveSuggestionsForKey(key, llmMode) {
+    const suggestions = this.getSuggestionsMemoryForKey(key, llmMode);
     return !!suggestions;
   }
 
@@ -589,6 +602,36 @@ export class LlmRequestQueue {
     }
     return removed;
   }
+
+  /**
+   * Removes every cached suggestion made by an algorithm-only request (not an AI request), e.g.
+   * when AI suggestions are turned on, so checks are suggested again by the AI.
+   *
+   * @returns {number} - how many cached suggestions were removed
+   */
+  clearAlgorithmSuggestionsMemory() {
+    const cache = this.getSuggestionsMemory();
+    let removed = 0;
+
+    if (cache) {
+      for (const key of Object.keys(cache)) {
+        if (!cache[key]?.llmMode) {
+          delete cache[key];
+          removed++;
+        }
+      }
+    }
+    return removed;
+  }
+}
+
+/**
+ * Whether a suggestion request asks the AI (has a query URL) rather than only the algorithm.
+ * @param {object} request - suggestion request
+ * @returns {boolean} - true for an AI request
+ */
+function isLlmRequest(request) {
+  return !!request?.llmQueryUrl;
 }
 
 /**

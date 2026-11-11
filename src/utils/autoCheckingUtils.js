@@ -12,7 +12,11 @@ import {
 } from '../helpers/fileHelpers';
 import * as gatewayLanguageHelpers from '../helpers/gatewayLanguageHelpers';
 import { getQuoteAsString } from '../helpers/checkAreaHelpers';
-import { NT_ORIG_LANG, OT_ORIG_LANG } from '../common/constants';
+import {
+  ALGORITHM,
+  NT_ORIG_LANG,
+  OT_ORIG_LANG,
+} from '../common/constants';
 
 const AI_API_URL = 'http://192.168.142.70:1234';
 /** most previous-translation entries sent in an AI prompt, strongest evidence first */
@@ -3798,7 +3802,7 @@ const ALGORITHM_CERTAIN_CONFIDENCE = 100;
  * Runs the algorithm path for one `getBestSelections` job.
  * @param {object} job - one `getBestSelections` job
  * @returns {Promise<{error: boolean, bestSelections: Array<object>, elapsedStr: string, model: string}>} -
- *   `model` is 'APP'; on an exception only `{error: true}`
+ *   `model` is ALGORITHM; on an exception only `{error: true}`
  */
 async function getAlgorithmResultForJob(job) {
   try {
@@ -3822,7 +3826,7 @@ async function getAlgorithmResultForJob(job) {
       error: false,
       bestSelections,
       elapsedStr: '0',
-      model: 'APP',
+      model: ALGORITHM,
     };
   } catch (error) {
     console.error(`getBestSelections - error`, error, job);
@@ -3840,7 +3844,7 @@ async function getAlgorithmResultForJob(job) {
  * - Uses historical translation data and pattern matching algorithms
  * - Suggests selections based on previous translation choices
  * - Works entirely offline without requiring an AI model
- * - Returns immediately with `elapsedStr: '0'` and `model: 'APP'`
+ * - Returns immediately with `elapsedStr: '0'` and `model: ALGORITHM`
  *
  * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
  * - The algorithm runs first; a job whose top option has confidence 100 (the exact GL key's
@@ -3883,8 +3887,8 @@ async function getAlgorithmResultForJob(job) {
  *       - **occurrence**: 1-based occurrence index of this word in the verse (e.g., if 'iglesia' appears twice, first is 1, second is 2)
  *     - **confidence**: Integer from 0-100 indicating match certainty (100 = exact match, lower = partial/fuzzy match)
  *   - **elapsedStr**: Elapsed time in seconds as a formatted string (e.g., "1.23" for AI mode, "0" for algorithmic mode)
- *   - **model**: Model identifier string ('APP' for algorithmic mode, actual AI model name for AI mode, empty string on error)
- *   - **algorithmFirst**: `true` in AI mode when the algorithm was certain and the AI was not asked (`model` is 'APP')
+ *   - **model**: Model identifier string (ALGORITHM for algorithmic mode, actual AI model name for AI mode, empty string on error)
+ *   - **algorithmFirst**: `true` in AI mode when the algorithm was certain and the AI was not asked (`model` is ALGORITHM)
  *   Returns `{error: true, bestSelections: [], elapsedStr: '', model: ''}` if no valid translations are found or on error
  * @example
  * // Algorithmic mode (offline, no AI server)
@@ -3903,7 +3907,7 @@ async function getAlgorithmResultForJob(job) {
  * //     { selections: [{text: 'la', occurrence: 1}, {text: 'iglesia', occurrence: 1}], confidence: 70 }
  * //   ],
  * //   elapsedStr: '0',
- * //   model: 'APP'
+ * //   model: ALGORITHM
  * // }
  *
  * @example

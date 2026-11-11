@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import { ALGORITHM } from '../src/common/constants';
 import {
   buildTranslationOptionsPrompt,
   getBestSelections,
@@ -351,7 +352,7 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
     expect(query.mock.calls[0][0]).not.toContain('Corinto');
     expect(results).toMatchObject([
       {
-        model: 'APP', elapsedStr: '0', algorithmFirst: true,
+        model: ALGORITHM, elapsedStr: '0', algorithmFirst: true,
         bestSelections: [{ selections: [{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }], confidence: 100 }],
       },
       { model: 'test-model', bestSelections: [{ selections: [{ text: 'Roma', occurrence: 1 }], confidence: 95 }] },

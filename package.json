@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "7.4.12-beta.225",
+  "version": "7.4.12-beta.228",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -131,5 +131,9 @@
     "selections": "0.1.7",
     "semver": "6.3.0",
     "simple-git": "1.126.0"
+  },
+  "engines": {
+    "node": ">=16.14.0 <21",
+    "npm": ">=7.18.1"
   }
 }
