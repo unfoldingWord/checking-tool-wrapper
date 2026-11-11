@@ -106,6 +106,10 @@ const MAX_PROMPT_UNMATCHED_TRANSLATIONS = 5;
  * @param {number} options.temperature - Sampling temperature (0.0-1.0); higher values increase randomness
  * @param {number} options.maxTokens - Maximum number of tokens to generate in the response
  * @param {boolean} options.enable_thinking - Whether to enable thinking mode via chat_template_kwargs
+ * @param {object} [options.extraParams] - Extra request body fields (e.g. seed, stop, top_p,
+ *   response_format). They are applied after temperature, max_tokens and chat_template_kwargs, so
+ *   they can override those; a key set to undefined is left out of the request. They cannot
+ *   override model, stream or messages. Same rules as translationCore's main-process query.
  * @returns {Promise<{replyText: string, reasoningText: string, actualModel: string}>} Object containing:
  *   - replyText: Complete accumulated answer text from the model, or its reasoning text when
  *     the model gave no separate answer
@@ -128,7 +132,7 @@ const MAX_PROMPT_UNMATCHED_TRANSLATIONS = 5;
  */
 async function streamChatMessage(options) {
   const {
-    apiToken, baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking,
+    apiToken, baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking, extraParams,
   } = options;
   const url = `${baseUrl}/v1/chat/completions`;
   const headers = { 'Content-Type': 'application/json' };
@@ -143,15 +147,17 @@ async function streamChatMessage(options) {
       method: 'POST',
       headers,
       body: JSON.stringify({
+        temperature,
+        max_tokens: maxTokens,
+        chat_template_kwargs: { enable_thinking },
+        ...getExtraParams(extraParams),
+        // these are always set here and cannot be overridden
         model,
+        stream: true,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: query },
         ],
-        temperature,
-        max_tokens: maxTokens,
-        stream: true,
-        chat_template_kwargs: { enable_thinking },
       }),
     });
   } catch (error) {
@@ -228,6 +234,20 @@ async function streamChatMessage(options) {
 }
 
 /**
+ * Returns the extra request body fields to merge into a chat completion request.
+ *
+ * @param {object} [extraParams] - extra request body fields from the caller
+ * @returns {object} - the extra fields, or an empty object when extraParams is missing or not a
+ *   plain object
+ */
+export function getExtraParams(extraParams) {
+  if (!extraParams || typeof extraParams !== 'object' || Array.isArray(extraParams)) {
+    return {};
+  }
+  return extraParams;
+}
+
+/**
  * Returns the AI bridge that translationCore puts on `window.AiAPIs` during Electronite startup, so AI
  * requests can go through the Electron main process instead of a direct HTTP call from this page.
  *
@@ -295,6 +315,8 @@ function getAiAPIs() {
  *   when false, '/no_think' is appended to the query
  * @param {string} [options.systemPrompt='You are a helpful assistant.'] - System prompt that sets the
  *   AI's behavior and context for the conversation
+ * @param {object} [options.extraParams] - Extra request body fields, e.g. `{ seed: 42, top_k: 20 }`;
+ *   see {@link streamChatMessage} for how they are merged. Passed to `window.AiAPIs.query` too.
  * @returns {Promise<{response: string, elapsedStr: string, model: string}>} Object containing:
  *   - **response**: The complete text of the model's reply
  *   - **elapsedStr**: Elapsed time in seconds as a string with 2 decimal places (e.g., "2.35")
@@ -330,6 +352,7 @@ export async function queryAiAPI(query, options = {}) {
     maxTokens = 4096,
     enable_thinking = false,
     systemPrompt = 'You are a helpful assistant.',
+    extraParams,
   } = options;
   const startTime = Date.now();
 
@@ -344,6 +367,7 @@ export async function queryAiAPI(query, options = {}) {
     apiToken,
     baseUrl,
     enable_thinking,
+    extraParams,
     maxTokens,
     model,
     query: finalQuery,
@@ -3876,6 +3900,8 @@ async function getAlgorithmResultForJob(job) {
  * @param {number} [options.llmTemperature=0.1] - Sampling temperature for AI model (0.0-1.0); higher values increase
  *   randomness in suggestions, lower values make output more repeatable; 0 is used as given; only applies in AI mode
  * @param {string} [options.apiToken] - Bearer token for LLM API requests when required
+ * @param {object} [options.llmExtraParams] - extra chat-completion request body fields, e.g.
+ *   `{ seed: 42, top_k: 20 }`; only applies in AI mode (see {@link streamChatMessage})
  * @param {object} [options.contextId] - the check's context; when `contextId.occurrence` is above 1,
  *   each suggestion is moved to that occurrence of its words (see {@link moveSelectionsToOccurrence})
  * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>}
@@ -3974,6 +4000,7 @@ export async function getBestSelections(options = {}) {
           currentModel,
           gatewayLanguageCode,
           key,
+          llmExtraParams,
           llmTemperature,
           selectionsData,
           targetLanguageDetails,
@@ -3991,6 +4018,7 @@ export async function getBestSelections(options = {}) {
             apiToken,
             baseUrl: llmQueryUrl,
             enable_thinking: false,
+            extraParams: llmExtraParams,
             model: currentModel,
             // ?? so that a setting of 0 is used; 0.1 gave the same accuracy as 0.7 or better, with
             // repeatable answers (plans/improve-llm-suggestions.md, Step 8)

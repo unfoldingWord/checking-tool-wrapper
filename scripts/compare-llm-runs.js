@@ -83,6 +83,7 @@ function failedBars(run) {
 const ROWS = [
   ['settings'],
   ['temperature', run => `${run.temperature}`],
+  ['extra params', run => (run.extraParams ? JSON.stringify(run.extraParams) : '-')],
   ['runs x cases', run => `${run.runs} x ${run.summary.answers / run.runs}`],
   ['cases', run => run.caseSet || 'all'],
   ['grouping', run => `${run.grouping}`],

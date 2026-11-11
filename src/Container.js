@@ -318,7 +318,7 @@ function Container({
             const checkId = contextId?.checkId;
             const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
 
-            if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
+            if (force || !suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
               const { verseText } = getVerseText(targetBible, contextId, true);
               const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
                 contextId,
@@ -338,6 +338,7 @@ function Container({
                   force,
                   gatewayLanguageCode,
                   key,
+                  llmExtraParams: settingsForSuggestionsRef.current.llmExtraParams,
                   llmSuggestionsEnabled: settingsForSuggestionsRef.current.llmSuggestionsEnabled,
                   llmTemperature: settingsForSuggestionsRef.current.llmTemperature,
                   llmQueryUrl: llmQueryUrl_,
@@ -711,6 +712,8 @@ function Container({
    * @param {boolean} data.force - force request of new suggestion
    * @param {boolean} data.llmSuggestionsEnabled - whether LLM suggestions are enabled
    * @param {number} data.llmTemperature - 0.0 to 1.0
+   * @param {object} [data.llmExtraParams] - extra chat-completion request body fields; when missing,
+   *   `llmExtraParams` from the saved settings is used
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
    * @param {object} data.targetLanguageDetails - target language details, including `id`
    * @param {string} data.verseText - target-language verse text
@@ -735,6 +738,8 @@ function Container({
       targetLanguageDetails,
       verseText,
     } = data || {};
+    // the caller (tc-ui-toolkit) may not know about extra params, so fall back to the saved settings
+    const llmExtraParams = data?.llmExtraParams ?? settingsForSuggestionsRef.current?.llmExtraParams;
 
     const alignedGLText = cleanQuote(_alignedGLText);
     const groupId = contextId?.groupId || '';
@@ -783,6 +788,7 @@ function Container({
       force,
       gatewayLanguageCode,
       key,
+      llmExtraParams,
       llmQueryUrl: llmQueryUrl_,
       llmTemperature,
       selectionsData,

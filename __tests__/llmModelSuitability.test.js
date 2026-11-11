@@ -21,6 +21,8 @@
  *   LLM_EVAL_URL           server base URL (default http://localhost:1234)
  *   LLM_EVAL_API_TOKEN     bearer token, for hosted servers
  *   LLM_EVAL_TEMPERATURE   sampling temperature (default 0.1, the app's default)
+ *   LLM_EVAL_EXTRA_PARAMS  JSON object of extra request body fields, e.g. '{"seed":42,"top_k":20}',
+ *                          sent as the app's `llmExtraParams` setting would send them (default none)
  *   LLM_EVAL_GROUPING      requests per query for the batched tests; 1 skips them (default 4)
  *   LLM_EVAL_RUNS          times every case is asked; results are pooled (default 2)
  *   LLM_EVAL_CASES         which cases to ask: all (default), hand or real
@@ -43,6 +45,7 @@ import fs from 'fs';
 import { normalizer } from 'string-punctuation-tokenizer';
 import {
   getBestSelections,
+  getExtraParams,
   getWordList,
 } from '../src/utils/autoCheckingUtils';
 import handCases from './__fixtures__/llmEval/cases.json';
@@ -53,6 +56,7 @@ const MODEL = env.LLM_EVAL_MODEL || '';
 const BASE_URL = (env.LLM_EVAL_URL || 'http://localhost:1234').replace(/\/+$/, '');
 const API_TOKEN = env.LLM_EVAL_API_TOKEN || '';
 const TEMPERATURE = numberEnv('LLM_EVAL_TEMPERATURE', 0.1);
+const EXTRA_PARAMS = jsonObjectEnv('LLM_EVAL_EXTRA_PARAMS');
 const GROUPING = numberEnv('LLM_EVAL_GROUPING', 4);
 const RUNS = Math.max(1, Math.round(numberEnv('LLM_EVAL_RUNS', 2)));
 const CASE_SET = env.LLM_EVAL_CASES || 'all';
@@ -73,6 +77,7 @@ console.log('LLM eval settings:', {
   BASE_URL,
   API_TOKEN: API_TOKEN ? '(set)' : '(none)', // never print the token itself
   TEMPERATURE,
+  EXTRA_PARAMS,
   GROUPING,
   RUNS,
   CASE_SET,
@@ -143,6 +148,7 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
     model: MODEL,
     url: BASE_URL,
     temperature: TEMPERATURE,
+    extraParams: EXTRA_PARAMS,
     grouping: GROUPING,
     runs: RUNS,
     thresholds: THRESHOLDS,
@@ -247,15 +253,16 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
 
     try {
       const reply = await postJson('/v1/chat/completions', {
+        temperature: options.temperature,
+        max_tokens: options.maxTokens,
+        chat_template_kwargs: { enable_thinking: options.enable_thinking },
+        ...getExtraParams(options.extraParams), // merged as translationCore's main process does
         model: options.model,
         messages: [
           { role: 'system', content: options.systemPrompt },
           { role: 'user', content: query },
         ],
-        temperature: options.temperature,
-        max_tokens: options.maxTokens,
         stream: false,
-        chat_template_kwargs: { enable_thinking: options.enable_thinking },
       });
       const choice = reply?.choices?.[0] || {};
       call.usage = reply?.usage || null;
@@ -355,6 +362,27 @@ function numberEnv(name, defaultValue) {
 }
 
 /**
+ * Reads a JSON object from an environment variable.
+ * @param {string} name
+ * @returns {object|undefined} - undefined when the variable is not set
+ * @throws {Error} - when it is set but is not a JSON object, so a typo doesn't go unnoticed
+ */
+function jsonObjectEnv(name) {
+  const text = process.env[name];
+
+  if (!text) {
+    return undefined;
+  }
+
+  const value = JSON.parse(text);
+
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    throw new Error(`${name} must be a JSON object, got: ${text}`);
+  }
+  return value;
+}
+
+/**
  * Normalizes a phrase for comparing answers: punctuation and Unicode form via `normalizer`, then case.
  * @param {string} phrase
  * @returns {string}
@@ -432,6 +460,7 @@ function toRequest(evalCase, useAi = true) {
     llmQueryUrl: useAi ? BASE_URL : null,
     currentModel: MODEL,
     llmTemperature: TEMPERATURE,
+    llmExtraParams: EXTRA_PARAMS,
     apiToken: API_TOKEN || undefined,
   };
 }

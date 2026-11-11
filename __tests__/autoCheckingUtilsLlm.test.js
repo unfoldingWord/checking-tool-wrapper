@@ -4,7 +4,9 @@ import {
   buildTranslationOptionsPrompt,
   getBestSelections,
   getBestTWordSelectionWithConfidenceFromLlm,
+  getExtraParams,
   parseLlmSelectionOptions,
+  queryAiAPI,
 } from '../src/utils/autoCheckingUtils';
 import viTranslationData from './__fixtures__/tWords/vi_translationData.json';
 
@@ -320,6 +322,68 @@ describe('getBestSelections temperature', () => {
     });
 
     expect(query.mock.calls[0][1].temperature).toBe(expected);
+  });
+});
+
+describe('AI extra request params', () => {
+  const originalFetch = global.fetch;
+
+  afterEach(() => {
+    delete window.AiAPIs;
+    global.fetch = originalFetch;
+  });
+
+  test('getBestSelections passes llmExtraParams to the AI query', async () => {
+    const query = jest.fn().mockResolvedValue({ replyText: '"iglesia",98' });
+    window.AiAPIs = { query };
+
+    await getBestSelections({
+      verseText: 'Pablo saludó a la iglesia',
+      llmQueryUrl: 'http://localhost:1234',
+      targetLanguageDetails: { id: 'es-419' },
+      alignedGLText: 'church',
+      gatewayLanguageCode: 'en',
+      selectionsData: { selections: {} },
+      llmExtraParams: { seed: 42 },
+    });
+
+    expect(query.mock.calls[0][1].extraParams).toEqual({ seed: 42 });
+  });
+
+  test('direct request merges extra params, which cannot replace model, stream or messages', async () => {
+    global.fetch = jest.fn().mockResolvedValue({ ok: false, status: 500, text: () => Promise.resolve('error') });
+
+    await expect(queryAiAPI('question', {
+      baseUrl: 'http://localhost:1234',
+      model: 'my-model',
+      temperature: 0.1,
+      extraParams: {
+        seed: 42,
+        temperature: 0.5,
+        top_k: undefined,
+        model: 'other',
+        stream: false,
+        messages: [],
+      },
+    })).rejects.toThrow();
+
+    const body = JSON.parse(global.fetch.mock.calls[0][1].body);
+
+    expect(body.seed).toBe(42);
+    expect(body.temperature).toBe(0.5); // extra params can override the sampling settings
+    expect('top_k' in body).toBe(false); // undefined keys are left out
+    expect(body.model).toBe('my-model');
+    expect(body.stream).toBe(true);
+    expect(body.messages.map(message => message.role)).toEqual(['system', 'user']);
+  });
+
+  test.each([
+    ['missing', undefined],
+    ['null', null],
+    ['an array', [1, 2]],
+    ['a string', 'seed=42'],
+  ])('getExtraParams ignores extra params that are %s', (_, extraParams) => {
+    expect(getExtraParams(extraParams)).toEqual({});
   });
 });
 
