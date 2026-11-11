@@ -141,6 +141,16 @@ function Container({
   const { chapter, verse } = reference || {};
 
   /**
+   * Whether AI suggestions are in use: suggestions and AI suggestions turned on, with a server URL.
+   * Only AI suggestions are cached, so only then are suggestions made ahead of time.
+   * @returns {boolean} - true when AI suggestions are in use
+   */
+  function isAiSuggestionsOn() {
+    const settings = settingsForSuggestionsRef.current;
+    return !!(settings?.suggestionsEnabled && settings.llmSuggestionsEnabled && settings.llmQueryUrl);
+  }
+
+  /**
    * Generates auto-select suggestions for all groups in the checking tool. Manages a suggestion
    * generation process that can be paused, restarted, and prioritized. When invoked while already
    * running, it shuts down the current process and restarts.
@@ -155,6 +165,12 @@ function Container({
    * @returns {Promise<void>}
    */
   async function generateSuggestionsForGroups(priority = false, force = false, currentGroupOnly = false, skipCurrentGroup = false) {
+    if (!isAiSuggestionsOn()) {
+      // algorithm suggestions aren't cached, so there is nothing to make ahead of time; a run
+      // already going stops at its next check
+      return;
+    }
+
     if (generateSuggestionsRunningRef.current) { // if process already running, shut it down first
       // console.log(`generateSuggestionsForGroups - alreading running, restarting`);
       generateSuggestionsRestartRef.current = true;
@@ -219,7 +235,7 @@ function Container({
       }
 
       if (generateSuggestionsRestartRef.current
-        || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
+        || !isAiSuggestionsOn()) {
         return;
       }
 
@@ -250,7 +266,7 @@ function Container({
 
       for (const groupId of groupIds) {
         if (generateSuggestionsRestartRef.current
-          || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
+          || !isAiSuggestionsOn()) {
           break;
         }
 
@@ -285,12 +301,9 @@ function Container({
 
         for (const check of group) {
           if (generateSuggestionsRestartRef.current
-            || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
+            || !isAiSuggestionsOn()) {
             break;
           }
-
-          // if llm suggestions turned off, don't use previous llm suggestion in memory
-          const force_ = force || !settingsForSuggestionsRef.current.llmSuggestionsEnabled;
 
           if (!check?.selections?.length) {
             // count++;
@@ -304,11 +317,8 @@ function Container({
             } = reference || {};
             const checkId = contextId?.checkId;
             const key = generateKey(targetLanguageId, groupId, bookId, chapter, verse, checkId);
-            // only a suggestion made in the current mode (AI or algorithm) counts as already made
-            const llmMode = !!(settingsForSuggestionsRef.current.llmSuggestionsEnabled
-              && settingsForSuggestionsRef.current.llmQueryUrl);
 
-            if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key, llmMode)) {
+            if (!suggestionsRequestQueue.alreadyHaveSuggestionsForKey(key)) {
               const { verseText } = getVerseText(targetBible, contextId, true);
               const gatewayLanguageQuote_ = gatewayLanguageHelpers.getAlignedGLTextHelper(
                 contextId,
@@ -370,7 +380,7 @@ function Container({
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
                 pendingRequests.push(request);
-                pendingForce = pendingForce || force_;
+                pendingForce = pendingForce || force;
 
                 if (pendingRequests.length >= defaultsuggestionrequestspercall) {
                   flushPendingRequests();
@@ -384,14 +394,14 @@ function Container({
       }
 
       if (!generateSuggestionsRestartRef.current
-        && settingsForSuggestionsRef.current?.suggestionsEnabled) {
+        && isAiSuggestionsOn()) {
         flushPendingRequests(); // send the remainder
       }
       // console.log(`generateSuggestionForSubgroup added ${count} checks`);
     }
 
     if (generateSuggestionsRestartRef.current
-      || !settingsForSuggestionsRef.current?.suggestionsEnabled) {
+      || !isAiSuggestionsOn()) {
       return;
     }
 
@@ -442,7 +452,7 @@ function Container({
   useEffect(() => {
     if (triggerGenerateSuggestionsStart) {
       if (!generateSuggestionsRunningRef.current) {
-        if (settingsForSuggestionsRef.current?.suggestionsEnabled) {
+        if (isAiSuggestionsOn()) {
           const suggestionsRequestQueue = suggestionsRequestQueueRef?.current;
           suggestionsRequestQueue.clearPendingRequests();
           const currentGroupOnly = !settingsForSuggestionsRef.current.llmMaximizeRequests;
@@ -532,8 +542,8 @@ function Container({
           }
         });
       } else {
-        // algorithm suggestions are cheap to recompute - drop this group's cached ones so they
-        // are made again from the updated selection history
+        // only AI suggestions are cached - drop this group's, since they were made from the old
+        // selection history, so turning AI back on asks again
         const groupId = data?.contextId?.groupId;
         const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
 
@@ -561,17 +571,8 @@ function Container({
     saveSettingsForChecking_(projectSaveLocation, data);
 
     if (!isEqual(data, settingsForSuggestionsRef.current)) {
-      const llmTurnedOn = !!data?.llmSuggestionsEnabled
-        && !settingsForSuggestionsRef.current?.llmSuggestionsEnabled;
       // save current settings
       settingsForSuggestionsRef.current = data;
-
-      const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
-
-      if (llmTurnedOn && suggestionsRequestQueue) {
-        // drop suggestions the algorithm made while AI was off, so checks are suggested by the AI
-        suggestionsRequestQueue.clearAlgorithmSuggestionsMemory();
-      }
 
       // only regenerate if using llm suggestions
       if (data.llmSuggestionsEnabled && !noRestart) {
