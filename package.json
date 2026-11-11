@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "7.4.12-beta.233",
+  "version": "7.4.12-beta.234",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -21,10 +21,10 @@
     "lint:fix": "eslint ./src --fix",
     "test": "eslint ./src && jest",
     "test:llm": "jest __tests__/llmModelSuitability.test.js",
-    "build:llm-eval-cases": "LLM_EVAL_BUILD_REAL=1 jest __tests__/buildLlmEvalRealCases.test.js",
+    "build:llm-eval-cases": "cross-env LLM_EVAL_BUILD_REAL=1 jest __tests__/buildLlmEvalRealCases.test.js",
     "fix": "eslint ./src --fix",
-    "prebuild": "rm -rf ./lib",
-    "build": "NODE_ENV=production babel ./src -d ./lib",
+    "prebuild": "node -e \"require('fs').rmSync('lib', { recursive: true, force: true })\"",
+    "build": "cross-env NODE_ENV=production babel ./src -d ./lib",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run build",
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
@@ -79,6 +79,7 @@
     "babel-loader": "8.0.6",
     "babel-plugin-jest-hoist": "24.9.0",
     "bible-reference-range": "1.0.1",
+    "cross-env": "^7.0.3",
     "css-loader": "2.1.1",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
