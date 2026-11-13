@@ -1,0 +1,5748 @@
+[
+  {
+    "id": "train-id-1ti-5-8-believe",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "Tetapi jika ada seorang yang tidak menyediakan kebutuhan sanak saudaranya sendiri, dan terutama bagi anggota-anggota rumah tangganya sendiri, ia telah menyangkal iman dan lebih buruk dari pada orang yang tidak percaya.\n\\s5 \n\\p",
+    "glPhrase": "an unbeliever",
+    "history": {
+      "was believed": {
+        "dipercayai": 1
+      }
+    },
+    "expected": [
+      "pada orang yang:2 tidak:2 percaya"
+    ],
+    "selections": [
+      {
+        "text": "pada",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "orang",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "tidak",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "percaya",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "dhs4",
+      "quote": "ἀπίστου",
+      "quoteString": "ἀπίστου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:8, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-2-believe",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "Tetapi, mereka yang memiliki tuan-tuan yang percaya, biarlah tidak memandang rendah,  karena mereka adalah saudara-saudara. Sebaliknya, hendaknya mereka melayani lebih sungguh, karena mereka yang menerima pelayanan yang baik adalah orang-orang percaya dan orang-orang yang dikasihi. Ajarkanlah dan nasehatkanlah hal-hal ini.\n\\s5 \n\\p",
+    "glPhrase": "believing",
+    "history": {
+      "was believed": {
+        "dipercayai": 1
+      },
+      "an unbeliever": {
+        "pada orang yang tidak percaya": 1
+      }
+    },
+    "expected": [
+      "yang:2 percaya"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 5
+      },
+      {
+        "text": "percaya",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "sqfq",
+      "quote": "πιστοὺς",
+      "quoteString": "πιστοὺς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:2, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-2-believe",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "Tetapi, mereka yang memiliki tuan-tuan yang percaya, biarlah tidak memandang rendah,  karena mereka adalah saudara-saudara. Sebaliknya, hendaknya mereka melayani lebih sungguh, karena mereka yang menerima pelayanan yang baik adalah orang-orang percaya dan orang-orang yang dikasihi. Ajarkanlah dan nasehatkanlah hal-hal ini.\n\\s5 \n\\p",
+    "glPhrase": "believers",
+    "history": {
+      "was believed": {
+        "dipercayai": 1
+      },
+      "an unbeliever": {
+        "pada orang yang tidak percaya": 1
+      },
+      "believing": {
+        "yang percaya": 1
+      }
+    },
+    "expected": [
+      "orang orang:2 percaya:2"
+    ],
+    "selections": [
+      {
+        "text": "orang",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "orang",
+        "occurrence": 2,
+        "occurrences": 4
+      },
+      {
+        "text": "percaya",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "ff7a",
+      "quote": "πιστοί",
+      "quoteString": "πιστοί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:2, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-1-christ-2",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Paulus, seorang rasul Kristus Yesus  menurut perintah dari Allah Juruselamat kita dan Tuhan Yesus Kristus pengharapan kita, \n\\p",
+    "glPhrase": "Christ",
+    "occurrence": 2,
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      }
+    },
+    "expected": [
+      "Kristus:2"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "ekmn",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:1, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-2-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "kepada Timotius, anakku yang sejati dalam iman: Anugerah, kemurahan, damai sejahtera dari Allah Bapa dan Kristus Yesus Tuhan kita.\n\\s5 \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 1
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "np8w",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:2, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-16-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Tetapi dengan alasan inilah aku telah ditunjukkan kemurahan, supaya dalam diriku, pertama, Yesus Kristus dapat menyatakan seluruh kesabaran sebagai contoh untuk mereka yang akan percaya kepada Dia untuk hidup kekal. \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 2
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "dz34",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:16, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-5-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 3
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "gmfd",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:5, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-7-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Untuk tujuan itulah, aku sendiri telah ditetapkan sebagai seorang pemberita dan seorang rasul. Aku memberitakan kebenaran di dalam Kristus. Aku tidak berdusta. Aku seorang pengajar bagi orang-orang bukan Yahudi dalam iman dan kebenaran.\n\\s5 \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 4
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "jgf5",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:7, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-13-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 5
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "szqh",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-11-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Tetapi tolaklah janda-janda yang lebih muda, karena ketika mereka menjadi tidak setia kepada Kristus, mereka ingin menikah, \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 6
+      }
+    },
+    "expected": [
+      "kepada Kristus"
+    ],
+    "selections": [
+      {
+        "text": "kepada",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "qbnf",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:11, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-21-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 6,
+        "kepada Kristus": 1
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "zrxb",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:21, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-3-christ",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "Kristus": 1
+      },
+      "Christ": {
+        "Kristus": 7,
+        "kepada Kristus": 1
+      }
+    },
+    "expected": [
+      "Kristus"
+    ],
+    "selections": [
+      {
+        "text": "Kristus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "zgwy",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:3, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-19-conscience",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "conscience",
+    "verse": "Mempertahankan iman dan hati nurani yang baik yang beberapa orang telah menolak, berkenaan dengan iman, mereka telah kandas . \n\\p",
+    "glPhrase": "a conscience",
+    "history": {
+      "a conscience": {
+        "dari hati nurani": 1
+      }
+    },
+    "expected": [
+      "hati nurani"
+    ],
+    "selections": [
+      {
+        "text": "hati",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "nurani",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "conscience",
+      "checkId": "ssby",
+      "quote": "συνείδησιν",
+      "quoteString": "συνείδησιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "conscience"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:19, tW conscience, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-2-conscience",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "conscience",
+    "verse": "dalam  kemunafikan,  dusta, hati nurani (mereka) sendiri telah dicap, \n\\p",
+    "glPhrase": "in conscience",
+    "history": {
+      "a conscience": {
+        "dari hati nurani": 1,
+        "hati nurani": 1
+      }
+    },
+    "expected": [
+      "hati nurani"
+    ],
+    "selections": [
+      {
+        "text": "hati",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "nurani",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "conscience",
+      "checkId": "zcc5",
+      "quote": "συνείδησιν",
+      "quoteString": "συνείδησιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "conscience"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:2, tW conscience, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-14-deceive",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "deceive",
+    "verse": "Dan bukan Adam yang ditipu, melainkan perempuan yang ditipu telah datang di dalam pelanggaran \n\\p",
+    "glPhrase": "having been deceived",
+    "history": {
+      "was deceived": {
+        "yang ditipu": 1
+      }
+    },
+    "expected": [
+      "yang:2 ditipu:2"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "ditipu",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "deceive",
+      "checkId": "d8e6",
+      "quote": "ἐξαπατηθεῖσα",
+      "quoteString": "ἐξαπατηθεῖσα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "deceive"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:14, tW deceive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-1-deceive",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "deceive",
+    "verse": "Sekarang Roh mengatakan dengan jelas bahwa pada waktu-waktu kemudian beberapa orang akan meninggalkan iman, mengalihkan perhatiannya kepada roh-roh pendusta dan ajaran setan-setan, \n\\p",
+    "glPhrase": "deceiving",
+    "history": {
+      "was deceived": {
+        "yang ditipu": 1
+      },
+      "having been deceived": {
+        "yang ditipu": 1
+      }
+    },
+    "expected": [
+      "pendusta"
+    ],
+    "selections": [
+      {
+        "text": "pendusta",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "deceive",
+      "checkId": "n7yu",
+      "quote": "πλάνοις",
+      "quoteString": "πλάνοις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "deceive"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:1, tW deceive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-1-doctrine",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "doctrine",
+    "verse": "Sekarang Roh mengatakan dengan jelas bahwa pada waktu-waktu kemudian beberapa orang akan meninggalkan iman, mengalihkan perhatiannya kepada roh-roh pendusta dan ajaran setan-setan, \n\\p",
+    "glPhrase": "teachings",
+    "history": {
+      "to teach differently": {
+        "untuk mengajarkan ajaran yang berbeda": 1
+      }
+    },
+    "expected": [
+      "ajaran"
+    ],
+    "selections": [
+      {
+        "text": "ajaran",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "ezdt",
+      "quote": "διδασκαλίαις",
+      "quoteString": "διδασκαλίαις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:1, tW doctrine, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-16-doctrine",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "doctrine",
+    "verse": "Perhatikan dirimu sendiri dan pengajaran. Lanjutkanlah semuanya. Karena dengan melakukan ini, maka engkau akan menyelamatkan dirimu sendiri dan mereka yang mendengarkan engkau.\n\n\\s5",
+    "glPhrase": "to the teaching",
+    "history": {
+      "to teach differently": {
+        "untuk mengajarkan ajaran yang berbeda": 1
+      },
+      "teachings": {
+        "ajaran": 1
+      }
+    },
+    "expected": [
+      "pengajaran"
+    ],
+    "selections": [
+      {
+        "text": "pengajaran",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "rsqz",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "διδασκαλίᾳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ διδασκαλίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:16, tW doctrine, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-1-elder",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "elder",
+    "verse": "Janganlah engkau marah kepada laki-laki yang tua. Sebaliknya, nasehatilah sebagai seorang bapa, laki-laki yang  muda sebagai saudara-saudara laki-laki. \n\\p",
+    "glPhrase": "an older man",
+    "history": {
+      "of the council of elders": {
+        "penatua": 1
+      }
+    },
+    "expected": [
+      "kepada laki laki:2 yang tua"
+    ],
+    "selections": [
+      {
+        "text": "kepada",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "laki",
+        "occurrence": 1,
+        "occurrences": 6
+      },
+      {
+        "text": "laki",
+        "occurrence": 2,
+        "occurrences": 6
+      },
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "tua",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "elder",
+      "checkId": "sm8a",
+      "quote": "πρεσβυτέρῳ",
+      "quoteString": "πρεσβυτέρῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "elder"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:1, tW elder, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-2-elder",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "elder",
+    "verse": "Perempuan-perempuan yang tua, sebagai seorang ibu, perempuan-perempuan muda sebagai saudari-saudari dengan segala kemurnian.\n\\s5 \n\\p",
+    "glPhrase": "older women",
+    "history": {
+      "of the council of elders": {
+        "penatua": 1
+      },
+      "an older man": {
+        "kepada laki laki yang tua": 1
+      }
+    },
+    "expected": [
+      "yang tua"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tua",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "elder",
+      "checkId": "sbkt",
+      "quote": "πρεσβυτέρας",
+      "quoteString": "πρεσβυτέρας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "elder"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:2, tW elder, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-19-elder",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "elder",
+    "verse": "Janganlah menerima tuduhan menentang seorang penatua kecuali jika berdasarkan dua atau tiga saksi. \n\\p",
+    "glPhrase": "an elder",
+    "history": {
+      "of the council of elders": {
+        "penatua": 1
+      },
+      "an older man": {
+        "kepada laki laki yang tua": 1
+      },
+      "older women": {
+        "yang tua": 1
+      }
+    },
+    "expected": [
+      "seorang penatua"
+    ],
+    "selections": [
+      {
+        "text": "seorang",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "penatua",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "elder",
+      "checkId": "u6fz",
+      "quote": "πρεσβυτέρου",
+      "quoteString": "πρεσβυτέρου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "elder"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:19, tW elder, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-13-exhort",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "exhort",
+    "verse": "Sampai aku datang, perhatikan pembacaan, nasehat, pengajaran.\n\\s5 \n\\p",
+    "glPhrase": "to the exhortation",
+    "history": {
+      "I urge": {
+        "aku menasehati": 1
+      }
+    },
+    "expected": [
+      "nasehat"
+    ],
+    "selections": [
+      {
+        "text": "nasehat",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "exhort",
+      "checkId": "z96n",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 2
+        },
+        {
+          "word": "παρακλήσει",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ παρακλήσει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "exhort"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:13, tW exhort, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-1-exhort",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "exhort",
+    "verse": "Janganlah engkau marah kepada laki-laki yang tua. Sebaliknya, nasehatilah sebagai seorang bapa, laki-laki yang  muda sebagai saudara-saudara laki-laki. \n\\p",
+    "glPhrase": "exhort him",
+    "history": {
+      "I urge": {
+        "aku menasehati": 1
+      },
+      "to the exhortation": {
+        "nasehat": 1
+      }
+    },
+    "expected": [
+      "nasehatilah"
+    ],
+    "selections": [
+      {
+        "text": "nasehatilah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "exhort",
+      "checkId": "uran",
+      "quote": "παρακάλει",
+      "quoteString": "παρακάλει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "exhort"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:1, tW exhort, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-2-exhort",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "exhort",
+    "verse": "Tetapi, mereka yang memiliki tuan-tuan yang percaya, biarlah tidak memandang rendah,  karena mereka adalah saudara-saudara. Sebaliknya, hendaknya mereka melayani lebih sungguh, karena mereka yang menerima pelayanan yang baik adalah orang-orang percaya dan orang-orang yang dikasihi. Ajarkanlah dan nasehatkanlah hal-hal ini.\n\\s5 \n\\p",
+    "glPhrase": "urge",
+    "history": {
+      "I urge": {
+        "aku menasehati": 1
+      },
+      "to the exhortation": {
+        "nasehat": 1
+      },
+      "exhort him": {
+        "nasehatilah": 1
+      }
+    },
+    "expected": [
+      "nasehatkanlah"
+    ],
+    "selections": [
+      {
+        "text": "nasehatkanlah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "exhort",
+      "checkId": "arb9",
+      "quote": "παρακάλει",
+      "quoteString": "παρακάλει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "exhort"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:2, tW exhort, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-5-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Dan tujuan akhir dari perintah adalah kasih dari hati yang murni, dan hati nurani yang baik, dan dari iman yang tulus. \n\\p",
+    "glPhrase": "a faith",
+    "history": {
+      "the faith": {
+        "iman": 1
+      }
+    },
+    "expected": [
+      "dari:3 iman"
+    ],
+    "selections": [
+      {
+        "text": "dari",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "iman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "u5r5",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:5, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-19-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Mempertahankan iman dan hati nurani yang baik yang beberapa orang telah menolak, berkenaan dengan iman, mereka telah kandas . \n\\p",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "iman": 1
+      },
+      "a faith": {
+        "dari iman": 1
+      }
+    },
+    "expected": [
+      "iman"
+    ],
+    "selections": [
+      {
+        "text": "iman",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "quuk",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:19, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-15-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Namun demikian, ia akan diselamatkan melalui melahirkan anak, jika mereka tetap di dalam iman dan kasih dan pengudusan dengan pengendalian diri.\n\n\\s5",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "iman": 1
+      },
+      "a faith": {
+        "dari iman": 1
+      },
+      "faith": {
+        "iman": 1
+      }
+    },
+    "expected": [
+      "iman"
+    ],
+    "selections": [
+      {
+        "text": "iman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "p6uj",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:15, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-13-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
+    "glPhrase": "the faith",
+    "history": {
+      "the faith": {
+        "iman": 1
+      },
+      "a faith": {
+        "dari iman": 1
+      },
+      "faith": {
+        "iman": 2
+      }
+    },
+    "expected": [
+      "iman"
+    ],
+    "selections": [
+      {
+        "text": "iman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "mmwj",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:13, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-6-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Apabila engkau menanamkan hal-hal ini kepada saudara-saudara, engkau akan menjadi pelayan Yesus Kristus yang baik. Karena engkau sedang diberi makan dengan kata-kata iman dari ajaran yang baik yang telah engkau ikuti. \n\\p",
+    "glPhrase": "of the faith",
+    "history": {
+      "the faith": {
+        "iman": 2
+      },
+      "a faith": {
+        "dari iman": 1
+      },
+      "faith": {
+        "iman": 2
+      }
+    },
+    "expected": [
+      "iman"
+    ],
+    "selections": [
+      {
+        "text": "iman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "s5e2",
+      "quote": [
+        {
+          "word": "τῆς",
+          "occurrence": 1
+        },
+        {
+          "word": "πίστεως",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῆς πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:6, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-8-faith",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Tetapi jika ada seorang yang tidak menyediakan kebutuhan sanak saudaranya sendiri, dan terutama bagi anggota-anggota rumah tangganya sendiri, ia telah menyangkal iman dan lebih buruk dari pada orang yang tidak percaya.\n\\s5 \n\\p",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "iman": 2
+      },
+      "a faith": {
+        "dari iman": 1
+      },
+      "faith": {
+        "iman": 2
+      },
+      "of the faith": {
+        "iman": 1
+      }
+    },
+    "expected": [
+      "iman"
+    ],
+    "selections": [
+      {
+        "text": "iman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "m5d5",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:8, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-4-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Jangan menghiraukan dongeng-dongeng dan silsilah-silsilah yang tiada putus-putusnya, yang menimbulkan perselisihan dan bukannya penatalayanan Allah, (yang adalah) dalam iman.\n\\s5\n\\p",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "dari Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "r2w7",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-17-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Dan kepada Raja segala zaman, kekal, tidak kelihatan, satu-satunya Allah, hormat dan kemuliaan kekal sampai selama-lamanya. Amin.\n\\s5",
+    "glPhrase": "the God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gnjm",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:17, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-3-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Ini  {adalah} hal yang baik dan berkenan di hadapan Allah Juruselamat kita. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "shbg",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-5-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ytu5",
+      "quote": "Θεός",
+      "quoteString": "Θεός",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-5-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 2
+      }
+    },
+    "expected": [
+      "antara Allah:2"
+    ],
+    "selections": [
+      {
+        "text": "antara",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Allah",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "h3nq",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-15-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Tetapi apabila aku menunda, supaya engkau tahu bagaimana seseorang harus berperilaku di dalam rumah Allah yang adalah jemaat Allah yang hidup, sebagai pilar dan dasar dari kebenaran.\n\\s5\n\\p",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 1,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 2
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "wku2",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:15, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-15-god-2",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Tetapi apabila aku menunda, supaya engkau tahu bagaimana seseorang harus berperilaku di dalam rumah Allah yang adalah jemaat Allah yang hidup, sebagai pilar dan dasar dari kebenaran.\n\\s5\n\\p",
+    "glPhrase": "of the God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 2,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 2
+      }
+    },
+    "expected": [
+      "Allah:2"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "dhup",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:15, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-3-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "dengan melarang untuk menikah, untuk makan makanan-makanan yang Allah telah ciptakan untuk penerimaan dengan pengucapan syukur oleh orang-orang percaya dan yang telah mengenal kebenaran. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 2,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 2
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ac4f",
+      "quote": [
+        {
+          "word": "ὁ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεὸς",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ὁ Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-4-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Karena semua ciptaan Allah {adalah} baik, dan tidak sesuatupun yang diterima dengan ucapan syukur {adalah} najis, \n\\p",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 2,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 3
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "eanr",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-4-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Tetapi jika seorang janda memiliki anak-anak atau cucu-cucu, biarlah mereka pertama-tama belajar untuk menghormati rumah tangga mereka sendiri dan membalas perbuatan baik orang tua dan nenek, karena hal ini adalah berkenan di hadapan Allah.\n\\s5 \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 3,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 3
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ypqq",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-5-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Tetapi seorang yang sungguh-sungguh janda dan telah ditinggalkan sendirian, ia telah menaruh pengharapannya pada Allah, dan terus menerus dalam permohonan-permohonan dan doa-doa malam dan siang. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 3,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 4
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "b5qm",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-21-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 3,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 5
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "vfyr",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:21, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-1-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Semua orang yang ada di bawah belenggu perbudakan, biarlah mereka menganggap tuan-tuan mereka sendiri layak menerima semua penghormatan, supaya nama Allah dan ajaran tidak dihujat orang. \n\\p",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 3,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 6
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "fny2",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:1, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-17-god",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Perintahkan kepada orang-orang kaya di zaman ini agar tidak sombong, atau berharap kepada kekayaan, yang tidak pasti. tetapi kepada Allah yang menyediakan semua dengan kelimpahan bagi kita untuk kenikmatan. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "dari Allah": 1,
+        "Allah": 4,
+        "antara Allah": 1
+      },
+      "the God": {
+        "Allah": 1
+      },
+      "God": {
+        "Allah": 6
+      },
+      "of the God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gt68",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:17, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-9-godly",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "Dan kita tahu ini, hukum tidak dibuat hanya bagi orang yang benar, tetapi untuk orang durhaka dan pemberontak, untuk orang fasik dan orang berdosa,  untuk mereka yang tidak percaya Tuhan dan hidup duniawi. Pembunuh ayahnya dan pembunuh ibunya, bagi para pembunuh, \n\\p",
+    "glPhrase": "the unholy",
+    "history": {
+      "the ungodly": {
+        "untuk orang fasik": 1
+      }
+    },
+    "expected": [
+      "untuk:3 mereka yang:2 tidak:2 percaya Tuhan"
+    ],
+    "selections": [
+      {
+        "text": "untuk",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "mereka",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "tidak",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "percaya",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Tuhan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "cc7a",
+      "quote": "ἀνοσίοις",
+      "quoteString": "ἀνοσίοις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:9, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-2-godly",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "untuk raja-raja dan semua orang yang ada dalam kekuasan, agar kita bisa hidup tenang dan tenteram dalam segala kesalehan dan kehormatan. \n\\p",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "untuk orang fasik": 1
+      },
+      "the unholy": {
+        "untuk mereka yang tidak percaya Tuhan": 1
+      }
+    },
+    "expected": [
+      "kesalehan"
+    ],
+    "selections": [
+      {
+        "text": "kesalehan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "k5q6",
+      "quote": "εὐσεβείᾳ",
+      "quoteString": "εὐσεβείᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:2, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-16-godly",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "Dan tanpa penyangkalan besar adalah rahasia kesalehan: Yang telah dinyatakan di dalam daging, dibenarkan di dalam Roh, dilihat oleh para malaikat, diberitakan di antara bangsa-bangsa, dipercayai di dunia, diangkat dalam kemuliaan.\"\n\n\\s5",
+    "glPhrase": "of godliness",
+    "history": {
+      "the ungodly": {
+        "untuk orang fasik": 1
+      },
+      "the unholy": {
+        "untuk mereka yang tidak percaya Tuhan": 1
+      },
+      "godliness": {
+        "kesalehan": 1
+      }
+    },
+    "expected": [
+      "kesalehan"
+    ],
+    "selections": [
+      {
+        "text": "kesalehan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "khnp",
+      "quote": [
+        {
+          "word": "τῆς",
+          "occurrence": 1
+        },
+        {
+          "word": "εὐσεβείας",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῆς εὐσεβείας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:16, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-3-godly",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "untuk orang fasik": 1
+      },
+      "the unholy": {
+        "untuk mereka yang tidak percaya Tuhan": 1
+      },
+      "godliness": {
+        "kesalehan": 1
+      },
+      "of godliness": {
+        "kesalehan": 1
+      }
+    },
+    "expected": [
+      "kesalehan"
+    ],
+    "selections": [
+      {
+        "text": "kesalehan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "x7pt",
+      "quote": "εὐσέβειαν",
+      "quoteString": "εὐσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:3, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-5-godly",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "perselisihan-perselisihan,  orang-orang   yang pikirannya telah rusak dan telah meninggalkan kebenaran. Mereka berpikir bahwa kesalehan adalah jalan menjadi kaya\n\\s5 \n\\p",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "untuk orang fasik": 1
+      },
+      "the unholy": {
+        "untuk mereka yang tidak percaya Tuhan": 1
+      },
+      "godliness": {
+        "kesalehan": 2
+      },
+      "of godliness": {
+        "kesalehan": 1
+      }
+    },
+    "expected": [
+      "kesalehan"
+    ],
+    "selections": [
+      {
+        "text": "kesalehan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "nzff",
+      "quote": [
+        {
+          "word": "τὴν",
+          "occurrence": 1
+        },
+        {
+          "word": "εὐσέβειαν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὴν εὐσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:5, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-6-godly",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "Tetapi kesalehan yang disertai rasa cukup merupakan keuntungan yang besar. \n\\p",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "untuk orang fasik": 1
+      },
+      "the unholy": {
+        "untuk mereka yang tidak percaya Tuhan": 1
+      },
+      "godliness": {
+        "kesalehan": 3
+      },
+      "of godliness": {
+        "kesalehan": 1
+      }
+    },
+    "expected": [
+      "kesalehan yang:2"
+    ],
+    "selections": [
+      {
+        "text": "kesalehan",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "p5he",
+      "quote": [
+        {
+          "word": "ἡ",
+          "occurrence": 1
+        },
+        {
+          "word": "εὐσέβεια",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἡ εὐσέβεια",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:6, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-8-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Tetapi kita tahu bahwa Taurat itu baik jika seseorang menggunakannya dengan tepat.\n\\s5 \n\\p",
+    "glPhrase": "is good",
+    "history": {
+      "good": {
+        "yang baik": 1
+      }
+    },
+    "expected": [
+      "itu baik"
+    ],
+    "selections": [
+      {
+        "text": "itu",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w64z",
+      "quote": "καλὸς",
+      "quoteString": "καλὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-19-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Mempertahankan iman dan hati nurani yang baik yang beberapa orang telah menolak, berkenaan dengan iman, mereka telah kandas . \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 1
+      },
+      "is good": {
+        "itu baik": 1
+      }
+    },
+    "expected": [
+      "yang baik"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "nm6d",
+      "quote": "ἀγαθὴν",
+      "quoteString": "ἀγαθὴν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:19, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-3-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Ini  {adalah} hal yang baik dan berkenan di hadapan Allah Juruselamat kita. \n\\p",
+    "glPhrase": "is good",
+    "history": {
+      "good": {
+        "yang baik": 2
+      },
+      "is good": {
+        "itu baik": 1
+      }
+    },
+    "expected": [
+      "hal yang baik"
+    ],
+    "selections": [
+      {
+        "text": "hal",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "dckw",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:3, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-1-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Perkataan {ini} {adalah} bisa dipercaya: jika seseorang menghendaki menjadi penilik, ia menghendaki pekerjaan yang mulia. \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 2
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1
+      }
+    },
+    "expected": [
+      "mulia"
+    ],
+    "selections": [
+      {
+        "text": "mulia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "j6fj",
+      "quote": "καλοῦ",
+      "quoteString": "καλοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-7-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Tetapi Ia juga harus memiliki nama baik dengan mereka di luar, sehingga ia tidak jatuh dalam hal yang memalukan dan perangkap Iblis.\n\\s5 \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 2,
+        "mulia": 1
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1
+      }
+    },
+    "expected": [
+      "baik"
+    ],
+    "selections": [
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "kxp3",
+      "quote": "καλὴν",
+      "quoteString": "καλὴν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:7, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-13-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
+    "glPhrase": "well",
+    "history": {
+      "good": {
+        "yang baik": 2,
+        "mulia": 1,
+        "baik": 1
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1
+      }
+    },
+    "expected": [
+      "dengan baik"
+    ],
+    "selections": [
+      {
+        "text": "dengan",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "gs3u",
+      "quote": "καλῶς",
+      "quoteString": "καλῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:13, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-13-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 2,
+        "mulia": 1,
+        "baik": 1
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "yang:2 baik:2"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "baik",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "arbn",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:13, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-4-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Karena semua ciptaan Allah {adalah} baik, dan tidak sesuatupun yang diterima dengan ucapan syukur {adalah} najis, \n\\p",
+    "glPhrase": "is good",
+    "history": {
+      "good": {
+        "yang baik": 3,
+        "mulia": 1,
+        "baik": 1
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "adalah baik"
+    ],
+    "selections": [
+      {
+        "text": "adalah",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "x9ak",
+      "quote": "καλόν",
+      "quoteString": "καλόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:4, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-6-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Apabila engkau menanamkan hal-hal ini kepada saudara-saudara, engkau akan menjadi pelayan Yesus Kristus yang baik. Karena engkau sedang diberi makan dengan kata-kata iman dari ajaran yang baik yang telah engkau ikuti. \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 3,
+        "mulia": 1,
+        "baik": 1
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1,
+        "adalah baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "baik"
+    ],
+    "selections": [
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "kcum",
+      "quote": "καλὸς",
+      "quoteString": "καλὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:6, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-10-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "dikenal dalam perbuatan-perbuatan yang baik: jika ia membesarkan anak-anak, jika ia menerima orang asing, jika ia membasuh kaki orang-orang kudus, jika ia meringankan beban orang-orang yang menderita, jika ia telah berusaha melakukan setiap pekerjaan yang baik.\n\\s5 \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 3,
+        "mulia": 1,
+        "baik": 2
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1,
+        "adalah baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "yang baik"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ye64",
+      "quote": "καλοῖς",
+      "quoteString": "καλοῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-10-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "dikenal dalam perbuatan-perbuatan yang baik: jika ia membesarkan anak-anak, jika ia menerima orang asing, jika ia membasuh kaki orang-orang kudus, jika ia meringankan beban orang-orang yang menderita, jika ia telah berusaha melakukan setiap pekerjaan yang baik.\n\\s5 \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 4,
+        "mulia": 1,
+        "baik": 2
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1,
+        "adalah baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "yang:3 baik:2"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "baik",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "wsey",
+      "quote": "ἀγαθῷ",
+      "quoteString": "ἀγαθῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-25-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Demikian juga, perbuatan-perbuatan baik nyata, dan mereka yang mempunyai lainnya tidak dapat disembunyikan.\n\n\\s5",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 5,
+        "mulia": 1,
+        "baik": 2
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1,
+        "adalah baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "baik"
+    ],
+    "selections": [
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 25
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ynae",
+      "quote": [
+        {
+          "word": "τὰ",
+          "occurrence": 2
+        },
+        {
+          "word": "καλὰ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὰ καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:25, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-18-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Melakukan yang baik, menjadi kaya dalam perbuatan-perbuatan yang baik, menjadi murah hati, bersedia untuk berbagi. \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 5,
+        "mulia": 1,
+        "baik": 3
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1,
+        "adalah baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "yang:2 baik:2"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "baik",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ayex",
+      "quote": "καλοῖς",
+      "quoteString": "καλοῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:18, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-19-good",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "mengumpulkan untuk dirinya sendiri dasar yang baik untuk yang akan datang, supaya mereka memiliki kehidupan yang sesungguhnya.\n\\s5 \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "yang baik": 6,
+        "mulia": 1,
+        "baik": 3
+      },
+      "is good": {
+        "itu baik": 1,
+        "hal yang baik": 1,
+        "adalah baik": 1
+      },
+      "well": {
+        "dengan baik": 1
+      }
+    },
+    "expected": [
+      "yang baik"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "fb69",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:19, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-4-honor",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "Tetapi jika seorang janda memiliki anak-anak atau cucu-cucu, biarlah mereka pertama-tama belajar untuk menghormati rumah tangga mereka sendiri dan membalas perbuatan baik orang tua dan nenek, karena hal ini adalah berkenan di hadapan Allah.\n\\s5 \n\\p",
+    "glPhrase": "to treat in a godly way",
+    "history": {
+      "Honor": {
+        "Hormatilah": 1
+      }
+    },
+    "expected": [
+      "untuk menghormati"
+    ],
+    "selections": [
+      {
+        "text": "untuk",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "menghormati",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "phrn",
+      "quote": "εὐσεβεῖν",
+      "quoteString": "εὐσεβεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:4, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-1-honor",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "Semua orang yang ada di bawah belenggu perbudakan, biarlah mereka menganggap tuan-tuan mereka sendiri layak menerima semua penghormatan, supaya nama Allah dan ajaran tidak dihujat orang. \n\\p",
+    "glPhrase": "of honor",
+    "history": {
+      "Honor": {
+        "Hormatilah": 1
+      },
+      "to treat in a godly way": {
+        "untuk menghormati": 1
+      }
+    },
+    "expected": [
+      "penghormatan"
+    ],
+    "selections": [
+      {
+        "text": "penghormatan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "wcd7",
+      "quote": "τιμῆς",
+      "quoteString": "τιμῆς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:1, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-16-honor",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "Ia saja yang memiliki kekekalan, tinggal di dalam terang yang tidak dapat dihampiri yang tidak ada dari manusia-manusia telah melihat atau dapat melihat. Bagi Dialah hormat dan kuasa, kekal. Amin.\n\\s5 \n\\p",
+    "glPhrase": "be honor",
+    "history": {
+      "Honor": {
+        "Hormatilah": 1
+      },
+      "to treat in a godly way": {
+        "untuk menghormati": 1
+      },
+      "of honor": {
+        "penghormatan": 1
+      }
+    },
+    "expected": [
+      "hormat"
+    ],
+    "selections": [
+      {
+        "text": "hormat",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "wxdx",
+      "quote": "τιμὴ",
+      "quoteString": "τιμὴ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:16, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-14-hope",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "Aku menulis semua ini kepadamu, berharap untuk pergi kepadamu dengan segera. \n\\p",
+    "glPhrase": "hoping",
+    "history": {
+      "hope": {
+        "pengharapan": 1
+      }
+    },
+    "expected": [
+      "berharap"
+    ],
+    "selections": [
+      {
+        "text": "berharap",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "t9rb",
+      "quote": "ἐλπίζων",
+      "quoteString": "ἐλπίζων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:14, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-5-hope",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "Tetapi seorang yang sungguh-sungguh janda dan telah ditinggalkan sendirian, ia telah menaruh pengharapannya pada Allah, dan terus menerus dalam permohonan-permohonan dan doa-doa malam dan siang. \n\\p",
+    "glPhrase": "has hoped",
+    "history": {
+      "hope": {
+        "pengharapan": 1
+      },
+      "hoping": {
+        "berharap": 1
+      }
+    },
+    "expected": [
+      "ia telah:2 menaruh pengharapannya"
+    ],
+    "selections": [
+      {
+        "text": "ia",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "telah",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "menaruh",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "pengharapannya",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "vtu7",
+      "quote": "ἤλπικεν",
+      "quoteString": "ἤλπικεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:5, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-17-hope",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "Perintahkan kepada orang-orang kaya di zaman ini agar tidak sombong, atau berharap kepada kekayaan, yang tidak pasti. tetapi kepada Allah yang menyediakan semua dengan kelimpahan bagi kita untuk kenikmatan. \n\\p",
+    "glPhrase": "to hope",
+    "history": {
+      "hope": {
+        "pengharapan": 1
+      },
+      "hoping": {
+        "berharap": 1
+      },
+      "has hoped": {
+        "ia telah menaruh pengharapannya": 1
+      }
+    },
+    "expected": [
+      "berharap"
+    ],
+    "selections": [
+      {
+        "text": "berharap",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "rhsz",
+      "quote": "ἠλπικέναι",
+      "quoteString": "ἠλπικέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:17, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-15-household",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "Tetapi apabila aku menunda, supaya engkau tahu bagaimana seseorang harus berperilaku di dalam rumah Allah yang adalah jemaat Allah yang hidup, sebagai pilar dan dasar dari kebenaran.\n\\s5\n\\p",
+    "glPhrase": "the household",
+    "history": {
+      "household": {
+        "rumah tangganya sendiri": 1
+      }
+    },
+    "expected": [
+      "rumah"
+    ],
+    "selections": [
+      {
+        "text": "rumah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "tvbw",
+      "quote": "οἴκῳ",
+      "quoteString": "οἴκῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:15, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-8-household",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "Tetapi jika ada seorang yang tidak menyediakan kebutuhan sanak saudaranya sendiri, dan terutama bagi anggota-anggota rumah tangganya sendiri, ia telah menyangkal iman dan lebih buruk dari pada orang yang tidak percaya.\n\\s5 \n\\p",
+    "glPhrase": "for household members",
+    "history": {
+      "household": {
+        "rumah tangganya sendiri": 1
+      },
+      "the household": {
+        "rumah": 1
+      }
+    },
+    "expected": [
+      "anggota anggota:2 rumah tangganya sendiri:2"
+    ],
+    "selections": [
+      {
+        "text": "anggota",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "anggota",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "rumah",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tangganya",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sendiri",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "qzk2",
+      "quote": "οἰκείων",
+      "quoteString": "οἰκείων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:8, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-1-jesus-2",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Paulus, seorang rasul Kristus Yesus  menurut perintah dari Allah Juruselamat kita dan Tuhan Yesus Kristus pengharapan kita, \n\\p",
+    "glPhrase": "Jesus",
+    "occurrence": 2,
+    "history": {
+      "Jesus": {
+        "Yesus": 1
+      }
+    },
+    "expected": [
+      "Yesus:2"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "xexk",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:1, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-2-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "kepada Timotius, anakku yang sejati dalam iman: Anugerah, kemurahan, damai sejahtera dari Allah Bapa dan Kristus Yesus Tuhan kita.\n\\s5 \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 2
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "ytew",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:2, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-16-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Tetapi dengan alasan inilah aku telah ditunjukkan kemurahan, supaya dalam diriku, pertama, Yesus Kristus dapat menyatakan seluruh kesabaran sebagai contoh untuk mereka yang akan percaya kepada Dia untuk hidup kekal. \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 3
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "e7yz",
+      "quote": "Ἰησοῦς",
+      "quoteString": "Ἰησοῦς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:16, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-5-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 4
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "p4c6",
+      "quote": "Ἰησοῦς",
+      "quoteString": "Ἰησοῦς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:5, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-13-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 5
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "yc77",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:13, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-6-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Apabila engkau menanamkan hal-hal ini kepada saudara-saudara, engkau akan menjadi pelayan Yesus Kristus yang baik. Karena engkau sedang diberi makan dengan kata-kata iman dari ajaran yang baik yang telah engkau ikuti. \n\\p",
+    "glPhrase": "of Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 6
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "neza",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:6, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-21-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 6
+      },
+      "of Jesus": {
+        "Yesus": 1
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "b384",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:21, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-3-jesus",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "Yesus": 7
+      },
+      "of Jesus": {
+        "Yesus": 1
+      }
+    },
+    "expected": [
+      "Yesus"
+    ],
+    "selections": [
+      {
+        "text": "Yesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "wtk3",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:3, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-12-judge",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "memiliki penghakiman karena mereka telah melanggar janji pertama mereka.\n\\p",
+    "glPhrase": "judgment",
+    "history": {
+      "the judgment": {
+        "penghakiman": 1
+      }
+    },
+    "expected": [
+      "penghakiman"
+    ],
+    "selections": [
+      {
+        "text": "penghakiman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "nnk6",
+      "quote": "κρίμα",
+      "quoteString": "κρίμα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:12, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-24-judge",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "Dosa-dosa dari beberapa orang adalah nyata, menuju ke dalam penghakiman. Tetapi bagi beberapa orang, mereka juga mengikuti. \n\\p",
+    "glPhrase": "judgment",
+    "history": {
+      "the judgment": {
+        "penghakiman": 1
+      },
+      "judgment": {
+        "penghakiman": 1
+      }
+    },
+    "expected": [
+      "penghakiman"
+    ],
+    "selections": [
+      {
+        "text": "penghakiman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "nnuj",
+      "quote": "κρίσιν",
+      "quoteString": "κρίσιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:24, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-9-know",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Dan kita tahu ini, hukum tidak dibuat hanya bagi orang yang benar, tetapi untuk orang durhaka dan pemberontak, untuk orang fasik dan orang berdosa,  untuk mereka yang tidak percaya Tuhan dan hidup duniawi. Pembunuh ayahnya dan pembunuh ibunya, bagi para pembunuh, \n\\p",
+    "glPhrase": "knowing",
+    "history": {
+      "we know": {
+        "kita tahu": 1
+      }
+    },
+    "expected": [
+      "kita tahu"
+    ],
+    "selections": [
+      {
+        "text": "kita",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tahu",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "br4t",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:9, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-4-know",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "yang menginginkan semua manusia untuk diselamatkan dan datang pengetahuan akan kebenaran.\n\\s5 \n\\p",
+    "glPhrase": "knowledge",
+    "history": {
+      "we know": {
+        "kita tahu": 1
+      },
+      "knowing": {
+        "kita tahu": 1
+      }
+    },
+    "expected": [
+      "pengetahuan"
+    ],
+    "selections": [
+      {
+        "text": "pengetahuan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "x9wm",
+      "quote": "ἐπίγνωσιν",
+      "quoteString": "ἐπίγνωσιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:4, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-5-know",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Karena apabila seseorang tidak tahu mengatur rumah tangganya sendiri, bagaimana ia dapat mengurus jemaat Allah?\n\\s5 \n\\p",
+    "glPhrase": "does know how",
+    "history": {
+      "we know": {
+        "kita tahu": 1
+      },
+      "knowing": {
+        "kita tahu": 1
+      },
+      "knowledge": {
+        "pengetahuan": 1
+      }
+    },
+    "expected": [
+      "ia"
+    ],
+    "selections": [
+      {
+        "text": "ia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "zrvc",
+      "quote": "οἶδεν",
+      "quoteString": "οἶδεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:5, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-15-know",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Tetapi apabila aku menunda, supaya engkau tahu bagaimana seseorang harus berperilaku di dalam rumah Allah yang adalah jemaat Allah yang hidup, sebagai pilar dan dasar dari kebenaran.\n\\s5\n\\p",
+    "glPhrase": "you may know",
+    "history": {
+      "we know": {
+        "kita tahu": 1
+      },
+      "knowing": {
+        "kita tahu": 1
+      },
+      "knowledge": {
+        "pengetahuan": 1
+      },
+      "does know how": {
+        "ia": 1
+      }
+    },
+    "expected": [
+      "engkau tahu"
+    ],
+    "selections": [
+      {
+        "text": "engkau",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tahu",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "tt2e",
+      "quote": "εἰδῇς",
+      "quoteString": "εἰδῇς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:15, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-3-know",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "dengan melarang untuk menikah, untuk makan makanan-makanan yang Allah telah ciptakan untuk penerimaan dengan pengucapan syukur oleh orang-orang percaya dan yang telah mengenal kebenaran. \n\\p",
+    "glPhrase": "knowing",
+    "history": {
+      "we know": {
+        "kita tahu": 1
+      },
+      "knowing": {
+        "kita tahu": 1
+      },
+      "knowledge": {
+        "pengetahuan": 1
+      },
+      "does know how": {
+        "ia": 1
+      },
+      "you may know": {
+        "engkau tahu": 1
+      }
+    },
+    "expected": [
+      "telah:2 mengenal"
+    ],
+    "selections": [
+      {
+        "text": "telah",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "mengenal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "nh2x",
+      "quote": "ἐπεγνωκόσι",
+      "quoteString": "ἐπεγνωκόσι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:3, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-4-know",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "dia telah menjadi sombong, tidak mengetahui apapun, sebaliknya penyakitnya {adalah} suka berbantah-bantah dan bersilat kata, yang darinya mendatangkan iri hati, perselisihan, penghinaan, kecurigaan yang jahat, \n\\p",
+    "glPhrase": "understanding",
+    "history": {
+      "we know": {
+        "kita tahu": 1
+      },
+      "knowing": {
+        "kita tahu": 1,
+        "telah mengenal": 1
+      },
+      "knowledge": {
+        "pengetahuan": 1
+      },
+      "does know how": {
+        "ia": 1
+      },
+      "you may know": {
+        "engkau tahu": 1
+      }
+    },
+    "expected": [
+      "mengetahui apapun"
+    ],
+    "selections": [
+      {
+        "text": "mengetahui",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "apapun",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "ytbf",
+      "quote": "ἐπιστάμενος",
+      "quoteString": "ἐπιστάμενος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:4, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-2-lord",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "kepada Timotius, anakku yang sejati dalam iman: Anugerah, kemurahan, damai sejahtera dari Allah Bapa dan Kristus Yesus Tuhan kita.\n\\s5 \n\\p",
+    "glPhrase": "Lord",
+    "history": {
+      "of the Lord": {
+        "Tuhan": 1
+      }
+    },
+    "expected": [
+      "Tuhan"
+    ],
+    "selections": [
+      {
+        "text": "Tuhan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "ecwp",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίου",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:2, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-1-lord",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "Semua orang yang ada di bawah belenggu perbudakan, biarlah mereka menganggap tuan-tuan mereka sendiri layak menerima semua penghormatan, supaya nama Allah dan ajaran tidak dihujat orang. \n\\p",
+    "glPhrase": "masters",
+    "history": {
+      "of the Lord": {
+        "Tuhan": 1
+      },
+      "Lord": {
+        "Tuhan": 1
+      }
+    },
+    "expected": [
+      "tuan tuan:2"
+    ],
+    "selections": [
+      {
+        "text": "tuan",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "tuan",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "eu8v",
+      "quote": "δεσπότας",
+      "quoteString": "δεσπότας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:1, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-2-lord",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "Tetapi, mereka yang memiliki tuan-tuan yang percaya, biarlah tidak memandang rendah,  karena mereka adalah saudara-saudara. Sebaliknya, hendaknya mereka melayani lebih sungguh, karena mereka yang menerima pelayanan yang baik adalah orang-orang percaya dan orang-orang yang dikasihi. Ajarkanlah dan nasehatkanlah hal-hal ini.\n\\s5 \n\\p",
+    "glPhrase": "masters",
+    "history": {
+      "of the Lord": {
+        "Tuhan": 1
+      },
+      "Lord": {
+        "Tuhan": 1
+      },
+      "masters": {
+        "tuan tuan": 1
+      }
+    },
+    "expected": [
+      "tuan tuan:2"
+    ],
+    "selections": [
+      {
+        "text": "tuan",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "tuan",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "xqev",
+      "quote": "δεσπότας",
+      "quoteString": "δεσπότας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:2, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-3-lord",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
+    "glPhrase": "of Lord",
+    "history": {
+      "of the Lord": {
+        "Tuhan": 1
+      },
+      "Lord": {
+        "Tuhan": 1
+      },
+      "masters": {
+        "tuan tuan": 2
+      }
+    },
+    "expected": [
+      "Tuhan"
+    ],
+    "selections": [
+      {
+        "text": "Tuhan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "chbh",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίου",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:3, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-2-peace",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "untuk raja-raja dan semua orang yang ada dalam kekuasan, agar kita bisa hidup tenang dan tenteram dalam segala kesalehan dan kehormatan. \n\\p",
+    "glPhrase": "quiet",
+    "history": {
+      "peace": {
+        "damai sejahtera": 1
+      }
+    },
+    "expected": [
+      "tenteram"
+    ],
+    "selections": [
+      {
+        "text": "tenteram",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "pdck",
+      "quote": "ἡσύχιον",
+      "quoteString": "ἡσύχιον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:2, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-3-peace",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "tidak boleh pemabuk, tidak suka bertengkar, melainkan harus lemah-lembut, suka berdamai, bukan pencinta uang.\n\\s5 \n\\p",
+    "glPhrase": "peaceable",
+    "history": {
+      "peace": {
+        "damai sejahtera": 1
+      },
+      "quiet": {
+        "tenteram": 1
+      }
+    },
+    "expected": [
+      "suka:2 berdamai"
+    ],
+    "selections": [
+      {
+        "text": "suka",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "berdamai",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "mxka",
+      "quote": "ἄμαχον",
+      "quoteString": "ἄμαχον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:3, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-8-pray",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "Demikianlah, aku ingin kaum pria di manapun untuk berdoa dan menengadahkan tangannya yang kudus tanpa marah atau ragu-ragu. \n\\p",
+    "glPhrase": "to pray",
+    "history": {
+      "prayers": {
+        "doa": 1
+      }
+    },
+    "expected": [
+      "berdoa"
+    ],
+    "selections": [
+      {
+        "text": "berdoa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "deqp",
+      "quote": "προσεύχεσθαι",
+      "quoteString": "προσεύχεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:8, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-5-pray",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "Tetapi seorang yang sungguh-sungguh janda dan telah ditinggalkan sendirian, ia telah menaruh pengharapannya pada Allah, dan terus menerus dalam permohonan-permohonan dan doa-doa malam dan siang. \n\\p",
+    "glPhrase": "prayers",
+    "history": {
+      "prayers": {
+        "doa": 1
+      },
+      "to pray": {
+        "berdoa": 1
+      }
+    },
+    "expected": [
+      "doa doa:2"
+    ],
+    "selections": [
+      {
+        "text": "doa",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "doa",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "byxf",
+      "quote": [
+        {
+          "word": "ταῖς",
+          "occurrence": 2
+        },
+        {
+          "word": "προσευχαῖς",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ταῖς προσευχαῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:5, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-4-proud",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "proud",
+    "verse": "dia telah menjadi sombong, tidak mengetahui apapun, sebaliknya penyakitnya {adalah} suka berbantah-bantah dan bersilat kata, yang darinya mendatangkan iri hati, perselisihan, penghinaan, kecurigaan yang jahat, \n\\p",
+    "glPhrase": "he is puffed up",
+    "history": {
+      "being puffed up": {
+        "dengan menjadi sombong": 1
+      }
+    },
+    "expected": [
+      "dia telah menjadi sombong"
+    ],
+    "selections": [
+      {
+        "text": "dia",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "telah",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "menjadi",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sombong",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "proud",
+      "checkId": "vxw2",
+      "quote": "τετύφωται",
+      "quoteString": "τετύφωται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "proud"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:4, tW proud, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-17-proud",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "proud",
+    "verse": "Perintahkan kepada orang-orang kaya di zaman ini agar tidak sombong, atau berharap kepada kekayaan, yang tidak pasti. tetapi kepada Allah yang menyediakan semua dengan kelimpahan bagi kita untuk kenikmatan. \n\\p",
+    "glPhrase": "to be proud",
+    "history": {
+      "being puffed up": {
+        "dengan menjadi sombong": 1
+      },
+      "he is puffed up": {
+        "dia telah menjadi sombong": 1
+      }
+    },
+    "expected": [
+      "agar sombong"
+    ],
+    "selections": [
+      {
+        "text": "agar",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sombong",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "proud",
+      "checkId": "cga2",
+      "quote": "ὑψηλοφρονεῖν",
+      "quoteString": "ὑψηλοφρονεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "proud"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:17, tW proud, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-2-purify",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Perempuan-perempuan yang tua, sebagai seorang ibu, perempuan-perempuan muda sebagai saudari-saudari dengan segala kemurnian.\n\\s5 \n\\p",
+    "glPhrase": "purity",
+    "history": {
+      "pure": {
+        "yang murni": 1
+      }
+    },
+    "expected": [
+      "kemurnian"
+    ],
+    "selections": [
+      {
+        "text": "kemurnian",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "s7s4",
+      "quote": "ἁγνίᾳ",
+      "quoteString": "ἁγνίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:2, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-22-purify",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Menumpangkan tangan-tangan dengan tergesa-gesa pada tidak satu orang pun. Jangan terlibat dalam dosa-dosa orang-orang lain. Jagalah dirimu murni.\n\\s5\n\\p",
+    "glPhrase": "pure",
+    "history": {
+      "pure": {
+        "yang murni": 1
+      },
+      "purity": {
+        "kemurnian": 1
+      }
+    },
+    "expected": [
+      "murni"
+    ],
+    "selections": [
+      {
+        "text": "murni",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "xsy6",
+      "quote": "ἁγνὸν",
+      "quoteString": "ἁγνὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:22, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-4-reject",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "reject",
+    "verse": "Karena semua ciptaan Allah {adalah} baik, dan tidak sesuatupun yang diterima dengan ucapan syukur {adalah} najis, \n\\p",
+    "glPhrase": "is to be rejected",
+    "history": {
+      "having rejected": {
+        "telah menolak": 1
+      }
+    },
+    "expected": [
+      "adalah:2 najis"
+    ],
+    "selections": [
+      {
+        "text": "adalah",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "najis",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "nfn7",
+      "quote": "ἀπόβλητον",
+      "quoteString": "ἀπόβλητον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:4, tW reject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-7-reject",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "reject",
+    "verse": "Tetapi tolaklah cerita-cerita yang duniawi dan  yang disukai nenek-nenek tua. Sebaliknya, latihlah dirimu sendiri dalam kesalehan. \n\\p",
+    "glPhrase": "reject",
+    "history": {
+      "having rejected": {
+        "telah menolak": 1
+      },
+      "is to be rejected": {
+        "adalah najis": 1
+      }
+    },
+    "expected": [
+      "tolaklah"
+    ],
+    "selections": [
+      {
+        "text": "tolaklah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "dvpm",
+      "quote": "παραιτοῦ",
+      "quoteString": "παραιτοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:7, tW reject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-11-reject",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "reject",
+    "verse": "Tetapi tolaklah janda-janda yang lebih muda, karena ketika mereka menjadi tidak setia kepada Kristus, mereka ingin menikah, \n\\p",
+    "glPhrase": "reject",
+    "history": {
+      "having rejected": {
+        "telah menolak": 1
+      },
+      "is to be rejected": {
+        "adalah najis": 1
+      },
+      "reject": {
+        "tolaklah": 1
+      }
+    },
+    "expected": [
+      "tolaklah"
+    ],
+    "selections": [
+      {
+        "text": "tolaklah",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "tvvu",
+      "quote": "παραιτοῦ",
+      "quoteString": "παραιτοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:11, tW reject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-6-satan",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "satan",
+    "verse": "Ia bukan seorang petobat baru, agar ia tidak jatuh, dengan menjadi sombong, ke dalam penghakiman Iblis \n\\p",
+    "glPhrase": "of the devil",
+    "history": {
+      "to Satan": {
+        "kepada Setan": 1
+      }
+    },
+    "expected": [
+      "Iblis"
+    ],
+    "selections": [
+      {
+        "text": "Iblis",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "satan",
+      "checkId": "hyvy",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "διαβόλου",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ διαβόλου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "satan"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:6, tW satan, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-3-7-satan",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "satan",
+    "verse": "Tetapi Ia juga harus memiliki nama baik dengan mereka di luar, sehingga ia tidak jatuh dalam hal yang memalukan dan perangkap Iblis.\n\\s5 \n\\p",
+    "glPhrase": "of the devil",
+    "history": {
+      "to Satan": {
+        "kepada Setan": 1
+      },
+      "of the devil": {
+        "Iblis": 1
+      }
+    },
+    "expected": [
+      "Iblis"
+    ],
+    "selections": [
+      {
+        "text": "Iblis",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "satan",
+      "checkId": "zq5w",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "διαβόλου",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ διαβόλου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "satan"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 3:7, tW satan, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-2-15-save",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "Namun demikian, ia akan diselamatkan melalui melahirkan anak, jika mereka tetap di dalam iman dan kasih dan pengudusan dengan pengendalian diri.\n\n\\s5",
+    "glPhrase": "she will be saved",
+    "history": {
+      "to be saved": {
+        "diselamatkan": 1
+      }
+    },
+    "expected": [
+      "ia akan diselamatkan"
+    ],
+    "selections": [
+      {
+        "text": "ia",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "akan",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "diselamatkan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "u5pr",
+      "quote": "σωθήσεται",
+      "quoteString": "σωθήσεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 2:15, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-4-16-save",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "Perhatikan dirimu sendiri dan pengajaran. Lanjutkanlah semuanya. Karena dengan melakukan ini, maka engkau akan menyelamatkan dirimu sendiri dan mereka yang mendengarkan engkau.\n\n\\s5",
+    "glPhrase": "you will save",
+    "history": {
+      "to be saved": {
+        "diselamatkan": 1
+      },
+      "she will be saved": {
+        "ia akan diselamatkan": 1
+      }
+    },
+    "expected": [
+      "engkau akan menyelamatkan"
+    ],
+    "selections": [
+      {
+        "text": "engkau",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "akan",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "menyelamatkan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "sd8s",
+      "quote": "σώσεις",
+      "quoteString": "σώσεις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 4:16, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-10-testimony",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "dikenal dalam perbuatan-perbuatan yang baik: jika ia membesarkan anak-anak, jika ia menerima orang asing, jika ia membasuh kaki orang-orang kudus, jika ia meringankan beban orang-orang yang menderita, jika ia telah berusaha melakukan setiap pekerjaan yang baik.\n\\s5 \n\\p",
+    "glPhrase": "being testified",
+    "history": {
+      "a testimony": {
+        "nama": 1
+      }
+    },
+    "expected": [
+      "dikenal"
+    ],
+    "selections": [
+      {
+        "text": "dikenal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "jc96",
+      "quote": "μαρτυρουμένη",
+      "quoteString": "μαρτυρουμένη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:10, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-19-testimony",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Janganlah menerima tuduhan menentang seorang penatua kecuali jika berdasarkan dua atau tiga saksi. \n\\p",
+    "glPhrase": "witnesses",
+    "history": {
+      "a testimony": {
+        "nama": 1
+      },
+      "being testified": {
+        "dikenal": 1
+      }
+    },
+    "expected": [
+      "saksi"
+    ],
+    "selections": [
+      {
+        "text": "saksi",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "ztau",
+      "quote": "μαρτύρων",
+      "quoteString": "μαρτύρων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:19, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-5-21-testimony",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
+    "glPhrase": "I declare",
+    "history": {
+      "a testimony": {
+        "nama": 1
+      },
+      "being testified": {
+        "dikenal": 1
+      },
+      "witnesses": {
+        "saksi": 1
+      }
+    },
+    "expected": [
+      "Aku menghimbau"
+    ],
+    "selections": [
+      {
+        "text": "Aku",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "menghimbau",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "zxm2",
+      "quote": "διαμαρτύρομαι",
+      "quoteString": "διαμαρτύρομαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 5:21, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-1-18-timothy",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "timothy",
+    "verse": "Aku menempatkan perintah ini untukmu, hai anakku Timotius, sesuai dengan nubuat-nubuat yang telah mendahului mengenai engkau supaya dengan mereka engkau dapat bertarung pertarungan yang baik. \n\\p",
+    "glPhrase": "Timothy",
+    "history": {
+      "to Timothy": {
+        "kepada Timotius": 1
+      }
+    },
+    "expected": [
+      "Timotius"
+    ],
+    "selections": [
+      {
+        "text": "Timotius",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "timothy",
+      "checkId": "fzud",
+      "quote": "Τιμόθεε",
+      "quoteString": "Τιμόθεε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "timothy"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 1:18, tW timothy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-1ti-6-20-timothy",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "timothy",
+    "verse": "Hai Timotius, jagalah apa yang telah dipercayakan, menghindari pembicaraan-pembicaraan duniawi dan pertentangan-pertentangan yang keliru disebut sebagai pengetahuan. \n\\p",
+    "glPhrase": "Timothy",
+    "history": {
+      "to Timothy": {
+        "kepada Timotius": 1
+      },
+      "Timothy": {
+        "Timotius": 1
+      }
+    },
+    "expected": [
+      "Timotius"
+    ],
+    "selections": [
+      {
+        "text": "Timotius",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "timothy",
+      "checkId": "brqp",
+      "quote": "Τιμόθεε",
+      "quoteString": "Τιμόθεε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "timothy"
+    ],
+    "madeUp": false,
+    "source": "id_glt_1ti_book 6:20, tW timothy, GL en ult/v91_unfoldingWord"
+  }
+]

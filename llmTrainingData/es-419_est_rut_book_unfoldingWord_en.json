@@ -1,0 +1,4324 @@
+[
+  {
+    "id": "train-es-419-rut-4-15-bear",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bear",
+    "verse": "Ahora, él será para ti un restaurador de vida y un sustentador de tu vejez, porque tu nuera que te ama, ella que es mejor para ti que siete hijos, lo ha parido\".\n\\p",
+    "glPhrase": "has borne him",
+    "history": {
+      "bore": {
+        "dió a luz": 1
+      }
+    },
+    "expected": [
+      "lo ha parido"
+    ],
+    "selections": [
+      {
+        "text": "lo",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ha",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "parido",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "bear",
+      "checkId": "x3s9",
+      "quote": "יְלָדַ֔תּ⁠וּ",
+      "quoteString": "יְלָדַ֔תּ⁠וּ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bear"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:15, tW bear, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-2-bethlehem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "Y el nombre del hombre era Elimelec y el nombre de su esposa era Noemí y los nombres de sus dos hijos eran Mahlón y Quelión, efrateos de Belén de Judá. Entonces ellos llegaron a la región de Moab y vivieron allí. \n\\p",
+    "glPhrase": "from Bethlehem of",
+    "history": {
+      "from Bethlehem of": {
+        "de Belén": 1
+      }
+    },
+    "expected": [
+      "de:3 Belén"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 3,
+        "occurrences": 5
+      },
+      {
+        "text": "Belén",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "g8uq",
+      "quote": [
+        {
+          "word": "מִ⁠בֵּ֥ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לֶ֖חֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "מִ⁠בֵּ֥ית לֶ֖חֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:2, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-19-bethlehem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "Así que las dos viajaron hasta que llegaron a Belén. Y sucedió que, tan pronto como llegaron a Belén, el pueblo entero estaba muy conmocionado por causa de ellas. Y ellas dijeron: \"¿Es esta Noemí?\" \n\\p",
+    "glPhrase": "Bethlehem",
+    "history": {
+      "from Bethlehem of": {
+        "de Belén": 2
+      }
+    },
+    "expected": [
+      "a Belén"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Belén",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "fsz7",
+      "quote": [
+        {
+          "word": "בֵּ֣ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לָ֑חֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "בֵּ֣ית לָ֑חֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:19, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-22-bethlehem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "Así que Noemí regresó con Rut la Moabita, su nuera, quien regresó con ella desde los campos de Moab. Y ellas llegaron a Belén al inicio de la cosecha de cebada.",
+    "glPhrase": "Bethlehem",
+    "history": {
+      "from Bethlehem of": {
+        "de Belén": 2
+      },
+      "Bethlehem": {
+        "a Belén": 1
+      }
+    },
+    "expected": [
+      "a Belén"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Belén",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "z277",
+      "quote": [
+        {
+          "word": "בֵּ֣ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לֶ֔חֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "בֵּ֣ית לֶ֔חֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:22, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-4-bethlehem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
+    "glPhrase": "from Bethlehem",
+    "history": {
+      "from Bethlehem of": {
+        "de Belén": 2
+      },
+      "Bethlehem": {
+        "a Belén": 2
+      }
+    },
+    "expected": [
+      "de Belén"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Belén",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "a4j3",
+      "quote": [
+        {
+          "word": "מִ⁠בֵּ֣ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לֶ֔חֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "מִ⁠בֵּ֣ית לֶ֔חֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:4, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-11-bethlehem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "Y toda la gente que estaba en la puerta y los ancianos dijieron: \"Somos testigos. ¡Que Jehová haga a esta mujer quien está entrando a tu casa como a Raquel y a Lea, las dos que construyeron la casa de Israel, y alcanza honor en Efrata y sé renombrado en Belén!",
+    "glPhrase": "in Bethlehem",
+    "history": {
+      "from Bethlehem of": {
+        "de Belén": 2
+      },
+      "Bethlehem": {
+        "a Belén": 2
+      },
+      "from Bethlehem": {
+        "de Belén": 1
+      }
+    },
+    "expected": [
+      "en:3 Belén"
+    ],
+    "selections": [
+      {
+        "text": "en",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "Belén",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "h4a3",
+      "quote": [
+        {
+          "word": "בְּ⁠בֵ֥ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לָֽחֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "בְּ⁠בֵ֥ית לָֽחֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:11, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-4-boaz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
+    "glPhrase": "Boaz",
+    "history": {
+      "belonging to Boaz": {
+        "perteneciente a Booz": 1
+      }
+    },
+    "expected": [
+      "Booz"
+    ],
+    "selections": [
+      {
+        "text": "Booz",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "sagn",
+      "quote": "בֹ֗עַז",
+      "quoteString": "בֹ֗עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:4, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-14-boaz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "Entonces, a la hora de la comida, Booz le dijo a ella: \"Ven aquí, y come del pan, y sumerge tu pedazo en el vinagre\". Entonces ella se sentó al lado de los segadores, y él le ofreció grano tostado. Y ella comió, y estuvo satisfecha y le quedaron sobras.",
+    "glPhrase": "Boaz",
+    "history": {
+      "belonging to Boaz": {
+        "perteneciente a Booz": 1
+      },
+      "Boaz": {
+        "Booz": 1
+      }
+    },
+    "expected": [
+      "Booz"
+    ],
+    "selections": [
+      {
+        "text": "Booz",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "ytxs",
+      "quote": "בֹ֜עַז",
+      "quoteString": "בֹ֜עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:14, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-2-boaz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "¿Ahora, no es Booz nuestro pariente, con cuyas jóvenes trabajadoras tú has estado? Mira, él estará aventando la cebada en el patio de trillar esta noche.",
+    "glPhrase": "Boaz",
+    "history": {
+      "belonging to Boaz": {
+        "perteneciente a Booz": 1
+      },
+      "Boaz": {
+        "Booz": 2
+      }
+    },
+    "expected": [
+      "es Booz"
+    ],
+    "selections": [
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Booz",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "h2my",
+      "quote": "בֹ֨עַז֙",
+      "quoteString": "בֹ֨עַז֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:2, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-1-boaz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "Ahora Booz había subido a la puerta y se sentó ahí. Y he aquí, que el pariente redentor estaba pasando por ahí, aquel de quien Booz había hablado anteriormente. Y él dijo: \"Desvíate y siéntate aquí, fulano\". Así que se desvió y se sentó.",
+    "glPhrase": "Now Boaz",
+    "history": {
+      "belonging to Boaz": {
+        "perteneciente a Booz": 1
+      },
+      "Boaz": {
+        "Booz": 2,
+        "es Booz": 1
+      }
+    },
+    "expected": [
+      "Ahora Booz"
+    ],
+    "selections": [
+      {
+        "text": "Ahora",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Booz",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "mdws",
+      "quote": "וּ⁠בֹ֨עַז",
+      "quoteString": "וּ⁠בֹ֨עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:1, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-8-boaz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "Así que el pariente redentor dijo a Booz: \"Cómpralo para ti mismo\", y se quitó su sandalia. \n\\p",
+    "glPhrase": "to Boaz",
+    "history": {
+      "belonging to Boaz": {
+        "perteneciente a Booz": 1
+      },
+      "Boaz": {
+        "Booz": 2,
+        "es Booz": 1
+      },
+      "Now Boaz": {
+        "Ahora Booz": 1
+      }
+    },
+    "expected": [
+      "a Booz"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Booz",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "jadt",
+      "quote": "לְ⁠בֹ֖עַז",
+      "quoteString": "לְ⁠בֹ֖עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:8, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-21-boaz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "Y Salmón engendró a Booz, y Booz engendró a Obed;",
+    "glPhrase": "and Boaz",
+    "history": {
+      "belonging to Boaz": {
+        "perteneciente a Booz": 1
+      },
+      "Boaz": {
+        "Booz": 2,
+        "es Booz": 1
+      },
+      "Now Boaz": {
+        "Ahora Booz": 1
+      },
+      "to Boaz": {
+        "a Booz": 1
+      }
+    },
+    "expected": [
+      "Y Booz:2"
+    ],
+    "selections": [
+      {
+        "text": "Y",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Booz",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "z6j5",
+      "quote": "וּ⁠בֹ֖עַז",
+      "quoteString": "וּ⁠בֹ֖עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:21, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-20-covenantfaith",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "covenantfaith",
+    "verse": "Entonces Noemí le dijo a su nuera: \"Que él sea bendecido por Jehová, quien no ha olvidado su fidelidad tanto con los vivos como con los muertos\". Noemí también le dijo: \"Ese hombre está cercanamente relacionado con nosotras. Él es uno de nuestros parientes redentores\". \n\\p",
+    "glPhrase": "his covenant faithfulness",
+    "history": {
+      "in covenant faithfulness": {
+        "con misericordia": 1
+      }
+    },
+    "expected": [
+      "su:2 fidelidad"
+    ],
+    "selections": [
+      {
+        "text": "su",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "fidelidad",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "covenantfaith",
+      "checkId": "kqmd",
+      "quote": "חַסְדּ֔⁠וֹ",
+      "quoteString": "חַסְדּ֔⁠וֹ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "covenantfaith"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:20, tW covenantfaith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-10-favor",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "favor",
+    "verse": "Luego cayó sobre su rostro y se inclinó en el suelo y le dijo a él: \"¿Por qué he hallado gracia en sus ojos, que usted se ha fijado en mí, ya que soy una extranjera?\" \n\\p",
+    "glPhrase": "favor",
+    "history": {
+      "favor": {
+        "gracia": 1
+      }
+    },
+    "expected": [
+      "gracia"
+    ],
+    "selections": [
+      {
+        "text": "gracia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "favor",
+      "checkId": "z87z",
+      "quote": "חֵ֤ן",
+      "quoteString": "חֵ֤ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "favor"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:10, tW favor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-13-favor",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "favor",
+    "verse": "Luego ella dijo: \"Podría hallar gracia en tus ojos, mi señor, ya que tú me has confortado y ya que has hablado al corazón de tu sierva. Pero en cuanto a mí, no soy siquiera una de tus siervas\". \n\\p",
+    "glPhrase": "favor",
+    "history": {
+      "favor": {
+        "gracia": 2
+      }
+    },
+    "expected": [
+      "gracia"
+    ],
+    "selections": [
+      {
+        "text": "gracia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "favor",
+      "checkId": "m4s8",
+      "quote": "חֵ֨ן",
+      "quoteString": "חֵ֨ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "favor"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:13, tW favor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-8-glean",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "glean",
+    "verse": "Entonces Booz le dijo a Rut: \"¿No me escucharás, hija mía? No vayas a espigar en otro campo y ni siquiera te alejes de aquí. Más bien quédate cerca de mis sirvientas jóvenes.",
+    "glPhrase": "to glean",
+    "history": {
+      "let me glean": {
+        "permíteme espigar": 1
+      }
+    },
+    "expected": [
+      "a:2 espigar"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "espigar",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "glean",
+      "checkId": "nmj9",
+      "quote": "לִ⁠לְקֹט֙",
+      "quoteString": "לִ⁠לְקֹט֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "glean"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:8, tW glean, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-16-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Pero Rut dijo: \"No me presiones a abandonarte o que deje de seguirte. Ya que iré al lugar donde tú vayas y me quedaré en el lugar donde tú te quedes, tu pueblo será mi pueblo y tu Dios será mi Dios.",
+    "glPhrase": "is my God",
+    "history": {
+      "and your God": {
+        "y tu Dios": 1
+      }
+    },
+    "expected": [
+      "será:2 mi:2 Dios:2"
+    ],
+    "selections": [
+      {
+        "text": "será",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "mi",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Dios",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "c6pj",
+      "quote": "אֱלֹהָֽ⁠י",
+      "quoteString": "אֱלֹהָֽ⁠י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:16, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-12-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Que Jehová recompense tu trabajo, y que tus salarios completos vengan de Jehová, el Dios de Israel, bajo cuyas alas tú has venido por refugio\". \n\\p",
+    "glPhrase": "the God of",
+    "history": {
+      "and your God": {
+        "y tu Dios": 1
+      },
+      "is my God": {
+        "será mi Dios": 1
+      }
+    },
+    "expected": [
+      "el Dios de:2"
+    ],
+    "selections": [
+      {
+        "text": "el",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "vg5e",
+      "quote": "אֱלֹהֵ֣י",
+      "quoteString": "אֱלֹהֵ֣י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:12, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-1-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Entonces Noemí, su suegra, le dijo: \"Hija mía, ¿No debería yo buscar un lugar de descanso para ti, que sea bueno para ti?",
+    "glPhrase": "will be good",
+    "history": {
+      "It is good": {
+        "Es bueno": 1
+      }
+    },
+    "expected": [
+      "sea bueno"
+    ],
+    "selections": [
+      {
+        "text": "sea",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "bueno",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "btw7",
+      "quote": "יִֽיטַב",
+      "quoteString": "יִֽיטַב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-13-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
+    "glPhrase": "good",
+    "history": {
+      "It is good": {
+        "Es bueno": 1
+      },
+      "will be good": {
+        "sea bueno": 1
+      }
+    },
+    "expected": [
+      "bien"
+    ],
+    "selections": [
+      {
+        "text": "bien",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "pkhc",
+      "quote": "טוֹב֙",
+      "quoteString": "טוֹב֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:13, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-15-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Ahora, él será para ti un restaurador de vida y un sustentador de tu vejez, porque tu nuera que te ama, ella que es mejor para ti que siete hijos, lo ha parido\".\n\\p",
+    "glPhrase": "is better",
+    "history": {
+      "It is good": {
+        "Es bueno": 1
+      },
+      "will be good": {
+        "sea bueno": 1
+      },
+      "good": {
+        "bien": 1
+      }
+    },
+    "expected": [
+      "es mejor"
+    ],
+    "selections": [
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mejor",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "nx5a",
+      "quote": "ט֣וֹבָה",
+      "quoteString": "ט֣וֹבָה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:15, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-14-grain",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grain",
+    "verse": "Entonces, a la hora de la comida, Booz le dijo a ella: \"Ven aquí, y come del pan, y sumerge tu pedazo en el vinagre\". Entonces ella se sentó al lado de los segadores, y él le ofreció grano tostado. Y ella comió, y estuvo satisfecha y le quedaron sobras.",
+    "glPhrase": "some roasted grain",
+    "history": {
+      "among the bundles of grain": {
+        "de entre los bultos de grano": 1
+      }
+    },
+    "expected": [
+      "grano tostado"
+    ],
+    "selections": [
+      {
+        "text": "grano",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tostado",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "grain",
+      "checkId": "ednc",
+      "quote": "קָלִ֔י",
+      "quoteString": "קָלִ֔י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grain"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:14, tW grain, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-7-grain",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grain",
+    "verse": "Y Booz comió y bebió y su corazón estaba bien, y se fue a acostar al final de la pila de granos. Entonces ella vino en secreto, y descubrió sus pies y se acostó.",
+    "glPhrase": "the pile of grain",
+    "history": {
+      "among the bundles of grain": {
+        "de entre los bultos de grano": 1
+      },
+      "some roasted grain": {
+        "grano tostado": 1
+      }
+    },
+    "expected": [
+      "la pila de:2 granos"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "pila",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "granos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "grain",
+      "checkId": "cel0",
+      "quote": "הָ⁠עֲרֵמָ֑ה",
+      "quoteString": "הָ⁠עֲרֵמָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grain"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:7, tW grain, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-4-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
+    "glPhrase": "to the reapers",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      }
+    },
+    "expected": [
+      "a los segadores"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "los",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "segadores",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "zvug",
+      "quote": "לַ⁠קּוֹצְרִ֖ים",
+      "quoteString": "לַ⁠קּוֹצְרִ֖ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:4, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-5-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Entonces Booz dijo a su sirviente, quien fue puesto sobre los segadores: \"¿A quién pertenece esta jóven mujer?\" \n\\p",
+    "glPhrase": "the reapers",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      }
+    },
+    "expected": [
+      "los segadores"
+    ],
+    "selections": [
+      {
+        "text": "los",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "segadores",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "aj63",
+      "quote": "הַ⁠קּֽוֹצְרִ֑ים",
+      "quoteString": "הַ⁠קּֽוֹצְרִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:5, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-6-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Entonces el sirviente, quien fue puesto sobre los segadores respondió y dijo: \"Ella es una joven moabita, la que regresó con Noemí de la tierra de Moab.",
+    "glPhrase": "the reapers",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      },
+      "the reapers": {
+        "los segadores": 1
+      }
+    },
+    "expected": [
+      "los segadores"
+    ],
+    "selections": [
+      {
+        "text": "los",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "segadores",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "stsf",
+      "quote": "הַ⁠קּוֹצְרִ֖ים",
+      "quoteString": "הַ⁠קּוֹצְרִ֖ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:6, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-7-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Y ella dijo: 'Te ruego, permíteme espigar y recoger de entre los bultos de grano detrás de los segadores'. Y ella vino y ha continuado desde entonces, en la mañana hasta ahora. Aquí está ella descansando un poco en la casa\". \n\\p",
+    "glPhrase": "the reapers",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      },
+      "the reapers": {
+        "los segadores": 2
+      }
+    },
+    "expected": [
+      "los:2 segadores"
+    ],
+    "selections": [
+      {
+        "text": "los",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "segadores",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "cyyt",
+      "quote": "הַ⁠קּוֹצְרִ֑ים",
+      "quoteString": "הַ⁠קּוֹצְרִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:7, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-9-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Mantén tus ojos en el campo que están cosechando y sigue tras ellas. ¿No he instruido a los sirvientes jóvenes para que no te toquen? Y cuando tengas sed, ve a las vasijas y bebe de lo que los sirvientes jóvenes han extraido\". \n\\p",
+    "glPhrase": "they are reaping",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      },
+      "the reapers": {
+        "los segadores": 3
+      }
+    },
+    "expected": [
+      "están cosechando"
+    ],
+    "selections": [
+      {
+        "text": "están",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "cosechando",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "yefn",
+      "quote": "יִקְצֹרוּ⁠ן֙",
+      "quoteString": "יִקְצֹרוּ⁠ן֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:9, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-14-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Entonces, a la hora de la comida, Booz le dijo a ella: \"Ven aquí, y come del pan, y sumerge tu pedazo en el vinagre\". Entonces ella se sentó al lado de los segadores, y él le ofreció grano tostado. Y ella comió, y estuvo satisfecha y le quedaron sobras.",
+    "glPhrase": "the reapers",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      },
+      "the reapers": {
+        "los segadores": 3
+      },
+      "they are reaping": {
+        "están cosechando": 1
+      }
+    },
+    "expected": [
+      "los segadores"
+    ],
+    "selections": [
+      {
+        "text": "los",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "segadores",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "sf75",
+      "quote": "הַ⁠קּֽוֹצְרִ֔ים",
+      "quoteString": "הַ⁠קּֽוֹצְרִ֔ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:14, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-23-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Entonces se quedó cerca de las sirvientas jóvenes de Booz para espigar hasta que la cosecha de cebada y la cosecha de trigo estuvieran terminadas. Y vivió con su suegra.",
+    "glPhrase": "the harvest of",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      },
+      "the reapers": {
+        "los segadores": 4
+      },
+      "they are reaping": {
+        "están cosechando": 1
+      }
+    },
+    "expected": [
+      "la cosecha de:3"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "cosecha",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "de",
+        "occurrence": 3,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "e9bm",
+      "quote": "קְצִֽיר",
+      "quoteString": "קְצִֽיר",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:23, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-23-harvest",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "Entonces se quedó cerca de las sirvientas jóvenes de Booz para espigar hasta que la cosecha de cebada y la cosecha de trigo estuvieran terminadas. Y vivió con su suegra.",
+    "glPhrase": "and the harvest of",
+    "history": {
+      "the harvest of": {
+        "de la cosecha": 1,
+        "la cosecha de": 1
+      },
+      "to the reapers": {
+        "a los segadores": 1
+      },
+      "the reapers": {
+        "los segadores": 4
+      },
+      "they are reaping": {
+        "están cosechando": 1
+      }
+    },
+    "expected": [
+      "y la:2 cosecha:2 de:4"
+    ],
+    "selections": [
+      {
+        "text": "y",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "la",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "cosecha",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "de",
+        "occurrence": 4,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "c3cr",
+      "quote": "וּ⁠קְצִ֣יר",
+      "quoteString": "וּ⁠קְצִ֣יר",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:23, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-2-judea",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judea",
+    "verse": "Y el nombre del hombre era Elimelec y el nombre de su esposa era Noemí y los nombres de sus dos hijos eran Mahlón y Quelión, efrateos de Belén de Judá. Entonces ellos llegaron a la región de Moab y vivieron allí. \n\\p",
+    "glPhrase": "Judah",
+    "history": {
+      "Judah": {
+        "de Judá": 1
+      }
+    },
+    "expected": [
+      "de:4 Judá"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 4,
+        "occurrences": 5
+      },
+      {
+        "text": "Judá",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "judea",
+      "checkId": "jdp4",
+      "quote": "יְהוּדָ֑ה",
+      "quoteString": "יְהוּדָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judea"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:2, tW judea, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-7-judea",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judea",
+    "verse": "Así que salió del lugar donde había estado  viviendo, y sus dos nueras estaban con ella. Y viajaron por el camino para volver a la tierra de Judá. \n\\p",
+    "glPhrase": "Judah",
+    "history": {
+      "Judah": {
+        "de Judá": 2
+      }
+    },
+    "expected": [
+      "de Judá"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Judá",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "judea",
+      "checkId": "nfb5",
+      "quote": "יְהוּדָֽה",
+      "quoteString": "יְהוּדָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judea"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:7, tW judea, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-12-kin",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "kin",
+    "verse": "Y ahora, es indudablemente cierto que soy un pariente redentor, pero hay un pariente redentor aún más cercano que yo.",
+    "glPhrase": "a kinsman redeemer",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 1
+      }
+    },
+    "expected": [
+      "un pariente redentor"
+    ],
+    "selections": [
+      {
+        "text": "un",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "pariente",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "redentor",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "kin",
+      "checkId": "x2hy",
+      "quote": "גֹאֵ֖ל",
+      "quoteString": "גֹאֵ֖ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "kin"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:12, tW kin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-4-know",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Ahora, en cuanto a mí, dije que debería descubrir tu oído, diciendo: 'Cómpralo en presencia de aquellos que están sentados aquí y en presencia de los ancianos de mi pueblo. Si la vas a redimir, redímela. Pero si no la vas a redimir, entonces dime para que yo pueda saber, ya que no hay nadie para redimirla además de ti, y yo estoy después de ti'.\n\\p\nEntonces el dijó \"Yo mismo la redimiré\". \n\\p",
+    "glPhrase": "so that I may know",
+    "history": {
+      "knows": {
+        "sabe": 1
+      }
+    },
+    "expected": [
+      "pueda saber"
+    ],
+    "selections": [
+      {
+        "text": "pueda",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "saber",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "uxw2",
+      "quote": "ו⁠אדע",
+      "quoteString": "ו⁠אדע",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:4, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-2-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Y el nombre del hombre era Elimelec y el nombre de su esposa era Noemí y los nombres de sus dos hijos eran Mahlón y Quelión, efrateos de Belén de Judá. Entonces ellos llegaron a la región de Moab y vivieron allí. \n\\p",
+    "glPhrase": "Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 1
+      }
+    },
+    "expected": [
+      "Moab"
+    ],
+    "selections": [
+      {
+        "text": "Moab",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "vnfc",
+      "quote": "מוֹאָ֖ב",
+      "quoteString": "מוֹאָ֖ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:2, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-4-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Y ellos tomaron esposas moabitas para sí mismos; el nombre de la primera era Orfa y el nombre de la segunda era Rut. Y vivieron allí por alrededor de diez años.",
+    "glPhrase": "from the women of Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 1,
+        "Moab": 1
+      }
+    },
+    "expected": [
+      "moabitas"
+    ],
+    "selections": [
+      {
+        "text": "moabitas",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "nyf7",
+      "quote": "מֹֽאֲבִיּ֔וֹת",
+      "quoteString": "מֹֽאֲבִיּ֔וֹת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:4, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-6-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Entonces ella y sus nueras se levantaron para volver de los campos de Moab, ya que había oído en un campo de Moab que Jehová había atendido a su pueblo al darles pan.",
+    "glPhrase": "Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 1,
+        "Moab": 1
+      },
+      "from the women of Moab": {
+        "moabitas": 1
+      }
+    },
+    "expected": [
+      "de:2 Moab"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "Moab",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "bv6q",
+      "quote": "מוֹאָ֑ב",
+      "quoteString": "מוֹאָ֑ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:6, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-6-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Entonces ella y sus nueras se levantaron para volver de los campos de Moab, ya que había oído en un campo de Moab que Jehová había atendido a su pueblo al darles pan.",
+    "glPhrase": "Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 2,
+        "Moab": 1
+      },
+      "from the women of Moab": {
+        "moabitas": 1
+      }
+    },
+    "expected": [
+      "de:3 Moab:2"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "Moab",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "u22t",
+      "quote": "מוֹאָ֔ב",
+      "quoteString": "מוֹאָ֔ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:6, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-22-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Así que Noemí regresó con Rut la Moabita, su nuera, quien regresó con ella desde los campos de Moab. Y ellas llegaron a Belén al inicio de la cosecha de cebada.",
+    "glPhrase": "Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 3,
+        "Moab": 1
+      },
+      "from the women of Moab": {
+        "moabitas": 1
+      }
+    },
+    "expected": [
+      "de Moab"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "Moab",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "epb3",
+      "quote": "מוֹאָ֑ב",
+      "quoteString": "מוֹאָ֑ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:22, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-6-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Entonces el sirviente, quien fue puesto sobre los segadores respondió y dijo: \"Ella es una joven moabita, la que regresó con Noemí de la tierra de Moab.",
+    "glPhrase": "Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 4,
+        "Moab": 1
+      },
+      "from the women of Moab": {
+        "moabitas": 1
+      }
+    },
+    "expected": [
+      "Moab"
+    ],
+    "selections": [
+      {
+        "text": "Moab",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "cd5k",
+      "quote": "מוֹאָֽב",
+      "quoteString": "מוֹאָֽב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:6, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-3-moab",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "Entonces él dijo al pariente redentor: \"Noemí, la que ha regresado del campo de Moab, está vendiendo la porción del campo que pertenecía a nuestro hermano Elimelec.",
+    "glPhrase": "Moab",
+    "history": {
+      "Moab": {
+        "de Moab": 4,
+        "Moab": 2
+      },
+      "from the women of Moab": {
+        "moabitas": 1
+      }
+    },
+    "expected": [
+      "de Moab"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Moab",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "ze4f",
+      "quote": "מוֹאָֽב",
+      "quoteString": "מוֹאָֽב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:3, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-12-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Y ahora, es indudablemente cierto que soy un pariente redentor, pero hay un pariente redentor aún más cercano que yo.",
+    "glPhrase": "a kinsman redeemer",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 1
+      }
+    },
+    "expected": [
+      "un pariente redentor"
+    ],
+    "selections": [
+      {
+        "text": "un",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "pariente",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "redentor",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "i3n6",
+      "quote": "גֹאֵ֖ל",
+      "quoteString": "גֹאֵ֖ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:12, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-13-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
+    "glPhrase": "he will redeem you",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      }
+    },
+    "expected": [
+      "él te redimiere"
+    ],
+    "selections": [
+      {
+        "text": "él",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "te",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "redimiere",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "db6v",
+      "quote": "יִגְאָלֵ֥⁠ךְ",
+      "quoteString": "יִגְאָלֵ֥⁠ךְ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:13, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-13-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
+    "glPhrase": "let him redeem",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      }
+    },
+    "expected": [
+      "que te:2 redima"
+    ],
+    "selections": [
+      {
+        "text": "que",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "te",
+        "occurrence": 2,
+        "occurrences": 4
+      },
+      {
+        "text": "redima",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "ertv",
+      "quote": "יִגְאָ֔ל",
+      "quoteString": "יִגְאָ֔ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:13, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-13-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
+    "glPhrase": "to redeem you",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      },
+      "let him redeem": {
+        "que te redima": 1
+      }
+    },
+    "expected": [
+      "redimir"
+    ],
+    "selections": [
+      {
+        "text": "redimir",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "pq6h",
+      "quote": "לְ⁠גָֽאֳלֵ֛⁠ךְ",
+      "quoteString": "לְ⁠גָֽאֳלֵ֛⁠ךְ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:13, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-4-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Ahora, en cuanto a mí, dije que debería descubrir tu oído, diciendo: 'Cómpralo en presencia de aquellos que están sentados aquí y en presencia de los ancianos de mi pueblo. Si la vas a redimir, redímela. Pero si no la vas a redimir, entonces dime para que yo pueda saber, ya que no hay nadie para redimirla además de ti, y yo estoy después de ti'.\n\\p\nEntonces el dijó \"Yo mismo la redimiré\". \n\\p",
+    "glPhrase": "you will redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      },
+      "let him redeem": {
+        "que te redima": 1
+      },
+      "to redeem you": {
+        "redimir": 1
+      }
+    },
+    "expected": [
+      "la:2 vas:2 a:3 redimir:2"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "vas",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "a",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "redimir",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "fxpd",
+      "quote": "יִגְאַ֜ל",
+      "quoteString": "יִגְאַ֜ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:4, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-4-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Ahora, en cuanto a mí, dije que debería descubrir tu oído, diciendo: 'Cómpralo en presencia de aquellos que están sentados aquí y en presencia de los ancianos de mi pueblo. Si la vas a redimir, redímela. Pero si no la vas a redimir, entonces dime para que yo pueda saber, ya que no hay nadie para redimirla además de ti, y yo estoy después de ti'.\n\\p\nEntonces el dijó \"Yo mismo la redimiré\". \n\\p",
+    "glPhrase": "to redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      },
+      "let him redeem": {
+        "que te redima": 1
+      },
+      "to redeem you": {
+        "redimir": 1
+      },
+      "you will redeem it": {
+        "la vas a redimir": 1
+      }
+    },
+    "expected": [
+      "para:2 redimirla"
+    ],
+    "selections": [
+      {
+        "text": "para",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "redimirla",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "rzsy",
+      "quote": "לִ⁠גְא֔וֹל",
+      "quoteString": "לִ⁠גְא֔וֹל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:4, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-4-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Ahora, en cuanto a mí, dije que debería descubrir tu oído, diciendo: 'Cómpralo en presencia de aquellos que están sentados aquí y en presencia de los ancianos de mi pueblo. Si la vas a redimir, redímela. Pero si no la vas a redimir, entonces dime para que yo pueda saber, ya que no hay nadie para redimirla además de ti, y yo estoy después de ti'.\n\\p\nEntonces el dijó \"Yo mismo la redimiré\". \n\\p",
+    "glPhrase": "I will redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      },
+      "let him redeem": {
+        "que te redima": 1
+      },
+      "to redeem you": {
+        "redimir": 1
+      },
+      "you will redeem it": {
+        "la vas a redimir": 1
+      },
+      "to redeem it": {
+        "para redimirla": 1
+      }
+    },
+    "expected": [
+      "la:3 redimiré"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "redimiré",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "du8a",
+      "quote": "אֶגְאָֽל",
+      "quoteString": "אֶגְאָֽל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:4, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-6-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Entonces el pariente redentor dijo: \"No puedo redimirlo para mí sin dañar mi propia herencia. Tú redime para ti mi derecho de redención, ya que no puedo redimirlo\".",
+    "glPhrase": "to redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      },
+      "let him redeem": {
+        "que te redima": 1
+      },
+      "to redeem you": {
+        "redimir": 1
+      },
+      "you will redeem it": {
+        "la vas a redimir": 1
+      },
+      "to redeem it": {
+        "para redimirla": 1
+      },
+      "I will redeem it": {
+        "la redimiré": 1
+      }
+    },
+    "expected": [
+      "redimirlo"
+    ],
+    "selections": [
+      {
+        "text": "redimirlo",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "vc2s",
+      "quote": "ל⁠גאול",
+      "quoteString": "ל⁠גאול",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:6, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-6-redeem",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "Entonces el pariente redentor dijo: \"No puedo redimirlo para mí sin dañar mi propia herencia. Tú redime para ti mi derecho de redención, ya que no puedo redimirlo\".",
+    "glPhrase": "to redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "un pariente redentor": 2
+      },
+      "he will redeem you": {
+        "él te redimiere": 1
+      },
+      "let him redeem": {
+        "que te redima": 1
+      },
+      "to redeem you": {
+        "redimir": 1
+      },
+      "you will redeem it": {
+        "la vas a redimir": 1
+      },
+      "to redeem it": {
+        "para redimirla": 1,
+        "redimirlo": 1
+      },
+      "I will redeem it": {
+        "la redimiré": 1
+      }
+    },
+    "expected": [
+      "redimirlo:2"
+    ],
+    "selections": [
+      {
+        "text": "redimirlo",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "mdys",
+      "quote": "לִ⁠גְאֹֽל",
+      "quoteString": "לִ⁠גְאֹֽל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:6, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-14-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Entonces alzaron sus voces y lloraron de nuevo. Luego Orfa besó a su suegra, pero Rut se aferró a ella. \n\\p",
+    "glPhrase": "but Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1
+      }
+    },
+    "expected": [
+      "pero Rut"
+    ],
+    "selections": [
+      {
+        "text": "pero",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "z7e6",
+      "quote": "וְ⁠ר֖וּת",
+      "quoteString": "וְ⁠ר֖וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:14, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-16-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Pero Rut dijo: \"No me presiones a abandonarte o que deje de seguirte. Ya que iré al lugar donde tú vayas y me quedaré en el lugar donde tú te quedes, tu pueblo será mi pueblo y tu Dios será mi Dios.",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "xerx",
+      "quote": "רוּת֙",
+      "quoteString": "רוּת֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:16, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-22-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Así que Noemí regresó con Rut la Moabita, su nuera, quien regresó con ella desde los campos de Moab. Y ellas llegaron a Belén al inicio de la cosecha de cebada.",
+    "glPhrase": "with Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 1
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      }
+    },
+    "expected": [
+      "con Rut"
+    ],
+    "selections": [
+      {
+        "text": "con",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "sjrq",
+      "quote": "וְ⁠ר֨וּת",
+      "quoteString": "וְ⁠ר֨וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:22, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-2-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Y Rut, la moabita, le dijo a Noemí: \"Te ruego, permíteme ir al campo y recoger espigas de grano después de aquel en cuyos ojos encuentre gracia\".\n\\p\nY dijo a ella: \"Ve, hija mía\". \n\\p",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 1
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      },
+      "with Ruth": {
+        "con Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "avr7",
+      "quote": "ר֨וּת",
+      "quoteString": "ר֨וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:2, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-8-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Entonces Booz le dijo a Rut: \"¿No me escucharás, hija mía? No vayas a espigar en otro campo y ni siquiera te alejes de aquí. Más bien quédate cerca de mis sirvientas jóvenes.",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 2
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      },
+      "with Ruth": {
+        "con Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "zshn",
+      "quote": "ר֜וּת",
+      "quoteString": "ר֜וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:8, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-21-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Entonces Rut la Moabita dijo: \"Además, él me dijo: 'Deberías permanecer cerca de los sirvientes jóvenes que me pertenecen hasta el momento cuando ellos hayan terminado toda la cosecha que me pertenece'\". \n\\p",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 3
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      },
+      "with Ruth": {
+        "con Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "usyk",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:21, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-22-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Entonces Noemí le dijo a Rut, su nuera: \"Es bueno, hija mía, que tú salgas con sus sirvientas jóvenes, para que no te maltraten en algún otro campo\". \n\\p",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 4
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      },
+      "with Ruth": {
+        "con Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "qx7m",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:22, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-9-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Y él dijo: \"¿Quién eres tú?\"\n\\p\nEntonces ella dijo: \"Soy Rut, tu sierva. Y tú puedes extender el borde de tu manto sobre tu sierva, ya que tú eres un pariente redentor\". \n\\p",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 5
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      },
+      "with Ruth": {
+        "con Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "gym7",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:9, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-5-ruth",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "Entonces Booz dijo: \"En el día que compres el campo de la mano de Noemí, también adquieres a Rut, la moabita, la esposa del hombre muerto, para levantar el nombre del muerto sobre su herencia\". \n\\p",
+    "glPhrase": "Ruth",
+    "history": {
+      "Ruth": {
+        "era Rut": 1,
+        "Rut": 6
+      },
+      "but Ruth": {
+        "pero Rut": 1
+      },
+      "with Ruth": {
+        "con Rut": 1
+      }
+    },
+    "expected": [
+      "Rut"
+    ],
+    "selections": [
+      {
+        "text": "Rut",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "u6pq",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:5, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-8-servant",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "Entonces Booz le dijo a Rut: \"¿No me escucharás, hija mía? No vayas a espigar en otro campo y ni siquiera te alejes de aquí. Más bien quédate cerca de mis sirvientas jóvenes.",
+    "glPhrase": "my young female workers",
+    "history": {
+      "to his servant": {
+        "a su sirviente": 1
+      }
+    },
+    "expected": [
+      "mis sirvientas jóvenes"
+    ],
+    "selections": [
+      {
+        "text": "mis",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sirvientas",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "jóvenes",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "bctd",
+      "quote": "נַעֲרֹתָֽ⁠י",
+      "quoteString": "נַעֲרֹתָֽ⁠י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:8, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-22-servant",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "Entonces Noemí le dijo a Rut, su nuera: \"Es bueno, hija mía, que tú salgas con sus sirvientas jóvenes, para que no te maltraten en algún otro campo\". \n\\p",
+    "glPhrase": "his young female workers",
+    "history": {
+      "to his servant": {
+        "a su sirviente": 1
+      },
+      "my young female workers": {
+        "mis sirvientas jóvenes": 1
+      }
+    },
+    "expected": [
+      "sus sirvientas jóvenes"
+    ],
+    "selections": [
+      {
+        "text": "sus",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sirvientas",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "jóvenes",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "xnnw",
+      "quote": "נַ֣עֲרוֹתָ֔י⁠ו",
+      "quoteString": "נַ֣עֲרוֹתָ֔י⁠ו",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:22, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-9-servant",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "Y él dijo: \"¿Quién eres tú?\"\n\\p\nEntonces ella dijo: \"Soy Rut, tu sierva. Y tú puedes extender el borde de tu manto sobre tu sierva, ya que tú eres un pariente redentor\". \n\\p",
+    "glPhrase": "your female servant",
+    "history": {
+      "to his servant": {
+        "a su sirviente": 1
+      },
+      "my young female workers": {
+        "mis sirvientas jóvenes": 1
+      },
+      "his young female workers": {
+        "sus sirvientas jóvenes": 1
+      }
+    },
+    "expected": [
+      "tu sierva"
+    ],
+    "selections": [
+      {
+        "text": "tu",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "sierva",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "sxek",
+      "quote": "אֲמָתֶ֔⁠ךָ",
+      "quoteString": "אֲמָתֶ֔⁠ךָ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:9, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-9-servant",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "Y él dijo: \"¿Quién eres tú?\"\n\\p\nEntonces ella dijo: \"Soy Rut, tu sierva. Y tú puedes extender el borde de tu manto sobre tu sierva, ya que tú eres un pariente redentor\". \n\\p",
+    "glPhrase": "your female servant",
+    "history": {
+      "to his servant": {
+        "a su sirviente": 1
+      },
+      "my young female workers": {
+        "mis sirvientas jóvenes": 1
+      },
+      "his young female workers": {
+        "sus sirvientas jóvenes": 1
+      },
+      "your female servant": {
+        "tu sierva": 1
+      }
+    },
+    "expected": [
+      "tu:3 sierva:2"
+    ],
+    "selections": [
+      {
+        "text": "tu",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "sierva",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "b3nm",
+      "quote": "אֲמָ֣תְ⁠ךָ֔",
+      "quoteString": "אֲמָ֣תְ⁠ךָ֔",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:9, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-9-testimony",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Entonces Booz le dijo a los ancianos y a todo el pueblo: \"Ustedes son testigos hoy de que estoy comprando de la mano de Noemí todo lo que pertenecía a Elimelec y todo lo que pertenecía a Quelión y Mahlón.",
+    "glPhrase": "witnesses",
+    "history": {
+      "he has testified": {
+        "ha testificado": 1
+      }
+    },
+    "expected": [
+      "testigos"
+    ],
+    "selections": [
+      {
+        "text": "testigos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "sk8m",
+      "quote": "עֵדִ֤ים",
+      "quoteString": "עֵדִ֤ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:9, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-10-testimony",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Y Rut, la Moabita, la esposa de Mahlón, también estoy adquiriéndola para mí como esposa, para levantar el nombre del hombre muerto sobre su herencia, de modo que el nombre del hombre muerto no sea cortado de entre sus hermanos y de la puerta de su lugar ¡Hoy ustedes son testigos!\"\n\\p",
+    "glPhrase": "witnesses",
+    "history": {
+      "he has testified": {
+        "ha testificado": 1
+      },
+      "witnesses": {
+        "testigos": 1
+      }
+    },
+    "expected": [
+      "testigos"
+    ],
+    "selections": [
+      {
+        "text": "testigos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "avyj",
+      "quote": "עֵדִ֥ים",
+      "quoteString": "עֵדִ֥ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:10, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-11-testimony",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Y toda la gente que estaba en la puerta y los ancianos dijieron: \"Somos testigos. ¡Que Jehová haga a esta mujer quien está entrando a tu casa como a Raquel y a Lea, las dos que construyeron la casa de Israel, y alcanza honor en Efrata y sé renombrado en Belén!",
+    "glPhrase": "We are witnesses",
+    "history": {
+      "he has testified": {
+        "ha testificado": 1
+      },
+      "witnesses": {
+        "testigos": 2
+      }
+    },
+    "expected": [
+      "Somos testigos"
+    ],
+    "selections": [
+      {
+        "text": "Somos",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "testigos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "x26r",
+      "quote": "עֵדִ֑ים",
+      "quoteString": "עֵדִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:11, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-8-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces, Noemí dijo a sus dos nueras: \"Vayan, regresen, cada mujer a la casa de su madre. Que Jehová actúe con ustedes con misericordia, así como ustedes han actuado con los muertos y conmigo.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "zxse",
+      "quote": "יְהוָ֤ה",
+      "quoteString": "יְהוָ֤ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:8, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-9-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Que Jehová les conceda que encuentren descanso, cada mujer en la casa de su esposo\". Luego las besó, y alzaron sus voces y lloraron. \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 2
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "f6zt",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:9, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-13-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "¿Esperarían entonces hasta el momento cuando ellos hayan crecido? ¿Por esta razón se abstendrían de pertenecer a un esposo? ¡No, mis hijas! Pues es excesivamente amargo para mí, más que para ustedes, porque la mano de Jehová ha salido contra mí\".\n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 3
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "fuwd",
+      "quote": "יְהוָֽה",
+      "quoteString": "יְהוָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:13, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-17-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "En donde tú mueras, yo moriré, y allí seré enterrada. Que Jehová haga así conmigo, y aún más, que solo la muerte separe entre tu y yo. \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 4
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "zmam",
+      "quote": "יְהוָ֥ה",
+      "quoteString": "יְהוָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:17, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-21-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Yo salí llena, pero Jehová me ha regresado vacía. ¿Por qué me llaman Noemí? Pues Jehová ha testificado contra mí, y el Todopoderoso me ha hecho mal\" \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 5
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "tvdu",
+      "quote": "יְהוָ֑ה",
+      "quoteString": "יְהוָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:21, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-1-21-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Yo salí llena, pero Jehová me ha regresado vacía. ¿Por qué me llaman Noemí? Pues Jehová ha testificado contra mí, y el Todopoderoso me ha hecho mal\" \n\\p",
+    "glPhrase": "But as for Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 6
+      }
+    },
+    "expected": [
+      "Pues Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "Pues",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "kb6p",
+      "quote": "וַֽ⁠יהוָה֙",
+      "quoteString": "וַֽ⁠יהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 1:21, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-4-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 6
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "ywky",
+      "quote": "יְהוָ֣ה",
+      "quoteString": "יְהוָ֣ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:4, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-4-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 7
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "t8rz",
+      "quote": "יְהוָֽה",
+      "quoteString": "יְהוָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:4, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-12-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Que Jehová recompense tu trabajo, y que tus salarios completos vengan de Jehová, el Dios de Israel, bajo cuyas alas tú has venido por refugio\". \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 8
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "whzy",
+      "quote": "יְהוָ֖ה",
+      "quoteString": "יְהוָ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:12, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-12-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Que Jehová recompense tu trabajo, y que tus salarios completos vengan de Jehová, el Dios de Israel, bajo cuyas alas tú has venido por refugio\". \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 9
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "t3xg",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:12, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-2-20-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces Noemí le dijo a su nuera: \"Que él sea bendecido por Jehová, quien no ha olvidado su fidelidad tanto con los vivos como con los muertos\". Noemí también le dijo: \"Ese hombre está cercanamente relacionado con nosotras. Él es uno de nuestros parientes redentores\". \n\\p",
+    "glPhrase": "by Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 10
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      }
+    },
+    "expected": [
+      "por Jehová"
+    ],
+    "selections": [
+      {
+        "text": "por",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "e3nn",
+      "quote": "לַ⁠יהוָ֔ה",
+      "quoteString": "לַ⁠יהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 2:20, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-10-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces él dijo: \"¡Que seas bendecida por Jehová, hija mía! Has hecho tu fidelidad  mejor al final que al principio al no ir tras los hombres jóvenes, ni pobres ni ricos.",
+    "glPhrase": "by Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 10
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      },
+      "by Yahweh": {
+        "por Jehová": 1
+      }
+    },
+    "expected": [
+      "por Jehová"
+    ],
+    "selections": [
+      {
+        "text": "por",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "xehn",
+      "quote": "לַֽ⁠יהוָה֙",
+      "quoteString": "לַֽ⁠יהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:10, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-3-13-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 10
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      },
+      "by Yahweh": {
+        "por Jehová": 2
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "w4fy",
+      "quote": "יְהוָ֑ה",
+      "quoteString": "יְהוָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 3:13, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-11-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Y toda la gente que estaba en la puerta y los ancianos dijieron: \"Somos testigos. ¡Que Jehová haga a esta mujer quien está entrando a tu casa como a Raquel y a Lea, las dos que construyeron la casa de Israel, y alcanza honor en Efrata y sé renombrado en Belén!",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 11
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      },
+      "by Yahweh": {
+        "por Jehová": 2
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "unk3",
+      "quote": "יְהוָ֨ה",
+      "quoteString": "יְהוָ֨ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:11, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-12-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Y que tu casa sea como la casa de Fares, a quien Tamar dió a luz para Judá, de la descendencia que Jehová te da de esta mujer joven\". \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 12
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      },
+      "by Yahweh": {
+        "por Jehová": 2
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "ccvt",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:12, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-13-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces Booz tomó a Rut, y ella se convirtió en su esposa y él se llegó a ella. Entonces Jehová le dio a ella concepción y parió un hijo. \n\\p",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 13
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      },
+      "by Yahweh": {
+        "por Jehová": 2
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "tdtg",
+      "quote": "יְהוָ֥ה",
+      "quoteString": "יְהוָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:13, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-rut-4-14-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces, las mujeres dijeron a Noemí: \"Bendito sea Jehová, que no te ha dejado hoy sin un pariente redentor. ¡Que su nombre sea renombrado en Israel!",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 14
+      },
+      "But as for Yahweh": {
+        "Pues Jehová": 1
+      },
+      "by Yahweh": {
+        "por Jehová": 2
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "a5yq",
+      "quote": "יְהוָ֔ה",
+      "quoteString": "יְהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_est_rut_book 4:14, tW yahweh, GL en ult/v91_unfoldingWord"
+  }
+]

@@ -1,0 +1,4033 @@
+[
+  {
+    "id": "train-es-419-jon-4-6-appoint",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "appoint",
+    "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
+    "glPhrase": "Then appointed",
+    "history": {
+      "Now appointed": {
+        "Pero dispuso": 1
+      }
+    },
+    "expected": [
+      "Entonces dispuso"
+    ],
+    "selections": [
+      {
+        "text": "Entonces",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dispuso",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "appoint",
+      "checkId": "bksf",
+      "quote": "וַ⁠יְמַ֣ן",
+      "quoteString": "וַ⁠יְמַ֣ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "appoint"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:6, tW appoint, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-7-appoint",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "appoint",
+    "verse": "Entonces Dios dispuso de un gusano al amanecer del día siguiente que atacó a la planta, y esta se marchitó.",
+    "glPhrase": "Then appointed",
+    "history": {
+      "Now appointed": {
+        "Pero dispuso": 1
+      },
+      "Then appointed": {
+        "Entonces dispuso": 1
+      }
+    },
+    "expected": [
+      "Entonces dispuso"
+    ],
+    "selections": [
+      {
+        "text": "Entonces",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dispuso",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "appoint",
+      "checkId": "gv1l",
+      "quote": "וַ⁠יְמַ֤ן",
+      "quoteString": "וַ⁠יְמַ֤ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "appoint"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:7, tW appoint, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-8-appoint",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "appoint",
+    "verse": "Y tan pronto como sucedió la salida del sol, entonces Dios dispuso de un viento caliente del este; y el sol cayó sobre la cabeza de Jonás, y él se desmayó. Luego le pidió a su espíritu que muriera y dijo: \"Mi muerte es mejor que mi vida\".",
+    "glPhrase": "then appointed",
+    "history": {
+      "Now appointed": {
+        "Pero dispuso": 1
+      },
+      "Then appointed": {
+        "Entonces dispuso": 2
+      }
+    },
+    "expected": [
+      "entonces dispuso"
+    ],
+    "selections": [
+      {
+        "text": "entonces",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dispuso",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "appoint",
+      "checkId": "wdk6",
+      "quote": "וַ⁠יְמַ֨ן",
+      "quoteString": "וַ⁠יְמַ֨ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "appoint"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:8, tW appoint, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-3-biblicaltimeday",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "biblicaltimeday",
+    "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
+    "glPhrase": "days",
+    "history": {
+      "days": {
+        "días": 1
+      }
+    },
+    "expected": [
+      "días"
+    ],
+    "selections": [
+      {
+        "text": "días",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "biblicaltimeday",
+      "checkId": "i9sc",
+      "quote": "יָמִֽים",
+      "quoteString": "יָמִֽים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "biblicaltimeday"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:3, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-4-biblicaltimeday",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "biblicaltimeday",
+    "verse": "Así que Jonás comenzó a ir a la ciudad, un viaje de un día, y proclamó y dijo: \"Hasta cuarenta días, entonces Nínive será derrocada\".",
+    "glPhrase": "day",
+    "history": {
+      "days": {
+        "días": 2
+      }
+    },
+    "expected": [
+      "de día"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "día",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "biblicaltimeday",
+      "checkId": "klwh",
+      "quote": "י֣וֹם",
+      "quoteString": "י֣וֹם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "biblicaltimeday"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:4, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-4-biblicaltimeday",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "biblicaltimeday",
+    "verse": "Así que Jonás comenzó a ir a la ciudad, un viaje de un día, y proclamó y dijo: \"Hasta cuarenta días, entonces Nínive será derrocada\".",
+    "glPhrase": "days",
+    "history": {
+      "days": {
+        "días": 2
+      },
+      "day": {
+        "de día": 1
+      }
+    },
+    "expected": [
+      "días"
+    ],
+    "selections": [
+      {
+        "text": "días",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "biblicaltimeday",
+      "checkId": "w2aw",
+      "quote": "י֔וֹם",
+      "quoteString": "י֔וֹם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "biblicaltimeday"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:4, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-2-cry",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "cry",
+    "verse": "Y él dijo: Clamé a Jehová desde mi angustia y él me respondió; desde el vientre del Seol clamé, tú escuchaste mi voz.",
+    "glPhrase": "I cried out",
+    "history": {
+      "Cry out": {
+        "Clama": 1
+      }
+    },
+    "expected": [
+      "Clamé"
+    ],
+    "selections": [
+      {
+        "text": "Clamé",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "cry",
+      "checkId": "xcpx",
+      "quote": "קָ֠רָאתִי",
+      "quoteString": "קָ֠רָאתִי",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "cry"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:2, tW cry, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-8-cry",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "cry",
+    "verse": "Pero toda persona y todo animal debe cubrirse con cilicio, y ellos deben clamar a Dios con fuerza; y cada hombre debe volverse de su mal camino y de la violencia que está en sus manos.",
+    "glPhrase": "and they must cry out",
+    "history": {
+      "Cry out": {
+        "Clama": 1
+      },
+      "I cried out": {
+        "Clamé": 1
+      }
+    },
+    "expected": [
+      "y:2 ellos deben clamar"
+    ],
+    "selections": [
+      {
+        "text": "y",
+        "occurrence": 2,
+        "occurrences": 4
+      },
+      {
+        "text": "ellos",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "deben",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "clamar",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "cry",
+      "checkId": "pm55",
+      "quote": "וְ⁠יִקְרְא֥וּ",
+      "quoteString": "וְ⁠יִקְרְא֥וּ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "cry"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:8, tW cry, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-7-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Entonces cada hombre le dijo a su amigo: \"Vengan, y echemos suerte, para que sepamos a cuenta de quien esta desgracia nos está ocurriendo\". Entonces echaron suerte, y la suerte cayó sobre Jonás.",
+    "glPhrase": "evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      }
+    },
+    "expected": [
+      "desgracia"
+    ],
+    "selections": [
+      {
+        "text": "desgracia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "rk3p",
+      "quote": "הָ⁠רָעָ֥ה",
+      "quoteString": "הָ⁠רָעָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:7, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-8-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Entonces ellos le dijieron: \"Por favor dinos a nosotros a causa de quién nos está ocurriendo esta desgracia. ¿A qué te dedicas? ¿De dónde vienes? ¿Cuál es tu país? ¿De qué pueblo vienes?\"",
+    "glPhrase": "evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 1
+      }
+    },
+    "expected": [
+      "desgracia"
+    ],
+    "selections": [
+      {
+        "text": "desgracia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "lwh9",
+      "quote": "הָ⁠רָעָ֥ה",
+      "quoteString": "הָ⁠רָעָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:8, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-8-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Pero toda persona y todo animal debe cubrirse con cilicio, y ellos deben clamar a Dios con fuerza; y cada hombre debe volverse de su mal camino y de la violencia que está en sus manos.",
+    "glPhrase": "evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 2
+      }
+    },
+    "expected": [
+      "mal"
+    ],
+    "selections": [
+      {
+        "text": "mal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "xct6",
+      "quote": "הָֽ⁠רָעָ֔ה",
+      "quoteString": "הָֽ⁠רָעָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:8, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-10-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Y vio Dios sus obras, que ellos se apartaron de sus malos caminos. Y se arrepintió Dios del mal que Él había dicho que les haría; y Él no lo hizo.",
+    "glPhrase": "evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 2,
+        "mal": 1
+      }
+    },
+    "expected": [
+      "malos"
+    ],
+    "selections": [
+      {
+        "text": "malos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "dbzx",
+      "quote": "הָ⁠רָעָ֑ה",
+      "quoteString": "הָ⁠רָעָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:10, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-10-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Y vio Dios sus obras, que ellos se apartaron de sus malos caminos. Y se arrepintió Dios del mal que Él había dicho que les haría; y Él no lo hizo.",
+    "glPhrase": "the evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 2,
+        "mal": 1,
+        "malos": 1
+      }
+    },
+    "expected": [
+      "mal"
+    ],
+    "selections": [
+      {
+        "text": "mal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "qu31",
+      "quote": "הָ⁠רָעָ֛ה",
+      "quoteString": "הָ⁠רָעָ֛ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:10, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-1-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Pero esto fue malo para Jonás, un gran mal, y le quemó.",
+    "glPhrase": "a evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 2,
+        "mal": 1,
+        "malos": 1
+      },
+      "the evil": {
+        "mal": 1
+      }
+    },
+    "expected": [
+      "un mal"
+    ],
+    "selections": [
+      {
+        "text": "un",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "mquh",
+      "quote": "רָעָ֣ה",
+      "quoteString": "רָעָ֣ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:1, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-2-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Entonces él oró a Jehová y dijo: \"¡Oh! Jehová, ¿no fue esta mi palabra mientras estuve en mi tierra? Por esto, actué de antemano para huir a Tarsis, porque yo sabía que tú eres un Dios misericordioso y compasivo, largo de fosas nasales y abundante en fidelidad, y uno que se arrepiente ante el mal.",
+    "glPhrase": "evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 2,
+        "mal": 1,
+        "malos": 1
+      },
+      "the evil": {
+        "mal": 1
+      },
+      "a evil": {
+        "un mal": 1
+      }
+    },
+    "expected": [
+      "el mal"
+    ],
+    "selections": [
+      {
+        "text": "el",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "nj6g",
+      "quote": "הָ⁠רָעָֽה",
+      "quoteString": "הָ⁠רָעָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:2, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-6-evil",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
+    "glPhrase": "from his evil",
+    "history": {
+      "their evil": {
+        "su maldad": 1
+      },
+      "evil": {
+        "desgracia": 2,
+        "mal": 1,
+        "malos": 1,
+        "el mal": 1
+      },
+      "the evil": {
+        "mal": 1
+      },
+      "a evil": {
+        "un mal": 1
+      }
+    },
+    "expected": [
+      "de:2 su:2 maldad"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "su",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "maldad",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "j9rq",
+      "quote": "מֵ⁠רָֽעָת֑⁠וֹ",
+      "quoteString": "מֵ⁠רָֽעָת֑⁠וֹ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:6, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-10-fear",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "fear",
+    "verse": "Entonces los hombres se asustaron con gran temor y le dijeron: \"¿Qué es esto que has hecho?\" Porque los hombres sabían que huía del rostro de Jehová, porque él se los había dicho a ellos.",
+    "glPhrase": "a fear",
+    "history": {
+      "fear": {
+        "temo": 1
+      }
+    },
+    "expected": [
+      "con temor"
+    ],
+    "selections": [
+      {
+        "text": "con",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "temor",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "fear",
+      "checkId": "mq6h",
+      "quote": "יִרְאָ֣ה",
+      "quoteString": "יִרְאָ֣ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "fear"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:10, tW fear, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-16-fear",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "fear",
+    "verse": "Entonces los hombres temieron a Jehová con gran temor, y ellos ofrecieron un sacrificio a Jehová e hicieron votos.",
+    "glPhrase": "with fear",
+    "history": {
+      "fear": {
+        "temo": 1
+      },
+      "a fear": {
+        "con temor": 1
+      }
+    },
+    "expected": [
+      "con temor"
+    ],
+    "selections": [
+      {
+        "text": "con",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "temor",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "fear",
+      "checkId": "hfhn",
+      "quote": "יִרְאָ֥ה",
+      "quoteString": "יִרְאָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "fear"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:16, tW fear, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-6-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Entonces el capitán de la tripulación vino a él y le dijo: \"¿Qué haces tú durmiendo? ¡Levántate! ¡Clama a tu dios! Quizás ese dios nos preste atención y no pereceremos\".",
+    "glPhrase": "that god",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      }
+    },
+    "expected": [
+      "ese dios:2"
+    ],
+    "selections": [
+      {
+        "text": "ese",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dios",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xga5",
+      "quote": "הָ⁠אֱלֹהִ֛ים",
+      "quoteString": "הָ⁠אֱלֹהִ֛ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:6, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-9-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Entonces les dijo a ellos: \"Yo soy hebreo y a Jehová, el Dios de los cielos, yo temo, que ha hecho el mar y la tierra seca.\"",
+    "glPhrase": "God of",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      }
+    },
+    "expected": [
+      "el Dios"
+    ],
+    "selections": [
+      {
+        "text": "el",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "r3tz",
+      "quote": "אֱלֹהֵ֤י",
+      "quoteString": "אֱלֹהֵ֤י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:9, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-1-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Y Jonás oró a Jehová su Dios desde el abdomen del pez.",
+    "glPhrase": "his God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      }
+    },
+    "expected": [
+      "su Dios"
+    ],
+    "selections": [
+      {
+        "text": "su",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "bu5c",
+      "quote": "אֱלֹהָ֑י⁠ו",
+      "quoteString": "אֱלֹהָ֑י⁠ו",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:1, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-6-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "bajé hasta los cimientos de las montañas, la tierra con sus barrotes me rodeaban por siempre;  ¡pero tu levantaste mi vida del foso, Jehová, mi Dios!",
+    "glPhrase": "my God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      }
+    },
+    "expected": [
+      "mi:2 Dios"
+    ],
+    "selections": [
+      {
+        "text": "mi",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xkgs",
+      "quote": "אֱלֹהָֽ⁠י",
+      "quoteString": "אֱלֹהָֽ⁠י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:6, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-3-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
+    "glPhrase": "to God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      }
+    },
+    "expected": [
+      "ante Dios"
+    ],
+    "selections": [
+      {
+        "text": "ante",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ymm4",
+      "quote": "לֵֽ⁠אלֹהִ֔ים",
+      "quoteString": "לֵֽ⁠אלֹהִ֔ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-8-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Pero toda persona y todo animal debe cubrirse con cilicio, y ellos deben clamar a Dios con fuerza; y cada hombre debe volverse de su mal camino y de la violencia que está en sus manos.",
+    "glPhrase": "God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "jdr2",
+      "quote": "אֱלֹהִ֖ים",
+      "quoteString": "אֱלֹהִ֖ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-9-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "¿Quién sabe? Este dios podría volverse atrás y tener compasión y arrepentirse del ardor de su nariz para que no perezcamos\".",
+    "glPhrase": "This god",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 1
+      }
+    },
+    "expected": [
+      "Este dios"
+    ],
+    "selections": [
+      {
+        "text": "Este",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ad6e",
+      "quote": "הָ⁠אֱלֹהִ֑ים",
+      "quoteString": "הָ⁠אֱלֹהִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:9, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-10-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Y vio Dios sus obras, que ellos se apartaron de sus malos caminos. Y se arrepintió Dios del mal que Él había dicho que les haría; y Él no lo hizo.",
+    "glPhrase": "God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 1
+      },
+      "This god": {
+        "Este dios": 1
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hhmf",
+      "quote": "הָֽ⁠אֱלֹהִים֙",
+      "quoteString": "הָֽ⁠אֱלֹהִים֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-10-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Y vio Dios sus obras, que ellos se apartaron de sus malos caminos. Y se arrepintió Dios del mal que Él había dicho que les haría; y Él no lo hizo.",
+    "glPhrase": "God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 2
+      },
+      "This god": {
+        "Este dios": 1
+      }
+    },
+    "expected": [
+      "Dios:2"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rd3t",
+      "quote": "הָ⁠אֱלֹהִ֗ים",
+      "quoteString": "הָ⁠אֱלֹהִ֗ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-2-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Entonces él oró a Jehová y dijo: \"¡Oh! Jehová, ¿no fue esta mi palabra mientras estuve en mi tierra? Por esto, actué de antemano para huir a Tarsis, porque yo sabía que tú eres un Dios misericordioso y compasivo, largo de fosas nasales y abundante en fidelidad, y uno que se arrepiente ante el mal.",
+    "glPhrase": "are a God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 3
+      },
+      "This god": {
+        "Este dios": 1
+      }
+    },
+    "expected": [
+      "eres un Dios"
+    ],
+    "selections": [
+      {
+        "text": "eres",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "un",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "u725",
+      "quote": "אֵֽל",
+      "quoteString": "אֵֽל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:2, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-7-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Entonces Dios dispuso de un gusano al amanecer del día siguiente que atacó a la planta, y esta se marchitó.",
+    "glPhrase": "God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 3
+      },
+      "This god": {
+        "Este dios": 1
+      },
+      "are a God": {
+        "eres un Dios": 1
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "p2gz",
+      "quote": "הָֽ⁠אֱלֹהִים֙",
+      "quoteString": "הָֽ⁠אֱלֹהִים֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:7, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-8-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Y tan pronto como sucedió la salida del sol, entonces Dios dispuso de un viento caliente del este; y el sol cayó sobre la cabeza de Jonás, y él se desmayó. Luego le pidió a su espíritu que muriera y dijo: \"Mi muerte es mejor que mi vida\".",
+    "glPhrase": "God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 4
+      },
+      "This god": {
+        "Este dios": 1
+      },
+      "are a God": {
+        "eres un Dios": 1
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g72s",
+      "quote": "אֱלֹהִ֜ים",
+      "quoteString": "אֱלֹהִ֜ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-9-god",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Entonces Dios dijo a Jonás: \"¿Acaso es correcto que te queme por la planta?\" Y él dijo: \"Es correcto que me queme, incluso hasta la muerte\".",
+    "glPhrase": "God",
+    "history": {
+      "your god": {
+        "tu dios": 1
+      },
+      "that god": {
+        "ese dios": 1
+      },
+      "God of": {
+        "el Dios": 1
+      },
+      "his God": {
+        "su Dios": 1
+      },
+      "my God": {
+        "mi Dios": 1
+      },
+      "to God": {
+        "ante Dios": 1
+      },
+      "God": {
+        "Dios": 5
+      },
+      "This god": {
+        "Este dios": 1
+      },
+      "are a God": {
+        "eres un Dios": 1
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "n88p",
+      "quote": "אֱלֹהִים֙",
+      "quoteString": "אֱלֹהִים֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:9, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-4-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Y Jehová dijo: \"¿Es correcto que te queme?\"",
+    "glPhrase": "Is it right that",
+    "history": {
+      "is better": {
+        "es mejor": 1
+      }
+    },
+    "expected": [
+      "Es correcto que"
+    ],
+    "selections": [
+      {
+        "text": "Es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "correcto",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "que",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "j36x",
+      "quote": "הַ⁠הֵיטֵ֖ב",
+      "quoteString": "הַ⁠הֵיטֵ֖ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:4, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-8-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Y tan pronto como sucedió la salida del sol, entonces Dios dispuso de un viento caliente del este; y el sol cayó sobre la cabeza de Jonás, y él se desmayó. Luego le pidió a su espíritu que muriera y dijo: \"Mi muerte es mejor que mi vida\".",
+    "glPhrase": "is better",
+    "history": {
+      "is better": {
+        "es mejor": 1
+      },
+      "Is it right that": {
+        "Es correcto que": 1
+      }
+    },
+    "expected": [
+      "es mejor"
+    ],
+    "selections": [
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mejor",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "eyaw",
+      "quote": "ט֥וֹב",
+      "quoteString": "ט֥וֹב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-9-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Entonces Dios dijo a Jonás: \"¿Acaso es correcto que te queme por la planta?\" Y él dijo: \"Es correcto que me queme, incluso hasta la muerte\".",
+    "glPhrase": "Is it right that",
+    "history": {
+      "is better": {
+        "es mejor": 2
+      },
+      "Is it right that": {
+        "Es correcto que": 1
+      }
+    },
+    "expected": [
+      "Acaso es correcto"
+    ],
+    "selections": [
+      {
+        "text": "Acaso",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "correcto",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "hrr8",
+      "quote": "הַ⁠הֵיטֵ֥ב",
+      "quoteString": "הַ⁠הֵיטֵ֥ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:9, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-9-good",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Entonces Dios dijo a Jonás: \"¿Acaso es correcto que te queme por la planta?\" Y él dijo: \"Es correcto que me queme, incluso hasta la muerte\".",
+    "glPhrase": "It is right that",
+    "history": {
+      "is better": {
+        "es mejor": 2
+      },
+      "Is it right that": {
+        "Es correcto que": 1,
+        "Acaso es correcto": 1
+      }
+    },
+    "expected": [
+      "es correcto:2"
+    ],
+    "selections": [
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "correcto",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "a2mm",
+      "quote": "הֵיטֵ֥ב",
+      "quoteString": "הֵיטֵ֥ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:9, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-3-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Pero Jonás se levantó  para huir a Tarsis del rostro de Jehová. Y él bajó a Jope y encontró un barco que se dirigía a Tarsis. Así que pagó el pasaje y se embarcó en él para ir con ellos a Tarsis, del rostro de Jehová.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "pyws",
+      "quote": "יוֹנָה֙",
+      "quoteString": "יוֹנָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:3, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-5-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Entonces los marineros estaban atemorizados y cada hombre invocaba a su propio dios. Y ellos arrojaron las cosas que estaban en el barco al mar para aligerarlo de la carga de ellos. Pero Jonás habia bajado al interior del barco, y se había acostado y estaba profundamente dormido.",
+    "glPhrase": "But Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 2
+      }
+    },
+    "expected": [
+      "Pero Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Pero",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "d772",
+      "quote": "וְ⁠יוֹנָ֗ה",
+      "quoteString": "וְ⁠יוֹנָ֗ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:5, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-7-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Entonces cada hombre le dijo a su amigo: \"Vengan, y echemos suerte, para que sepamos a cuenta de quien esta desgracia nos está ocurriendo\". Entonces echaron suerte, y la suerte cayó sobre Jonás.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 2
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "m3am",
+      "quote": "יוֹנָֽה",
+      "quoteString": "יוֹנָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:7, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-17-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Pero, Jehová dispuso de un gran pez para tragarse a Jonás, y Jonás estuvo en el abdomen del pez tres días y tres noches.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 3
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás:2"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "n7db",
+      "quote": "יוֹנָה֙",
+      "quoteString": "יוֹנָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:17, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-1-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Y Jonás oró a Jehová su Dios desde el abdomen del pez.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 4
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "s349",
+      "quote": "יוֹנָ֔ה",
+      "quoteString": "יוֹנָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:1, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-1-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Y la palabra de Jehová vino por segunda vez a Jonás, diciendo:",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 5
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "pppr",
+      "quote": "יוֹנָ֖ה",
+      "quoteString": "יוֹנָ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:1, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-3-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 6
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "utbd",
+      "quote": "יוֹנָ֗ה",
+      "quoteString": "יוֹנָ֗ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:3, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-4-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Así que Jonás comenzó a ir a la ciudad, un viaje de un día, y proclamó y dijo: \"Hasta cuarenta días, entonces Nínive será derrocada\".",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 7
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "uhh4",
+      "quote": "יוֹנָה֙",
+      "quoteString": "יוֹנָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:4, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-1-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Pero esto fue malo para Jonás, un gran mal, y le quemó.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 8
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "s7fy",
+      "quote": "יוֹנָ֖ה",
+      "quoteString": "יוֹנָ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:1, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-5-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Entonces salió Jonás de la ciudad y se sentó frente a la ciudad desde el este. Y allí hizo una enramada para sí mismo, y se sentó debajo de ella a la sombra hasta que pudo ver lo que sucedería dentro de la ciudad.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 9
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "ef6s",
+      "quote": "יוֹנָה֙",
+      "quoteString": "יוֹנָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:5, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-6-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 10
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "zzgy",
+      "quote": "לְ⁠יוֹנָ֗ה",
+      "quoteString": "לְ⁠יוֹנָ֗ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:6, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-6-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 11
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás:2"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "wb9w",
+      "quote": "יוֹנָ֛ה",
+      "quoteString": "יוֹנָ֛ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:6, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-8-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Y tan pronto como sucedió la salida del sol, entonces Dios dispuso de un viento caliente del este; y el sol cayó sobre la cabeza de Jonás, y él se desmayó. Luego le pidió a su espíritu que muriera y dijo: \"Mi muerte es mejor que mi vida\".",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 12
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "de:2 Jonás"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "a66j",
+      "quote": "יוֹנָ֖ה",
+      "quoteString": "יוֹנָ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:8, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-9-jonah",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jonah",
+    "verse": "Entonces Dios dijo a Jonás: \"¿Acaso es correcto que te queme por la planta?\" Y él dijo: \"Es correcto que me queme, incluso hasta la muerte\".",
+    "glPhrase": "Jonah",
+    "history": {
+      "Jonah": {
+        "Jonás": 12,
+        "de Jonás": 1
+      },
+      "But Jonah": {
+        "Pero Jonás": 1
+      }
+    },
+    "expected": [
+      "Jonás"
+    ],
+    "selections": [
+      {
+        "text": "Jonás",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "jonah",
+      "checkId": "xudc",
+      "quote": "יוֹנָ֔ה",
+      "quoteString": "יוֹנָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jonah"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:9, tW jonah, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-10-know",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Entonces los hombres se asustaron con gran temor y le dijeron: \"¿Qué es esto que has hecho?\" Porque los hombres sabían que huía del rostro de Jehová, porque él se los había dicho a ellos.",
+    "glPhrase": "knew",
+    "history": {
+      "so that we may know": {
+        "para que sepamos": 1
+      }
+    },
+    "expected": [
+      "sabían"
+    ],
+    "selections": [
+      {
+        "text": "sabían",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "crg3",
+      "quote": "יָדְע֣וּ",
+      "quoteString": "יָדְע֣וּ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:10, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-12-know",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Y él les dijo: \"Levántenme y arrójenme al mar. Entonces el mar se calmará sobre\n ustedes, porque yo sé que esta gran tormenta está sobre ustedes por mi culpa\".",
+    "glPhrase": "know",
+    "history": {
+      "so that we may know": {
+        "para que sepamos": 1
+      },
+      "knew": {
+        "sabían": 1
+      }
+    },
+    "expected": [
+      "sé"
+    ],
+    "selections": [
+      {
+        "text": "sé",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "c6r2",
+      "quote": "יוֹדֵ֣עַ",
+      "quoteString": "יוֹדֵ֣עַ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:12, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-11-know",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Pero, ¿Yo no me apiadaré de Nínive, la gran ciudad, en la cual hay en ella más de 120.000 personas que no pueden distinguir entre su mano derecha y su mano izquierda, y de muchos animales?\".",
+    "glPhrase": "do know",
+    "history": {
+      "so that we may know": {
+        "para que sepamos": 1
+      },
+      "knew": {
+        "sabían": 1
+      },
+      "know": {
+        "sé": 1
+      }
+    },
+    "expected": [
+      "distinguir"
+    ],
+    "selections": [
+      {
+        "text": "distinguir",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "k92a",
+      "quote": "יָדַע֙",
+      "quoteString": "יָדַע֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:11, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-7-lots",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lots",
+    "verse": "Entonces cada hombre le dijo a su amigo: \"Vengan, y echemos suerte, para que sepamos a cuenta de quien esta desgracia nos está ocurriendo\". Entonces echaron suerte, y la suerte cayó sobre Jonás.",
+    "glPhrase": "lots",
+    "history": {
+      "lots": {
+        "suerte": 1
+      }
+    },
+    "expected": [
+      "suerte:2"
+    ],
+    "selections": [
+      {
+        "text": "suerte",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "lots",
+      "checkId": "p32w",
+      "quote": "גּֽוֹרָל֔וֹת",
+      "quoteString": "גּֽוֹרָל֔וֹת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lots"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:7, tW lots, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-7-lots",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lots",
+    "verse": "Entonces cada hombre le dijo a su amigo: \"Vengan, y echemos suerte, para que sepamos a cuenta de quien esta desgracia nos está ocurriendo\". Entonces echaron suerte, y la suerte cayó sobre Jonás.",
+    "glPhrase": "the lot",
+    "history": {
+      "lots": {
+        "suerte": 2
+      }
+    },
+    "expected": [
+      "la suerte:3"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "suerte",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "lots",
+      "checkId": "ccvx",
+      "quote": "הַ⁠גּוֹרָ֖ל",
+      "quoteString": "הַ⁠גּוֹרָ֖ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lots"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:7, tW lots, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-3-nineveh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "nineveh",
+    "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
+    "glPhrase": "Nineveh",
+    "history": {
+      "Nineveh": {
+        "Nínive": 1
+      }
+    },
+    "expected": [
+      "Nínive"
+    ],
+    "selections": [
+      {
+        "text": "Nínive",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "nineveh",
+      "checkId": "nz25",
+      "quote": "נִֽינְוֶ֖ה",
+      "quoteString": "נִֽינְוֶ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "nineveh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:3, tW nineveh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-3-nineveh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "nineveh",
+    "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
+    "glPhrase": "Now Nineveh",
+    "history": {
+      "Nineveh": {
+        "Nínive": 2
+      }
+    },
+    "expected": [
+      "Ahora Nínive:2"
+    ],
+    "selections": [
+      {
+        "text": "Ahora",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Nínive",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "nineveh",
+      "checkId": "typ8",
+      "quote": "וְ⁠נִֽינְוֵ֗ה",
+      "quoteString": "וְ⁠נִֽינְוֵ֗ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "nineveh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:3, tW nineveh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-4-nineveh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "nineveh",
+    "verse": "Así que Jonás comenzó a ir a la ciudad, un viaje de un día, y proclamó y dijo: \"Hasta cuarenta días, entonces Nínive será derrocada\".",
+    "glPhrase": "then Nineveh",
+    "history": {
+      "Nineveh": {
+        "Nínive": 2
+      },
+      "Now Nineveh": {
+        "Ahora Nínive": 1
+      }
+    },
+    "expected": [
+      "entonces Nínive"
+    ],
+    "selections": [
+      {
+        "text": "entonces",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Nínive",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "nineveh",
+      "checkId": "vw6m",
+      "quote": "וְ⁠נִֽינְוֵ֖ה",
+      "quoteString": "וְ⁠נִֽינְוֵ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "nineveh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:4, tW nineveh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-5-nineveh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "nineveh",
+    "verse": "Y los hombres de Nínive le creyeron a Dios. Y ellos proclamaron un ayuno y se vistieron de cilicio, desde el más grande hasta el más pequeño de ellos.",
+    "glPhrase": "Nineveh",
+    "history": {
+      "Nineveh": {
+        "Nínive": 2
+      },
+      "Now Nineveh": {
+        "Ahora Nínive": 1
+      },
+      "then Nineveh": {
+        "entonces Nínive": 1
+      }
+    },
+    "expected": [
+      "de Nínive"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "Nínive",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "nineveh",
+      "checkId": "uxr7",
+      "quote": "נִֽינְוֵ֖ה",
+      "quoteString": "נִֽינְוֵ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "nineveh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:5, tW nineveh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-6-nineveh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "nineveh",
+    "verse": "Entonces la palabra llegó al rey de Nínive, y se levantó de su trono, y se quitó su capa que tenía puesta; y se cubrió con cilicio, y se sentó sobre la pila de cenizas.",
+    "glPhrase": "Nineveh",
+    "history": {
+      "Nineveh": {
+        "Nínive": 2,
+        "de Nínive": 1
+      },
+      "Now Nineveh": {
+        "Ahora Nínive": 1
+      },
+      "then Nineveh": {
+        "entonces Nínive": 1
+      }
+    },
+    "expected": [
+      "de Nínive"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "Nínive",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "nineveh",
+      "checkId": "m4gn",
+      "quote": "נִֽינְוֵ֔ה",
+      "quoteString": "נִֽינְוֵ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "nineveh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:6, tW nineveh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-11-nineveh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "nineveh",
+    "verse": "Pero, ¿Yo no me apiadaré de Nínive, la gran ciudad, en la cual hay en ella más de 120.000 personas que no pueden distinguir entre su mano derecha y su mano izquierda, y de muchos animales?\".",
+    "glPhrase": "Nineveh",
+    "history": {
+      "Nineveh": {
+        "Nínive": 2,
+        "de Nínive": 2
+      },
+      "Now Nineveh": {
+        "Ahora Nínive": 1
+      },
+      "then Nineveh": {
+        "entonces Nínive": 1
+      }
+    },
+    "expected": [
+      "Nínive"
+    ],
+    "selections": [
+      {
+        "text": "Nínive",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "nineveh",
+      "checkId": "trv9",
+      "quote": "נִינְוֵ֖ה",
+      "quoteString": "נִינְוֵ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "nineveh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:11, tW nineveh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-14-perish",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perish",
+    "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
+    "glPhrase": "let us perish",
+    "history": {
+      "we will perish": {
+        "pereceremos": 1
+      }
+    },
+    "expected": [
+      "nos dejes perecer"
+    ],
+    "selections": [
+      {
+        "text": "nos",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dejes",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "perecer",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "perish",
+      "checkId": "ne95",
+      "quote": "נֹאבְדָ֗ה",
+      "quoteString": "נֹאבְדָ֗ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perish"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:14, tW perish, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-3-9-perish",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perish",
+    "verse": "¿Quién sabe? Este dios podría volverse atrás y tener compasión y arrepentirse del ardor de su nariz para que no perezcamos\".",
+    "glPhrase": "so that we will perish",
+    "history": {
+      "we will perish": {
+        "pereceremos": 1
+      },
+      "let us perish": {
+        "nos dejes perecer": 1
+      }
+    },
+    "expected": [
+      "perezcamos"
+    ],
+    "selections": [
+      {
+        "text": "perezcamos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "perish",
+      "checkId": "efk2",
+      "quote": "נֹאבֵֽד",
+      "quoteString": "נֹאבֵֽד",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perish"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 3:9, tW perish, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-10-perish",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perish",
+    "verse": "Entonces Jehová dijo: \"Tú te apiadaste de la planta, por la cual no trabajaste, y ni la hiciste crecer; vino como hijo de una noche, y pereció como hijo de una noche.",
+    "glPhrase": "it perished",
+    "history": {
+      "we will perish": {
+        "pereceremos": 1
+      },
+      "let us perish": {
+        "nos dejes perecer": 1
+      },
+      "so that we will perish": {
+        "perezcamos": 1
+      }
+    },
+    "expected": [
+      "pereció"
+    ],
+    "selections": [
+      {
+        "text": "pereció",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "perish",
+      "checkId": "w8ye",
+      "quote": "אָבָֽד",
+      "quoteString": "אָבָֽד",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perish"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:10, tW perish, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-3-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Pero Jonás se levantó  para huir a Tarsis del rostro de Jehová. Y él bajó a Jope y encontró un barco que se dirigía a Tarsis. Así que pagó el pasaje y se embarcó en él para ir con ellos a Tarsis, del rostro de Jehová.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "ew4s",
+      "quote": "יְהוָֽה",
+      "quoteString": "יְהוָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:3, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-4-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Pero Jehová arrojó un gran viento sobre el mar y hubo una gran tormenta en el mar, por eso el barco amenazó con ser destrozado.",
+    "glPhrase": "But Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 2
+      }
+    },
+    "expected": [
+      "Pero Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Pero",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "ts7x",
+      "quote": "וַֽ⁠יהוָ֗ה",
+      "quoteString": "וַֽ⁠יהוָ֗ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:4, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-10-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces los hombres se asustaron con gran temor y le dijeron: \"¿Qué es esto que has hecho?\" Porque los hombres sabían que huía del rostro de Jehová, porque él se los había dicho a ellos.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 2
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "gg8y",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:10, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-14-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 3
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "d5yy",
+      "quote": "יְהוָ֜ה",
+      "quoteString": "יְהוָ֜ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:14, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-14-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 4
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "yupm",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:14, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-14-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 5
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová:3"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "dguq",
+      "quote": "יְהוָ֔ה",
+      "quoteString": "יְהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:14, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-16-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces los hombres temieron a Jehová con gran temor, y ellos ofrecieron un sacrificio a Jehová e hicieron votos.",
+    "glPhrase": "to Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 6
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      }
+    },
+    "expected": [
+      "a:2 Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "hwux",
+      "quote": "לַֽ⁠יהוָ֔ה",
+      "quoteString": "לַֽ⁠יהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:16, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-1-17-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Pero, Jehová dispuso de un gran pez para tragarse a Jonás, y Jonás estuvo en el abdomen del pez tres días y tres noches.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 6
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "nwcm",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 1:17, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-6-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "bajé hasta los cimientos de las montañas, la tierra con sus barrotes me rodeaban por siempre;  ¡pero tu levantaste mi vida del foso, Jehová, mi Dios!",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 7
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "hnwz",
+      "quote": "יְהוָ֥ה",
+      "quoteString": "יְהוָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:6, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-9-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Pero yo, con voz de agradecimiento haré sacrificios a ti; cumpliré lo que he prometido. ¡La salvación pertenece a Jehová!\"",
+    "glPhrase": "belongs to Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 8
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      }
+    },
+    "expected": [
+      "pertenece a:2 Jehová"
+    ],
+    "selections": [
+      {
+        "text": "pertenece",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "a",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "rzhk",
+      "quote": "לַ⁠יהוָֽה",
+      "quoteString": "לַ⁠יהוָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:9, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-2-10-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Y Jehová le habló al pez, y este vomitó a Jonás en la tierra firme.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 8
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      },
+      "belongs to Yahweh": {
+        "pertenece a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "n9yr",
+      "quote": "יְהוָ֖ה",
+      "quoteString": "יְהוָ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 2:10, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-2-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces él oró a Jehová y dijo: \"¡Oh! Jehová, ¿no fue esta mi palabra mientras estuve en mi tierra? Por esto, actué de antemano para huir a Tarsis, porque yo sabía que tú eres un Dios misericordioso y compasivo, largo de fosas nasales y abundante en fidelidad, y uno que se arrepiente ante el mal.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 9
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      },
+      "belongs to Yahweh": {
+        "pertenece a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "gcau",
+      "quote": "יְהוָ֜ה",
+      "quoteString": "יְהוָ֜ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:2, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-2-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces él oró a Jehová y dijo: \"¡Oh! Jehová, ¿no fue esta mi palabra mientras estuve en mi tierra? Por esto, actué de antemano para huir a Tarsis, porque yo sabía que tú eres un Dios misericordioso y compasivo, largo de fosas nasales y abundante en fidelidad, y uno que se arrepiente ante el mal.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 10
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      },
+      "belongs to Yahweh": {
+        "pertenece a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová:2"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "fsp8",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:2, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-3-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Así que ahora, Jehová, te ruego, toma mi vida de mi, porque mi muerte es mejor que mi vida\".",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 11
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      },
+      "belongs to Yahweh": {
+        "pertenece a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "q7eb",
+      "quote": "יְהוָ֔ה",
+      "quoteString": "יְהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:3, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-4-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Y Jehová dijo: \"¿Es correcto que te queme?\"",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 12
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      },
+      "belongs to Yahweh": {
+        "pertenece a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "y7en",
+      "quote": "יְהוָ֔ה",
+      "quoteString": "יְהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:4, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-jon-4-10-yahweh",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "Entonces Jehová dijo: \"Tú te apiadaste de la planta, por la cual no trabajaste, y ni la hiciste crecer; vino como hijo de una noche, y pereció como hijo de una noche.",
+    "glPhrase": "Yahweh",
+    "history": {
+      "Yahweh": {
+        "Jehová": 13
+      },
+      "But Yahweh": {
+        "Pero Jehová": 1
+      },
+      "to Yahweh": {
+        "a Jehová": 1
+      },
+      "belongs to Yahweh": {
+        "pertenece a Jehová": 1
+      }
+    },
+    "expected": [
+      "Jehová"
+    ],
+    "selections": [
+      {
+        "text": "Jehová",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jon",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "k4ee",
+      "quote": "יְהוָ֔ה",
+      "quoteString": "יְהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_jon_book 4:10, tW yahweh, GL en ult/v91_unfoldingWord"
+  }
+]
