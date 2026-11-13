@@ -1,7 +1,7 @@
 {
   "name": "checking-tool-wrapper",
   "description": "Checking tool wrapper for translationCore App",
-  "version": "7.4.12-beta.237",
+  "version": "7.4.12-beta.238",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -24,6 +24,7 @@
     "build:llm-eval-cases": "cross-env LLM_EVAL_BUILD_REAL=1 jest __tests__/buildLlmEvalRealCases.test.js",
     "build:llm-training-data": "cross-env LLM_TRAINING_BUILD=1 jest __tests__/buildLlmTrainingData.test.js",
     "fix": "eslint ./src --fix",
+    "bump:beta": "npm version prerelease --preid=beta --no-git-tag-version",
     "prebuild": "node -e \"require('fs').rmSync('lib', { recursive: true, force: true })\"",
     "build": "cross-env NODE_ENV=production babel ./src -d ./lib",
     "prepare": "npm run build",
