@@ -38,11 +38,8 @@ import os from 'os';
 import path from 'path';
 import crypto from 'crypto';
 import { getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
-import {
-  cleanGlQuote,
-  getWordList,
-  normalizeForCompare,
-} from '../src/utils/autoCheckingUtils';
+import { cleanGlQuote, normalizeForCompare } from '../src/utils/autoCheckingUtils';
+import { getAlignedTargetWords } from './helpers/alignedTargetWords';
 
 const env = process.env;
 const BUILD = env.LLM_EVAL_BUILD_REAL === '1';
@@ -121,7 +118,7 @@ function loadProject(name) {
           groupId: contextId.groupId,
           verseText: typeof verseText === 'string' ? verseText.trim() : '',
           glPhrase: glText ? cleanGlQuote(glText) : '',
-          expected: verseText && alignments ? getAlignedTargetWords(contextId, verseText, alignments, languageId) : null,
+          expected: verseText && alignments ? getAlignedTargetWords(contextId, verseText, alignments, languageId, MAX_EXPECTED_WORDS) : null,
         });
       }
     }
@@ -129,93 +126,6 @@ function loadProject(name) {
   return {
     name, languageId, bookId, checks,
   };
-}
-
-/**
- * Finds the target words aligned to a check's original-language quote, in verse order.
- * @param {object} contextId - the check's context; `quote` is a string or `[{word, occurrence}]`
- * @param {string} verseText - target verse text
- * @param {Array<{topWords: Array, bottomWords: Array}>} alignments - the verse's alignments
- * @param {string} languageId - target language code
- * @returns {{text: string, words: string}|null} - `text` as in the cases' `expected` (`word:2`
- *   for a later occurrence), `words` as a history rendering (plain words); null when the quote is
- *   not aligned, a word cannot be found in the verse, or the answer is too long
- */
-function getAlignedTargetWords(contextId, verseText, alignments, languageId) {
-  const quoteWords = getQuoteWords(contextId);
-
-  if (!quoteWords) {
-    return null;
-  }
-
-  const topKey = (word, occurrence) => `${normalizeForCompare(word, 'grc')}:${occurrence}`;
-  const wanted = new Set(quoteWords.map(({ word, occurrence }) => topKey(word, occurrence)));
-  const matched = alignments.filter(alignment =>
-    (alignment.topWords || []).some(top => wanted.has(topKey(top.word, top.occurrence))));
-  const found = new Set(matched.flatMap(alignment => alignment.topWords.map(top => topKey(top.word, top.occurrence))));
-
-  // the quote must be aligned, and only to itself: an alignment that also holds other original
-  // words (e.g. "will be" merged with "God") covers more than a checker would select
-  if (!matched.length || found.size !== wanted.size || [...wanted].some(key => !found.has(key))) {
-    return null;
-  }
-
-  const wordList = getWordList(verseText);
-  const normalized = wordList.map(word => normalizeForCompare(word, languageId));
-  const positions = [];
-
-  for (const bottom of matched.flatMap(alignment => alignment.bottomWords || [])) {
-    const target = normalizeForCompare(bottom.word, languageId);
-    let seen = 0;
-    const index = normalized.findIndex(word => word === target && ++seen === (bottom.occurrence || 1));
-
-    if (index < 0) {
-      return null;
-    }
-    positions.push(index);
-  }
-
-  const sorted = [...new Set(positions)].sort((a, b) => a - b);
-
-  if (!sorted.length || sorted.length > MAX_EXPECTED_WORDS) {
-    return null;
-  }
-
-  const text = sorted.map(index => {
-    const occurrence = wordList.slice(0, index + 1).filter(word => word === wordList[index]).length;
-    return occurrence > 1 ? `${wordList[index]}:${occurrence}` : wordList[index];
-  }).join(' ');
-  return { text, words: sorted.map(index => wordList[index]).join(' ') };
-}
-
-/**
- * The original-language words of a check's quote, each with its occurrence in the verse.
- * @param {object} contextId
- * @returns {Array<{word: string, occurrence: number}>|null} - null for a quote that cannot be
- *   placed (a multi-word string quote whose phrase occurrence is above 1)
- */
-function getQuoteWords(contextId) {
-  const quote = contextId.quote;
-
-  if (Array.isArray(quote)) {
-    return quote.filter(item => item?.word).map(({ word, occurrence }) => ({ word, occurrence: occurrence || 1 }));
-  }
-
-  const words = (quote || '').split(/[\s&]+/).filter(Boolean);
-
-  if (words.length === 1) {
-    return [{ word: words[0], occurrence: contextId.occurrence || 1 }];
-  }
-
-  if ((contextId.occurrence || 1) !== 1) {
-    return null;
-  }
-
-  const counts = {};
-  return words.map(word => {
-    counts[word] = (counts[word] || 0) + 1;
-    return { word, occurrence: counts[word] };
-  });
 }
 
 /**

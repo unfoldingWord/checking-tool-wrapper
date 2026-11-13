@@ -22,6 +22,7 @@
     "test": "eslint ./src && jest",
     "test:llm": "jest __tests__/llmModelSuitability.test.js",
     "build:llm-eval-cases": "cross-env LLM_EVAL_BUILD_REAL=1 jest __tests__/buildLlmEvalRealCases.test.js",
+    "build:llm-training-data": "cross-env LLM_TRAINING_BUILD=1 jest __tests__/buildLlmTrainingData.test.js",
     "fix": "eslint ./src --fix",
     "prebuild": "node -e \"require('fs').rmSync('lib', { recursive: true, force: true })\"",
     "build": "cross-env NODE_ENV=production babel ./src -d ./lib",
@@ -30,6 +31,10 @@
     "postpublish": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/__tests__/helpers/"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.js"
     ],
