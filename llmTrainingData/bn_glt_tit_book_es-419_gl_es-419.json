@@ -1,0 +1,1220 @@
+[
+  {
+    "id": "train-bn-tit-2-8-evil",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "{এবং} একটি ভালো বাক্য {যা} সমালোচনার উপরে, যাতে প্রতিপক্ষ লজ্জিত হয়, আমাদের সম্পর্কে কোনো কিছু মন্দ না বলতে পেরে ৷",
+    "glPhrase": "malo",
+    "history": {
+      "malas": {
+        "দুষ্ট": 1
+      }
+    },
+    "expected": [
+      "মন্দ"
+    ],
+    "selections": [
+      {
+        "text": "মন্দ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:8, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-3-evil",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "কারণ এক সময় আমরাও মূর্খ {এবং} অবাধ্য ছিলাম ৷ আমরা বিপথে পরিচালিত হয়েছিলাম {এবং} বিভিন্ন আবেগ এবং আনন্দের দাস হয়েছিলাম ৷ আমরা মন্দ ও হিংসার মধ্যে বাস করতাম, ঘৃণিত ছিলাম এবং একে অপরকে ঘৃণা করতাম ৷",
+    "glPhrase": "malicia",
+    "history": {
+      "malas": {
+        "দুষ্ট": 1
+      },
+      "malo": {
+        "মন্দ": 1
+      }
+    },
+    "expected": [
+      "আমরা:2 মন্দ"
+    ],
+    "selections": [
+      {
+        "text": "আমরা",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "মন্দ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:3, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-4-faith",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "তীতের প্রতি, সাধারণ বিশ্বাসে একজন প্রকৃত পুত্র ৷ পিতা ঈশ্বর এবং খ্রীষ্ট যীশু আমাদের ত্রানকর্তার কাছ থেকে অনুগ্রহ ও শান্তি ৷\n\\p",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "বিশ্বাস": 1
+      }
+    },
+    "expected": [
+      "বিশ্বাসে"
+    ],
+    "selections": [
+      {
+        "text": "বিশ্বাসে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:4, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-2-faith",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "বয়স্ক পুরুষদের মর্যাদাবান, সুবুদ্ধিপূর্ণ, বিশ্বাসে সঠিক, প্রেমে, {এবং} সহনশীলতায় হতে হবে ।",
+    "glPhrase": "en la fe",
+    "history": {
+      "a la fe": {
+        "বিশ্বাস": 1
+      },
+      "fe": {
+        "বিশ্বাসে": 1
+      }
+    },
+    "expected": [
+      "বিশ্বাসে"
+    ],
+    "selections": [
+      {
+        "text": "বিশ্বাসে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "skyq",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "πίστει",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:2, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-10-faith",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "চুরি করার জন্য না, বরং সমস্ত ভাল বিশ্বাস প্রদর্শন করার জন্য, যাতে তারা সমস্ত কিছুতে আমাদের ত্রাণকর্তা ঈশ্বরের বিষয়ে শিক্ষার কৃতিত্ব দিতে পারে ৷",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "বিশ্বাস": 1
+      },
+      "fe": {
+        "বিশ্বাসে": 1
+      },
+      "en la fe": {
+        "বিশ্বাসে": 1
+      }
+    },
+    "expected": [
+      "বিশ্বাস তারা"
+    ],
+    "selections": [
+      {
+        "text": "বিশ্বাস",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "তারা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:10, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-1-god-2",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "পৌল, ঈশ্বরের একজন দাস ও যীশু খ্রীষ্টের একজন প্রেরিত, ঈশ্বরের মনোনীত ব্যক্তিদের বিশ্বাস অনুসারে এবং ভক্তির সহমতে সত্যের জ্ঞান অনুসারে,",
+    "glPhrase": "de Dios",
+    "occurrence": 2,
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরের:2"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরের",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:1, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-3-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "কিন্তু সঠিক সময়ে, তিনি তাঁর বাক্যকে এই ঘোষণার মধ্যে দিয়ে প্রকাশ করলেন যে, আমি ভারপ্রাপ্ত ঈশ্বর আমাদের ত্রাণকর্তার আদেশ দ্বারা।",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 2
+      }
+    },
+    "expected": [
+      "ঈশ্বর"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:3, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-7-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "কারণ উপদর্শককে অবশ্যই নির্দোষ হতে হবে, ঈশ্বরের গৃহের পরিচালক হিসাবে, অহংকারী না, সহজে রেগে যায় না, মদ্যপানে আসক্ত না, ঝগড়াবাজ নয়, {এবং} লোভী মানুষ না।",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 2,
+        "ঈশ্বর": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরের"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:7, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-16-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "তারা ঈশ্বরকে চেনে বলে দাবি করে, কিন্তু {তাদের} কার্য দ্বারা তারা তাঁকে অস্বীকার করে, ঘৃণ্য এবং অবাধ্য হয় এবং কোন ভাল কাজের জন্য অযোগ্য।",
+    "glPhrase": "a Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 3,
+        "ঈশ্বর": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরকে"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরকে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:16, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-10-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "চুরি করার জন্য না, বরং সমস্ত ভাল বিশ্বাস প্রদর্শন করার জন্য, যাতে তারা সমস্ত কিছুতে আমাদের ত্রাণকর্তা ঈশ্বরের বিষয়ে শিক্ষার কৃতিত্ব দিতে পারে ৷",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 3,
+        "ঈশ্বর": 1
+      },
+      "a Dios": {
+        "ঈশ্বরকে": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরের"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:10, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-11-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "কারণ ঈশ্বরের অনুগ্রহ সকল পুরুষদের পরিত্রাণের জন্য আবির্ভূত হয়েছে,",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 4,
+        "ঈশ্বর": 1
+      },
+      "a Dios": {
+        "ঈশ্বরকে": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরের"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xef2",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:11, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-4-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "কিন্তু যখন ঈশ্বর আমাদের ত্রানকর্তার দয়া ও ভালবাসা মানবজাতির প্রতি প্রকাশিত হয়েছিল,",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 5,
+        "ঈশ্বর": 1
+      },
+      "a Dios": {
+        "ঈশ্বরকে": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বর"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:4, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-8-god",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "এই বাক্যটি বিশ্বাসযোগ্য, এবং আমি চাই তুমি এই বিষয়গুলির উপর জোর দাও, যাতে যারা ঈশ্বরকে বিশ্বাস করে তারা ভালো কাজে নিজেকে নিয়োজিত করতে পারে। এই বিষয়গুলি পুরুষদের জন্য ভাল এবং প্রয়োজনীয়।",
+    "glPhrase": "en Dios",
+    "history": {
+      "de Dios": {
+        "ঈশ্বরের": 5,
+        "ঈশ্বর": 1
+      },
+      "a Dios": {
+        "ঈশ্বরকে": 1
+      },
+      "Dios": {
+        "ঈশ্বর": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরকে"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরকে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:8, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-12-godly",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "godly",
+    "verse": "আমাদের প্রশিক্ষণ, যাতে, ঈশ্বরহীনতা এবং জাগতিক আবেগ প্রত্যাখ্যান করে, আমরা যেন সুবুদ্ধিপূর্ণ এবং ধার্মিক জীবনযাপন করতে পারি, এবং বর্তমান যুগে ঈশ্বরীয় পথে,",
+    "glPhrase": "a la impiedad",
+    "history": {
+      "la piedad": {
+        "ভক্তির সহমতে": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরহীনতা"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরহীনতা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "trje",
+      "quote": [
+        {
+          "word": "τὴν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἀσέβειαν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὴν ἀσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:12, tW godly, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-12-godly",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "godly",
+    "verse": "আমাদের প্রশিক্ষণ, যাতে, ঈশ্বরহীনতা এবং জাগতিক আবেগ প্রত্যাখ্যান করে, আমরা যেন সুবুদ্ধিপূর্ণ এবং ধার্মিক জীবনযাপন করতে পারি, এবং বর্তমান যুগে ঈশ্বরীয় পথে,",
+    "glPhrase": "piadosa",
+    "history": {
+      "la piedad": {
+        "ভক্তির সহমতে": 1
+      },
+      "a la impiedad": {
+        "ঈশ্বরহীনতা": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরীয় পথে"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরীয়",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "পথে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "wyfa",
+      "quote": "εὐσεβῶς",
+      "quoteString": "εὐσεβῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:12, tW godly, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-10-good",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "চুরি করার জন্য না, বরং সমস্ত ভাল বিশ্বাস প্রদর্শন করার জন্য, যাতে তারা সমস্ত কিছুতে আমাদের ত্রাণকর্তা ঈশ্বরের বিষয়ে শিক্ষার কৃতিত্ব দিতে পারে ৷",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "এমন এক বন্ধু যে সভ্য": 1
+      }
+    },
+    "expected": [
+      "ভাল"
+    ],
+    "selections": [
+      {
+        "text": "ভাল",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:10, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-8-good",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "এই বাক্যটি বিশ্বাসযোগ্য, এবং আমি চাই তুমি এই বিষয়গুলির উপর জোর দাও, যাতে যারা ঈশ্বরকে বিশ্বাস করে তারা ভালো কাজে নিজেকে নিয়োজিত করতে পারে। এই বিষয়গুলি পুরুষদের জন্য ভাল এবং প্রয়োজনীয়।",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "এমন এক বন্ধু যে সভ্য": 1
+      },
+      "buena": {
+        "ভাল": 1
+      }
+    },
+    "expected": [
+      "ভালো"
+    ],
+    "selections": [
+      {
+        "text": "ভালো",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-8-good",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "এই বাক্যটি বিশ্বাসযোগ্য, এবং আমি চাই তুমি এই বিষয়গুলির উপর জোর দাও, যাতে যারা ঈশ্বরকে বিশ্বাস করে তারা ভালো কাজে নিজেকে নিয়োজিত করতে পারে। এই বিষয়গুলি পুরুষদের জন্য ভাল এবং প্রয়োজনীয়।",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "এমন এক বন্ধু যে সভ্য": 1
+      },
+      "buena": {
+        "ভাল": 1
+      },
+      "buenas": {
+        "ভালো": 1
+      }
+    },
+    "expected": [
+      "ভাল"
+    ],
+    "selections": [
+      {
+        "text": "ভাল",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-14-good",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "এবং এছাড়াও, আমাদের ভাল কাজে নিজেদের নিযুক্ত করতে শিখতে হবে অত্যাবশ্যকীয় চাহিদার প্রতি, যাতে ফলহীন না হয়।\n\\p",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "এমন এক বন্ধু যে সভ্য": 1
+      },
+      "buena": {
+        "ভাল": 1
+      },
+      "buenas": {
+        "ভালো": 1,
+        "ভাল": 1
+      }
+    },
+    "expected": [
+      "অত্যাবশ্যকীয়"
+    ],
+    "selections": [
+      {
+        "text": "অত্যাবশ্যকীয়",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-13-rebuke",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "rebuke",
+    "verse": "এই সাক্ষ্যটি সত্য। এই কারণে, তাদের কঠোরভাবে তিরস্কার করুন, যাতে তারা বিশ্বাসে দৃঢ় হতে পারে,",
+    "glPhrase": "repréndelos",
+    "history": {
+      "reprender": {
+        "তাদের তিরস্কার": 1
+      }
+    },
+    "expected": [
+      "তিরস্কার করুন"
+    ],
+    "selections": [
+      {
+        "text": "তিরস্কার",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "করুন",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:13, tW rebuke, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-15-rebuke",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "rebuke",
+    "verse": "এই সব কথা বল, এবং সমস্ত কর্তৃত্বের সাথে উপদেশ এবং তিরস্কার কর ৷ যেন কেউ তোমাকে অবজ্ঞা না করে।",
+    "glPhrase": "reprende",
+    "history": {
+      "reprender": {
+        "তাদের তিরস্কার": 1
+      },
+      "repréndelos": {
+        "তিরস্কার করুন": 1
+      }
+    },
+    "expected": [
+      "তিরস্কার কর"
+    ],
+    "selections": [
+      {
+        "text": "তিরস্কার",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "কর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:15, tW rebuke, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-2-12-righteous",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "righteous",
+    "verse": "আমাদের প্রশিক্ষণ, যাতে, ঈশ্বরহীনতা এবং জাগতিক আবেগ প্রত্যাখ্যান করে, আমরা যেন সুবুদ্ধিপূর্ণ এবং ধার্মিক জীবনযাপন করতে পারি, এবং বর্তমান যুগে ঈশ্বরীয় পথে,",
+    "glPhrase": "justa",
+    "history": {
+      "justo": {
+        "ধার্মিক": 1
+      }
+    },
+    "expected": [
+      "ধার্মিক"
+    ],
+    "selections": [
+      {
+        "text": "ধার্মিক",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "dr9j",
+      "quote": "δικαίως",
+      "quoteString": "δικαίως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 2:12, tW righteous, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-5-righteous",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "righteous",
+    "verse": "আমরা যে ধার্মিকতার কাজ করেছি তার জন্য নয়, কিন্তু তাঁর করুণার দ্বারা তিনি আমাদের উদ্ধার করেছেন,  নতুন জন্মের ধৌত এবং পবিত্র আত্মার দ্বারা নবীনিকরণের  মাধ্যমে,",
+    "glPhrase": "de justicia",
+    "history": {
+      "justo": {
+        "ধার্মিক": 1
+      },
+      "justa": {
+        "ধার্মিক": 1
+      }
+    },
+    "expected": [
+      "ধার্মিকতার"
+    ],
+    "selections": [
+      {
+        "text": "ধার্মিকতার",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "sqsf",
+      "quote": [
+        {
+          "word": "τῶν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "δικαιοσύνῃ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῶν ἐν δικαιοσύνῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:5, tW righteous, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-1-4-savior",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "savior",
+    "verse": "তীতের প্রতি, সাধারণ বিশ্বাসে একজন প্রকৃত পুত্র ৷ পিতা ঈশ্বর এবং খ্রীষ্ট যীশু আমাদের ত্রানকর্তার কাছ থেকে অনুগ্রহ ও শান্তি ৷\n\\p",
+    "glPhrase": "salvador",
+    "history": {
+      "salvador": {
+        "ত্রাণকর্তার": 1
+      }
+    },
+    "expected": [
+      "ত্রানকর্তার"
+    ],
+    "selections": [
+      {
+        "text": "ত্রানকর্তার",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "mvwu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 1:4, tW savior, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-bn-tit-3-4-savior",
+    "targetLang": "bn",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "savior",
+    "verse": "কিন্তু যখন ঈশ্বর আমাদের ত্রানকর্তার দয়া ও ভালবাসা মানবজাতির প্রতি প্রকাশিত হয়েছিল,",
+    "glPhrase": "de parte de salvador",
+    "history": {
+      "salvador": {
+        "ত্রাণকর্তার": 1,
+        "ত্রানকর্তার": 1
+      }
+    },
+    "expected": [
+      "ত্রানকর্তার"
+    ],
+    "selections": [
+      {
+        "text": "ত্রানকর্তার",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "x4gg",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_tit_book 3:4, tW savior, GL es-419 glt/v42_es-419_gl"
+  }
+]

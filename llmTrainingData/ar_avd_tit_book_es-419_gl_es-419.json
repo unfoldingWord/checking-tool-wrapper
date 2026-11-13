@@ -1,0 +1,2321 @@
+[
+  {
+    "id": "train-ar-tit-1-4-christ",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "christ",
+    "verse": "إِلَى تِيطُسَ، ٱلِٱبْنِ ٱلصَّرِيحِ حَسَبَ ٱلْإِيمَانِ ٱلْمُشْتَرَكِ: نِعْمَةٌ وَرَحْمَةٌ وَسَلَامٌ مِنَ ٱللهِ ٱلْآبِ وَٱلرَّبِّ يَسُوعَ ٱلْمَسِيحِ مُخَلِّصِنَا.",
+    "glPhrase": "de Cristo",
+    "history": {
+      "de Jesucristo": {
+        "ٱلْمَسِيحِ": 1
+      }
+    },
+    "expected": [
+      "ٱلْمَسِيحِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْمَسِيحِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "f6ja",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:4, tW christ, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-13-christ",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "christ",
+    "verse": "مُنْتَظِرِينَ ٱلرَّجَاءَ ٱلْمُبَارَكَ وَظُهُورَ مَجْدِ ٱللهِ ٱلْعَظِيمِ وَمُخَلِّصِنَا يَسُوعَ ٱلْمَسِيحِ،",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "ٱلْمَسِيحِ": 1
+      },
+      "de Cristo": {
+        "ٱلْمَسِيحِ": 1
+      }
+    },
+    "expected": [
+      "ٱلْمَسِيحِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْمَسِيحِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "smpv",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:13, tW christ, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-6-christ",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "christ",
+    "verse": "ٱلَّذِي سَكَبَهُ بِغِنًى عَلَيْنَا بِيَسُوعَ ٱلْمَسِيحِ مُخَلِّصِنَا.",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "ٱلْمَسِيحِ": 1
+      },
+      "de Cristo": {
+        "ٱلْمَسِيحِ": 1
+      },
+      "Jesucristo": {
+        "ٱلْمَسِيحِ": 1
+      }
+    },
+    "expected": [
+      "ٱلْمَسِيحِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْمَسِيحِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bmkx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:6, tW christ, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-8-evil",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "وَكَلَامًا صَحِيحًا غَيْرَ مَلُومٍ، لِكَيْ يُخْزَى ٱلْمُضَادُّ، إِذْ لَيْسَ لَهُ شَيْءٌ رَدِيءٌ يَقُولُهُ عَنْكُمْ.",
+    "glPhrase": "malo",
+    "history": {
+      "malas": {
+        "رَدِيَّةٌ": 1
+      }
+    },
+    "expected": [
+      "رَدِيءٌ"
+    ],
+    "selections": [
+      {
+        "text": "رَدِيءٌ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:8, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-3-evil",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "لِأَنَّنَا كُنَّا نَحْنُ أَيْضًا قَبْلًا أَغْبِيَاءَ، غَيْرَ طَائِعِينَ، ضَالِّينَ، مُسْتَعْبَدِينَ لِشَهَوَاتٍ وَلَذَّاتٍ مُخْتَلِفَةٍ، عَائِشِينَ فِي ٱلْخُبْثِ وَٱلْحَسَدِ، مَمْقُوتِينَ، مُبْغِضِينَ بَعْضُنَا بَعْضًا.",
+    "glPhrase": "malicia",
+    "history": {
+      "malas": {
+        "رَدِيَّةٌ": 1
+      },
+      "malo": {
+        "رَدِيءٌ": 1
+      }
+    },
+    "expected": [
+      "ٱلْخُبْثِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْخُبْثِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:3, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-4-faith",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "إِلَى تِيطُسَ، ٱلِٱبْنِ ٱلصَّرِيحِ حَسَبَ ٱلْإِيمَانِ ٱلْمُشْتَرَكِ: نِعْمَةٌ وَرَحْمَةٌ وَسَلَامٌ مِنَ ٱللهِ ٱلْآبِ وَٱلرَّبِّ يَسُوعَ ٱلْمَسِيحِ مُخَلِّصِنَا.",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "إِيمَانِ": 1
+      }
+    },
+    "expected": [
+      "ٱلْإِيمَانِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْإِيمَانِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:4, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-10-faith",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "غَيْرَ مُخْتَلِسِينَ، بَلْ مُقَدِّمِينَ كُلَّ أَمَانَةٍ صَالِحَةٍ، لِكَيْ يُزَيِّنُوا تَعْلِيمَ مُخَلِّصِنَا ٱللهِ فِي كُلِّ شَيْءٍ.",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "إِيمَانِ": 1
+      },
+      "fe": {
+        "ٱلْإِيمَانِ": 1
+      }
+    },
+    "expected": [
+      "أَمَانَةٍ"
+    ],
+    "selections": [
+      {
+        "text": "أَمَانَةٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:10, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-15-faith",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "يُسَلِّمُ عَلَيْكَ ٱلَّذِينَ مَعِي جَمِيعًا. سَلِّمْ عَلَى ٱلَّذِينَ يُحِبُّونَنَا فِي ٱلْإِيمَانِ. اَلنِّعْمَةُ مَعَ جَمِيعِكُمْ. آمِينَ.",
+    "glPhrase": "la fe",
+    "history": {
+      "a la fe": {
+        "إِيمَانِ": 1
+      },
+      "fe": {
+        "ٱلْإِيمَانِ": 1,
+        "أَمَانَةٍ": 1
+      }
+    },
+    "expected": [
+      "ٱلْإِيمَانِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْإِيمَانِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "b3pn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:15, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-9-faithful",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faithful",
+    "verse": "مُلَازِمًا لِلْكَلِمَةِ ٱلصَّادِقَةِ ٱلَّتِي بِحَسَبِ ٱلتَّعْلِيمِ، لِكَيْ يَكُونَ قَادِرًا أَنْ يَعِظَ بِٱلتَّعْلِيمِ ٱلصَّحِيحِ وَيُوَبِّخَ ٱلْمُنَاقِضِينَ.",
+    "glPhrase": "fiel",
+    "history": {
+      "fieles": {
+        "مُؤْمِنُونَ": 1
+      }
+    },
+    "expected": [
+      "ٱلصَّادِقَةِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلصَّادِقَةِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "x67x",
+      "quote": "πιστοῦ",
+      "quoteString": "πιστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:9, tW faithful, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-8-faithful",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faithful",
+    "verse": "صَادِقَةٌ هِيَ ٱلْكَلِمَةُ. وَأُرِيدُ أَنْ تُقَرِّرَ هَذِهِ ٱلْأُمُورَ، لِكَيْ يَهْتَمَّ ٱلَّذِينَ آمَنُوا بِٱللهِ أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً. فَإِنَّ هَذِهِ ٱلْأُمُورَ هِيَ ٱلْحَسَنَةُ وَٱلنَّافِعَةُ لِلنَّاسِ.",
+    "glPhrase": "es digno de confianza",
+    "history": {
+      "fieles": {
+        "مُؤْمِنُونَ": 1
+      },
+      "fiel": {
+        "ٱلصَّادِقَةِ": 1
+      }
+    },
+    "expected": [
+      "صَادِقَةٌ هِيَ"
+    ],
+    "selections": [
+      {
+        "text": "صَادِقَةٌ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "هِيَ",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "dxb8",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:8, tW faithful, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-1-god-2",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "بُولُسُ، عَبْدُ ٱللهِ، وَرَسُولُ يَسُوعَ ٱلْمَسِيحِ، لِأَجْلِ إِيمَانِ مُخْتَارِي ٱللهِ وَمَعْرِفَةِ ٱلْحَقِّ، ٱلَّذِي هُوَ حَسَبُ ٱلتَّقْوَى،",
+    "glPhrase": "de Dios",
+    "occurrence": 2,
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 1
+      }
+    },
+    "expected": [
+      "ٱللهِ:2"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهِ",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:1, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-2-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "عَلَى رَجَاءِ ٱلْحَيَاةِ ٱلْأَبَدِيَّةِ، ٱلَّتِي وَعَدَ بِهَا ٱللهُ ٱلْمُنَزَّهُ عَنِ ٱلْكَذِبِ، قَبْلَ ٱلْأَزْمِنَةِ ٱلْأَزَلِيَّةِ،",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 2
+      }
+    },
+    "expected": [
+      "ٱللهُ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهُ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:2, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-3-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "وَإِنَّمَا أَظْهَرَ كَلِمَتَهُ فِي أَوْقَاتِهَا ٱلْخَاصَّةِ، بِٱلْكِرَازَةِ ٱلَّتِي ٱؤْتُمِنْتُ أَنَا عَلَيْهَا، بِحَسَبِ أَمْرِ مُخَلِّصِنَا ٱللهِ،",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 2
+      },
+      "Dios": {
+        "ٱللهُ": 1
+      }
+    },
+    "expected": [
+      "ٱللهِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:3, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-7-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "لِأَنَّهُ يَجِبُ أَنْ يَكُونَ ٱلْأُسْقُفُ: بِلَا لَوْمٍ كَوَكِيلِ ٱللهِ، غَيْرَ مُعْجِبٍ بِنَفْسِهِ، وَلَا غَضُوبٍ، وَلَا مُدْمِنِ ٱلْخَمْرِ، وَلَا ضَرَّابٍ، وَلَا طَامِعٍ فِي ٱلرِّبْحِ ٱلْقَبِيحِ،",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 3
+      },
+      "Dios": {
+        "ٱللهُ": 1
+      }
+    },
+    "expected": [
+      "ٱللهِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:7, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-16-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "يَعْتَرِفُونَ بِأَنَّهُمْ يَعْرِفُونَ ٱللهَ، وَلَكِنَّهُمْ بِٱلْأَعْمَالِ يُنْكِرُونَهُ، إِذْ هُمْ رَجِسُونَ غَيْرُ طَائِعِينَ، وَمِنْ جِهَةِ كُلِّ عَمَلٍ صَالِحٍ مَرْفُوضُونَ.",
+    "glPhrase": "a Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 4
+      },
+      "Dios": {
+        "ٱللهُ": 1
+      }
+    },
+    "expected": [
+      "ٱللهَ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:16, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-10-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "غَيْرَ مُخْتَلِسِينَ، بَلْ مُقَدِّمِينَ كُلَّ أَمَانَةٍ صَالِحَةٍ، لِكَيْ يُزَيِّنُوا تَعْلِيمَ مُخَلِّصِنَا ٱللهِ فِي كُلِّ شَيْءٍ.",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 4
+      },
+      "Dios": {
+        "ٱللهُ": 1
+      },
+      "a Dios": {
+        "ٱللهَ": 1
+      }
+    },
+    "expected": [
+      "ٱللهِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:10, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-13-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "مُنْتَظِرِينَ ٱلرَّجَاءَ ٱلْمُبَارَكَ وَظُهُورَ مَجْدِ ٱللهِ ٱلْعَظِيمِ وَمُخَلِّصِنَا يَسُوعَ ٱلْمَسِيحِ،",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 5
+      },
+      "Dios": {
+        "ٱللهُ": 1
+      },
+      "a Dios": {
+        "ٱللهَ": 1
+      }
+    },
+    "expected": [
+      "ٱللهِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "scfu",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:13, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-4-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "وَلَكِنْ حِينَ ظَهَرَ لُطْفُ مُخَلِّصِنَا ٱللهِ وَإِحْسَانُهُ -",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 5
+      },
+      "Dios": {
+        "ٱللهُ": 1,
+        "ٱللهِ": 1
+      },
+      "a Dios": {
+        "ٱللهَ": 1
+      }
+    },
+    "expected": [
+      "ٱللهِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱللهِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:4, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-8-god",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "صَادِقَةٌ هِيَ ٱلْكَلِمَةُ. وَأُرِيدُ أَنْ تُقَرِّرَ هَذِهِ ٱلْأُمُورَ، لِكَيْ يَهْتَمَّ ٱلَّذِينَ آمَنُوا بِٱللهِ أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً. فَإِنَّ هَذِهِ ٱلْأُمُورَ هِيَ ٱلْحَسَنَةُ وَٱلنَّافِعَةُ لِلنَّاسِ.",
+    "glPhrase": "en Dios",
+    "history": {
+      "de Dios": {
+        "ٱللهِ": 5
+      },
+      "Dios": {
+        "ٱللهُ": 1,
+        "ٱللهِ": 2
+      },
+      "a Dios": {
+        "ٱللهَ": 1
+      }
+    },
+    "expected": [
+      "بِٱللهِ"
+    ],
+    "selections": [
+      {
+        "text": "بِٱللهِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:8, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-16-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "يَعْتَرِفُونَ بِأَنَّهُمْ يَعْرِفُونَ ٱللهَ، وَلَكِنَّهُمْ بِٱلْأَعْمَالِ يُنْكِرُونَهُ، إِذْ هُمْ رَجِسُونَ غَيْرُ طَائِعِينَ، وَمِنْ جِهَةِ كُلِّ عَمَلٍ صَالِحٍ مَرْفُوضُونَ.",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      }
+    },
+    "expected": [
+      "صَالِحٍ"
+    ],
+    "selections": [
+      {
+        "text": "صَالِحٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:16, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-5-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "مُتَعَقِّلَاتٍ، عَفِيفَاتٍ، مُلَازِمَاتٍ بُيُوتَهُنَّ، صَالِحَاتٍ، خَاضِعَاتٍ لِرِجَالِهِنَّ، لِكَيْ لَا يُجَدَّفَ عَلَى كَلِمَةِ ٱللهِ.",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 1
+      }
+    },
+    "expected": [
+      "صَالِحَاتٍ"
+    ],
+    "selections": [
+      {
+        "text": "صَالِحَاتٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:5, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-7-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "مُقَدِّمًا نَفْسَكَ فِي كُلِّ شَيْءٍ قُدْوَةً لِلْأَعْمَالِ ٱلْحَسَنَةِ، وَمُقَدِّمًا فِي ٱلتَّعْلِيمِ نَقَاوَةً، وَوَقَارًا، وَإِخْلَاصًا،",
+    "glPhrase": "de buenas",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1
+      }
+    },
+    "expected": [
+      "ٱلْحَسَنَةِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْحَسَنَةِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:7, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-10-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "غَيْرَ مُخْتَلِسِينَ، بَلْ مُقَدِّمِينَ كُلَّ أَمَانَةٍ صَالِحَةٍ، لِكَيْ يُزَيِّنُوا تَعْلِيمَ مُخَلِّصِنَا ٱللهِ فِي كُلِّ شَيْءٍ.",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1
+      },
+      "de buenas": {
+        "ٱلْحَسَنَةِ": 1
+      }
+    },
+    "expected": [
+      "صَالِحَةٍ"
+    ],
+    "selections": [
+      {
+        "text": "صَالِحَةٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:10, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-14-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "ٱلَّذِي بَذَلَ نَفْسَهُ لِأَجْلِنَا، لِكَيْ يَفْدِيَنَا مِنْ كُلِّ إِثْمٍ، وَيُطَهِّرَ لِنَفْسِهِ شَعْبًا خَاصًّا غَيُورًا فِي أَعْمَالٍ حَسَنَةٍ.",
+    "glPhrase": "de buenas",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 1,
+        "صَالِحَةٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1
+      },
+      "de buenas": {
+        "ٱلْحَسَنَةِ": 1
+      }
+    },
+    "expected": [
+      "حَسَنَةٍ"
+    ],
+    "selections": [
+      {
+        "text": "حَسَنَةٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-1-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "ذَكِّرْهُمْ أَنْ يَخْضَعُوا لِلرِّيَاسَاتِ وَٱلسَّلَاطِينِ، وَيُطِيعُوا، وَيَكُونُوا مُسْتَعِدِّينَ لِكُلِّ عَمَلٍ صَالِحٍ،",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 1,
+        "صَالِحَةٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1
+      },
+      "de buenas": {
+        "ٱلْحَسَنَةِ": 1,
+        "حَسَنَةٍ": 1
+      }
+    },
+    "expected": [
+      "صَالِحٍ"
+    ],
+    "selections": [
+      {
+        "text": "صَالِحٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:1, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-8-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "صَادِقَةٌ هِيَ ٱلْكَلِمَةُ. وَأُرِيدُ أَنْ تُقَرِّرَ هَذِهِ ٱلْأُمُورَ، لِكَيْ يَهْتَمَّ ٱلَّذِينَ آمَنُوا بِٱللهِ أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً. فَإِنَّ هَذِهِ ٱلْأُمُورَ هِيَ ٱلْحَسَنَةُ وَٱلنَّافِعَةُ لِلنَّاسِ.",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 2,
+        "صَالِحَةٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1
+      },
+      "de buenas": {
+        "ٱلْحَسَنَةِ": 1,
+        "حَسَنَةٍ": 1
+      }
+    },
+    "expected": [
+      "حَسَنَةً"
+    ],
+    "selections": [
+      {
+        "text": "حَسَنَةً",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-8-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "صَادِقَةٌ هِيَ ٱلْكَلِمَةُ. وَأُرِيدُ أَنْ تُقَرِّرَ هَذِهِ ٱلْأُمُورَ، لِكَيْ يَهْتَمَّ ٱلَّذِينَ آمَنُوا بِٱللهِ أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً. فَإِنَّ هَذِهِ ٱلْأُمُورَ هِيَ ٱلْحَسَنَةُ وَٱلنَّافِعَةُ لِلنَّاسِ.",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 2,
+        "صَالِحَةٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1,
+        "حَسَنَةً": 1
+      },
+      "de buenas": {
+        "ٱلْحَسَنَةِ": 1,
+        "حَسَنَةٍ": 1
+      }
+    },
+    "expected": [
+      "ٱلْحَسَنَةُ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْحَسَنَةُ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-14-good",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "وَلْيَتَعَلَّمْ مَنْ لَنَا أَيْضًا أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً لِلْحَاجَاتِ ٱلضَّرُورِيَّةِ، حَتَّى لَا يَكُونُوا بِلَا ثَمَرٍ.",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "مُحِبًّا لِلْخَيْرِ": 1
+      },
+      "buena": {
+        "صَالِحٍ": 2,
+        "صَالِحَةٍ": 1
+      },
+      "buenas": {
+        "صَالِحَاتٍ": 1,
+        "حَسَنَةً": 1,
+        "ٱلْحَسَنَةُ": 1
+      },
+      "de buenas": {
+        "ٱلْحَسَنَةِ": 1,
+        "حَسَنَةٍ": 1
+      }
+    },
+    "expected": [
+      "حَسَنَةً"
+    ],
+    "selections": [
+      {
+        "text": "حَسَنَةً",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-13-hope",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "hope",
+    "verse": "مُنْتَظِرِينَ ٱلرَّجَاءَ ٱلْمُبَارَكَ وَظُهُورَ مَجْدِ ٱللهِ ٱلْعَظِيمِ وَمُخَلِّصِنَا يَسُوعَ ٱلْمَسِيحِ،",
+    "glPhrase": "esperanza",
+    "history": {
+      "la esperanza": {
+        "رَجَاءِ": 1
+      }
+    },
+    "expected": [
+      "ٱلرَّجَاءَ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلرَّجَاءَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "pqwf",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:13, tW hope, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-7-hope",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "hope",
+    "verse": "حَتَّى إِذَا تَبَرَّرْنَا بِنِعْمَتِهِ، نَصِيرُ وَرَثَةً حَسَبَ رَجَاءِ ٱلْحَيَاةِ ٱلْأَبَدِيَّةِ.",
+    "glPhrase": "la esperanza",
+    "history": {
+      "la esperanza": {
+        "رَجَاءِ": 1
+      },
+      "esperanza": {
+        "ٱلرَّجَاءَ": 1
+      }
+    },
+    "expected": [
+      "رَجَاءِ"
+    ],
+    "selections": [
+      {
+        "text": "رَجَاءِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "yut8",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:7, tW hope, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-4-jesus",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "إِلَى تِيطُسَ، ٱلِٱبْنِ ٱلصَّرِيحِ حَسَبَ ٱلْإِيمَانِ ٱلْمُشْتَرَكِ: نِعْمَةٌ وَرَحْمَةٌ وَسَلَامٌ مِنَ ٱللهِ ٱلْآبِ وَٱلرَّبِّ يَسُوعَ ٱلْمَسِيحِ مُخَلِّصِنَا.",
+    "glPhrase": "Jesús",
+    "history": {
+      "de Jesucristo": {
+        "يَسُوعَ": 1
+      }
+    },
+    "expected": [
+      "يَسُوعَ"
+    ],
+    "selections": [
+      {
+        "text": "يَسُوعَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jgfj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:4, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-13-jesus",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "مُنْتَظِرِينَ ٱلرَّجَاءَ ٱلْمُبَارَكَ وَظُهُورَ مَجْدِ ٱللهِ ٱلْعَظِيمِ وَمُخَلِّصِنَا يَسُوعَ ٱلْمَسِيحِ،",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "يَسُوعَ": 1
+      },
+      "Jesús": {
+        "يَسُوعَ": 1
+      }
+    },
+    "expected": [
+      "يَسُوعَ"
+    ],
+    "selections": [
+      {
+        "text": "يَسُوعَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:13, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-12-life",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "life",
+    "verse": "مُعَلِّمَةً إِيَّانَا أَنْ نُنْكِرَ ٱلْفُجُورَ وَٱلشَّهَوَاتِ ٱلْعَالَمِيَّةَ، وَنَعِيشَ بِٱلتَّعَقُّلِ وَٱلْبِرِّ وَٱلتَّقْوَى فِي ٱلْعَالَمِ ٱلْحَاضِرِ،",
+    "glPhrase": "vivamos",
+    "history": {
+      "de la vida": {
+        "ٱلْحَيَاةِ": 1
+      }
+    },
+    "expected": [
+      "وَنَعِيشَ"
+    ],
+    "selections": [
+      {
+        "text": "وَنَعِيشَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "life",
+      "checkId": "kavz",
+      "quote": "ζήσωμεν",
+      "quoteString": "ζήσωμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "life"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:12, tW life, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-3-life",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "life",
+    "verse": "لِأَنَّنَا كُنَّا نَحْنُ أَيْضًا قَبْلًا أَغْبِيَاءَ، غَيْرَ طَائِعِينَ، ضَالِّينَ، مُسْتَعْبَدِينَ لِشَهَوَاتٍ وَلَذَّاتٍ مُخْتَلِفَةٍ، عَائِشِينَ فِي ٱلْخُبْثِ وَٱلْحَسَدِ، مَمْقُوتِينَ، مُبْغِضِينَ بَعْضُنَا بَعْضًا.",
+    "glPhrase": "viviendo",
+    "history": {
+      "de la vida": {
+        "ٱلْحَيَاةِ": 1
+      },
+      "vivamos": {
+        "وَنَعِيشَ": 1
+      }
+    },
+    "expected": [
+      "عَائِشِينَ"
+    ],
+    "selections": [
+      {
+        "text": "عَائِشِينَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "life",
+      "checkId": "aj83",
+      "quote": "διάγοντες",
+      "quoteString": "διάγοντες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "life"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:3, tW life, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-7-life",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "life",
+    "verse": "حَتَّى إِذَا تَبَرَّرْنَا بِنِعْمَتِهِ، نَصِيرُ وَرَثَةً حَسَبَ رَجَاءِ ٱلْحَيَاةِ ٱلْأَبَدِيَّةِ.",
+    "glPhrase": "de la vida",
+    "history": {
+      "de la vida": {
+        "ٱلْحَيَاةِ": 1
+      },
+      "vivamos": {
+        "وَنَعِيشَ": 1
+      },
+      "viviendo": {
+        "عَائِشِينَ": 1
+      }
+    },
+    "expected": [
+      "ٱلْحَيَاةِ"
+    ],
+    "selections": [
+      {
+        "text": "ٱلْحَيَاةِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "life",
+      "checkId": "zbv2",
+      "quote": "ζωῆς",
+      "quoteString": "ζωῆς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "life"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:7, tW life, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-1-15-purify",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "كُلُّ شَيْءٍ طَاهِرٌ لِلطَّاهِرِينَ، وَأَمَّا لِلنَّجِسِينَ وَغَيْرِ ٱلْمُؤْمِنِينَ فَلَيْسَ شَيْءٌ طَاهِرًا، بَلْ قَدْ تَنَجَّسَ ذِهْنُهُمْ أَيْضًا وَضَمِيرُهُمْ.",
+    "glPhrase": "es puro",
+    "history": {
+      "son puras": {
+        "طَاهِرٌ": 1
+      }
+    },
+    "expected": [
+      "طَاهِرًا"
+    ],
+    "selections": [
+      {
+        "text": "طَاهِرًا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-5-purify",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "مُتَعَقِّلَاتٍ، عَفِيفَاتٍ، مُلَازِمَاتٍ بُيُوتَهُنَّ، صَالِحَاتٍ، خَاضِعَاتٍ لِرِجَالِهِنَّ، لِكَيْ لَا يُجَدَّفَ عَلَى كَلِمَةِ ٱللهِ.",
+    "glPhrase": "puras",
+    "history": {
+      "son puras": {
+        "طَاهِرٌ": 1
+      },
+      "es puro": {
+        "طَاهِرًا": 1
+      }
+    },
+    "expected": [
+      "عَفِيفَاتٍ"
+    ],
+    "selections": [
+      {
+        "text": "عَفِيفَاتٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:5, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-5-selfcontrol",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "selfcontrol",
+    "verse": "مُتَعَقِّلَاتٍ، عَفِيفَاتٍ، مُلَازِمَاتٍ بُيُوتَهُنَّ، صَالِحَاتٍ، خَاضِعَاتٍ لِرِجَالِهِنَّ، لِكَيْ لَا يُجَدَّفَ عَلَى كَلِمَةِ ٱللهِ.",
+    "glPhrase": "que sean prudentes",
+    "history": {
+      "dueño de sí mismo": {
+        "ضَابِطًا لِنَفْسِهِ": 1
+      }
+    },
+    "expected": [
+      "مُتَعَقِّلَاتٍ"
+    ],
+    "selections": [
+      {
+        "text": "مُتَعَقِّلَاتٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "z2h3",
+      "quote": "σώφρονας",
+      "quoteString": "σώφρονας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:5, tW selfcontrol, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-6-selfcontrol",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "selfcontrol",
+    "verse": "كَذَلِكَ عِظِ ٱلْأَحْدَاثَ أَنْ يَكُونُوا مُتَعَقِّلِينَ،",
+    "glPhrase": "a pensar con sensatez",
+    "history": {
+      "dueño de sí mismo": {
+        "ضَابِطًا لِنَفْسِهِ": 1
+      },
+      "que sean prudentes": {
+        "مُتَعَقِّلَاتٍ": 1
+      }
+    },
+    "expected": [
+      "أَنْ يَكُونُوا مُتَعَقِّلِينَ"
+    ],
+    "selections": [
+      {
+        "text": "أَنْ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "يَكُونُوا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "مُتَعَقِّلِينَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "wz6r",
+      "quote": "σωφρονεῖν",
+      "quoteString": "σωφρονεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:6, tW selfcontrol, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-12-selfcontrol",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "selfcontrol",
+    "verse": "مُعَلِّمَةً إِيَّانَا أَنْ نُنْكِرَ ٱلْفُجُورَ وَٱلشَّهَوَاتِ ٱلْعَالَمِيَّةَ، وَنَعِيشَ بِٱلتَّعَقُّلِ وَٱلْبِرِّ وَٱلتَّقْوَى فِي ٱلْعَالَمِ ٱلْحَاضِرِ،",
+    "glPhrase": "de una forma autocontrolada",
+    "history": {
+      "dueño de sí mismo": {
+        "ضَابِطًا لِنَفْسِهِ": 1
+      },
+      "que sean prudentes": {
+        "مُتَعَقِّلَاتٍ": 1
+      },
+      "a pensar con sensatez": {
+        "أَنْ يَكُونُوا مُتَعَقِّلِينَ": 1
+      }
+    },
+    "expected": [
+      "بِٱلتَّعَقُّلِ"
+    ],
+    "selections": [
+      {
+        "text": "بِٱلتَّعَقُّلِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "zvvo",
+      "quote": "σωφρόνως",
+      "quoteString": "σωφρόνως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:12, tW selfcontrol, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-5-slander",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "slander",
+    "verse": "مُتَعَقِّلَاتٍ، عَفِيفَاتٍ، مُلَازِمَاتٍ بُيُوتَهُنَّ، صَالِحَاتٍ، خَاضِعَاتٍ لِرِجَالِهِنَّ، لِكَيْ لَا يُجَدَّفَ عَلَى كَلِمَةِ ٱللهِ.",
+    "glPhrase": "sea difamada",
+    "history": {
+      "calumniadoras": {
+        "ثَالِبَاتٍ": 1
+      }
+    },
+    "expected": [
+      "يُجَدَّفَ"
+    ],
+    "selections": [
+      {
+        "text": "يُجَدَّفَ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:5, tW slander, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-2-slander",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "slander",
+    "verse": "وَلَا يَطْعَنُوا فِي أَحَدٍ، وَيَكُونُوا غَيْرَ مُخَاصِمِينَ، حُلَمَاءَ، مُظْهِرِينَ كُلَّ وَدَاعَةٍ لِجَمِيعِ ٱلنَّاسِ.",
+    "glPhrase": "que hablen mal",
+    "history": {
+      "calumniadoras": {
+        "ثَالِبَاتٍ": 1
+      },
+      "sea difamada": {
+        "يُجَدَّفَ": 1
+      }
+    },
+    "expected": [
+      "يَطْعَنُوا"
+    ],
+    "selections": [
+      {
+        "text": "يَطْعَنُوا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:2, tW slander, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-9-subject",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "subject",
+    "verse": "وَٱلْعَبِيدَ أَنْ يَخْضَعُوا لِسَادَتِهِمْ، وَيُرْضُوهُمْ فِي كُلِّ شَيْءٍ، غَيْرَ مُنَاقِضِينَ،",
+    "glPhrase": "Que se sometan",
+    "history": {
+      "sujetas": {
+        "خَاضِعَاتٍ": 1
+      }
+    },
+    "expected": [
+      "أَنْ يَخْضَعُوا"
+    ],
+    "selections": [
+      {
+        "text": "أَنْ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "يَخْضَعُوا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:9, tW subject, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-1-subject",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "subject",
+    "verse": "ذَكِّرْهُمْ أَنْ يَخْضَعُوا لِلرِّيَاسَاتِ وَٱلسَّلَاطِينِ، وَيُطِيعُوا، وَيَكُونُوا مُسْتَعِدِّينَ لِكُلِّ عَمَلٍ صَالِحٍ،",
+    "glPhrase": "que se sometan",
+    "history": {
+      "sujetas": {
+        "خَاضِعَاتٍ": 1
+      },
+      "Que se sometan": {
+        "أَنْ يَخْضَعُوا": 1
+      }
+    },
+    "expected": [
+      "أَنْ يَخْضَعُوا"
+    ],
+    "selections": [
+      {
+        "text": "أَنْ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "يَخْضَعُوا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:1, tW subject, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-7-works",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "مُقَدِّمًا نَفْسَكَ فِي كُلِّ شَيْءٍ قُدْوَةً لِلْأَعْمَالِ ٱلْحَسَنَةِ، وَمُقَدِّمًا فِي ٱلتَّعْلِيمِ نَقَاوَةً، وَوَقَارًا، وَإِخْلَاصًا،",
+    "glPhrase": "obras",
+    "history": {
+      "obra": {
+        "عَمَلٍ": 1
+      }
+    },
+    "expected": [
+      "لِلْأَعْمَالِ"
+    ],
+    "selections": [
+      {
+        "text": "لِلْأَعْمَالِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "yfaa",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:7, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-2-14-works",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "ٱلَّذِي بَذَلَ نَفْسَهُ لِأَجْلِنَا، لِكَيْ يَفْدِيَنَا مِنْ كُلِّ إِثْمٍ، وَيُطَهِّرَ لِنَفْسِهِ شَعْبًا خَاصًّا غَيُورًا فِي أَعْمَالٍ حَسَنَةٍ.",
+    "glPhrase": "obras",
+    "history": {
+      "obra": {
+        "عَمَلٍ": 1
+      },
+      "obras": {
+        "لِلْأَعْمَالِ": 1
+      }
+    },
+    "expected": [
+      "فِي أَعْمَالٍ"
+    ],
+    "selections": [
+      {
+        "text": "فِي",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "أَعْمَالٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "p85y",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 2:14, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-1-works",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "ذَكِّرْهُمْ أَنْ يَخْضَعُوا لِلرِّيَاسَاتِ وَٱلسَّلَاطِينِ، وَيُطِيعُوا، وَيَكُونُوا مُسْتَعِدِّينَ لِكُلِّ عَمَلٍ صَالِحٍ،",
+    "glPhrase": "obra",
+    "history": {
+      "obra": {
+        "عَمَلٍ": 1
+      },
+      "obras": {
+        "لِلْأَعْمَالِ": 1,
+        "فِي أَعْمَالٍ": 1
+      }
+    },
+    "expected": [
+      "عَمَلٍ"
+    ],
+    "selections": [
+      {
+        "text": "عَمَلٍ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "u48n",
+      "quote": "ἔργον",
+      "quoteString": "ἔργον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:1, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-8-works",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "صَادِقَةٌ هِيَ ٱلْكَلِمَةُ. وَأُرِيدُ أَنْ تُقَرِّرَ هَذِهِ ٱلْأُمُورَ، لِكَيْ يَهْتَمَّ ٱلَّذِينَ آمَنُوا بِٱللهِ أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً. فَإِنَّ هَذِهِ ٱلْأُمُورَ هِيَ ٱلْحَسَنَةُ وَٱلنَّافِعَةُ لِلنَّاسِ.",
+    "glPhrase": "obras",
+    "history": {
+      "obra": {
+        "عَمَلٍ": 2
+      },
+      "obras": {
+        "لِلْأَعْمَالِ": 1,
+        "فِي أَعْمَالٍ": 1
+      }
+    },
+    "expected": [
+      "أَعْمَالًا"
+    ],
+    "selections": [
+      {
+        "text": "أَعْمَالًا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "b8gd",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:8, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ar-tit-3-14-works",
+    "targetLang": "ar",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "وَلْيَتَعَلَّمْ مَنْ لَنَا أَيْضًا أَنْ يُمَارِسُوا أَعْمَالًا حَسَنَةً لِلْحَاجَاتِ ٱلضَّرُورِيَّةِ، حَتَّى لَا يَكُونُوا بِلَا ثَمَرٍ.",
+    "glPhrase": "las obras",
+    "history": {
+      "obra": {
+        "عَمَلٍ": 2
+      },
+      "obras": {
+        "لِلْأَعْمَالِ": 1,
+        "فِي أَعْمَالٍ": 1,
+        "أَعْمَالًا": 1
+      }
+    },
+    "expected": [
+      "أَعْمَالًا"
+    ],
+    "selections": [
+      {
+        "text": "أَعْمَالًا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "uhu8",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "ar_avd_tit_book 3:14, tW works, GL es-419 glt/v42_es-419_gl"
+  }
+]
