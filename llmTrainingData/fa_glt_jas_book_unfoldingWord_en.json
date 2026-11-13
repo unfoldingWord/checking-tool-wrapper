@@ -1,0 +1,4460 @@
+[
+  {
+    "id": "train-fa-jas-2-19-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "تو ایمان داری که خدا واحد است؟ نیکو می‌کنی! شیاطین نیز ایمان دارند و می‌لرزند!",
+    "glPhrase": "believe",
+    "history": {
+      "believe": {
+        "ایمان داری": 1
+      }
+    },
+    "expected": [
+      "ایمان:2 دارند"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "دارند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "aezr",
+      "quote": "πιστεύουσιν",
+      "quoteString": "πιστεύουσιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:19, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-23-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "و آن نوشته تمام گشت که می‌گوید، ابراهیم به خدا ایمان آورد و برای او به عدالت محسوب گردید، و دوست خدا نامیده شد.",
+    "glPhrase": "believed",
+    "history": {
+      "believe": {
+        "ایمان داری": 1,
+        "ایمان دارند": 1
+      }
+    },
+    "expected": [
+      "ایمان آورد"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "آورد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "pndd",
+      "quote": "ἐπίστευσεν",
+      "quoteString": "ἐπίστευσεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:23, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-19-beloved",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "بنابراین، ای برادرانِ عزیز من، هرکس در شنیدن تند، و در گفتن آهسته، و در خشم سُست باشد،",
+    "glPhrase": "beloved",
+    "history": {
+      "beloved": {
+        "عزیز": 1
+      }
+    },
+    "expected": [
+      "عزیز"
+    ],
+    "selections": [
+      {
+        "text": "عزیز",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "ktgj",
+      "quote": "ἀγαπητοί",
+      "quoteString": "ἀγαπητοί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:19, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-5-beloved",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "ای برادران عزیز، گوش دهید، آیا خدا فقیران این جهان را برنگزیده است تا دولتمند در ایمان و وارث آن ملکوتی که به محبّان خود وعده فرموده است بشوند؟",
+    "glPhrase": "beloved",
+    "history": {
+      "beloved": {
+        "عزیز": 2
+      }
+    },
+    "expected": [
+      "عزیز"
+    ],
+    "selections": [
+      {
+        "text": "عزیز",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "xfc8",
+      "quote": "ἀγαπητοί",
+      "quoteString": "ἀγαπητοί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:5, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-25-bless",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bless",
+    "verse": "لکن کسی که بر شریعتِ کاملِ آزادی چشم دوخت، و در آن ثابت ماند، او چون شنوندهٔ فراموشکار نمی‌باشد، بلکه کنندهٔ عمل، پس او در عمل خود مبارک خواهد بود.",
+    "glPhrase": "blessed",
+    "history": {
+      "Blessed is": {
+        "خوشابحال": 1
+      }
+    },
+    "expected": [
+      "مبارک"
+    ],
+    "selections": [
+      {
+        "text": "مبارک",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 25
+      },
+      "tool": "translationWords",
+      "groupId": "bless",
+      "checkId": "n8py",
+      "quote": "μακάριος",
+      "quoteString": "μακάριος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bless"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:25, tW bless, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-9-bless",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bless",
+    "verse": "خدا و پدر را به آن متبارک می‌خوانیم، و به همان مردمان را که به صورت خدا آفریده شده‌اند، لعن می‌گوییم.",
+    "glPhrase": "we bless",
+    "history": {
+      "Blessed is": {
+        "خوشابحال": 1
+      },
+      "blessed": {
+        "مبارک": 1
+      }
+    },
+    "expected": [
+      "متبارک می خوانیم"
+    ],
+    "selections": [
+      {
+        "text": "متبارک",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "می",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "خوانیم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "bless",
+      "checkId": "ehhk",
+      "quote": "εὐλογοῦμεν",
+      "quoteString": "εὐλογοῦμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bless"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:9, tW bless, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-10-bless",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bless",
+    "verse": "از یک دهان برکت و لعنت بیرون می‌آید! ای برادران، شایسته نیست که چنین شود.",
+    "glPhrase": "blessing",
+    "history": {
+      "Blessed is": {
+        "خوشابحال": 1
+      },
+      "blessed": {
+        "مبارک": 1
+      },
+      "we bless": {
+        "متبارک می خوانیم": 1
+      }
+    },
+    "expected": [
+      "برکت"
+    ],
+    "selections": [
+      {
+        "text": "برکت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "bless",
+      "checkId": "bp88",
+      "quote": "εὐλογία",
+      "quoteString": "εὐλογία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bless"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:10, tW bless, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-11-bless",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bless",
+    "verse": "اینک، صابران را خوشحال می‌گوییم، و صبر ایّوب را شنیده‌اید و انجام کار خداوند را دانسته‌اید، زیرا که خداوند بغایت مهربان و کریم است.",
+    "glPhrase": "we call blessed",
+    "history": {
+      "Blessed is": {
+        "خوشابحال": 1
+      },
+      "blessed": {
+        "مبارک": 1
+      },
+      "we bless": {
+        "متبارک می خوانیم": 1
+      },
+      "blessing": {
+        "برکت": 1
+      }
+    },
+    "expected": [
+      "خوشحال می گوییم"
+    ],
+    "selections": [
+      {
+        "text": "خوشحال",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "می",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "گوییم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "bless",
+      "checkId": "x9zc",
+      "quote": "μακαρίζομεν",
+      "quoteString": "μακαρίζομεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bless"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:11, tW bless, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-4-endure",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "endure",
+    "verse": "لکن صبر را عمل تاّم خود باشد، تا کامل و تمام شوید و محتاج هیچ چیز نباشید.",
+    "glPhrase": "endurance",
+    "history": {
+      "endurance": {
+        "صبر را": 1
+      }
+    },
+    "expected": [
+      "صبر را"
+    ],
+    "selections": [
+      {
+        "text": "صبر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "endure",
+      "checkId": "ccgu",
+      "quote": "ὑπομονὴ",
+      "quoteString": "ὑπομονὴ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "endure"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:4, tW endure, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-12-endure",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "endure",
+    "verse": "خوشابحال کسی که متحمّل تجربه شود، زیرا که چون آزموده شد، آن تاج حیاتی را که خداوند به محبّان خود وعده فرموده است خواهد یافت.",
+    "glPhrase": "endures",
+    "history": {
+      "endurance": {
+        "صبر را": 2
+      }
+    },
+    "expected": [
+      "متحمّل شود"
+    ],
+    "selections": [
+      {
+        "text": "متحمّل",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شود",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "endure",
+      "checkId": "r3pu",
+      "quote": "ὑπομένει",
+      "quoteString": "ὑπομένει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "endure"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:12, tW endure, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-21-evil",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "پس هر نجاست و افزونیِ شرّ را دور کنید و با فروتنی، کلامِ کاشته شده را بپذیرید، که قادر است که جانهای شما را نجات بخشد.",
+    "glPhrase": "of wickedness",
+    "history": {
+      "by evil": {
+        "از بدیها": 1
+      }
+    },
+    "expected": [
+      "شرّ را"
+    ],
+    "selections": [
+      {
+        "text": "شرّ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "aree",
+      "quote": "κακίας",
+      "quoteString": "κακίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:21, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-4-evil",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "آیا در خود متردّد نیستید و داوران خیالات فاسد نشده‌اید؟",
+    "glPhrase": "evil",
+    "history": {
+      "by evil": {
+        "از بدیها": 1
+      },
+      "of wickedness": {
+        "شرّ را": 1
+      }
+    },
+    "expected": [
+      "فاسد"
+    ],
+    "selections": [
+      {
+        "text": "فاسد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "fj9k",
+      "quote": "πονηρῶν",
+      "quoteString": "πονηρῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:4, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-8-evil",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "لکن زبان را کسی از مردمان نمی‌تواند رام کند؛ شرارتی سرکش و پر از زهر قاتل است!",
+    "glPhrase": "an evil",
+    "history": {
+      "by evil": {
+        "از بدیها": 1
+      },
+      "of wickedness": {
+        "شرّ را": 1
+      },
+      "evil": {
+        "فاسد": 1
+      }
+    },
+    "expected": [
+      "شرارتی"
+    ],
+    "selections": [
+      {
+        "text": "شرارتی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "aua3",
+      "quote": "κακόν",
+      "quoteString": "κακόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:8, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-16-evil",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "زیرا هرجایی که حسد و تعصّب است، در آنجا فتنه و هر امر زشت موجود می‌باشد.",
+    "glPhrase": "wicked",
+    "history": {
+      "by evil": {
+        "از بدیها": 1
+      },
+      "of wickedness": {
+        "شرّ را": 1
+      },
+      "evil": {
+        "فاسد": 1
+      },
+      "an evil": {
+        "شرارتی": 1
+      }
+    },
+    "expected": [
+      "زشت"
+    ],
+    "selections": [
+      {
+        "text": "زشت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "ym7g",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:16, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-16-evil",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "امّا الحال به عُجب خود فخر می‌کنید و هر چنین فخر بد است.",
+    "glPhrase": "evil",
+    "history": {
+      "by evil": {
+        "از بدیها": 1
+      },
+      "of wickedness": {
+        "شرّ را": 1
+      },
+      "evil": {
+        "فاسد": 1
+      },
+      "an evil": {
+        "شرارتی": 1
+      },
+      "wicked": {
+        "زشت": 1
+      }
+    },
+    "expected": [
+      "بد"
+    ],
+    "selections": [
+      {
+        "text": "بد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "cpvk",
+      "quote": "πονηρά",
+      "quoteString": "πονηρά",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:16, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-5-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "ای برادران عزیز، گوش دهید، آیا خدا فقیران این جهان را برنگزیده است تا دولتمند در ایمان و وارث آن ملکوتی که به محبّان خود وعده فرموده است بشوند؟",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "kjrn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:5, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-14-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "ای برادران من، چه سود دارد اگر کسی گوید، ایمان دارم، وقتی که عمل ندارد؟ آیا ایمان می‌تواند او را نجات بخشد؟",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "ایمان": 2
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "hjvj",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:14, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-18-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "بلکه کسی خواهد گفت، تو ایمان داری و من اعمال دارم: ایمان خود را بدون اعمال به من بنما، و من ایمان خود را از اعمال خود به تو خواهم نمود.",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "ایمان": 3
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "vk33",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:18, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-24-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "پس می‌بینید که انسان از اعمال عادل شمرده می‌شود، نه از ایمان تنها.",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "ایمان": 4
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "t3rw",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:24, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-18-fruit",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "fruit",
+    "verse": "و میوهٔ عدالت در سلامتی کاشته می‌شود برای آنانی که سلامتی را به عمل می‌آورند.\n\\s5",
+    "glPhrase": "the fruit",
+    "history": {
+      "fruits": {
+        "میوه های": 1
+      }
+    },
+    "expected": [
+      "میوهٔ"
+    ],
+    "selections": [
+      {
+        "text": "میوهٔ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "fruit",
+      "checkId": "j2cu",
+      "quote": "καρπὸς",
+      "quoteString": "καρπὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "fruit"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:18, tW fruit, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-7-fruit",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "fruit",
+    "verse": "پس ای برادران، تا هنگام آمدن خداوند صبر کنید. اینک، دهقان انتظار می‌کشد برای محصول گرانبهای زمین و برایش صبر می‌کند، تا باران اوّلّین و آخرین را بیابد.",
+    "glPhrase": "fruit",
+    "history": {
+      "fruits": {
+        "میوه های": 1
+      },
+      "the fruit": {
+        "میوهٔ": 1
+      }
+    },
+    "expected": [
+      "برای محصول"
+    ],
+    "selections": [
+      {
+        "text": "برای",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "محصول",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "fruit",
+      "checkId": "jcz9",
+      "quote": "καρπὸν",
+      "quoteString": "καρπὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "fruit"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:7, tW fruit, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-5-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "و اگر از شما کسی محتاج به حکمت باشد، سؤال بکند از خدایی که هر کس را به سخاوت عطا می‌کند و ملامت نمی‌نماید، و به او داده خواهد شد.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "خدا": 1
+      }
+    },
+    "expected": [
+      "خدایی"
+    ],
+    "selections": [
+      {
+        "text": "خدایی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "psan",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-20-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا خشمِ انسان عدالت خدا را به عمل نمی‌آورد.",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 1
+      },
+      "God": {
+        "خدایی": 1
+      }
+    },
+    "expected": [
+      "خدا را"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ewa7",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:20, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-23-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "و آن نوشته تمام گشت که می‌گوید، ابراهیم به خدا ایمان آورد و برای او به عدالت محسوب گردید، و دوست خدا نامیده شد.",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 1,
+        "خدا را": 1
+      },
+      "God": {
+        "خدایی": 1
+      }
+    },
+    "expected": [
+      "خدا:2"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "dvg7",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:23, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-9-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "خدا و پدر را به آن متبارک می‌خوانیم، و به همان مردمان را که به صورت خدا آفریده شده‌اند، لعن می‌گوییم.",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 2,
+        "خدا را": 1
+      },
+      "God": {
+        "خدایی": 1
+      }
+    },
+    "expected": [
+      "خدا:2"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ncd5",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:9, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-4-god-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "ای زانیات، آیا نمی‌دانید که دوستیِ دنیا، دشمنی خداست؟ پس هرکه می‌خواهد دوست دنیا باشد، دشمن خدا گردد.",
+    "glPhrase": "of God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "خدا": 3,
+        "خدا را": 1
+      },
+      "God": {
+        "خدایی": 1
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "jxde",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-17-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "لکن آن حکمت که از بالا است، اوّل طاهر است و بعد صلح‌آمیز و ملایم و نصیحت‌پذیر و پر از رحمت و میوه‌های نیکو و بی‌تردّد و بی‌ریا.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکو"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "tmbb",
+      "quote": "ἀγαθῶν",
+      "quoteString": "ἀγαθῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:17, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-17-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "پس هرکه نیکویی کردن بداند و به عمل نیاورد، او را گناه است.\n\\s5",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "نیکو": 2
+      }
+    },
+    "expected": [
+      "نیکویی"
+    ],
+    "selections": [
+      {
+        "text": "نیکویی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "umvp",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:17, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-1-judge",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "ای برادران من، بسیار معلّم نشوید، چونکه می‌دانید که بر ما داوری سخت‌تر خواهد شد.",
+    "glPhrase": "judgment",
+    "history": {
+      "judgment": {
+        "بر داوری": 1
+      }
+    },
+    "expected": [
+      "داوری"
+    ],
+    "selections": [
+      {
+        "text": "داوری",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "d6k4",
+      "quote": "κρίμα",
+      "quoteString": "κρίμα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:1, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-judge",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "judging",
+    "history": {
+      "judgment": {
+        "بر داوری": 1,
+        "داوری": 1
+      }
+    },
+    "expected": [
+      "حکم کند"
+    ],
+    "selections": [
+      {
+        "text": "حکم",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "کند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "dysu",
+      "quote": "κρίνων",
+      "quoteString": "κρίνων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-judge",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "judges",
+    "history": {
+      "judgment": {
+        "بر داوری": 1,
+        "داوری": 1
+      },
+      "judging": {
+        "حکم کند": 1
+      }
+    },
+    "expected": [
+      "حکم:2 کرده باشد"
+    ],
+    "selections": [
+      {
+        "text": "حکم",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "کرده",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "باشد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "u4q3",
+      "quote": "κρίνει",
+      "quoteString": "κρίνει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-judge",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "you judge",
+    "history": {
+      "judgment": {
+        "بر داوری": 1,
+        "داوری": 1
+      },
+      "judging": {
+        "حکم کند": 1
+      },
+      "judges": {
+        "حکم کرده باشد": 1
+      }
+    },
+    "expected": [
+      "حکم:3 کنی"
+    ],
+    "selections": [
+      {
+        "text": "حکم",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "کنی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "ynbj",
+      "quote": "κρίνεις",
+      "quoteString": "κρίνεις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-9-judge",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "ای برادران، از یکدیگر شکایت مکنید، مبادا بر شما حکم شود: اینک، داور بر در ایستاده است.",
+    "glPhrase": "you may be judged",
+    "history": {
+      "judgment": {
+        "بر داوری": 1,
+        "داوری": 1
+      },
+      "judging": {
+        "حکم کند": 1
+      },
+      "judges": {
+        "حکم کرده باشد": 1
+      },
+      "you judge": {
+        "حکم کنی": 1
+      }
+    },
+    "expected": [
+      "بر شما حکم شود"
+    ],
+    "selections": [
+      {
+        "text": "بر",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "شما",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "حکم",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شود",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "jyfw",
+      "quote": "κριθῆτε",
+      "quoteString": "κριθῆτε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:9, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-12-judge",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judge",
+    "verse": "لکن اوّلِ همه ای برادرانِ من، قسم مخورید، نه به آسمان و نه به زمین و نه به هیچ سوگند دیگر، بلکه بلیِ شما بلی باشد و نیِ شما نی، مبادا در تحکّم بیفتید.",
+    "glPhrase": "judgment",
+    "history": {
+      "judgment": {
+        "بر داوری": 1,
+        "داوری": 1
+      },
+      "judging": {
+        "حکم کند": 1
+      },
+      "judges": {
+        "حکم کرده باشد": 1
+      },
+      "you judge": {
+        "حکم کنی": 1
+      },
+      "you may be judged": {
+        "بر شما حکم شود": 1
+      }
+    },
+    "expected": [
+      "تحکّم"
+    ],
+    "selections": [
+      {
+        "text": "تحکّم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "judge",
+      "checkId": "t2h7",
+      "quote": "κρίσιν",
+      "quoteString": "κρίσιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judge"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:12, tW judge, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-judgeposition",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judgeposition",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "a judge",
+    "history": {
+      "judges": {
+        "داوران": 1
+      }
+    },
+    "expected": [
+      "داور هستی"
+    ],
+    "selections": [
+      {
+        "text": "داور",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "هستی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "judgeposition",
+      "checkId": "mwu7",
+      "quote": "κριτής",
+      "quoteString": "κριτής",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judgeposition"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW judgeposition, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-12-judgeposition",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judgeposition",
+    "verse": "صاحب شریعت و داور، یکی است که بر رهانیدن و هلاک کردن قادر می‌باشد. پس تو کیستی که بر همسایهٔ خود داوری می‌کنی؟",
+    "glPhrase": "judge",
+    "history": {
+      "judges": {
+        "داوران": 1
+      },
+      "a judge": {
+        "داور هستی": 1
+      }
+    },
+    "expected": [
+      "داور"
+    ],
+    "selections": [
+      {
+        "text": "داور",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "judgeposition",
+      "checkId": "yge2",
+      "quote": "κριτής",
+      "quoteString": "κριτής",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judgeposition"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:12, tW judgeposition, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-20-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "و لیکن ای مرد باطل، آیا می‌خواهی دانست که ایمان بدون اعمال، باطل است؟",
+    "glPhrase": "to know",
+    "history": {
+      "knowing": {
+        "چونکه می دانید": 1
+      }
+    },
+    "expected": [
+      "دانست"
+    ],
+    "selections": [
+      {
+        "text": "دانست",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "qgsh",
+      "quote": "γνῶναι",
+      "quoteString": "γνῶναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:20, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-1-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "ای برادران من، بسیار معلّم نشوید، چونکه می‌دانید که بر ما داوری سخت‌تر خواهد شد.",
+    "glPhrase": "knowing",
+    "history": {
+      "knowing": {
+        "چونکه می دانید": 1
+      },
+      "to know": {
+        "دانست": 1
+      }
+    },
+    "expected": [
+      "می دانید"
+    ],
+    "selections": [
+      {
+        "text": "می",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "دانید",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "pnvv",
+      "quote": "εἰδότες",
+      "quoteString": "εἰδότες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:1, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-17-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "پس هرکه نیکویی کردن بداند و به عمل نیاورد، او را گناه است.\n\\s5",
+    "glPhrase": "to the one having known",
+    "history": {
+      "knowing": {
+        "چونکه می دانید": 1,
+        "می دانید": 1
+      },
+      "to know": {
+        "دانست": 1
+      }
+    },
+    "expected": [
+      "هرکه بداند"
+    ],
+    "selections": [
+      {
+        "text": "هرکه",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "بداند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "bksj",
+      "quote": "εἰδότι",
+      "quoteString": "εἰδότι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:17, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-8-law",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "law",
+    "verse": "امّا اگر آن شریعت ملوکانه را برحسب کتاب بجا آورید، [یعنی]، همسایهٔ خود را مثل نفس خود محبّت نما، نیکو می‌کنید.",
+    "glPhrase": "the law",
+    "history": {
+      "the law": {
+        "شریعتِ": 1
+      }
+    },
+    "expected": [
+      "شریعت"
+    ],
+    "selections": [
+      {
+        "text": "شریعت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "law",
+      "checkId": "qx4z",
+      "quote": "νόμον",
+      "quoteString": "νόμον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "law"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:8, tW law, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-12-law",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "law",
+    "verse": "همچنین سخن گویید و عمل نمایید، مانند کسانی که بر ایشان داوری به شریعت آزادی خواهد شد.",
+    "glPhrase": "the law",
+    "history": {
+      "the law": {
+        "شریعتِ": 1,
+        "شریعت": 1
+      }
+    },
+    "expected": [
+      "شریعت"
+    ],
+    "selections": [
+      {
+        "text": "شریعت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "law",
+      "checkId": "tfq3",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "law"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:12, tW law, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-lawofmoses",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lawofmoses",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "the law",
+    "history": {
+      "of the law": {
+        "از شریعت": 1
+      }
+    },
+    "expected": [
+      "شریعت را:3"
+    ],
+    "selections": [
+      {
+        "text": "شریعت",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "را",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "m99g",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW lawofmoses, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-lawofmoses",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lawofmoses",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "the law",
+    "history": {
+      "of the law": {
+        "از شریعت": 1
+      },
+      "the law": {
+        "شریعت را": 1
+      }
+    },
+    "expected": [
+      "بر:2 شریعت:2"
+    ],
+    "selections": [
+      {
+        "text": "بر",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "شریعت",
+        "occurrence": 2,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "sh52",
+      "quote": "νόμον",
+      "quoteString": "νόμον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW lawofmoses, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-lawofmoses-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lawofmoses",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "the law",
+    "occurrence": 2,
+    "history": {
+      "of the law": {
+        "از شریعت": 1
+      },
+      "the law": {
+        "شریعت را": 1,
+        "بر شریعت": 1
+      }
+    },
+    "expected": [
+      "بر:3 شریعت:3"
+    ],
+    "selections": [
+      {
+        "text": "بر",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "شریعت",
+        "occurrence": 3,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "ma75",
+      "quote": "νόμον",
+      "quoteString": "νόμον",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW lawofmoses, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-11-lawofmoses-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lawofmoses",
+    "verse": "ای برادران، یکدیگر را ناسزا مگویید، زیرا هرکه برادر خود را ناسزا گوید و بر او حکم کند، شریعت را ناسزا گفته و بر شریعت حکم کرده باشد. لکن اگر بر شریعت حکم کنی، عامل شریعت نیستی، بلکه داور هستی.",
+    "glPhrase": "of the law",
+    "occurrence": 2,
+    "history": {
+      "of the law": {
+        "از شریعت": 1
+      },
+      "the law": {
+        "شریعت را": 1,
+        "بر شریعت": 2
+      }
+    },
+    "expected": [
+      "شریعت:4"
+    ],
+    "selections": [
+      {
+        "text": "شریعت",
+        "occurrence": 4,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "b5kv",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:11, tW lawofmoses, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-10-lord",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "در حضور خدا فروتنی کنید، تا شما را سرافراز فرماید.",
+    "glPhrase": "the Lord",
+    "history": {
+      "of the Lord": {
+        "خداوندْ": 1
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "c4k9",
+      "quote": "Κυρίου",
+      "quoteString": "Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:10, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-10-lord",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "ای برادران، نمونهٔ زحمت و صبر را بگیرید از انبیایی که به نام خداوند تکلّم نمودند.",
+    "glPhrase": "of the Lord",
+    "history": {
+      "of the Lord": {
+        "خداوندْ": 1
+      },
+      "the Lord": {
+        "خدا": 1
+      }
+    },
+    "expected": [
+      "خداوند"
+    ],
+    "selections": [
+      {
+        "text": "خداوند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "hbg7",
+      "quote": "Κυρίου",
+      "quoteString": "Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:10, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-11-lord",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "اینک، صابران را خوشحال می‌گوییم، و صبر ایّوب را شنیده‌اید و انجام کار خداوند را دانسته‌اید، زیرا که خداوند بغایت مهربان و کریم است.",
+    "glPhrase": "of the Lord",
+    "history": {
+      "of the Lord": {
+        "خداوندْ": 1,
+        "خداوند": 1
+      },
+      "the Lord": {
+        "خدا": 1
+      }
+    },
+    "expected": [
+      "خداوند را:3"
+    ],
+    "selections": [
+      {
+        "text": "خداوند",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "را",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "hkhh",
+      "quote": "Κυρίου",
+      "quoteString": "Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:11, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-13-mercy-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "mercy",
+    "verse": "زیرا آن داوری بیرحم خواهد بود برکسی که رحم نکرده است و رحم بر داوری مفتخر می‌شود.",
+    "glPhrase": "Mercy",
+    "occurrence": 2,
+    "history": {
+      "mercy": {
+        "رحم": 1
+      }
+    },
+    "expected": [
+      "و رحم:2"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "رحم",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "mercy",
+      "checkId": "hnwn",
+      "quote": "ἔλεος",
+      "quoteString": "ἔλεος",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "mercy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:13, tW mercy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-17-mercy",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "mercy",
+    "verse": "لکن آن حکمت که از بالا است، اوّل طاهر است و بعد صلح‌آمیز و ملایم و نصیحت‌پذیر و پر از رحمت و میوه‌های نیکو و بی‌تردّد و بی‌ریا.",
+    "glPhrase": "of mercy",
+    "history": {
+      "mercy": {
+        "رحم": 1
+      },
+      "Mercy": {
+        "و رحم": 1
+      }
+    },
+    "expected": [
+      "از:2 رحمت"
+    ],
+    "selections": [
+      {
+        "text": "از",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "رحمت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "mercy",
+      "checkId": "pbh5",
+      "quote": "ἐλέους",
+      "quoteString": "ἐλέους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "mercy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:17, tW mercy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-11-mercy",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "mercy",
+    "verse": "اینک، صابران را خوشحال می‌گوییم، و صبر ایّوب را شنیده‌اید و انجام کار خداوند را دانسته‌اید، زیرا که خداوند بغایت مهربان و کریم است.",
+    "glPhrase": "merciful",
+    "history": {
+      "mercy": {
+        "رحم": 1
+      },
+      "Mercy": {
+        "و رحم": 1
+      },
+      "of mercy": {
+        "از رحمت": 1
+      }
+    },
+    "expected": [
+      "کریم"
+    ],
+    "selections": [
+      {
+        "text": "کریم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "mercy",
+      "checkId": "cxbb",
+      "quote": "οἰκτίρμων",
+      "quoteString": "οἰκτίρμων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "mercy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:11, tW mercy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-7-patient",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "patient",
+    "verse": "پس ای برادران، تا هنگام آمدن خداوند صبر کنید. اینک، دهقان انتظار می‌کشد برای محصول گرانبهای زمین و برایش صبر می‌کند، تا باران اوّلّین و آخرین را بیابد.",
+    "glPhrase": "waiting patiently",
+    "history": {
+      "wait patiently": {
+        "صبر کنید": 1
+      }
+    },
+    "expected": [
+      "صبر:2 می:2 کند"
+    ],
+    "selections": [
+      {
+        "text": "صبر",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "می",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "کند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "patient",
+      "checkId": "ctwh",
+      "quote": "μακροθυμῶν",
+      "quoteString": "μακροθυμῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "patient"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:7, tW patient, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-8-patient",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "patient",
+    "verse": "شما نیز صبر نمایید و دلهای خود را قوّی سازید، زیرا که آمدن خداوند نزدیک است.",
+    "glPhrase": "wait patiently",
+    "history": {
+      "wait patiently": {
+        "صبر کنید": 1
+      },
+      "waiting patiently": {
+        "صبر می کند": 1
+      }
+    },
+    "expected": [
+      "صبر نمایید"
+    ],
+    "selections": [
+      {
+        "text": "صبر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "نمایید",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "patient",
+      "checkId": "f64y",
+      "quote": "μακροθυμήσατε",
+      "quoteString": "μακροθυμήσατε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "patient"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:8, tW patient, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-17-peace",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "لکن آن حکمت که از بالا است، اوّل طاهر است و بعد صلح‌آمیز و ملایم و نصیحت‌پذیر و پر از رحمت و میوه‌های نیکو و بی‌تردّد و بی‌ریا.",
+    "glPhrase": "peaceable",
+    "history": {
+      "peace": {
+        "سلامتی": 1
+      }
+    },
+    "expected": [
+      "صلح آمیز"
+    ],
+    "selections": [
+      {
+        "text": "صلح",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "آمیز",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "etde",
+      "quote": "εἰρηνική",
+      "quoteString": "εἰρηνική",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:17, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-18-peace",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "و میوهٔ عدالت در سلامتی کاشته می‌شود برای آنانی که سلامتی را به عمل می‌آورند.\n\\s5",
+    "glPhrase": "peace",
+    "history": {
+      "peace": {
+        "سلامتی": 1
+      },
+      "peaceable": {
+        "صلح آمیز": 1
+      }
+    },
+    "expected": [
+      "سلامتی"
+    ],
+    "selections": [
+      {
+        "text": "سلامتی",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "rsyy",
+      "quote": "εἰρήνῃ",
+      "quoteString": "εἰρήνῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:18, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-18-peace",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "و میوهٔ عدالت در سلامتی کاشته می‌شود برای آنانی که سلامتی را به عمل می‌آورند.\n\\s5",
+    "glPhrase": "peace",
+    "history": {
+      "peace": {
+        "سلامتی": 2
+      },
+      "peaceable": {
+        "صلح آمیز": 1
+      }
+    },
+    "expected": [
+      "سلامتی:2 را"
+    ],
+    "selections": [
+      {
+        "text": "سلامتی",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "kwb3",
+      "quote": "εἰρήνην",
+      "quoteString": "εἰρήνην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:18, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-4-perfect",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perfect",
+    "verse": "لکن صبر را عمل تاّم خود باشد، تا کامل و تمام شوید و محتاج هیچ چیز نباشید.",
+    "glPhrase": "perfect",
+    "history": {
+      "perfect": {
+        "تاّم": 1
+      }
+    },
+    "expected": [
+      "کامل"
+    ],
+    "selections": [
+      {
+        "text": "کامل",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "perfect",
+      "checkId": "xqja",
+      "quote": "τέλειοι",
+      "quoteString": "τέλειοι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perfect"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:4, tW perfect, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-17-perfect",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perfect",
+    "verse": "هر بخشندگیِ نیکو و هر بخششِ کامل از بالا است، و نازل می‌شود از پدر نورها، که نزد او هیچ تبدیل و سایهٔ گَردِش نیست.",
+    "glPhrase": "perfect",
+    "history": {
+      "perfect": {
+        "تاّم": 1,
+        "کامل": 1
+      }
+    },
+    "expected": [
+      "کامل"
+    ],
+    "selections": [
+      {
+        "text": "کامل",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "perfect",
+      "checkId": "gpkn",
+      "quote": "τέλειον",
+      "quoteString": "τέλειον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perfect"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:17, tW perfect, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-22-perfect",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perfect",
+    "verse": "می‌بینی که ایمان با اعمال او عمل کرد و ایمان از اعمال، کامل گردید.",
+    "glPhrase": "was perfected",
+    "history": {
+      "perfect": {
+        "تاّم": 1,
+        "کامل": 2
+      }
+    },
+    "expected": [
+      "کامل گردید"
+    ],
+    "selections": [
+      {
+        "text": "کامل",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "گردید",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "perfect",
+      "checkId": "f3gy",
+      "quote": "ἐτελειώθη",
+      "quoteString": "ἐτελειώθη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perfect"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:22, tW perfect, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-2-perfect",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "perfect",
+    "verse": "زیرا همگیِ ما بسیار می‌لغزیم. و اگر کسی در سخن گفتن نلغزد، او مرد کامل است و می‌تواند عنان تمام جسد خود را بکشد.",
+    "glPhrase": "perfect",
+    "history": {
+      "perfect": {
+        "تاّم": 1,
+        "کامل": 2
+      },
+      "was perfected": {
+        "کامل گردید": 1
+      }
+    },
+    "expected": [
+      "کامل است"
+    ],
+    "selections": [
+      {
+        "text": "کامل",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "perfect",
+      "checkId": "cecv",
+      "quote": "τέλειος",
+      "quoteString": "τέλειος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "perfect"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:2, tW perfect, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-14-pray",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "و هرگاه کسی از شما بیمار باشد، کشیشان کلیسا را طلب کند تا برایش دعا نمایند، و او را به نام خداوند به روغن تدهین کنند.",
+    "glPhrase": "let them pray",
+    "history": {
+      "Let him pray": {
+        "دعا بنماید": 1
+      }
+    },
+    "expected": [
+      "دعا نمایند"
+    ],
+    "selections": [
+      {
+        "text": "دعا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "نمایند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "wy8a",
+      "quote": "προσευξάσθωσαν",
+      "quoteString": "προσευξάσθωσαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:14, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-16-pray",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "نزدِ یکدیگر به گناهان خود اعتراف کنید، و برای یکدیگر دعا کنید تا شفا یابید، زیرا دعای مرد عادل در عمل، قوّت بسیار دارد.",
+    "glPhrase": "pray",
+    "history": {
+      "Let him pray": {
+        "دعا بنماید": 1
+      },
+      "let them pray": {
+        "دعا نمایند": 1
+      }
+    },
+    "expected": [
+      "دعا کنید:2"
+    ],
+    "selections": [
+      {
+        "text": "دعا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کنید",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "g5nj",
+      "quote": "προσεύχεσθε",
+      "quoteString": "προσεύχεσθε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:16, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-16-pray",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "نزدِ یکدیگر به گناهان خود اعتراف کنید، و برای یکدیگر دعا کنید تا شفا یابید، زیرا دعای مرد عادل در عمل، قوّت بسیار دارد.",
+    "glPhrase": "A prayer",
+    "history": {
+      "Let him pray": {
+        "دعا بنماید": 1
+      },
+      "let them pray": {
+        "دعا نمایند": 1
+      },
+      "pray": {
+        "دعا کنید": 1
+      }
+    },
+    "expected": [
+      "دعای"
+    ],
+    "selections": [
+      {
+        "text": "دعای",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "bmk9",
+      "quote": "δέησις",
+      "quoteString": "δέησις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:16, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-18-pray",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "و باز دعا کرد و آسمان بارید و زمین ثمر خود را رویانید.",
+    "glPhrase": "he prayed",
+    "history": {
+      "Let him pray": {
+        "دعا بنماید": 1
+      },
+      "let them pray": {
+        "دعا نمایند": 1
+      },
+      "pray": {
+        "دعا کنید": 1
+      },
+      "A prayer": {
+        "دعای": 1
+      }
+    },
+    "expected": [
+      "دعا کرد"
+    ],
+    "selections": [
+      {
+        "text": "دعا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کرد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "bebh",
+      "quote": "προσηύξατο",
+      "quoteString": "προσηύξατο",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:18, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-17-purify",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "لکن آن حکمت که از بالا است، اوّل طاهر است و بعد صلح‌آمیز و ملایم و نصیحت‌پذیر و پر از رحمت و میوه‌های نیکو و بی‌تردّد و بی‌ریا.",
+    "glPhrase": "pure",
+    "history": {
+      "Pure": {
+        "صاف": 1
+      }
+    },
+    "expected": [
+      "طاهر"
+    ],
+    "selections": [
+      {
+        "text": "طاهر",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "pjba",
+      "quote": "ἁγνή",
+      "quoteString": "ἁγνή",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:17, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-8-purify",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "و به خدا تقرّب جویید تا به شما نزدیکی نماید. دستهای خود را طاهر سازید، ای گناهکاران و دلهای خود را پاک کنید، ای دودلان.",
+    "glPhrase": "purify",
+    "history": {
+      "Pure": {
+        "صاف": 1
+      },
+      "pure": {
+        "طاهر": 1
+      }
+    },
+    "expected": [
+      "پاک کنید"
+    ],
+    "selections": [
+      {
+        "text": "پاک",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کنید",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "tuw5",
+      "quote": "ἁγνίσατε",
+      "quoteString": "ἁγνίσατε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:8, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-12-receive",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "خوشابحال کسی که متحمّل تجربه شود، زیرا که چون آزموده شد، آن تاج حیاتی را که خداوند به محبّان خود وعده فرموده است خواهد یافت.",
+    "glPhrase": "he will receive",
+    "history": {
+      "he will receive": {
+        "خواهد یافت": 1
+      }
+    },
+    "expected": [
+      "خواهد یافت"
+    ],
+    "selections": [
+      {
+        "text": "خواهد",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "یافت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "jkcd",
+      "quote": "λήμψεται",
+      "quoteString": "λήμψεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:12, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-21-receive",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "پس هر نجاست و افزونیِ شرّ را دور کنید و با فروتنی، کلامِ کاشته شده را بپذیرید، که قادر است که جانهای شما را نجات بخشد.",
+    "glPhrase": "receive",
+    "history": {
+      "he will receive": {
+        "خواهد یافت": 2
+      }
+    },
+    "expected": [
+      "بپذیرید"
+    ],
+    "selections": [
+      {
+        "text": "بپذیرید",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "f7zy",
+      "quote": "δέξασθε",
+      "quoteString": "δέξασθε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:21, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-25-receive",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "و همچنین آیا راحاب فاحشه نیز از اعمالْ عادل شمرده نشد وقتی که قاصدان را پذیرفته، به راهی دیگر روانه نمود؟",
+    "glPhrase": "having welcomed",
+    "history": {
+      "he will receive": {
+        "خواهد یافت": 2
+      },
+      "receive": {
+        "بپذیرید": 1
+      }
+    },
+    "expected": [
+      "وقتی که پذیرفته"
+    ],
+    "selections": [
+      {
+        "text": "وقتی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "که",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "پذیرفته",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 25
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "zbb7",
+      "quote": "ὑποδεξαμένη",
+      "quoteString": "ὑποδεξαμένη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:25, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-1-receive",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "ای برادران من، بسیار معلّم نشوید، چونکه می‌دانید که بر ما داوری سخت‌تر خواهد شد.",
+    "glPhrase": "we will receive",
+    "history": {
+      "he will receive": {
+        "خواهد یافت": 2
+      },
+      "receive": {
+        "بپذیرید": 1
+      },
+      "having welcomed": {
+        "وقتی که پذیرفته": 1
+      }
+    },
+    "expected": [
+      "که بر ما خواهد شد"
+    ],
+    "selections": [
+      {
+        "text": "که",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "بر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ما",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خواهد",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "yzg4",
+      "quote": "λημψόμεθα",
+      "quoteString": "λημψόμεθα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:1, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-7-receive",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "پس ای برادران، تا هنگام آمدن خداوند صبر کنید. اینک، دهقان انتظار می‌کشد برای محصول گرانبهای زمین و برایش صبر می‌کند، تا باران اوّلّین و آخرین را بیابد.",
+    "glPhrase": "it receives",
+    "history": {
+      "he will receive": {
+        "خواهد یافت": 2
+      },
+      "receive": {
+        "بپذیرید": 1
+      },
+      "having welcomed": {
+        "وقتی که پذیرفته": 1
+      },
+      "we will receive": {
+        "که بر ما خواهد شد": 1
+      }
+    },
+    "expected": [
+      "باران بیابد"
+    ],
+    "selections": [
+      {
+        "text": "باران",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "بیابد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "jbuz",
+      "quote": "λάβῃ",
+      "quoteString": "λάβῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:7, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-23-righteous",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "و آن نوشته تمام گشت که می‌گوید، ابراهیم به خدا ایمان آورد و برای او به عدالت محسوب گردید، و دوست خدا نامیده شد.",
+    "glPhrase": "righteousness",
+    "history": {
+      "the righteousness": {
+        "عدالت": 1
+      }
+    },
+    "expected": [
+      "عدالت"
+    ],
+    "selections": [
+      {
+        "text": "عدالت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "xf7d",
+      "quote": "δικαιοσύνην",
+      "quoteString": "δικαιοσύνην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:23, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-18-righteous",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "و میوهٔ عدالت در سلامتی کاشته می‌شود برای آنانی که سلامتی را به عمل می‌آورند.\n\\s5",
+    "glPhrase": "of righteousness",
+    "history": {
+      "the righteousness": {
+        "عدالت": 1
+      },
+      "righteousness": {
+        "عدالت": 1
+      }
+    },
+    "expected": [
+      "عدالت"
+    ],
+    "selections": [
+      {
+        "text": "عدالت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "uhfp",
+      "quote": "δικαιοσύνης",
+      "quoteString": "δικαιοσύνης",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:18, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-16-righteous",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "نزدِ یکدیگر به گناهان خود اعتراف کنید، و برای یکدیگر دعا کنید تا شفا یابید، زیرا دعای مرد عادل در عمل، قوّت بسیار دارد.",
+    "glPhrase": "of the righteous",
+    "history": {
+      "the righteousness": {
+        "عدالت": 1
+      },
+      "righteousness": {
+        "عدالت": 1
+      },
+      "of righteousness": {
+        "عدالت": 1
+      }
+    },
+    "expected": [
+      "مرد عادل"
+    ],
+    "selections": [
+      {
+        "text": "مرد",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "عادل",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "xytv",
+      "quote": "δικαίου",
+      "quoteString": "δικαίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:16, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-14-save",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "ای برادران من، چه سود دارد اگر کسی گوید، ایمان دارم، وقتی که عمل ندارد؟ آیا ایمان می‌تواند او را نجات بخشد؟",
+    "glPhrase": "to save",
+    "history": {
+      "to save": {
+        "که نجات بخشد": 1
+      }
+    },
+    "expected": [
+      "نجات بخشد"
+    ],
+    "selections": [
+      {
+        "text": "نجات",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "بخشد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "ehz7",
+      "quote": "σῶσαι",
+      "quoteString": "σῶσαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:14, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-12-save",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "صاحب شریعت و داور، یکی است که بر رهانیدن و هلاک کردن قادر می‌باشد. پس تو کیستی که بر همسایهٔ خود داوری می‌کنی؟",
+    "glPhrase": "to save",
+    "history": {
+      "to save": {
+        "که نجات بخشد": 1,
+        "نجات بخشد": 1
+      }
+    },
+    "expected": [
+      "بر رهانیدن"
+    ],
+    "selections": [
+      {
+        "text": "بر",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "رهانیدن",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "wmpt",
+      "quote": "σῶσαι",
+      "quoteString": "σῶσαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:12, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-20-save",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "بداند هرکه گناهکار را از ضلالت راه او برگرداند، جانی را از موت رهانیده و گناهان بسیار را پوشانیده است.",
+    "glPhrase": "will save",
+    "history": {
+      "to save": {
+        "که نجات بخشد": 1,
+        "نجات بخشد": 1,
+        "بر رهانیدن": 1
+      }
+    },
+    "expected": [
+      "رهانیده"
+    ],
+    "selections": [
+      {
+        "text": "رهانیده",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "bdhw",
+      "quote": "σώσει",
+      "quoteString": "σώσει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:20, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-9-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "لکن اگر ظاهربینی کنید، گناه می‌کنید و شریعتْ شما را به خطاکاری ملزم می‌سازد.",
+    "glPhrase": "sin",
+    "history": {
+      "sin": {
+        "گناه را": 1
+      }
+    },
+    "expected": [
+      "گناه"
+    ],
+    "selections": [
+      {
+        "text": "گناه",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "raws",
+      "quote": "ἁμαρτίαν",
+      "quoteString": "ἁμαρτίαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:9, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-8-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "و به خدا تقرّب جویید تا به شما نزدیکی نماید. دستهای خود را طاهر سازید، ای گناهکاران و دلهای خود را پاک کنید، ای دودلان.",
+    "glPhrase": "you sinners",
+    "history": {
+      "sin": {
+        "گناه را": 1,
+        "گناه": 1
+      }
+    },
+    "expected": [
+      "ای گناهکاران"
+    ],
+    "selections": [
+      {
+        "text": "ای",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "گناهکاران",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "e2qx",
+      "quote": "ἁμαρτωλοί",
+      "quoteString": "ἁμαρτωλοί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:8, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-4-17-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "پس هرکه نیکویی کردن بداند و به عمل نیاورد، او را گناه است.\n\\s5",
+    "glPhrase": "sin",
+    "history": {
+      "sin": {
+        "گناه را": 1,
+        "گناه": 1
+      },
+      "you sinners": {
+        "ای گناهکاران": 1
+      }
+    },
+    "expected": [
+      "گناه"
+    ],
+    "selections": [
+      {
+        "text": "گناه",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 4,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "q3ch",
+      "quote": "ἁμαρτία",
+      "quoteString": "ἁμαρτία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 4:17, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-15-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "و دعای ایمان، مریض را شفا خواهد بخشید و خداوند او را خواهد برخیزانید، و اگر گناه کرده باشد، از او آمرزیده خواهد شد.",
+    "glPhrase": "sins",
+    "history": {
+      "sin": {
+        "گناه را": 1,
+        "گناه": 2
+      },
+      "you sinners": {
+        "ای گناهکاران": 1
+      }
+    },
+    "expected": [
+      "گناه"
+    ],
+    "selections": [
+      {
+        "text": "گناه",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "tp87",
+      "quote": "ἁμαρτίας",
+      "quoteString": "ἁμαρτίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:15, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-20-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "بداند هرکه گناهکار را از ضلالت راه او برگرداند، جانی را از موت رهانیده و گناهان بسیار را پوشانیده است.",
+    "glPhrase": "a sinner",
+    "history": {
+      "sin": {
+        "گناه را": 1,
+        "گناه": 2
+      },
+      "you sinners": {
+        "ای گناهکاران": 1
+      },
+      "sins": {
+        "گناه": 1
+      }
+    },
+    "expected": [
+      "گناهکار را"
+    ],
+    "selections": [
+      {
+        "text": "گناهکار",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "s5wg",
+      "quote": "ἁμαρτωλὸν",
+      "quoteString": "ἁμαρτωλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:20, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-5-20-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "بداند هرکه گناهکار را از ضلالت راه او برگرداند، جانی را از موت رهانیده و گناهان بسیار را پوشانیده است.",
+    "glPhrase": "of sins",
+    "history": {
+      "sin": {
+        "گناه را": 1,
+        "گناه": 2
+      },
+      "you sinners": {
+        "ای گناهکاران": 1
+      },
+      "sins": {
+        "گناه": 1
+      },
+      "a sinner": {
+        "گناهکار را": 1
+      }
+    },
+    "expected": [
+      "گناهان"
+    ],
+    "selections": [
+      {
+        "text": "گناهان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 5,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "btu7",
+      "quote": "ἁμαρτιῶν",
+      "quoteString": "ἁμαρτιῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 5:20, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-13-tempt",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "tempt",
+    "verse": "هیچ‌کس چون در تجربه افتد، نگوید، خدا مرا تجربه می‌کند، زیرا خدا هرگز از بدیها تجربه نمی‌شود و او هیچ‌کس را تجربه نمی‌کند.",
+    "glPhrase": "I am tempted",
+    "history": {
+      "being tempted": {
+        "چون در تجربه افتد": 1
+      }
+    },
+    "expected": [
+      "مرا تجربه:2 می کند"
+    ],
+    "selections": [
+      {
+        "text": "مرا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "تجربه",
+        "occurrence": 2,
+        "occurrences": 4
+      },
+      {
+        "text": "می",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کند",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "tempt",
+      "checkId": "yyc3",
+      "quote": "πειράζομαι",
+      "quoteString": "πειράζομαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "tempt"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:13, tW tempt, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-14-tempt",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "tempt",
+    "verse": "لکن هرکس در تجربه می‌افتد، وقتی که شهوت وی او را می‌کَشَد، و فریفته می‌سازد.",
+    "glPhrase": "is tempted",
+    "history": {
+      "being tempted": {
+        "چون در تجربه افتد": 1
+      },
+      "I am tempted": {
+        "مرا تجربه می کند": 1
+      }
+    },
+    "expected": [
+      "در تجربه می افتد"
+    ],
+    "selections": [
+      {
+        "text": "در",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "تجربه",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "می",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "افتد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "tempt",
+      "checkId": "pgkc",
+      "quote": "πειράζεται",
+      "quoteString": "πειράζεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "tempt"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:14, tW tempt, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-13-wise",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wise",
+    "verse": "کیست در میان شما که حکیم و عالم باشد؟ پس اعمال خود را از سیرت نیکو به تواضع حکمت ظاهر بسازد.",
+    "glPhrase": "wise",
+    "history": {
+      "wisdom": {
+        "به حکمت": 1
+      }
+    },
+    "expected": [
+      "حکیم"
+    ],
+    "selections": [
+      {
+        "text": "حکیم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "wise",
+      "checkId": "ntz4",
+      "quote": "σοφὸς",
+      "quoteString": "σοφὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wise"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:13, tW wise, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-13-wise",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wise",
+    "verse": "کیست در میان شما که حکیم و عالم باشد؟ پس اعمال خود را از سیرت نیکو به تواضع حکمت ظاهر بسازد.",
+    "glPhrase": "of wisdom",
+    "history": {
+      "wisdom": {
+        "به حکمت": 1
+      },
+      "wise": {
+        "حکیم": 1
+      }
+    },
+    "expected": [
+      "حکمت"
+    ],
+    "selections": [
+      {
+        "text": "حکمت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "wise",
+      "checkId": "aqza",
+      "quote": "σοφίας",
+      "quoteString": "σοφίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wise"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:13, tW wise, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-3-17-wise",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wise",
+    "verse": "لکن آن حکمت که از بالا است، اوّل طاهر است و بعد صلح‌آمیز و ملایم و نصیحت‌پذیر و پر از رحمت و میوه‌های نیکو و بی‌تردّد و بی‌ریا.",
+    "glPhrase": "wisdom",
+    "history": {
+      "wisdom": {
+        "به حکمت": 1
+      },
+      "wise": {
+        "حکیم": 1
+      },
+      "of wisdom": {
+        "حکمت": 1
+      }
+    },
+    "expected": [
+      "حکمت"
+    ],
+    "selections": [
+      {
+        "text": "حکمت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "wise",
+      "checkId": "bbvg",
+      "quote": "σοφία",
+      "quoteString": "σοφία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wise"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 3:17, tW wise, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-22-wordofgod",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wordofgod",
+    "verse": "لکن کنندگانِ کلام باشید نه فقط شنوندگان، که خود را فریب می‌دهند.",
+    "glPhrase": "of the word",
+    "history": {
+      "word": {
+        "کلامِ": 1
+      }
+    },
+    "expected": [
+      "کلام"
+    ],
+    "selections": [
+      {
+        "text": "کلام",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "wordofgod",
+      "checkId": "fjm6",
+      "quote": "λόγου",
+      "quoteString": "λόγου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wordofgod"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:22, tW wordofgod, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-1-23-wordofgod",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wordofgod",
+    "verse": "زیرا اگر کسی کلام را بشنود و عمل نکند، شخصی را ماند که صورت طبیعیِ خود را در آینه می‌نگرد:",
+    "glPhrase": "of the word",
+    "history": {
+      "word": {
+        "کلامِ": 1
+      },
+      "of the word": {
+        "کلام": 1
+      }
+    },
+    "expected": [
+      "کلام را"
+    ],
+    "selections": [
+      {
+        "text": "کلام",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 1,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "wordofgod",
+      "checkId": "z2za",
+      "quote": "λόγου",
+      "quoteString": "λόγου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wordofgod"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 1:23, tW wordofgod, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-jas-2-23-wordofgod",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wordofgod",
+    "verse": "و آن نوشته تمام گشت که می‌گوید، ابراهیم به خدا ایمان آورد و برای او به عدالت محسوب گردید، و دوست خدا نامیده شد.",
+    "glPhrase": "scripture",
+    "history": {
+      "word": {
+        "کلامِ": 1
+      },
+      "of the word": {
+        "کلام": 1,
+        "کلام را": 1
+      }
+    },
+    "expected": [
+      "نوشته"
+    ],
+    "selections": [
+      {
+        "text": "نوشته",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "jas",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "wordofgod",
+      "checkId": "f5xf",
+      "quote": "Γραφὴ",
+      "quoteString": "Γραφὴ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wordofgod"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_jas_book 2:23, tW wordofgod, GL en ult/v91_unfoldingWord"
+  }
+]

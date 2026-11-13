@@ -1,0 +1,7224 @@
+[
+  {
+    "id": "train-fa-1ti-4-1-age",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "و لیکن روح صریحاً می‌گوید که، در زمان آخر بعضی از ایمان برگشته، به ارواح مُضِلّ و تعالیم شیاطین اِصغا خواهند نمود،",
+    "glPhrase": "times",
+    "history": {
+      "in times": {
+        "در زمان": 1
+      }
+    },
+    "expected": [
+      "زمان"
+    ],
+    "selections": [
+      {
+        "text": "زمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "jb76",
+      "quote": "καιροῖς",
+      "quoteString": "καιροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:1, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-15-age",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "که آن را آن متبارک و قادر وحید و ملک‌الملوک و ربّالارباب در زمان معیّن به ظهور خواهد آورد.",
+    "glPhrase": "in times",
+    "history": {
+      "in times": {
+        "در زمان": 1
+      },
+      "times": {
+        "زمان": 1
+      }
+    },
+    "expected": [
+      "در زمان"
+    ],
+    "selections": [
+      {
+        "text": "در",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "زمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "ecn9",
+      "quote": "καιροῖς",
+      "quoteString": "καιροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:15, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-10-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "زیرا که برای این زحمت و بی‌احترامی می‌کشیم، زیرا امید داریم به خدای زنده، که جمیع مردمان علی‌الخصوص مؤمنین را نجات‌دهنده است.",
+    "glPhrase": "of believers",
+    "history": {
+      "was believed": {
+        "ایمان آورده": 1
+      }
+    },
+    "expected": [
+      "مؤمنین را"
+    ],
+    "selections": [
+      {
+        "text": "مؤمنین",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "rpwk",
+      "quote": "πιστῶν",
+      "quoteString": "πιστῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:10, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-8-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "ولی اگر کسی برای خویشان و علی‌الخصوص اهل خانهٔ خود تدبیر نکند، منکر ایمان و پست‌تر از بی‌ایمان است.",
+    "glPhrase": "an unbeliever",
+    "history": {
+      "was believed": {
+        "ایمان آورده": 1
+      },
+      "of believers": {
+        "مؤمنین را": 1
+      }
+    },
+    "expected": [
+      "از بی ایمان:2"
+    ],
+    "selections": [
+      {
+        "text": "از",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "بی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ایمان",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "dhs4",
+      "quote": "ἀπίστου",
+      "quoteString": "ἀπίστου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:8, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-16-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "اگر مرد یا زنِ مؤمن، بیوه‌ها دارد ایشان را بپرورد و بار بر کلیسا ننهد تا آنانی را که فی‌الحقیقت بیوه باشند، پرورش نماید.",
+    "glPhrase": "believing woman",
+    "history": {
+      "was believed": {
+        "ایمان آورده": 1
+      },
+      "of believers": {
+        "مؤمنین را": 1
+      },
+      "an unbeliever": {
+        "از بی ایمان": 1
+      }
+    },
+    "expected": [
+      "مؤمن"
+    ],
+    "selections": [
+      {
+        "text": "مؤمن",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "p3h2",
+      "quote": "πιστὴ",
+      "quoteString": "πιστὴ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:16, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-2-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "امّا کسانی که آقایان مؤمن دارند، ایشان را تحقیر ننمایند، از آنجا که برادرانند، بلکه بیشتر خدمت کنند از آنرو که آنانی که در این احسان مشارکند، مؤمن و محبوبند. و به این معانی تعلیم و نصیحت فرما.",
+    "glPhrase": "believing",
+    "history": {
+      "was believed": {
+        "ایمان آورده": 1
+      },
+      "of believers": {
+        "مؤمنین را": 1
+      },
+      "an unbeliever": {
+        "از بی ایمان": 1
+      },
+      "believing woman": {
+        "مؤمن": 1
+      }
+    },
+    "expected": [
+      "مؤمن"
+    ],
+    "selections": [
+      {
+        "text": "مؤمن",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "sqfq",
+      "quote": "πιστοὺς",
+      "quoteString": "πιστοὺς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:2, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-2-believe",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "believe",
+    "verse": "امّا کسانی که آقایان مؤمن دارند، ایشان را تحقیر ننمایند، از آنجا که برادرانند، بلکه بیشتر خدمت کنند از آنرو که آنانی که در این احسان مشارکند، مؤمن و محبوبند. و به این معانی تعلیم و نصیحت فرما.",
+    "glPhrase": "believers",
+    "history": {
+      "was believed": {
+        "ایمان آورده": 1
+      },
+      "of believers": {
+        "مؤمنین را": 1
+      },
+      "an unbeliever": {
+        "از بی ایمان": 1
+      },
+      "believing woman": {
+        "مؤمن": 1
+      },
+      "believing": {
+        "مؤمن": 1
+      }
+    },
+    "expected": [
+      "مؤمن:2"
+    ],
+    "selections": [
+      {
+        "text": "مؤمن",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "ff7a",
+      "quote": "πιστοί",
+      "quoteString": "πιστοί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:2, tW believe, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-1-christ-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "پولُس، رسول عیسی مسیح به حکم نجات‌دهندهٔ ما خدا و مسیح عیسی خداوند که امید ما است،",
+    "glPhrase": "Christ",
+    "occurrence": 2,
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      }
+    },
+    "expected": [
+      "مسیح:2"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "ekmn",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:1, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-2-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "به فرزند حقیقی خود در ایمان، تیموتاؤس. فیض و رحم و سلامتی از جانب خدای پدر و خداوند ما مسیح عیسی بر تو باد.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 1
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "np8w",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:2, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-12-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "و شکر می‌کنم خداوند خود مسیح عیسی را که مرا تقویت داد، چونکه امین شمرده، به این خدمتم ممتاز فرمود،",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 2
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "zbkw",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:12, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-14-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "امّا فیض خداوند ما بی‌نهایت افزود با ایمان و محبّتی که در مسیح عیسی است.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 3
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "x8k7",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:14, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-15-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "این سخن امین است و لایق قبول تامّ که مسیح عیسی به دنیا آمد تا گناهکاران را نجات بخشد که من بزرگترین آنها هستم.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 4
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bfgh",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:15, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-16-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "بلکه از این جهت بر من رحم شد تا اوّل در من، مسیح عیسی کمال حلم را ظاهر سازد، تا آنانی را که بجهت حیات جاودانی به وی ایمان خواهند آورد، نمونه باشم.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 5
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "dz34",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:16, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-5-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "زیرا خدا واحد است و در میان خدا و انسان یک متوسّطی است، یعنی انسانی که مسیح عیسی باشد،",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 6
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "gmfd",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:5, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-7-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "و برای این، من واعظ و رسول و معلم امّت‌ها در ایمان و راستی مقرّر شدم. در مسیح راست می‌گویم و دروغ نی.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 7
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "jgf5",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:7, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-13-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "زیرا آنانی که کار شمّاسی را نیکو کرده باشند، درجهٔ خوب برای خویشتن تحصیل می‌کنند و جلادت کامل در ایمانی که به مسیح عیسی است.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 8
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "szqh",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-6-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "اگر این امور را به برادران بسپاری، خادم نیکوی مسیح عیسی خواهی بود، تربیت یافته در کلام ایمان و تعلیم خوب که پیروی آن را کرده‌ای.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 9
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "uaar",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:6, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-21-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "در حضور خدا و مسیح عیسی و فرشتگان برگزیده تو را قسم می‌دهم که، این امور را بدون غرض نگاه داری و هیچ کاری از روی طرفداری مکن.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 10
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "zrxb",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:21, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-3-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "و اگر کسی بطور دیگر تعلیم دهد و کلام صحیح خداوند ما عیسی مسیح و آن تعلیمی را که به طریق دینداری است قبول ننماید،",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 11
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "zgwy",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:3, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-13-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "تو را وصیّت می‌کنم، به حضور آن خدایی که همه را زندگی می‌بخشد و مسیح عیسی که در پیش پنطیوس پیلاطُس اعتراف نیکو نمود،",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 12
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "m6cn",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-14-christ",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "که تو وصیّت را بی‌داغ و ملامت حفظ کن تا به ظهور خداوند ما عیسی مسیح.",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "مسیح": 1
+      },
+      "Christ": {
+        "مسیح": 13
+      }
+    },
+    "expected": [
+      "مسیح"
+    ],
+    "selections": [
+      {
+        "text": "مسیح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "hfca",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:14, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-19-conscience",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "conscience",
+    "verse": "و ایمان و ضمیر صالح را نگاه داری، که بعضی این را از خود دور انداخته، مر ایمان را شکسته‌کشتی شدند.",
+    "glPhrase": "a conscience",
+    "history": {
+      "a conscience": {
+        "ضمیر": 1
+      }
+    },
+    "expected": [
+      "ضمیر"
+    ],
+    "selections": [
+      {
+        "text": "ضمیر",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "conscience",
+      "checkId": "ssby",
+      "quote": "συνείδησιν",
+      "quoteString": "συνείδησιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "conscience"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:19, tW conscience, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-9-conscience",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "conscience",
+    "verse": "دارندگان سرّ ایمان در ضمیر پاک.",
+    "glPhrase": "a conscience",
+    "history": {
+      "a conscience": {
+        "ضمیر": 2
+      }
+    },
+    "expected": [
+      "ضمیر"
+    ],
+    "selections": [
+      {
+        "text": "ضمیر",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "conscience",
+      "checkId": "v36m",
+      "quote": "συνειδήσει",
+      "quoteString": "συνειδήσει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "conscience"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:9, tW conscience, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-2-conscience",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "conscience",
+    "verse": "به ریاکاری دروغ‌گویان که ضمایر خود را داغ کرده‌اند؛",
+    "glPhrase": "in conscience",
+    "history": {
+      "a conscience": {
+        "ضمیر": 3
+      }
+    },
+    "expected": [
+      "ضمایر"
+    ],
+    "selections": [
+      {
+        "text": "ضمایر",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "conscience",
+      "checkId": "zcc5",
+      "quote": "συνείδησιν",
+      "quoteString": "συνείδησιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "conscience"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:2, tW conscience, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-2-elder",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "elder",
+    "verse": "زنان پیر را چون مادران؛ و زنان جوان را مثل خواهران با کمال عفّت؛",
+    "glPhrase": "older women",
+    "history": {
+      "an older man": {
+        "مرد پیر را": 1
+      }
+    },
+    "expected": [
+      "زنان پیر را"
+    ],
+    "selections": [
+      {
+        "text": "زنان",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "پیر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "elder",
+      "checkId": "sbkt",
+      "quote": "πρεσβυτέρας",
+      "quoteString": "πρεσβυτέρας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "elder"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:2, tW elder, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-19-elder",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "elder",
+    "verse": "ادّعایی بر یکی از کشیشان جز به زبان دو یا سه شاهد مپذیر.",
+    "glPhrase": "an elder",
+    "history": {
+      "an older man": {
+        "مرد پیر را": 1
+      },
+      "older women": {
+        "زنان پیر را": 1
+      }
+    },
+    "expected": [
+      "یکی از کشیشان"
+    ],
+    "selections": [
+      {
+        "text": "یکی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "از",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کشیشان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "elder",
+      "checkId": "u6fz",
+      "quote": "πρεσβυτέρου",
+      "quoteString": "πρεσβυτέρου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "elder"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:19, tW elder, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-4-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "و افسانه‌ها و نسب‌نامه‌های نامتناهی را اِصغا ننمایند، که اینها مباحثات را نه آن تعمیر الهی را که در ایمان است پدید می‌آورد.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمان است"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "kf4h",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:4, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-5-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "امّا غایتِ حکم، محبّت است از دل پاک و ضمیر صالح و ایمان بی‌ریا.",
+    "glPhrase": "a faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      },
+      "faith": {
+        "ایمان است": 1
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "u5r5",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:5, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-14-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "امّا فیض خداوند ما بی‌نهایت افزود با ایمان و محبّتی که در مسیح عیسی است.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      },
+      "faith": {
+        "ایمان است": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "qmjj",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:14, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-19-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "و ایمان و ضمیر صالح را نگاه داری، که بعضی این را از خود دور انداخته، مر ایمان را شکسته‌کشتی شدند.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      },
+      "faith": {
+        "ایمان است": 1,
+        "ایمان": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "و ایمان"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "quuk",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:19, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-7-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "و برای این، من واعظ و رسول و معلم امّت‌ها در ایمان و راستی مقرّر شدم. در مسیح راست می‌گویم و دروغ نی.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      },
+      "faith": {
+        "ایمان است": 1,
+        "ایمان": 1,
+        "و ایمان": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "xaca",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:7, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-15-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "امّا به زاییدن رستگار خواهد شد، اگر در ایمان و محبّت و قدّوسیّت و تقوا ثابت بمانند.\n\\s5",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      },
+      "faith": {
+        "ایمان است": 1,
+        "ایمان": 2,
+        "و ایمان": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "p6uj",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:15, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-13-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "زیرا آنانی که کار شمّاسی را نیکو کرده باشند، درجهٔ خوب برای خویشتن تحصیل می‌کنند و جلادت کامل در ایمانی که به مسیح عیسی است.",
+    "glPhrase": "the faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1
+      },
+      "faith": {
+        "ایمان است": 1,
+        "ایمان": 3,
+        "و ایمان": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمانی"
+    ],
+    "selections": [
+      {
+        "text": "ایمانی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "mmwj",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:13, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-12-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "هیچ‌کس جوانی تو را حقیر نشمارد، بلکه مؤمنین را در کلام و سیرت و محبّت و ایمان و عصمت، نمونه باش.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1,
+        "ایمانی": 1
+      },
+      "faith": {
+        "ایمان است": 1,
+        "ایمان": 3,
+        "و ایمان": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "ایمان"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "xb7a",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:12, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-11-faith",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "ولی تو ای مرد خدا، از اینها بگریز و عدالت و دینداری و ایمان و محبّت و صبر و تواضع را پیروی نما.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "ایمان": 1,
+        "ایمانی": 1
+      },
+      "faith": {
+        "ایمان است": 1,
+        "ایمان": 4,
+        "و ایمان": 1
+      },
+      "a faith": {
+        "ایمان": 1
+      }
+    },
+    "expected": [
+      "و:3 ایمان"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 3,
+        "occurrences": 6
+      },
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "s8ux",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:11, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-4-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "و افسانه‌ها و نسب‌نامه‌های نامتناهی را اِصغا ننمایند، که اینها مباحثات را نه آن تعمیر الهی را که در ایمان است پدید می‌آورد.",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 1
+      }
+    },
+    "expected": [
+      "الهی را:3"
+    ],
+    "selections": [
+      {
+        "text": "الهی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "r2w7",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-11-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "برحسب انجیل جلال خدای متبارک که به من سپرده شده است.",
+    "glPhrase": "of the God",
+    "history": {
+      "of God": {
+        "خدا": 1,
+        "الهی را": 1
+      }
+    },
+    "expected": [
+      "خدای"
+    ],
+    "selections": [
+      {
+        "text": "خدای",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gcpw",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:11, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-17-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "باری پادشاه سَرمَدی و باقی و نادیده را، خدای حکیم وحید را اکرام و جلال تا ابدالآباد باد. آمین.",
+    "glPhrase": "the God",
+    "history": {
+      "of God": {
+        "خدا": 1,
+        "الهی را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      }
+    },
+    "expected": [
+      "خدای حکیم"
+    ],
+    "selections": [
+      {
+        "text": "خدای",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "حکیم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gnjm",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:17, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-3-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا که این نیکو و پسندیده است، در حضور نجات‌دهندهٔ ما خدا",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "خدا": 1,
+        "الهی را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      },
+      "the God": {
+        "خدای حکیم": 1
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "shbg",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-5-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا خدا واحد است و در میان خدا و انسان یک متوسّطی است، یعنی انسانی که مسیح عیسی باشد،",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "خدا": 1,
+        "الهی را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 1
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ytu5",
+      "quote": "Θεός",
+      "quoteString": "Θεός",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-5-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا خدا واحد است و در میان خدا و انسان یک متوسّطی است، یعنی انسانی که مسیح عیسی باشد،",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 1,
+        "الهی را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدا:2"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "h3nq",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-5-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا هرگاه کسی نداند که اهل خانهٔ خود را تدبیر کند، چگونه کلیسای خدا را نگاهبانی می‌نماید؟",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 2,
+        "الهی را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدا را:2"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "cmxa",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-15-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "لیکن اگر تأخیر اندازم، تا بدانی که چگونه باید در خانهٔ خدا رفتار کنی، که کلیسای خدای حیّ و ستون و بنیاد راستی است.",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 2,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "wku2",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:15, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-15-god-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "لیکن اگر تأخیر اندازم، تا بدانی که چگونه باید در خانهٔ خدا رفتار کنی، که کلیسای خدای حیّ و ستون و بنیاد راستی است.",
+    "glPhrase": "of the God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "خدا": 3,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 1
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدای"
+    ],
+    "selections": [
+      {
+        "text": "خدای",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "dhup",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:15, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-4-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا که هر مخلوق خدا نیکو است و هیچ چیز را ردّ نباید کرد، اگر به شکرگزاری پذیرند،",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 3,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 2
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "eanr",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-10-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "زیرا که برای این زحمت و بی‌احترامی می‌کشیم، زیرا امید داریم به خدای زنده، که جمیع مردمان علی‌الخصوص مؤمنین را نجات‌دهنده است.",
+    "glPhrase": "the God",
+    "history": {
+      "of God": {
+        "خدا": 4,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 2
+      },
+      "the God": {
+        "خدای حکیم": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدای"
+    ],
+    "selections": [
+      {
+        "text": "خدای",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "sugw",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-5-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "امّا زنی که فی‌الحقیقت بیوه و بی‌کس است، به خدا امیدوار است و در صلوات و دعاها شبانه‌روز مشغول می‌باشد.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "خدا": 4,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 2
+      },
+      "the God": {
+        "خدای حکیم": 1,
+        "خدای": 1
+      },
+      "God": {
+        "خدا": 2
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "b5qm",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-11-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "ولی تو ای مرد خدا، از اینها بگریز و عدالت و دینداری و ایمان و محبّت و صبر و تواضع را پیروی نما.",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "خدا": 4,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 2
+      },
+      "the God": {
+        "خدای حکیم": 1,
+        "خدای": 1
+      },
+      "God": {
+        "خدا": 3
+      }
+    },
+    "expected": [
+      "خدا"
+    ],
+    "selections": [
+      {
+        "text": "خدا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "ah2g",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:11, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-13-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "تو را وصیّت می‌کنم، به حضور آن خدایی که همه را زندگی می‌بخشد و مسیح عیسی که در پیش پنطیوس پیلاطُس اعتراف نیکو نمود،",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "خدا": 5,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 2
+      },
+      "the God": {
+        "خدای حکیم": 1,
+        "خدای": 1
+      },
+      "God": {
+        "خدا": 3
+      }
+    },
+    "expected": [
+      "خدایی"
+    ],
+    "selections": [
+      {
+        "text": "خدایی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "sjc9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:13, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-17-god",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "دولتمندان این جهان را امر فرما که بلندپروازی نکنند و به دولت ناپایدار امید ندارند، بلکه به خدای زنده که همه‌چیز را دولتمندانه برای تمتّع به ما عطا می‌کند؛",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "خدا": 5,
+        "الهی را": 1,
+        "خدا را": 1
+      },
+      "of the God": {
+        "خدای": 2
+      },
+      "the God": {
+        "خدای حکیم": 1,
+        "خدای": 1
+      },
+      "God": {
+        "خدا": 3,
+        "خدایی": 1
+      }
+    },
+    "expected": [
+      "خدای زنده"
+    ],
+    "selections": [
+      {
+        "text": "خدای",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "زنده",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gt68",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:17, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-9-godly",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "و این بداند که شریعت بجهت عادل موضوع نمی‌شود، بلکه برای سرکشان و طاغیان و بی‌دینان و گناهکاران و ناپاکان و حرامکاران و قاتلان پدر و قاتلان مادر و قاتلان مردم",
+    "glPhrase": "the unholy",
+    "history": {
+      "the ungodly": {
+        "و بی دینان": 1
+      }
+    },
+    "expected": [
+      "و:5 ناپاکان"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 5,
+        "occurrences": 9
+      },
+      {
+        "text": "ناپاکان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "cc7a",
+      "quote": "ἀνοσίοις",
+      "quoteString": "ἀνοσίοις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:9, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-2-godly",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "بجهت پادشاهان و جمیع صاحبان منصب تا به آرامی و استراحت و با کمال دینداری و وقار، عمر خود را بسر بریم.",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "و بی دینان": 1
+      },
+      "the unholy": {
+        "و ناپاکان": 1
+      }
+    },
+    "expected": [
+      "دینداری"
+    ],
+    "selections": [
+      {
+        "text": "دینداری",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "k5q6",
+      "quote": "εὐσεβείᾳ",
+      "quoteString": "εὐσεβείᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:2, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-10-godly",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "بلکه چنانکه زنانی را می‌شاید که دعوی دینداری می‌کنند به اعمال صالحه.",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "و بی دینان": 1
+      },
+      "the unholy": {
+        "و ناپاکان": 1
+      },
+      "godliness": {
+        "دینداری": 1
+      }
+    },
+    "expected": [
+      "دینداری"
+    ],
+    "selections": [
+      {
+        "text": "دینداری",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "qphn",
+      "quote": "θεοσέβειαν",
+      "quoteString": "θεοσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:10, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-7-godly",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "لیکن از افسانه‌های حرام عجوزها احتراز نما و در دینداری ریاضت بکش.",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "و بی دینان": 1
+      },
+      "the unholy": {
+        "و ناپاکان": 1
+      },
+      "godliness": {
+        "دینداری": 2
+      }
+    },
+    "expected": [
+      "دینداری"
+    ],
+    "selections": [
+      {
+        "text": "دینداری",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "ftmu",
+      "quote": "εὐσέβειαν",
+      "quoteString": "εὐσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:7, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-3-godly",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "و اگر کسی بطور دیگر تعلیم دهد و کلام صحیح خداوند ما عیسی مسیح و آن تعلیمی را که به طریق دینداری است قبول ننماید،",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "و بی دینان": 1
+      },
+      "the unholy": {
+        "و ناپاکان": 1
+      },
+      "godliness": {
+        "دینداری": 3
+      }
+    },
+    "expected": [
+      "دینداری است"
+    ],
+    "selections": [
+      {
+        "text": "دینداری",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "x7pt",
+      "quote": "εὐσέβειαν",
+      "quoteString": "εὐσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:3, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-11-godly",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "ولی تو ای مرد خدا، از اینها بگریز و عدالت و دینداری و ایمان و محبّت و صبر و تواضع را پیروی نما.",
+    "glPhrase": "godliness",
+    "history": {
+      "the ungodly": {
+        "و بی دینان": 1
+      },
+      "the unholy": {
+        "و ناپاکان": 1
+      },
+      "godliness": {
+        "دینداری": 3,
+        "دینداری است": 1
+      }
+    },
+    "expected": [
+      "و:2 دینداری"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 2,
+        "occurrences": 6
+      },
+      {
+        "text": "دینداری",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "z85n",
+      "quote": "εὐσέβειαν",
+      "quoteString": "εὐσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:11, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-8-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "لیکن می‌دانیم که شریعت نیکو است اگر کسی آن را برحسب شریعت بکار بَرَد.",
+    "glPhrase": "is good",
+    "history": {
+      "good": {
+        "صالح": 1
+      }
+    },
+    "expected": [
+      "نیکو است"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w64z",
+      "quote": "καλὸς",
+      "quoteString": "καλὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-19-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "و ایمان و ضمیر صالح را نگاه داری، که بعضی این را از خود دور انداخته، مر ایمان را شکسته‌کشتی شدند.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 1
+      },
+      "is good": {
+        "نیکو است": 1
+      }
+    },
+    "expected": [
+      "صالح را"
+    ],
+    "selections": [
+      {
+        "text": "صالح",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "nm6d",
+      "quote": "ἀγαθὴν",
+      "quoteString": "ἀγαθὴν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:19, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-3-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "زیرا که این نیکو و پسندیده است، در حضور نجات‌دهندهٔ ما خدا",
+    "glPhrase": "is good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1
+      },
+      "is good": {
+        "نیکو است": 1
+      }
+    },
+    "expected": [
+      "نیکو"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "dckw",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:3, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-10-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "بلکه چنانکه زنانی را می‌شاید که دعوی دینداری می‌کنند به اعمال صالحه.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1
+      },
+      "is good": {
+        "نیکو است": 1,
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "صالحه"
+    ],
+    "selections": [
+      {
+        "text": "صالحه",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "s4xp",
+      "quote": "ἀγαθῶν",
+      "quoteString": "ἀγαθῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-1-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "این سخن امین است که اگر کسی منصب اسقفی را بخواهد، کار نیکو می‌طلبد.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1,
+        "صالحه": 1
+      },
+      "is good": {
+        "نیکو است": 1,
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکو"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "j6fj",
+      "quote": "καλοῦ",
+      "quoteString": "καλοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-13-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "زیرا آنانی که کار شمّاسی را نیکو کرده باشند، درجهٔ خوب برای خویشتن تحصیل می‌کنند و جلادت کامل در ایمانی که به مسیح عیسی است.",
+    "glPhrase": "well",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1
+      },
+      "is good": {
+        "نیکو است": 1,
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکو"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "gs3u",
+      "quote": "καλῶς",
+      "quoteString": "καλῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:13, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-13-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "زیرا آنانی که کار شمّاسی را نیکو کرده باشند، درجهٔ خوب برای خویشتن تحصیل می‌کنند و جلادت کامل در ایمانی که به مسیح عیسی است.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1
+      },
+      "is good": {
+        "نیکو است": 1,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "خوب"
+    ],
+    "selections": [
+      {
+        "text": "خوب",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "arbn",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:13, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-4-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "زیرا که هر مخلوق خدا نیکو است و هیچ چیز را ردّ نباید کرد، اگر به شکرگزاری پذیرند،",
+    "glPhrase": "is good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1,
+        "خوب": 1
+      },
+      "is good": {
+        "نیکو است": 1,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکو است"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "x9ak",
+      "quote": "καλόν",
+      "quoteString": "καλόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:4, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-6-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "اگر این امور را به برادران بسپاری، خادم نیکوی مسیح عیسی خواهی بود، تربیت یافته در کلام ایمان و تعلیم خوب که پیروی آن را کرده‌ای.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1,
+        "خوب": 1
+      },
+      "is good": {
+        "نیکو است": 2,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکوی"
+    ],
+    "selections": [
+      {
+        "text": "نیکوی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "kcum",
+      "quote": "καλὸς",
+      "quoteString": "καλὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:6, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-10-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "که در اعمال صالح نیک‌نام باشد، اگر فرزندان را پرورده و غُرَبا را مهمانی نموده و پایهای مقدّسین را شسته و زحمتکشان را اعانتی نموده و هر کار نیکو را پیروی کرده باشد.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 1,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1,
+        "خوب": 1,
+        "نیکوی": 1
+      },
+      "is good": {
+        "نیکو است": 2,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "صالح"
+    ],
+    "selections": [
+      {
+        "text": "صالح",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ye64",
+      "quote": "καλοῖς",
+      "quoteString": "καλοῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-10-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "که در اعمال صالح نیک‌نام باشد، اگر فرزندان را پرورده و غُرَبا را مهمانی نموده و پایهای مقدّسین را شسته و زحمتکشان را اعانتی نموده و هر کار نیکو را پیروی کرده باشد.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 2,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1,
+        "خوب": 1,
+        "نیکوی": 1
+      },
+      "is good": {
+        "نیکو است": 2,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکو را:5"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 5,
+        "occurrences": 5
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "wsey",
+      "quote": "ἀγαθῷ",
+      "quoteString": "ἀγαθῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-18-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "که نیکوکار بوده، در اعمال صالحه دولتمند و سخی و گشاده‌دست باشند؛",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 2,
+        "صالح را": 1,
+        "صالحه": 1,
+        "نیکو": 1,
+        "خوب": 1,
+        "نیکوی": 1,
+        "نیکو را": 1
+      },
+      "is good": {
+        "نیکو است": 2,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "صالحه"
+    ],
+    "selections": [
+      {
+        "text": "صالحه",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ayex",
+      "quote": "καλοῖς",
+      "quoteString": "καλοῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:18, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-19-good",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "و برای خود اساس نیکو بجهت عالم آینده نهند، تا حیات جاودانی را بدست آرند.",
+    "glPhrase": "good",
+    "history": {
+      "good": {
+        "صالح": 2,
+        "صالح را": 1,
+        "صالحه": 2,
+        "نیکو": 1,
+        "خوب": 1,
+        "نیکوی": 1,
+        "نیکو را": 1
+      },
+      "is good": {
+        "نیکو است": 2,
+        "نیکو": 1
+      },
+      "well": {
+        "نیکو": 1
+      }
+    },
+    "expected": [
+      "نیکو"
+    ],
+    "selections": [
+      {
+        "text": "نیکو",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "fb69",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:19, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-3-honor",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "بیوه‌زنان را اگر فی‌الحقیقت بیوه باشند، محترم دار.",
+    "glPhrase": "Honor",
+    "history": {
+      "be honor": {
+        "اکرام باد": 1
+      }
+    },
+    "expected": [
+      "محترم دار"
+    ],
+    "selections": [
+      {
+        "text": "محترم",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "دار",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "hbys",
+      "quote": "τίμα",
+      "quoteString": "τίμα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:3, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-4-honor",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "امّا اگر بیوه‌زنی فرزندان یا نواده‌ها دارد، آموخته بشوند که خانهٔ خود را با دینداری نگاه دارند و حقوق اجداد خود را ادا کنند، که این در حضور خدا نیکو و پسندیده است.",
+    "glPhrase": "to treat in a godly way",
+    "history": {
+      "be honor": {
+        "اکرام باد": 1
+      },
+      "Honor": {
+        "محترم دار": 1
+      }
+    },
+    "expected": [
+      "که با دینداری نگاه دارند"
+    ],
+    "selections": [
+      {
+        "text": "که",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "با",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "دینداری",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "نگاه",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "دارند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "phrn",
+      "quote": "εὐσεβεῖν",
+      "quoteString": "εὐσεβεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:4, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-17-honor",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "کشیشانی که نیکو پیشوایی کرده‌اند، مستحقّ حرمت مضاعف می‌باشند، علی‌الخصوص آنانی که در کلام و تعلیم محنت می‌کشند.",
+    "glPhrase": "of honor",
+    "history": {
+      "be honor": {
+        "اکرام باد": 1
+      },
+      "Honor": {
+        "محترم دار": 1
+      },
+      "to treat in a godly way": {
+        "که با دینداری نگاه دارند": 1
+      }
+    },
+    "expected": [
+      "حرمت"
+    ],
+    "selections": [
+      {
+        "text": "حرمت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "ruyj",
+      "quote": "τιμῆς",
+      "quoteString": "τιμῆς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:17, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-1-honor",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "آنانی که غلامان زیر یوغ می‌باشند، آقایان خویش را لایق کمال احترام بدانند، که مبادا نام و تعلیم خدا بد گفته شود.",
+    "glPhrase": "of honor",
+    "history": {
+      "be honor": {
+        "اکرام باد": 1
+      },
+      "Honor": {
+        "محترم دار": 1
+      },
+      "to treat in a godly way": {
+        "که با دینداری نگاه دارند": 1
+      },
+      "of honor": {
+        "حرمت": 1
+      }
+    },
+    "expected": [
+      "احترام"
+    ],
+    "selections": [
+      {
+        "text": "احترام",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "wcd7",
+      "quote": "τιμῆς",
+      "quoteString": "τιμῆς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:1, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-16-honor",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "honor",
+    "verse": "که تنها لایموت و ساکن در نوری است که نزدیک آن نتوان شد و احدی از انسان او را ندیده و نمی‌تواند دید. او را تا ابدالآباد اکرام و قدرت باد. آمین.",
+    "glPhrase": "be honor",
+    "history": {
+      "be honor": {
+        "اکرام باد": 1
+      },
+      "Honor": {
+        "محترم دار": 1
+      },
+      "to treat in a godly way": {
+        "که با دینداری نگاه دارند": 1
+      },
+      "of honor": {
+        "حرمت": 1,
+        "احترام": 1
+      }
+    },
+    "expected": [
+      "اکرام"
+    ],
+    "selections": [
+      {
+        "text": "اکرام",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "honor",
+      "checkId": "wxdx",
+      "quote": "τιμὴ",
+      "quoteString": "τιμὴ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "honor"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:16, tW honor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-10-hope",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "زیرا که برای این زحمت و بی‌احترامی می‌کشیم، زیرا امید داریم به خدای زنده، که جمیع مردمان علی‌الخصوص مؤمنین را نجات‌دهنده است.",
+    "glPhrase": "we have hoped",
+    "history": {
+      "hoping": {
+        "به امید آنکه": 1
+      }
+    },
+    "expected": [
+      "امید داریم"
+    ],
+    "selections": [
+      {
+        "text": "امید",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "داریم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "e9fc",
+      "quote": "ἠλπίκαμεν",
+      "quoteString": "ἠλπίκαμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:10, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-5-hope",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "امّا زنی که فی‌الحقیقت بیوه و بی‌کس است، به خدا امیدوار است و در صلوات و دعاها شبانه‌روز مشغول می‌باشد.",
+    "glPhrase": "has hoped",
+    "history": {
+      "hoping": {
+        "به امید آنکه": 1
+      },
+      "we have hoped": {
+        "امید داریم": 1
+      }
+    },
+    "expected": [
+      "امیدوار است:2"
+    ],
+    "selections": [
+      {
+        "text": "امیدوار",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "vtu7",
+      "quote": "ἤλπικεν",
+      "quoteString": "ἤλπικεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:5, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-5-household",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "زیرا هرگاه کسی نداند که اهل خانهٔ خود را تدبیر کند، چگونه کلیسای خدا را نگاهبانی می‌نماید؟",
+    "glPhrase": "household",
+    "history": {
+      "household": {
+        "اهل خانهٔ": 1
+      }
+    },
+    "expected": [
+      "اهل خانهٔ"
+    ],
+    "selections": [
+      {
+        "text": "اهل",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خانهٔ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "yb6n",
+      "quote": "οἴκου",
+      "quoteString": "οἴκου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:5, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-12-household",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "و شمّاسان صاحب یک زن باشند و فرزندان و اهل خانهٔ خویش را نیکو تدبیر نمایند،",
+    "glPhrase": "households",
+    "history": {
+      "household": {
+        "اهل خانهٔ": 2
+      }
+    },
+    "expected": [
+      "اهل خانهٔ"
+    ],
+    "selections": [
+      {
+        "text": "اهل",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خانهٔ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "dmz4",
+      "quote": "οἴκων",
+      "quoteString": "οἴκων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:12, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-15-household",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "لیکن اگر تأخیر اندازم، تا بدانی که چگونه باید در خانهٔ خدا رفتار کنی، که کلیسای خدای حیّ و ستون و بنیاد راستی است.",
+    "glPhrase": "the household",
+    "history": {
+      "household": {
+        "اهل خانهٔ": 2
+      },
+      "households": {
+        "اهل خانهٔ": 1
+      }
+    },
+    "expected": [
+      "خانهٔ"
+    ],
+    "selections": [
+      {
+        "text": "خانهٔ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "tvbw",
+      "quote": "οἴκῳ",
+      "quoteString": "οἴκῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:15, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-4-household",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "امّا اگر بیوه‌زنی فرزندان یا نواده‌ها دارد، آموخته بشوند که خانهٔ خود را با دینداری نگاه دارند و حقوق اجداد خود را ادا کنند، که این در حضور خدا نیکو و پسندیده است.",
+    "glPhrase": "household",
+    "history": {
+      "household": {
+        "اهل خانهٔ": 2
+      },
+      "households": {
+        "اهل خانهٔ": 1
+      },
+      "the household": {
+        "خانهٔ": 1
+      }
+    },
+    "expected": [
+      "خانهٔ"
+    ],
+    "selections": [
+      {
+        "text": "خانهٔ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "s93w",
+      "quote": "οἶκον",
+      "quoteString": "οἶκον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:4, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-8-household",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "household",
+    "verse": "ولی اگر کسی برای خویشان و علی‌الخصوص اهل خانهٔ خود تدبیر نکند، منکر ایمان و پست‌تر از بی‌ایمان است.",
+    "glPhrase": "for household members",
+    "history": {
+      "household": {
+        "اهل خانهٔ": 2,
+        "خانهٔ": 1
+      },
+      "households": {
+        "اهل خانهٔ": 1
+      },
+      "the household": {
+        "خانهٔ": 1
+      }
+    },
+    "expected": [
+      "اهل خانهٔ خود"
+    ],
+    "selections": [
+      {
+        "text": "اهل",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خانهٔ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خود",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "household",
+      "checkId": "qzk2",
+      "quote": "οἰκείων",
+      "quoteString": "οἰκείων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "household"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:8, tW household, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-1-jesus-2",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "پولُس، رسول عیسی مسیح به حکم نجات‌دهندهٔ ما خدا و مسیح عیسی خداوند که امید ما است،",
+    "glPhrase": "Jesus",
+    "occurrence": 2,
+    "history": {
+      "Jesus": {
+        "عیسی": 1
+      }
+    },
+    "expected": [
+      "عیسی:2"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "xexk",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:1, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-2-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "به فرزند حقیقی خود در ایمان، تیموتاؤس. فیض و رحم و سلامتی از جانب خدای پدر و خداوند ما مسیح عیسی بر تو باد.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 2
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "ytew",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:2, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-12-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "و شکر می‌کنم خداوند خود مسیح عیسی را که مرا تقویت داد، چونکه امین شمرده، به این خدمتم ممتاز فرمود،",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 3
+      }
+    },
+    "expected": [
+      "عیسی را"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "n7k4",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:12, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-14-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "امّا فیض خداوند ما بی‌نهایت افزود با ایمان و محبّتی که در مسیح عیسی است.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 3,
+        "عیسی را": 1
+      }
+    },
+    "expected": [
+      "عیسی است"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "wmjt",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:14, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-15-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "این سخن امین است و لایق قبول تامّ که مسیح عیسی به دنیا آمد تا گناهکاران را نجات بخشد که من بزرگترین آنها هستم.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 3,
+        "عیسی را": 1,
+        "عیسی است": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mmpj",
+      "quote": "Ἰησοῦς",
+      "quoteString": "Ἰησοῦς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:15, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-16-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "بلکه از این جهت بر من رحم شد تا اوّل در من، مسیح عیسی کمال حلم را ظاهر سازد، تا آنانی را که بجهت حیات جاودانی به وی ایمان خواهند آورد، نمونه باشم.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 4,
+        "عیسی را": 1,
+        "عیسی است": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "e7yz",
+      "quote": "Ἰησοῦς",
+      "quoteString": "Ἰησοῦς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:16, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-5-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "زیرا خدا واحد است و در میان خدا و انسان یک متوسّطی است، یعنی انسانی که مسیح عیسی باشد،",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 5,
+        "عیسی را": 1,
+        "عیسی است": 1
+      }
+    },
+    "expected": [
+      "عیسی باشد"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "باشد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "p4c6",
+      "quote": "Ἰησοῦς",
+      "quoteString": "Ἰησοῦς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:5, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-13-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "زیرا آنانی که کار شمّاسی را نیکو کرده باشند، درجهٔ خوب برای خویشتن تحصیل می‌کنند و جلادت کامل در ایمانی که به مسیح عیسی است.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 5,
+        "عیسی را": 1,
+        "عیسی است": 1,
+        "عیسی باشد": 1
+      }
+    },
+    "expected": [
+      "عیسی است"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "yc77",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:13, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-6-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "اگر این امور را به برادران بسپاری، خادم نیکوی مسیح عیسی خواهی بود، تربیت یافته در کلام ایمان و تعلیم خوب که پیروی آن را کرده‌ای.",
+    "glPhrase": "of Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 5,
+        "عیسی را": 1,
+        "عیسی است": 2,
+        "عیسی باشد": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "neza",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:6, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-21-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "در حضور خدا و مسیح عیسی و فرشتگان برگزیده تو را قسم می‌دهم که، این امور را بدون غرض نگاه داری و هیچ کاری از روی طرفداری مکن.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 5,
+        "عیسی را": 1,
+        "عیسی است": 2,
+        "عیسی باشد": 1
+      },
+      "of Jesus": {
+        "عیسی": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "b384",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:21, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-3-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "و اگر کسی بطور دیگر تعلیم دهد و کلام صحیح خداوند ما عیسی مسیح و آن تعلیمی را که به طریق دینداری است قبول ننماید،",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 6,
+        "عیسی را": 1,
+        "عیسی است": 2,
+        "عیسی باشد": 1
+      },
+      "of Jesus": {
+        "عیسی": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "wtk3",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:3, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-13-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "تو را وصیّت می‌کنم، به حضور آن خدایی که همه را زندگی می‌بخشد و مسیح عیسی که در پیش پنطیوس پیلاطُس اعتراف نیکو نمود،",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 7,
+        "عیسی را": 1,
+        "عیسی است": 2,
+        "عیسی باشد": 1
+      },
+      "of Jesus": {
+        "عیسی": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "gjja",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:13, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-14-jesus",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "که تو وصیّت را بی‌داغ و ملامت حفظ کن تا به ظهور خداوند ما عیسی مسیح.",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "عیسی": 8,
+        "عیسی را": 1,
+        "عیسی است": 2,
+        "عیسی باشد": 1
+      },
+      "of Jesus": {
+        "عیسی": 1
+      }
+    },
+    "expected": [
+      "عیسی"
+    ],
+    "selections": [
+      {
+        "text": "عیسی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "twju",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:14, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-9-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "و این بداند که شریعت بجهت عادل موضوع نمی‌شود، بلکه برای سرکشان و طاغیان و بی‌دینان و گناهکاران و ناپاکان و حرامکاران و قاتلان پدر و قاتلان مادر و قاتلان مردم",
+    "glPhrase": "knowing",
+    "history": {
+      "we know": {
+        "می دانیم": 1
+      }
+    },
+    "expected": [
+      "بداند"
+    ],
+    "selections": [
+      {
+        "text": "بداند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "br4t",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:9, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-4-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "که می‌خواهد جمیع مردم نجات یابند و به معرفت راستی گرایند.",
+    "glPhrase": "knowledge",
+    "history": {
+      "we know": {
+        "می دانیم": 1
+      },
+      "knowing": {
+        "بداند": 1
+      }
+    },
+    "expected": [
+      "معرفت"
+    ],
+    "selections": [
+      {
+        "text": "معرفت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "x9wm",
+      "quote": "ἐπίγνωσιν",
+      "quoteString": "ἐπίγνωσιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:4, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-15-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "لیکن اگر تأخیر اندازم، تا بدانی که چگونه باید در خانهٔ خدا رفتار کنی، که کلیسای خدای حیّ و ستون و بنیاد راستی است.",
+    "glPhrase": "you may know",
+    "history": {
+      "we know": {
+        "می دانیم": 1
+      },
+      "knowing": {
+        "بداند": 1
+      },
+      "knowledge": {
+        "معرفت": 1
+      }
+    },
+    "expected": [
+      "بدانی"
+    ],
+    "selections": [
+      {
+        "text": "بدانی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "tt2e",
+      "quote": "εἰδῇς",
+      "quoteString": "εἰδῇς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:15, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-3-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "که از مزاوجت منع می‌کنند و حکم می‌نمایند به احتراز از خوراکهایی که خدا آفرید برای مؤمنین و عارفینِ حقّ تا آنها را به شکرگزاری بخورند.",
+    "glPhrase": "knowing",
+    "history": {
+      "we know": {
+        "می دانیم": 1
+      },
+      "knowing": {
+        "بداند": 1
+      },
+      "knowledge": {
+        "معرفت": 1
+      },
+      "you may know": {
+        "بدانی": 1
+      }
+    },
+    "expected": [
+      "عارفینِ"
+    ],
+    "selections": [
+      {
+        "text": "عارفینِ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "nh2x",
+      "quote": "ἐπεγνωκόσι",
+      "quoteString": "ἐπεγνωκόσι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:3, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-20-know",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "ای تیموتاؤس، تو آن امانت را محفوظ دار و از بیهوده‌گویی‌های حرام و از مباحثات معرفت دروغ اعراض نما،",
+    "glPhrase": "of knowledge",
+    "history": {
+      "we know": {
+        "می دانیم": 1
+      },
+      "knowing": {
+        "بداند": 1,
+        "عارفینِ": 1
+      },
+      "knowledge": {
+        "معرفت": 1
+      },
+      "you may know": {
+        "بدانی": 1
+      }
+    },
+    "expected": [
+      "معرفت"
+    ],
+    "selections": [
+      {
+        "text": "معرفت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "x373",
+      "quote": "γνώσεως",
+      "quoteString": "γνώσεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:20, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-1-lord",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "آنانی که غلامان زیر یوغ می‌باشند، آقایان خویش را لایق کمال احترام بدانند، که مبادا نام و تعلیم خدا بد گفته شود.",
+    "glPhrase": "masters",
+    "history": {
+      "of the Lord": {
+        "خداوند": 1
+      }
+    },
+    "expected": [
+      "آقایان"
+    ],
+    "selections": [
+      {
+        "text": "آقایان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "eu8v",
+      "quote": "δεσπότας",
+      "quoteString": "δεσπότας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:1, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-2-lord",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "امّا کسانی که آقایان مؤمن دارند، ایشان را تحقیر ننمایند، از آنجا که برادرانند، بلکه بیشتر خدمت کنند از آنرو که آنانی که در این احسان مشارکند، مؤمن و محبوبند. و به این معانی تعلیم و نصیحت فرما.",
+    "glPhrase": "masters",
+    "history": {
+      "of the Lord": {
+        "خداوند": 1
+      },
+      "masters": {
+        "آقایان": 1
+      }
+    },
+    "expected": [
+      "آقایان"
+    ],
+    "selections": [
+      {
+        "text": "آقایان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "xqev",
+      "quote": "δεσπότας",
+      "quoteString": "δεσπότας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:2, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-14-love",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "امّا فیض خداوند ما بی‌نهایت افزود با ایمان و محبّتی که در مسیح عیسی است.",
+    "glPhrase": "love",
+    "history": {
+      "love": {
+        "محبّت": 1
+      }
+    },
+    "expected": [
+      "محبّتی"
+    ],
+    "selections": [
+      {
+        "text": "محبّتی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "rh8m",
+      "quote": "ἀγάπης",
+      "quoteString": "ἀγάπης",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:14, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-15-love",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "امّا به زاییدن رستگار خواهد شد، اگر در ایمان و محبّت و قدّوسیّت و تقوا ثابت بمانند.\n\\s5",
+    "glPhrase": "love",
+    "history": {
+      "love": {
+        "محبّت": 1,
+        "محبّتی": 1
+      }
+    },
+    "expected": [
+      "محبّت"
+    ],
+    "selections": [
+      {
+        "text": "محبّت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "g5vz",
+      "quote": "ἀγάπῃ",
+      "quoteString": "ἀγάπῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:15, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-12-love",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "هیچ‌کس جوانی تو را حقیر نشمارد، بلکه مؤمنین را در کلام و سیرت و محبّت و ایمان و عصمت، نمونه باش.",
+    "glPhrase": "love",
+    "history": {
+      "love": {
+        "محبّت": 2,
+        "محبّتی": 1
+      }
+    },
+    "expected": [
+      "محبّت"
+    ],
+    "selections": [
+      {
+        "text": "محبّت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "bxcf",
+      "quote": "ἀγάπῃ",
+      "quoteString": "ἀγάπῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:12, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-11-love",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "ولی تو ای مرد خدا، از اینها بگریز و عدالت و دینداری و ایمان و محبّت و صبر و تواضع را پیروی نما.",
+    "glPhrase": "love",
+    "history": {
+      "love": {
+        "محبّت": 3,
+        "محبّتی": 1
+      }
+    },
+    "expected": [
+      "و:4 محبّت"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 4,
+        "occurrences": 6
+      },
+      {
+        "text": "محبّت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "tnzc",
+      "quote": "ἀγάπην",
+      "quoteString": "ἀγάπην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:11, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-4-manager",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "manager",
+    "verse": "مُدَبّر اهل خانهٔ خود به نیکویی و فرزندان خویش را در کمال وقار مطیع گرداند،",
+    "glPhrase": "leading",
+    "history": {
+      "the stewardship": {
+        "تعمیر": 1
+      }
+    },
+    "expected": [
+      "مُدَبّر"
+    ],
+    "selections": [
+      {
+        "text": "مُدَبّر",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "manager",
+      "checkId": "zwer",
+      "quote": "προϊστάμενον",
+      "quoteString": "προϊστάμενον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "manager"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:4, tW manager, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-5-manager",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "manager",
+    "verse": "زیرا هرگاه کسی نداند که اهل خانهٔ خود را تدبیر کند، چگونه کلیسای خدا را نگاهبانی می‌نماید؟",
+    "glPhrase": "to lead",
+    "history": {
+      "the stewardship": {
+        "تعمیر": 1
+      },
+      "leading": {
+        "مُدَبّر": 1
+      }
+    },
+    "expected": [
+      "که تدبیر کند"
+    ],
+    "selections": [
+      {
+        "text": "که",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "تدبیر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "manager",
+      "checkId": "hhsw",
+      "quote": "προστῆναι",
+      "quoteString": "προστῆναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "manager"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:5, tW manager, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-12-manager",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "manager",
+    "verse": "و شمّاسان صاحب یک زن باشند و فرزندان و اهل خانهٔ خویش را نیکو تدبیر نمایند،",
+    "glPhrase": "leading",
+    "history": {
+      "the stewardship": {
+        "تعمیر": 1
+      },
+      "leading": {
+        "مُدَبّر": 1
+      },
+      "to lead": {
+        "که تدبیر کند": 1
+      }
+    },
+    "expected": [
+      "تدبیر نمایند"
+    ],
+    "selections": [
+      {
+        "text": "تدبیر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "نمایند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "manager",
+      "checkId": "rp8j",
+      "quote": "προϊστάμενοι",
+      "quoteString": "προϊστάμενοι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "manager"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:12, tW manager, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-14-manager",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "manager",
+    "verse": "پس رأی من این است که، زنان جوان نکاح شوند و اولاد بزایند و کدبانو شوند و خصم را مجال مذمّت ندهند؛",
+    "glPhrase": "to manage a household",
+    "history": {
+      "the stewardship": {
+        "تعمیر": 1
+      },
+      "leading": {
+        "مُدَبّر": 1,
+        "تدبیر نمایند": 1
+      },
+      "to lead": {
+        "که تدبیر کند": 1
+      }
+    },
+    "expected": [
+      "و:2 کدبانو شوند:2"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "کدبانو",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شوند",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "manager",
+      "checkId": "pp5d",
+      "quote": "οἰκοδεσποτεῖν",
+      "quoteString": "οἰκοδεσποτεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "manager"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:14, tW manager, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-13-mercy",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "mercy",
+    "verse": "که سابقاً کفرگو و مضّر و سَقَط‌گو بودم، لیکن رحم یافتم، از آنرو که از جهالت در بی‌ایمانی کردم.",
+    "glPhrase": "I was shown mercy",
+    "history": {
+      "mercy": {
+        "و رحم": 1
+      }
+    },
+    "expected": [
+      "رحم یافتم"
+    ],
+    "selections": [
+      {
+        "text": "رحم",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "یافتم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "mercy",
+      "checkId": "v3up",
+      "quote": "ἠλεήθην",
+      "quoteString": "ἠλεήθην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "mercy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:13, tW mercy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-16-mercy",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "mercy",
+    "verse": "بلکه از این جهت بر من رحم شد تا اوّل در من، مسیح عیسی کمال حلم را ظاهر سازد، تا آنانی را که بجهت حیات جاودانی به وی ایمان خواهند آورد، نمونه باشم.",
+    "glPhrase": "I was shown mercy",
+    "history": {
+      "mercy": {
+        "و رحم": 1
+      },
+      "I was shown mercy": {
+        "رحم یافتم": 1
+      }
+    },
+    "expected": [
+      "بر من رحم شد"
+    ],
+    "selections": [
+      {
+        "text": "بر",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "من",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "رحم",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "mercy",
+      "checkId": "fvyc",
+      "quote": "ἠλεήθην",
+      "quoteString": "ἠλεήθην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "mercy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:16, tW mercy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-10-minister",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "minister",
+    "verse": "امّا باید اوّل ایشان آزموده شوند و چون بی‌عیب یافت شدند، کار شمّاسی را بکنند.",
+    "glPhrase": "let them serve",
+    "history": {
+      "service": {
+        "این خدمتم ممتاز": 1
+      }
+    },
+    "expected": [
+      "کار شمّاسی را بکنند"
+    ],
+    "selections": [
+      {
+        "text": "کار",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شمّاسی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "بکنند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "minister",
+      "checkId": "k3r2",
+      "quote": "διακονείτωσαν",
+      "quoteString": "διακονείτωσαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "minister"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:10, tW minister, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-13-minister",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "minister",
+    "verse": "زیرا آنانی که کار شمّاسی را نیکو کرده باشند، درجهٔ خوب برای خویشتن تحصیل می‌کنند و جلادت کامل در ایمانی که به مسیح عیسی است.",
+    "glPhrase": "having served",
+    "history": {
+      "service": {
+        "این خدمتم ممتاز": 1
+      },
+      "let them serve": {
+        "کار شمّاسی را بکنند": 1
+      }
+    },
+    "expected": [
+      "کار شمّاسی را کرده باشند"
+    ],
+    "selections": [
+      {
+        "text": "کار",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شمّاسی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کرده",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "باشند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "minister",
+      "checkId": "jd93",
+      "quote": "διακονήσαντες",
+      "quoteString": "διακονήσαντες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "minister"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:13, tW minister, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-6-minister",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "minister",
+    "verse": "اگر این امور را به برادران بسپاری، خادم نیکوی مسیح عیسی خواهی بود، تربیت یافته در کلام ایمان و تعلیم خوب که پیروی آن را کرده‌ای.",
+    "glPhrase": "a servant",
+    "history": {
+      "service": {
+        "این خدمتم ممتاز": 1
+      },
+      "let them serve": {
+        "کار شمّاسی را بکنند": 1
+      },
+      "having served": {
+        "کار شمّاسی را کرده باشند": 1
+      }
+    },
+    "expected": [
+      "خادم"
+    ],
+    "selections": [
+      {
+        "text": "خادم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "minister",
+      "checkId": "vktw",
+      "quote": "διάκονος",
+      "quoteString": "διάκονος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "minister"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:6, tW minister, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-2-peace",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "بجهت پادشاهان و جمیع صاحبان منصب تا به آرامی و استراحت و با کمال دینداری و وقار، عمر خود را بسر بریم.",
+    "glPhrase": "quiet",
+    "history": {
+      "peace": {
+        "و سلامتی": 1
+      }
+    },
+    "expected": [
+      "استراحت"
+    ],
+    "selections": [
+      {
+        "text": "استراحت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "pdck",
+      "quote": "ἡσύχιον",
+      "quoteString": "ἡσύχιον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:2, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-3-peace",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "نه می‌گسار یا زننده یا طمّاع سود قبیح بلکه حلیم و نه جنگجو و نه زرپرست.",
+    "glPhrase": "peaceable",
+    "history": {
+      "peace": {
+        "و سلامتی": 1
+      },
+      "quiet": {
+        "استراحت": 1
+      }
+    },
+    "expected": [
+      "و نه:2 جنگجو"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "نه",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "جنگجو",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "mxka",
+      "quote": "ἄμαχον",
+      "quoteString": "ἄμαχον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:3, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-8-pray",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "پس آرزوی این دارم که مردان، دستهای مقدّس را بدون غیظ و جدال برافراخته، در هر جا دعا کنند.",
+    "glPhrase": "to pray",
+    "history": {
+      "prayers": {
+        "و دعاها": 1
+      }
+    },
+    "expected": [
+      "که دعا کنند"
+    ],
+    "selections": [
+      {
+        "text": "که",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "دعا",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کنند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "deqp",
+      "quote": "προσεύχεσθαι",
+      "quoteString": "προσεύχεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:8, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-5-pray",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "زیرا که از کلامِ خدا و دعا تقدیس می‌شود.",
+    "glPhrase": "prayer",
+    "history": {
+      "prayers": {
+        "و دعاها": 1
+      },
+      "to pray": {
+        "که دعا کنند": 1
+      }
+    },
+    "expected": [
+      "دعا"
+    ],
+    "selections": [
+      {
+        "text": "دعا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "vpak",
+      "quote": "ἐντεύξεως",
+      "quoteString": "ἐντεύξεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:5, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-12-purify",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "هیچ‌کس جوانی تو را حقیر نشمارد، بلکه مؤمنین را در کلام و سیرت و محبّت و ایمان و عصمت، نمونه باش.",
+    "glPhrase": "purity",
+    "history": {
+      "pure": {
+        "پاک": 1
+      }
+    },
+    "expected": [
+      "عصمت"
+    ],
+    "selections": [
+      {
+        "text": "عصمت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "g78s",
+      "quote": "ἁγνίᾳ",
+      "quoteString": "ἁγνίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:12, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-2-purify",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "زنان پیر را چون مادران؛ و زنان جوان را مثل خواهران با کمال عفّت؛",
+    "glPhrase": "purity",
+    "history": {
+      "pure": {
+        "پاک": 1
+      },
+      "purity": {
+        "عصمت": 1
+      }
+    },
+    "expected": [
+      "عفّت"
+    ],
+    "selections": [
+      {
+        "text": "عفّت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "s7s4",
+      "quote": "ἁγνίᾳ",
+      "quoteString": "ἁγνίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:2, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-22-purify",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "و دستها به زودی بر هیچ‌کس مگذار و در گناهان دیگران شریک مشو، بلکه خود را طاهر نگاه دار.",
+    "glPhrase": "pure",
+    "history": {
+      "pure": {
+        "پاک": 1
+      },
+      "purity": {
+        "عصمت": 1,
+        "عفّت": 1
+      }
+    },
+    "expected": [
+      "طاهر"
+    ],
+    "selections": [
+      {
+        "text": "طاهر",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "xsy6",
+      "quote": "ἁγνὸν",
+      "quoteString": "ἁγνὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:22, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-4-reject",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "reject",
+    "verse": "زیرا که هر مخلوق خدا نیکو است و هیچ چیز را ردّ نباید کرد، اگر به شکرگزاری پذیرند،",
+    "glPhrase": "is to be rejected",
+    "history": {
+      "having rejected": {
+        "از خود دور انداخته": 1
+      }
+    },
+    "expected": [
+      "ردّ نباید کرد"
+    ],
+    "selections": [
+      {
+        "text": "ردّ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "نباید",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "کرد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "nfn7",
+      "quote": "ἀπόβλητον",
+      "quoteString": "ἀπόβλητον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:4, tW reject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-7-reject",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "reject",
+    "verse": "لیکن از افسانه‌های حرام عجوزها احتراز نما و در دینداری ریاضت بکش.",
+    "glPhrase": "reject",
+    "history": {
+      "having rejected": {
+        "از خود دور انداخته": 1
+      },
+      "is to be rejected": {
+        "ردّ نباید کرد": 1
+      }
+    },
+    "expected": [
+      "احتراز نما"
+    ],
+    "selections": [
+      {
+        "text": "احتراز",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "نما",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "dvpm",
+      "quote": "παραιτοῦ",
+      "quoteString": "παραιτοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:7, tW reject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-11-reject",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "reject",
+    "verse": "امّا بیوه‌های جوانتر از این را قبول مکن، زیرا که چون از مسیح سرکش شوند، خواهش نکاح دارند",
+    "glPhrase": "reject",
+    "history": {
+      "having rejected": {
+        "از خود دور انداخته": 1
+      },
+      "is to be rejected": {
+        "ردّ نباید کرد": 1
+      },
+      "reject": {
+        "احتراز نما": 1
+      }
+    },
+    "expected": [
+      "قبول مکن"
+    ],
+    "selections": [
+      {
+        "text": "قبول",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "مکن",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "tvvu",
+      "quote": "παραιτοῦ",
+      "quoteString": "παραιτοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:11, tW reject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-4-save",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "که می‌خواهد جمیع مردم نجات یابند و به معرفت راستی گرایند.",
+    "glPhrase": "to be saved",
+    "history": {
+      "to save": {
+        "تا نجات بخشد": 1
+      }
+    },
+    "expected": [
+      "نجات یابند"
+    ],
+    "selections": [
+      {
+        "text": "نجات",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "یابند",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "u8k6",
+      "quote": "σωθῆναι",
+      "quoteString": "σωθῆναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:4, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-2-15-save",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "امّا به زاییدن رستگار خواهد شد، اگر در ایمان و محبّت و قدّوسیّت و تقوا ثابت بمانند.\n\\s5",
+    "glPhrase": "she will be saved",
+    "history": {
+      "to save": {
+        "تا نجات بخشد": 1
+      },
+      "to be saved": {
+        "نجات یابند": 1
+      }
+    },
+    "expected": [
+      "رستگار خواهد شد"
+    ],
+    "selections": [
+      {
+        "text": "رستگار",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خواهد",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "شد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "u5pr",
+      "quote": "σωθήσεται",
+      "quoteString": "σωθήσεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 2:15, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-16-save",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "save",
+    "verse": "خویشتن را و تعلیم را احتیاط کن و در این امور قائم باش، که هرگاه چنین کنی، خویشتن را و شنوندگان خویش را نیز نجات خواهی داد.\n\\s5",
+    "glPhrase": "you will save",
+    "history": {
+      "to save": {
+        "تا نجات بخشد": 1
+      },
+      "to be saved": {
+        "نجات یابند": 1
+      },
+      "she will be saved": {
+        "رستگار خواهد شد": 1
+      }
+    },
+    "expected": [
+      "نجات خواهی داد"
+    ],
+    "selections": [
+      {
+        "text": "نجات",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "خواهی",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "داد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "save",
+      "checkId": "sd8s",
+      "quote": "σώσεις",
+      "quoteString": "σώσεις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "save"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:16, tW save, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-7-shame",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "shame",
+    "verse": "امّا لازم است که نزد آنانی که خارجند هم نیک‌نام باشد که مبادا در رسوایی و دام ابلیس گرفتار شود.",
+    "glPhrase": "reproach",
+    "history": {
+      "irreproachable": {
+        "بی ملامت": 1
+      }
+    },
+    "expected": [
+      "رسوایی"
+    ],
+    "selections": [
+      {
+        "text": "رسوایی",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "shame",
+      "checkId": "mwte",
+      "quote": "ὀνειδισμὸν",
+      "quoteString": "ὀνειδισμὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "shame"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:7, tW shame, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-14-shame",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "shame",
+    "verse": "که تو وصیّت را بی‌داغ و ملامت حفظ کن تا به ظهور خداوند ما عیسی مسیح.",
+    "glPhrase": "irreproachable",
+    "history": {
+      "irreproachable": {
+        "بی ملامت": 1
+      },
+      "reproach": {
+        "رسوایی": 1
+      }
+    },
+    "expected": [
+      "و ملامت"
+    ],
+    "selections": [
+      {
+        "text": "و",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ملامت",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "shame",
+      "checkId": "ehgt",
+      "quote": "ἀνεπίλημπτον",
+      "quoteString": "ἀνεπίλημπτον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "shame"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:14, tW shame, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-15-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "این سخن امین است و لایق قبول تامّ که مسیح عیسی به دنیا آمد تا گناهکاران را نجات بخشد که من بزرگترین آنها هستم.",
+    "glPhrase": "sinners",
+    "history": {
+      "the sinful": {
+        "گناهکاران": 1
+      }
+    },
+    "expected": [
+      "گناهکاران را"
+    ],
+    "selections": [
+      {
+        "text": "گناهکاران",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "zfgg",
+      "quote": "ἁμαρτωλοὺς",
+      "quoteString": "ἁμαρτωλοὺς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:15, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-22-sin",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "sin",
+    "verse": "و دستها به زودی بر هیچ‌کس مگذار و در گناهان دیگران شریک مشو، بلکه خود را طاهر نگاه دار.",
+    "glPhrase": "in the sins",
+    "history": {
+      "the sinful": {
+        "گناهکاران": 1
+      },
+      "sinners": {
+        "گناهکاران را": 1
+      }
+    },
+    "expected": [
+      "در گناهان"
+    ],
+    "selections": [
+      {
+        "text": "در",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "گناهان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "sin",
+      "checkId": "fnpa",
+      "quote": "ἁμαρτίαις",
+      "quoteString": "ἁμαρτίαις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sin"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:22, tW sin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-19-testimony",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "ادّعایی بر یکی از کشیشان جز به زبان دو یا سه شاهد مپذیر.",
+    "glPhrase": "witnesses",
+    "history": {
+      "being testified": {
+        "که نیک نام باشد": 1
+      }
+    },
+    "expected": [
+      "شاهد"
+    ],
+    "selections": [
+      {
+        "text": "شاهد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "ztau",
+      "quote": "μαρτύρων",
+      "quoteString": "μαρτύρων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:19, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-5-21-testimony",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "در حضور خدا و مسیح عیسی و فرشتگان برگزیده تو را قسم می‌دهم که، این امور را بدون غرض نگاه داری و هیچ کاری از روی طرفداری مکن.",
+    "glPhrase": "I declare",
+    "history": {
+      "being testified": {
+        "که نیک نام باشد": 1
+      },
+      "witnesses": {
+        "شاهد": 1
+      }
+    },
+    "expected": [
+      "تو را قسم می دهم"
+    ],
+    "selections": [
+      {
+        "text": "تو",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "را",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "قسم",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "می",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "دهم",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "zxm2",
+      "quote": "διαμαρτύρομαι",
+      "quoteString": "διαμαρτύρομαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 5:21, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-12-testimony",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "و جنگ نیکوی ایمان را بکن و بدست آور آن حیات جاودانی را که برای آن دعوت شدی و اعتراف نیکو کردی در حضور گواهان بسیار.",
+    "glPhrase": "witnesses",
+    "history": {
+      "being testified": {
+        "که نیک نام باشد": 1
+      },
+      "witnesses": {
+        "شاهد": 1
+      },
+      "I declare": {
+        "تو را قسم می دهم": 1
+      }
+    },
+    "expected": [
+      "گواهان"
+    ],
+    "selections": [
+      {
+        "text": "گواهان",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "mb69",
+      "quote": "μαρτύρων",
+      "quoteString": "μαρτύρων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:12, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-18-timothy",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "timothy",
+    "verse": "ای فرزند تیموتاؤس، این وصیّت را به تو می‌سپارم برحسب نبوّتهایی که سابقاً بر تو شد تا در آنها جنگِ نیکو کنی،",
+    "glPhrase": "Timothy",
+    "history": {
+      "to Timothy": {
+        "به تیموتاؤس": 1
+      }
+    },
+    "expected": [
+      "تیموتاؤس"
+    ],
+    "selections": [
+      {
+        "text": "تیموتاؤس",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "timothy",
+      "checkId": "fzud",
+      "quote": "Τιμόθεε",
+      "quoteString": "Τιμόθεε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "timothy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:18, tW timothy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-20-timothy",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "timothy",
+    "verse": "ای تیموتاؤس، تو آن امانت را محفوظ دار و از بیهوده‌گویی‌های حرام و از مباحثات معرفت دروغ اعراض نما،",
+    "glPhrase": "Timothy",
+    "history": {
+      "to Timothy": {
+        "به تیموتاؤس": 1
+      },
+      "Timothy": {
+        "تیموتاؤس": 1
+      }
+    },
+    "expected": [
+      "تیموتاؤس"
+    ],
+    "selections": [
+      {
+        "text": "تیموتاؤس",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "timothy",
+      "checkId": "brqp",
+      "quote": "Τιμόθεε",
+      "quoteString": "Τιμόθεε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "timothy"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:20, tW timothy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-12-trust",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "trust",
+    "verse": "و شکر می‌کنم خداوند خود مسیح عیسی را که مرا تقویت داد، چونکه امین شمرده، به این خدمتم ممتاز فرمود،",
+    "glPhrase": "trustworthy",
+    "history": {
+      "with have been entrusted": {
+        "سپرده شده است": 1
+      }
+    },
+    "expected": [
+      "امین"
+    ],
+    "selections": [
+      {
+        "text": "امین",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "trust",
+      "checkId": "qzfc",
+      "quote": "πιστόν",
+      "quoteString": "πιστόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "trust"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:12, tW trust, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-15-trust",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "trust",
+    "verse": "این سخن امین است و لایق قبول تامّ که مسیح عیسی به دنیا آمد تا گناهکاران را نجات بخشد که من بزرگترین آنها هستم.",
+    "glPhrase": "is trustworthy",
+    "history": {
+      "with have been entrusted": {
+        "سپرده شده است": 1
+      },
+      "trustworthy": {
+        "امین": 1
+      }
+    },
+    "expected": [
+      "امین است"
+    ],
+    "selections": [
+      {
+        "text": "امین",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "trust",
+      "checkId": "c7f4",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "trust"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:15, tW trust, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-1-16-trust",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "trust",
+    "verse": "بلکه از این جهت بر من رحم شد تا اوّل در من، مسیح عیسی کمال حلم را ظاهر سازد، تا آنانی را که بجهت حیات جاودانی به وی ایمان خواهند آورد، نمونه باشم.",
+    "glPhrase": "to believe",
+    "history": {
+      "with have been entrusted": {
+        "سپرده شده است": 1
+      },
+      "trustworthy": {
+        "امین": 1
+      },
+      "is trustworthy": {
+        "امین است": 1
+      }
+    },
+    "expected": [
+      "ایمان آورد"
+    ],
+    "selections": [
+      {
+        "text": "ایمان",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "آورد",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "trust",
+      "checkId": "mevr",
+      "quote": "πιστεύειν",
+      "quoteString": "πιστεύειν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "trust"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 1:16, tW trust, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-1-trust",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "trust",
+    "verse": "این سخن امین است که اگر کسی منصب اسقفی را بخواهد، کار نیکو می‌طلبد.",
+    "glPhrase": "is trustworthy",
+    "history": {
+      "with have been entrusted": {
+        "سپرده شده است": 1
+      },
+      "trustworthy": {
+        "امین": 1
+      },
+      "is trustworthy": {
+        "امین است": 1
+      },
+      "to believe": {
+        "ایمان آورد": 1
+      }
+    },
+    "expected": [
+      "امین است"
+    ],
+    "selections": [
+      {
+        "text": "امین",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "trust",
+      "checkId": "ajc7",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "trust"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:1, tW trust, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-3-11-trust",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "trust",
+    "verse": "و به همینطور زنان نیز باید باوقار باشند و نه غیبت‌گو بلکه هشیار و در هر امری امین.",
+    "glPhrase": "trustworthy",
+    "history": {
+      "with have been entrusted": {
+        "سپرده شده است": 1
+      },
+      "trustworthy": {
+        "امین": 1
+      },
+      "is trustworthy": {
+        "امین است": 2
+      },
+      "to believe": {
+        "ایمان آورد": 1
+      }
+    },
+    "expected": [
+      "امین"
+    ],
+    "selections": [
+      {
+        "text": "امین",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "trust",
+      "checkId": "p4cy",
+      "quote": "πιστὰς",
+      "quoteString": "πιστὰς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "trust"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 3:11, tW trust, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-9-trust",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "trust",
+    "verse": "این سخن امین است و لایق قبول تامّ،",
+    "glPhrase": "is trustworthy",
+    "history": {
+      "with have been entrusted": {
+        "سپرده شده است": 1
+      },
+      "trustworthy": {
+        "امین": 2
+      },
+      "is trustworthy": {
+        "امین است": 2
+      },
+      "to believe": {
+        "ایمان آورد": 1
+      }
+    },
+    "expected": [
+      "امین است"
+    ],
+    "selections": [
+      {
+        "text": "امین",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "است",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "trust",
+      "checkId": "phyt",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "trust"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:9, tW trust, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-4-7-world",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "world",
+    "verse": "لیکن از افسانه‌های حرام عجوزها احتراز نما و در دینداری ریاضت بکش.",
+    "glPhrase": "profane",
+    "history": {
+      "the world": {
+        "دنیا": 1
+      }
+    },
+    "expected": [
+      "حرام"
+    ],
+    "selections": [
+      {
+        "text": "حرام",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "world",
+      "checkId": "rcmm",
+      "quote": "βεβήλους",
+      "quoteString": "βεβήλους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "world"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 4:7, tW world, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-fa-1ti-6-7-world",
+    "targetLang": "fa",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "world",
+    "verse": "زیرا که در این دنیا هیچ نیاوردیم و واضح است که از آن هیچ نمی‌توانیم برد.",
+    "glPhrase": "world",
+    "history": {
+      "the world": {
+        "دنیا": 1
+      },
+      "profane": {
+        "حرام": 1
+      }
+    },
+    "expected": [
+      "دنیا"
+    ],
+    "selections": [
+      {
+        "text": "دنیا",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "1ti",
+        "chapter": 6,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "world",
+      "checkId": "t3wr",
+      "quote": "κόσμον",
+      "quoteString": "κόσμον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "world"
+    ],
+    "madeUp": false,
+    "source": "fa_glt_1ti_book 6:7, tW world, GL en ult/v91_unfoldingWord"
+  }
+]

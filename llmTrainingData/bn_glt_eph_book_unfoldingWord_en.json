@@ -1,0 +1,5166 @@
+[
+  {
+    "id": "train-bn-eph-1-2-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "আমাদের পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্টের থেকে অনুগ্রহ ও শান্তি তোমাদের প্রতি বর্তুক। \\ts*\n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "jgqs",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:2, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-3-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "ধন্য ঈশ্বর ও আমাদের প্রভু যীশু খ্রীষ্টের পিতা, যিনি আমাদের সমস্ত আত্মিক আশীর্বাদে স্বর্গীয় স্থানে খ্রীষ্টে আশীর্বাদ করেছেন,",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "vsh3",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:3, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-5-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "তিনি আমাদেরকে যীশু খ্রীষ্টের মাধ্যমে তাঁর মঙ্গলময় ইচ্ছা অনুসারে নিজের কাছে দত্তকের জন্য পূর্বনির্ধারিত করেছেন,",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 2
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "j644",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:5, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-17-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "যেন আমাদের প্রভু যীশু খ্রীষ্টের ঈশ্বর, মহিমার পিতা, তাঁর জ্ঞানে প্রজ্ঞার ও প্রকাশের একটি আত্মা তোমাদেরকে দেন,",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 3
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "p857",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:17, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-6-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "এবং আমাদেরকে তাঁর সঙ্গে তুলে ধরলেন ও খ্রীষ্ট যীশুতে আমাদেরকে তাঁর সঙ্গে স্বর্গীয় স্থানে বসালেন,",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "wvuz",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:6, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-7-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "যাতে সেই যে যুগ আসছে, খ্রীষ্ট যীশুতে আমাদের প্রতি তাঁর উদারতা দিয়ে তিনি নিজের অপরিমেয় মহান অনুগ্রহ-ধন প্রকাশ করেন। \\ts*",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "dsm5",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:7, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-12-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "সেই দিনের জন্য তোমরা খ্রীষ্ট থেকে পৃথক ছিলে, ইস্রায়েল জাতির বাইরে এবং প্রতিজ্ঞার চুক্তিগুলির অপরিচিত ছিলে, কোন আশা ছিল না, আর জগতের মাঝে ঈশ্বরবিহীন ছিলে। \\ts*",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 2
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "a2jp",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:12, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-13-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "কিন্তু একসময় অনেক দূরে ছিলে যে তোমরা, এখন খ্রীষ্টের রক্তের দ্বারা খ্রীষ্ট যীশুতে কাছে এসেছ।",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 3
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "tefn",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-20-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "তোমাদেরকে প্রেরিত ও ভাববাদীদের ভিতের ওপর গেঁথে তোলা হয়েছে, তার কোনের প্রধান পাথর খ্রীষ্ট যীশু নিজেই,",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 4
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "dwmg",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:20, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-1-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "এই জন্য আমি, পৌল, অযিহুদী তোমাদের তরফে খ্রীষ্ট যীশুতে বন্দি,",
+    "glPhrase": "of Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 5
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "yu5j",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:1, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-15-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "বরং, প্রেমে সত্য বলি, (এমনকি) যিনি খ্রীষ্টের মস্তক তাঁর সমস্ত কিছুতে বেড়ে উঠি,",
+    "glPhrase": "even Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 2
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 5
+      }
+    },
+    "expected": [
+      "এমনকি খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "এমনকি",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "zsq8",
+      "quote": "Χριστός",
+      "quoteString": "Χριστός",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:15, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-20-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "সর্বদা সব বিষয়ের জন্য আমাদের প্রভু যীশু খ্রীষ্টের নামে পিতা ঈশ্বরের ধন্যবাদ কর,",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 2
+      },
+      "Christ": {
+        "খ্রীষ্টের": 4,
+        "খ্রীষ্ট": 5
+      },
+      "even Christ": {
+        "এমনকি খ্রীষ্টের": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "b5be",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:20, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-21-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "খ্রীষ্টের জন্য সম্মানে নিজেদেরকে একে অন্যের বশীভূত কর। \\ts*\n\\p",
+    "glPhrase": "for Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 2
+      },
+      "Christ": {
+        "খ্রীষ্টের": 5,
+        "খ্রীষ্ট": 5
+      },
+      "even Christ": {
+        "এমনকি খ্রীষ্টের": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের জন্য"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "জন্য",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "xghf",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:21, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-6-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "মানুষের আনন্দদায়ক হিসাবে দেখিয়ে দেখিয়ে সেবা না করে, বরং খ্রীষ্টের দাসের মত প্রাণ থেকে ঈশ্বরের ইচ্ছা পালন কর,",
+    "glPhrase": "of Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 2
+      },
+      "Christ": {
+        "খ্রীষ্টের": 5,
+        "খ্রীষ্ট": 5
+      },
+      "even Christ": {
+        "এমনকি খ্রীষ্টের": 1
+      },
+      "for Christ": {
+        "খ্রীষ্টের জন্য": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টের"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "duce",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:6, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 2,
+        "খ্রীষ্টের": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 5,
+        "খ্রীষ্ট": 5
+      },
+      "even Christ": {
+        "এমনকি খ্রীষ্টের": 1
+      },
+      "for Christ": {
+        "খ্রীষ্টের জন্য": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "c7pm",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-24-christ",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "আমাদের প্রভু যীশু খ্রীষ্টকে যারা অক্ষয়তার সাথে ভালবাসে, সেই সকলের সঙ্গে অনুগ্রহ (থাকুক)।",
+    "glPhrase": "Christ",
+    "history": {
+      "of Christ": {
+        "খ্রীষ্ট": 2,
+        "খ্রীষ্টের": 1
+      },
+      "Christ": {
+        "খ্রীষ্টের": 5,
+        "খ্রীষ্ট": 6
+      },
+      "even Christ": {
+        "এমনকি খ্রীষ্টের": 1
+      },
+      "for Christ": {
+        "খ্রীষ্টের জন্য": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টকে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টকে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "yr7p",
+      "quote": "Χριστὸν",
+      "quoteString": "Χριστὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:24, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-8-faith",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "কেননা অনুগ্রহের দ্বারা, বিশ্বাসের মাধ্যমে তোমরা উদ্ধার পেয়েছ; এবং এটা তোমাদের থেকে নয়; (এটি) ঈশ্বরেরই উপহার,",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "যে বিশ্বাস": 1
+      }
+    },
+    "expected": [
+      "বিশ্বাসের"
+    ],
+    "selections": [
+      {
+        "text": "বিশ্বাসের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "gdae",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:8, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-5-faith",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "প্রভু এক, বিশ্বাস এক, বাপ্তিষ্ম এক,",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "যে বিশ্বাস": 1,
+        "বিশ্বাসের": 1
+      }
+    },
+    "expected": [
+      "বিশ্বাস"
+    ],
+    "selections": [
+      {
+        "text": "বিশ্বাস",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "xwv4",
+      "quote": "πίστις",
+      "quoteString": "πίστις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:5, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-faith",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "faith",
+    "history": {
+      "faith": {
+        "যে বিশ্বাস": 1,
+        "বিশ্বাসের": 1,
+        "বিশ্বাস": 1
+      }
+    },
+    "expected": [
+      "বিশ্বাসের"
+    ],
+    "selections": [
+      {
+        "text": "বিশ্বাসের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "f6q6",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-13-glory",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "glory",
+    "verse": "অতএব, তোমাদের কাছে আমার প্রার্থনা, তোমাদের জন্য আমার কষ্টের দ্বারা নিরুত্সাহ হয়ো না, সেটি তোমাদের গৌরব। \\ts*",
+    "glPhrase": "glory",
+    "history": {
+      "of glory": {
+        "মহিমার": 1
+      }
+    },
+    "expected": [
+      "গৌরব"
+    ],
+    "selections": [
+      {
+        "text": "গৌরব",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "glory",
+      "checkId": "ydq9",
+      "quote": "δόξα",
+      "quoteString": "δόξα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "glory"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:13, tW glory, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-27-glory",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "glory",
+    "verse": "যাতে তিনি নিজের কাছে মণ্ডলীকে মহিমাময় অবস্থায় উপস্থিত করেন, তার কলঙ্ক বা সঙ্কোচ বা এই রকম আর কোন কিছু না থাকে, কিন্তু যাতে সে যেন পবিত্র ও নিষ্কলঙ্ক হয়। \\ts*",
+    "glPhrase": "as glorious",
+    "history": {
+      "of glory": {
+        "মহিমার": 1
+      },
+      "glory": {
+        "গৌরব": 1
+      }
+    },
+    "expected": [
+      "মহিমাময় অবস্থায়"
+    ],
+    "selections": [
+      {
+        "text": "মহিমাময়",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "অবস্থায়",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 27
+      },
+      "tool": "translationWords",
+      "groupId": "glory",
+      "checkId": "g7ca",
+      "quote": "ἔνδοξον",
+      "quoteString": "ἔνδοξον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "glory"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:27, tW glory, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-8-god",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "কেননা অনুগ্রহের দ্বারা, বিশ্বাসের মাধ্যমে তোমরা উদ্ধার পেয়েছ; এবং এটা তোমাদের থেকে নয়; (এটি) ঈশ্বরেরই উপহার,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "ঈশ্বরের": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরেরই"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরেরই",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "tdge",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-5-god",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "প্রকৃতপক্ষে, এই বিষয়ে নিশ্চিত হও যে, প্রত্যেক বেশ্যাগামী বা অশুচি বা লোভী ব্যক্তি - সে একজন প্রতিমা পূজারী - খ্রীষ্টের ও ঈশ্বরের রাজ্যে অধিকার পায় না।",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "ঈশ্বরের": 1,
+        "ঈশ্বরেরই": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বরের"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বরের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gcg7",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:5, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-17-godthefather",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godthefather",
+    "verse": "যেন আমাদের প্রভু যীশু খ্রীষ্টের ঈশ্বর, মহিমার পিতা, তাঁর জ্ঞানে প্রজ্ঞার ও প্রকাশের একটি আত্মা তোমাদেরকে দেন,",
+    "glPhrase": "the Father",
+    "history": {
+      "God Father": {
+        "পিতা ঈশ্বর": 1
+      }
+    },
+    "expected": [
+      "পিতা"
+    ],
+    "selections": [
+      {
+        "text": "পিতা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "godthefather",
+      "checkId": "q6t3",
+      "quote": [
+        {
+          "word": "ὁ",
+          "occurrence": 2
+        },
+        {
+          "word": "Πατὴρ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ὁ Πατὴρ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godthefather"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:17, tW godthefather, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-6-godthefather",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godthefather",
+    "verse": "সবার ঈশ্বর ও পিতা এক, যিনি সবার উপরে, সবার মাধ্যমে ও সবার মধ্যে আছেন। \\ts*",
+    "glPhrase": "God and Father",
+    "history": {
+      "God Father": {
+        "পিতা ঈশ্বর": 1
+      },
+      "the Father": {
+        "পিতা": 1
+      }
+    },
+    "expected": [
+      "ঈশ্বর ও পিতা"
+    ],
+    "selections": [
+      {
+        "text": "ঈশ্বর",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ও",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "পিতা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "godthefather",
+      "checkId": "btux",
+      "quote": [
+        {
+          "word": "Θεὸς",
+          "occurrence": 1
+        },
+        {
+          "word": "καὶ",
+          "occurrence": 1
+        },
+        {
+          "word": "Πατὴρ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "Θεὸς καὶ Πατὴρ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godthefather"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:6, tW godthefather, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-godthefather",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godthefather",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "God the Father",
+    "history": {
+      "God Father": {
+        "পিতা ঈশ্বর": 1
+      },
+      "the Father": {
+        "পিতা": 1
+      },
+      "God and Father": {
+        "ঈশ্বর ও পিতা": 1
+      }
+    },
+    "expected": [
+      "পিতা ঈশ্বর"
+    ],
+    "selections": [
+      {
+        "text": "পিতা",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ঈশ্বর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "godthefather",
+      "checkId": "mmc2",
+      "quote": [
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Πατρὸς",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "Θεοῦ Πατρὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godthefather"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW godthefather, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-6-grace",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "যা তিনি মুক্ত ভাবে প্রিয় একজনের মধ্যে দিয়ে তাঁর মহিমার অনুগ্রহে প্রশংসিত হতে আমাদেরকে দিয়েছেন, \\ts*",
+    "glPhrase": "of grace",
+    "history": {
+      "Grace": {
+        "অনুগ্রহ বর্তুক": 1
+      }
+    },
+    "expected": [
+      "অনুগ্রহে"
+    ],
+    "selections": [
+      {
+        "text": "অনুগ্রহে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "yaqp",
+      "quote": "χάριτος",
+      "quoteString": "χάριτος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:6, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-5-grace",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "এবং পাপে মৃত আমাদের, তিনি আমাদেরকে একসঙ্গে খ্রীষ্টে জীবিত করলেন - অনুগ্রহ দ্বারা তোমরা উদ্ধার পেয়েছ -",
+    "glPhrase": "by grace",
+    "history": {
+      "Grace": {
+        "অনুগ্রহ বর্তুক": 1
+      },
+      "of grace": {
+        "অনুগ্রহে": 1
+      }
+    },
+    "expected": [
+      "অনুগ্রহ দ্বারা"
+    ],
+    "selections": [
+      {
+        "text": "অনুগ্রহ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "দ্বারা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "bx66",
+      "quote": "χάριτί",
+      "quoteString": "χάριτί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:5, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-29-grace",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "তোমাদের মুখ থেকে কোন রকম বাজে কথা বের না হোক, কিন্তু প্রয়োজনে গেঁথে তোলার জন্য ভালো কথা বের হোক, যাতে শ্রোতাদের এটি অনুগ্রহ দান করতে পারে,",
+    "glPhrase": "grace",
+    "history": {
+      "Grace": {
+        "অনুগ্রহ বর্তুক": 1
+      },
+      "of grace": {
+        "অনুগ্রহে": 1
+      },
+      "by grace": {
+        "অনুগ্রহ দ্বারা": 1
+      }
+    },
+    "expected": [
+      "অনুগ্রহ"
+    ],
+    "selections": [
+      {
+        "text": "অনুগ্রহ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 29
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "gvmv",
+      "quote": "χάριν",
+      "quoteString": "χάριν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:29, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-21-holy",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "holy",
+    "verse": "তাঁতেই সম্পূর্ণ গাঁথনি, একসঙ্গে যুক্ত হয়, প্রভুতে একটি পবিত্র মন্দিরের মধ্যে বৃদ্ধি পায়,",
+    "glPhrase": "holy",
+    "history": {
+      "holy": {
+        "পবিত্র": 1
+      }
+    },
+    "expected": [
+      "পবিত্র"
+    ],
+    "selections": [
+      {
+        "text": "পবিত্র",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "holy",
+      "checkId": "s3sc",
+      "quote": "ἅγιον",
+      "quoteString": "ἅγιον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "holy"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:21, tW holy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-5-holy",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "holy",
+    "verse": "যা মানুষের পুত্রদের অন্য বংশপরম্পরাকে জানানো হয়নি যেমন এটি এখন আত্মার দ্বারা তাঁর পবিত্র প্রেরিত ও ভাববাদীদের কাছে প্রকাশিত হয়েছে - \\ts*",
+    "glPhrase": "holy",
+    "history": {
+      "holy": {
+        "পবিত্র": 2
+      }
+    },
+    "expected": [
+      "পবিত্র"
+    ],
+    "selections": [
+      {
+        "text": "পবিত্র",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "holy",
+      "checkId": "kg9f",
+      "quote": "ἁγίοις",
+      "quoteString": "ἁγίοις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "holy"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:5, tW holy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-24-holy",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "holy",
+    "verse": "এবং সেই নতুন মানুষকে ধরে রাখো, যা সত্যের পবিত্রতায় ও ধার্ম্মিকতায় ঈশ্বরের সাদৃশ্যে সৃষ্ট হয়েছে। \\ts*",
+    "glPhrase": "holiness",
+    "history": {
+      "holy": {
+        "পবিত্র": 3
+      }
+    },
+    "expected": [
+      "পবিত্রতায়"
+    ],
+    "selections": [
+      {
+        "text": "পবিত্রতায়",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "holy",
+      "checkId": "ydg8",
+      "quote": "ὁσιότητι",
+      "quoteString": "ὁσιότητι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "holy"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:24, tW holy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-27-holy",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "holy",
+    "verse": "যাতে তিনি নিজের কাছে মণ্ডলীকে মহিমাময় অবস্থায় উপস্থিত করেন, তার কলঙ্ক বা সঙ্কোচ বা এই রকম আর কোন কিছু না থাকে, কিন্তু যাতে সে যেন পবিত্র ও নিষ্কলঙ্ক হয়। \\ts*",
+    "glPhrase": "holy",
+    "history": {
+      "holy": {
+        "পবিত্র": 3
+      },
+      "holiness": {
+        "পবিত্রতায়": 1
+      }
+    },
+    "expected": [
+      "পবিত্র"
+    ],
+    "selections": [
+      {
+        "text": "পবিত্র",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 27
+      },
+      "tool": "translationWords",
+      "groupId": "holy",
+      "checkId": "ycz4",
+      "quote": "ἁγία",
+      "quoteString": "ἁγία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "holy"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:27, tW holy, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-3-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "ধন্য ঈশ্বর ও আমাদের প্রভু যীশু খ্রীষ্টের পিতা, যিনি আমাদের সমস্ত আত্মিক আশীর্বাদে স্বর্গীয় স্থানে খ্রীষ্টে আশীর্বাদ করেছেন,",
+    "glPhrase": "in Christ",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "nkdd",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 3
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:3, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-10-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "এক প্রশাসনের দৃষ্টিতে সময়ের পূর্ণতায়, স্বর্গের সবকিছু ও পৃথিবীর উপরের সবকিছু খ্রীষ্টে একসঙ্গে মিলিত করলেন, তাঁতে, \\ts*",
+    "glPhrase": "in Christ",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "cmj5",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "τῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν τῷ Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:10, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-12-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "সুতরাং, আমরা যারা খ্রীষ্টে প্রথম আশা করেছি, তাঁর মহিমার প্রশংসার জন্য তা হোক। \\ts*\n\\p",
+    "glPhrase": "in Christ",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 2
+      }
+    },
+    "expected": [
+      "খ্রীষ্টে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "h53t",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "τῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν τῷ Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:12, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-15-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "এই জন্য, প্রভু যীশুতে তোমাদের যে বিশ্বাস এবং সব পবিত্রজনের জন্য যে ভালবাসার কথা আমি শুনেছি,",
+    "glPhrase": "in the Lord Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 3
+      }
+    },
+    "expected": [
+      "প্রভু যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভু",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "xgsz",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "τῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν τῷ Κυρίῳ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:15, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-20-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "যা তিনি খ্রীষ্টে কার্যকারী করেছেন যখন তিনি তাঁকে মৃতদের মধ্য থেকে উঠিয়েছেন এবং স্বর্গীয় স্থানে নিজের ডান পাশে তাঁকে বসিয়েছেন,",
+    "glPhrase": "in Christ",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 3
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "z9zh",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "τῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν τῷ Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:20, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-5-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "এবং পাপে মৃত আমাদের, তিনি আমাদেরকে একসঙ্গে খ্রীষ্টে জীবিত করলেন - অনুগ্রহ দ্বারা তোমরা উদ্ধার পেয়েছ -",
+    "glPhrase": "in Christ",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 4
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "ckv2",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:5, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-6-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "এবং আমাদেরকে তাঁর সঙ্গে তুলে ধরলেন ও খ্রীষ্ট যীশুতে আমাদেরকে তাঁর সঙ্গে স্বর্গীয় স্থানে বসালেন,",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "zj48",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 2
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:6, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-7-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "যাতে সেই যে যুগ আসছে, খ্রীষ্ট যীশুতে আমাদের প্রতি তাঁর উদারতা দিয়ে তিনি নিজের অপরিমেয় মহান অনুগ্রহ-ধন প্রকাশ করেন। \\ts*",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 1
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "hh7u",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 3
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:7, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-10-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "কারণ আমরা তাঁর কারিগর, ভালো কাজের জন্য খ্রীষ্ট যীশুতে সৃষ্ট যা ঈশ্বর আগেই প্রস্তুত করে রেখেছেন, যেন আমরা তাতে চলি। \\ts*\n\\p",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 2
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "tvzp",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:10, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-13-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "কিন্তু একসময় অনেক দূরে ছিলে যে তোমরা, এখন খ্রীষ্টের রক্তের দ্বারা খ্রীষ্ট যীশুতে কাছে এসেছ।",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 3
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "qxpj",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:13, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-21-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "তাঁতেই সম্পূর্ণ গাঁথনি, একসঙ্গে যুক্ত হয়, প্রভুতে একটি পবিত্র মন্দিরের মধ্যে বৃদ্ধি পায়,",
+    "glPhrase": "in the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 4
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      }
+    },
+    "expected": [
+      "প্রভুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "vxcs",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 2
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:21, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-6-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "যা সুসমাচারের মাধ্যমে খ্রীষ্ট যীশুতে অযিহূদীরা সহ উত্তরাধিকারী, এবং দেহের সহ সদস্য ও প্রতিজ্ঞার সহভাগী হয়,",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 4
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "tb4x",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:6, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-11-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "চিরকালের সেই উদ্দেশ্যে অনুসারে যা তিনি আমাদের প্রভু খ্রীষ্ট যীশুতে সম্পন্ন করেছেন, \\ts*",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 5
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "a7ug",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "τῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν τῷ Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:11, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-21-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "মণ্ডলীতে এবং খ্রীষ্ট যীশুতে সমস্ত বংশপরম্পরায় যুগপর্য্যায়ের যুগে যুগে তাঁরই মহিমা হোক। আমেন। \\ts*",
+    "glPhrase": "in Christ Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 6
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্ট যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্ট",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "ausv",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 2
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:21, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-1-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "অতএব প্রভুর জন্য বন্দি আমি তোমাদেরকে আবেদন করছি, তোমরা যে আহ্বানে আহূত হয়েছ, তার উপযুক্ত হয়ে চল,",
+    "glPhrase": "for the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 1
+      }
+    },
+    "expected": [
+      "প্রভুর জন্য"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুর",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "জন্য",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "tfw7",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:1, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-17-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "অতএব, আমি এটা বলছি ও তোমাকে প্রভুতে দৃঢ়রূপে আদেশ করছি, আর অযিহূদীদের মত পথ চলো না, তারা নিজের মনের অসারতায় চলে।",
+    "glPhrase": "in the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 1
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      }
+    },
+    "expected": [
+      "প্রভুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "e7jf",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:17, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-21-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "যদি সত্যিই তোমরা তাঁর সম্মন্ধে শুনেছ এবং তাঁতে শিক্ষা পেয়েছ, যে যীশুতে সত্য আছে,",
+    "glPhrase": "in Jesus",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 2
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      }
+    },
+    "expected": [
+      "যীশুতে"
+    ],
+    "selections": [
+      {
+        "text": "যীশুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "jsfg",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 2
+        },
+        {
+          "word": "τῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν τῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:21, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-32-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "পরিবর্তে, একে অপরের প্রতি দয়ালু হও, নরম হৃদয়ের হও, একে অপরকে ক্ষমা কর, যেমন ঈশ্বরও খ্রীষ্টে তোমাদেরকে ক্ষমা করেছেন। \\ts*",
+    "glPhrase": "in Christ",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 5
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 2
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      },
+      "in Jesus": {
+        "যীশুতে": 1
+      }
+    },
+    "expected": [
+      "খ্রীষ্টে"
+    ],
+    "selections": [
+      {
+        "text": "খ্রীষ্টে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 32
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "hpn8",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:32, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-8-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "কারণ তোমরা পূর্বে অন্ধকারে ছিলে, কিন্তু এখন প্রভুতে আলোকিত (হয়েছ)। আলোর সন্তানদের মত চল",
+    "glPhrase": "in the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 6
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 2
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      },
+      "in Jesus": {
+        "যীশুতে": 1
+      }
+    },
+    "expected": [
+      "প্রভুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "zhsg",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:8, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-1-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "সন্তানেরা, তোমরা প্রভুতে পিতামাতাকে মান্য কর,  কেননা এটাই ন্যায়নিষ্ট।",
+    "glPhrase": "in the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 6
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 3
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      },
+      "in Jesus": {
+        "যীশুতে": 1
+      }
+    },
+    "expected": [
+      "প্রভুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "c492",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:1, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-10-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "অবশেষে, প্রভুতে ও তাঁর শক্তির প্রতাপে শক্তিশালী হও।",
+    "glPhrase": "in the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 6
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 4
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      },
+      "in Jesus": {
+        "যীশুতে": 1
+      }
+    },
+    "expected": [
+      "প্রভুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "cgst",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:10, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-21-inchrist",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "inchrist",
+    "verse": "কিন্তু আমার উদ্বেগের বিষয় তোমরাও যাতে জানতে পার, আমার কিরকম চলছে,  প্রভুতে প্রিয় ভাই ও বিশ্বস্ত দাস তুখিক, তোমাদেরকে সবই জানাবেন,",
+    "glPhrase": "in the Lord",
+    "history": {
+      "in Christ Jesus": {
+        "খ্রীষ্ট যীশুর": 1,
+        "খ্রীষ্ট যীশুতে": 7
+      },
+      "in Christ": {
+        "খ্রীষ্টে": 6
+      },
+      "in the Lord Jesus": {
+        "প্রভু যীশুতে": 1
+      },
+      "in the Lord": {
+        "প্রভুতে": 5
+      },
+      "for the Lord": {
+        "প্রভুর জন্য": 1
+      },
+      "in Jesus": {
+        "যীশুতে": 1
+      }
+    },
+    "expected": [
+      "প্রভুতে"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "vphz",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:21, tW inchrist, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-1-jesus-2",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "পৌল, (ইফিষীয়ের) পবিত্রজনের ও খ্রীষ্ট যীশুতে বিশ্বস্ত জনগনের কাছে ঈশ্বরের ইচ্ছা মাধ্যমে খ্রীষ্ট যীশুর একজন প্রেরিত।",
+    "glPhrase": "Jesus",
+    "occurrence": 2,
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1
+      }
+    },
+    "expected": [
+      "যীশুর"
+    ],
+    "selections": [
+      {
+        "text": "যীশুর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "wh9t",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:1, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-2-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "আমাদের পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্টের থেকে অনুগ্রহ ও শান্তি তোমাদের প্রতি বর্তুক। \\ts*\n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "x6jq",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:2, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-3-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "ধন্য ঈশ্বর ও আমাদের প্রভু যীশু খ্রীষ্টের পিতা, যিনি আমাদের সমস্ত আত্মিক আশীর্বাদে স্বর্গীয় স্থানে খ্রীষ্টে আশীর্বাদ করেছেন,",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 1
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "h7wj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:3, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-5-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "তিনি আমাদেরকে যীশু খ্রীষ্টের মাধ্যমে তাঁর মঙ্গলময় ইচ্ছা অনুসারে নিজের কাছে দত্তকের জন্য পূর্বনির্ধারিত করেছেন,",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 2
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "h8ga",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:5, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-17-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "যেন আমাদের প্রভু যীশু খ্রীষ্টের ঈশ্বর, মহিমার পিতা, তাঁর জ্ঞানে প্রজ্ঞার ও প্রকাশের একটি আত্মা তোমাদেরকে দেন,",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 3
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "bnrr",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:17, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-20-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "তোমাদেরকে প্রেরিত ও ভাববাদীদের ভিতের ওপর গেঁথে তোলা হয়েছে, তার কোনের প্রধান পাথর খ্রীষ্ট যীশু নিজেই,",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 4
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jkju",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:20, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-20-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "সর্বদা সব বিষয়ের জন্য আমাদের প্রভু যীশু খ্রীষ্টের নামে পিতা ঈশ্বরের ধন্যবাদ কর,",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 5
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "u2w4",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:20, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 6
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "vcn3",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-24-jesus",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "আমাদের প্রভু যীশু খ্রীষ্টকে যারা অক্ষয়তার সাথে ভালবাসে, সেই সকলের সঙ্গে অনুগ্রহ (থাকুক)।",
+    "glPhrase": "Jesus",
+    "history": {
+      "Jesus": {
+        "যীশুতে": 1,
+        "যীশুর": 1,
+        "যীশু": 7
+      }
+    },
+    "expected": [
+      "যীশু"
+    ],
+    "selections": [
+      {
+        "text": "যীশু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "ynkg",
+      "quote": "Ἰησοῦν",
+      "quoteString": "Ἰησοῦν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:24, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-10-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "যাতে এখন মন্ডলীর মাধ্যমে ঈশ্বরের নানাবিধ প্রজ্ঞা স্বর্গীয় স্থানের শাসকদের এবং কর্তৃত্বদের জানানো যায়,",
+    "glPhrase": "might be made known",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      }
+    },
+    "expected": [
+      "জানানো যায়"
+    ],
+    "selections": [
+      {
+        "text": "জানানো",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "যায়",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "rt6j",
+      "quote": "γνωρισθῇ",
+      "quoteString": "γνωρισθῇ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:10, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-19-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "এবং জ্ঞানের অতীত সেই খ্রীষ্টের ভালবাসা জানতে পারো, যেন ঈশ্বরের সমস্ত পূর্ণতার সাথে তোমরা পরিপূর্ণ হও। \\ts*",
+    "glPhrase": "to know",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      }
+    },
+    "expected": [
+      "জানতে"
+    ],
+    "selections": [
+      {
+        "text": "জানতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "mgv5",
+      "quote": "γνῶναί",
+      "quoteString": "γνῶναί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:19, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-8-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "জেনে রেখো যে প্রতিটি ব্যক্তি, দাস কি বা স্বাধীন, যদি সে ভাল কিছু করে, প্রভুর থেকে সে তা গ্রহণ করবে। \\ts*\n\\p",
+    "glPhrase": "knowing",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      },
+      "to know": {
+        "জানতে": 1
+      }
+    },
+    "expected": [
+      "জেনে রেখো"
+    ],
+    "selections": [
+      {
+        "text": "জেনে",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "রেখো",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "bvwb",
+      "quote": "εἰδότες",
+      "quoteString": "εἰδότες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:8, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-9-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "আর মনিবেরা, তাদের সঙ্গে একই রকম কোরো। হুমকি দেওয়া বন্ধ কর। তোমরা জেনে রেখো যে, তাদের এবং তোমাদের উভয়ের প্রভু স্বর্গে আছেন, আর সেখানে তাঁর সাথে কোনো পক্ষপাতিত্ব হয় না। \\ts*\n\\p",
+    "glPhrase": "You know",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      },
+      "to know": {
+        "জানতে": 1
+      },
+      "knowing": {
+        "জেনে রেখো": 1
+      }
+    },
+    "expected": [
+      "তোমরা জেনে রেখো"
+    ],
+    "selections": [
+      {
+        "text": "তোমরা",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "জেনে",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "রেখো",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "r65r",
+      "quote": "εἰδότες",
+      "quoteString": "εἰδότες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:9, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-19-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "এবং আমার জন্য, যখন আমি আমার মুখ খুলি যাতে একটি বার্তা আমাকে দেওয়া হয়, দৃঢ়তার সাথে সুসমাচারের রহস্য জানাতে",
+    "glPhrase": "to make known",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      },
+      "to know": {
+        "জানতে": 1
+      },
+      "knowing": {
+        "জেনে রেখো": 1
+      },
+      "You know": {
+        "তোমরা জেনে রেখো": 1
+      }
+    },
+    "expected": [
+      "জানাতে"
+    ],
+    "selections": [
+      {
+        "text": "জানাতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "j5pm",
+      "quote": "γνωρίσαι",
+      "quoteString": "γνωρίσαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:19, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-21-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "কিন্তু আমার উদ্বেগের বিষয় তোমরাও যাতে জানতে পার, আমার কিরকম চলছে,  প্রভুতে প্রিয় ভাই ও বিশ্বস্ত দাস তুখিক, তোমাদেরকে সবই জানাবেন,",
+    "glPhrase": "may know",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      },
+      "to know": {
+        "জানতে": 1
+      },
+      "knowing": {
+        "জেনে রেখো": 1
+      },
+      "You know": {
+        "তোমরা জেনে রেখো": 1
+      },
+      "to make known": {
+        "জানাতে": 1
+      }
+    },
+    "expected": [
+      "জানতে পার"
+    ],
+    "selections": [
+      {
+        "text": "জানতে",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "পার",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "ts8e",
+      "quote": "εἰδῆτε",
+      "quoteString": "εἰδῆτε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:21, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-21-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "কিন্তু আমার উদ্বেগের বিষয় তোমরাও যাতে জানতে পার, আমার কিরকম চলছে,  প্রভুতে প্রিয় ভাই ও বিশ্বস্ত দাস তুখিক, তোমাদেরকে সবই জানাবেন,",
+    "glPhrase": "will make known",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      },
+      "to know": {
+        "জানতে": 1
+      },
+      "knowing": {
+        "জেনে রেখো": 1
+      },
+      "You know": {
+        "তোমরা জেনে রেখো": 1
+      },
+      "to make known": {
+        "জানাতে": 1
+      },
+      "may know": {
+        "জানতে পার": 1
+      }
+    },
+    "expected": [
+      "জানাবেন"
+    ],
+    "selections": [
+      {
+        "text": "জানাবেন",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "kpa4",
+      "quote": "γνωρίσει",
+      "quoteString": "γνωρίσει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:21, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-22-know",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "যাঁকে আমি এই গুরুত্বপূর্ন উদ্দেশ্যে তোমাদের কাছে পাঠালাম, যাতে তোমরা আমাদের সম্পর্কে সবকিছু জানতে পার এবং তোমাদের হৃদয় উত্সাহিত হয়। \\ts*\n\\p",
+    "glPhrase": "you may know",
+    "history": {
+      "made known": {
+        "জানানো হয়েছে": 1
+      },
+      "might be made known": {
+        "জানানো যায়": 1
+      },
+      "to know": {
+        "জানতে": 1
+      },
+      "knowing": {
+        "জেনে রেখো": 1
+      },
+      "You know": {
+        "তোমরা জেনে রেখো": 1
+      },
+      "to make known": {
+        "জানাতে": 1
+      },
+      "may know": {
+        "জানতে পার": 1
+      },
+      "will make known": {
+        "জানাবেন": 1
+      }
+    },
+    "expected": [
+      "তোমরা জানতে পার"
+    ],
+    "selections": [
+      {
+        "text": "তোমরা",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "জানতে",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "পার",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "vz5d",
+      "quote": "γνῶτε",
+      "quoteString": "γνῶτε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:22, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-4-5-lord",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "প্রভু এক, বিশ্বাস এক, বাপ্তিষ্ম এক,",
+    "glPhrase": "Lord",
+    "history": {
+      "the Lord": {
+        "প্রভু": 1
+      }
+    },
+    "expected": [
+      "প্রভু"
+    ],
+    "selections": [
+      {
+        "text": "প্রভু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 4,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "xbr4",
+      "quote": "Κύριος",
+      "quoteString": "Κύριος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 4:5, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-4-lord",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "আর বাবারা, তোমাদের ছেলেমেয়েদেরকে রাগিয়ে তুলো না। পরিবর্তে, প্রভুর শাসনে ও শৃঙ্খলায় তাদেরকে মানুষ করে তোলো। \\ts*\n\\p",
+    "glPhrase": "of the Lord",
+    "history": {
+      "the Lord": {
+        "প্রভু": 1
+      },
+      "Lord": {
+        "প্রভু": 1
+      }
+    },
+    "expected": [
+      "প্রভুর"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "f5cg",
+      "quote": "Κυρίου",
+      "quoteString": "Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:4, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-8-lord",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "জেনে রেখো যে প্রতিটি ব্যক্তি, দাস কি বা স্বাধীন, যদি সে ভাল কিছু করে, প্রভুর থেকে সে তা গ্রহণ করবে। \\ts*\n\\p",
+    "glPhrase": "the Lord",
+    "history": {
+      "the Lord": {
+        "প্রভু": 1
+      },
+      "Lord": {
+        "প্রভু": 1
+      },
+      "of the Lord": {
+        "প্রভুর": 1
+      }
+    },
+    "expected": [
+      "প্রভুর"
+    ],
+    "selections": [
+      {
+        "text": "প্রভুর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "xj43",
+      "quote": "Κυρίου",
+      "quoteString": "Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:8, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-lord",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "lord",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "the Lord",
+    "history": {
+      "the Lord": {
+        "প্রভু": 1,
+        "প্রভুর": 1
+      },
+      "Lord": {
+        "প্রভু": 1
+      },
+      "of the Lord": {
+        "প্রভুর": 1
+      }
+    },
+    "expected": [
+      "প্রভু"
+    ],
+    "selections": [
+      {
+        "text": "প্রভু",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "lord",
+      "checkId": "fefm",
+      "quote": "Κυρίου",
+      "quoteString": "Κυρίου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lord"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW lord, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-19-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "এবং জ্ঞানের অতীত সেই খ্রীষ্টের ভালবাসা জানতে পারো, যেন ঈশ্বরের সমস্ত পূর্ণতার সাথে তোমরা পরিপূর্ণ হও। \\ts*",
+    "glPhrase": "love",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      }
+    },
+    "expected": [
+      "ভালবাসা"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m79q",
+      "quote": "ἀγάπην",
+      "quoteString": "ἀγάπην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:19, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-2-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "আর প্রেমে চল, যেমন খ্রীষ্টও আমাদেরকে প্রেম করলেন এবং আমাদের জন্য ঈশ্বরের উদ্দেশ্যে, একটি সুগন্ধি সৌরভের জন্য, একটি উপহার ও বলিরূপে নিজেকে দিলেন। \\ts*\n\\p",
+    "glPhrase": "loved",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1
+      }
+    },
+    "expected": [
+      "প্রেম করলেন"
+    ],
+    "selections": [
+      {
+        "text": "প্রেম",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "করলেন",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "w685",
+      "quote": "ἠγάπησεν",
+      "quoteString": "ἠγάπησεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:2, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-25-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "স্বামীরা, (তোমাদের) স্ত্রীকে ভালবাসো, যেমন খ্রীষ্টও মণ্ডলীকে ভালবাসলেন, আর তার জন্য নিজেকে দান করলেন,",
+    "glPhrase": "love",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1
+      },
+      "loved": {
+        "প্রেম করলেন": 1
+      }
+    },
+    "expected": [
+      "ভালবাসো"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসো",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 25
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "upur",
+      "quote": "ἀγαπᾶτε",
+      "quoteString": "ἀγαπᾶτε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:25, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-25-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "স্বামীরা, (তোমাদের) স্ত্রীকে ভালবাসো, যেমন খ্রীষ্টও মণ্ডলীকে ভালবাসলেন, আর তার জন্য নিজেকে দান করলেন,",
+    "glPhrase": "loved",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1,
+        "ভালবাসো": 1
+      },
+      "loved": {
+        "প্রেম করলেন": 1
+      }
+    },
+    "expected": [
+      "ভালবাসলেন"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসলেন",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 25
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "r6ev",
+      "quote": "ἠγάπησεν",
+      "quoteString": "ἠγάπησεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:25, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-28-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "এই একই রকম ভাবে, স্বামীরাও তাদের নিজের স্ত্রীকে তাদের নিজের শরীরের মত ভালবাসতে বাধ্য। নিজের স্ত্রীকে যে ভালবাসে, সে নিজেকেই ভালবাসে।",
+    "glPhrase": "to love",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1,
+        "ভালবাসো": 1
+      },
+      "loved": {
+        "প্রেম করলেন": 1,
+        "ভালবাসলেন": 1
+      }
+    },
+    "expected": [
+      "ভালবাসতে"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 28
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "wewy",
+      "quote": "ἀγαπᾶν",
+      "quoteString": "ἀγαπᾶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:28, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-28-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "এই একই রকম ভাবে, স্বামীরাও তাদের নিজের স্ত্রীকে তাদের নিজের শরীরের মত ভালবাসতে বাধ্য। নিজের স্ত্রীকে যে ভালবাসে, সে নিজেকেই ভালবাসে।",
+    "glPhrase": "loving",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1,
+        "ভালবাসো": 1
+      },
+      "loved": {
+        "প্রেম করলেন": 1,
+        "ভালবাসলেন": 1
+      },
+      "to love": {
+        "ভালবাসতে": 1
+      }
+    },
+    "expected": [
+      "ভালবাসে"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসে",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 28
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "j3j7",
+      "quote": "ἀγαπῶν",
+      "quoteString": "ἀγαπῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:28, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-28-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "এই একই রকম ভাবে, স্বামীরাও তাদের নিজের স্ত্রীকে তাদের নিজের শরীরের মত ভালবাসতে বাধ্য। নিজের স্ত্রীকে যে ভালবাসে, সে নিজেকেই ভালবাসে।",
+    "glPhrase": "loves",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1,
+        "ভালবাসো": 1
+      },
+      "loved": {
+        "প্রেম করলেন": 1,
+        "ভালবাসলেন": 1
+      },
+      "to love": {
+        "ভালবাসতে": 1
+      },
+      "loving": {
+        "ভালবাসে": 1
+      }
+    },
+    "expected": [
+      "ভালবাসে:2"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসে",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 28
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "fbxt",
+      "quote": "ἀγαπᾷ",
+      "quoteString": "ἀγαπᾷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:28, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-love",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "love",
+    "history": {
+      "he loved": {
+        "তিনি ভালবাসলেন": 1
+      },
+      "love": {
+        "ভালবাসা": 1,
+        "ভালবাসো": 1
+      },
+      "loved": {
+        "প্রেম করলেন": 1,
+        "ভালবাসলেন": 1
+      },
+      "to love": {
+        "ভালবাসতে": 1
+      },
+      "loving": {
+        "ভালবাসে": 1
+      },
+      "loves": {
+        "ভালবাসে": 1
+      }
+    },
+    "expected": [
+      "ভালবাসা"
+    ],
+    "selections": [
+      {
+        "text": "ভালবাসা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "whju",
+      "quote": "ἀγάπη",
+      "quoteString": "ἀγάπη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-17-peace",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "আর তিনি এলেন (এবং) দূরে অবস্থিত তোমাদের কাছে শান্তি ও কাছের যারা তাদের কাছে শান্তি প্রচার করলেন,",
+    "glPhrase": "peace",
+    "history": {
+      "peace": {
+        "শান্তি": 1
+      }
+    },
+    "expected": [
+      "শান্তি"
+    ],
+    "selections": [
+      {
+        "text": "শান্তি",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "cr35",
+      "quote": "εἰρήνην",
+      "quoteString": "εἰρήνην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:17, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-2-17-peace-2",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "আর তিনি এলেন (এবং) দূরে অবস্থিত তোমাদের কাছে শান্তি ও কাছের যারা তাদের কাছে শান্তি প্রচার করলেন,",
+    "glPhrase": "peace",
+    "occurrence": 2,
+    "history": {
+      "peace": {
+        "শান্তি": 2
+      }
+    },
+    "expected": [
+      "শান্তি:2"
+    ],
+    "selections": [
+      {
+        "text": "শান্তি",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 2,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "reh6",
+      "quote": "εἰρήνην",
+      "quoteString": "εἰρήνην",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 2:17, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-23-peace",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "peace",
+    "verse": "পিতা ঈশ্বর এবং প্রভু যীশু খ্রীষ্ট থেকে ভাইদের প্রতি \n শান্তি এবং বিশ্বাসের সঙ্গে ভালবাসা আসুক।",
+    "glPhrase": "Peace",
+    "history": {
+      "peace": {
+        "শান্তি": 3
+      }
+    },
+    "expected": [
+      "শান্তি আসুক"
+    ],
+    "selections": [
+      {
+        "text": "শান্তি",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "আসুক",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "dsb5",
+      "quote": "εἰρήνη",
+      "quoteString": "εἰρήνη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:23, tW peace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-18-pray",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "প্রত্যেক প্রার্থনা ও অনুরোধের সাথে, সব সময় আত্মায় প্রার্থনা কর। আর এর শেষে, সম্পূর্ণ অভিনিবেশ ও অনুরোধসহ জেগে থাক সকল পবিত্রজনের জন্য, \\ts*",
+    "glPhrase": "request",
+    "history": {
+      "prayer": {
+        "প্রার্থনা": 1
+      }
+    },
+    "expected": [
+      "অনুরোধের"
+    ],
+    "selections": [
+      {
+        "text": "অনুরোধের",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "nd2m",
+      "quote": "δεήσεως",
+      "quoteString": "δεήσεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:18, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-18-pray",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "pray",
+    "verse": "প্রত্যেক প্রার্থনা ও অনুরোধের সাথে, সব সময় আত্মায় প্রার্থনা কর। আর এর শেষে, সম্পূর্ণ অভিনিবেশ ও অনুরোধসহ জেগে থাক সকল পবিত্রজনের জন্য, \\ts*",
+    "glPhrase": "pray",
+    "history": {
+      "prayer": {
+        "প্রার্থনা": 1
+      },
+      "request": {
+        "অনুরোধের": 1
+      }
+    },
+    "expected": [
+      "প্রার্থনা:2 কর"
+    ],
+    "selections": [
+      {
+        "text": "প্রার্থনা",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "কর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "pray",
+      "checkId": "vqcn",
+      "quote": "προσευχόμενοι",
+      "quoteString": "προσευχόμενοι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "pray"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:18, tW pray, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-7-servant",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "মানুষের নয়, বরং প্রভুর মতো করে ভালো আচরণের সঙ্গে সেবা কর,",
+    "glPhrase": "serving",
+    "history": {
+      "slaves": {
+        "দাসের": 1
+      }
+    },
+    "expected": [
+      "সেবা কর"
+    ],
+    "selections": [
+      {
+        "text": "সেবা",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "কর",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "nqnb",
+      "quote": "δουλεύοντες",
+      "quoteString": "δουλεύοντες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:7, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-6-8-servant",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "জেনে রেখো যে প্রতিটি ব্যক্তি, দাস কি বা স্বাধীন, যদি সে ভাল কিছু করে, প্রভুর থেকে সে তা গ্রহণ করবে। \\ts*\n\\p",
+    "glPhrase": "slave",
+    "history": {
+      "slaves": {
+        "দাসের": 1
+      },
+      "serving": {
+        "সেবা কর": 1
+      }
+    },
+    "expected": [
+      "দাস"
+    ],
+    "selections": [
+      {
+        "text": "দাস",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 6,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "hdec",
+      "quote": "δοῦλος",
+      "quoteString": "δοῦλος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 6:8, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-17-spirit",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "spirit",
+    "verse": "যেন আমাদের প্রভু যীশু খ্রীষ্টের ঈশ্বর, মহিমার পিতা, তাঁর জ্ঞানে প্রজ্ঞার ও প্রকাশের একটি আত্মা তোমাদেরকে দেন,",
+    "glPhrase": "a spirit",
+    "history": {
+      "spiritual": {
+        "আত্মিক": 1
+      }
+    },
+    "expected": [
+      "একটি আত্মা"
+    ],
+    "selections": [
+      {
+        "text": "একটি",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "আত্মা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "spirit",
+      "checkId": "t6tr",
+      "quote": "πνεῦμα",
+      "quoteString": "πνεῦμα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "spirit"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:17, tW spirit, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-19-spirit",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "spirit",
+    "verse": "গীত ও স্তোত্র ও আত্মিক সঙ্কীর্ত্তনে একে অপরের সাথে কথা বল, তোমাদের হৃদয়ে প্রভুর উদ্দেশ্যে গান গাও এবং গীত গাও,",
+    "glPhrase": "spiritual",
+    "history": {
+      "spiritual": {
+        "আত্মিক": 1
+      },
+      "a spirit": {
+        "একটি আত্মা": 1
+      }
+    },
+    "expected": [
+      "আত্মিক"
+    ],
+    "selections": [
+      {
+        "text": "আত্মিক",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "spirit",
+      "checkId": "eb9x",
+      "quote": "πνευματικαῖς",
+      "quoteString": "πνευματικαῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "spirit"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:19, tW spirit, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-4-understand",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "understand",
+    "verse": "তাতে মনোযোগ করে, যখন তোমরা এটি পড়বে, খ্রীষ্টের রহস্যের মধ্যে আমার দৃষ্টিভঙ্গি বুঝতে তোমরা সক্ষম হবে,",
+    "glPhrase": "to understand",
+    "history": {
+      "understanding": {
+        "বুদ্ধিতে": 1
+      }
+    },
+    "expected": [
+      "বুঝতে"
+    ],
+    "selections": [
+      {
+        "text": "বুঝতে",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "understand",
+      "checkId": "ta8g",
+      "quote": "νοῆσαι",
+      "quoteString": "νοῆσαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "understand"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:4, tW understand, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-20-understand",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "understand",
+    "verse": "আর তাঁতে আমরা যা প্রার্থনা বা চিন্তা করি সেই সমস্ত কিছুর উর্ধ্বে যিনি অনেক বেশি কাজ করতে সক্ষম, আমাদের মধ্যে কাজ সেই শক্তি অনুসারে,",
+    "glPhrase": "think",
+    "history": {
+      "understanding": {
+        "বুদ্ধিতে": 1
+      },
+      "to understand": {
+        "বুঝতে": 1
+      }
+    },
+    "expected": [
+      "চিন্তা করি"
+    ],
+    "selections": [
+      {
+        "text": "চিন্তা",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "করি",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "understand",
+      "checkId": "nqj9",
+      "quote": "νοοῦμεν",
+      "quoteString": "νοοῦμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "understand"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:20, tW understand, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-5-17-understand",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "understand",
+    "verse": "এর জন্য, বোকা হয়ো না, কিন্তু প্রভুর ইচ্ছা কি, তা বোঝো। \\ts*",
+    "glPhrase": "understand",
+    "history": {
+      "understanding": {
+        "বুদ্ধিতে": 1
+      },
+      "to understand": {
+        "বুঝতে": 1
+      },
+      "think": {
+        "চিন্তা করি": 1
+      }
+    },
+    "expected": [
+      "তা বোঝো"
+    ],
+    "selections": [
+      {
+        "text": "তা",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "বোঝো",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 5,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "understand",
+      "checkId": "h8zk",
+      "quote": "συνίετε",
+      "quoteString": "συνίετε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "understand"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 5:17, tW understand, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-1-17-wise",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wise",
+    "verse": "যেন আমাদের প্রভু যীশু খ্রীষ্টের ঈশ্বর, মহিমার পিতা, তাঁর জ্ঞানে প্রজ্ঞার ও প্রকাশের একটি আত্মা তোমাদেরকে দেন,",
+    "glPhrase": "of wisdom",
+    "history": {
+      "wisdom": {
+        "প্রজ্ঞা": 1
+      }
+    },
+    "expected": [
+      "প্রজ্ঞার"
+    ],
+    "selections": [
+      {
+        "text": "প্রজ্ঞার",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 1,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "wise",
+      "checkId": "zkcy",
+      "quote": "σοφίας",
+      "quoteString": "σοφίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wise"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 1:17, tW wise, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-bn-eph-3-10-wise",
+    "targetLang": "bn",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "wise",
+    "verse": "যাতে এখন মন্ডলীর মাধ্যমে ঈশ্বরের নানাবিধ প্রজ্ঞা স্বর্গীয় স্থানের শাসকদের এবং কর্তৃত্বদের জানানো যায়,",
+    "glPhrase": "wisdom",
+    "history": {
+      "wisdom": {
+        "প্রজ্ঞা": 1
+      },
+      "of wisdom": {
+        "প্রজ্ঞার": 1
+      }
+    },
+    "expected": [
+      "প্রজ্ঞা"
+    ],
+    "selections": [
+      {
+        "text": "প্রজ্ঞা",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "eph",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "wise",
+      "checkId": "r48f",
+      "quote": "σοφία",
+      "quoteString": "σοφία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "wise"
+    ],
+    "madeUp": false,
+    "source": "bn_glt_eph_book 3:10, tW wise, GL en ult/v91_unfoldingWord"
+  }
+]
