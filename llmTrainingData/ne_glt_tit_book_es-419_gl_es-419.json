@@ -1,0 +1,1939 @@
+[
+  {
+    "id": "train-ne-tit-2-8-evil",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "र कसैले निन्‍दा गर्न नपाउने ठीक बोली होस‍्, ताकि हाम्रो विरुद्धमा बोल्‍नलाई केही खराब कुरा नभएकोले विरोधी लज्‍जित होस्।",
+    "glPhrase": "malo",
+    "history": {
+      "malas": {
+        "दुष्‍ट": 1
+      }
+    },
+    "expected": [
+      "खराब कुरा"
+    ],
+    "selections": [
+      {
+        "text": "खराब",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "कुरा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:8, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-3-evil",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "किनभने एक पटक हामीहरू पनि मूर्ख र अनाज्ञाकारी थियौँ। हामी किसिम-किसिमका कामवासना र सुख-विलासद्वारा बहकाइएका र दास बनाइएका थियौँ। हामी दुष्‍टता र ईर्ष्‍यामा, घृणित थोकहरूमा, र एउटाले अर्कालाई घृणा गर्दै जिउँथ्यौँ।",
+    "glPhrase": "malicia",
+    "history": {
+      "malas": {
+        "दुष्‍ट": 1
+      },
+      "malo": {
+        "खराब कुरा": 1
+      }
+    },
+    "expected": [
+      "हामी:2 दुष्‍टता"
+    ],
+    "selections": [
+      {
+        "text": "हामी",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "दुष्‍टता",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:3, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-2-faith",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "वृद्ध मानिसहरू सहनशील, सम्‍मानित, समझदार, विश्‍वासमा, प्रेममा, र धैर्यमा पक्‍का हुनुपर्दछ।",
+    "glPhrase": "en la fe",
+    "history": {
+      "fe": {
+        "विश्‍वासमा": 1
+      }
+    },
+    "expected": [
+      "विश्‍वासमा"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वासमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "skyq",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "πίστει",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:2, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-10-faith",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "चोरी नगर्ने तर बरु सारा असल विश्‍वास देखाउने हुनु पर्छ, ताकि हाम्रा उद्धारकर्ता परमेश्‍वरको शिक्षालाई तिनीहरूले हरेक तरिकामा श्रेय दिन सकून",
+    "glPhrase": "fe",
+    "history": {
+      "fe": {
+        "विश्‍वासमा": 1
+      },
+      "en la fe": {
+        "विश्‍वासमा": 1
+      }
+    },
+    "expected": [
+      "विश्‍वास"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वास",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:10, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-9-faithful",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faithful",
+    "verse": "तिनीले भरपर्दो सन्‍देशलाई बलियोसँग समात्‍नु पर्दछ, जुन शिक्षा अनुसारको होस्, ताकि तिनीले \n दुवै असल शिक्षाद्वारा अरूलाई प्रोत्‍साहन दिन र उहाँको विरोध गर्नेहरूलाई हप्‍काउन सकून्।",
+    "glPhrase": "fiel",
+    "history": {
+      "fieles": {
+        "विश्‍वासयोग्‍य": 1
+      }
+    },
+    "expected": [
+      "भरपर्दो"
+    ],
+    "selections": [
+      {
+        "text": "भरपर्दो",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "x67x",
+      "quote": "πιστοῦ",
+      "quoteString": "πιστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:9, tW faithful, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-8-faithful",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faithful",
+    "verse": "यो सन्‍देश विश्‍वासयोग्‍य छ, र म चाहन्‍छु कि तिमीले यी कुराहरूमा जोड देऊ, ताकि तिनीहरू जसले परमेश्‍वरमा विश्‍वास गरेका छन्, असल कामहरूमा आफैलाई संलग्‍न गराउन होसियार हुन सकून्। यी कुराहरू मानिसहरूको लागि असल र उपयोगी छन्।",
+    "glPhrase": "es digno de confianza",
+    "history": {
+      "fieles": {
+        "विश्‍वासयोग्‍य": 1
+      },
+      "fiel": {
+        "भरपर्दो": 1
+      }
+    },
+    "expected": [
+      "विश्‍वासयोग्‍य छ"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वासयोग्‍य",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "dxb8",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:8, tW faithful, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-1-god-2",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "पावल, परमेश्‍वरका दास र येशू ख्रीष्‍टका प्रेरित, परमेश्‍वरका चुनिएका मानिसहरूको विश्‍वास  र सत्‍यको ज्ञान अनुसार जुन भक्तिसँग सहमत हुन्छ,",
+    "glPhrase": "de Dios",
+    "occurrence": 2,
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वरका:2"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरका",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:1, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-7-god",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "किनकि एल्‍डर निर्दोष हुनु पर्छ, परमेश्‍वरको घरको व्‍यवस्‍थापकको रूपमा, घमण्डी होइन, सजिलै नरिसाउने, दाखमद्यको लत नभएको, झगडा नगर्ने, र लोभ नभएको मानिस।",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 2
+      }
+    },
+    "expected": [
+      "परमेश्‍वरको"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:7, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-16-god",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "तिनीहरूले परमेश्‍वरलाई चिनेको दाबी गर्छन्, तर तिनीहरूले उहाँलाई आफ्‍नो कार्यद्वारा इन्‍कार गर्छन। तिनीहरू घिनलाग्‍दा र अनाज्ञाकारी र कुनै पनि असल कामको लागि अयोग्‍य छन्।",
+    "glPhrase": "a Dios",
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 2,
+        "परमेश्‍वरको": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वरलाई"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:16, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-10-god",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "चोरी नगर्ने तर बरु सारा असल विश्‍वास देखाउने हुनु पर्छ, ताकि हाम्रा उद्धारकर्ता परमेश्‍वरको शिक्षालाई तिनीहरूले हरेक तरिकामा श्रेय दिन सकून",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 2,
+        "परमेश्‍वरको": 1
+      },
+      "a Dios": {
+        "परमेश्‍वरलाई": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वरको"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:10, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-11-god",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "किनकि परमेश्‍वरको अनुग्रह सबै मानिसहरूको उद्धारको लागि प्रकट भएको छ,",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 2,
+        "परमेश्‍वरको": 2
+      },
+      "a Dios": {
+        "परमेश्‍वरलाई": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वरको"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xef2",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:11, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-4-god",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "तर जब परमेश्‍वर हाम्रा उद्धारकर्ताको दया र उहाँको प्रेम मानिसजातिको लागि प्रकट भयो,",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 2,
+        "परमेश्‍वरको": 3
+      },
+      "a Dios": {
+        "परमेश्‍वरलाई": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वर"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वर",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:4, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-8-god",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "यो सन्‍देश विश्‍वासयोग्‍य छ, र म चाहन्‍छु कि तिमीले यी कुराहरूमा जोड देऊ, ताकि तिनीहरू जसले परमेश्‍वरमा विश्‍वास गरेका छन्, असल कामहरूमा आफैलाई संलग्‍न गराउन होसियार हुन सकून्। यी कुराहरू मानिसहरूको लागि असल र उपयोगी छन्।",
+    "glPhrase": "en Dios",
+    "history": {
+      "de Dios": {
+        "परमेश्‍वरका": 2,
+        "परमेश्‍वरको": 3
+      },
+      "a Dios": {
+        "परमेश्‍वरलाई": 1
+      },
+      "Dios": {
+        "परमेश्‍वर": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वरमा"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:8, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-12-godly",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "godly",
+    "verse": "हामीलाई तालिम दिँदै, ताकि ईश्‍वरहीनता र सांसारिक अभिलाषाहरूलाई इन्‍कार गर्दै, हामी वर्तमान युगमा समझदार र धार्मिक, र ईश्‍वरीय मार्गमा जिउन सकौँ,",
+    "glPhrase": "a la impiedad",
+    "history": {
+      "la piedad": {
+        "भक्तिसँग सहमत हुन्छ": 1
+      }
+    },
+    "expected": [
+      "ईश्‍वरहीनता"
+    ],
+    "selections": [
+      {
+        "text": "ईश्‍वरहीनता",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "trje",
+      "quote": [
+        {
+          "word": "τὴν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἀσέβειαν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὴν ἀσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:12, tW godly, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-12-godly",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "godly",
+    "verse": "हामीलाई तालिम दिँदै, ताकि ईश्‍वरहीनता र सांसारिक अभिलाषाहरूलाई इन्‍कार गर्दै, हामी वर्तमान युगमा समझदार र धार्मिक, र ईश्‍वरीय मार्गमा जिउन सकौँ,",
+    "glPhrase": "piadosa",
+    "history": {
+      "la piedad": {
+        "भक्तिसँग सहमत हुन्छ": 1
+      },
+      "a la impiedad": {
+        "ईश्‍वरहीनता": 1
+      }
+    },
+    "expected": [
+      "ईश्‍वरीय मार्गमा"
+    ],
+    "selections": [
+      {
+        "text": "ईश्‍वरीय",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "मार्गमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "wyfa",
+      "quote": "εὐσεβῶς",
+      "quoteString": "εὐσεβῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:12, tW godly, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-16-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "तिनीहरूले परमेश्‍वरलाई चिनेको दाबी गर्छन्, तर तिनीहरूले उहाँलाई आफ्‍नो कार्यद्वारा इन्‍कार गर्छन। तिनीहरू घिनलाग्‍दा र अनाज्ञाकारी र कुनै पनि असल कामको लागि अयोग्‍य छन्।",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:16, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-5-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "समझदार, शुद्ध, असल घर-व्‍यवहार सम्‍हाल्‍ने हुन र पतिको अधीनमा बस्‍न, ताकि परमेश्‍वरको वचनको अपमान नहोस्।",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 1
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:5, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-7-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "सबै कुरामा असल कामहरूको उदाहरणको रूपमा आफैलाई प्रस्‍तुत गर। तिम्रो शिक्षामा, मर्यादाका साथ इमानदार बन,",
+    "glPhrase": "de buenas",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 1
+      },
+      "buenas": {
+        "असल": 1
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:7, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-14-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "कि हामीलाई सबै अधर्मबाट छुटकारा दिन र असल काम गर्न उत्सुक भएका विशेष मानिसहरूलाई उहाँको निम्ति शुद्ध बनाउनको लागि जसले आफैलाई हाम्रो निम्ति दिनुभयो।",
+    "glPhrase": "de buenas",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 1
+      },
+      "buenas": {
+        "असल": 1
+      },
+      "de buenas": {
+        "असल": 1
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-1-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "तिनीहरूलाई यी कुराहरूको याद दिलाइदेऊ, शासकहरू र अधिकारीहरूको अधीनमा बस्‍न, उनीहरूको आज्ञापालन गर्न, हरेक असल कामको लागि तयार हुन ,",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 1
+      },
+      "buenas": {
+        "असल": 1
+      },
+      "de buenas": {
+        "असल": 2
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:1, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-8-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "यो सन्‍देश विश्‍वासयोग्‍य छ, र म चाहन्‍छु कि तिमीले यी कुराहरूमा जोड देऊ, ताकि तिनीहरू जसले परमेश्‍वरमा विश्‍वास गरेका छन्, असल कामहरूमा आफैलाई संलग्‍न गराउन होसियार हुन सकून्। यी कुराहरू मानिसहरूको लागि असल र उपयोगी छन्।",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 2
+      },
+      "buenas": {
+        "असल": 1
+      },
+      "de buenas": {
+        "असल": 2
+      }
+    },
+    "expected": [
+      "जसले असल"
+    ],
+    "selections": [
+      {
+        "text": "जसले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-8-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "यो सन्‍देश विश्‍वासयोग्‍य छ, र म चाहन्‍छु कि तिमीले यी कुराहरूमा जोड देऊ, ताकि तिनीहरू जसले परमेश्‍वरमा विश्‍वास गरेका छन्, असल कामहरूमा आफैलाई संलग्‍न गराउन होसियार हुन सकून्। यी कुराहरू मानिसहरूको लागि असल र उपयोगी छन्।",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 2
+      },
+      "buenas": {
+        "असल": 1,
+        "जसले असल": 1
+      },
+      "de buenas": {
+        "असल": 2
+      }
+    },
+    "expected": [
+      "असल:2"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-14-good",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "र साथै, हाम्रा आफ्‍नैहरूले आवश्‍यकताहरूको निम्ति असल कामहरूमा सहभागी गराउन सिकून, ताकि तिनिहरू निष्‍फल नहोस्।",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "असल कुराको मित्र": 1
+      },
+      "buena": {
+        "असल": 2
+      },
+      "buenas": {
+        "असल": 2,
+        "जसले असल": 1
+      },
+      "de buenas": {
+        "असल": 2
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-13-jesus",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "जब हामी धन्‍य आशा प्राप्‍त गर्न र हाम्रा महान् परमेश्‍वर र उद्धारकर्ता येशू ख्रीष्‍टको महिमा प्रकट हुनको लागि पर्खिरहेका छौँ।",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:13, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-6-jesus",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "जसलाई उहाँले हाम्रा उद्धारकर्ता येशू ख्रीष्‍टद्वारा हामीमाथि प्रशस्‍त मात्रामा खन्‍याउनुभयो,",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "येशू": 1
+      },
+      "Jesucristo": {
+        "येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "snat",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:6, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-16-know",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "know",
+    "verse": "तिनीहरूले परमेश्‍वरलाई चिनेको दाबी गर्छन्, तर तिनीहरूले उहाँलाई आफ्‍नो कार्यद्वारा इन्‍कार गर्छन। तिनीहरू घिनलाग्‍दा र अनाज्ञाकारी र कुनै पनि असल कामको लागि अयोग्‍य छन्।",
+    "glPhrase": "conocer",
+    "history": {
+      "al conocimiento": {
+        "ज्ञान": 1
+      }
+    },
+    "expected": [
+      "चिनेको"
+    ],
+    "selections": [
+      {
+        "text": "चिनेको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:16, tW know, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-11-know",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "know",
+    "verse": "यो जानेर कि यस्‍तो मानिस आफै दोषी ठहरिएर सही मार्गबाट तर्केको र पाप गरिरहेको छ।",
+    "glPhrase": "sabes",
+    "history": {
+      "al conocimiento": {
+        "ज्ञान": 1
+      },
+      "conocer": {
+        "चिनेको": 1
+      }
+    },
+    "expected": [
+      "जानेर कि"
+    ],
+    "selections": [
+      {
+        "text": "जानेर",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "कि",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:11, tW know, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-4-love",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "love",
+    "verse": "यसरी तिनीहरूले युवतीहरूलाई यी कुराहरूका लागि तालिम दिऊन्, आफ्‍ना पतिलाई प्रेम गर्न र आफ्‍ना छोराछोरीहरूलाई प्रेम गर्न,",
+    "glPhrase": "amadoras de sus esposos",
+    "history": {
+      "en el amor": {
+        "प्रेममा": 1
+      }
+    },
+    "expected": [
+      "आफ्‍ना पतिलाई प्रेम"
+    ],
+    "selections": [
+      {
+        "text": "आफ्‍ना",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "पतिलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "प्रेम",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "q8p8",
+      "quote": "φιλάνδρους",
+      "quoteString": "φιλάνδρους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:4, tW love, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-4-love",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "love",
+    "verse": "यसरी तिनीहरूले युवतीहरूलाई यी कुराहरूका लागि तालिम दिऊन्, आफ्‍ना पतिलाई प्रेम गर्न र आफ्‍ना छोराछोरीहरूलाई प्रेम गर्न,",
+    "glPhrase": "y amadoras de sus hijos",
+    "history": {
+      "en el amor": {
+        "प्रेममा": 1
+      },
+      "amadoras de sus esposos": {
+        "आफ्‍ना पतिलाई प्रेम": 1
+      }
+    },
+    "expected": [
+      "र आफ्‍ना:2 छोराछोरीहरूलाई प्रेम:2 गर्न:2"
+    ],
+    "selections": [
+      {
+        "text": "र",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "आफ्‍ना",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "छोराछोरीहरूलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "प्रेम",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "गर्न",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m7kb",
+      "quote": "φιλοτέκνους",
+      "quoteString": "φιλοτέκνους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:4, tW love, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-15-purify",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "जो शुद्ध छन् तिनीहरूको लागि सबै कुरा शुद्ध हुन्‍छन् तर तिनीहरू भ्रष्‍ट र अविश्‍वासीहरूका लागि केही पनि शुद्ध छैन्, तर तिनीहरूको बुद्धि र विवेक दुवै भ्रष्‍ट भएका छन्।",
+    "glPhrase": "que son puros",
+    "history": {
+      "son puras": {
+        "तिनीहरूको लागि शुद्ध हुन्‍छन्": 1
+      }
+    },
+    "expected": [
+      "शुद्ध छन्"
+    ],
+    "selections": [
+      {
+        "text": "शुद्ध",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "छन्",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "hr5s",
+      "quote": "καθαροῖς",
+      "quoteString": "καθαροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-15-purify",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "जो शुद्ध छन् तिनीहरूको लागि सबै कुरा शुद्ध हुन्‍छन् तर तिनीहरू भ्रष्‍ट र अविश्‍वासीहरूका लागि केही पनि शुद्ध छैन्, तर तिनीहरूको बुद्धि र विवेक दुवै भ्रष्‍ट भएका छन्।",
+    "glPhrase": "es puro",
+    "history": {
+      "son puras": {
+        "तिनीहरूको लागि शुद्ध हुन्‍छन्": 1
+      },
+      "que son puros": {
+        "शुद्ध छन्": 1
+      }
+    },
+    "expected": [
+      "शुद्ध:3 छैन्"
+    ],
+    "selections": [
+      {
+        "text": "शुद्ध",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "छैन्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-5-purify",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "समझदार, शुद्ध, असल घर-व्‍यवहार सम्‍हाल्‍ने हुन र पतिको अधीनमा बस्‍न, ताकि परमेश्‍वरको वचनको अपमान नहोस्।",
+    "glPhrase": "puras",
+    "history": {
+      "son puras": {
+        "तिनीहरूको लागि शुद्ध हुन्‍छन्": 1
+      },
+      "que son puros": {
+        "शुद्ध छन्": 1
+      },
+      "es puro": {
+        "शुद्ध छैन्": 1
+      }
+    },
+    "expected": [
+      "शुद्ध"
+    ],
+    "selections": [
+      {
+        "text": "शुद्ध",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:5, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-14-purify",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "कि हामीलाई सबै अधर्मबाट छुटकारा दिन र असल काम गर्न उत्सुक भएका विशेष मानिसहरूलाई उहाँको निम्ति शुद्ध बनाउनको लागि जसले आफैलाई हाम्रो निम्ति दिनुभयो।",
+    "glPhrase": "purifique",
+    "history": {
+      "son puras": {
+        "तिनीहरूको लागि शुद्ध हुन्‍छन्": 1
+      },
+      "que son puros": {
+        "शुद्ध छन्": 1
+      },
+      "es puro": {
+        "शुद्ध छैन्": 1
+      },
+      "puras": {
+        "शुद्ध": 1
+      }
+    },
+    "expected": [
+      "शुद्ध बनाउनको लागि"
+    ],
+    "selections": [
+      {
+        "text": "शुद्ध",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "बनाउनको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "लागि",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:14, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-1-13-rebuke",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "rebuke",
+    "verse": "यो गवाही साँचो हो। यसकारणले, तिनीहरूलाई कडासित हप्‍काऊ, ताकि तिनीहरू विश्‍वासमा स्‍थिर हुन सकून्,",
+    "glPhrase": "repréndelos",
+    "history": {
+      "reprender": {
+        "हप्‍काउन सकून्": 1
+      }
+    },
+    "expected": [
+      "हप्‍काऊ"
+    ],
+    "selections": [
+      {
+        "text": "हप्‍काऊ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 1:13, tW rebuke, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-15-rebuke",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "rebuke",
+    "verse": "यी कुराहरूको विषयमा कुरा गर, र अर्ती देओ, र पूरा अधिकारसहित हप्‍काओ। कसैले तिम्रो अवहेलना नगरोस्।",
+    "glPhrase": "reprende",
+    "history": {
+      "reprender": {
+        "हप्‍काउन सकून्": 1
+      },
+      "repréndelos": {
+        "हप्‍काऊ": 1
+      }
+    },
+    "expected": [
+      "हप्‍काओ"
+    ],
+    "selections": [
+      {
+        "text": "हप्‍काओ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:15, tW rebuke, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-4-savior",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "savior",
+    "verse": "तर जब परमेश्‍वर हाम्रा उद्धारकर्ताको दया र उहाँको प्रेम मानिसजातिको लागि प्रकट भयो,",
+    "glPhrase": "de parte de salvador",
+    "history": {
+      "salvador": {
+        "उद्धारकर्ता": 1
+      }
+    },
+    "expected": [
+      "उद्धारकर्ताको"
+    ],
+    "selections": [
+      {
+        "text": "उद्धारकर्ताको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "x4gg",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:4, tW savior, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-6-savior",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "savior",
+    "verse": "जसलाई उहाँले हाम्रा उद्धारकर्ता येशू ख्रीष्‍टद्वारा हामीमाथि प्रशस्‍त मात्रामा खन्‍याउनुभयो,",
+    "glPhrase": "Salvador",
+    "history": {
+      "salvador": {
+        "उद्धारकर्ता": 1
+      },
+      "de parte de salvador": {
+        "उद्धारकर्ताको": 1
+      }
+    },
+    "expected": [
+      "उद्धारकर्ता"
+    ],
+    "selections": [
+      {
+        "text": "उद्धारकर्ता",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "h9fu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:6, tW savior, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-2-9-subject",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "subject",
+    "verse": "कमाराहरू हरेक कुरामा आफ्‍नै मालिकको अधीनमा हुने, खुसी तुल्याउने, र मुख नलाग्‍ने हुनु पर्छ,",
+    "glPhrase": "Que se sometan",
+    "history": {
+      "sujetas": {
+        "अधीनमा बस्‍न": 1
+      }
+    },
+    "expected": [
+      "अधीनमा हुने"
+    ],
+    "selections": [
+      {
+        "text": "अधीनमा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "हुने",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 2:9, tW subject, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-ne-tit-3-1-subject",
+    "targetLang": "ne",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "subject",
+    "verse": "तिनीहरूलाई यी कुराहरूको याद दिलाइदेऊ, शासकहरू र अधिकारीहरूको अधीनमा बस्‍न, उनीहरूको आज्ञापालन गर्न, हरेक असल कामको लागि तयार हुन ,",
+    "glPhrase": "que se sometan",
+    "history": {
+      "sujetas": {
+        "अधीनमा बस्‍न": 1
+      },
+      "Que se sometan": {
+        "अधीनमा हुने": 1
+      }
+    },
+    "expected": [
+      "अधीनमा बस्‍न"
+    ],
+    "selections": [
+      {
+        "text": "अधीनमा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "बस्‍न",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_tit_book 3:1, tW subject, GL es-419 glt/v42_es-419_gl"
+  }
+]

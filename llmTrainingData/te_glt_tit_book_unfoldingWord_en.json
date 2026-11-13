@@ -1,0 +1,1709 @@
+[
+  {
+    "id": "train-te-tit-1-4-christ",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "మన ఉమ్మడి విశ్వాసంలో ఒక నిజమైన కుమారుడు తీతుకు తండ్రియైన దేవుడు, మరియు మన రక్షకుడు క్రీస్తు యేసు నుండి కృప, మరియు సమాధానం. \n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "క్రీస్తు యొక్క": 1
+      }
+    },
+    "expected": [
+      "క్రీస్తు"
+    ],
+    "selections": [
+      {
+        "text": "క్రీస్తు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "f6ja",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:4, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-13-christ",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "శుభప్రదమైన నిరీక్షణ మరియు  మన మహా దేవుడు, మరియు రక్షకుడు యేసు క్రీస్తు యొక్క  మహిమ యొక్క ప్రత్యక్షత పొందడానికి మనం ఎదురుచూస్తూఉండగా,\n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "క్రీస్తు యొక్క": 1,
+        "క్రీస్తు": 1
+      }
+    },
+    "expected": [
+      "క్రీస్తు"
+    ],
+    "selections": [
+      {
+        "text": "క్రీస్తు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "smpv",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-6-christ",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "ఆయనను దేవుడు మన రక్షకుడు యేసు క్రీస్తు ద్వారా మన మీద సమృద్ధిగా కుమ్మరించాడు,",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "క్రీస్తు యొక్క": 1,
+        "క్రీస్తు": 2
+      }
+    },
+    "expected": [
+      "క్రీస్తు"
+    ],
+    "selections": [
+      {
+        "text": "క్రీస్తు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bmkx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:6, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-1-god-2",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "దేవునియొక్క బానిస మరియు యేసు క్రీస్తు యొక్క అపొస్తలుడు అయిన పౌలు, దేవుని ఎన్నుకొన్న ప్రజల విశ్వాసం మరియు ఆ దైవభక్తికి అనుగుణమైన సత్యం గురించిన జ్ఞానం కోసం,",
+    "glPhrase": "of God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1
+      }
+    },
+    "expected": [
+      "దేవుని"
+    ],
+    "selections": [
+      {
+        "text": "దేవుని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:1, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-2-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "యదార్ధవంతుడైన దేవుడు అన్ని కాలాల యుగాలకు ముందే శాశ్వత జీవం యొక్క నిశ్చిత నిరీక్షణతో కూడిన వాగ్దానంచేసాడు.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 1
+      }
+    },
+    "expected": [
+      "దేవుడు"
+    ],
+    "selections": [
+      {
+        "text": "దేవుడు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:2, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-3-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "అయితే సరైన సమయంలో మన రక్షకుడు దేవుని ఆజ్ఞ ప్రకారం నాకు అప్పగించబడినటువంటి ప్రకటన వలన తన వాక్కును ఆయన వెల్లడిచేశాడు. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 1
+      },
+      "God": {
+        "దేవుడు": 1
+      }
+    },
+    "expected": [
+      "దేవుని"
+    ],
+    "selections": [
+      {
+        "text": "దేవుని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-7-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "ఎందుకనగా అధ్యక్షుడు నిందారహితుడు వలే దేవుని ఇంటి సేవ నిర్వహించే వాడుగా ఉండాలి. అహంకారి కాక, త్వరగా కోపపడేవాడు కాక, మద్యానికి అలవాటు పడినవాడు కాక, దెబ్బలాడేవాడు కాక, దురాశపరుడు కాక,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 1
+      },
+      "God": {
+        "దేవుడు": 1,
+        "దేవుని": 1
+      }
+    },
+    "expected": [
+      "దేవుని"
+    ],
+    "selections": [
+      {
+        "text": "దేవుని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:7, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-16-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "దేవుడు తెలుసు అని వారు చెప్పుకొంటారు అయితే వారి పనుల వలన ఆయనను నిరాకరించారు. వారు అసహ్యులు, మరియు అవిధేయులు, మరియు ఎలాంటి మంచి పని విషయంలోనూ పనికి రానివారు.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 2
+      },
+      "God": {
+        "దేవుడు": 1,
+        "దేవుని": 1
+      }
+    },
+    "expected": [
+      "దేవుడు"
+    ],
+    "selections": [
+      {
+        "text": "దేవుడు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:16, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-10-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "దొంగతనం చేయకుండా అయితే బదులుగా  సమస్త మంచి విశ్వాసం కనుపరచుము. తద్వారా మన రక్షకుడు అయిన దేవుని గురించిన ఉపదేశానికి అన్ని విధాలుగా వారు కీర్తి తెస్తారు. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 2
+      },
+      "God": {
+        "దేవుడు": 2,
+        "దేవుని": 1
+      }
+    },
+    "expected": [
+      "దేవుని"
+    ],
+    "selections": [
+      {
+        "text": "దేవుని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-13-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "శుభప్రదమైన నిరీక్షణ మరియు  మన మహా దేవుడు, మరియు రక్షకుడు యేసు క్రీస్తు యొక్క  మహిమ యొక్క ప్రత్యక్షత పొందడానికి మనం ఎదురుచూస్తూఉండగా,\n\\p",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 2
+      },
+      "God": {
+        "దేవుడు": 2,
+        "దేవుని": 2
+      }
+    },
+    "expected": [
+      "దేవుడు"
+    ],
+    "selections": [
+      {
+        "text": "దేవుడు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "scfu",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:13, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-4-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "అయితే మన రక్షకుడు దేవుని దయ, మరియు మానవుల కోసం ఆయన ప్రేమ ప్రత్యక్షం అయినప్పుడు",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 2,
+        "దేవుడు": 1
+      },
+      "God": {
+        "దేవుడు": 2,
+        "దేవుని": 2
+      }
+    },
+    "expected": [
+      "దేవుని"
+    ],
+    "selections": [
+      {
+        "text": "దేవుని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-8-god",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "ఈ సందేశం నమ్మదగినది, మరియు దేవుని విశ్వసించినవారు మంచిపనులలో తాము పాల్గొనడానికి జాగ్రత్తగా ఉండేలా నీవు ఈ సంగతుల మీద నొక్కిచెప్పాలని నేను కోరుతున్నాను. ఈ సంగతులు మంచివి, మరియు ప్రతిఒక్కరికోసం ప్రయోజనకరం.\n\\p",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "దేవునియొక్క": 1,
+        "దేవుని": 2,
+        "దేవుడు": 1
+      },
+      "God": {
+        "దేవుడు": 2,
+        "దేవుని": 3
+      }
+    },
+    "expected": [
+      "దేవుని"
+    ],
+    "selections": [
+      {
+        "text": "దేవుని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-16-good",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "దేవుడు తెలుసు అని వారు చెప్పుకొంటారు అయితే వారి పనుల వలన ఆయనను నిరాకరించారు. వారు అసహ్యులు, మరియు అవిధేయులు, మరియు ఎలాంటి మంచి పని విషయంలోనూ పనికి రానివారు.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "మంచి దానికి స్నేహితుడు": 1
+      }
+    },
+    "expected": [
+      "మంచి"
+    ],
+    "selections": [
+      {
+        "text": "మంచి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:16, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-5-good",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "నిగ్రహంగా , పవిత్రులుగా, మంచి ఇంటి యజమానిగా, తమ సొంత భర్తలకు లోబడుతూ ఉండాలని, తద్వారా దేవుని వాక్యము దూషించబడకుండా ఉంటుంది.\n\\p",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "మంచి దానికి స్నేహితుడు": 1
+      },
+      "good": {
+        "మంచి": 1
+      }
+    },
+    "expected": [
+      "మంచి"
+    ],
+    "selections": [
+      {
+        "text": "మంచి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:5, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-7-good",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "మంచి పనుల విషయంలో అన్నివిధాలలో నిన్నునీవే ఆదర్శంగా కనపరచుకొనేలాఉండు. ఉపదేశంలో నిష్కళంకంగా మర్యాదతో,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "మంచి దానికి స్నేహితుడు": 1
+      },
+      "good": {
+        "మంచి": 2
+      }
+    },
+    "expected": [
+      "మంచి"
+    ],
+    "selections": [
+      {
+        "text": "మంచి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:7, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-10-good",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "దొంగతనం చేయకుండా అయితే బదులుగా  సమస్త మంచి విశ్వాసం కనుపరచుము. తద్వారా మన రక్షకుడు అయిన దేవుని గురించిన ఉపదేశానికి అన్ని విధాలుగా వారు కీర్తి తెస్తారు. \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "మంచి దానికి స్నేహితుడు": 1
+      },
+      "good": {
+        "మంచి": 3
+      }
+    },
+    "expected": [
+      "మంచి"
+    ],
+    "selections": [
+      {
+        "text": "మంచి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-1-good",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "పరిపాలకులకూ అధికారులుకూ లోబడడానికి, వారికి విధేయులైఉండడానికి, ప్రతి మంచి పని కోసం సంసిద్ధంగా ఉండడానికి వారికి జ్ఞాపకంచెయ్యి.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "మంచి దానికి స్నేహితుడు": 1
+      },
+      "good": {
+        "మంచి": 4
+      }
+    },
+    "expected": [
+      "మంచి"
+    ],
+    "selections": [
+      {
+        "text": "మంచి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-4-jesus",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "మన ఉమ్మడి విశ్వాసంలో ఒక నిజమైన కుమారుడు తీతుకు తండ్రియైన దేవుడు, మరియు మన రక్షకుడు క్రీస్తు యేసు నుండి కృప, మరియు సమాధానం. \n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "యేసు": 1
+      }
+    },
+    "expected": [
+      "యేసు"
+    ],
+    "selections": [
+      {
+        "text": "యేసు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jgfj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:4, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-13-jesus",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "శుభప్రదమైన నిరీక్షణ మరియు  మన మహా దేవుడు, మరియు రక్షకుడు యేసు క్రీస్తు యొక్క  మహిమ యొక్క ప్రత్యక్షత పొందడానికి మనం ఎదురుచూస్తూఉండగా,\n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "యేసు": 1
+      },
+      "Jesus": {
+        "యేసు": 1
+      }
+    },
+    "expected": [
+      "యేసు"
+    ],
+    "selections": [
+      {
+        "text": "యేసు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:13, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-6-jesus",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "ఆయనను దేవుడు మన రక్షకుడు యేసు క్రీస్తు ద్వారా మన మీద సమృద్ధిగా కుమ్మరించాడు,",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "యేసు": 1
+      },
+      "Jesus": {
+        "యేసు": 2
+      }
+    },
+    "expected": [
+      "యేసు"
+    ],
+    "selections": [
+      {
+        "text": "యేసు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "snat",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:6, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-16-know",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "దేవుడు తెలుసు అని వారు చెప్పుకొంటారు అయితే వారి పనుల వలన ఆయనను నిరాకరించారు. వారు అసహ్యులు, మరియు అవిధేయులు, మరియు ఎలాంటి మంచి పని విషయంలోనూ పనికి రానివారు.",
+    "glPhrase": "to know",
+    "history": {
+      "knowledge": {
+        "జ్ఞానం": 1
+      }
+    },
+    "expected": [
+      "తెలుసు అని"
+    ],
+    "selections": [
+      {
+        "text": "తెలుసు",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "అని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:16, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-11-know",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "అలాటి ఒక వ్యక్తి సరైన దారి నుండి తప్పిపోయాడు మరియు పాపం చేస్తున్నాడు,  తనకు తానే శిక్షవిధించుకొంటున్నాడు అని తెలుసు.\n\\p",
+    "glPhrase": "knowing",
+    "history": {
+      "knowledge": {
+        "జ్ఞానం": 1
+      },
+      "to know": {
+        "తెలుసు అని": 1
+      }
+    },
+    "expected": [
+      "తెలుసు"
+    ],
+    "selections": [
+      {
+        "text": "తెలుసు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:11, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-4-love",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "ఇదే విధానంలో యౌవనస్త్రీలు తమ భర్తలను ప్రేమించువారుగా, మరియు తమ బిడ్డలను ప్రేమించు వారుగా ఉండాలని వారు తర్ఫీదుచేయాలి,",
+    "glPhrase": "lovers of their children",
+    "history": {
+      "lovers of their husbands": {
+        "తమ భర్తలను ప్రేమించు వారుగా": 1
+      }
+    },
+    "expected": [
+      "ప్రేమించువారుగా మరియు తమ:2 బిడ్డలను"
+    ],
+    "selections": [
+      {
+        "text": "ప్రేమించువారుగా",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "మరియు",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "తమ",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "బిడ్డలను",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m7kb",
+      "quote": "φιλοτέκνους",
+      "quoteString": "φιλοτέκνους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-15-love",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "నా దగ్గర ఉన్నవారు అందరూ నీకు వందనాలు చెపుతున్నారు. విశ్వాసంలో మమ్మల్ని ప్రేమించే వారికి వందనాలుచెప్పు. కృప మీ అందరితో ఉంటుంది.",
+    "glPhrase": "loving",
+    "history": {
+      "lovers of their husbands": {
+        "తమ భర్తలను ప్రేమించు వారుగా": 1
+      },
+      "lovers of their children": {
+        "ప్రేమించువారుగా మరియు తమ బిడ్డలను": 1
+      }
+    },
+    "expected": [
+      "ప్రేమించే"
+    ],
+    "selections": [
+      {
+        "text": "ప్రేమించే",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "xuej",
+      "quote": "φιλοῦντας",
+      "quoteString": "φιλοῦντας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:15, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-15-purify",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "పవిత్రులకు అన్నీ పవిత్రం అయితే అపవిత్రులు అయిన వారికి, మరియు అవిశ్వాసులకు ఏదీ పవిత్రం కాదు. అయితే ఇద్దరి మనసులు మరియు వారి మనస్సాక్షి అపవిత్రం అయ్యాయి.",
+    "glPhrase": "is pure",
+    "history": {
+      "are pure": {
+        "పవిత్రం": 1
+      }
+    },
+    "expected": [
+      "పవిత్రం:2"
+    ],
+    "selections": [
+      {
+        "text": "పవిత్రం",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-5-purify",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "నిగ్రహంగా , పవిత్రులుగా, మంచి ఇంటి యజమానిగా, తమ సొంత భర్తలకు లోబడుతూ ఉండాలని, తద్వారా దేవుని వాక్యము దూషించబడకుండా ఉంటుంది.\n\\p",
+    "glPhrase": "pure",
+    "history": {
+      "are pure": {
+        "పవిత్రం": 1
+      },
+      "is pure": {
+        "పవిత్రం": 1
+      }
+    },
+    "expected": [
+      "పవిత్రులుగా"
+    ],
+    "selections": [
+      {
+        "text": "పవిత్రులుగా",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:5, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-14-purify",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "మనలను సమస్త దుర్మార్గం నుంచీ విమోచించడం కోసం , మరియు తనకోసం ఒక ప్రత్యేక ప్రజగా, మంచిపనులకోసం ఆసక్తిగలవారుగా పవిత్రపరచుకోవడానికి ఆయన మనకోసం తననుతాను అర్పించుకొన్నాడు.",
+    "glPhrase": "to purify",
+    "history": {
+      "are pure": {
+        "పవిత్రం": 1
+      },
+      "is pure": {
+        "పవిత్రం": 1
+      },
+      "pure": {
+        "పవిత్రులుగా": 1
+      }
+    },
+    "expected": [
+      "పవిత్రపరచుకోవడానికి"
+    ],
+    "selections": [
+      {
+        "text": "పవిత్రపరచుకోవడానికి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:14, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-1-13-rebuke",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "rebuke",
+    "verse": "ఈ సాక్ష్యం సత్యంగా ఉంది. ఈ కారణం కోసం వారిని కఠినంగా గద్దించు తద్వారా వారు విశ్వాసంలో స్థిరులుగా ఉంటారు.",
+    "glPhrase": "rebuke",
+    "history": {
+      "to rebuke": {
+        "గద్దించడానికి": 1
+      }
+    },
+    "expected": [
+      "గద్దించు"
+    ],
+    "selections": [
+      {
+        "text": "గద్దించు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 1:13, tW rebuke, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-15-rebuke",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "rebuke",
+    "verse": "ఈ విషయాలను మాట్లాడు, మరియు పూర్తి అధికారంతో హెచ్చరించు, మరియు గద్దించు. ఎవ్వరూ నిన్ను నిర్లక్ష్యపెట్టకుండాచూచుకో.",
+    "glPhrase": "rebuke",
+    "history": {
+      "to rebuke": {
+        "గద్దించడానికి": 1
+      },
+      "rebuke": {
+        "గద్దించు": 1
+      }
+    },
+    "expected": [
+      "గద్దించు"
+    ],
+    "selections": [
+      {
+        "text": "గద్దించు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:15, tW rebuke, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-12-righteous",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "మనకు శిక్షణ ఇస్తుంది, తద్వారా భక్తిహీనతనూ, మరియు ఈ లోక సంబంధమైన దురాశలు తిరస్కరించి, ఈ ప్రస్తుత యుగంలో వివేకంతోనూ, మరియు నీతి, మరియు భక్తిమార్గంలో మనము జీవిస్తూ ఉంటాము.",
+    "glPhrase": "righteous",
+    "history": {
+      "righteous": {
+        "నీతిపరుడు": 1
+      }
+    },
+    "expected": [
+      "నీతి"
+    ],
+    "selections": [
+      {
+        "text": "నీతి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "dr9j",
+      "quote": "δικαίως",
+      "quoteString": "δικαίως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:12, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-5-righteous",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "మనం చేసిన నీతి యొక్క పనులు మూలంగా కాదు అయితే తన కనికరం చేత నూతన జన్మ సంబంధమైన స్నానం ద్వారా, మరియు పరిశుద్ధాత్మ నూతనస్వభావం కలిగించడం చేత మనలను ఆయన రక్షించాడు.",
+    "glPhrase": "of righteousness",
+    "history": {
+      "righteous": {
+        "నీతిపరుడు": 1,
+        "నీతి": 1
+      }
+    },
+    "expected": [
+      "నీతి"
+    ],
+    "selections": [
+      {
+        "text": "నీతి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "sqsf",
+      "quote": "δικαιοσύνῃ",
+      "quoteString": "δικαιοσύνῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:5, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-5-selfcontrol",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "selfcontrol",
+    "verse": "నిగ్రహంగా , పవిత్రులుగా, మంచి ఇంటి యజమానిగా, తమ సొంత భర్తలకు లోబడుతూ ఉండాలని, తద్వారా దేవుని వాక్యము దూషించబడకుండా ఉంటుంది.\n\\p",
+    "glPhrase": "sensible",
+    "history": {
+      "self controlled": {
+        "ఆశానిగ్రహం కలవాడుగా ఉండాలి": 1
+      }
+    },
+    "expected": [
+      "నిగ్రహంగా"
+    ],
+    "selections": [
+      {
+        "text": "నిగ్రహంగా",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "z2h3",
+      "quote": "σώφρονας",
+      "quoteString": "σώφρονας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:5, tW selfcontrol, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-6-selfcontrol",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "selfcontrol",
+    "verse": "అదే విధంగా యువకులు నిగ్రహంగా ఉండాలని హెచ్చరించు.",
+    "glPhrase": "to be sensible",
+    "history": {
+      "self controlled": {
+        "ఆశానిగ్రహం కలవాడుగా ఉండాలి": 1
+      },
+      "sensible": {
+        "నిగ్రహంగా": 1
+      }
+    },
+    "expected": [
+      "నిగ్రహంగా ఉండాలని"
+    ],
+    "selections": [
+      {
+        "text": "నిగ్రహంగా",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ఉండాలని",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "wz6r",
+      "quote": "σωφρονεῖν",
+      "quoteString": "σωφρονεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:6, tW selfcontrol, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-5-slander",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "నిగ్రహంగా , పవిత్రులుగా, మంచి ఇంటి యజమానిగా, తమ సొంత భర్తలకు లోబడుతూ ఉండాలని, తద్వారా దేవుని వాక్యము దూషించబడకుండా ఉంటుంది.\n\\p",
+    "glPhrase": "may be insulted",
+    "history": {
+      "slanderers": {
+        "కొండెకత్తెలు": 1
+      }
+    },
+    "expected": [
+      "దూషించబడకుండా"
+    ],
+    "selections": [
+      {
+        "text": "దూషించబడకుండా",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:5, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-2-slander",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "ఎవరినీ దూషించకుండుటకు, సమాధానంగా, మృదువుగాఉండుటకు, అందరు మనుషుల పట్ల సంపూర్ణమైన వినయం చూపించడానికి.",
+    "glPhrase": "to revile",
+    "history": {
+      "slanderers": {
+        "కొండెకత్తెలు": 1
+      },
+      "may be insulted": {
+        "దూషించబడకుండా": 1
+      }
+    },
+    "expected": [
+      "దూషించకుండుటకు"
+    ],
+    "selections": [
+      {
+        "text": "దూషించకుండుటకు",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:2, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-2-9-subject",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "బానిసలు అన్నివిషయాలలో తమ సొంత యజమానులకు విధేయులై ఉండాలి,  సంతోషపెట్టేవారిగా మరియు వాదులాడ కుండా ఉండాలి,",
+    "glPhrase": "to be subject to",
+    "history": {
+      "and subject": {
+        "లోబడుతూ ఉండాలని": 1
+      }
+    },
+    "expected": [
+      "విధేయులై ఉండాలి"
+    ],
+    "selections": [
+      {
+        "text": "విధేయులై",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ఉండాలి",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 2:9, tW subject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-te-tit-3-1-subject",
+    "targetLang": "te",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "పరిపాలకులకూ అధికారులుకూ లోబడడానికి, వారికి విధేయులైఉండడానికి, ప్రతి మంచి పని కోసం సంసిద్ధంగా ఉండడానికి వారికి జ్ఞాపకంచెయ్యి.",
+    "glPhrase": "to submit",
+    "history": {
+      "and subject": {
+        "లోబడుతూ ఉండాలని": 1
+      },
+      "to be subject to": {
+        "విధేయులై ఉండాలి": 1
+      }
+    },
+    "expected": [
+      "లోబడడానికి"
+    ],
+    "selections": [
+      {
+        "text": "లోబడడానికి",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "te_glt_tit_book 3:1, tW subject, GL en ult/v91_unfoldingWord"
+  }
+]

@@ -1,0 +1,2119 @@
+[
+  {
+    "id": "train-ru-tit-1-3-age",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "а в своё время открыл Своё Слово в проповеди, которая была доверена мне по повелению нашего Спасителя, Бога, —",
+    "glPhrase": "at the time",
+    "history": {
+      "of time": {
+        "времён": 1
+      }
+    },
+    "expected": [
+      "время"
+    ],
+    "selections": [
+      {
+        "text": "время",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "dhdb",
+      "quote": "καιροῖς",
+      "quoteString": "καιροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:3, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-12-age",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "приучающая нас, чтобы, отвергнув нечестие и мирские страсти, мы жили в настоящем веке благоразумно и праведно, и благочестиво,",
+    "glPhrase": "age",
+    "history": {
+      "of time": {
+        "времён": 1
+      },
+      "at the time": {
+        "время": 1
+      }
+    },
+    "expected": [
+      "веке"
+    ],
+    "selections": [
+      {
+        "text": "веке",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "e5gn",
+      "quote": "αἰῶνι",
+      "quoteString": "αἰῶνι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:12, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-4-christ",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Титу, настоящему сыну по общей вере: благодать и мир от Бога Отца и Иисуса Христа, нашего Спасителя.",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "Христа": 1
+      }
+    },
+    "expected": [
+      "Христа"
+    ],
+    "selections": [
+      {
+        "text": "Христа",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "f6ja",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:4, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-13-christ",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "ожидая счастливую надежду и явление славы великого Бога и нашего Спасителя Иисуса Христа,",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "Христа": 2
+      }
+    },
+    "expected": [
+      "Христа"
+    ],
+    "selections": [
+      {
+        "text": "Христа",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "smpv",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-6-christ",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Которого обильно излил на нас через Иисуса Христа, нашего Спасителя,",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "Христа": 3
+      }
+    },
+    "expected": [
+      "Христа"
+    ],
+    "selections": [
+      {
+        "text": "Христа",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bmkx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:6, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-8-evil",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "слово здравое, безукоризненное, чтобы тот, кто от противника, был опозорен, не имея ничего сказать о нас плохого;",
+    "glPhrase": "bad",
+    "history": {
+      "evil": {
+        "злые": 1
+      }
+    },
+    "expected": [
+      "плохого"
+    ],
+    "selections": [
+      {
+        "text": "плохого",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:8, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-3-evil",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Потому что и мы когда-то были неразумными, непокорными, заблудшими, рабами страстей и различных наслаждений, жили в злобе и зависти, мерзкие, ненавидящие друг друга.",
+    "glPhrase": "evil",
+    "history": {
+      "evil": {
+        "злые": 1
+      },
+      "bad": {
+        "плохого": 1
+      }
+    },
+    "expected": [
+      "злобе"
+    ],
+    "selections": [
+      {
+        "text": "злобе",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:3, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-4-faith",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Титу, настоящему сыну по общей вере: благодать и мир от Бога Отца и Иисуса Христа, нашего Спасителя.",
+    "glPhrase": "a faith",
+    "history": {
+      "the faith": {
+        "вере": 1
+      }
+    },
+    "expected": [
+      "вере"
+    ],
+    "selections": [
+      {
+        "text": "вере",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:4, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-10-faith",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "не красть, но являть всю добрую верность, чтобы во всём были украшением учения нашего Спасителя Бога.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "вере": 1
+      },
+      "a faith": {
+        "вере": 1
+      }
+    },
+    "expected": [
+      "верность"
+    ],
+    "selections": [
+      {
+        "text": "верность",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:10, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-15-faith",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Приветствуют тебя все, кто со мной. Приветствуй любящих нас в вере. Благодать со всеми вами.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "вере": 1
+      },
+      "a faith": {
+        "вере": 1
+      },
+      "faith": {
+        "верность": 1
+      }
+    },
+    "expected": [
+      "вере"
+    ],
+    "selections": [
+      {
+        "text": "вере",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "b3pn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:15, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-1-god-2",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Павел, раб Бога, апостол же Иисуса Христа по вере избранных Бога и познанию истины, согласно благочестию,",
+    "glPhrase": "of God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "Бога": 1
+      }
+    },
+    "expected": [
+      "Бога:2"
+    ],
+    "selections": [
+      {
+        "text": "Бога",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:1, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-2-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "в надежде вечной жизни, которую не лгущий Бог обещал прежде вечных времён,",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "Бога": 2
+      }
+    },
+    "expected": [
+      "Бог"
+    ],
+    "selections": [
+      {
+        "text": "Бог",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:2, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-3-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "а в своё время открыл Своё Слово в проповеди, которая была доверена мне по повелению нашего Спасителя, Бога, —",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "Бога": 2
+      },
+      "God": {
+        "Бог": 1
+      }
+    },
+    "expected": [
+      "Бога"
+    ],
+    "selections": [
+      {
+        "text": "Бога",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-7-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Потому что епископ должен быть непорочный, как Божий управляющий: не дерзкий, не гневливый, не пьяница, не драчливый, не склонный к постыдной наживе,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "Бога": 2
+      },
+      "God": {
+        "Бог": 1,
+        "Бога": 1
+      }
+    },
+    "expected": [
+      "Божий"
+    ],
+    "selections": [
+      {
+        "text": "Божий",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:7, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-16-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Они исповедуют, что знают Бога, а делами отрекаются, будучи мерзкими и непокорными, и не способными ни к какому доброму делу.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "Бога": 2,
+        "Божий": 1
+      },
+      "God": {
+        "Бог": 1,
+        "Бога": 1
+      }
+    },
+    "expected": [
+      "Бога"
+    ],
+    "selections": [
+      {
+        "text": "Бога",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:16, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-10-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "не красть, но являть всю добрую верность, чтобы во всём были украшением учения нашего Спасителя Бога.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "Бога": 2,
+        "Божий": 1
+      },
+      "God": {
+        "Бог": 1,
+        "Бога": 2
+      }
+    },
+    "expected": [
+      "Бога"
+    ],
+    "selections": [
+      {
+        "text": "Бога",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-13-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "ожидая счастливую надежду и явление славы великого Бога и нашего Спасителя Иисуса Христа,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "Бога": 2,
+        "Божий": 1
+      },
+      "God": {
+        "Бог": 1,
+        "Бога": 3
+      }
+    },
+    "expected": [
+      "Бога"
+    ],
+    "selections": [
+      {
+        "text": "Бога",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "scfu",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:13, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-4-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Когда же явились доброта и человеколюбие нашего Спасителя Бога,",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "Бога": 3,
+        "Божий": 1
+      },
+      "God": {
+        "Бог": 1,
+        "Бога": 3
+      }
+    },
+    "expected": [
+      "Бога"
+    ],
+    "selections": [
+      {
+        "text": "Бога",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-8-god",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Это верное слово, и я желаю, чтобы ты утверждал об этом, чтобы поверившие в Бога старались быть прилежными в добрых делах. Это хорошо и полезно людям.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "Бога": 3,
+        "Божий": 1
+      },
+      "God": {
+        "Бог": 1,
+        "Бога": 4
+      }
+    },
+    "expected": [
+      "в Бога"
+    ],
+    "selections": [
+      {
+        "text": "в",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Бога",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-16-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Они исповедуют, что знают Бога, а делами отрекаются, будучи мерзкими и непокорными, и не способными ни к какому доброму делу.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      }
+    },
+    "expected": [
+      "доброму"
+    ],
+    "selections": [
+      {
+        "text": "доброму",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:16, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-5-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "здравомыслящими, чистыми, заботливыми о доме, добрыми, подчиняющимися своим мужьям, чтобы Божье Слово не было поругаемо.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 1
+      }
+    },
+    "expected": [
+      "добрыми"
+    ],
+    "selections": [
+      {
+        "text": "добрыми",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:5, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-7-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Во всём являй собой образец добрых дел: в учительстве — неповреждённость, достоинство,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 1,
+        "добрыми": 1
+      }
+    },
+    "expected": [
+      "добрых"
+    ],
+    "selections": [
+      {
+        "text": "добрых",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:7, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-10-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "не красть, но являть всю добрую верность, чтобы во всём были украшением учения нашего Спасителя Бога.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 1,
+        "добрыми": 1,
+        "добрых": 1
+      }
+    },
+    "expected": [
+      "добрую"
+    ],
+    "selections": [
+      {
+        "text": "добрую",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-14-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Который отдал Себя за нас, чтобы выкупить нас от любого беззакония и очистить Себе особенный народ — ревнителя добрых дел.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 1,
+        "добрыми": 1,
+        "добрых": 1,
+        "добрую": 1
+      }
+    },
+    "expected": [
+      "добрых"
+    ],
+    "selections": [
+      {
+        "text": "добрых",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:14, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-1-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Напоминай им повиноваться, покоряться начальствам, властям, быть готовыми к любому доброму делу,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 1,
+        "добрыми": 1,
+        "добрых": 2,
+        "добрую": 1
+      }
+    },
+    "expected": [
+      "доброму"
+    ],
+    "selections": [
+      {
+        "text": "доброму",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-8-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Это верное слово, и я желаю, чтобы ты утверждал об этом, чтобы поверившие в Бога старались быть прилежными в добрых делах. Это хорошо и полезно людям.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 2,
+        "добрыми": 1,
+        "добрых": 2,
+        "добрую": 1
+      }
+    },
+    "expected": [
+      "добрых"
+    ],
+    "selections": [
+      {
+        "text": "добрых",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-8-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Это верное слово, и я желаю, чтобы ты утверждал об этом, чтобы поверившие в Бога старались быть прилежными в добрых делах. Это хорошо и полезно людям.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 2,
+        "добрыми": 1,
+        "добрых": 3,
+        "добрую": 1
+      }
+    },
+    "expected": [
+      "хорошо"
+    ],
+    "selections": [
+      {
+        "text": "хорошо",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-14-good",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Пусть же учатся и наши практиковать добрые дела в необходимых нуждах, чтобы не были бесплодны.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "любящий добро": 1
+      },
+      "good": {
+        "доброму": 2,
+        "добрыми": 1,
+        "добрых": 3,
+        "добрую": 1,
+        "хорошо": 1
+      }
+    },
+    "expected": [
+      "добрые"
+    ],
+    "selections": [
+      {
+        "text": "добрые",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:14, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-13-hope",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "ожидая счастливую надежду и явление славы великого Бога и нашего Спасителя Иисуса Христа,",
+    "glPhrase": "hope",
+    "history": {
+      "the certain hope": {
+        "надежде": 1
+      }
+    },
+    "expected": [
+      "надежду"
+    ],
+    "selections": [
+      {
+        "text": "надежду",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "pqwf",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:13, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-7-hope",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "чтобы, оправдавшись Его благодатью, мы стали наследниками в соответствии с надеждой вечной жизни.",
+    "glPhrase": "certain hope",
+    "history": {
+      "the certain hope": {
+        "надежде": 1
+      },
+      "hope": {
+        "надежду": 1
+      }
+    },
+    "expected": [
+      "надеждой"
+    ],
+    "selections": [
+      {
+        "text": "надеждой",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "yut8",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:7, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-4-jesus",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Титу, настоящему сыну по общей вере: благодать и мир от Бога Отца и Иисуса Христа, нашего Спасителя.",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "Иисуса": 1
+      }
+    },
+    "expected": [
+      "Иисуса"
+    ],
+    "selections": [
+      {
+        "text": "Иисуса",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jgfj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:4, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-13-jesus",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "ожидая счастливую надежду и явление славы великого Бога и нашего Спасителя Иисуса Христа,",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "Иисуса": 1
+      },
+      "Jesus": {
+        "Иисуса": 1
+      }
+    },
+    "expected": [
+      "Иисуса"
+    ],
+    "selections": [
+      {
+        "text": "Иисуса",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:13, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-6-jesus",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Которого обильно излил на нас через Иисуса Христа, нашего Спасителя,",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "Иисуса": 1
+      },
+      "Jesus": {
+        "Иисуса": 2
+      }
+    },
+    "expected": [
+      "Иисуса"
+    ],
+    "selections": [
+      {
+        "text": "Иисуса",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "snat",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:6, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-16-know",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Они исповедуют, что знают Бога, а делами отрекаются, будучи мерзкими и непокорными, и не способными ни к какому доброму делу.",
+    "glPhrase": "to know",
+    "history": {
+      "knowledge": {
+        "познанию": 1
+      }
+    },
+    "expected": [
+      "знают"
+    ],
+    "selections": [
+      {
+        "text": "знают",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:16, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-11-know",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "зная, что такой развратился и грешит, будучи самоосуждён.",
+    "glPhrase": "knowing",
+    "history": {
+      "knowledge": {
+        "познанию": 1
+      },
+      "to know": {
+        "знают": 1
+      }
+    },
+    "expected": [
+      "зная"
+    ],
+    "selections": [
+      {
+        "text": "зная",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:11, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-15-purify",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Всё чисто для чистых, а для осквернённых и неверующих нет ничего чистого, но осквернены и ум их, и совесть.",
+    "glPhrase": "is pure",
+    "history": {
+      "are pure": {
+        "чисто": 1
+      }
+    },
+    "expected": [
+      "чистого"
+    ],
+    "selections": [
+      {
+        "text": "чистого",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-5-purify",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "здравомыслящими, чистыми, заботливыми о доме, добрыми, подчиняющимися своим мужьям, чтобы Божье Слово не было поругаемо.",
+    "glPhrase": "pure",
+    "history": {
+      "are pure": {
+        "чисто": 1
+      },
+      "is pure": {
+        "чистого": 1
+      }
+    },
+    "expected": [
+      "чистыми"
+    ],
+    "selections": [
+      {
+        "text": "чистыми",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:5, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-14-purify",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Который отдал Себя за нас, чтобы выкупить нас от любого беззакония и очистить Себе особенный народ — ревнителя добрых дел.",
+    "glPhrase": "to purify",
+    "history": {
+      "are pure": {
+        "чисто": 1
+      },
+      "is pure": {
+        "чистого": 1
+      },
+      "pure": {
+        "чистыми": 1
+      }
+    },
+    "expected": [
+      "очистить"
+    ],
+    "selections": [
+      {
+        "text": "очистить",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:14, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-1-13-rebuke",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "rebuke",
+    "verse": "Свидетельство это является истиной. По этой причине обличай их строго, чтобы были здравы в вере,",
+    "glPhrase": "rebuke",
+    "history": {
+      "to rebuke": {
+        "обличать": 1
+      }
+    },
+    "expected": [
+      "обличай"
+    ],
+    "selections": [
+      {
+        "text": "обличай",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 1:13, tW rebuke, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-15-rebuke",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "rebuke",
+    "verse": "Это говори и убеждай, и обличай со всей властью. Пусть никто не пренебрегает тобой.",
+    "glPhrase": "rebuke",
+    "history": {
+      "to rebuke": {
+        "обличать": 1
+      },
+      "rebuke": {
+        "обличай": 1
+      }
+    },
+    "expected": [
+      "обличай"
+    ],
+    "selections": [
+      {
+        "text": "обличай",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:15, tW rebuke, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-5-selfcontrol",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "selfcontrol",
+    "verse": "здравомыслящими, чистыми, заботливыми о доме, добрыми, подчиняющимися своим мужьям, чтобы Божье Слово не было поругаемо.",
+    "glPhrase": "sensible",
+    "history": {
+      "self controlled": {
+        "владеющий собой": 1
+      }
+    },
+    "expected": [
+      "здравомыслящими"
+    ],
+    "selections": [
+      {
+        "text": "здравомыслящими",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "z2h3",
+      "quote": "σώφρονας",
+      "quoteString": "σώφρονας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:5, tW selfcontrol, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-6-selfcontrol",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "selfcontrol",
+    "verse": "Точно так же юношей убеждай быть здравомыслящими.",
+    "glPhrase": "to be sensible",
+    "history": {
+      "self controlled": {
+        "владеющий собой": 1
+      },
+      "sensible": {
+        "здравомыслящими": 1
+      }
+    },
+    "expected": [
+      "быть здравомыслящими"
+    ],
+    "selections": [
+      {
+        "text": "быть",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "здравомыслящими",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "wz6r",
+      "quote": "σωφρονεῖν",
+      "quoteString": "σωφρονεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:6, tW selfcontrol, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-5-slander",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "здравомыслящими, чистыми, заботливыми о доме, добрыми, подчиняющимися своим мужьям, чтобы Божье Слово не было поругаемо.",
+    "glPhrase": "may be insulted",
+    "history": {
+      "slanderers": {
+        "клеветницами": 1
+      }
+    },
+    "expected": [
+      "было поругаемо"
+    ],
+    "selections": [
+      {
+        "text": "было",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "поругаемо",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:5, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-2-slander",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "никого не оскорблять, быть не задиристыми, тихими, являя всю кротость ко всем людям.",
+    "glPhrase": "to revile",
+    "history": {
+      "slanderers": {
+        "клеветницами": 1
+      },
+      "may be insulted": {
+        "было поругаемо": 1
+      }
+    },
+    "expected": [
+      "оскорблять"
+    ],
+    "selections": [
+      {
+        "text": "оскорблять",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:2, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-2-9-subject",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "рабам — подчиняться своим господам во всём, угождать, не пререкаться,",
+    "glPhrase": "to be subject to",
+    "history": {
+      "and subject": {
+        "подчиняющимися": 1
+      }
+    },
+    "expected": [
+      "подчиняться"
+    ],
+    "selections": [
+      {
+        "text": "подчиняться",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 2:9, tW subject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ru-tit-3-1-subject",
+    "targetLang": "ru",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "Напоминай им повиноваться, покоряться начальствам, властям, быть готовыми к любому доброму делу,",
+    "glPhrase": "to submit",
+    "history": {
+      "and subject": {
+        "подчиняющимися": 1
+      },
+      "to be subject to": {
+        "подчиняться": 1
+      }
+    },
+    "expected": [
+      "повиноваться"
+    ],
+    "selections": [
+      {
+        "text": "повиноваться",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "ru_rlob_tit_book 3:1, tW subject, GL en ult/v91_unfoldingWord"
+  }
+]
