@@ -6,3 +6,6 @@ lib/
 .idea
 /coverage/
 llm-eval-results/
+
+# Output of 'npm pack'
+*.tgz

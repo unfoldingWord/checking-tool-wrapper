@@ -50,7 +50,7 @@ const TC_HOME = env.LLM_EVAL_TC_HOME || path.join(os.homedir(), 'translationCore
 const PROJECTS = (env.LLM_EVAL_REAL_PROJECTS ||
   'vi_glt_heb_book vi_glt_1co_book id_glt_1ti_book fa_glt_mrk_book bn_glt_2co_book').split(/\s+/).filter(Boolean);
 const TW_VERSION = env.LLM_EVAL_TW_VERSION || 'v90_unfoldingWord';
-const TW_CATEGORIES = ['kt', 'other'];
+const TW_CATEGORIES = ['kt', 'names', 'other'];
 const OUT_FILE = path.join(__dirname, '__fixtures__', 'llmEval', 'realCases.json');
 /** longest expected answer kept, in words; longer alignments are rarely what a checker selects */
 const MAX_EXPECTED_WORDS = 4;
