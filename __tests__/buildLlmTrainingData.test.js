@@ -23,8 +23,10 @@
  *    (`getAlignedTextFromBible` and `cleanGlQuote`). The GL bible is the first bible of the
  *    gateway language, in `bibleIdSort` order, that has a version for the GL owner;
  *  - the history holds only the correct answers of the checks before it in the same group,
- *    tallied with the app's `getSelectionsForBook`: `{ glPhrase: { selectedText: count } }`. So
- *    the first check of a group has an empty history.
+ *    tallied with the app's `getSelectionsForBook`: `{ glPhrase: { selectedText: count } }`. A
+ *    check with an empty history (the first check of a group, or one whose earlier checks have no
+ *    GL phrase) teaches nothing about using history, so it is not saved, but its answer is still
+ *    history for the checks after it;
  *
  * Each entry has the fields of the `llmEval` cases (`id`, `targetLang`, `glLang`, `verse`,
  * `glPhrase`, `occurrence`, `history`, `expected`, `tags`, `madeUp`, `source`) plus `glOwner`,
@@ -145,6 +147,10 @@ function buildProject(name) {
 
       // only the correct answers of the checks before this one in the group
       const history = getSelectionsForBook(checks.slice(0, index), glLang, null, glBook, {});
+
+      if (!Object.keys(history).length) {
+        return null;
+      }
       return toEntry(name, check, {
         targetLang, glLang, glOwner, glPhrase: cleanGlQuote(glText), history, glBibleName,
       });
