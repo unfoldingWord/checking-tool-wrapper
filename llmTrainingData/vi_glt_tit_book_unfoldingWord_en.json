@@ -1,0 +1,3550 @@
+[
+  {
+    "id": "train-vi-tit-1-3-age",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "Nhưng vào đúng thời điểm, Ngài đã mạc khải lời Ngài qua việc công bố sứ điệp mà ta đã được giao phó theo mệnh lệnh của Thiên Chúa, Cứu Chúa của chúng ta.",
+    "glPhrase": "at the time",
+    "history": {
+      "of time": {
+        "mọi thời": 1
+      }
+    },
+    "expected": [
+      "vào thời điểm"
+    ],
+    "selections": [
+      {
+        "text": "vào",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "thời",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "điểm",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "dhdb",
+      "quote": "καιροῖς",
+      "quoteString": "καιροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:3, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-12-age",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "hiện đang đào luyện chúng ta, để khi đã bỏ đi sự bất kính cùng những đam mê của thế gian, chúng ta có thể sống một cách cẩn trọng, công chính và số sắng trong đời này,",
+    "glPhrase": "age",
+    "history": {
+      "of time": {
+        "mọi thời": 1
+      },
+      "at the time": {
+        "vào thời điểm": 1
+      }
+    },
+    "expected": [
+      "đời"
+    ],
+    "selections": [
+      {
+        "text": "đời",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "e5gn",
+      "quote": "αἰῶνι",
+      "quoteString": "αἰῶνι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:12, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-4-christ",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "của Chúa Cứu Thế": 1
+      }
+    },
+    "expected": [
+      "Chúa:2 Cứu Thế"
+    ],
+    "selections": [
+      {
+        "text": "Chúa",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "Cứu",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Thế",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "f6ja",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:4, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-13-christ",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "của Chúa Cứu Thế": 1,
+        "Chúa Cứu Thế": 1
+      }
+    },
+    "expected": [
+      "Chúa:3 Cứu:2 Thế"
+    ],
+    "selections": [
+      {
+        "text": "Chúa",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "Cứu",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Thế",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "smpv",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:13, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-6-christ",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "christ",
+    "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "Christ",
+    "history": {
+      "Christ": {
+        "của Chúa Cứu Thế": 1,
+        "Chúa Cứu Thế": 2
+      }
+    },
+    "expected": [
+      "Chúa:3 Cứu:2 Thế"
+    ],
+    "selections": [
+      {
+        "text": "Chúa",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "Cứu",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Thế",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bmkx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:6, tW christ, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-7-doctrine",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "doctrine",
+    "verse": "khi bày tỏ chính mình con trong mọi phương diện như tấm gương về các việc lành, bày tỏ sự liêm chính, nghiêm trang trong việc dạy dỗ,",
+    "glPhrase": "teaching",
+    "history": {
+      "teaching": {
+        "sự dạy dỗ": 1
+      }
+    },
+    "expected": [
+      "việc:2 dạy dỗ"
+    ],
+    "selections": [
+      {
+        "text": "việc",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "dạy",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dỗ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "p6a7",
+      "quote": "διδασκαλίᾳ",
+      "quoteString": "διδασκαλίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:7, tW doctrine, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-10-doctrine",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "doctrine",
+    "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
+    "glPhrase": "teaching",
+    "history": {
+      "teaching": {
+        "sự dạy dỗ": 1,
+        "việc dạy dỗ": 1
+      }
+    },
+    "expected": [
+      "việc dạy dỗ"
+    ],
+    "selections": [
+      {
+        "text": "việc",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dạy",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "dỗ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "pex6",
+      "quote": "διδασκαλίαν",
+      "quoteString": "διδασκαλίαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:10, tW doctrine, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-8-evil",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "với sứ điệp đúng đắn không thể chỉ trích được, để bất kỳ ai từ phe chống đối phải bị hổ thẹn vì chẳng có điều xấu nào để nói về chúng ta.",
+    "glPhrase": "bad",
+    "history": {
+      "evil": {
+        "dữ": 1
+      }
+    },
+    "expected": [
+      "điều xấu"
+    ],
+    "selections": [
+      {
+        "text": "điều",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "xấu",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:8, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-3-evil",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Vì chúng ta trước đây cũng là những kẻ ngu dại và bất tuân, bị dẫn dụ và làm nô lệ cho đủ thứ đam mê cùng lạc thú, sống trong sự gian ác và đố kỵ, đáng ghét, và thù hận nhau.",
+    "glPhrase": "evil",
+    "history": {
+      "evil": {
+        "dữ": 1
+      },
+      "bad": {
+        "điều xấu": 1
+      }
+    },
+    "expected": [
+      "sự gian ác"
+    ],
+    "selections": [
+      {
+        "text": "sự",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "gian",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ác",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:3, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-4-faith",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
+    "glPhrase": "a faith",
+    "history": {
+      "the faith": {
+        "đức tin": 1
+      }
+    },
+    "expected": [
+      "đức tin"
+    ],
+    "selections": [
+      {
+        "text": "đức",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tin",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:4, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-13-faith",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Lời làm chứng này là thật. Vì lý do ấy, hãy quở trách họ cách nghiêm khắc, để họ có thể được lành mạnh trong đức tin,",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "đức tin": 1
+      },
+      "a faith": {
+        "đức tin": 1
+      }
+    },
+    "expected": [
+      "đức tin"
+    ],
+    "selections": [
+      {
+        "text": "đức",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tin",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "s5qd",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:13, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-2-faith",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Hãy khích lệ quý ông có tuổi phải tiết độ, nghiêm trang, biết chừng mực, lành mạnh trong đức tin, trong tình yêu thương, và trong sự nhịn nhục.",
+    "glPhrase": "in faith",
+    "history": {
+      "the faith": {
+        "đức tin": 1
+      },
+      "a faith": {
+        "đức tin": 1
+      },
+      "faith": {
+        "đức tin": 1
+      }
+    },
+    "expected": [
+      "trong đức tin"
+    ],
+    "selections": [
+      {
+        "text": "trong",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "đức",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tin",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "skyq",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "πίστει",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:2, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-10-faith",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "đức tin": 1
+      },
+      "a faith": {
+        "đức tin": 1
+      },
+      "faith": {
+        "đức tin": 1
+      },
+      "in faith": {
+        "trong đức tin": 1
+      }
+    },
+    "expected": [
+      "tín nhiệm"
+    ],
+    "selections": [
+      {
+        "text": "tín",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "nhiệm",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:10, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-15-faith",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Tất cả những người ở với ta gửi lời chào thăm con. Hãy chào thăm những người yêu mến chúng ta trong đức tin. Nguyện ân điển ở với tất cả anh chị em.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "đức tin": 1
+      },
+      "a faith": {
+        "đức tin": 1
+      },
+      "faith": {
+        "đức tin": 1,
+        "tín nhiệm": 1
+      },
+      "in faith": {
+        "trong đức tin": 1
+      }
+    },
+    "expected": [
+      "đức tin"
+    ],
+    "selections": [
+      {
+        "text": "đức",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tin",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "b3pn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:15, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-9-faithful",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faithful",
+    "verse": "giữ vững sứ điệp đáng tin cậy phù hợp với giáo lý, hầu cho người ấy có năng lực để vừa khích lệ người khác bằng sự dạy dỗ lành mạnh, vừa chỉnh sửa kẻ chống đối.\n\\p",
+    "glPhrase": "trustworthy",
+    "history": {
+      "faithful": {
+        "trung tín": 1
+      }
+    },
+    "expected": [
+      "đáng tin cậy"
+    ],
+    "selections": [
+      {
+        "text": "đáng",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tin",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "cậy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "x67x",
+      "quote": "πιστοῦ",
+      "quoteString": "πιστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:9, tW faithful, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-8-faithful",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faithful",
+    "verse": "Sứ điệp này là đáng tin cậy, và ta muốn con nhấn mạnh vào những điều ấy, sao cho những ai đã tin Thiên Chúa sẽ cẩn thận lưu ý để dấn thân vào việc thiện lành. Những việc đó là tốt lành và hữu ích cho nhiều người.",
+    "glPhrase": "is trustworthy",
+    "history": {
+      "faithful": {
+        "trung tín": 1
+      },
+      "trustworthy": {
+        "đáng tin cậy": 1
+      }
+    },
+    "expected": [
+      "là đáng tin cậy"
+    ],
+    "selections": [
+      {
+        "text": "là",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "đáng",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tin",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "cậy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "dxb8",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:8, tW faithful, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-1-god-2",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Phao-lô, tôi tớ của Thiên Chúa và sứ đồ của Chúa Cứu Thế Giê-xu, vì đức tin của những người được Thiên Chúa lựa chọn và sự am hiểu chân lý phù hợp với lòng tin kính Chúa,",
+    "glPhrase": "of God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "Thiên:2 Chúa:3"
+    ],
+    "selections": [
+      {
+        "text": "Thiên",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 3,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:1, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-2-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "với hy vọng chắc chắn về sự sống đời đời mà Thiên Chúa, Đấng không nói dối, đã hứa từ trước mọi thời đại.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 1,
+        "Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:2, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-3-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Nhưng vào đúng thời điểm, Ngài đã mạc khải lời Ngài qua việc công bố sứ điệp mà ta đã được giao phó theo mệnh lệnh của Thiên Chúa, Cứu Chúa của chúng ta.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 1,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "của Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "của",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-7-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Vì người chăn bầy bắt buộc phải không chỗ chê trách, như là người quản lý nhà của Thiên Chúa, không kiêu ngạo, không nhạy giận, không nghiện rượu, không gây gổ, và không tham lam,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 1,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 1,
+        "của Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "của Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "của",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:7, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-16-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Họ tuyên bố mình biết Thiên Chúa, tuy nhiên, trong việc làm của họ, họ chối bỏ Ngài, trở nên đáng ghê tởm, không vâng lời, và không xứng với bất kỳ việc thiện lành nào.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 2,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 1,
+        "của Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:16, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-10-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 2,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 2,
+        "của Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-11-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Vì ân điển của Thiên Chúa để cứu rỗi mọi người đã được bày tỏ,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 2,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 3,
+        "của Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "của Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "của",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xef2",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:11, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-4-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Nhưng khi sự tốt lành và lòng nhân ái của Thiên Chúa, Cứu Chúa chúng ta, được tỏ bày,",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 3,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 3,
+        "của Thiên Chúa": 1
+      }
+    },
+    "expected": [
+      "của Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "của",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-8-god",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Sứ điệp này là đáng tin cậy, và ta muốn con nhấn mạnh vào những điều ấy, sao cho những ai đã tin Thiên Chúa sẽ cẩn thận lưu ý để dấn thân vào việc thiện lành. Những việc đó là tốt lành và hữu ích cho nhiều người.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "của Thiên Chúa": 3,
+        "Thiên Chúa": 1
+      },
+      "God": {
+        "Thiên Chúa": 3,
+        "của Thiên Chúa": 2
+      }
+    },
+    "expected": [
+      "Thiên Chúa"
+    ],
+    "selections": [
+      {
+        "text": "Thiên",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-12-godly",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "hiện đang đào luyện chúng ta, để khi đã bỏ đi sự bất kính cùng những đam mê của thế gian, chúng ta có thể sống một cách cẩn trọng, công chính và số sắng trong đời này,",
+    "glPhrase": "godlessness",
+    "history": {
+      "godliness": {
+        "lòng tin kính Chúa": 1
+      }
+    },
+    "expected": [
+      "sự bất kính"
+    ],
+    "selections": [
+      {
+        "text": "sự",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "bất",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "kính",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "trje",
+      "quote": [
+        {
+          "word": "τὴν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἀσέβειαν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὴν ἀσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:12, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-12-godly",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "hiện đang đào luyện chúng ta, để khi đã bỏ đi sự bất kính cùng những đam mê của thế gian, chúng ta có thể sống một cách cẩn trọng, công chính và số sắng trong đời này,",
+    "glPhrase": "godly way",
+    "history": {
+      "godliness": {
+        "lòng tin kính Chúa": 1
+      },
+      "godlessness": {
+        "sự bất kính": 1
+      }
+    },
+    "expected": [
+      "số sắng"
+    ],
+    "selections": [
+      {
+        "text": "số",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sắng",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "wyfa",
+      "quote": "εὐσεβῶς",
+      "quoteString": "εὐσεβῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:12, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-16-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Họ tuyên bố mình biết Thiên Chúa, tuy nhiên, trong việc làm của họ, họ chối bỏ Ngài, trở nên đáng ghê tởm, không vâng lời, và không xứng với bất kỳ việc thiện lành nào.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      }
+    },
+    "expected": [
+      "thiện"
+    ],
+    "selections": [
+      {
+        "text": "thiện",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:16, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-5-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "biết chừng mực, tinh sạch, giỏi trông nom việc nhà và vâng phục chồng mình, để lời của Thiên Chúa không bị xúc phạm.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1
+      }
+    },
+    "expected": [
+      "giỏi"
+    ],
+    "selections": [
+      {
+        "text": "giỏi",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:5, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-7-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "khi bày tỏ chính mình con trong mọi phương diện như tấm gương về các việc lành, bày tỏ sự liêm chính, nghiêm trang trong việc dạy dỗ,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1
+      }
+    },
+    "expected": [
+      "lành"
+    ],
+    "selections": [
+      {
+        "text": "lành",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:7, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-10-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1,
+        "lành": 1
+      }
+    },
+    "expected": [
+      "đáng"
+    ],
+    "selections": [
+      {
+        "text": "đáng",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-14-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Đấng đã phó chính mình Ngài vì chúng ta để chuộc mua chúng ta khỏi mọi sự gian ác và để thanh tẩy cho Ngài một dân đặc biệt, là dân sốt sắng với việc lành.\n\\p",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1,
+        "lành": 1,
+        "đáng": 1
+      }
+    },
+    "expected": [
+      "lành"
+    ],
+    "selections": [
+      {
+        "text": "lành",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:14, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-1-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Hãy nhắc họ vâng phục và tuân lệnh các bậc vua chúa cùng các nhà cầm quyền, phải sẵn sàng cho mọi việc lành,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1,
+        "lành": 2,
+        "đáng": 1
+      }
+    },
+    "expected": [
+      "lành"
+    ],
+    "selections": [
+      {
+        "text": "lành",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-8-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Sứ điệp này là đáng tin cậy, và ta muốn con nhấn mạnh vào những điều ấy, sao cho những ai đã tin Thiên Chúa sẽ cẩn thận lưu ý để dấn thân vào việc thiện lành. Những việc đó là tốt lành và hữu ích cho nhiều người.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1,
+        "lành": 3,
+        "đáng": 1
+      }
+    },
+    "expected": [
+      "thiện lành"
+    ],
+    "selections": [
+      {
+        "text": "thiện",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "lành",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-8-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Sứ điệp này là đáng tin cậy, và ta muốn con nhấn mạnh vào những điều ấy, sao cho những ai đã tin Thiên Chúa sẽ cẩn thận lưu ý để dấn thân vào việc thiện lành. Những việc đó là tốt lành và hữu ích cho nhiều người.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1,
+        "lành": 3,
+        "đáng": 1,
+        "thiện lành": 1
+      }
+    },
+    "expected": [
+      "tốt lành:2"
+    ],
+    "selections": [
+      {
+        "text": "tốt",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "lành",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-14-good",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Các anh chị em tín hữu của chúng ta cũng phải học dấn thân vào các việc thiện lành đáp ứng những nhu cầu cần thiết, để chẳng trở nên không kết quả.\n\\p",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "yêu mến điều tốt lành": 1
+      },
+      "good": {
+        "thiện": 1,
+        "giỏi": 1,
+        "lành": 3,
+        "đáng": 1,
+        "thiện lành": 1,
+        "tốt lành": 1
+      }
+    },
+    "expected": [
+      "thiện lành"
+    ],
+    "selections": [
+      {
+        "text": "thiện",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "lành",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:14, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-11-grace",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "Vì ân điển của Thiên Chúa để cứu rỗi mọi người đã được bày tỏ,",
+    "glPhrase": "grace",
+    "history": {
+      "Grace": {
+        "ân điển": 1
+      }
+    },
+    "expected": [
+      "ân điển"
+    ],
+    "selections": [
+      {
+        "text": "ân",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "điển",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "rxzp",
+      "quote": "χάρις",
+      "quoteString": "χάρις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:11, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-15-grace",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "Tất cả những người ở với ta gửi lời chào thăm con. Hãy chào thăm những người yêu mến chúng ta trong đức tin. Nguyện ân điển ở với tất cả anh chị em.",
+    "glPhrase": "Grace",
+    "history": {
+      "Grace": {
+        "ân điển": 1
+      },
+      "grace": {
+        "ân điển": 1
+      }
+    },
+    "expected": [
+      "ân điển"
+    ],
+    "selections": [
+      {
+        "text": "ân",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "điển",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "stmk",
+      "quote": [
+        {
+          "word": "ἡ",
+          "occurrence": 1
+        },
+        {
+          "word": "χάρις",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἡ χάρις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:15, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-13-hope",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "hope",
+    "history": {
+      "the certain hope": {
+        "hy vọng chắc chắn": 1
+      }
+    },
+    "expected": [
+      "niềm hy vọng"
+    ],
+    "selections": [
+      {
+        "text": "niềm",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "hy",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "vọng",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "pqwf",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:13, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-7-hope",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "để sau khi được xưng công chính nhờ ân điển Ngài, chúng ta được trở nên những người thừa kế theo như niềm hy vọng chắc chắn về sự sống đời đời.",
+    "glPhrase": "certain hope",
+    "history": {
+      "the certain hope": {
+        "hy vọng chắc chắn": 1
+      },
+      "hope": {
+        "niềm hy vọng": 1
+      }
+    },
+    "expected": [
+      "niềm hy vọng chắc chắn"
+    ],
+    "selections": [
+      {
+        "text": "niềm",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "hy",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "vọng",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "chắc",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "chắn",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "yut8",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:7, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-4-jesus",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "Giê xu": 1
+      }
+    },
+    "expected": [
+      "Giê xu"
+    ],
+    "selections": [
+      {
+        "text": "Giê",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "xu",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jgfj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:4, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-13-jesus",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "Giê xu": 1
+      },
+      "Jesus": {
+        "Giê xu": 1
+      }
+    },
+    "expected": [
+      "Giê xu"
+    ],
+    "selections": [
+      {
+        "text": "Giê",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "xu",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:13, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-6-jesus",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "jesus",
+    "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "Jesus",
+    "history": {
+      "of Jesus": {
+        "Giê xu": 1
+      },
+      "Jesus": {
+        "Giê xu": 2
+      }
+    },
+    "expected": [
+      "Giê xu"
+    ],
+    "selections": [
+      {
+        "text": "Giê",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "xu",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "snat",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:6, tW jesus, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-16-know",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Họ tuyên bố mình biết Thiên Chúa, tuy nhiên, trong việc làm của họ, họ chối bỏ Ngài, trở nên đáng ghê tởm, không vâng lời, và không xứng với bất kỳ việc thiện lành nào.",
+    "glPhrase": "to know",
+    "history": {
+      "knowledge": {
+        "sự am hiểu": 1
+      }
+    },
+    "expected": [
+      "biết"
+    ],
+    "selections": [
+      {
+        "text": "biết",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:16, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-11-know",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "vì biết rằng người như thế đã bị lầm lạc và cứ phạm tội, là kẻ tự kết án mình.\n\\p",
+    "glPhrase": "knowing",
+    "history": {
+      "knowledge": {
+        "sự am hiểu": 1
+      },
+      "to know": {
+        "biết": 1
+      }
+    },
+    "expected": [
+      "vì biết"
+    ],
+    "selections": [
+      {
+        "text": "vì",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "biết",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:11, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-4-love",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "hầu cho họ có thể dạy bảo giới phụ nữ trẻ trở nên những người yêu chồng, thương con,",
+    "glPhrase": "lovers of their husbands",
+    "history": {
+      "in love": {
+        "trong tình yêu thương": 1
+      }
+    },
+    "expected": [
+      "những người yêu chồng"
+    ],
+    "selections": [
+      {
+        "text": "những",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "người",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yêu",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "chồng",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "q8p8",
+      "quote": "φιλάνδρους",
+      "quoteString": "φιλάνδρους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-4-love",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "hầu cho họ có thể dạy bảo giới phụ nữ trẻ trở nên những người yêu chồng, thương con,",
+    "glPhrase": "lovers of their children",
+    "history": {
+      "in love": {
+        "trong tình yêu thương": 1
+      },
+      "lovers of their husbands": {
+        "những người yêu chồng": 1
+      }
+    },
+    "expected": [
+      "thương con"
+    ],
+    "selections": [
+      {
+        "text": "thương",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "con",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m7kb",
+      "quote": "φιλοτέκνους",
+      "quoteString": "φιλοτέκνους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-4-love",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "Nhưng khi sự tốt lành và lòng nhân ái của Thiên Chúa, Cứu Chúa chúng ta, được tỏ bày,",
+    "glPhrase": "love for mankind",
+    "history": {
+      "in love": {
+        "trong tình yêu thương": 1
+      },
+      "lovers of their husbands": {
+        "những người yêu chồng": 1
+      },
+      "lovers of their children": {
+        "thương con": 1
+      }
+    },
+    "expected": [
+      "lòng nhân ái"
+    ],
+    "selections": [
+      {
+        "text": "lòng",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "nhân",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ái",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "nwn9",
+      "quote": "φιλανθρωπία",
+      "quoteString": "φιλανθρωπία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-15-love",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "Tất cả những người ở với ta gửi lời chào thăm con. Hãy chào thăm những người yêu mến chúng ta trong đức tin. Nguyện ân điển ở với tất cả anh chị em.",
+    "glPhrase": "loving",
+    "history": {
+      "in love": {
+        "trong tình yêu thương": 1
+      },
+      "lovers of their husbands": {
+        "những người yêu chồng": 1
+      },
+      "lovers of their children": {
+        "thương con": 1
+      },
+      "love for mankind": {
+        "lòng nhân ái": 1
+      }
+    },
+    "expected": [
+      "yêu mến"
+    ],
+    "selections": [
+      {
+        "text": "yêu",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mến",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "xuej",
+      "quote": "φιλοῦντας",
+      "quoteString": "φιλοῦντας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:15, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-15-purify",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Mọi vật đều tinh sạch cho những ai tinh sạch. Nhưng đối với kẻ bại hoại và vô tín, thì chẳng có gì tinh sạch, mà cả tâm trí lẫn lương tâm họ đều đã bị làm cho hư hoại.",
+    "glPhrase": "pure",
+    "history": {
+      "are pure": {
+        "đều tinh sạch": 1
+      }
+    },
+    "expected": [
+      "tinh:2 sạch:2"
+    ],
+    "selections": [
+      {
+        "text": "tinh",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "sạch",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "hr5s",
+      "quote": "καθαροῖς",
+      "quoteString": "καθαροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-15-purify",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Mọi vật đều tinh sạch cho những ai tinh sạch. Nhưng đối với kẻ bại hoại và vô tín, thì chẳng có gì tinh sạch, mà cả tâm trí lẫn lương tâm họ đều đã bị làm cho hư hoại.",
+    "glPhrase": "is pure",
+    "history": {
+      "are pure": {
+        "đều tinh sạch": 1
+      },
+      "pure": {
+        "tinh sạch": 1
+      }
+    },
+    "expected": [
+      "tinh:3 sạch:3"
+    ],
+    "selections": [
+      {
+        "text": "tinh",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "sạch",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-5-purify",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "biết chừng mực, tinh sạch, giỏi trông nom việc nhà và vâng phục chồng mình, để lời của Thiên Chúa không bị xúc phạm.",
+    "glPhrase": "pure",
+    "history": {
+      "are pure": {
+        "đều tinh sạch": 1
+      },
+      "pure": {
+        "tinh sạch": 1
+      },
+      "is pure": {
+        "tinh sạch": 1
+      }
+    },
+    "expected": [
+      "tinh sạch"
+    ],
+    "selections": [
+      {
+        "text": "tinh",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sạch",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:5, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-14-purify",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Đấng đã phó chính mình Ngài vì chúng ta để chuộc mua chúng ta khỏi mọi sự gian ác và để thanh tẩy cho Ngài một dân đặc biệt, là dân sốt sắng với việc lành.\n\\p",
+    "glPhrase": "to purify",
+    "history": {
+      "are pure": {
+        "đều tinh sạch": 1
+      },
+      "pure": {
+        "tinh sạch": 2
+      },
+      "is pure": {
+        "tinh sạch": 1
+      }
+    },
+    "expected": [
+      "để:2 thanh tẩy"
+    ],
+    "selections": [
+      {
+        "text": "để",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "thanh",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tẩy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:14, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-13-rebuke",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "rebuke",
+    "verse": "Lời làm chứng này là thật. Vì lý do ấy, hãy quở trách họ cách nghiêm khắc, để họ có thể được lành mạnh trong đức tin,",
+    "glPhrase": "rebuke",
+    "history": {
+      "to rebuke": {
+        "chỉnh sửa": 1
+      }
+    },
+    "expected": [
+      "hãy quở trách"
+    ],
+    "selections": [
+      {
+        "text": "hãy",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "quở",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "trách",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:13, tW rebuke, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-15-rebuke",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "rebuke",
+    "verse": "Hãy dạy những điều đó, khích lệ và sửa trị với tất cả thẩm quyền. Đừng để ai coi thường con.",
+    "glPhrase": "rebuke",
+    "history": {
+      "to rebuke": {
+        "chỉnh sửa": 1
+      },
+      "rebuke": {
+        "hãy quở trách": 1
+      }
+    },
+    "expected": [
+      "sửa trị"
+    ],
+    "selections": [
+      {
+        "text": "sửa",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "trị",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:15, tW rebuke, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-12-righteous",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "hiện đang đào luyện chúng ta, để khi đã bỏ đi sự bất kính cùng những đam mê của thế gian, chúng ta có thể sống một cách cẩn trọng, công chính và số sắng trong đời này,",
+    "glPhrase": "righteous",
+    "history": {
+      "righteous": {
+        "ngay thẳng": 1
+      }
+    },
+    "expected": [
+      "công chính"
+    ],
+    "selections": [
+      {
+        "text": "công",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "chính",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "dr9j",
+      "quote": "δικαίως",
+      "quoteString": "δικαίως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:12, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-5-righteous",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "thì Ngài cứu chúng ta, chẳng phải bởi các việc làm ra từ sự công chính mà chúng ta đã thực hiện, nhưng bởi lòng thương xót của Ngài, qua việc rửa sạch của ơn tái sinh và sự đổi mới bởi Chúa Thánh Linh,",
+    "glPhrase": "of righteousness",
+    "history": {
+      "righteous": {
+        "ngay thẳng": 1,
+        "công chính": 1
+      }
+    },
+    "expected": [
+      "ra từ sự công chính"
+    ],
+    "selections": [
+      {
+        "text": "ra",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "từ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sự",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "công",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "chính",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "sqsf",
+      "quote": [
+        {
+          "word": "τῶν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "δικαιοσύνῃ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῶν ἐν δικαιοσύνῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:5, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-1-4-savior",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "Cứu Chúa": 1
+      }
+    },
+    "expected": [
+      "Cứu:2 Chúa:3"
+    ],
+    "selections": [
+      {
+        "text": "Cứu",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "mvwu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 1:4, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-10-savior",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "Cứu Chúa": 1
+      },
+      "Savior": {
+        "Cứu Chúa": 1
+      }
+    },
+    "expected": [
+      "Cứu Chúa:2"
+    ],
+    "selections": [
+      {
+        "text": "Cứu",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "rqa2",
+      "quote": "Σωτῆρος",
+      "quoteString": "Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:10, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-13-savior",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "Cứu Chúa": 1
+      },
+      "Savior": {
+        "Cứu Chúa": 2
+      }
+    },
+    "expected": [
+      "Cứu Chúa:2"
+    ],
+    "selections": [
+      {
+        "text": "Cứu",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "bpbw",
+      "quote": "Σωτῆρος",
+      "quoteString": "Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:13, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-4-savior",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "Nhưng khi sự tốt lành và lòng nhân ái của Thiên Chúa, Cứu Chúa chúng ta, được tỏ bày,",
+    "glPhrase": "of Savior",
+    "history": {
+      "of Savior": {
+        "Cứu Chúa": 1
+      },
+      "Savior": {
+        "Cứu Chúa": 3
+      }
+    },
+    "expected": [
+      "Cứu Chúa:2"
+    ],
+    "selections": [
+      {
+        "text": "Cứu",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "x4gg",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:4, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-6-savior",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "Cứu Chúa": 2
+      },
+      "Savior": {
+        "Cứu Chúa": 3
+      }
+    },
+    "expected": [
+      "Cứu Chúa:2"
+    ],
+    "selections": [
+      {
+        "text": "Cứu",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Chúa",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "h9fu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:6, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-5-slander",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "biết chừng mực, tinh sạch, giỏi trông nom việc nhà và vâng phục chồng mình, để lời của Thiên Chúa không bị xúc phạm.",
+    "glPhrase": "may be insulted",
+    "history": {
+      "slanderers": {
+        "nói xấu": 1
+      }
+    },
+    "expected": [
+      "bị xúc phạm"
+    ],
+    "selections": [
+      {
+        "text": "bị",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "xúc",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "phạm",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:5, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-2-slander",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "không sỉ vả ai, không hiếu chiến, mà phải hiền hòa, tỏ ra hết sức khiêm nhường với mọi người.",
+    "glPhrase": "to revile",
+    "history": {
+      "slanderers": {
+        "nói xấu": 1
+      },
+      "may be insulted": {
+        "bị xúc phạm": 1
+      }
+    },
+    "expected": [
+      "sỉ vả"
+    ],
+    "selections": [
+      {
+        "text": "sỉ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "vả",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:2, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-2-9-subject",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "Hãy dạy các nô lệ phải vâng phục chủ mình, làm vui lòng chủ trong mọi việc, chứ không cãi trả,",
+    "glPhrase": "to be subject to",
+    "history": {
+      "and subject": {
+        "và vâng phục": 1
+      }
+    },
+    "expected": [
+      "phải vâng phục"
+    ],
+    "selections": [
+      {
+        "text": "phải",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "vâng",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "phục",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 2:9, tW subject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-vi-tit-3-1-subject",
+    "targetLang": "vi",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "Hãy nhắc họ vâng phục và tuân lệnh các bậc vua chúa cùng các nhà cầm quyền, phải sẵn sàng cho mọi việc lành,",
+    "glPhrase": "to submit",
+    "history": {
+      "and subject": {
+        "và vâng phục": 1
+      },
+      "to be subject to": {
+        "phải vâng phục": 1
+      }
+    },
+    "expected": [
+      "vâng phục"
+    ],
+    "selections": [
+      {
+        "text": "vâng",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "phục",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "vi_glt_tit_book 3:1, tW subject, GL en ult/v91_unfoldingWord"
+  }
+]
