@@ -43,9 +43,15 @@ export function readTextFile(filePath) {
  * Recursively reads a helps folder, parsing JSON and Markdown files and descending into subfolders.
  * @param {string} folderPath - path to the helps folder
  * @param {string} [filterBook=''] - when set, limits the 'groups' subfolder to this book's contents
- * @returns {Object} nested contents of the folder, keyed by file/folder name
+ * @returns {Object|null} nested contents of the folder, keyed by file/folder name, or null if
+ *   `folderPath` does not exist or is not a folder. A 'groups' subfolder with no `filterBook`
+ *   folder is left out.
  */
 export function readHelpsFolder(folderPath, filterBook = '') {
+  if (!isExistingFolder(folderPath)) {
+    return null;
+  }
+
   const contents = {};
   const files = fs.readdirSync(folderPath);
 
@@ -71,14 +77,34 @@ export function readHelpsFolder(folderPath, filterBook = '') {
       if ((key === 'groups') && filterBook) {
         const bookPath = path.join(filePath, filterBook);
         const data = readHelpsFolder(bookPath);
-        contents[key] = data;
+
+        if (data) {
+          contents[key] = data;
+        }
       } else {
         const data = readHelpsFolder(filePath, filterBook);
-        contents[key] = data;
+
+        if (data) {
+          contents[key] = data;
+        }
       }
     }
   }
   return contents;
+}
+
+/**
+ * Checks whether a path exists and is a folder (following symbolic links).
+ * @param {string} folderPath - path to check
+ * @returns {boolean} true if `folderPath` is an existing folder
+ */
+function isExistingFolder(folderPath) {
+  try {
+    return !!folderPath && fs.existsSync(folderPath) && fs.statSync(folderPath).isDirectory();
+  } catch (e) {
+    console.error(`readHelpsFolder(): could not check folder ${folderPath}`, e);
+    return false;
+  }
 }
 
 /**
