@@ -6,18 +6,25 @@
  *  - `testCaseToSelectionOptions` turns a training or evaluation case into the options
  *    `getBestSelections` takes;
  *  - `runTestCases` and `runTestCasesFromJson` run a list of cases, or a file of them, through
- *    `getBestSelections` and time each call (see `runTrainingCases.test.js`).
+ *    `getBestSelections` and time each call (see `runTrainingCases.test.js`);
+ *  - `summarizeTestResults` and `formatSummary` score those results against each case's `expected`
+ *    answers and print a report, using `optionText`, `normalizePhrase`, `mean` and `percentile`.
  *
  * This folder is in jest's `testPathIgnorePatterns`, so this file is not run as a test.
  */
 import fs from 'fs';
+import { normalizer } from 'string-punctuation-tokenizer';
 import usfmjs from 'usfm-js';
+import path from 'path-extra';
 import {
   getBestSelections, getWordList, normalizeForCompare,
 } from '../../src/utils/checkingSuggestionsUtils';
 import { isNT } from '../../src/common/booksOfTheBible';
 import { NT_ORIG_LANG, OT_ORIG_LANG } from '../../src/common/constants';
 import { normalizeString } from '../../src/helpers/stringHelpers';
+
+/** how many wrong answers `formatSummary` lists */
+export const MAX_MISSES_SHOWN = 10;
 
 /**
  * Finds the target words aligned to a check's original-language quote, in verse order.
@@ -280,8 +287,187 @@ export async function runTestCases(testCases, settings = {}) {
 export async function runTestCasesFromJson(testDataPath, settings = {}) {
   if (fs.existsSync(testDataPath)) {
     const testCases = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));
-    let results = await runTestCases(testCases, settings);
-    return results;
+    const results = await runTestCases(testCases, settings);
+    const summary = summarizeTestResults(testCases, results);
+    console.log(`runTestCasesFromJson ran test cases from ${testDataPath} and got ${results?.length} results`);
+    return { results, summary };
   }
   return null;
 }
+
+/**
+ * Scores each result against its case's `expected` answers, as `llmModelSuitability.test.js`
+ * scores them (`normalizer`, then lowercase, on the `word word:2` text of an option).
+ * An option is right when its text equals any of the expected answers.
+ * @param {Array<{id: string, expected: string[], history?: object}>} testCases - the cases that
+ *   were run, in the same order as `results`
+ * @param {Array<{id: string, result: object, elapsedMs: number}>} results - from `runTestCases`.
+ *   `result.bestSelections` holds up to 3 options, best first; it may be missing on an error.
+ * @returns {{
+ *   cases: number,
+ *   top1: number,
+ *   top3: number,
+ *   wrong: number,
+ *   noSuggestion: number,
+ *   withHistory: number,
+ *   meanConfidenceRight: number,
+ *   meanConfidenceWrong: number,
+ *   totalMs: number,
+ *   medianMs: number,
+ *   p95Ms: number,
+ *   maxMs: number,
+ *   misses: Array<{id: string, elapsedMs: number, expected: string[], got: string[],
+ *     confidence: number|undefined, top1: boolean, top3: boolean, hasHistory: boolean}>
+ * }} counts of cases whose top option is right (`top1`), that have a right option in any place
+ *   (`top3`), whose top option is wrong (`wrong`) and that got no option (`noSuggestion`), so
+ *   `top1 + wrong + noSuggestion === cases`; how many cases have history; the mean confidence of
+ *   the top option when right and when wrong (0 when there are none); the call times in
+ *   milliseconds; and every case whose top option is not right (`misses`), wrong or empty.
+ */
+export function summarizeTestResults(testCases, results) {
+  const scored = results.map(({
+    id, result, elapsedMs,
+  }, index) => {
+    const testCase = testCases[index];
+    const options = result?.bestSelections || [];
+    const expected = testCase.expected.map(normalizePhrase);
+    const isRight = option => expected.includes(normalizePhrase(optionText(option)));
+    return {
+      id,
+      elapsedMs,
+      expected: testCase.expected,
+      got: options.map(optionText),
+      confidence: options[0]?.confidence,
+      top1: !!options.length && isRight(options[0]),
+      top3: options.some(isRight),
+      hasHistory: !!Object.keys(testCase.history || {}).length,
+      testCase,
+    };
+  });
+  const times = scored.map(({ elapsedMs }) => elapsedMs).sort((a, b) => a - b);
+  const right = scored.filter(s => s.top1);
+  const wrong = scored.filter(s => !s.top1 && s.got.length);
+
+  return {
+    cases: scored.length,
+    top1: right.length,
+    top3: scored.filter(s => s.top3).length,
+    wrong: wrong.length,
+    noSuggestion: scored.filter(s => !s.got.length).length,
+    withHistory: scored.filter(s => s.hasHistory).length,
+    meanConfidenceRight: mean(right.map(s => s.confidence)),
+    meanConfidenceWrong: mean(wrong.map(s => s.confidence)),
+    totalMs: times.reduce((sum, ms) => sum + ms, 0),
+    medianMs: percentile(times, 0.5),
+    p95Ms: percentile(times, 0.95),
+    maxMs: times[times.length - 1] || 0,
+    misses: scored.filter(s => !s.top1),
+  };
+}
+
+/**
+ * Formats a summary from `summarizeTestResults` as a report to print: the counts with percentages of all
+ * cases, the mean confidences, the times, and the first `MAX_MISSES_SHOWN` misses with what was
+ * expected and the options given.
+ * @param {string} name - name for the report's first line, such as the training data file name
+ * @param {object} summary - from `summarizeTestResults`
+ * @returns {string} the report, one line per item
+ */
+export function formatSummary(name, summary) {
+  const pct = count => `${count} (${summary.cases ? Math.round((100 * count) / summary.cases) : 0}%)`;
+  const lines = [
+    `runTestCases summary for ${name} (algorithm path)`,
+    `  cases:                 ${summary.cases} (${summary.withHistory} with history)`,
+    `  top answer right:      ${pct(summary.top1)}`,
+    `  right answer in top 3: ${pct(summary.top3)}`,
+    `  wrong top answer:      ${pct(summary.wrong)}`,
+    `  no suggestion:         ${pct(summary.noSuggestion)}`,
+    `  mean top confidence:   ${summary.meanConfidenceRight.toFixed(1)} when right, ${summary.meanConfidenceWrong.toFixed(1)} when wrong`,
+    `  time:                  ${summary.totalMs.toFixed(1)} ms total, median ${summary.medianMs.toFixed(2)} ms, 95th percentile ${summary.p95Ms.toFixed(2)} ms, max ${summary.maxMs.toFixed(2)} ms`,
+  ];
+
+  if (summary.misses.length) {
+    lines.push(`  misses (first ${Math.min(MAX_MISSES_SHOWN, summary.misses.length)} of ${summary.misses.length}):`);
+
+    for (const miss of summary.misses.slice(0, MAX_MISSES_SHOWN)) {
+      let missStr = miss.got.length ? miss.got.join(' | ') : '';
+      missStr = missStr ? `[${missStr}]` : '(none)';
+      const misCompare = `    ${miss.id}: expected '${JSON.stringify(miss.expected)}', got options: '${missStr}'`;
+      lines.push(misCompare);
+    }
+  }
+  return lines.join('\n');
+}
+
+/**
+ * Text of an option as `word word:2`, the format of `expected` in the cases.
+ * @param {{selections: Array<{text: string, occurrence: number}>}} option
+ * @returns {string}
+ */
+export function optionText(option) {
+  return (option?.selections || [])
+    .map(({ text, occurrence }) => (occurrence > 1 ? `${text}:${occurrence}` : text))
+    .join(' ');
+}
+
+/**
+ * Normalizes a phrase for comparing answers: `normalizer` from string-punctuation-tokenizer,
+ * then lowercase, then trimmed. Keeps an `:2` occurrence suffix.
+ * @param {string} [phrase] - such as `word word:2`; null or undefined gives ''
+ * @returns {string}
+ */
+export function normalizePhrase(phrase) {
+  return normalizer(phrase || '').toLowerCase().trim();
+}
+
+/**
+ * Mean of the numbers in a list. Values that are not numbers, such as a missing confidence, are
+ * left out.
+ * @param {Array<*>} values
+ * @returns {number} the mean, or 0 when the list has no numbers
+ */
+export function mean(values) {
+  const numbers = values.filter(value => typeof value === 'number');
+  return numbers.length ? numbers.reduce((sum, value) => sum + value, 0) / numbers.length : 0;
+}
+
+/**
+ * Value at a fraction of a sorted list (nearest rank, no interpolation): 0.5 gives the median,
+ * 0.95 the 95th percentile.
+ * @param {number[]} sorted - numbers sorted from smallest to largest
+ * @param {number} fraction - from 0 to 1
+ * @returns {number} the value, or 0 for an empty list
+ */
+export function percentile(sorted, fraction) {
+  return sorted.length ? sorted[Math.min(sorted.length - 1, Math.floor(fraction * sorted.length))] : 0;
+}
+
+/**
+ * Runs test cases from a JSON file, then saves both the raw results and summary beside the source
+ * file in a `results` folder.
+ *
+ * The output files are named after the input file:
+ * - `<baseName>.results.json`
+ * - `<baseName>.summary.json`
+ *
+ * @param {string} testDataPath - path to a JSON file holding an array of cases
+ * @param {object} [settings] - suggestion settings, passed to {@link runTestCasesFromJson}
+ * @returns {Promise<void>}
+ */
+export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings = {}) {
+  const { results, summary } = await runTestCasesFromJson(testDataPath, settings);
+
+  const baseFileName = path.basename(testDataPath, '.json');
+  const destFolder = path.join(path.dirname(testDataPath), 'results');
+  fs.mkdirSync(destFolder, { recursive: true });
+
+  const resultsPath = path.join(destFolder, `${baseFileName}.results.json`);
+  await fs.writeFile(resultsPath, JSON.stringify(results, null, 2));
+
+  const summaryPath = path.join(destFolder, `${baseFileName}.summary.json`);
+  const summaryJson = JSON.stringify(summary, null, 2);
+  await fs.writeFile(summaryPath, summaryJson);
+
+  return { results, summary };
+}
+
