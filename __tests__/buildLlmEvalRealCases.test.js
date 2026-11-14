@@ -39,7 +39,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
 import { cleanGlQuote, normalizeForCompare } from '../src/utils/checkingSuggestionsUtils';
-import { getAlignedTargetWords } from './helpers/alignedTargetWords';
+import { getAlignedTargetWords } from './helpers/suggestionsHelpers';
 
 const env = process.env;
 const BUILD = env.LLM_EVAL_BUILD_REAL === '1';

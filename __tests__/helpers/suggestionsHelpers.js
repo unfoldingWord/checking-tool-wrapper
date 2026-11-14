@@ -1,12 +1,16 @@
 /**
- * Finds the target-language words a translator aligned to a check's original-language quote.
- * Shared by the builders of AI evaluation cases (`buildLlmEvalRealCases.test.js`) and AI training
- * data (`buildLlmTrainingData.test.js`). Also turns a case into the options `getBestSelections`
- * takes (`testCaseToSelectionOptions`), and runs a list of cases through it
- * (`runTestCases`).
+ * Test helpers for checking suggestions (`src/utils/checkingSuggestionsUtils.js`):
+ *  - `getAlignedTargetWords` and `getQuoteWords` find the target-language words a translator
+ *    aligned to a check's original-language quote. Used by the builders of AI evaluation cases
+ *    (`buildLlmEvalRealCases.test.js`) and AI training data (`buildLlmTrainingData.test.js`);
+ *  - `testCaseToSelectionOptions` turns a training or evaluation case into the options
+ *    `getBestSelections` takes;
+ *  - `runTestCases` and `runTestCasesFromJson` run a list of cases, or a file of them, through
+ *    `getBestSelections` and time each call (see `runTrainingCases.test.js`).
  *
- * This folder is in jest's `testPathIgnorePatterns`, so it is not run as a test.
+ * This folder is in jest's `testPathIgnorePatterns`, so this file is not run as a test.
  */
+import fs from 'fs';
 import usfmjs from 'usfm-js';
 import {
   getBestSelections, getWordList, normalizeForCompare,
@@ -195,22 +199,53 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
 }
 
 /**
- * Runs each case through `getBestSelections`, one case per call and one after the other, so each
- * time is for that case alone. The options come from {@link testCaseToSelectionOptions}.
+ * Runs one case through `getBestSelections` and times the call. The options come from
+ * {@link testCaseToSelectionOptions}; only the call itself is timed, not building the options.
  *
  * With no `settings.llmQueryUrl` this is the algorithm path and makes no network call. With one,
  * a case whose algorithm answer is certain (confidence 100) is answered without asking the AI
  * (`result.algorithmFirst`), as in the app.
- * @param {Array<object>} testCases - cases, e.g. the contents of
- *   `llmTrainingData/vi_glt_luk_book_ru_gl_ru.json` (see {@link testCaseToSelectionOptions})
+ * @param {object} testCase - a training or evaluation case (see {@link testCaseToSelectionOptions})
  * @param {object} [settings] - suggestion settings, passed to {@link testCaseToSelectionOptions}
- * @returns {Promise<Array<{id: string, result: object, elapsedMs: number}>>} - one element per
- *   case, in the same order:
+ * @returns {Promise<{id: string, result: object, options: object, elapsedMs: number}>}
  *   - **id**: the case's `id`
  *   - **result**: what `getBestSelections` returned for the case: `{error, bestSelections,
  *     elapsedStr, model}`, where `bestSelections` is up to 3 `{selections: [{text, occurrence}],
  *     confidence}`, best first; `{error: true}` when it failed
+ *   - **options**: the options sent to `getBestSelections`, without the fields that are `null` or
+ *     `undefined` (e.g. the AI settings on the algorithm path)
  *   - **elapsedMs**: how long the `getBestSelections` call took, in milliseconds
+ * @example
+ * const { result, elapsedMs } = await runTestCase(trainingCase);
+ */
+export async function runTestCase(testCase, settings) {
+  const options = testCaseToSelectionOptions(testCase, settings);
+  const start = process.hrtime.bigint();
+  const [result] = await getBestSelections(options);
+  const elapsedMs = Number(process.hrtime.bigint() - start) / 1e6;
+
+  const _options = Object.fromEntries(
+    Object.entries(options).filter(([, value]) => value !== null && value !== undefined)
+  );
+
+  const testCaseResults = {
+    id: testCase.id,
+    result,
+    options: _options,
+    elapsedMs,
+  };
+  return testCaseResults;
+}
+
+/**
+ * Runs each case through `getBestSelections` with {@link runTestCase}, one case per call and one
+ * after the other, so each time is for that case alone.
+ * @param {Array<object>} testCases - cases, e.g. the contents of
+ *   `llmTrainingData/vi_glt_luk_book_ru_gl_ru.json` (see {@link testCaseToSelectionOptions});
+ *   `null` or `undefined` is taken as no cases
+ * @param {object} [settings] - suggestion settings, passed to {@link testCaseToSelectionOptions}
+ * @returns {Promise<Array<{id: string, result: object, options: object, elapsedMs: number}>>} -
+ *   one element per case, in the same order, as {@link runTestCase} returns it
  * @example
  * const testCases = JSON.parse(fs.readFileSync('llmTrainingData/vi_glt_luk_book_ru_gl_ru.json', 'utf8'));
  * const results = await runTestCases(testCases);
@@ -220,15 +255,33 @@ export async function runTestCases(testCases, settings = {}) {
   const results = [];
 
   for (const testCase of testCases || []) {
-    const options = testCaseToSelectionOptions(testCase, settings);
-    const start = process.hrtime.bigint();
     // eslint-disable-next-line no-await-in-loop
-    const [result] = await getBestSelections(options);
-    const elapsedMs = Number(process.hrtime.bigint() - start) / 1e6;
-
-    results.push({
-      id: testCase.id, result, elapsedMs,
-    });
+    const testCaseResults = await runTestCase(testCase, settings);
+    results.push( testCaseResults );
   }
   return results;
+}
+
+/**
+ * Reads a JSON file of cases and runs them with {@link runTestCases}.
+ *
+ * Reads with Node's `fs`, not `fs-extra`, so it reads the real file even though `fs-extra` is
+ * mocked in the tests.
+ * @param {string} testDataPath - path to a JSON file holding an array of cases, e.g.
+ *   `llmTrainingData/en_ult_tit_book_ru_gl_ru.json`; a relative path is resolved from the
+ *   current folder (the repo folder when run with jest)
+ * @param {object} [settings] - suggestion settings, passed to {@link testCaseToSelectionOptions}
+ * @returns {Promise<Array<{id: string, result: object, options: object, elapsedMs: number}>|null>}
+ *   - one element per case, as {@link runTestCases} returns them; `null` when the file does not
+ *   exist. Throws if the file is not valid JSON
+ * @example
+ * const results = await runTestCasesFromJson('llmTrainingData/en_ult_tit_book_ru_gl_ru.json');
+ */
+export async function runTestCasesFromJson(testDataPath, settings = {}) {
+  if (fs.existsSync(testDataPath)) {
+    const testCases = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));
+    let results = await runTestCases(testCases, settings);
+    return results;
+  }
+  return null;
 }

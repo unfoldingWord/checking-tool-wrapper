@@ -15,16 +15,16 @@
 import fs from 'fs';
 import path from 'path';
 import { normalizer } from 'string-punctuation-tokenizer';
-import { runTestCases } from './helpers/alignedTargetWords';
+import { runTestCases, runTestCasesFromJson } from './helpers/suggestionsHelpers';
 
 const DATA_FILE = path.join(__dirname, '..',
   process.env.LLM_TRAINING_DATA_FILE || path.join('llmTrainingData', 'en_ult_tit_book_ru_gl_ru.json'));
 /** how many wrong answers the summary lists */
 const MAX_MISSES_SHOWN = 10;
 
-const describeIfData = fs.existsSync(DATA_FILE) ? describe : describe.skip;
+// const describeIfData = fs.existsSync(DATA_FILE) ? describe : describe.skip;
 
-describeIfData(`runTestCases on ${path.basename(DATA_FILE)}`, () => {
+describe(`runTestCases on ${path.basename(DATA_FILE)}`, () => {
   const testCases = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   let results;
 
@@ -48,6 +48,11 @@ describeIfData(`runTestCases on ${path.basename(DATA_FILE)}`, () => {
     expect(summary.cases).toBe(testCases.length);
     expect(summary.top1 + summary.wrong + summary.noSuggestion).toBe(summary.cases);
   });
+});
+
+test('run algorithm all tests', async () => {
+  const results = await runTestCasesFromJson(DATA_FILE);
+  expect(results.length).toBeGreaterThan(0);
 });
 
 /**

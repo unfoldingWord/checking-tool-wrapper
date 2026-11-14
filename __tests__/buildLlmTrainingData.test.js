@@ -14,7 +14,7 @@
  *    in the order of that file (the order of the group menu);
  *  - a check's correct answer is the target words the translator aligned to the check's
  *    original-language quote (from `.apps/translationCore/alignmentData/<book>/<chapter>.json`),
- *    in verse order, found by `getAlignedTargetWords` in `helpers/alignedTargetWords.js`. Checks
+ *    in verse order, found by `getAlignedTargetWords` in `helpers/suggestionsHelpers.js`. Checks
  *    whose quote is not aligned, or is aligned together with other original words, or whose
  *    answer is longer than `LLM_TRAINING_MAX_WORDS`, have no correct answer, so they are neither
  *    saved nor used as history. Selections saved in translationCore are not used;
@@ -52,7 +52,7 @@ import os from 'os';
 import path from 'path';
 import { bibleIdSort, getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
 import { cleanGlQuote, getSelectionsForBook } from '../src/utils/checkingSuggestionsUtils';
-import { getAlignedTargetWords } from './helpers/alignedTargetWords';
+import { getAlignedTargetWords } from './helpers/suggestionsHelpers';
 
 const env = process.env;
 const BUILD = env.LLM_TRAINING_BUILD === '1';

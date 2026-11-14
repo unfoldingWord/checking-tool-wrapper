@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { getBestSelections } from '../src/utils/checkingSuggestionsUtils';
-import { runTestCases, testCaseToSelectionOptions } from './helpers/alignedTargetWords';
+import { runTestCases, testCaseToSelectionOptions } from './helpers/suggestionsHelpers';
 
 // an entry of llmTrainingData/vi_glt_luk_book_ru_gl_ru.json, with the USFM marker its verse has
 const trainingCase = {
