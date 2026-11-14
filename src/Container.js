@@ -45,7 +45,7 @@ import {
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
   updateLlmMetrics,
-} from './utils/autoCheckingUtils';
+} from './utils/checkingSuggestionsUtils';
 import { LlmRequestQueue } from './utils/LlmRequestQueue';
 import delay from './utils/delay';
 import { getVerseText } from './helpers/verseHelpers';

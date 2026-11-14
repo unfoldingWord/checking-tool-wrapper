@@ -1,13 +1,19 @@
 /**
  * Finds the target-language words a translator aligned to a check's original-language quote.
  * Shared by the builders of AI evaluation cases (`buildLlmEvalRealCases.test.js`) and AI training
- * data (`buildLlmTrainingData.test.js`).
+ * data (`buildLlmTrainingData.test.js`). Also turns a case into the options `getBestSelections`
+ * takes (`testCaseToSelectionOptions`), and runs a list of cases through it
+ * (`runTestCases`).
  *
  * This folder is in jest's `testPathIgnorePatterns`, so it is not run as a test.
  */
-import { getWordList, normalizeForCompare } from '../../src/utils/autoCheckingUtils';
+import usfmjs from 'usfm-js';
+import {
+  getBestSelections, getWordList, normalizeForCompare,
+} from '../../src/utils/checkingSuggestionsUtils';
 import { isNT } from '../../src/common/booksOfTheBible';
 import { NT_ORIG_LANG, OT_ORIG_LANG } from '../../src/common/constants';
+import { normalizeString } from '../../src/helpers/stringHelpers';
 
 /**
  * Finds the target words aligned to a check's original-language quote, in verse order.
@@ -107,4 +113,122 @@ export function getQuoteWords(contextId) {
     counts[word] = (counts[word] || 0) + 1;
     return { word, occurrence: counts[word] };
   });
+}
+
+/**
+ * Builds the options (one job) that `getBestSelections` takes for a case, as `Container.js` builds
+ * them for a check. Works for training data cases (`llmTrainingData/*.json`) and the `llmEval`
+ * cases, which share these fields: `verse`, `targetLang`, `glPhrase`, `glLang`, `history`, and
+ * `occurrence` or `contextId`.
+ *
+ * The verse is cleaned as the app's `getVerseText` cleans it: USFM markers left in the verse text,
+ * such as `\q1`, are removed with `usfm-js`, and whitespace is normalized. Words keep their
+ * Unicode form, so answers compare with the case's `expected` as they are.
+ * @param {object} testCase - a training case (an entry of `llmTrainingData/*.json`, written by
+ *   `buildLlmTrainingData.test.js`) or an evaluation case (an entry of
+ *   `__fixtures__/llmEval/cases.json` or `realCases.json`). Only these fields are used; others,
+ *   such as `expected`, `selections`, `tags` and `source`, are ignored:
+ * @param {string} testCase.verse - target-language verse text, as saved in the project; it may
+ *   still hold USFM markers (e.g. `\q1`), which are removed
+ * @param {string} testCase.targetLang - target language code, e.g. 'vi'; becomes
+ *   `targetLanguageDetails.id`
+ * @param {string} testCase.glPhrase - GL text aligned to the check's quote, e.g. 'faith' or
+ *   'Аврааму'; becomes `alignedGLText`
+ * @param {string} testCase.glLang - GL language code, e.g. 'en' or 'ru'; becomes
+ *   `gatewayLanguageCode`
+ * @param {Object<string, Object<string, number>>} [testCase.history] - previous renderings,
+ *   `{ glPhrase: { targetWords: count } }`, e.g. `{ 'Аврааму': { 'với Áp ra ham': 1 } }`; becomes
+ *   `selectionsData.selections`. Missing is taken as `{}` (no history)
+ * @param {object} [testCase.contextId] - the check's context (training cases have it). It is passed
+ *   on as `contextId`, and its `reference` (`{bookId, chapter, verse}`), `groupId` and `checkId`
+ *   make the cache `key`, as `generateKey` in `Container.js` does
+ *   (`translationWords_ru_vi_abraham_luk_1_73_hsjm`). Its `occurrence` (default 1) says which run
+ *   of the words in the verse the check is for
+ * @param {number} [testCase.occurrence=1] - which occurrence the check is for; used when the case
+ *   has no `contextId` (evaluation cases), or no `occurrence` in it
+ * @param {string} [testCase.id] - the case id, e.g. 'real-vi-heb-7-26-sin'; used as the `key` when
+ *   the case has no `contextId.reference`
+ * @param {object} [settings] - suggestion settings, as in translationCore's checking settings
+ * @param {string|null} [settings.llmQueryUrl] - AI server URL; leave out for the algorithm path
+ * @param {string} [settings.currentModel] - AI model name
+ * @param {number} [settings.llmTemperature] - AI temperature
+ * @param {object} [settings.llmExtraParams] - extra fields for the AI request body
+ * @param {string} [settings.apiToken] - bearer token for the AI server
+ * @param {string} [settings.toolName='translationWords'] - used in the cache `key`
+ * @returns {object} - options for `getBestSelections`; pass an array of them for a batched query
+ * @example
+ * const [result] = await getBestSelections(testCaseToSelectionOptions(trainingCase));
+ * const results = await getBestSelections(cases.map(c => testCaseToSelectionOptions(c, { llmQueryUrl })));
+ */
+export function testCaseToSelectionOptions(testCase, settings = {}) {
+  const {
+    llmQueryUrl = null,
+    currentModel,
+    llmTemperature,
+    llmExtraParams,
+    apiToken,
+    toolName = 'translationWords',
+  } = settings;
+  const contextId = testCase.contextId || { occurrence: testCase.occurrence || 1 };
+  const {
+    bookId, chapter, verse,
+  } = contextId.reference || {};
+  // the cache key `Container.js` builds with `generateKey`
+  const key = contextId.reference ?
+    `${toolName}_${testCase.glLang}_${testCase.targetLang}_${contextId.groupId}_${bookId}_${chapter}_${verse}_${contextId.checkId}` :
+    testCase.id;
+
+  return {
+    verseText: normalizeString(usfmjs.removeMarker(testCase.verse || '')).trim(),
+    targetLanguageDetails: { id: testCase.targetLang },
+    alignedGLText: testCase.glPhrase,
+    gatewayLanguageCode: testCase.glLang,
+    selectionsData: { selections: testCase.history || {} },
+    contextId: { ...contextId, occurrence: contextId.occurrence || testCase.occurrence || 1 },
+    key,
+    llmQueryUrl,
+    currentModel,
+    llmTemperature,
+    llmExtraParams,
+    apiToken,
+  };
+}
+
+/**
+ * Runs each case through `getBestSelections`, one case per call and one after the other, so each
+ * time is for that case alone. The options come from {@link testCaseToSelectionOptions}.
+ *
+ * With no `settings.llmQueryUrl` this is the algorithm path and makes no network call. With one,
+ * a case whose algorithm answer is certain (confidence 100) is answered without asking the AI
+ * (`result.algorithmFirst`), as in the app.
+ * @param {Array<object>} testCases - cases, e.g. the contents of
+ *   `llmTrainingData/vi_glt_luk_book_ru_gl_ru.json` (see {@link testCaseToSelectionOptions})
+ * @param {object} [settings] - suggestion settings, passed to {@link testCaseToSelectionOptions}
+ * @returns {Promise<Array<{id: string, result: object, elapsedMs: number}>>} - one element per
+ *   case, in the same order:
+ *   - **id**: the case's `id`
+ *   - **result**: what `getBestSelections` returned for the case: `{error, bestSelections,
+ *     elapsedStr, model}`, where `bestSelections` is up to 3 `{selections: [{text, occurrence}],
+ *     confidence}`, best first; `{error: true}` when it failed
+ *   - **elapsedMs**: how long the `getBestSelections` call took, in milliseconds
+ * @example
+ * const testCases = JSON.parse(fs.readFileSync('llmTrainingData/vi_glt_luk_book_ru_gl_ru.json', 'utf8'));
+ * const results = await runTestCases(testCases);
+ * // [{ id: 'train-vi-luk-1-73-abraham', result: { error: false, bestSelections: [...], ... }, elapsedMs: 1.84 }, ...]
+ */
+export async function runTestCases(testCases, settings = {}) {
+  const results = [];
+
+  for (const testCase of testCases || []) {
+    const options = testCaseToSelectionOptions(testCase, settings);
+    const start = process.hrtime.bigint();
+    // eslint-disable-next-line no-await-in-loop
+    const [result] = await getBestSelections(options);
+    const elapsedMs = Number(process.hrtime.bigint() - start) / 1e6;
+
+    results.push({
+      id: testCase.id, result, elapsedMs,
+    });
+  }
+  return results;
 }

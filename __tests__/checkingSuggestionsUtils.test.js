@@ -9,7 +9,7 @@ import {
   getWordList,
   normalizeForCompare,
   toLowerCaseForLang,
-} from '../src/utils/autoCheckingUtils';
+} from '../src/utils/checkingSuggestionsUtils';
 import viTranslationData from './__fixtures__/tWords/vi_translationData.json';
 
 const fullViHistory = viTranslationData['ἅγια'].selections;

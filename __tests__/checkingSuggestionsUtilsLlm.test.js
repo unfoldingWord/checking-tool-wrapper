@@ -7,7 +7,7 @@ import {
   getExtraParams,
   parseLlmSelectionOptions,
   queryAiAPI,
-} from '../src/utils/autoCheckingUtils';
+} from '../src/utils/checkingSuggestionsUtils';
 import viTranslationData from './__fixtures__/tWords/vi_translationData.json';
 
 const wordList = ['Para', 'la', 'iglesia', 'de', 'Éfeso', 'y', 'la', 'iglesia', 'de', 'Roma'];

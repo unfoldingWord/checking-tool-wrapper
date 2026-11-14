@@ -1,5 +1,5 @@
 Write a plan for improving the AI suggestion path, `getBestTWordSelectionWithConfidenceFromLlm()`
-in `src/utils/autoCheckingUtils.js`, so it gives more accurate suggestions, faster, with fewer
+in `src/utils/checkingSuggestionsUtils.js`, so it gives more accurate suggestions, faster, with fewer
 tokens. Deliver the plan only. Do not change any code, and do not commit.
 
 ## Who will read the plan
@@ -41,9 +41,9 @@ Read the code before planning. The parts that matter:
   back to the algorithm (`getBestTWordSelectionWithConfidenceAlgorithm()`) when the AI gives no
   suggestion.
 - `getBestSelections()`: chooses the AI path or the algorithm path.
-- Tests: `__tests__/autoCheckingUtilsLlm.test.js` (parsing and batching, with the network
+- Tests: `__tests__/checkingSuggestionsUtilsLlm.test.js` (parsing and batching, with the network
   mocked). The algorithm path's tests and history fixtures are in
-  `__tests__/autoCheckingUtils.test.js` and `__tests__/__fixtures__/tWords/`.
+  `__tests__/checkingSuggestionsUtils.test.js` and `__tests__/__fixtures__/tWords/`.
 - `translatePhraseWithConfidence()` is an older single-phrase path. Say whether the plan
   touches it.
 
@@ -81,7 +81,7 @@ The plan must say how each change is shown to help, not just argued:
 - Keep the return contract: up to 3 `{ selections: [{text, occurrence}], confidence }`, best
   first, interchangeable with the algorithm path (see `CLAUDE.md`).
 - Keep parsing at least as tolerant as it is now; the existing tests in
-  `__tests__/autoCheckingUtilsLlm.test.js` must keep passing, or the plan says why one changes.
+  `__tests__/checkingSuggestionsUtilsLlm.test.js` must keep passing, or the plan says why one changes.
 - Keep the system prompt identical across calls, so the server's prompt cache keeps working.
 - Don't change the on-disk formats or the `Api`/`Container` contract that translationCore
   uses.

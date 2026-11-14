@@ -47,7 +47,7 @@ import {
   getBestSelections,
   getExtraParams,
   getWordList,
-} from '../src/utils/autoCheckingUtils';
+} from '../src/utils/checkingSuggestionsUtils';
 import handCases from './__fixtures__/llmEval/cases.json';
 import realCases from './__fixtures__/llmEval/realCases.json';
 

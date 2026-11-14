@@ -1,5 +1,5 @@
 Write a plan for improving `getBestTWordSelectionWithConfidenceAlgorithm()` in
-`src/utils/autoCheckingUtils.js`. Deliver the plan only. Do not change any code yet.
+`src/utils/checkingSuggestionsUtils.js`. Deliver the plan only. Do not change any code yet.
 
 ## Who will read the plan
 
@@ -90,7 +90,7 @@ Things I have noticed. Check each one against the code before relying on it:
    still works for a target language unlike the GL (see "Languages involved").
 3. Confidence rules: keep 100 for "exact GL key and verbatim contiguous match in the verse".
    State how partial and fuzzy matches are capped and ordered relative to each other.
-4. Test cases to add to `__tests__/autoCheckingUtils.test.js`. Give concrete
+4. Test cases to add to `__tests__/checkingSuggestionsUtils.test.js`. Give concrete
    `wordList` / `glPhrase` / history inputs and the expected top result. Include:
    - cases where the current code picks the wrong match
    - regression cases that must not change
@@ -102,7 +102,7 @@ Things I have noticed. Check each one against the code before relying on it:
 6. Implementation steps, in order:
    - Step 0: run `npm test` and record the baseline. Add the new test cases first and
      confirm which ones fail on the current code.
-   - Then one step per change, each ending with `npx jest __tests__/autoCheckingUtils.test.js`
+   - Then one step per change, each ending with `npx jest __tests__/checkingSuggestionsUtils.test.js`
      passing and `npm run lint` clean.
    - Last step: full `npm test`.
    Note which steps could be reverted on their own if a later step fails.
@@ -113,7 +113,7 @@ Things I have noticed. Check each one against the code before relying on it:
 - Keep the signature and return shape. The function must stay interchangeable with
   `getBestTWordSelectionWithConfidenceFromLlm`.
 - No network calls and no new dependencies.
-- Keep the change inside `autoCheckingUtils.js`. `npm test` (eslint + jest) must pass.
+- Keep the change inside `checkingSuggestionsUtils.js`. `npm test` (eslint + jest) must pass.
 
 ## References
 

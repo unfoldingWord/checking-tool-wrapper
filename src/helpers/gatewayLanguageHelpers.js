@@ -7,7 +7,7 @@ import _ from 'lodash';
  * Identifies one check in a checking tool. The same shape is used for the current check
  * (`state.tool.contextId`) and for the `contextId` saved with each check record in
  * `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json`.
- * The same typedef is in `src/utils/autoCheckingUtils.js`; keep both in sync.
+ * The same typedef is in `src/utils/checkingSuggestionsUtils.js`; keep both in sync.
  *
  * The functions in this file only read `reference`, `quote` and `occurrence`.
  *

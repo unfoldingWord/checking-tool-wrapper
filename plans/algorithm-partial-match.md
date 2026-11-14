@@ -1,9 +1,9 @@
 # Plan: better partial GL matching in `getBestTWordSelectionWithConfidenceAlgorithm()`
 
-**File:** `src/utils/autoCheckingUtils.js`
-**Tests:** `__tests__/autoCheckingUtils.test.js`
+**File:** `src/utils/checkingSuggestionsUtils.js`
+**Tests:** `__tests__/checkingSuggestionsUtils.test.js`
 **Written against commit:** `2e69910c4e4a0476d4370c01fb290378bb810b06` (branch `feature-mcleanb-add-suggestions-support`).
-The working tree at that time also had an uncommitted version bump in `package.json` / `package-lock.json`; that does not move any line cited below. If `git diff 2e69910 -- src/utils/autoCheckingUtils.js` is not empty when you start, re-check every line number in this plan before editing.
+The working tree at that time also had an uncommitted version bump in `package.json` / `package-lock.json`; that does not move any line cited below. If `git diff 2e69910 -- src/utils/checkingSuggestionsUtils.js` is not empty when you start, re-check every line number in this plan before editing.
 
 **Baseline recorded on 2026-11-05:** `npm test` → eslint clean, `Test Suites: 14 passed, 14 total`, `Tests: 89 passed, 89 total`, `Snapshots: 7 passed`.
 
@@ -177,7 +177,7 @@ Replace the bullet list in the function's JSDoc (lines 1297–1337) with:
 
 ---
 
-## 5. Test cases to add to `__tests__/autoCheckingUtils.test.js`
+## 5. Test cases to add to `__tests__/checkingSuggestionsUtils.test.js`
 
 Keep the existing helpers (`getResults`, `normalizePreviousTranslationData`) and the four existing tests, with one change noted in 5.2. Import the fixture: `import viTranslationData from './__fixtures__/tWords/vi_translationData.json';` and use `viTranslationData['ἅγια'].selections` where "full vi history" is written below. All verses are built with `getWordList(normalizer(verseText))` as the existing tests do. Confidence ranges are inclusive. "Prototype value" is informational.
 
@@ -230,7 +230,7 @@ R5 is the guard for 3.4.6: if Step 5 is done without the adjacent-swap fallback,
 3. **Loose matching on short words.** Guarded by `MIN_FUZZY_WORD_LENGTH = 4` and `MIN_AFFIX_LENGTH = 6` in NFKD code points. Known residual: tonal or diacritic near-duplicates in long words (`thánh`/`thành` 0.83) are indistinguishable at character level; they can surface only in the fuzzy pass (≤ 90) and only when nothing verbatim scores above 80.
 4. **Thresholds are in NFKD code points.** Lengths differ by script (Hangul expands, Chinese does not). Document this next to the constants.
 5. **Scriptio continua** target languages produce one token per run (`getWordList`), so nothing here helps them; out of scope.
-6. **Shared helpers.** `findBestOrderedMatchPositions` and `fuzzyStringSimilarity` are used by the LLM path; Steps 1–2 must keep their contracts. `__tests__/autoCheckingUtils.test.js` does not cover the LLM path, so rely on the full `npm test` and the equivalence argument in 3.4.1.
+6. **Shared helpers.** `findBestOrderedMatchPositions` and `fuzzyStringSimilarity` are used by the LLM path; Steps 1–2 must keep their contracts. `__tests__/checkingSuggestionsUtils.test.js` does not cover the LLM path, so rely on the full `npm test` and the equivalence argument in 3.4.1.
 7. **Timing test (N9)** depends on the machine; it is bounded by a 10 s jest timeout and the new code needs ~1 ms, so the margin is large, but do not add a tight millisecond assertion.
 8. **Docs drift.** `CLAUDE.md` line 44 describes the old lookup (`getPreviousTranslationPartialMatchCounts`, `findClosestFuzzyGlPhrase`, `FUZZY_GL_MATCH_MAX_CONFIDENCE`); Step 6 updates it.
 9. **Adjacent-swap fallback on three-word renderings.** With `MAX_UNORDERED_GAP = 1` a word may move across two others (`một nơi thánh` accepted as `nơi thánh một`). Observed in the prototype on the existing Heb 9:12 test: the top result is unchanged (`nơi thánh` 90) but a second option `nơi thánh một` appears at 83. Harmless for ranking; if it is unwanted, restrict the fallback to two-word renderings (Open question 5).
@@ -239,7 +239,7 @@ R5 is the guard for 3.4.6: if Step 5 is done without the adjacent-swap fallback,
 
 ## 7. Implementation steps
 
-Each step ends with `npx jest __tests__/autoCheckingUtils.test.js` and `npm run lint`. Commit after each step so a step can be reverted alone. Steps 1, 2 and 4 are independently revertible. Step 3 is the core; Steps 4 and 5 depend on it (they edit `considerCandidate` and the pooled entries). Step 5 depends on Steps 1 and 4 (it uses `wordSimilarity` and `placeWords`).
+Each step ends with `npx jest __tests__/checkingSuggestionsUtils.test.js` and `npm run lint`. Commit after each step so a step can be reverted alone. Steps 1, 2 and 4 are independently revertible. Step 3 is the core; Steps 4 and 5 depend on it (they edit `considerCandidate` and the pooled entries). Step 5 depends on Steps 1 and 4 (it uses `wordSimilarity` and `placeWords`).
 
 Test counts used below: 4 existing + 9 new (N1–N9) + 5 regression (R1–R5) = **18** tests in the file after Step 0.
 
@@ -248,8 +248,8 @@ Lint notes from `.eslintrc`: blank line required before `function`, `if`, `for`,
 ### Step 0 — baseline and tests
 
 1. `npm test` → expect eslint clean, `Tests: 89 passed, 89 total`.
-2. Add N1–N9, R1–R5 and the change in 5.2 to `__tests__/autoCheckingUtils.test.js`. Put N1–N5 in `describe('partial GL match')`, N6–N7 in `describe('fuzzy target match')`, N8 in `describe('scoring')`, N9 in `describe('performance')`, R1–R5 in `describe('regression')`. Give N9 a 10 000 ms timeout as the third `test()` argument.
-3. `npx jest __tests__/autoCheckingUtils.test.js` → **done when** the output shows exactly these failing: N1, N2, N3, N4, N5, N6, N7, N8, N9 (timeout) and the changed Heb 12:10 test (`Tests: 10 failed, 8 passed, 18 total`), with R1–R5 plus the other three existing tests passing. If a test in the "fail" column passes or one in the "pass" column fails, stop and re-check section 1 before continuing; do not edit the expectation to make it fit.
+2. Add N1–N9, R1–R5 and the change in 5.2 to `__tests__/checkingSuggestionsUtils.test.js`. Put N1–N5 in `describe('partial GL match')`, N6–N7 in `describe('fuzzy target match')`, N8 in `describe('scoring')`, N9 in `describe('performance')`, R1–R5 in `describe('regression')`. Give N9 a 10 000 ms timeout as the third `test()` argument.
+3. `npx jest __tests__/checkingSuggestionsUtils.test.js` → **done when** the output shows exactly these failing: N1, N2, N3, N4, N5, N6, N7, N8, N9 (timeout) and the changed Heb 12:10 test (`Tests: 10 failed, 8 passed, 18 total`), with R1–R5 plus the other three existing tests passing. If a test in the "fail" column passes or one in the "pass" column fails, stop and re-check section 1 before continuing; do not edit the expectation to make it fit.
 
 ### Step 1 — code-point Levenshtein and `wordSimilarity`
 
@@ -281,7 +281,7 @@ Lint notes from `.eslintrc`: blank line required before `function`, `if`, `for`,
 ### Step 5 — fuzzy target pass
 
 1. Replace the `if (!haveConfidentCandidate)` block (lines 1450–1511 at the base commit; it will have moved) with the pass in 3.4.5, using `wordSimilarity`, `placeWords`, and the cap rules in 3.3. Memoise `wordSimilarity` per call (6.1).
-2. **Done when:** N6, N7 and the changed Heb 12:10 test pass; the two `coming together` tests pass (expect 87); R5 still passes (85); `npx jest __tests__/autoCheckingUtils.test.js` → `Tests: 18 passed, 18 total`; lint clean.
+2. **Done when:** N6, N7 and the changed Heb 12:10 test pass; the two `coming together` tests pass (expect 87); R5 still passes (85); `npx jest __tests__/checkingSuggestionsUtils.test.js` → `Tests: 18 passed, 18 total`; lint clean.
 
 ### Step 6 — docs and full run
 

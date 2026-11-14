@@ -2,7 +2,7 @@ import delay from './delay';
 import {
   getBestSelections,
   redactOptions,
-} from './autoCheckingUtils';
+} from './checkingSuggestionsUtils';
 
 /**
  * A queue for managing AI-powered translation suggestion requests with pause/resume support.

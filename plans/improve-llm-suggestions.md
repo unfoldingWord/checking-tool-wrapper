@@ -13,7 +13,7 @@ What changed between `7734dae` and `e856919` (five commits, all on 2026-11-09):
 - The suite reports batch-against-single figures and run-to-run consistency.
 - `queryAiAPI` now puts `/no_think` at the **end** of the system prompt instead of the start
   (line 331). Section 3.6 shows this broke batched answers on the small model (W13).
-- Two `console.log` calls were commented out. In `src/utils/autoCheckingUtils.js`, lines up to
+- Two `console.log` calls were commented out. In `src/utils/checkingSuggestionsUtils.js`, lines up to
   2288 are unchanged; later lines moved down by 1 (after 2294) or 6 (after 2438).
 
 Evidence in sections 3.1–3.5 was gathered at `7734dae`, before the `/no_think` move. Section 3.6
@@ -93,7 +93,7 @@ OFFLINE steps, skip the LIVE ones, and say so in the Results log (section 9).
 
 ## 2. Current behavior
 
-All paths are in `src/utils/autoCheckingUtils.js` unless another file is named.
+All paths are in `src/utils/checkingSuggestionsUtils.js` unless another file is named.
 
 1. `src/Container.js` builds one request per check. Background generation
    (`generateSuggestionsForGroupSub`, line 199) bundles `llmGrouping` requests per query
@@ -295,7 +295,7 @@ of the original-language quote this check is for) is never used; the interactive
 even carry `contextId` (`Container.js` line 765). Two checks for the same word in one verse get the
 same suggestion. The algorithm path has the same limit.
 
-**W9. A stale, skipped test.** `__tests__/autoCheckingUtilsLlm.test.js` line 73 is
+**W9. A stale, skipped test.** `__tests__/checkingSuggestionsUtilsLlm.test.js` line 73 is
 `describe.skip`. Its expectation at line 91 looks for `"rendering":"iglesia"` in the query, the old
 JSON history format. The single-request path has no running test.
 
@@ -652,12 +652,12 @@ expected words are verse words, the prompt's example verse is not reused).
 3. Add an always-running algorithm row: run `getBestTWordSelectionWithConfidenceAlgorithm` on every
    case and assert the number of top-1 matches equals the number measured when the test is written
    (write it in a comment). This guards the shared helpers that Steps 3–5 touch.
-4. Fix the stale test (W9): in `__tests__/autoCheckingUtilsLlm.test.js` change `describe.skip`
+4. Fix the stale test (W9): in `__tests__/checkingSuggestionsUtilsLlm.test.js` change `describe.skip`
    (line 73) to `describe`, and replace the expectation at line 91 with
    ``expect(query.mock.calls[0][0]).toContain('"iglesia" (chosen 3 times for "church")');``.
    Checked on 2026-11-09: with that change all 26 tests in the file pass.
 
-**Done when:** `npx jest __tests__/llmModelSuitability.test.js __tests__/autoCheckingUtilsLlm.test.js`
+**Done when:** `npx jest __tests__/llmModelSuitability.test.js __tests__/checkingSuggestionsUtilsLlm.test.js`
 passes with only the 9 live tests skipped, and `cases.json` has at least 30 cases.
 
 ### Step 2. Complete the suite's metrics and record the baseline (LIVE)
@@ -702,7 +702,7 @@ because it moves every later batched figure.
    ``const finalSystemPrompt = enable_thinking ? systemPrompt : `/no_think\n${systemPrompt}`;``.
    If `end` wins or nothing differs, change nothing.
 4. Record the `none` figures in section 9 for Q11. Do not adopt `none` (D2).
-5. Add a test to `__tests__/autoCheckingUtilsLlm.test.js` that fixes the adopted position: with
+5. Add a test to `__tests__/checkingSuggestionsUtilsLlm.test.js` that fixes the adopted position: with
    `window.AiAPIs.query` mocked, the `systemPrompt` option it receives starts with (or ends with)
    `/no_think`, and with `lmOptions: { enable_thinking: true }` contains no `/no_think`.
 
@@ -741,9 +741,9 @@ the verse ranks first because it is the strongest evidence, as in the algorithm'
 are enough for the groups seen (the fixture's group has 7 renderings) and halve the worst case.
 Do not change the system prompt in this step.
 
-Add tests to `__tests__/autoCheckingUtilsLlm.test.js`, through
+Add tests to `__tests__/checkingSuggestionsUtilsLlm.test.js`, through
 `buildTranslationOptionsPrompt(...).input`:
-- Vietnamese Hebrews 9:12 (`VERSE_HEB_9_12` in `__tests__/autoCheckingUtils.test.js` line 8), GL
+- Vietnamese Hebrews 9:12 (`VERSE_HEB_9_12` in `__tests__/checkingSuggestionsUtils.test.js` line 8), GL
   `holy places`, history `viTranslationData['ἅγια'].selections`: the input contains the line
   `"các nơi thánh" (chosen 1 time for "of the holy places")`. Do not assert it comes first:
   `rankGlKeys` scores `holy place` (0.907) just above `of the holy places` (0.900), so the
@@ -777,7 +777,7 @@ In `parseLlmSelectionOptions` (line 2126):
 5. When `inexact`, use `Math.min(confidence, FUZZY_TARGET_MAX_CONFIDENCE)` (90, line 910), the
    same cap the algorithm path applies to fuzzy matches.
 
-Add tests to `__tests__/autoCheckingUtilsLlm.test.js` for `parseLlmSelectionOptions`:
+Add tests to `__tests__/checkingSuggestionsUtilsLlm.test.js` for `parseLlmSelectionOptions`:
 
 | Answer | Verse words | Expected |
 |---|---|---|
@@ -815,7 +815,7 @@ This changes algorithm-path results too, only for checks with `occurrence` above
 heuristic: it assumes the nth occurrence of the original word is rendered by the nth occurrence of
 the suggested words. When the verse has fewer runs than `occurrence`, nothing changes.
 
-Tests (in `__tests__/autoCheckingUtils.test.js`): the helper with occurrence 1, 2, more than the
+Tests (in `__tests__/checkingSuggestionsUtils.test.js`): the helper with occurrence 1, 2, more than the
 runs available, and non-adjacent selections; and `getBestSelections` without `llmQueryUrl` for
 verse `Dios amó al mundo y Dios envió a su Hijo`, GL `God`, history `{ God: { Dios: 9 } }`,
 `contextId: { occurrence: 2 }` → top option `[{ text: 'Dios', occurrence: 2 }]`.
@@ -832,7 +832,7 @@ empty ones, and if there are exactly `count` lines and every one is a CSV row (a
 comma and a number, the pattern `CSV_ROW` in the suite uses), set `sections[i]` to line `i`. In
 every other case return the empty sections as now (D17). Update the function's JSDoc.
 
-Tests, in `__tests__/autoCheckingUtilsLlm.test.js`, through
+Tests, in `__tests__/checkingSuggestionsUtilsLlm.test.js`, through
 `getBestTWordSelectionWithConfidenceFromLlm` with an array and `window.AiAPIs.query` mocked, as
 the tests in the `with an array` block (line 114) do:
 - 2 requests on the file's `wordList`, answer `"iglesia",98\n"",0` → the first result's top option
@@ -946,7 +946,7 @@ is optional and defaults to 1.
 `es-long-history`. `es-exact-key` and `es-no-history` use the verse below, not the prompt's example
 verse, and `es-no-history` and `es-gap` accept the variants listed in the file.
 
-Verse constants are in `__tests__/autoCheckingUtils.test.js` lines 8–11. "vi fixture" is
+Verse constants are in `__tests__/checkingSuggestionsUtils.test.js` lines 8–11. "vi fixture" is
 `viTranslationData['ἅγια'].selections` from `__tests__/__fixtures__/tWords/vi_translationData.json`;
 copy it into the JSON.
 
@@ -987,7 +987,7 @@ Write at least this many more, following the rules below:
 
 Rules: no case may reuse the system prompt's example verse (W10).
 Keep the made-up share visible with `madeUp`. Prefer real data: the remaining rows of the algorithm
-tests (`__tests__/autoCheckingUtils.test.js` lines 47–200) are already checked. See Q4 for real
+tests (`__tests__/checkingSuggestionsUtils.test.js` lines 47–200) are already checked. See Q4 for real
 project data.
 
 ### 7.4 Metrics and rules

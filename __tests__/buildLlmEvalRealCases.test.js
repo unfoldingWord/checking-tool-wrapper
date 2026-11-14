@@ -38,7 +38,7 @@ import os from 'os';
 import path from 'path';
 import crypto from 'crypto';
 import { getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
-import { cleanGlQuote, normalizeForCompare } from '../src/utils/autoCheckingUtils';
+import { cleanGlQuote, normalizeForCompare } from '../src/utils/checkingSuggestionsUtils';
 import { getAlignedTargetWords } from './helpers/alignedTargetWords';
 
 const env = process.env;

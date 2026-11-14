@@ -51,7 +51,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { bibleIdSort, getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
-import { cleanGlQuote, getSelectionsForBook } from '../src/utils/autoCheckingUtils';
+import { cleanGlQuote, getSelectionsForBook } from '../src/utils/checkingSuggestionsUtils';
 import { getAlignedTargetWords } from './helpers/alignedTargetWords';
 
 const env = process.env;
