@@ -1,0 +1,3288 @@
+[
+  {
+    "id": "train-en-tit-1-4-christ",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "christ",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "de Cristo",
+    "history": {
+      "de Jesucristo": {
+        "Christ": 1
+      }
+    },
+    "expected": [
+      "Christ"
+    ],
+    "selections": [
+      {
+        "text": "Christ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "f6ja",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW christ, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-christ",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "christ",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "Christ": 1
+      },
+      "de Cristo": {
+        "Christ": 1
+      }
+    },
+    "expected": [
+      "Christ"
+    ],
+    "selections": [
+      {
+        "text": "Christ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "smpv",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW christ, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-6-christ",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "christ",
+    "verse": "whom he richly poured on us through our Savior Jesus Christ,",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "Christ": 1
+      },
+      "de Cristo": {
+        "Christ": 1
+      },
+      "Jesucristo": {
+        "Christ": 1
+      }
+    },
+    "expected": [
+      "Christ"
+    ],
+    "selections": [
+      {
+        "text": "Christ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bmkx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:6, tW christ, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-8-evil",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "{and} a sound message {that is} above criticism, so that the opponent may be ashamed, having nothing bad to say about us.\n\n\\ts\\*",
+    "glPhrase": "malo",
+    "history": {
+      "malas": {
+        "evil": 1
+      }
+    },
+    "expected": [
+      "bad"
+    ],
+    "selections": [
+      {
+        "text": "bad",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:8, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-3-evil",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "evil",
+    "verse": "For once we also were foolish {and} disobedient. We were led astray {and} enslaved by various passions and pleasures. We lived in evil and envy, detestable, {and} hating one another.\n\n\\ts\\*",
+    "glPhrase": "malicia",
+    "history": {
+      "malas": {
+        "evil": 1
+      },
+      "malo": {
+        "bad": 1
+      }
+    },
+    "expected": [
+      "evil"
+    ],
+    "selections": [
+      {
+        "text": "evil",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:3, tW evil, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-faith",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "the faith": 1
+      }
+    },
+    "expected": [
+      "a:2 faith"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-13-faith",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "This testimony is true. For this reason, rebuke them severely, so that they may be sound in the faith,",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "the faith": 1
+      },
+      "fe": {
+        "a faith": 1
+      }
+    },
+    "expected": [
+      "faith"
+    ],
+    "selections": [
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "s5qd",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:13, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-faith",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "fe",
+    "history": {
+      "a la fe": {
+        "the faith": 1
+      },
+      "fe": {
+        "a faith": 1,
+        "faith": 1
+      }
+    },
+    "expected": [
+      "faith"
+    ],
+    "selections": [
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-15-faith",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faith",
+    "verse": "All the ones {who are} with me greet you. Greet the ones loving us in faith. Grace {be} with all of you.",
+    "glPhrase": "la fe",
+    "history": {
+      "a la fe": {
+        "the faith": 1
+      },
+      "fe": {
+        "a faith": 1,
+        "faith": 2
+      }
+    },
+    "expected": [
+      "faith"
+    ],
+    "selections": [
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "b3pn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:15, tW faith, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-9-faithful",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faithful",
+    "verse": "He must hold tightly to the trustworthy message that is in accordance with the teaching, so that he may be able both to encourage others with sound teaching and rebuke the ones opposing {him}.\n\n\\ts\\*\n\\p",
+    "glPhrase": "fiel",
+    "history": {
+      "fieles": {
+        "faithful": 1
+      }
+    },
+    "expected": [
+      "trustworthy"
+    ],
+    "selections": [
+      {
+        "text": "trustworthy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "x67x",
+      "quote": "πιστοῦ",
+      "quoteString": "πιστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:9, tW faithful, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-faithful",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "faithful",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "es digno de confianza",
+    "history": {
+      "fieles": {
+        "faithful": 1
+      },
+      "fiel": {
+        "trustworthy": 1
+      }
+    },
+    "expected": [
+      "is trustworthy"
+    ],
+    "selections": [
+      {
+        "text": "is",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "trustworthy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "dxb8",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW faithful, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-1-god-2",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "Paul, a servant of God and an apostle of Jesus Christ, for the faith of the chosen people of God and knowledge of the truth that agrees with godliness,",
+    "glPhrase": "de Dios",
+    "occurrence": 2,
+    "history": {
+      "de Dios": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "of:4 God:2"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 4,
+        "occurrences": 5
+      },
+      {
+        "text": "God",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:1, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-2-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "with the certain hope of eternal life that God, {who} does not lie, promised before all the ages of time.",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "of God": 2
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:2, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-3-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "But at the right time, he revealed his word by the proclamation, the one I was entrusted with by the command of God our Savior.\n\n\\ts\\*",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "of God": 2
+      },
+      "Dios": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:3, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-7-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "For the overseer must be blameless, as a household manager of God, not arrogant, not easily angered, not addicted to wine, not a brawler, {and} not a greedy {man}.\n\n\\ts\\*",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "of God": 2,
+        "God": 1
+      },
+      "Dios": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "of God"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:7, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "a Dios",
+    "history": {
+      "de Dios": {
+        "of God": 3,
+        "God": 1
+      },
+      "Dios": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "de Dios",
+    "history": {
+      "de Dios": {
+        "of God": 3,
+        "God": 1
+      },
+      "Dios": {
+        "God": 1
+      },
+      "a Dios": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-4-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
+    "glPhrase": "Dios",
+    "history": {
+      "de Dios": {
+        "of God": 3,
+        "God": 2
+      },
+      "Dios": {
+        "God": 1
+      },
+      "a Dios": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:4, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-god",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "god",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "en Dios",
+    "history": {
+      "de Dios": {
+        "of God": 3,
+        "God": 2
+      },
+      "Dios": {
+        "God": 2
+      },
+      "a Dios": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW god, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-7-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "In all {ways} present yourself {as} an example of good works. In the teaching, be uncorrupted, with dignity,",
+    "glPhrase": "de buenas",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 1
+      },
+      "buenas": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:7, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 1
+      },
+      "buenas": {
+        "good": 1
+      },
+      "de buenas": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-14-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "He gave himself for us in order to redeem us from all lawlessness and to purify for himself a special people, zealous for good works.\n\n\\ts\\*\n\\p",
+    "glPhrase": "de buenas",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 2
+      },
+      "buenas": {
+        "good": 1
+      },
+      "de buenas": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-1-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "Remind them to submit to rulers {and} authorities, to obey {them}, to be ready for every good work,",
+    "glPhrase": "buena",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 2
+      },
+      "buenas": {
+        "good": 1
+      },
+      "de buenas": {
+        "good": 2
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:1, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 3
+      },
+      "buenas": {
+        "good": 1
+      },
+      "de buenas": {
+        "good": 2
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 3
+      },
+      "buenas": {
+        "good": 2
+      },
+      "de buenas": {
+        "good": 2
+      }
+    },
+    "expected": [
+      "good:2"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-14-good",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "good",
+    "verse": "And also, our own must learn to engage themselves in good works toward essential needs, in order not to be unfruitful.\n\n\\ts\\*\n\\p",
+    "glPhrase": "buenas",
+    "history": {
+      "amante del bien": {
+        "a friend of what is good": 1
+      },
+      "buena": {
+        "good": 3
+      },
+      "buenas": {
+        "good": 3
+      },
+      "de buenas": {
+        "good": 2
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:14, tW good, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-hope",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "hope",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "esperanza",
+    "history": {
+      "la esperanza": {
+        "the certain hope": 1
+      }
+    },
+    "expected": [
+      "hope"
+    ],
+    "selections": [
+      {
+        "text": "hope",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "pqwf",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW hope, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-7-hope",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "hope",
+    "verse": "so that having been justified by the grace of that one, we might become heirs according to certain hope of eternal life.\n\n\\ts\\*",
+    "glPhrase": "la esperanza",
+    "history": {
+      "la esperanza": {
+        "the certain hope": 1
+      },
+      "esperanza": {
+        "hope": 1
+      }
+    },
+    "expected": [
+      "certain hope"
+    ],
+    "selections": [
+      {
+        "text": "certain",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "hope",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "yut8",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:7, tW hope, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-jesus",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "Jesús",
+    "history": {
+      "de Jesucristo": {
+        "of Jesus": 1
+      }
+    },
+    "expected": [
+      "Jesus"
+    ],
+    "selections": [
+      {
+        "text": "Jesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jgfj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-jesus",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "of Jesus": 1
+      },
+      "Jesús": {
+        "Jesus": 1
+      }
+    },
+    "expected": [
+      "Jesus"
+    ],
+    "selections": [
+      {
+        "text": "Jesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-6-jesus",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "jesus",
+    "verse": "whom he richly poured on us through our Savior Jesus Christ,",
+    "glPhrase": "Jesucristo",
+    "history": {
+      "de Jesucristo": {
+        "of Jesus": 1
+      },
+      "Jesús": {
+        "Jesus": 1
+      },
+      "Jesucristo": {
+        "Jesus": 1
+      }
+    },
+    "expected": [
+      "Jesus"
+    ],
+    "selections": [
+      {
+        "text": "Jesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "snat",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:6, tW jesus, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-know",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "know",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "conocer",
+    "history": {
+      "al conocimiento": {
+        "knowledge": 1
+      }
+    },
+    "expected": [
+      "to know"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "know",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW know, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-11-know",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "know",
+    "verse": "knowing that such a one has turned from the right way and is sinning, being self-condemned.\n\n\\ts\\*\n\\p",
+    "glPhrase": "sabes",
+    "history": {
+      "al conocimiento": {
+        "knowledge": 1
+      },
+      "conocer": {
+        "to know": 1
+      }
+    },
+    "expected": [
+      "knowing"
+    ],
+    "selections": [
+      {
+        "text": "knowing",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:11, tW know, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-12-life",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "life",
+    "verse": "training us, so that, rejecting godlessness and worldly passions, we might live in a sensible and righteous, and godly way in the present age,",
+    "glPhrase": "vivamos",
+    "history": {
+      "de la vida": {
+        "of life": 1
+      }
+    },
+    "expected": [
+      "we might live"
+    ],
+    "selections": [
+      {
+        "text": "we",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "might",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "live",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "life",
+      "checkId": "kavz",
+      "quote": "ζήσωμεν",
+      "quoteString": "ζήσωμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "life"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:12, tW life, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-3-life",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "life",
+    "verse": "For once we also were foolish {and} disobedient. We were led astray {and} enslaved by various passions and pleasures. We lived in evil and envy, detestable, {and} hating one another.\n\n\\ts\\*",
+    "glPhrase": "viviendo",
+    "history": {
+      "de la vida": {
+        "of life": 1
+      },
+      "vivamos": {
+        "we might live": 1
+      }
+    },
+    "expected": [
+      "We lived"
+    ],
+    "selections": [
+      {
+        "text": "We",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "lived",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "life",
+      "checkId": "aj83",
+      "quote": "διάγοντες",
+      "quoteString": "διάγοντες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "life"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:3, tW life, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-7-life",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "life",
+    "verse": "so that having been justified by the grace of that one, we might become heirs according to certain hope of eternal life.\n\n\\ts\\*",
+    "glPhrase": "de la vida",
+    "history": {
+      "de la vida": {
+        "of life": 1
+      },
+      "vivamos": {
+        "we might live": 1
+      },
+      "viviendo": {
+        "We lived": 1
+      }
+    },
+    "expected": [
+      "of:2 life"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "life",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "life",
+      "checkId": "zbv2",
+      "quote": "ζωῆς",
+      "quoteString": "ζωῆς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "life"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:7, tW life, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-3-like",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "like",
+    "verse": "Older women likewise {are to be} reverent in behavior, not slanderers or enslaved to much wine, {but to be} teachers of what is good.",
+    "glPhrase": "Del mismo modo",
+    "history": {
+      "como": {
+        "as": 1
+      }
+    },
+    "expected": [
+      "likewise are to be"
+    ],
+    "selections": [
+      {
+        "text": "likewise",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "are",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "be",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "d8ve",
+      "quote": "ὡσαύτως",
+      "quoteString": "ὡσαύτως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:3, tW like, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-6-like",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "like",
+    "verse": "In the same way, exhort the younger men to be sensible.",
+    "glPhrase": "Del mismo modo",
+    "history": {
+      "como": {
+        "as": 1
+      },
+      "Del mismo modo": {
+        "likewise are to be": 1
+      }
+    },
+    "expected": [
+      "In the same way"
+    ],
+    "selections": [
+      {
+        "text": "In",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "the",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "same",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "way",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "ge2q",
+      "quote": "ὡσαύτως",
+      "quoteString": "ὡσαύτως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:6, tW like, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-4-love",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "love",
+    "verse": "In this way they may train the younger women to be lovers of their husbands {and} lovers of their children,",
+    "glPhrase": "y amadoras de sus hijos",
+    "history": {
+      "amadoras de sus esposos": {
+        "lovers of their husbands": 1
+      }
+    },
+    "expected": [
+      "and lovers:2 of:2 their:2 children"
+    ],
+    "selections": [
+      {
+        "text": "and",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "lovers",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "of",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "their",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "children",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m7kb",
+      "quote": "φιλοτέκνους",
+      "quoteString": "φιλοτέκνους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:4, tW love, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-4-love",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "love",
+    "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
+    "glPhrase": "amor por la humanidad",
+    "history": {
+      "amadoras de sus esposos": {
+        "lovers of their husbands": 1
+      },
+      "y amadoras de sus hijos": {
+        "and lovers of their children": 1
+      }
+    },
+    "expected": [
+      "love for mankind"
+    ],
+    "selections": [
+      {
+        "text": "love",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "for",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mankind",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "nwn9",
+      "quote": "φιλανθρωπία",
+      "quoteString": "φιλανθρωπία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:4, tW love, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-15-love",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "love",
+    "verse": "All the ones {who are} with me greet you. Greet the ones loving us in faith. Grace {be} with all of you.",
+    "glPhrase": "aman",
+    "history": {
+      "amadoras de sus esposos": {
+        "lovers of their husbands": 1
+      },
+      "y amadoras de sus hijos": {
+        "and lovers of their children": 1
+      },
+      "amor por la humanidad": {
+        "love for mankind": 1
+      }
+    },
+    "expected": [
+      "loving"
+    ],
+    "selections": [
+      {
+        "text": "loving",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "xuej",
+      "quote": "φιλοῦντας",
+      "quoteString": "φιλοῦντας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:15, tW love, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-15-purify",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "All things {are} pure to the ones {who are} pure. But to the ones having been corrupted and unbelieving, nothing {is} pure, but both their minds and consciences have been corrupted.",
+    "glPhrase": "que son puros",
+    "history": {
+      "son puras": {
+        "are pure": 1
+      }
+    },
+    "expected": [
+      "pure:2"
+    ],
+    "selections": [
+      {
+        "text": "pure",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "hr5s",
+      "quote": "καθαροῖς",
+      "quoteString": "καθαροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-15-purify",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "All things {are} pure to the ones {who are} pure. But to the ones having been corrupted and unbelieving, nothing {is} pure, but both their minds and consciences have been corrupted.",
+    "glPhrase": "es puro",
+    "history": {
+      "son puras": {
+        "are pure": 1
+      },
+      "que son puros": {
+        "pure": 1
+      }
+    },
+    "expected": [
+      "is pure:3"
+    ],
+    "selections": [
+      {
+        "text": "is",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "pure",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-purify",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "puras",
+    "history": {
+      "son puras": {
+        "are pure": 1
+      },
+      "que son puros": {
+        "pure": 1
+      },
+      "es puro": {
+        "is pure": 1
+      }
+    },
+    "expected": [
+      "pure"
+    ],
+    "selections": [
+      {
+        "text": "pure",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-14-purify",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "purify",
+    "verse": "He gave himself for us in order to redeem us from all lawlessness and to purify for himself a special people, zealous for good works.\n\n\\ts\\*\n\\p",
+    "glPhrase": "purifique",
+    "history": {
+      "son puras": {
+        "are pure": 1
+      },
+      "que son puros": {
+        "pure": 1
+      },
+      "es puro": {
+        "is pure": 1
+      },
+      "puras": {
+        "pure": 1
+      }
+    },
+    "expected": [
+      "to:2 purify"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "purify",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:14, tW purify, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-13-rebuke",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "rebuke",
+    "verse": "This testimony is true. For this reason, rebuke them severely, so that they may be sound in the faith,",
+    "glPhrase": "repréndelos",
+    "history": {
+      "reprender": {
+        "rebuke": 1
+      }
+    },
+    "expected": [
+      "rebuke"
+    ],
+    "selections": [
+      {
+        "text": "rebuke",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:13, tW rebuke, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-15-rebuke",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "rebuke",
+    "verse": "Speak of these things, and exhort, and rebuke with all authority. Let no one disregard you.\n\n\\ts\\*",
+    "glPhrase": "reprende",
+    "history": {
+      "reprender": {
+        "rebuke": 1
+      },
+      "repréndelos": {
+        "rebuke": 1
+      }
+    },
+    "expected": [
+      "rebuke"
+    ],
+    "selections": [
+      {
+        "text": "rebuke",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:15, tW rebuke, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-selfcontrol",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "selfcontrol",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "que sean prudentes",
+    "history": {
+      "dueño de sí mismo": {
+        "and self controlled": 1
+      }
+    },
+    "expected": [
+      "to be sensible"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "be",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "sensible",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "z2h3",
+      "quote": "σώφρονας",
+      "quoteString": "σώφρονας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW selfcontrol, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-6-selfcontrol",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "selfcontrol",
+    "verse": "In the same way, exhort the younger men to be sensible.",
+    "glPhrase": "a pensar con sensatez",
+    "history": {
+      "dueño de sí mismo": {
+        "and self controlled": 1
+      },
+      "que sean prudentes": {
+        "to be sensible": 1
+      }
+    },
+    "expected": [
+      "to be sensible"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "be",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sensible",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "wz6r",
+      "quote": "σωφρονεῖν",
+      "quoteString": "σωφρονεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:6, tW selfcontrol, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-12-selfcontrol",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "selfcontrol",
+    "verse": "training us, so that, rejecting godlessness and worldly passions, we might live in a sensible and righteous, and godly way in the present age,",
+    "glPhrase": "de una forma autocontrolada",
+    "history": {
+      "dueño de sí mismo": {
+        "and self controlled": 1
+      },
+      "que sean prudentes": {
+        "to be sensible": 1
+      },
+      "a pensar con sensatez": {
+        "to be sensible": 1
+      }
+    },
+    "expected": [
+      "in a sensible"
+    ],
+    "selections": [
+      {
+        "text": "in",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sensible",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "selfcontrol",
+      "checkId": "zvvo",
+      "quote": "σωφρόνως",
+      "quoteString": "σωφρόνως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "selfcontrol"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:12, tW selfcontrol, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-slander",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "slander",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "sea difamada",
+    "history": {
+      "calumniadoras": {
+        "slanderers": 1
+      }
+    },
+    "expected": [
+      "may be:2 insulted"
+    ],
+    "selections": [
+      {
+        "text": "may",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "be",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "insulted",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW slander, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-2-slander",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "slander",
+    "verse": "to revile no one, to be uncontentious, gentle, showing all humility toward all men.\n\n\\ts\\*",
+    "glPhrase": "que hablen mal",
+    "history": {
+      "calumniadoras": {
+        "slanderers": 1
+      },
+      "sea difamada": {
+        "may be insulted": 1
+      }
+    },
+    "expected": [
+      "to revile"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "revile",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:2, tW slander, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-9-subject",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "subject",
+    "verse": "Slaves are to be subject to their own masters in everything, to be pleasing, {and} not to argue,",
+    "glPhrase": "Que se sometan",
+    "history": {
+      "sujetas": {
+        "and subject": 1
+      }
+    },
+    "expected": [
+      "are to be subject"
+    ],
+    "selections": [
+      {
+        "text": "are",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "be",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "subject",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:9, tW subject, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-1-subject",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "subject",
+    "verse": "Remind them to submit to rulers {and} authorities, to obey {them}, to be ready for every good work,",
+    "glPhrase": "que se sometan",
+    "history": {
+      "sujetas": {
+        "and subject": 1
+      },
+      "Que se sometan": {
+        "are to be subject": 1
+      }
+    },
+    "expected": [
+      "to submit"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "submit",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:1, tW subject, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-true",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "true",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "verdadero",
+    "history": {
+      "de la verdad": {
+        "of the truth": 1
+      }
+    },
+    "expected": [
+      "true"
+    ],
+    "selections": [
+      {
+        "text": "true",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "true",
+      "checkId": "qf9a",
+      "quote": "γνησίῳ",
+      "quoteString": "γνησίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "true"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW true, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-13-true",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "true",
+    "verse": "This testimony is true. For this reason, rebuke them severely, so that they may be sound in the faith,",
+    "glPhrase": "confiable",
+    "history": {
+      "de la verdad": {
+        "of the truth": 1
+      },
+      "verdadero": {
+        "true": 1
+      }
+    },
+    "expected": [
+      "true"
+    ],
+    "selections": [
+      {
+        "text": "true",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "true",
+      "checkId": "tk9k",
+      "quote": "ἀληθής",
+      "quoteString": "ἀληθής",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "true"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:13, tW true, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-14-true",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "true",
+    "verse": "not paying any attention to Jewish myths or to commands of people turning away from the truth.\n\n\\ts\\*",
+    "glPhrase": "verdad",
+    "history": {
+      "de la verdad": {
+        "of the truth": 1
+      },
+      "verdadero": {
+        "true": 1
+      },
+      "confiable": {
+        "true": 1
+      }
+    },
+    "expected": [
+      "truth"
+    ],
+    "selections": [
+      {
+        "text": "truth",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "true",
+      "checkId": "v6p4",
+      "quote": "ἀλήθειαν",
+      "quoteString": "ἀλήθειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "true"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:14, tW true, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "obra",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      }
+    },
+    "expected": [
+      "work"
+    ],
+    "selections": [
+      {
+        "text": "work",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "ak7q",
+      "quote": "ἔργον",
+      "quoteString": "ἔργον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-7-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "In all {ways} present yourself {as} an example of good works. In the teaching, be uncorrupted, with dignity,",
+    "glPhrase": "obras",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      },
+      "obra": {
+        "work": 1
+      }
+    },
+    "expected": [
+      "of works"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "works",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "yfaa",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:7, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-2-14-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "He gave himself for us in order to redeem us from all lawlessness and to purify for himself a special people, zealous for good works.\n\n\\ts\\*\n\\p",
+    "glPhrase": "obras",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      },
+      "obra": {
+        "work": 1
+      },
+      "obras": {
+        "of works": 1
+      }
+    },
+    "expected": [
+      "for:3 works"
+    ],
+    "selections": [
+      {
+        "text": "for",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "works",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "p85y",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:14, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-1-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "Remind them to submit to rulers {and} authorities, to obey {them}, to be ready for every good work,",
+    "glPhrase": "obra",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      },
+      "obra": {
+        "work": 1
+      },
+      "obras": {
+        "of works": 1,
+        "for works": 1
+      }
+    },
+    "expected": [
+      "work"
+    ],
+    "selections": [
+      {
+        "text": "work",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "u48n",
+      "quote": "ἔργον",
+      "quoteString": "ἔργον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:1, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-5-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "{it was} not by works of righteousness that we did, but by his mercy that he saved us, through the washing of new birth and renewal by the Holy Spirit,\n\n\\ts\\*",
+    "glPhrase": "obras",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      },
+      "obra": {
+        "work": 2
+      },
+      "obras": {
+        "of works": 1,
+        "for works": 1
+      }
+    },
+    "expected": [
+      "works"
+    ],
+    "selections": [
+      {
+        "text": "works",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "arve",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:5, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "obras",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      },
+      "obra": {
+        "work": 2
+      },
+      "obras": {
+        "of works": 1,
+        "for works": 1,
+        "works": 1
+      }
+    },
+    "expected": [
+      "in works"
+    ],
+    "selections": [
+      {
+        "text": "in",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "works",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "b8gd",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW works, GL es-419 glt/v42_es-419_gl"
+  },
+  {
+    "id": "train-en-tit-3-14-works",
+    "targetLang": "en",
+    "glLang": "es-419",
+    "glOwner": "es-419_gl",
+    "groupId": "works",
+    "verse": "And also, our own must learn to engage themselves in good works toward essential needs, in order not to be unfruitful.\n\n\\ts\\*\n\\p",
+    "glPhrase": "las obras",
+    "history": {
+      "acciones": {
+        "by actions": 1
+      },
+      "obra": {
+        "work": 2
+      },
+      "obras": {
+        "of works": 1,
+        "for works": 1,
+        "works": 1,
+        "in works": 1
+      }
+    },
+    "expected": [
+      "in works"
+    ],
+    "selections": [
+      {
+        "text": "in",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "works",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "works",
+      "checkId": "uhu8",
+      "quote": "ἔργων",
+      "quoteString": "ἔργων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "works"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:14, tW works, GL es-419 glt/v42_es-419_gl"
+  }
+]

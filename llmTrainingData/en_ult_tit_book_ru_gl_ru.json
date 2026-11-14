@@ -1,0 +1,3287 @@
+[
+  {
+    "id": "train-en-tit-1-3-age",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "age",
+    "verse": "But at the right time, he revealed his word by the proclamation, the one I was entrusted with by the command of God our Savior.\n\n\\ts\\*",
+    "glPhrase": "время",
+    "history": {
+      "времён": {
+        "of time": 1
+      }
+    },
+    "expected": [
+      "at the time"
+    ],
+    "selections": [
+      {
+        "text": "at",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "the",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "time",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "dhdb",
+      "quote": "καιροῖς",
+      "quoteString": "καιροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:3, tW age, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-12-age",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "age",
+    "verse": "training us, so that, rejecting godlessness and worldly passions, we might live in a sensible and righteous, and godly way in the present age,",
+    "glPhrase": "веке",
+    "history": {
+      "времён": {
+        "of time": 1
+      },
+      "время": {
+        "at the time": 1
+      }
+    },
+    "expected": [
+      "age"
+    ],
+    "selections": [
+      {
+        "text": "age",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "e5gn",
+      "quote": "αἰῶνι",
+      "quoteString": "αἰῶνι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:12, tW age, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-christ",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "christ",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "Христа",
+    "history": {
+      "Христа": {
+        "Christ": 1
+      }
+    },
+    "expected": [
+      "Christ"
+    ],
+    "selections": [
+      {
+        "text": "Christ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "f6ja",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW christ, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-christ",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "christ",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "Христа",
+    "history": {
+      "Христа": {
+        "Christ": 2
+      }
+    },
+    "expected": [
+      "Christ"
+    ],
+    "selections": [
+      {
+        "text": "Christ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "smpv",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW christ, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-6-christ",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "christ",
+    "verse": "whom he richly poured on us through our Savior Jesus Christ,",
+    "glPhrase": "Христа",
+    "history": {
+      "Христа": {
+        "Christ": 3
+      }
+    },
+    "expected": [
+      "Christ"
+    ],
+    "selections": [
+      {
+        "text": "Christ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "bmkx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:6, tW christ, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-7-doctrine",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "doctrine",
+    "verse": "In all {ways} present yourself {as} an example of good works. In the teaching, be uncorrupted, with dignity,",
+    "glPhrase": "учительстве",
+    "history": {
+      "учении": {
+        "teaching": 1
+      }
+    },
+    "expected": [
+      "teaching"
+    ],
+    "selections": [
+      {
+        "text": "teaching",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "p6a7",
+      "quote": "διδασκαλίᾳ",
+      "quoteString": "διδασκαλίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:7, tW doctrine, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-doctrine",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "doctrine",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "учения",
+    "history": {
+      "учении": {
+        "teaching": 1
+      },
+      "учительстве": {
+        "teaching": 1
+      }
+    },
+    "expected": [
+      "teaching"
+    ],
+    "selections": [
+      {
+        "text": "teaching",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "pex6",
+      "quote": "διδασκαλίαν",
+      "quoteString": "διδασκαλίαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW doctrine, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-8-evil",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "evil",
+    "verse": "{and} a sound message {that is} above criticism, so that the opponent may be ashamed, having nothing bad to say about us.\n\n\\ts\\*",
+    "glPhrase": "плохого",
+    "history": {
+      "злые": {
+        "evil": 1
+      }
+    },
+    "expected": [
+      "bad"
+    ],
+    "selections": [
+      {
+        "text": "bad",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:8, tW evil, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-3-evil",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "evil",
+    "verse": "For once we also were foolish {and} disobedient. We were led astray {and} enslaved by various passions and pleasures. We lived in evil and envy, detestable, {and} hating one another.\n\n\\ts\\*",
+    "glPhrase": "злобе",
+    "history": {
+      "злые": {
+        "evil": 1
+      },
+      "плохого": {
+        "bad": 1
+      }
+    },
+    "expected": [
+      "evil"
+    ],
+    "selections": [
+      {
+        "text": "evil",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:3, tW evil, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-faith",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faith",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "вере",
+    "history": {
+      "вере": {
+        "the faith": 1
+      }
+    },
+    "expected": [
+      "a:2 faith"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW faith, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-13-faith",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faith",
+    "verse": "This testimony is true. For this reason, rebuke them severely, so that they may be sound in the faith,",
+    "glPhrase": "вере",
+    "history": {
+      "вере": {
+        "the faith": 1,
+        "a faith": 1
+      }
+    },
+    "expected": [
+      "faith"
+    ],
+    "selections": [
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "s5qd",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:13, tW faith, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-2-faith",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faith",
+    "verse": "Older men are to be temperate, dignified, sensible, sound in faith, in love, {and} in perseverance.\n\n\\ts\\*",
+    "glPhrase": "в вере",
+    "history": {
+      "вере": {
+        "the faith": 1,
+        "a faith": 1,
+        "faith": 1
+      }
+    },
+    "expected": [
+      "in faith"
+    ],
+    "selections": [
+      {
+        "text": "in",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "skyq",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "πίστει",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:2, tW faith, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-faith",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faith",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "верность",
+    "history": {
+      "вере": {
+        "the faith": 1,
+        "a faith": 1,
+        "faith": 1
+      },
+      "в вере": {
+        "in faith": 1
+      }
+    },
+    "expected": [
+      "faith"
+    ],
+    "selections": [
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW faith, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-15-faith",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faith",
+    "verse": "All the ones {who are} with me greet you. Greet the ones loving us in faith. Grace {be} with all of you.",
+    "glPhrase": "вере",
+    "history": {
+      "вере": {
+        "the faith": 1,
+        "a faith": 1,
+        "faith": 1
+      },
+      "в вере": {
+        "in faith": 1
+      },
+      "верность": {
+        "faith": 1
+      }
+    },
+    "expected": [
+      "faith"
+    ],
+    "selections": [
+      {
+        "text": "faith",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "b3pn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:15, tW faith, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-9-faithful",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faithful",
+    "verse": "He must hold tightly to the trustworthy message that is in accordance with the teaching, so that he may be able both to encourage others with sound teaching and rebuke the ones opposing {him}.\n\n\\ts\\*\n\\p",
+    "glPhrase": "верного",
+    "history": {
+      "верных": {
+        "faithful": 1
+      }
+    },
+    "expected": [
+      "trustworthy"
+    ],
+    "selections": [
+      {
+        "text": "trustworthy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "x67x",
+      "quote": "πιστοῦ",
+      "quoteString": "πιστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:9, tW faithful, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-faithful",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "faithful",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "верное",
+    "history": {
+      "верных": {
+        "faithful": 1
+      },
+      "верного": {
+        "trustworthy": 1
+      }
+    },
+    "expected": [
+      "is trustworthy"
+    ],
+    "selections": [
+      {
+        "text": "is",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "trustworthy",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "dxb8",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW faithful, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-1-god-2",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "Paul, a servant of God and an apostle of Jesus Christ, for the faith of the chosen people of God and knowledge of the truth that agrees with godliness,",
+    "glPhrase": "Бога",
+    "occurrence": 2,
+    "history": {
+      "Бога": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "of:4 God:2"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 4,
+        "occurrences": 5
+      },
+      {
+        "text": "God",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:1, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-2-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "with the certain hope of eternal life that God, {who} does not lie, promised before all the ages of time.",
+    "glPhrase": "Бог",
+    "history": {
+      "Бога": {
+        "of God": 2
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:2, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-3-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "But at the right time, he revealed his word by the proclamation, the one I was entrusted with by the command of God our Savior.\n\n\\ts\\*",
+    "glPhrase": "Бога",
+    "history": {
+      "Бога": {
+        "of God": 2
+      },
+      "Бог": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:3, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-7-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "For the overseer must be blameless, as a household manager of God, not arrogant, not easily angered, not addicted to wine, not a brawler, {and} not a greedy {man}.\n\n\\ts\\*",
+    "glPhrase": "Божий",
+    "history": {
+      "Бога": {
+        "of God": 2,
+        "God": 1
+      },
+      "Бог": {
+        "God": 1
+      }
+    },
+    "expected": [
+      "of God"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:7, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "Бога",
+    "history": {
+      "Бога": {
+        "of God": 2,
+        "God": 1
+      },
+      "Бог": {
+        "God": 1
+      },
+      "Божий": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "Бога",
+    "history": {
+      "Бога": {
+        "of God": 2,
+        "God": 2
+      },
+      "Бог": {
+        "God": 1
+      },
+      "Божий": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-11-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "For the grace of God has appeared {for} salvation to all men,",
+    "glPhrase": "Бога",
+    "history": {
+      "Бога": {
+        "of God": 2,
+        "God": 3
+      },
+      "Бог": {
+        "God": 1
+      },
+      "Божий": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "of God"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xef2",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:11, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-4-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
+    "glPhrase": "Бога",
+    "history": {
+      "Бога": {
+        "of God": 3,
+        "God": 3
+      },
+      "Бог": {
+        "God": 1
+      },
+      "Божий": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:4, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-god",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "god",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "в Бога",
+    "history": {
+      "Бога": {
+        "of God": 3,
+        "God": 4
+      },
+      "Бог": {
+        "God": 1
+      },
+      "Божий": {
+        "of God": 1
+      }
+    },
+    "expected": [
+      "God"
+    ],
+    "selections": [
+      {
+        "text": "God",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW god, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-12-godly",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "godly",
+    "verse": "training us, so that, rejecting godlessness and worldly passions, we might live in a sensible and righteous, and godly way in the present age,",
+    "glPhrase": "нечестие",
+    "history": {
+      "благочестию": {
+        "godliness": 1
+      }
+    },
+    "expected": [
+      "godlessness"
+    ],
+    "selections": [
+      {
+        "text": "godlessness",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "trje",
+      "quote": [
+        {
+          "word": "τὴν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἀσέβειαν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὴν ἀσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:12, tW godly, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-12-godly",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "godly",
+    "verse": "training us, so that, rejecting godlessness and worldly passions, we might live in a sensible and righteous, and godly way in the present age,",
+    "glPhrase": "благочестиво",
+    "history": {
+      "благочестию": {
+        "godliness": 1
+      },
+      "нечестие": {
+        "godlessness": 1
+      }
+    },
+    "expected": [
+      "godly way"
+    ],
+    "selections": [
+      {
+        "text": "godly",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "way",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "wyfa",
+      "quote": "εὐσεβῶς",
+      "quoteString": "εὐσεβῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:12, tW godly, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "доброму",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "добрыми",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-7-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "In all {ways} present yourself {as} an example of good works. In the teaching, be uncorrupted, with dignity,",
+    "glPhrase": "добрых",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 1
+      },
+      "добрыми": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:7, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "добрую",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 1
+      },
+      "добрыми": {
+        "good": 1
+      },
+      "добрых": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-14-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "He gave himself for us in order to redeem us from all lawlessness and to purify for himself a special people, zealous for good works.\n\n\\ts\\*\n\\p",
+    "glPhrase": "добрых",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 1
+      },
+      "добрыми": {
+        "good": 1
+      },
+      "добрых": {
+        "good": 1
+      },
+      "добрую": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:14, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-1-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "Remind them to submit to rulers {and} authorities, to obey {them}, to be ready for every good work,",
+    "glPhrase": "доброму",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 1
+      },
+      "добрыми": {
+        "good": 1
+      },
+      "добрых": {
+        "good": 2
+      },
+      "добрую": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:1, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "добрых",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 2
+      },
+      "добрыми": {
+        "good": 1
+      },
+      "добрых": {
+        "good": 2
+      },
+      "добрую": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-8-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
+    "glPhrase": "хорошо",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 2
+      },
+      "добрыми": {
+        "good": 1
+      },
+      "добрых": {
+        "good": 3
+      },
+      "добрую": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good:2"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:8, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-14-good",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "good",
+    "verse": "And also, our own must learn to engage themselves in good works toward essential needs, in order not to be unfruitful.\n\n\\ts\\*\n\\p",
+    "glPhrase": "добрые",
+    "history": {
+      "любящий добро": {
+        "a friend of what is good": 1
+      },
+      "доброму": {
+        "good": 2
+      },
+      "добрыми": {
+        "good": 1
+      },
+      "добрых": {
+        "good": 3
+      },
+      "добрую": {
+        "good": 1
+      },
+      "хорошо": {
+        "good": 1
+      }
+    },
+    "expected": [
+      "good"
+    ],
+    "selections": [
+      {
+        "text": "good",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:14, tW good, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-11-grace",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "grace",
+    "verse": "For the grace of God has appeared {for} salvation to all men,",
+    "glPhrase": "благодать",
+    "history": {
+      "благодать": {
+        "Grace": 1
+      }
+    },
+    "expected": [
+      "grace"
+    ],
+    "selections": [
+      {
+        "text": "grace",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "rxzp",
+      "quote": "χάρις",
+      "quoteString": "χάρις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:11, tW grace, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-15-grace",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "grace",
+    "verse": "All the ones {who are} with me greet you. Greet the ones loving us in faith. Grace {be} with all of you.",
+    "glPhrase": "Благодать",
+    "history": {
+      "благодать": {
+        "Grace": 1,
+        "grace": 1
+      }
+    },
+    "expected": [
+      "Grace"
+    ],
+    "selections": [
+      {
+        "text": "Grace",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "stmk",
+      "quote": [
+        {
+          "word": "ἡ",
+          "occurrence": 1
+        },
+        {
+          "word": "χάρις",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἡ χάρις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:15, tW grace, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-hope",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "hope",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "надежду",
+    "history": {
+      "надежде": {
+        "the certain hope": 1
+      }
+    },
+    "expected": [
+      "hope"
+    ],
+    "selections": [
+      {
+        "text": "hope",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "pqwf",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW hope, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-7-hope",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "hope",
+    "verse": "so that having been justified by the grace of that one, we might become heirs according to certain hope of eternal life.\n\n\\ts\\*",
+    "glPhrase": "надеждой",
+    "history": {
+      "надежде": {
+        "the certain hope": 1
+      },
+      "надежду": {
+        "hope": 1
+      }
+    },
+    "expected": [
+      "certain hope"
+    ],
+    "selections": [
+      {
+        "text": "certain",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "hope",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "yut8",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:7, tW hope, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-jesus",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "jesus",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "Иисуса",
+    "history": {
+      "Иисуса": {
+        "of Jesus": 1
+      }
+    },
+    "expected": [
+      "Jesus"
+    ],
+    "selections": [
+      {
+        "text": "Jesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "jgfj",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW jesus, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-jesus",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "jesus",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "Иисуса",
+    "history": {
+      "Иисуса": {
+        "of Jesus": 1,
+        "Jesus": 1
+      }
+    },
+    "expected": [
+      "Jesus"
+    ],
+    "selections": [
+      {
+        "text": "Jesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "mgn9",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW jesus, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-6-jesus",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "jesus",
+    "verse": "whom he richly poured on us through our Savior Jesus Christ,",
+    "glPhrase": "Иисуса",
+    "history": {
+      "Иисуса": {
+        "of Jesus": 1,
+        "Jesus": 2
+      }
+    },
+    "expected": [
+      "Jesus"
+    ],
+    "selections": [
+      {
+        "text": "Jesus",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "snat",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:6, tW jesus, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-16-know",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "know",
+    "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
+    "glPhrase": "знают",
+    "history": {
+      "познанию": {
+        "knowledge": 1
+      }
+    },
+    "expected": [
+      "to know"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "know",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:16, tW know, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-11-know",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "know",
+    "verse": "knowing that such a one has turned from the right way and is sinning, being self-condemned.\n\n\\ts\\*\n\\p",
+    "glPhrase": "зная",
+    "history": {
+      "познанию": {
+        "knowledge": 1
+      },
+      "знают": {
+        "to know": 1
+      }
+    },
+    "expected": [
+      "knowing"
+    ],
+    "selections": [
+      {
+        "text": "knowing",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:11, tW know, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-4-love",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "love",
+    "verse": "In this way they may train the younger women to be lovers of their husbands {and} lovers of their children,",
+    "glPhrase": "любящими мужей",
+    "history": {
+      "в любви": {
+        "in love": 1
+      }
+    },
+    "expected": [
+      "lovers of their husbands"
+    ],
+    "selections": [
+      {
+        "text": "lovers",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "their",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "husbands",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "q8p8",
+      "quote": "φιλάνδρους",
+      "quoteString": "φιλάνδρους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:4, tW love, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-4-love",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "love",
+    "verse": "In this way they may train the younger women to be lovers of their husbands {and} lovers of their children,",
+    "glPhrase": "любящими детей",
+    "history": {
+      "в любви": {
+        "in love": 1
+      },
+      "любящими мужей": {
+        "lovers of their husbands": 1
+      }
+    },
+    "expected": [
+      "and lovers:2 of:2 their:2 children"
+    ],
+    "selections": [
+      {
+        "text": "and",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "lovers",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "of",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "their",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "children",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m7kb",
+      "quote": "φιλοτέκνους",
+      "quoteString": "φιλοτέκνους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:4, tW love, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-4-love",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "love",
+    "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
+    "glPhrase": "человеколюбие",
+    "history": {
+      "в любви": {
+        "in love": 1
+      },
+      "любящими мужей": {
+        "lovers of their husbands": 1
+      },
+      "любящими детей": {
+        "and lovers of their children": 1
+      }
+    },
+    "expected": [
+      "love for mankind"
+    ],
+    "selections": [
+      {
+        "text": "love",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "for",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mankind",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "nwn9",
+      "quote": "φιλανθρωπία",
+      "quoteString": "φιλανθρωπία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:4, tW love, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-15-love",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "love",
+    "verse": "All the ones {who are} with me greet you. Greet the ones loving us in faith. Grace {be} with all of you.",
+    "glPhrase": "любящих",
+    "history": {
+      "в любви": {
+        "in love": 1
+      },
+      "любящими мужей": {
+        "lovers of their husbands": 1
+      },
+      "любящими детей": {
+        "and lovers of their children": 1
+      },
+      "человеколюбие": {
+        "love for mankind": 1
+      }
+    },
+    "expected": [
+      "loving"
+    ],
+    "selections": [
+      {
+        "text": "loving",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "xuej",
+      "quote": "φιλοῦντας",
+      "quoteString": "φιλοῦντας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:15, tW love, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-15-purify",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "purify",
+    "verse": "All things {are} pure to the ones {who are} pure. But to the ones having been corrupted and unbelieving, nothing {is} pure, but both their minds and consciences have been corrupted.",
+    "glPhrase": "для чистых",
+    "history": {
+      "чисто": {
+        "are pure": 1
+      }
+    },
+    "expected": [
+      "pure:2"
+    ],
+    "selections": [
+      {
+        "text": "pure",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "hr5s",
+      "quote": "καθαροῖς",
+      "quoteString": "καθαροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:15, tW purify, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-15-purify",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "purify",
+    "verse": "All things {are} pure to the ones {who are} pure. But to the ones having been corrupted and unbelieving, nothing {is} pure, but both their minds and consciences have been corrupted.",
+    "glPhrase": "чистого",
+    "history": {
+      "чисто": {
+        "are pure": 1
+      },
+      "для чистых": {
+        "pure": 1
+      }
+    },
+    "expected": [
+      "is pure:3"
+    ],
+    "selections": [
+      {
+        "text": "is",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "pure",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:15, tW purify, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-purify",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "purify",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "чистыми",
+    "history": {
+      "чисто": {
+        "are pure": 1
+      },
+      "для чистых": {
+        "pure": 1
+      },
+      "чистого": {
+        "is pure": 1
+      }
+    },
+    "expected": [
+      "pure"
+    ],
+    "selections": [
+      {
+        "text": "pure",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW purify, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-14-purify",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "purify",
+    "verse": "He gave himself for us in order to redeem us from all lawlessness and to purify for himself a special people, zealous for good works.\n\n\\ts\\*\n\\p",
+    "glPhrase": "очистить",
+    "history": {
+      "чисто": {
+        "are pure": 1
+      },
+      "для чистых": {
+        "pure": 1
+      },
+      "чистого": {
+        "is pure": 1
+      },
+      "чистыми": {
+        "pure": 1
+      }
+    },
+    "expected": [
+      "to:2 purify"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "purify",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:14, tW purify, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-13-rebuke",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "rebuke",
+    "verse": "This testimony is true. For this reason, rebuke them severely, so that they may be sound in the faith,",
+    "glPhrase": "обличай",
+    "history": {
+      "обличать": {
+        "rebuke": 1
+      }
+    },
+    "expected": [
+      "rebuke"
+    ],
+    "selections": [
+      {
+        "text": "rebuke",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "crce",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:13, tW rebuke, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-15-rebuke",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "rebuke",
+    "verse": "Speak of these things, and exhort, and rebuke with all authority. Let no one disregard you.\n\n\\ts\\*",
+    "glPhrase": "обличай",
+    "history": {
+      "обличать": {
+        "rebuke": 1
+      },
+      "обличай": {
+        "rebuke": 1
+      }
+    },
+    "expected": [
+      "rebuke"
+    ],
+    "selections": [
+      {
+        "text": "rebuke",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "rebuke",
+      "checkId": "rvsu",
+      "quote": "ἔλεγχε",
+      "quoteString": "ἔλεγχε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "rebuke"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:15, tW rebuke, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-12-righteous",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "righteous",
+    "verse": "training us, so that, rejecting godlessness and worldly passions, we might live in a sensible and righteous, and godly way in the present age,",
+    "glPhrase": "праведно",
+    "history": {
+      "справедливый": {
+        "righteous": 1
+      }
+    },
+    "expected": [
+      "righteous"
+    ],
+    "selections": [
+      {
+        "text": "righteous",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "dr9j",
+      "quote": "δικαίως",
+      "quoteString": "δικαίως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:12, tW righteous, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-5-righteous",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "righteous",
+    "verse": "{it was} not by works of righteousness that we did, but by his mercy that he saved us, through the washing of new birth and renewal by the Holy Spirit,\n\n\\ts\\*",
+    "glPhrase": "в праведности",
+    "history": {
+      "справедливый": {
+        "righteous": 1
+      },
+      "праведно": {
+        "righteous": 1
+      }
+    },
+    "expected": [
+      "of righteousness"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "righteousness",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "sqsf",
+      "quote": [
+        {
+          "word": "τῶν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "δικαιοσύνῃ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῶν ἐν δικαιοσύνῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:5, tW righteous, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-1-4-savior",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "savior",
+    "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
+    "glPhrase": "Спасителя",
+    "history": {
+      "Спасителя": {
+        "of Savior": 1
+      }
+    },
+    "expected": [
+      "Savior"
+    ],
+    "selections": [
+      {
+        "text": "Savior",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "mvwu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 1:4, tW savior, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-10-savior",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "savior",
+    "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
+    "glPhrase": "Спасителя",
+    "history": {
+      "Спасителя": {
+        "of Savior": 1,
+        "Savior": 1
+      }
+    },
+    "expected": [
+      "Savior"
+    ],
+    "selections": [
+      {
+        "text": "Savior",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "rqa2",
+      "quote": "Σωτῆρος",
+      "quoteString": "Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:10, tW savior, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-13-savior",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "savior",
+    "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
+    "glPhrase": "Спасителя",
+    "history": {
+      "Спасителя": {
+        "of Savior": 1,
+        "Savior": 2
+      }
+    },
+    "expected": [
+      "Savior"
+    ],
+    "selections": [
+      {
+        "text": "Savior",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "bpbw",
+      "quote": "Σωτῆρος",
+      "quoteString": "Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:13, tW savior, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-4-savior",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "savior",
+    "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
+    "glPhrase": "Спасителя",
+    "history": {
+      "Спасителя": {
+        "of Savior": 1,
+        "Savior": 3
+      }
+    },
+    "expected": [
+      "of Savior"
+    ],
+    "selections": [
+      {
+        "text": "of",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Savior",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "x4gg",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:4, tW savior, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-6-savior",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "savior",
+    "verse": "whom he richly poured on us through our Savior Jesus Christ,",
+    "glPhrase": "Спасителя",
+    "history": {
+      "Спасителя": {
+        "of Savior": 2,
+        "Savior": 3
+      }
+    },
+    "expected": [
+      "Savior"
+    ],
+    "selections": [
+      {
+        "text": "Savior",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "h9fu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:6, tW savior, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-5-slander",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "slander",
+    "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
+    "glPhrase": "было поругаемо",
+    "history": {
+      "клеветницами": {
+        "slanderers": 1
+      }
+    },
+    "expected": [
+      "may be:2 insulted"
+    ],
+    "selections": [
+      {
+        "text": "may",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "be",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "insulted",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:5, tW slander, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-2-slander",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "slander",
+    "verse": "to revile no one, to be uncontentious, gentle, showing all humility toward all men.\n\n\\ts\\*",
+    "glPhrase": "оскорблять",
+    "history": {
+      "клеветницами": {
+        "slanderers": 1
+      },
+      "было поругаемо": {
+        "may be insulted": 1
+      }
+    },
+    "expected": [
+      "to revile"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "revile",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:2, tW slander, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-2-9-subject",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "subject",
+    "verse": "Slaves are to be subject to their own masters in everything, to be pleasing, {and} not to argue,",
+    "glPhrase": "подчиняться",
+    "history": {
+      "подчиняющимися": {
+        "and subject": 1
+      }
+    },
+    "expected": [
+      "are to be subject"
+    ],
+    "selections": [
+      {
+        "text": "are",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "be",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "subject",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 2:9, tW subject, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-en-tit-3-1-subject",
+    "targetLang": "en",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "subject",
+    "verse": "Remind them to submit to rulers {and} authorities, to obey {them}, to be ready for every good work,",
+    "glPhrase": "повиноваться",
+    "history": {
+      "подчиняющимися": {
+        "and subject": 1
+      },
+      "подчиняться": {
+        "are to be subject": 1
+      }
+    },
+    "expected": [
+      "to submit"
+    ],
+    "selections": [
+      {
+        "text": "to",
+        "occurrence": 1,
+        "occurrences": 4
+      },
+      {
+        "text": "submit",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "en_ult_tit_book 3:1, tW subject, GL ru rlob/v13.0_ru_gl"
+  }
+]
