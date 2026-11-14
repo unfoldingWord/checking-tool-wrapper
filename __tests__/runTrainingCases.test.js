@@ -119,8 +119,9 @@ function formatSummary(name, summary) {
     lines.push(`  misses (first ${Math.min(MAX_MISSES_SHOWN, summary.misses.length)} of ${summary.misses.length}):`);
 
     for (const miss of summary.misses.slice(0, MAX_MISSES_SHOWN)) {
-      const missStr = miss.got.length ? miss.got.join(' | ') : '(none)';
-      const misCompare = `    ${miss.id}: expected '${JSON.stringify(miss.expected)}', got '${missStr}'`;
+      let missStr = miss.got.length ? miss.got.join(' | ') : '';
+      missStr = missStr ? `[${missStr}]` : '(none)';
+      const misCompare = `    ${miss.id}: expected '${JSON.stringify(miss.expected)}', got options: '${missStr}'`;
       lines.push(misCompare);
     }
   }
