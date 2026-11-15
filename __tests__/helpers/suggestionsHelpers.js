@@ -452,22 +452,65 @@ export function percentile(sorted, fraction) {
  *
  * @param {string} testDataPath - path to a JSON file holding an array of cases
  * @param {object} [settings] - suggestion settings, passed to {@link runTestCasesFromJson}
- * @returns {Promise<void>}
+ * @returns {Promise<{results: Array<object>, summary: object}>} the results and summary that were
+ *   saved, as {@link runTestCasesFromJson} returns them
  */
 export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings = {}) {
   const { results, summary } = await runTestCasesFromJson(testDataPath, settings);
 
-  const baseFileName = path.basename(testDataPath, '.json');
+  const baseFileName_ = path.basename(testDataPath, '.json');
+  // a model id such as `qwen/qwen3-4b` has characters that cannot be in a file name
+  const modelName = settings?.llmQueryUrl ? String(settings.currentModel).replace(/[^\w.-]+/g, '-') : 'Algorithm';
+  const baseFileName = `${baseFileName_}_${modelName}`;
   const destFolder = path.join(path.dirname(testDataPath), 'results');
   fs.mkdirSync(destFolder, { recursive: true });
 
   const resultsPath = path.join(destFolder, `${baseFileName}.results.json`);
-  await fs.writeFile(resultsPath, JSON.stringify(results, null, 2));
+  fs.writeFileSync(resultsPath, JSON.stringify(results, null, 2));
 
   const summaryPath = path.join(destFolder, `${baseFileName}.summary.json`);
   const summaryJson = JSON.stringify(summary, null, 2);
-  await fs.writeFile(summaryPath, summaryJson);
+  fs.writeFileSync(summaryPath, summaryJson);
 
   return { results, summary };
+}
+
+export async function runAllTestCasesInFolderAndSaveResults(testDataFolder, settings = {}) {
+  let fileCount = 0;
+  let testCount = 0;
+
+  if (fs.existsSync(testDataFolder)) {
+    let files = [];
+
+    try {
+      files = fs.readdirSync(testDataFolder);
+    } catch (err) {
+      console.error(`Error reading directory ${testDataFolder}: ${err}`);
+      return fileCount;
+    }
+
+    files = files.filter(file => // filter the filenames to only use .json
+      path.extname(file) === '.json'
+    );
+
+    for (const file of files) {
+      const filePath = path.join(testDataFolder, file);
+      console.log(`Processing file: ${filePath}`);
+
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        const { results } = await runTestCasesFromJsonAndSaveResults(filePath, settings);
+        fileCount++;
+        testCount += results?.length || 0;
+      } catch (e) {
+        console.error(`Error processing file ${filePath}: ${e}`);
+      }
+    }
+  } else {
+    console.error(`Directory ${testDataFolder} does not exist`);
+  }
+
+  console.log(`Processed ${fileCount} files and ${testCount} tests`);
+  return { fileCount, testCount };
 }
 

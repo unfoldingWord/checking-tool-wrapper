@@ -15,11 +15,17 @@
 import fs from 'fs';
 import path from 'path';
 import {
-  formatSummary, runTestCases, runTestCasesFromJsonAndSaveResults, summarizeTestResults,
+  formatSummary,
+  runAllTestCasesInFolderAndSaveResults,
+  runTestCases,
+  runTestCasesFromJsonAndSaveResults,
+  summarizeTestResults,
 } from './helpers/suggestionsHelpers';
 
-const DATA_FILE = path.join(__dirname, '..',
-  process.env.LLM_TRAINING_DATA_FILE || path.join('llmTrainingData', 'en_ult_tit_book_ru_gl_ru.json'));
+const TEST_FILE = 'en_ult_tit_book_ru_gl_ru.json';
+const DATA_FOLDER = path.join(__dirname, '..',
+  process.env.LLM_TRAINING_DATA_FILE || 'llmTrainingData');
+const DATA_FILE = path.join(DATA_FOLDER, TEST_FILE);
 
 // const describeIfData = fs.existsSync(DATA_FILE) ? describe : describe.skip;
 
@@ -49,7 +55,15 @@ describe(`runTestCases on ${path.basename(DATA_FILE)}`, () => {
   });
 });
 
-test('run algorithm all tests', async () => {
+test.skip('run algorithm all test in JSON file', async () => {
   const { results } = await runTestCasesFromJsonAndSaveResults(DATA_FILE);
   expect(results.length).toBeGreaterThan(0);
+});
+
+test.skip('run algorithm all test files in folder', async () => {
+  const { fileCount, testCount } = await runAllTestCasesInFolderAndSaveResults(
+    DATA_FOLDER
+  );
+  expect(fileCount).toBeGreaterThan(0);
+  expect(testCount).toBeGreaterThan(0);
 });

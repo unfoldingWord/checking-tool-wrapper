@@ -32,7 +32,14 @@ export function loadCheckData(loadPath, contextId) {
   let checkDataObject;
 
   if (loadPath && contextId && fs.existsSync(loadPath)) {
-    let files = fs.readdirSync(loadPath);
+    let files;
+
+    try {
+      files = fs.readdirSync(loadPath);
+    } catch (err) {
+      console.error(`Error reading directory ${loadPath}: ${err}`);
+      return null;
+    }
 
     files = files.filter(file => // filter the filenames to only use .json
       path.extname(file) === '.json'
@@ -46,8 +53,15 @@ export function loadCheckData(loadPath, contextId) {
 
       // check each file for contextId
       try {
-        const readPath = path.join(loadPath, file);
-        let _checkDataObject = fs.readJsonSync(readPath);
+        let _checkDataObject;
+        let readPath;
+
+        try {
+          readPath = path.join(loadPath, file);
+          _checkDataObject = fs.readJsonSync(readPath);
+        } catch (err) {
+          console.warn(`Error reading file ${readPath}: ${err}`);
+        }
 
         if (_checkDataObject && _checkDataObject.contextId &&
           _checkDataObject.contextId.groupId === contextId.groupId &&
@@ -65,7 +79,7 @@ export function loadCheckData(loadPath, contextId) {
   /**
   * @description Will return undefined if checkDataObject was not populated
   * so that the load method returns and then dispatches an empty action object
-  * to initialized the reducer.
+  * to initialize the reducer.
   */
   return checkDataObject;
 }

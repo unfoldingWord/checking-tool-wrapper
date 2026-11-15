@@ -1858,7 +1858,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       //   candidates: [...candidates.values()],
       // });
     } else {
-      console.log('algorithm response: no usable candidates for ', { glPhrase });
+      // console.log('algorithm response: no usable candidates for ', { glPhrase });
     }
   }
 
