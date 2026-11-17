@@ -1,6 +1,6 @@
 [
   {
-    "id": "train-id-tit-1-4-christ",
+    "id": "train-id-tit-1-4-christ-f6ja",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -43,7 +43,7 @@
     "source": "id_glt_tit_book 1:4, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-13-christ",
+    "id": "train-id-tit-2-13-christ-smpv",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -86,7 +86,7 @@
     "source": "id_glt_tit_book 2:13, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-6-christ",
+    "id": "train-id-tit-3-6-christ-bmkx",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -129,7 +129,7 @@
     "source": "id_glt_tit_book 3:6, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-8-evil",
+    "id": "train-id-tit-2-8-evil-zdzc",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -177,7 +177,7 @@
     "source": "id_glt_tit_book 2:8, tW evil, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-3-evil",
+    "id": "train-id-tit-3-3-evil-strs",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -223,7 +223,7 @@
     "source": "id_glt_tit_book 3:3, tW evil, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-10-faith",
+    "id": "train-id-tit-2-10-faith-bn72",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -266,7 +266,7 @@
     "source": "id_glt_tit_book 2:10, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-15-faith",
+    "id": "train-id-tit-3-15-faith-b3pn",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -312,7 +312,7 @@
     "source": "id_glt_tit_book 3:15, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-9-faithful",
+    "id": "train-id-tit-1-9-faithful-x67x",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -365,7 +365,7 @@
     "source": "id_glt_tit_book 1:9, tW faithful, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-8-faithful",
+    "id": "train-id-tit-3-8-faithful-dxb8",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -416,7 +416,7 @@
     "source": "id_glt_tit_book 3:8, tW faithful, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-1-god-2",
+    "id": "train-id-tit-1-1-god-f44k-2",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -460,7 +460,7 @@
     "source": "id_glt_tit_book 1:1, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-2-god",
+    "id": "train-id-tit-1-2-god-hmks",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -503,7 +503,7 @@
     "source": "id_glt_tit_book 1:2, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-3-god",
+    "id": "train-id-tit-1-3-god-uj2x",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -549,7 +549,7 @@
     "source": "id_glt_tit_book 1:3, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-16-god",
+    "id": "train-id-tit-1-16-god-rjjt",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -595,7 +595,7 @@
     "source": "id_glt_tit_book 1:16, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-10-god",
+    "id": "train-id-tit-2-10-god-pynk",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -641,7 +641,7 @@
     "source": "id_glt_tit_book 2:10, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-13-god",
+    "id": "train-id-tit-2-13-god-scfu",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -687,7 +687,7 @@
     "source": "id_glt_tit_book 2:13, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-4-god",
+    "id": "train-id-tit-3-4-god-g4b9",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -733,7 +733,7 @@
     "source": "id_glt_tit_book 3:4, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-8-god",
+    "id": "train-id-tit-3-8-god-gbdk",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -784,7 +784,7 @@
     "source": "id_glt_tit_book 3:8, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-16-good",
+    "id": "train-id-tit-1-16-good-yxnn",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -827,7 +827,7 @@
     "source": "id_glt_tit_book 1:16, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-5-good",
+    "id": "train-id-tit-2-5-good-mguz",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -878,7 +878,7 @@
     "source": "id_glt_tit_book 2:5, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-7-good",
+    "id": "train-id-tit-2-7-good-ncv7",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -930,7 +930,7 @@
     "source": "id_glt_tit_book 2:7, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-10-good",
+    "id": "train-id-tit-2-10-good-d9wq",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -983,7 +983,7 @@
     "source": "id_glt_tit_book 2:10, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-14-good",
+    "id": "train-id-tit-2-14-good-jy6c",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1037,7 +1037,7 @@
     "source": "id_glt_tit_book 2:14, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-1-good",
+    "id": "train-id-tit-3-1-good-w9yp",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1091,7 +1091,7 @@
     "source": "id_glt_tit_book 3:1, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-8-good",
+    "id": "train-id-tit-3-8-good-cmmp",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1145,7 +1145,7 @@
     "source": "id_glt_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-8-good",
+    "id": "train-id-tit-3-8-good-sbrv",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1194,7 +1194,7 @@
     "source": "id_glt_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-14-good",
+    "id": "train-id-tit-3-14-good-m7z9",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1243,7 +1243,7 @@
     "source": "id_glt_tit_book 3:14, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-13-hope",
+    "id": "train-id-tit-2-13-hope-pqwf",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1286,7 +1286,7 @@
     "source": "id_glt_tit_book 2:13, tW hope, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-7-hope",
+    "id": "train-id-tit-3-7-hope-yut8",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1342,7 +1342,7 @@
     "source": "id_glt_tit_book 3:7, tW hope, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-4-jesus",
+    "id": "train-id-tit-1-4-jesus-jgfj",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1385,7 +1385,7 @@
     "source": "id_glt_tit_book 1:4, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-13-jesus",
+    "id": "train-id-tit-2-13-jesus-mgn9",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1431,7 +1431,7 @@
     "source": "id_glt_tit_book 2:13, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-6-jesus",
+    "id": "train-id-tit-3-6-jesus-snat",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1477,7 +1477,7 @@
     "source": "id_glt_tit_book 3:6, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-16-know",
+    "id": "train-id-tit-1-16-know-napb",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1520,7 +1520,7 @@
     "source": "id_glt_tit_book 1:16, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-11-know",
+    "id": "train-id-tit-3-11-know-syjf",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1576,7 +1576,7 @@
     "source": "id_glt_tit_book 3:11, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-15-purify",
+    "id": "train-id-tit-1-15-purify-hr5s",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1634,7 +1634,7 @@
     "source": "id_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-15-purify",
+    "id": "train-id-tit-1-15-purify-vg9y",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1685,7 +1685,7 @@
     "source": "id_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-5-purify",
+    "id": "train-id-tit-2-5-purify-j8nj",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1734,7 +1734,7 @@
     "source": "id_glt_tit_book 2:5, tW purify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-14-purify",
+    "id": "train-id-tit-2-14-purify-bxw8",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1784,7 +1784,7 @@
     "source": "id_glt_tit_book 2:14, tW purify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-1-13-rebuke",
+    "id": "train-id-tit-1-13-rebuke-crce",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1827,7 +1827,7 @@
     "source": "id_glt_tit_book 1:13, tW rebuke, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-15-rebuke",
+    "id": "train-id-tit-2-15-rebuke-rvsu",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1873,7 +1873,7 @@
     "source": "id_glt_tit_book 2:15, tW rebuke, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-13-savior",
+    "id": "train-id-tit-2-13-savior-bpbw",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1916,7 +1916,7 @@
     "source": "id_glt_tit_book 2:13, tW savior, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-4-savior",
+    "id": "train-id-tit-3-4-savior-x4gg",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1959,7 +1959,7 @@
     "source": "id_glt_tit_book 3:4, tW savior, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-5-selfcontrol",
+    "id": "train-id-tit-2-5-selfcontrol-z2h3",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2007,7 +2007,7 @@
     "source": "id_glt_tit_book 2:5, tW selfcontrol, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-6-selfcontrol",
+    "id": "train-id-tit-2-6-selfcontrol-wz6r",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2063,7 +2063,7 @@
     "source": "id_glt_tit_book 2:6, tW selfcontrol, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-5-slander",
+    "id": "train-id-tit-2-5-slander-rhfd",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2106,7 +2106,7 @@
     "source": "id_glt_tit_book 2:5, tW slander, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-2-slander",
+    "id": "train-id-tit-3-2-slander-sq5t",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2152,7 +2152,7 @@
     "source": "id_glt_tit_book 3:2, tW slander, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-2-9-subject",
+    "id": "train-id-tit-2-9-subject-hhgu",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2200,7 +2200,7 @@
     "source": "id_glt_tit_book 2:9, tW subject, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-id-tit-3-1-subject",
+    "id": "train-id-tit-3-1-subject-s4xn",
     "targetLang": "id",
     "glLang": "en",
     "glOwner": "unfoldingWord",

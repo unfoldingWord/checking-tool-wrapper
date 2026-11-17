@@ -1,6 +1,6 @@
 [
   {
-    "id": "train-en-tit-1-4-believe",
+    "id": "train-en-tit-1-4-believe-c2fm",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -48,7 +48,7 @@
     "source": "en_ult_tit_book 1:4, tW believe, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-13-believe",
+    "id": "train-en-tit-1-13-believe-s5qd",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -94,7 +94,7 @@
     "source": "en_ult_tit_book 1:13, tW believe, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-15-believe",
+    "id": "train-en-tit-1-15-believe-y2bm",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -143,7 +143,7 @@
     "source": "en_ult_tit_book 1:15, tW believe, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-10-believe",
+    "id": "train-en-tit-2-10-believe-bn72",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -195,7 +195,7 @@
     "source": "en_ult_tit_book 2:10, tW believe, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-8-believe",
+    "id": "train-en-tit-3-8-believe-aphr",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -255,7 +255,7 @@
     "source": "en_ult_tit_book 3:8, tW believe, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-15-believe",
+    "id": "train-en-tit-3-15-believe-b3pn",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -313,7 +313,7 @@
     "source": "en_ult_tit_book 3:15, tW believe, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-4-christ",
+    "id": "train-en-tit-1-4-christ-f6ja",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -356,7 +356,7 @@
     "source": "en_ult_tit_book 1:4, tW christ, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-13-christ",
+    "id": "train-en-tit-2-13-christ-smpv",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -402,7 +402,7 @@
     "source": "en_ult_tit_book 2:13, tW christ, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-6-christ",
+    "id": "train-en-tit-3-6-christ-bmkx",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -451,7 +451,7 @@
     "source": "en_ult_tit_book 3:6, tW christ, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-15-clean",
+    "id": "train-en-tit-1-15-clean-hr5s",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -494,7 +494,7 @@
     "source": "en_ult_tit_book 1:15, tW clean, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-15-clean",
+    "id": "train-en-tit-1-15-clean-vg9y",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -545,7 +545,7 @@
     "source": "en_ult_tit_book 1:15, tW clean, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-5-clean",
+    "id": "train-en-tit-2-5-clean-j8nj",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -594,7 +594,7 @@
     "source": "en_ult_tit_book 2:5, tW clean, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-14-clean",
+    "id": "train-en-tit-2-14-clean-bxw8",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -651,7 +651,7 @@
     "source": "en_ult_tit_book 2:14, tW clean, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-5-clean",
+    "id": "train-en-tit-3-5-clean-m5b2",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -711,7 +711,7 @@
     "source": "en_ult_tit_book 3:5, tW clean, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-8-evil",
+    "id": "train-en-tit-2-8-evil-zdzc",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -754,7 +754,7 @@
     "source": "en_ult_tit_book 2:8, tW evil, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-3-evil",
+    "id": "train-en-tit-3-3-evil-strs",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -800,7 +800,7 @@
     "source": "en_ult_tit_book 3:3, tW evil, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-9-faithful",
+    "id": "train-en-tit-1-9-faithful-x67x",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -843,7 +843,7 @@
     "source": "en_ult_tit_book 1:9, tW faithful, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-8-faithful",
+    "id": "train-en-tit-3-8-faithful-dxb8",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -894,7 +894,7 @@
     "source": "en_ult_tit_book 3:8, tW faithful, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-1-god-2",
+    "id": "train-en-tit-1-1-god-f44k-2",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -943,7 +943,7 @@
     "source": "en_ult_tit_book 1:1, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-2-god",
+    "id": "train-en-tit-1-2-god-hmks",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -989,7 +989,7 @@
     "source": "en_ult_tit_book 1:2, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-3-god",
+    "id": "train-en-tit-1-3-god-uj2x",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1038,7 +1038,7 @@
     "source": "en_ult_tit_book 1:3, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-7-god",
+    "id": "train-en-tit-1-7-god-mm9y",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1092,7 +1092,7 @@
     "source": "en_ult_tit_book 1:7, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-16-god",
+    "id": "train-en-tit-1-16-god-rjjt",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1144,7 +1144,7 @@
     "source": "en_ult_tit_book 1:16, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-10-god",
+    "id": "train-en-tit-2-10-god-pynk",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1196,7 +1196,7 @@
     "source": "en_ult_tit_book 2:10, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-4-god",
+    "id": "train-en-tit-3-4-god-g4b9",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1251,7 +1251,7 @@
     "source": "en_ult_tit_book 3:4, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-8-god",
+    "id": "train-en-tit-3-8-god-gbdk",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1306,7 +1306,7 @@
     "source": "en_ult_tit_book 3:8, tW god, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-16-good",
+    "id": "train-en-tit-1-16-good-yxnn",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1349,7 +1349,7 @@
     "source": "en_ult_tit_book 1:16, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-5-good",
+    "id": "train-en-tit-2-5-good-mguz",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1395,7 +1395,7 @@
     "source": "en_ult_tit_book 2:5, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-7-good",
+    "id": "train-en-tit-2-7-good-ncv7",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1444,7 +1444,7 @@
     "source": "en_ult_tit_book 2:7, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-10-good",
+    "id": "train-en-tit-2-10-good-d9wq",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1496,7 +1496,7 @@
     "source": "en_ult_tit_book 2:10, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-14-good",
+    "id": "train-en-tit-2-14-good-jy6c",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1551,7 +1551,7 @@
     "source": "en_ult_tit_book 2:14, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-1-good",
+    "id": "train-en-tit-3-1-good-w9yp",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1609,7 +1609,7 @@
     "source": "en_ult_tit_book 3:1, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-8-good",
+    "id": "train-en-tit-3-8-good-cmmp",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1670,7 +1670,7 @@
     "source": "en_ult_tit_book 3:8, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-8-good",
+    "id": "train-en-tit-3-8-good-sbrv",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1734,7 +1734,7 @@
     "source": "en_ult_tit_book 3:8, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-14-good",
+    "id": "train-en-tit-3-14-good-m7z9",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1801,7 +1801,7 @@
     "source": "en_ult_tit_book 3:14, tW good, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-13-hope",
+    "id": "train-en-tit-2-13-hope-pqwf",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1844,7 +1844,7 @@
     "source": "en_ult_tit_book 2:13, tW hope, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-7-hope",
+    "id": "train-en-tit-3-7-hope-yut8",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1895,7 +1895,7 @@
     "source": "en_ult_tit_book 3:7, tW hope, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-4-jesus",
+    "id": "train-en-tit-1-4-jesus-jgfj",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1938,7 +1938,7 @@
     "source": "en_ult_tit_book 1:4, tW jesus, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-13-jesus",
+    "id": "train-en-tit-2-13-jesus-mgn9",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -1984,7 +1984,7 @@
     "source": "en_ult_tit_book 2:13, tW jesus, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-6-jesus",
+    "id": "train-en-tit-3-6-jesus-snat",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2030,7 +2030,7 @@
     "source": "en_ult_tit_book 3:6, tW jesus, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-16-know",
+    "id": "train-en-tit-1-16-know-napb",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2078,7 +2078,7 @@
     "source": "en_ult_tit_book 1:16, tW know, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-11-know",
+    "id": "train-en-tit-3-11-know-syjf",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2124,7 +2124,7 @@
     "source": "en_ult_tit_book 3:11, tW know, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-3-like",
+    "id": "train-en-tit-2-3-like-d8ve",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2182,7 +2182,7 @@
     "source": "en_ult_tit_book 2:3, tW like, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-6-like",
+    "id": "train-en-tit-2-6-like-ge2q",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2243,7 +2243,7 @@
     "source": "en_ult_tit_book 2:6, tW like, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-4-love",
+    "id": "train-en-tit-2-4-love-m7kb",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2306,7 +2306,7 @@
     "source": "en_ult_tit_book 2:4, tW love, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-4-love",
+    "id": "train-en-tit-3-4-love-nwn9",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2362,7 +2362,7 @@
     "source": "en_ult_tit_book 3:4, tW love, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-15-love",
+    "id": "train-en-tit-3-15-love-xuej",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2411,7 +2411,7 @@
     "source": "en_ult_tit_book 3:15, tW love, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-1-13-rebuke",
+    "id": "train-en-tit-1-13-rebuke-crce",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2454,7 +2454,7 @@
     "source": "en_ult_tit_book 1:13, tW rebuke, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-15-rebuke",
+    "id": "train-en-tit-2-15-rebuke-rvsu",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2500,7 +2500,7 @@
     "source": "en_ult_tit_book 2:15, tW rebuke, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-5-selfcontrol",
+    "id": "train-en-tit-2-5-selfcontrol-z2h3",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2553,7 +2553,7 @@
     "source": "en_ult_tit_book 2:5, tW selfcontrol, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-6-selfcontrol",
+    "id": "train-en-tit-2-6-selfcontrol-wz6r",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2609,7 +2609,7 @@
     "source": "en_ult_tit_book 2:6, tW selfcontrol, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-5-slander",
+    "id": "train-en-tit-2-5-slander-rhfd",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2662,7 +2662,7 @@
     "source": "en_ult_tit_book 2:5, tW slander, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-2-slander",
+    "id": "train-en-tit-3-2-slander-sq5t",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2713,7 +2713,7 @@
     "source": "en_ult_tit_book 3:2, tW slander, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-2-9-subject",
+    "id": "train-en-tit-2-9-subject-hhgu",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",
@@ -2771,7 +2771,7 @@
     "source": "en_ult_tit_book 2:9, tW subject, GL ar arst/v4.9_BSOJ"
   },
   {
-    "id": "train-en-tit-3-1-subject",
+    "id": "train-en-tit-3-1-subject-s4xn",
     "targetLang": "en",
     "glLang": "ar",
     "glOwner": "BSOJ",

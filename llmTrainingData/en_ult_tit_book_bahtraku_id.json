@@ -1,6 +1,6 @@
 [
   {
-    "id": "train-en-tit-1-4-christ",
+    "id": "train-en-tit-1-4-christ-f6ja",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -43,7 +43,7 @@
     "source": "en_ult_tit_book 1:4, tW christ, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-13-christ",
+    "id": "train-en-tit-2-13-christ-smpv",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -86,7 +86,7 @@
     "source": "en_ult_tit_book 2:13, tW christ, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-6-christ",
+    "id": "train-en-tit-3-6-christ-bmkx",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -129,7 +129,7 @@
     "source": "en_ult_tit_book 3:6, tW christ, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-8-evil",
+    "id": "train-en-tit-2-8-evil-zdzc",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -172,7 +172,7 @@
     "source": "en_ult_tit_book 2:8, tW evil, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-3-evil",
+    "id": "train-en-tit-3-3-evil-strs",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -218,7 +218,7 @@
     "source": "en_ult_tit_book 3:3, tW evil, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-4-faith",
+    "id": "train-en-tit-1-4-faith-c2fm",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -266,7 +266,7 @@
     "source": "en_ult_tit_book 1:4, tW faith, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-13-faith",
+    "id": "train-en-tit-1-13-faith-s5qd",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -312,7 +312,7 @@
     "source": "en_ult_tit_book 1:13, tW faith, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-10-faith",
+    "id": "train-en-tit-2-10-faith-bn72",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -359,7 +359,7 @@
     "source": "en_ult_tit_book 2:10, tW faith, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-15-faith",
+    "id": "train-en-tit-3-15-faith-b3pn",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -409,7 +409,7 @@
     "source": "en_ult_tit_book 3:15, tW faith, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-9-faithful",
+    "id": "train-en-tit-1-9-faithful-x67x",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -452,7 +452,7 @@
     "source": "en_ult_tit_book 1:9, tW faithful, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-8-faithful",
+    "id": "train-en-tit-3-8-faithful-dxb8",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -503,7 +503,7 @@
     "source": "en_ult_tit_book 3:8, tW faithful, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-1-god-2",
+    "id": "train-en-tit-1-1-god-f44k-2",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -552,7 +552,7 @@
     "source": "en_ult_tit_book 1:1, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-2-god",
+    "id": "train-en-tit-1-2-god-hmks",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -595,7 +595,7 @@
     "source": "en_ult_tit_book 1:2, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-3-god",
+    "id": "train-en-tit-1-3-god-uj2x",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -639,7 +639,7 @@
     "source": "en_ult_tit_book 1:3, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-7-god",
+    "id": "train-en-tit-1-7-god-mm9y",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -688,7 +688,7 @@
     "source": "en_ult_tit_book 1:7, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-16-god",
+    "id": "train-en-tit-1-16-god-rjjt",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -732,7 +732,7 @@
     "source": "en_ult_tit_book 1:16, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-10-god",
+    "id": "train-en-tit-2-10-god-pynk",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -776,7 +776,7 @@
     "source": "en_ult_tit_book 2:10, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-4-god",
+    "id": "train-en-tit-3-4-god-g4b9",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -820,7 +820,7 @@
     "source": "en_ult_tit_book 3:4, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-8-god",
+    "id": "train-en-tit-3-8-god-gbdk",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -864,7 +864,7 @@
     "source": "en_ult_tit_book 3:8, tW god, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-16-good",
+    "id": "train-en-tit-1-16-good-yxnn",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -907,7 +907,7 @@
     "source": "en_ult_tit_book 1:16, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-5-good",
+    "id": "train-en-tit-2-5-good-mguz",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -953,7 +953,7 @@
     "source": "en_ult_tit_book 2:5, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-7-good",
+    "id": "train-en-tit-2-7-good-ncv7",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1002,7 +1002,7 @@
     "source": "en_ult_tit_book 2:7, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-10-good",
+    "id": "train-en-tit-2-10-good-d9wq",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1054,7 +1054,7 @@
     "source": "en_ult_tit_book 2:10, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-14-good",
+    "id": "train-en-tit-2-14-good-jy6c",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1109,7 +1109,7 @@
     "source": "en_ult_tit_book 2:14, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-1-good",
+    "id": "train-en-tit-3-1-good-w9yp",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1164,7 +1164,7 @@
     "source": "en_ult_tit_book 3:1, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-8-good",
+    "id": "train-en-tit-3-8-good-cmmp",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1219,7 +1219,7 @@
     "source": "en_ult_tit_book 3:8, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-8-good",
+    "id": "train-en-tit-3-8-good-sbrv",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1274,7 +1274,7 @@
     "source": "en_ult_tit_book 3:8, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-14-good",
+    "id": "train-en-tit-3-14-good-m7z9",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1329,7 +1329,7 @@
     "source": "en_ult_tit_book 3:14, tW good, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-13-hope",
+    "id": "train-en-tit-2-13-hope-pqwf",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1372,7 +1372,7 @@
     "source": "en_ult_tit_book 2:13, tW hope, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-7-hope",
+    "id": "train-en-tit-3-7-hope-yut8",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1421,7 +1421,7 @@
     "source": "en_ult_tit_book 3:7, tW hope, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-4-jesus",
+    "id": "train-en-tit-1-4-jesus-jgfj",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1464,7 +1464,7 @@
     "source": "en_ult_tit_book 1:4, tW jesus, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-13-jesus",
+    "id": "train-en-tit-2-13-jesus-mgn9",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1508,7 +1508,7 @@
     "source": "en_ult_tit_book 2:13, tW jesus, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-6-jesus",
+    "id": "train-en-tit-3-6-jesus-snat",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1552,7 +1552,7 @@
     "source": "en_ult_tit_book 3:6, tW jesus, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-16-know",
+    "id": "train-en-tit-1-16-know-napb",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1600,7 +1600,7 @@
     "source": "en_ult_tit_book 1:16, tW know, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-11-know",
+    "id": "train-en-tit-3-11-know-syjf",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1646,7 +1646,7 @@
     "source": "en_ult_tit_book 3:11, tW know, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-3-like",
+    "id": "train-en-tit-2-3-like-d8ve",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1704,7 +1704,7 @@
     "source": "en_ult_tit_book 2:3, tW like, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-6-like",
+    "id": "train-en-tit-2-6-like-ge2q",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1765,7 +1765,7 @@
     "source": "en_ult_tit_book 2:6, tW like, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-4-love",
+    "id": "train-en-tit-2-4-love-m7kb",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1828,7 +1828,7 @@
     "source": "en_ult_tit_book 2:4, tW love, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-4-love",
+    "id": "train-en-tit-3-4-love-nwn9",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1884,7 +1884,7 @@
     "source": "en_ult_tit_book 3:4, tW love, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-15-love",
+    "id": "train-en-tit-3-15-love-xuej",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1933,7 +1933,7 @@
     "source": "en_ult_tit_book 3:15, tW love, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-15-purify",
+    "id": "train-en-tit-1-15-purify-hr5s",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -1976,7 +1976,7 @@
     "source": "en_ult_tit_book 1:15, tW purify, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-15-purify",
+    "id": "train-en-tit-1-15-purify-vg9y",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2027,7 +2027,7 @@
     "source": "en_ult_tit_book 1:15, tW purify, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-5-purify",
+    "id": "train-en-tit-2-5-purify-j8nj",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2076,7 +2076,7 @@
     "source": "en_ult_tit_book 2:5, tW purify, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-14-purify",
+    "id": "train-en-tit-2-14-purify-bxw8",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2131,7 +2131,7 @@
     "source": "en_ult_tit_book 2:14, tW purify, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-1-13-rebuke",
+    "id": "train-en-tit-1-13-rebuke-crce",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2174,7 +2174,7 @@
     "source": "en_ult_tit_book 1:13, tW rebuke, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-15-rebuke",
+    "id": "train-en-tit-2-15-rebuke-rvsu",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2220,7 +2220,7 @@
     "source": "en_ult_tit_book 2:15, tW rebuke, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-5-selfcontrol",
+    "id": "train-en-tit-2-5-selfcontrol-z2h3",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2273,7 +2273,7 @@
     "source": "en_ult_tit_book 2:5, tW selfcontrol, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-6-selfcontrol",
+    "id": "train-en-tit-2-6-selfcontrol-wz6r",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2329,7 +2329,7 @@
     "source": "en_ult_tit_book 2:6, tW selfcontrol, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-5-slander",
+    "id": "train-en-tit-2-5-slander-rhfd",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2382,7 +2382,7 @@
     "source": "en_ult_tit_book 2:5, tW slander, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-2-slander",
+    "id": "train-en-tit-3-2-slander-sq5t",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2433,7 +2433,7 @@
     "source": "en_ult_tit_book 3:2, tW slander, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-2-9-subject",
+    "id": "train-en-tit-2-9-subject-hhgu",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",
@@ -2491,7 +2491,7 @@
     "source": "en_ult_tit_book 2:9, tW subject, GL id glt/v105_bahtraku"
   },
   {
-    "id": "train-en-tit-3-1-subject",
+    "id": "train-en-tit-3-1-subject-s4xn",
     "targetLang": "en",
     "glLang": "id",
     "glOwner": "bahtraku",

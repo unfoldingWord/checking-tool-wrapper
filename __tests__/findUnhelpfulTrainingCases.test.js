@@ -7,6 +7,12 @@
  * is not in the verse. Of the history reasons, only `noRelatedWordInHistory` marks a case with
  * nothing to learn from the history; `onlyOtherFormsInHistory` cases teach rule 5 of the prompt.
  *
+ * `unusuallyLongAnswer` is judged per target language, because languages space words differently
+ * (Vietnamese writes each syllable as a word): an answer is unusually long when it has more words
+ * than its language's 99th percentile answer length (`getAnswerLengthLimits`, from every file in the
+ * folder, even when `LLM_TRAINING_FILES` picks some) and more than 2 words more than its longest
+ * history rendering.
+ *
  * The unit tests at the top always run. The scan of the files is skipped unless
  * `LLM_TRAINING_CHECK=1`; run it with `npm run check:llm-training-data`, e.g.
  *   npm run check:llm-training-data
@@ -15,10 +21,11 @@
  * It writes `<data folder>/results/unhelpfulTrainingCases.json`:
  *   {
  *     createdAt, dataDir, reasons,                  // reasons: UNHELPFUL_REASONS
+ *     answerLengthLimits: { "<targetLang>": words }, // from getAnswerLengthLimits
  *     summary: { total: {cases, unhelpful, byReason},
  *                files: { "<file>.json": {cases, unhelpful, byReason} } },
  *     files: { "<file>.json": [ { id, reasons, missingFromHistory, otherFormsInHistory,
- *                                 missingFromVerse, duplicateOf,
+ *                                 missingFromVerse, longAnswer, duplicateOf,
  *                                 glPhrase, expected, history, verse, source } ] }
  *   }
  * and prints a table of the counts per file.
@@ -34,7 +41,10 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { findUnhelpfulTrainingCases, UNHELPFUL_REASONS } from './helpers/suggestionsHelpers';
+import {
+  findUnhelpfulTrainingCases, getAnswerLengthLimits, LONG_ANSWER_HISTORY_MARGIN, LONG_ANSWER_PERCENTILE,
+  UNHELPFUL_REASONS,
+} from './helpers/suggestionsHelpers';
 
 const env = process.env;
 const CHECK = env.LLM_TRAINING_CHECK === '1';
@@ -210,8 +220,66 @@ describe('findUnhelpfulTrainingCases', () => {
       missingFromHistory: [],
       otherFormsInHistory: [],
       missingFromVerse: [],
+      longAnswer: undefined,
       duplicateOf: 'good',
     }]);
+  });
+
+  test('finds unusually long answers by the language limit and the history', () => {
+    const verse = 'một hai ba bốn năm sáu bảy tám';
+    const longCase = {
+      ...goodCase, targetLang: 'vi', verse, history: { faith: { 'một hai': 1 } }, expected: ['một hai ba bốn năm'],
+    };
+    const cases = [
+      { ...longCase, id: 'long' },
+      // within 2 words of a history rendering: not unusual for this translator
+      {
+        ...longCase, id: 'nearHistory', history: { faith: { 'một hai ba': 1 } },
+      },
+      // not over the language limit
+      {
+        ...longCase, id: 'short', expected: ['một hai ba bốn'],
+      },
+    ];
+    const result = findUnhelpfulTrainingCases(cases, { answerLengthLimits: { vi: 4 } });
+
+    expect(result.filter(item => item.reasons.includes('unusuallyLongAnswer')).map(({ id, longAnswer }) => ({ id, longAnswer })))
+      .toEqual([{
+        id: 'long',
+        longAnswer: {
+          words: 5, languageLimit: 4, longestHistoryRendering: 2,
+        },
+      }]);
+  });
+
+  test('does not check answer length without a limit for the language', () => {
+    const testCase = {
+      ...goodCase, verse: 'uno dos tres cuatro cinco seis', expected: ['uno dos tres cuatro cinco seis'],
+      history: { faith: { 'uno dos tres cuatro cinco seis': 1 } },
+    };
+    expect(findUnhelpfulTrainingCases([testCase], { answerLengthLimits: { vi: 1 } })).toEqual([]);
+  });
+
+  test('getAnswerLengthLimits gives a percentile per language, counting each check once', () => {
+    const viLengths = [1, 1, 2, 2, 2, 3, 3, 4, 5, 9];
+    const cases = [
+      ...viLengths.map((words, i) => ({
+        id: `vi-${i}`, targetLang: 'vi', expected: [Array(words).fill('từ').join(' ')],
+      })),
+      // the same check from a file built for another GL: counted once
+      {
+        id: 'vi-9', targetLang: 'vi', expected: ['từ từ từ từ từ từ từ từ từ'],
+      },
+      {
+        id: 'ru-0', targetLang: 'ru', expected: ['слово'],
+      },
+      {
+        id: 'ru-1', targetLang: 'ru', expected: ['два слова'],
+      },
+    ];
+
+    expect(getAnswerLengthLimits(cases, 0.9)).toEqual({ vi: 9, ru: 2 });
+    expect(getAnswerLengthLimits(cases, 0.5)).toEqual({ vi: 3, ru: 2 });
   });
 
   test('every reason given is described', () => {
@@ -237,10 +305,16 @@ describeIfCheck(`find unhelpful training cases in ${DATA_DIR}`, () => {
     const files = getFilesToCheck();
     expect(files.length).toBeGreaterThan(0);
 
+    // limits for whole languages, so from every file, not only the ones checked
+    const casesByFile = Object.fromEntries(listJsonFiles().map(file =>
+      [file, JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), 'utf8'))]));
+    const answerLengthLimits = getAnswerLengthLimits(Object.values(casesByFile).flat());
+
     const output = {
       createdAt: new Date().toISOString(),
       dataDir: DATA_DIR,
       reasons: UNHELPFUL_REASONS,
+      answerLengthLimits,
       summary: {
         total: {
           cases: 0, unhelpful: 0, byReason: {},
@@ -250,8 +324,8 @@ describeIfCheck(`find unhelpful training cases in ${DATA_DIR}`, () => {
     };
 
     for (const file of files) {
-      const testCases = JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), 'utf8'));
-      const unhelpful = findUnhelpfulTrainingCases(testCases);
+      const testCases = casesByFile[file];
+      const unhelpful = findUnhelpfulTrainingCases(testCases, { answerLengthLimits });
       const byReason = countReasons(unhelpful);
 
       output.files[file] = unhelpful.map(({ index, ...found }) => {
@@ -279,6 +353,9 @@ describeIfCheck(`find unhelpful training cases in ${DATA_DIR}`, () => {
     fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
 
     console.log(formatTable(output.summary, outputPath));
+    console.log(`answer length limits in words (${LONG_ANSWER_PERCENTILE * 100}th percentile per language; ` +
+      `also more than ${LONG_ANSWER_HISTORY_MARGIN} words over the longest history rendering): ` +
+      Object.entries(answerLengthLimits).map(([lang, words]) => `${lang} ${words}`).join(', '));
     expect(Object.keys(output.files)).toEqual(files);
   });
 });
@@ -316,6 +393,14 @@ function getFilesToCheck() {
     }
     return FILES;
   }
+  return listJsonFiles();
+}
+
+/**
+ * Every `.json` file in `DATA_DIR`, sorted by name.
+ * @returns {string[]}
+ */
+function listJsonFiles() {
   return fs.readdirSync(DATA_DIR).filter(file => path.extname(file) === '.json').sort();
 }
 

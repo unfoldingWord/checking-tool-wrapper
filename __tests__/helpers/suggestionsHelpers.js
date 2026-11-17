@@ -530,8 +530,57 @@ export const UNHELPFUL_REASONS = {
   onlyOtherFormsInHistory: 'no expected word is in the history exactly, but some are there as another form (may still be useful: rule 5 of the prompt)',
   someExpectedWordsNotInHistory: 'some expected words are in the history exactly, others only as another form or not at all',
   expectedNotInVerse: 'an expected word (at its occurrence) is not in the verse, so the answer cannot be selected',
+  unusuallyLongAnswer: 'the answer is longer than its language\'s usual answers (over the language limit from `getAnswerLengthLimits`) and more than `LONG_ANSWER_HISTORY_MARGIN` words longer than the longest history rendering; it may be wider than a checker would select',
   duplicate: 'same verse, GL phrase, history and expected answer as an earlier case in the file',
 };
+
+/** percentile of a language's answer lengths used as its limit by {@link getAnswerLengthLimits} */
+export const LONG_ANSWER_PERCENTILE = 0.99;
+/** words an answer may be longer than its longest history rendering before it counts as unusually long */
+export const LONG_ANSWER_HISTORY_MARGIN = 2;
+
+/**
+ * Number of space-separated words in a text. Used for answer lengths, so `Áp ra ham` is 3 words:
+ * languages space words differently, which is why the limits are per language.
+ * @param {string} text
+ * @returns {number}
+ */
+function countWords(text) {
+  return (text || '').split(/\s+/).filter(Boolean).length;
+}
+
+/**
+ * Works out, for each target language, how many words an answer can have before it is unusual: the
+ * `fraction` percentile of the lengths of that language's first expected answers, in words. Each check is
+ * counted once, by `targetLang` and `id`, because one check appears in several files when a project
+ * was built for several GLs. Pass every training data file's cases, so the limits are for whole
+ * languages.
+ * @param {Array<object>} testCases - training cases, from any number of files
+ * @param {number} [fraction=LONG_ANSWER_PERCENTILE] - percentile, between 0 and 1
+ * @returns {Object<string, number>} - limit in words, by target language code
+ * @example
+ * getAnswerLengthLimits([...viCases, ...ruCases]); // { vi: 6, ru: 4 }
+ */
+export function getAnswerLengthLimits(testCases, fraction = LONG_ANSWER_PERCENTILE) {
+  const lengths = {};
+  const seen = new Set();
+
+  for (const testCase of testCases || []) {
+    const lang = testCase.targetLang || '';
+    const key = `${lang} ${testCase.id}`;
+    const words = countWords(testCase.expected?.[0]);
+
+    if (!words || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    (lengths[lang] = lengths[lang] || []).push(words);
+  }
+  return Object.fromEntries(Object.entries(lengths).map(([lang, values]) => {
+    const sorted = values.sort((a, b) => a - b);
+    return [lang, percentile(sorted, fraction)];
+  }));
+}
 
 /**
  * Splits an expected answer such as `Chúa:3 Cứu:2 Thế` into words with their occurrence.
@@ -580,20 +629,26 @@ function findWordInHistory(normalized, historyWords) {
  * most as another form, is used.
  * @param {Array<object>} testCases - the cases of one training data file
  *   (`llmTrainingData/*.json`)
+ * @param {object} [options]
+ * @param {Object<string, number>} [options.answerLengthLimits] - answer length limit in words by
+ *   target language, from {@link getAnswerLengthLimits}; without a limit for a case's language,
+ *   `unusuallyLongAnswer` is not checked for it
  * @returns {Array<{index: number, id: string, reasons: string[], missingFromHistory: string[],
  *   otherFormsInHistory: Array<{word: string, historyWord: string, similarity: number}>,
- *   missingFromVerse: string[], duplicateOf: string|undefined}>} - one element per unhelpful case,
+ *   missingFromVerse: string[], longAnswer: object|undefined,
+ *   duplicateOf: string|undefined}>} - one element per unhelpful case,
  *   in file order. Expected words are as written in `expected`: `missingFromHistory` are in the
  *   history neither exactly nor as another form, `otherFormsInHistory` are there only as another
  *   form (with the history word matched and its similarity, rounded to 2 places), and
- *   `missingFromVerse` are not in the verse at their occurrence
+ *   `missingFromVerse` are not in the verse at their occurrence. `longAnswer` is set for an
+ *   unusually long answer: `{words, languageLimit, longestHistoryRendering}`, all in words
  * @example
  * findUnhelpfulTrainingCases([{ id: 'a', targetLang: 'ru', verse: 'и Авеля', glPhrase: 'Abel',
  *   history: { Abel: { 'Авель': 1 } }, expected: ['Авеля'] }]);
  * // [{ index: 0, id: 'a', reasons: ['onlyOtherFormsInHistory'], missingFromHistory: [],
  * //    otherFormsInHistory: [{ word: 'Авеля', historyWord: 'Авель', similarity: 0.8 }], ... }]
  */
-export function findUnhelpfulTrainingCases(testCases) {
+export function findUnhelpfulTrainingCases(testCases, { answerLengthLimits = {} } = {}) {
   const seen = new Map();
   const unhelpful = [];
   const asText = ({ word, occurrence }) => (occurrence > 1 ? `${word}:${occurrence}` : word);
@@ -619,6 +674,7 @@ export function findUnhelpfulTrainingCases(testCases) {
     let missingFromHistory = [];
     let otherFormsInHistory = [];
     let missingFromVerse = [];
+    let longAnswer;
 
     if (!expectedList.length) {
       reasons.push('noExpected');
@@ -668,6 +724,19 @@ export function findUnhelpfulTrainingCases(testCases) {
       if (missingFromVerse.length) {
         reasons.push('expectedNotInVerse');
       }
+
+      const languageLimit = answerLengthLimits[lang];
+      const longestHistoryRendering = Math.max(0, ...Object.values(history)
+        .flatMap(counts => Object.keys(counts || {}))
+        .map(countWords));
+
+      if (languageLimit && best.words.length > languageLimit &&
+        best.words.length > longestHistoryRendering + LONG_ANSWER_HISTORY_MARGIN) {
+        reasons.push('unusuallyLongAnswer');
+        longAnswer = {
+          words: best.words.length, languageLimit, longestHistoryRendering,
+        };
+      }
     }
 
     const key = JSON.stringify([lang, testCase.verse, testCase.glPhrase, history, testCase.expected]);
@@ -687,6 +756,7 @@ export function findUnhelpfulTrainingCases(testCases) {
         missingFromHistory,
         otherFormsInHistory,
         missingFromVerse,
+        longAnswer,
         duplicateOf,
       });
     }

@@ -1,6 +1,6 @@
 [
   {
-    "id": "train-ar-heb-7-11-aaron",
+    "id": "train-ar-heb-7-11-aaron-ccdm",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -43,7 +43,7 @@
     "source": "ar_avd_heb_book 7:11, tW aaron, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-4-aaron",
+    "id": "train-ar-heb-9-4-aaron-qsna",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -89,7 +89,7 @@
     "source": "ar_avd_heb_book 9:4, tW aaron, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-1-abraham",
+    "id": "train-ar-heb-7-1-abraham-bvaw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -132,7 +132,7 @@
     "source": "ar_avd_heb_book 7:1, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-2-abraham",
+    "id": "train-ar-heb-7-2-abraham-gsrs",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -178,7 +178,7 @@
     "source": "ar_avd_heb_book 7:2, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-4-abraham",
+    "id": "train-ar-heb-7-4-abraham-ywc8",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -225,7 +225,7 @@
     "source": "ar_avd_heb_book 7:4, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-5-abraham",
+    "id": "train-ar-heb-7-5-abraham-f5cq",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -272,7 +272,7 @@
     "source": "ar_avd_heb_book 7:5, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-6-abraham",
+    "id": "train-ar-heb-7-6-abraham-snhn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -319,7 +319,7 @@
     "source": "ar_avd_heb_book 7:6, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-8-abraham",
+    "id": "train-ar-heb-11-8-abraham-pfb4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -369,7 +369,7 @@
     "source": "ar_avd_heb_book 11:8, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-17-abraham",
+    "id": "train-ar-heb-11-17-abraham-zmx4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -419,7 +419,7 @@
     "source": "ar_avd_heb_book 11:17, tW abraham, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-7-age",
+    "id": "train-ar-heb-4-7-age-q6nz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -462,7 +462,7 @@
     "source": "ar_avd_heb_book 4:7, tW age, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-16-age",
+    "id": "train-ar-heb-4-16-age-adeg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -508,7 +508,7 @@
     "source": "ar_avd_heb_book 4:16, tW age, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-10-age",
+    "id": "train-ar-heb-9-10-age-nbka",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -557,7 +557,7 @@
     "source": "ar_avd_heb_book 9:10, tW age, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-11-age",
+    "id": "train-ar-heb-11-11-age-z49p",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -609,7 +609,7 @@
     "source": "ar_avd_heb_book 11:11, tW age, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-15-age",
+    "id": "train-ar-heb-11-15-age-t75b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -664,7 +664,7 @@
     "source": "ar_avd_heb_book 11:15, tW age, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-5-angel",
+    "id": "train-ar-heb-2-5-angel-pmg3",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -707,7 +707,7 @@
     "source": "ar_avd_heb_book 2:5, tW angel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-7-angel",
+    "id": "train-ar-heb-2-7-angel-k6d9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -753,7 +753,7 @@
     "source": "ar_avd_heb_book 2:7, tW angel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-9-angel",
+    "id": "train-ar-heb-2-9-angel-hpjp",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -800,7 +800,7 @@
     "source": "ar_avd_heb_book 2:9, tW angel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-16-angel",
+    "id": "train-ar-heb-2-16-angel-fvpn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -847,7 +847,7 @@
     "source": "ar_avd_heb_book 2:16, tW angel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-22-angel",
+    "id": "train-ar-heb-12-22-angel-fxwy",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -897,7 +897,7 @@
     "source": "ar_avd_heb_book 12:22, tW angel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-2-angel",
+    "id": "train-ar-heb-13-2-angel-qc7s",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -950,7 +950,7 @@
     "source": "ar_avd_heb_book 13:2, tW angel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-7-appoint",
+    "id": "train-ar-heb-4-7-appoint-m3th",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -993,7 +993,7 @@
     "source": "ar_avd_heb_book 4:7, tW appoint, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-1-appoint",
+    "id": "train-ar-heb-5-1-appoint-sd74",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1039,7 +1039,7 @@
     "source": "ar_avd_heb_book 5:1, tW appoint, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-28-appoint",
+    "id": "train-ar-heb-7-28-appoint-d2ug",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1088,7 +1088,7 @@
     "source": "ar_avd_heb_book 7:28, tW appoint, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-3-appoint",
+    "id": "train-ar-heb-8-3-appoint-rsf2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1140,7 +1140,7 @@
     "source": "ar_avd_heb_book 8:3, tW appoint, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-13-bear",
+    "id": "train-ar-heb-13-13-bear-aw22",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1183,7 +1183,7 @@
     "source": "ar_avd_heb_book 13:13, tW bear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-22-bear",
+    "id": "train-ar-heb-13-22-bear-acgh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1234,7 +1234,7 @@
     "source": "ar_avd_heb_book 13:22, tW bear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-3-biblicaltimeday",
+    "id": "train-ar-heb-7-3-biblicaltimeday-z59b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1277,7 +1277,7 @@
     "source": "ar_avd_heb_book 7:3, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-8-biblicaltimeday",
+    "id": "train-ar-heb-8-8-biblicaltimeday-j6xd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1323,7 +1323,7 @@
     "source": "ar_avd_heb_book 8:8, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-32-biblicaltimeday",
+    "id": "train-ar-heb-10-32-biblicaltimeday-ztbp",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1372,7 +1372,7 @@
     "source": "ar_avd_heb_book 10:32, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-30-biblicaltimeday",
+    "id": "train-ar-heb-11-30-biblicaltimeday-jsep",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1422,7 +1422,7 @@
     "source": "ar_avd_heb_book 11:30, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-10-biblicaltimeday",
+    "id": "train-ar-heb-12-10-biblicaltimeday-wzk9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1473,7 +1473,7 @@
     "source": "ar_avd_heb_book 12:10, tW biblicaltimeday, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-17-biblicaltimeyear",
+    "id": "train-ar-heb-3-17-biblicaltimeyear-x8cc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1516,7 +1516,7 @@
     "source": "ar_avd_heb_book 3:17, tW biblicaltimeyear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-25-biblicaltimeyear",
+    "id": "train-ar-heb-9-25-biblicaltimeyear-j5ka",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1559,7 +1559,7 @@
     "source": "ar_avd_heb_book 9:25, tW biblicaltimeyear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-14-bless",
+    "id": "train-ar-heb-6-14-bless-gt55",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1602,7 +1602,7 @@
     "source": "ar_avd_heb_book 6:14, tW bless, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-7-bless",
+    "id": "train-ar-heb-7-7-bless-n75f",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1648,7 +1648,7 @@
     "source": "ar_avd_heb_book 7:7, tW bless, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-20-bless",
+    "id": "train-ar-heb-11-20-bless-w6n3",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1697,7 +1697,7 @@
     "source": "ar_avd_heb_book 11:20, tW bless, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-21-bless",
+    "id": "train-ar-heb-11-21-bless-kvmr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1749,7 +1749,7 @@
     "source": "ar_avd_heb_book 11:21, tW bless, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-13-call",
+    "id": "train-ar-heb-3-13-call-c7hn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1797,7 +1797,7 @@
     "source": "ar_avd_heb_book 3:13, tW call, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-4-call",
+    "id": "train-ar-heb-5-4-call-pzmw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1843,7 +1843,7 @@
     "source": "ar_avd_heb_book 5:4, tW call, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-2-call",
+    "id": "train-ar-heb-9-2-call-ekr9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1897,7 +1897,7 @@
     "source": "ar_avd_heb_book 9:2, tW call, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-8-call",
+    "id": "train-ar-heb-11-8-call-s7e2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -1952,7 +1952,7 @@
     "source": "ar_avd_heb_book 11:8, tW call, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-16-call",
+    "id": "train-ar-heb-11-16-call-trxd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2008,7 +2008,7 @@
     "source": "ar_avd_heb_book 11:16, tW call, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-24-call",
+    "id": "train-ar-heb-11-24-call-u4bw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2067,7 +2067,7 @@
     "source": "ar_avd_heb_book 11:24, tW call, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-11-christ",
+    "id": "train-ar-heb-9-11-christ-m2pb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2110,7 +2110,7 @@
     "source": "ar_avd_heb_book 9:11, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-24-christ",
+    "id": "train-ar-heb-9-24-christ-f883",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2153,7 +2153,7 @@
     "source": "ar_avd_heb_book 9:24, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-10-christ",
+    "id": "train-ar-heb-10-10-christ-rrxh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2197,7 +2197,7 @@
     "source": "ar_avd_heb_book 10:10, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-8-christ",
+    "id": "train-ar-heb-13-8-christ-wncp",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2242,7 +2242,7 @@
     "source": "ar_avd_heb_book 13:8, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-21-christ",
+    "id": "train-ar-heb-13-21-christ-jawh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2287,7 +2287,7 @@
     "source": "ar_avd_heb_book 13:21, tW christ, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-2-conscience",
+    "id": "train-ar-heb-10-2-conscience-qbxj",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2330,7 +2330,7 @@
     "source": "ar_avd_heb_book 10:2, tW conscience, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-22-conscience",
+    "id": "train-ar-heb-10-22-conscience-ddf4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2376,7 +2376,7 @@
     "source": "ar_avd_heb_book 10:22, tW conscience, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-18-conscience",
+    "id": "train-ar-heb-13-18-conscience-x3np",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2425,7 +2425,7 @@
     "source": "ar_avd_heb_book 13:18, tW conscience, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-18-courage",
+    "id": "train-ar-heb-6-18-courage-wj7q",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2468,7 +2468,7 @@
     "source": "ar_avd_heb_book 6:18, tW courage, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-25-courage",
+    "id": "train-ar-heb-10-25-courage-qdzw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2524,7 +2524,7 @@
     "source": "ar_avd_heb_book 10:25, tW courage, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-6-covenant",
+    "id": "train-ar-heb-8-6-covenant-k2yg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2567,7 +2567,7 @@
     "source": "ar_avd_heb_book 8:6, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-8-covenant",
+    "id": "train-ar-heb-8-8-covenant-r8f3",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2610,7 +2610,7 @@
     "source": "ar_avd_heb_book 8:8, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-15-covenant",
+    "id": "train-ar-heb-9-15-covenant-wy9z",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2656,7 +2656,7 @@
     "source": "ar_avd_heb_book 9:15, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-15-covenant",
+    "id": "train-ar-heb-9-15-covenant-a87r",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2703,7 +2703,7 @@
     "source": "ar_avd_heb_book 9:15, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-16-covenant",
+    "id": "train-ar-heb-9-16-covenant-ags4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2753,7 +2753,7 @@
     "source": "ar_avd_heb_book 9:16, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-17-covenant",
+    "id": "train-ar-heb-9-17-covenant-he6b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2806,7 +2806,7 @@
     "source": "ar_avd_heb_book 9:17, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-24-covenant",
+    "id": "train-ar-heb-12-24-covenant-qq28",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2860,7 +2860,7 @@
     "source": "ar_avd_heb_book 12:24, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-20-covenant",
+    "id": "train-ar-heb-13-20-covenant-wueh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2915,7 +2915,7 @@
     "source": "ar_avd_heb_book 13:20, tW covenant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-8-delight",
+    "id": "train-ar-heb-10-8-delight-q3b2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -2963,7 +2963,7 @@
     "source": "ar_avd_heb_book 10:8, tW delight, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-38-delight",
+    "id": "train-ar-heb-10-38-delight-uqe6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3009,7 +3009,7 @@
     "source": "ar_avd_heb_book 10:38, tW delight, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-1-earth",
+    "id": "train-ar-heb-9-1-earth-rqgd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3052,7 +3052,7 @@
     "source": "ar_avd_heb_book 9:1, tW earth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-25-earth",
+    "id": "train-ar-heb-12-25-earth-crs9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3098,7 +3098,7 @@
     "source": "ar_avd_heb_book 12:25, tW earth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-9-egypt",
+    "id": "train-ar-heb-8-9-egypt-b7nt",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3141,7 +3141,7 @@
     "source": "ar_avd_heb_book 8:9, tW egypt, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-27-egypt",
+    "id": "train-ar-heb-11-27-egypt-hn2w",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3187,7 +3187,7 @@
     "source": "ar_avd_heb_book 11:27, tW egypt, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-36-endure",
+    "id": "train-ar-heb-10-36-endure-vm97",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3235,7 +3235,7 @@
     "source": "ar_avd_heb_book 10:36, tW endure, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-27-endure",
+    "id": "train-ar-heb-11-27-endure-jkxn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3281,7 +3281,7 @@
     "source": "ar_avd_heb_book 11:27, tW endure, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-2-endure",
+    "id": "train-ar-heb-12-2-endure-cnce",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3330,7 +3330,7 @@
     "source": "ar_avd_heb_book 12:2, tW endure, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-7-endure",
+    "id": "train-ar-heb-12-7-endure-r4p6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3392,7 +3392,7 @@
     "source": "ar_avd_heb_book 12:7, tW endure, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-2-eternity",
+    "id": "train-ar-heb-6-2-eternity-ctgf",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3435,7 +3435,7 @@
     "source": "ar_avd_heb_book 6:2, tW eternity, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-12-eternity",
+    "id": "train-ar-heb-9-12-eternity-ujqh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3479,7 +3479,7 @@
     "source": "ar_avd_heb_book 9:12, tW eternity, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-14-eternity",
+    "id": "train-ar-heb-9-14-eternity-mhpm",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3524,7 +3524,7 @@
     "source": "ar_avd_heb_book 9:14, tW eternity, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-20-eternity",
+    "id": "train-ar-heb-13-20-eternity-crze",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3570,7 +3570,7 @@
     "source": "ar_avd_heb_book 13:20, tW eternity, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-39-faith",
+    "id": "train-ar-heb-10-39-faith-h6v2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3618,7 +3618,7 @@
     "source": "ar_avd_heb_book 10:39, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-1-faith",
+    "id": "train-ar-heb-11-1-faith-qvsv",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3662,7 +3662,7 @@
     "source": "ar_avd_heb_book 11:1, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-3-faith",
+    "id": "train-ar-heb-11-3-faith-vjxz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3709,7 +3709,7 @@
     "source": "ar_avd_heb_book 11:3, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-4-faith",
+    "id": "train-ar-heb-11-4-faith-dq8j",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3759,7 +3759,7 @@
     "source": "ar_avd_heb_book 11:4, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-5-faith",
+    "id": "train-ar-heb-11-5-faith-zthb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3809,7 +3809,7 @@
     "source": "ar_avd_heb_book 11:5, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-6-faith",
+    "id": "train-ar-heb-11-6-faith-yuvc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3859,7 +3859,7 @@
     "source": "ar_avd_heb_book 11:6, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-7-faith",
+    "id": "train-ar-heb-11-7-faith-mjkb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3910,7 +3910,7 @@
     "source": "ar_avd_heb_book 11:7, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-7-faith",
+    "id": "train-ar-heb-11-7-faith-v25d",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -3961,7 +3961,7 @@
     "source": "ar_avd_heb_book 11:7, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-8-faith",
+    "id": "train-ar-heb-11-8-faith-htnn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4013,7 +4013,7 @@
     "source": "ar_avd_heb_book 11:8, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-9-faith",
+    "id": "train-ar-heb-11-9-faith-xgtd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4065,7 +4065,7 @@
     "source": "ar_avd_heb_book 11:9, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-11-faith",
+    "id": "train-ar-heb-11-11-faith-bdzw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4117,7 +4117,7 @@
     "source": "ar_avd_heb_book 11:11, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-13-faith",
+    "id": "train-ar-heb-11-13-faith-xu28",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4169,7 +4169,7 @@
     "source": "ar_avd_heb_book 11:13, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-17-faith",
+    "id": "train-ar-heb-11-17-faith-cw5a",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4224,7 +4224,7 @@
     "source": "ar_avd_heb_book 11:17, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-20-faith",
+    "id": "train-ar-heb-11-20-faith-atxc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4279,7 +4279,7 @@
     "source": "ar_avd_heb_book 11:20, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-21-faith",
+    "id": "train-ar-heb-11-21-faith-bzwu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4334,7 +4334,7 @@
     "source": "ar_avd_heb_book 11:21, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-22-faith",
+    "id": "train-ar-heb-11-22-faith-avde",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4389,7 +4389,7 @@
     "source": "ar_avd_heb_book 11:22, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-23-faith",
+    "id": "train-ar-heb-11-23-faith-yd4c",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4444,7 +4444,7 @@
     "source": "ar_avd_heb_book 11:23, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-24-faith",
+    "id": "train-ar-heb-11-24-faith-wq4a",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4499,7 +4499,7 @@
     "source": "ar_avd_heb_book 11:24, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-27-faith",
+    "id": "train-ar-heb-11-27-faith-p3b6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4554,7 +4554,7 @@
     "source": "ar_avd_heb_book 11:27, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-28-faith",
+    "id": "train-ar-heb-11-28-faith-z2kd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4609,7 +4609,7 @@
     "source": "ar_avd_heb_book 11:28, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-29-faith",
+    "id": "train-ar-heb-11-29-faith-trh2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4664,7 +4664,7 @@
     "source": "ar_avd_heb_book 11:29, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-30-faith",
+    "id": "train-ar-heb-11-30-faith-v3xp",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4719,7 +4719,7 @@
     "source": "ar_avd_heb_book 11:30, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-31-faith",
+    "id": "train-ar-heb-11-31-faith-z867",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4774,7 +4774,7 @@
     "source": "ar_avd_heb_book 11:31, tW faith, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-2-faithful",
+    "id": "train-ar-heb-3-2-faithful-ays4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4817,7 +4817,7 @@
     "source": "ar_avd_heb_book 3:2, tW faithful, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-5-faithful",
+    "id": "train-ar-heb-3-5-faithful-zt3e",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4865,7 +4865,7 @@
     "source": "ar_avd_heb_book 3:5, tW faithful, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-23-faithful",
+    "id": "train-ar-heb-10-23-faithful-s6v9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4916,7 +4916,7 @@
     "source": "ar_avd_heb_book 10:23, tW faithful, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-11-faithful",
+    "id": "train-ar-heb-11-11-faithful-fdn5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -4965,7 +4965,7 @@
     "source": "ar_avd_heb_book 11:11, tW faithful, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-31-fear",
+    "id": "train-ar-heb-10-31-fear-s7ja",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5008,7 +5008,7 @@
     "source": "ar_avd_heb_book 10:31, tW fear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-23-fear",
+    "id": "train-ar-heb-11-23-fear-jf3n",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5054,7 +5054,7 @@
     "source": "ar_avd_heb_book 11:23, tW fear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-27-fear",
+    "id": "train-ar-heb-11-27-fear-ds6k",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5103,7 +5103,7 @@
     "source": "ar_avd_heb_book 11:27, tW fear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-21-fear",
+    "id": "train-ar-heb-12-21-fear-gp9k",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5155,7 +5155,7 @@
     "source": "ar_avd_heb_book 12:21, tW fear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-21-fear",
+    "id": "train-ar-heb-12-21-fear-vrud",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5210,7 +5210,7 @@
     "source": "ar_avd_heb_book 12:21, tW fear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-6-fear",
+    "id": "train-ar-heb-13-6-fear-j4te",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5268,7 +5268,7 @@
     "source": "ar_avd_heb_book 13:6, tW fear, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-3-foundation",
+    "id": "train-ar-heb-4-3-foundation-dfmr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5311,7 +5311,7 @@
     "source": "ar_avd_heb_book 4:3, tW foundation, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-1-foundation",
+    "id": "train-ar-heb-6-1-foundation-x3b4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5357,7 +5357,7 @@
     "source": "ar_avd_heb_book 6:1, tW foundation, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-26-foundation",
+    "id": "train-ar-heb-9-26-foundation-aux6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5406,7 +5406,7 @@
     "source": "ar_avd_heb_book 9:26, tW foundation, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-9-glory",
+    "id": "train-ar-heb-2-9-glory-t4jt",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5449,7 +5449,7 @@
     "source": "ar_avd_heb_book 2:9, tW glory, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-10-glory",
+    "id": "train-ar-heb-2-10-glory-vuqb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5493,7 +5493,7 @@
     "source": "ar_avd_heb_book 2:10, tW glory, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-3-glory",
+    "id": "train-ar-heb-3-3-glory-m6yd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5540,7 +5540,7 @@
     "source": "ar_avd_heb_book 3:3, tW glory, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-5-glory",
+    "id": "train-ar-heb-5-5-glory-sckw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5588,7 +5588,7 @@
     "source": "ar_avd_heb_book 5:5, tW glory, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-5-glory",
+    "id": "train-ar-heb-9-5-glory-j5w2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5639,7 +5639,7 @@
     "source": "ar_avd_heb_book 9:5, tW glory, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-9-god",
+    "id": "train-ar-heb-2-9-god-t3zk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5682,7 +5682,7 @@
     "source": "ar_avd_heb_book 2:9, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-4-god",
+    "id": "train-ar-heb-3-4-god-gc72",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5730,7 +5730,7 @@
     "source": "ar_avd_heb_book 3:4, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-12-god",
+    "id": "train-ar-heb-3-12-god-wbf5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5776,7 +5776,7 @@
     "source": "ar_avd_heb_book 3:12, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-14-god-2",
+    "id": "train-ar-heb-9-14-god-x28q-2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5826,7 +5826,7 @@
     "source": "ar_avd_heb_book 9:14, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-31-god",
+    "id": "train-ar-heb-10-31-god-y3uk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5876,7 +5876,7 @@
     "source": "ar_avd_heb_book 10:31, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-3-god",
+    "id": "train-ar-heb-11-3-god-gr8c",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5929,7 +5929,7 @@
     "source": "ar_avd_heb_book 11:3, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-22-god",
+    "id": "train-ar-heb-12-22-god-madd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -5982,7 +5982,7 @@
     "source": "ar_avd_heb_book 12:22, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-23-god",
+    "id": "train-ar-heb-12-23-god-d4fw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6035,7 +6035,7 @@
     "source": "ar_avd_heb_book 12:23, tW god, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-4-gold",
+    "id": "train-ar-heb-9-4-gold-f347",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6078,7 +6078,7 @@
     "source": "ar_avd_heb_book 9:4, tW gold, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-4-gold",
+    "id": "train-ar-heb-9-4-gold-fv8v",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6129,7 +6129,7 @@
     "source": "ar_avd_heb_book 9:4, tW gold, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-1-good",
+    "id": "train-ar-heb-10-1-good-jr8e",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6172,7 +6172,7 @@
     "source": "ar_avd_heb_book 10:1, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-24-good",
+    "id": "train-ar-heb-10-24-good-zwau",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6216,7 +6216,7 @@
     "source": "ar_avd_heb_book 10:24, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-9-good",
+    "id": "train-ar-heb-13-9-good-khas",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6263,7 +6263,7 @@
     "source": "ar_avd_heb_book 13:9, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-18-good",
+    "id": "train-ar-heb-13-18-good-f993",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6313,7 +6313,7 @@
     "source": "ar_avd_heb_book 13:18, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-21-good",
+    "id": "train-ar-heb-13-21-good-e8rc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6369,7 +6369,7 @@
     "source": "ar_avd_heb_book 13:21, tW good, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-16-grace",
+    "id": "train-ar-heb-4-16-grace-p7nt",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6412,7 +6412,7 @@
     "source": "ar_avd_heb_book 4:16, tW grace, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-28-grace",
+    "id": "train-ar-heb-12-28-grace-sn42",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6458,7 +6458,7 @@
     "source": "ar_avd_heb_book 12:28, tW grace, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-9-grace",
+    "id": "train-ar-heb-13-9-grace-e6av",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6507,7 +6507,7 @@
     "source": "ar_avd_heb_book 13:9, tW grace, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-13-hard",
+    "id": "train-ar-heb-3-13-hard-uqs5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6550,7 +6550,7 @@
     "source": "ar_avd_heb_book 3:13, tW hard, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-15-hard",
+    "id": "train-ar-heb-3-15-hard-k87j",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6596,7 +6596,7 @@
     "source": "ar_avd_heb_book 3:15, tW hard, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-7-hard",
+    "id": "train-ar-heb-4-7-hard-zpuz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6642,7 +6642,7 @@
     "source": "ar_avd_heb_book 4:7, tW hard, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-16-heaven",
+    "id": "train-ar-heb-11-16-heaven-u2fg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6685,7 +6685,7 @@
     "source": "ar_avd_heb_book 11:16, tW heaven, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-22-heaven",
+    "id": "train-ar-heb-12-22-heaven-hdz5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6731,7 +6731,7 @@
     "source": "ar_avd_heb_book 12:22, tW heaven, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-23-heaven",
+    "id": "train-ar-heb-12-23-heaven-qzxh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6777,7 +6777,7 @@
     "source": "ar_avd_heb_book 12:23, tW heaven, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-25-heaven",
+    "id": "train-ar-heb-12-25-heaven-mq4p",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6826,7 +6826,7 @@
     "source": "ar_avd_heb_book 12:25, tW heaven, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-15-highpriest",
+    "id": "train-ar-heb-4-15-highpriest-kpqh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6874,7 +6874,7 @@
     "source": "ar_avd_heb_book 4:15, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-1-highpriest",
+    "id": "train-ar-heb-5-1-highpriest-xuef",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6922,7 +6922,7 @@
     "source": "ar_avd_heb_book 5:1, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-5-highpriest",
+    "id": "train-ar-heb-5-5-highpriest-m8vj",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -6973,7 +6973,7 @@
     "source": "ar_avd_heb_book 5:5, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-10-highpriest",
+    "id": "train-ar-heb-5-10-highpriest-fvkk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7025,7 +7025,7 @@
     "source": "ar_avd_heb_book 5:10, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-20-highpriest",
+    "id": "train-ar-heb-6-20-highpriest-te9h",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7080,7 +7080,7 @@
     "source": "ar_avd_heb_book 6:20, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-26-highpriest",
+    "id": "train-ar-heb-7-26-highpriest-cwpz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7135,7 +7135,7 @@
     "source": "ar_avd_heb_book 7:26, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-28-highpriest",
+    "id": "train-ar-heb-7-28-highpriest-fhdg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7190,7 +7190,7 @@
     "source": "ar_avd_heb_book 7:28, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-1-highpriest",
+    "id": "train-ar-heb-8-1-highpriest-vzvk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7248,7 +7248,7 @@
     "source": "ar_avd_heb_book 8:1, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-3-highpriest",
+    "id": "train-ar-heb-8-3-highpriest-qsdg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7306,7 +7306,7 @@
     "source": "ar_avd_heb_book 8:3, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-11-highpriest",
+    "id": "train-ar-heb-9-11-highpriest-y4u6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7364,7 +7364,7 @@
     "source": "ar_avd_heb_book 9:11, tW highpriest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-26-holy",
+    "id": "train-ar-heb-7-26-holy-cb7j",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7407,7 +7407,7 @@
     "source": "ar_avd_heb_book 7:26, tW holy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-2-holy",
+    "id": "train-ar-heb-9-2-holy-qjgv",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7451,7 +7451,7 @@
     "source": "ar_avd_heb_book 9:2, tW holy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-3-holy",
+    "id": "train-ar-heb-9-3-holy-xp4j",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7498,7 +7498,7 @@
     "source": "ar_avd_heb_book 9:3, tW holy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-3-holy",
+    "id": "train-ar-heb-9-3-holy-sbzs",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7548,7 +7548,7 @@
     "source": "ar_avd_heb_book 9:3, tW holy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-24-holy",
+    "id": "train-ar-heb-9-24-holy-fyrq",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7601,7 +7601,7 @@
     "source": "ar_avd_heb_book 9:24, tW holy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-1-14-inherit",
+    "id": "train-ar-heb-1-14-inherit-tyb4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7649,7 +7649,7 @@
     "source": "ar_avd_heb_book 1:14, tW inherit, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-12-inherit",
+    "id": "train-ar-heb-6-12-inherit-fguh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7695,7 +7695,7 @@
     "source": "ar_avd_heb_book 6:12, tW inherit, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-15-inherit",
+    "id": "train-ar-heb-9-15-inherit-x3m7",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7744,7 +7744,7 @@
     "source": "ar_avd_heb_book 9:15, tW inherit, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-17-inherit",
+    "id": "train-ar-heb-12-17-inherit-pdgu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7801,7 +7801,7 @@
     "source": "ar_avd_heb_book 12:17, tW inherit, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-10-israel",
+    "id": "train-ar-heb-8-10-israel-ccqm",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7844,7 +7844,7 @@
     "source": "ar_avd_heb_book 8:10, tW israel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-22-israel",
+    "id": "train-ar-heb-11-22-israel-zqhh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7887,7 +7887,7 @@
     "source": "ar_avd_heb_book 11:22, tW israel, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-1-jesus",
+    "id": "train-ar-heb-3-1-jesus-g725",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7935,7 +7935,7 @@
     "source": "ar_avd_heb_book 3:1, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-14-jesus",
+    "id": "train-ar-heb-4-14-jesus-zrba",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -7979,7 +7979,7 @@
     "source": "ar_avd_heb_book 4:14, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-20-jesus",
+    "id": "train-ar-heb-6-20-jesus-zztg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8024,7 +8024,7 @@
     "source": "ar_avd_heb_book 6:20, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-22-jesus",
+    "id": "train-ar-heb-7-22-jesus-bb9d",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8069,7 +8069,7 @@
     "source": "ar_avd_heb_book 7:22, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-10-jesus",
+    "id": "train-ar-heb-10-10-jesus-cbtu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8114,7 +8114,7 @@
     "source": "ar_avd_heb_book 10:10, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-19-jesus",
+    "id": "train-ar-heb-10-19-jesus-wks8",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8162,7 +8162,7 @@
     "source": "ar_avd_heb_book 10:19, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-2-jesus",
+    "id": "train-ar-heb-12-2-jesus-bkvu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8210,7 +8210,7 @@
     "source": "ar_avd_heb_book 12:2, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-24-jesus",
+    "id": "train-ar-heb-12-24-jesus-pbyx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8258,7 +8258,7 @@
     "source": "ar_avd_heb_book 12:24, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-8-jesus",
+    "id": "train-ar-heb-13-8-jesus-t4cd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8309,7 +8309,7 @@
     "source": "ar_avd_heb_book 13:8, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-12-jesus",
+    "id": "train-ar-heb-13-12-jesus-fmm4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8360,7 +8360,7 @@
     "source": "ar_avd_heb_book 13:12, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-20-jesus",
+    "id": "train-ar-heb-13-20-jesus-xhhj",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8411,7 +8411,7 @@
     "source": "ar_avd_heb_book 13:20, tW jesus, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-27-judge",
+    "id": "train-ar-heb-10-27-judge-jsjd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8454,7 +8454,7 @@
     "source": "ar_avd_heb_book 10:27, tW judge, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-30-judge",
+    "id": "train-ar-heb-10-30-judge-pt3b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8500,7 +8500,7 @@
     "source": "ar_avd_heb_book 10:30, tW judge, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-4-judge",
+    "id": "train-ar-heb-13-4-judge-ndgp",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8549,7 +8549,7 @@
     "source": "ar_avd_heb_book 13:4, tW judge, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-2-king",
+    "id": "train-ar-heb-7-2-king-cxzu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8592,7 +8592,7 @@
     "source": "ar_avd_heb_book 7:2, tW king, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-2-king-2",
+    "id": "train-ar-heb-7-2-king-jf32-2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8636,7 +8636,7 @@
     "source": "ar_avd_heb_book 7:2, tW king, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-2-king-3",
+    "id": "train-ar-heb-7-2-king-zkr6-3",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8680,7 +8680,7 @@
     "source": "ar_avd_heb_book 7:2, tW king, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-11-know",
+    "id": "train-ar-heb-8-11-know-uvqe",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8723,7 +8723,7 @@
     "source": "ar_avd_heb_book 8:11, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-30-know",
+    "id": "train-ar-heb-10-30-know-r2s5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8769,7 +8769,7 @@
     "source": "ar_avd_heb_book 10:30, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-34-know",
+    "id": "train-ar-heb-10-34-know-rhst",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8818,7 +8818,7 @@
     "source": "ar_avd_heb_book 10:34, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-8-know",
+    "id": "train-ar-heb-11-8-know-suev",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8875,7 +8875,7 @@
     "source": "ar_avd_heb_book 11:8, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-17-know",
+    "id": "train-ar-heb-12-17-know-uw4k",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8930,7 +8930,7 @@
     "source": "ar_avd_heb_book 12:17, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-23-know",
+    "id": "train-ar-heb-13-23-know-tqsk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -8988,7 +8988,7 @@
     "source": "ar_avd_heb_book 13:23, tW know, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-8-lawofmoses",
+    "id": "train-ar-heb-10-8-lawofmoses-uaat",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9031,7 +9031,7 @@
     "source": "ar_avd_heb_book 10:8, tW lawofmoses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-28-lawofmoses",
+    "id": "train-ar-heb-10-28-lawofmoses-ycgh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9088,7 +9088,7 @@
     "source": "ar_avd_heb_book 10:28, tW lawofmoses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-21-lord",
+    "id": "train-ar-heb-7-21-lord-ph9m",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9131,7 +9131,7 @@
     "source": "ar_avd_heb_book 7:21, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-8-lord",
+    "id": "train-ar-heb-8-8-lord-zgsx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9177,7 +9177,7 @@
     "source": "ar_avd_heb_book 8:8, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-9-lord",
+    "id": "train-ar-heb-8-9-lord-gfs4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9226,7 +9226,7 @@
     "source": "ar_avd_heb_book 8:9, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-10-lord",
+    "id": "train-ar-heb-8-10-lord-yftu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9275,7 +9275,7 @@
     "source": "ar_avd_heb_book 8:10, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-16-lord",
+    "id": "train-ar-heb-10-16-lord-xn3d",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9324,7 +9324,7 @@
     "source": "ar_avd_heb_book 10:16, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-30-lord",
+    "id": "train-ar-heb-10-30-lord-prve",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9373,7 +9373,7 @@
     "source": "ar_avd_heb_book 10:30, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-5-lord",
+    "id": "train-ar-heb-12-5-lord-asp5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9422,7 +9422,7 @@
     "source": "ar_avd_heb_book 12:5, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-6-lord",
+    "id": "train-ar-heb-12-6-lord-mp9u",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9474,7 +9474,7 @@
     "source": "ar_avd_heb_book 12:6, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-6-lord",
+    "id": "train-ar-heb-13-6-lord-p274",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9526,7 +9526,7 @@
     "source": "ar_avd_heb_book 13:6, tW lord, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-24-love",
+    "id": "train-ar-heb-10-24-love-u45y",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9574,7 +9574,7 @@
     "source": "ar_avd_heb_book 10:24, tW love, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-6-love",
+    "id": "train-ar-heb-12-6-love-ekdw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9620,7 +9620,7 @@
     "source": "ar_avd_heb_book 12:6, tW love, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-15-mediator",
+    "id": "train-ar-heb-9-15-mediator-z7qd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9663,7 +9663,7 @@
     "source": "ar_avd_heb_book 9:15, tW mediator, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-24-mediator",
+    "id": "train-ar-heb-12-24-mediator-z27y",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9709,7 +9709,7 @@
     "source": "ar_avd_heb_book 12:24, tW mediator, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-10-melchizedek",
+    "id": "train-ar-heb-5-10-melchizedek-a3ju",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9757,7 +9757,7 @@
     "source": "ar_avd_heb_book 5:10, tW melchizedek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-20-melchizedek",
+    "id": "train-ar-heb-6-20-melchizedek-s5tm",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9805,7 +9805,7 @@
     "source": "ar_avd_heb_book 6:20, tW melchizedek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-10-melchizedek",
+    "id": "train-ar-heb-7-10-melchizedek-rcb5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9853,7 +9853,7 @@
     "source": "ar_avd_heb_book 7:10, tW melchizedek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-11-melchizedek",
+    "id": "train-ar-heb-7-11-melchizedek-cftv",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9904,7 +9904,7 @@
     "source": "ar_avd_heb_book 7:11, tW melchizedek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-15-melchizedek",
+    "id": "train-ar-heb-7-15-melchizedek-kxn7",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -9955,7 +9955,7 @@
     "source": "ar_avd_heb_book 7:15, tW melchizedek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-17-melchizedek",
+    "id": "train-ar-heb-7-17-melchizedek-m2nk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10006,7 +10006,7 @@
     "source": "ar_avd_heb_book 7:17, tW melchizedek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-16-mercy",
+    "id": "train-ar-heb-4-16-mercy-qvvq",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10049,7 +10049,7 @@
     "source": "ar_avd_heb_book 4:16, tW mercy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-12-mercy",
+    "id": "train-ar-heb-8-12-mercy-g3jz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10095,7 +10095,7 @@
     "source": "ar_avd_heb_book 8:12, tW mercy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-28-mercy",
+    "id": "train-ar-heb-10-28-mercy-pk8r",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10142,7 +10142,7 @@
     "source": "ar_avd_heb_book 10:28, tW mercy, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-10-minister",
+    "id": "train-ar-heb-6-10-minister-c2ma",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10195,7 +10195,7 @@
     "source": "ar_avd_heb_book 6:10, tW minister, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-2-minister",
+    "id": "train-ar-heb-8-2-minister-gvdu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10241,7 +10241,7 @@
     "source": "ar_avd_heb_book 8:2, tW minister, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-6-minister",
+    "id": "train-ar-heb-8-6-minister-fq97",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10295,7 +10295,7 @@
     "source": "ar_avd_heb_book 8:6, tW minister, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-11-minister",
+    "id": "train-ar-heb-10-11-minister-pn7s",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10347,7 +10347,7 @@
     "source": "ar_avd_heb_book 10:11, tW minister, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-3-moses",
+    "id": "train-ar-heb-3-3-moses-prkg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10390,7 +10390,7 @@
     "source": "ar_avd_heb_book 3:3, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-16-moses",
+    "id": "train-ar-heb-3-16-moses-fw8u",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10433,7 +10433,7 @@
     "source": "ar_avd_heb_book 3:16, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-14-moses",
+    "id": "train-ar-heb-7-14-moses-dktb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10476,7 +10476,7 @@
     "source": "ar_avd_heb_book 7:14, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-5-moses",
+    "id": "train-ar-heb-8-5-moses-sae2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10524,7 +10524,7 @@
     "source": "ar_avd_heb_book 8:5, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-23-moses",
+    "id": "train-ar-heb-11-23-moses-s89p",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10568,7 +10568,7 @@
     "source": "ar_avd_heb_book 11:23, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-24-moses",
+    "id": "train-ar-heb-11-24-moses-c5uh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10612,7 +10612,7 @@
     "source": "ar_avd_heb_book 11:24, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-21-moses",
+    "id": "train-ar-heb-12-21-moses-x6zr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10656,7 +10656,7 @@
     "source": "ar_avd_heb_book 12:21, tW moses, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-3-18-oath",
+    "id": "train-ar-heb-3-18-oath-gf58",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10699,7 +10699,7 @@
     "source": "ar_avd_heb_book 3:18, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-3-oath",
+    "id": "train-ar-heb-4-3-oath-nguw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10745,7 +10745,7 @@
     "source": "ar_avd_heb_book 4:3, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-13-oath",
+    "id": "train-ar-heb-6-13-oath-ms7n",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10791,7 +10791,7 @@
     "source": "ar_avd_heb_book 6:13, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-13-oath",
+    "id": "train-ar-heb-6-13-oath-ghdb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10840,7 +10840,7 @@
     "source": "ar_avd_heb_book 6:13, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-16-oath",
+    "id": "train-ar-heb-6-16-oath-ze44",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10892,7 +10892,7 @@
     "source": "ar_avd_heb_book 6:16, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-17-oath",
+    "id": "train-ar-heb-6-17-oath-rv7v",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -10947,7 +10947,7 @@
     "source": "ar_avd_heb_book 6:17, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-20-oath",
+    "id": "train-ar-heb-7-20-oath-zgkx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11005,7 +11005,7 @@
     "source": "ar_avd_heb_book 7:20, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-20-oath-2",
+    "id": "train-ar-heb-7-20-oath-vjjz-2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11067,7 +11067,7 @@
     "source": "ar_avd_heb_book 7:20, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-21-oath",
+    "id": "train-ar-heb-7-21-oath-cydu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11128,7 +11128,7 @@
     "source": "ar_avd_heb_book 7:21, tW oath, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-11-peace",
+    "id": "train-ar-heb-12-11-peace-hadr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11171,7 +11171,7 @@
     "source": "ar_avd_heb_book 12:11, tW peace, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-14-peace",
+    "id": "train-ar-heb-12-14-peace-ta5b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11217,7 +11217,7 @@
     "source": "ar_avd_heb_book 12:14, tW peace, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-11-perfect",
+    "id": "train-ar-heb-7-11-perfect-tnfg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11260,7 +11260,7 @@
     "source": "ar_avd_heb_book 7:11, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-19-perfect",
+    "id": "train-ar-heb-7-19-perfect-r6gd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11306,7 +11306,7 @@
     "source": "ar_avd_heb_book 7:19, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-28-perfect",
+    "id": "train-ar-heb-7-28-perfect-v9j9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11355,7 +11355,7 @@
     "source": "ar_avd_heb_book 7:28, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-9-perfect",
+    "id": "train-ar-heb-9-9-perfect-xz9b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11412,7 +11412,7 @@
     "source": "ar_avd_heb_book 9:9, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-1-perfect",
+    "id": "train-ar-heb-10-1-perfect-vffx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11470,7 +11470,7 @@
     "source": "ar_avd_heb_book 10:1, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-14-perfect",
+    "id": "train-ar-heb-10-14-perfect-fjy6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11531,7 +11531,7 @@
     "source": "ar_avd_heb_book 10:14, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-40-perfect",
+    "id": "train-ar-heb-11-40-perfect-b4us",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11590,7 +11590,7 @@
     "source": "ar_avd_heb_book 11:40, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-23-perfect",
+    "id": "train-ar-heb-12-23-perfect-prpq",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11652,7 +11652,7 @@
     "source": "ar_avd_heb_book 12:23, tW perfect, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-1-priest",
+    "id": "train-ar-heb-7-1-priest-t7mc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11695,7 +11695,7 @@
     "source": "ar_avd_heb_book 7:1, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-3-priest",
+    "id": "train-ar-heb-7-3-priest-axsn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11741,7 +11741,7 @@
     "source": "ar_avd_heb_book 7:3, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-11-priest",
+    "id": "train-ar-heb-7-11-priest-rg5v",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11788,7 +11788,7 @@
     "source": "ar_avd_heb_book 7:11, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-14-priest",
+    "id": "train-ar-heb-7-14-priest-kkbf",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11836,7 +11836,7 @@
     "source": "ar_avd_heb_book 7:14, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-15-priest",
+    "id": "train-ar-heb-7-15-priest-qw9w",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11887,7 +11887,7 @@
     "source": "ar_avd_heb_book 7:15, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-17-priest",
+    "id": "train-ar-heb-7-17-priest-d9jc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11938,7 +11938,7 @@
     "source": "ar_avd_heb_book 7:17, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-20-priest",
+    "id": "train-ar-heb-7-20-priest-yyr7",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -11989,7 +11989,7 @@
     "source": "ar_avd_heb_book 7:20, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-21-priest",
+    "id": "train-ar-heb-7-21-priest-nhna",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12041,7 +12041,7 @@
     "source": "ar_avd_heb_book 7:21, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-23-priest",
+    "id": "train-ar-heb-7-23-priest-axps",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12093,7 +12093,7 @@
     "source": "ar_avd_heb_book 7:23, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-4-priest",
+    "id": "train-ar-heb-8-4-priest-avqc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12145,7 +12145,7 @@
     "source": "ar_avd_heb_book 8:4, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-11-priest",
+    "id": "train-ar-heb-10-11-priest-cw4g",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12197,7 +12197,7 @@
     "source": "ar_avd_heb_book 10:11, tW priest, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-13-promise",
+    "id": "train-ar-heb-6-13-promise-pe8q",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12245,7 +12245,7 @@
     "source": "ar_avd_heb_book 6:13, tW promise, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-6-promise",
+    "id": "train-ar-heb-8-6-promise-aquv",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12291,7 +12291,7 @@
     "source": "ar_avd_heb_book 8:6, tW promise, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-33-promise",
+    "id": "train-ar-heb-11-33-promise-ez49",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12340,7 +12340,7 @@
     "source": "ar_avd_heb_book 11:33, tW promise, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-26-promise",
+    "id": "train-ar-heb-12-26-promise-mss8",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12394,7 +12394,7 @@
     "source": "ar_avd_heb_book 12:26, tW promise, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-16-receive",
+    "id": "train-ar-heb-4-16-receive-jwv2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12437,7 +12437,7 @@
     "source": "ar_avd_heb_book 4:16, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-5-receive",
+    "id": "train-ar-heb-7-5-receive-av3e",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12488,7 +12488,7 @@
     "source": "ar_avd_heb_book 7:5, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-8-receive",
+    "id": "train-ar-heb-7-8-receive-d68t",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12537,7 +12537,7 @@
     "source": "ar_avd_heb_book 7:8, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-11-receive",
+    "id": "train-ar-heb-7-11-receive-s2tx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12594,7 +12594,7 @@
     "source": "ar_avd_heb_book 7:11, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-15-receive",
+    "id": "train-ar-heb-9-15-receive-grez",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12654,7 +12654,7 @@
     "source": "ar_avd_heb_book 9:15, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-26-receive",
+    "id": "train-ar-heb-10-26-receive-v6cx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12712,7 +12712,7 @@
     "source": "ar_avd_heb_book 10:26, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-36-receive",
+    "id": "train-ar-heb-10-36-receive-mznn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12773,7 +12773,7 @@
     "source": "ar_avd_heb_book 10:36, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-8-receive",
+    "id": "train-ar-heb-11-8-receive-zwtw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12842,7 +12842,7 @@
     "source": "ar_avd_heb_book 11:8, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-11-receive",
+    "id": "train-ar-heb-11-11-receive-r4xw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12909,7 +12909,7 @@
     "source": "ar_avd_heb_book 11:11, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-13-receive",
+    "id": "train-ar-heb-11-13-receive-mm7b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -12982,7 +12982,7 @@
     "source": "ar_avd_heb_book 11:13, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-19-receive",
+    "id": "train-ar-heb-11-19-receive-zvn9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13053,7 +13053,7 @@
     "source": "ar_avd_heb_book 11:19, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-31-receive",
+    "id": "train-ar-heb-11-31-receive-smm4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13132,7 +13132,7 @@
     "source": "ar_avd_heb_book 11:31, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-35-receive",
+    "id": "train-ar-heb-11-35-receive-nqkw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13209,7 +13209,7 @@
     "source": "ar_avd_heb_book 11:35, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-39-receive",
+    "id": "train-ar-heb-11-39-receive-mwpr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13289,7 +13289,7 @@
     "source": "ar_avd_heb_book 11:39, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-28-receive",
+    "id": "train-ar-heb-12-28-receive-pmd7",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13377,7 +13377,7 @@
     "source": "ar_avd_heb_book 12:28, tW receive, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-25-reject",
+    "id": "train-ar-heb-12-25-reject-zgu5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13425,7 +13425,7 @@
     "source": "ar_avd_heb_book 12:25, tW reject, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-25-reject",
+    "id": "train-ar-heb-12-25-reject-fwth",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13476,7 +13476,7 @@
     "source": "ar_avd_heb_book 12:25, tW reject, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-21-repent",
+    "id": "train-ar-heb-7-21-repent-r93f",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13519,7 +13519,7 @@
     "source": "ar_avd_heb_book 7:21, tW repent, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-17-repent",
+    "id": "train-ar-heb-12-17-repent-t4hu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13565,7 +13565,7 @@
     "source": "ar_avd_heb_book 12:17, tW repent, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-13-righteous",
+    "id": "train-ar-heb-5-13-righteous-eaa9",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13608,7 +13608,7 @@
     "source": "ar_avd_heb_book 5:13, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-10-righteous",
+    "id": "train-ar-heb-6-10-righteous-gpmv",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13654,7 +13654,7 @@
     "source": "ar_avd_heb_book 6:10, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-2-righteous",
+    "id": "train-ar-heb-7-2-righteous-n98a",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13703,7 +13703,7 @@
     "source": "ar_avd_heb_book 7:2, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-4-righteous",
+    "id": "train-ar-heb-11-4-righteous-gcum",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13752,7 +13752,7 @@
     "source": "ar_avd_heb_book 11:4, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-33-righteous",
+    "id": "train-ar-heb-11-33-righteous-rywh",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13804,7 +13804,7 @@
     "source": "ar_avd_heb_book 11:33, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-11-righteous",
+    "id": "train-ar-heb-12-11-righteous-kbsw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13859,7 +13859,7 @@
     "source": "ar_avd_heb_book 12:11, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-23-righteous",
+    "id": "train-ar-heb-12-23-righteous-vpa6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13915,7 +13915,7 @@
     "source": "ar_avd_heb_book 12:23, tW righteous, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-23-sacrifice",
+    "id": "train-ar-heb-9-23-sacrifice-f6s5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -13958,7 +13958,7 @@
     "source": "ar_avd_heb_book 9:23, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-5-sacrifice",
+    "id": "train-ar-heb-10-5-sacrifice-r7qa",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14004,7 +14004,7 @@
     "source": "ar_avd_heb_book 10:5, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-8-sacrifice",
+    "id": "train-ar-heb-10-8-sacrifice-rgz4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14053,7 +14053,7 @@
     "source": "ar_avd_heb_book 10:8, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-12-sacrifice",
+    "id": "train-ar-heb-10-12-sacrifice-vkzy",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14105,7 +14105,7 @@
     "source": "ar_avd_heb_book 10:12, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-14-sacrifice",
+    "id": "train-ar-heb-10-14-sacrifice-ypyg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14160,7 +14160,7 @@
     "source": "ar_avd_heb_book 10:14, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-18-sacrifice",
+    "id": "train-ar-heb-10-18-sacrifice-shdn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14218,7 +14218,7 @@
     "source": "ar_avd_heb_book 10:18, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-26-sacrifice",
+    "id": "train-ar-heb-10-26-sacrifice-atzu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14277,7 +14277,7 @@
     "source": "ar_avd_heb_book 10:26, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-4-sacrifice",
+    "id": "train-ar-heb-11-4-sacrifice-nmkf",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14339,7 +14339,7 @@
     "source": "ar_avd_heb_book 11:4, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-15-sacrifice",
+    "id": "train-ar-heb-13-15-sacrifice-bb9s",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14402,7 +14402,7 @@
     "source": "ar_avd_heb_book 13:15, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-16-sacrifice",
+    "id": "train-ar-heb-13-16-sacrifice-pcnu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14466,7 +14466,7 @@
     "source": "ar_avd_heb_book 13:16, tW sacrifice, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-10-sanctify",
+    "id": "train-ar-heb-10-10-sanctify-q3zr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14509,7 +14509,7 @@
     "source": "ar_avd_heb_book 10:10, tW sanctify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-29-sanctify",
+    "id": "train-ar-heb-10-29-sanctify-vwjw",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14555,7 +14555,7 @@
     "source": "ar_avd_heb_book 10:29, tW sanctify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-12-sanctify",
+    "id": "train-ar-heb-13-12-sanctify-yprm",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14604,7 +14604,7 @@
     "source": "ar_avd_heb_book 13:12, tW sanctify, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-3-save",
+    "id": "train-ar-heb-2-3-save-ztxy",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14647,7 +14647,7 @@
     "source": "ar_avd_heb_book 2:3, tW save, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-9-save",
+    "id": "train-ar-heb-5-9-save-ztzu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14693,7 +14693,7 @@
     "source": "ar_avd_heb_book 5:9, tW save, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-6-9-save",
+    "id": "train-ar-heb-6-9-save-dfu3",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14742,7 +14742,7 @@
     "source": "ar_avd_heb_book 6:9, tW save, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-25-save",
+    "id": "train-ar-heb-7-25-save-zsmu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14797,7 +14797,7 @@
     "source": "ar_avd_heb_book 7:25, tW save, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-14-seek",
+    "id": "train-ar-heb-11-14-seek-xecg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14840,7 +14840,7 @@
     "source": "ar_avd_heb_book 11:14, tW seek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-14-seek",
+    "id": "train-ar-heb-13-14-seek-sf96",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14886,7 +14886,7 @@
     "source": "ar_avd_heb_book 13:14, tW seek, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-8-5-servant",
+    "id": "train-ar-heb-8-5-servant-jnkb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14929,7 +14929,7 @@
     "source": "ar_avd_heb_book 8:5, tW servant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-28-servant",
+    "id": "train-ar-heb-12-28-servant-at36",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -14975,7 +14975,7 @@
     "source": "ar_avd_heb_book 12:28, tW servant, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-16-shame",
+    "id": "train-ar-heb-11-16-shame-uk5p",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15018,7 +15018,7 @@
     "source": "ar_avd_heb_book 11:16, tW shame, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-2-shame",
+    "id": "train-ar-heb-12-2-shame-zbwr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15064,7 +15064,7 @@
     "source": "ar_avd_heb_book 12:2, tW shame, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-1-sin",
+    "id": "train-ar-heb-5-1-sin-ady4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15107,7 +15107,7 @@
     "source": "ar_avd_heb_book 5:1, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-3-sin",
+    "id": "train-ar-heb-5-3-sin-hx83",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15153,7 +15153,7 @@
     "source": "ar_avd_heb_book 5:3, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-27-sin",
+    "id": "train-ar-heb-7-27-sin-fy9f",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15199,7 +15199,7 @@
     "source": "ar_avd_heb_book 7:27, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-26-sin",
+    "id": "train-ar-heb-9-26-sin-cvad",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15246,7 +15246,7 @@
     "source": "ar_avd_heb_book 9:26, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-28-sin",
+    "id": "train-ar-heb-9-28-sin-z3wn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15296,7 +15296,7 @@
     "source": "ar_avd_heb_book 9:28, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-28-sin-2",
+    "id": "train-ar-heb-9-28-sin-hwb2-2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15350,7 +15350,7 @@
     "source": "ar_avd_heb_book 9:28, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-2-sin",
+    "id": "train-ar-heb-10-2-sin-wz6e",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15403,7 +15403,7 @@
     "source": "ar_avd_heb_book 10:2, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-3-sin",
+    "id": "train-ar-heb-10-3-sin-q2rb",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15459,7 +15459,7 @@
     "source": "ar_avd_heb_book 10:3, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-4-sin",
+    "id": "train-ar-heb-10-4-sin-yaqx",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15515,7 +15515,7 @@
     "source": "ar_avd_heb_book 10:4, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-11-sin",
+    "id": "train-ar-heb-10-11-sin-a5sy",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15571,7 +15571,7 @@
     "source": "ar_avd_heb_book 10:11, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-12-sin",
+    "id": "train-ar-heb-10-12-sin-csfe",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15628,7 +15628,7 @@
     "source": "ar_avd_heb_book 10:12, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-18-sin",
+    "id": "train-ar-heb-10-18-sin-cadg",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15685,7 +15685,7 @@
     "source": "ar_avd_heb_book 10:18, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-26-sin",
+    "id": "train-ar-heb-10-26-sin-jm2q",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15743,7 +15743,7 @@
     "source": "ar_avd_heb_book 10:26, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-25-sin",
+    "id": "train-ar-heb-11-25-sin-x2pu",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15801,7 +15801,7 @@
     "source": "ar_avd_heb_book 11:25, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-11-sin",
+    "id": "train-ar-heb-13-11-sin-ghg5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15860,7 +15860,7 @@
     "source": "ar_avd_heb_book 13:11, tW sin, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-8-sonofgod",
+    "id": "train-ar-heb-5-8-sonofgod-f8ss",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15903,7 +15903,7 @@
     "source": "ar_avd_heb_book 5:8, tW sonofgod, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-28-sonofgod",
+    "id": "train-ar-heb-7-28-sonofgod-t5z5",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15954,7 +15954,7 @@
     "source": "ar_avd_heb_book 7:28, tW sonofgod, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-1-14-spirit",
+    "id": "train-ar-heb-1-14-spirit-sb9c",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -15997,7 +15997,7 @@
     "source": "ar_avd_heb_book 1:14, tW spirit, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-23-spirit",
+    "id": "train-ar-heb-12-23-spirit-amz6",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16041,7 +16041,7 @@
     "source": "ar_avd_heb_book 12:23, tW spirit, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-8-subject",
+    "id": "train-ar-heb-2-8-subject-gefn",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16084,7 +16084,7 @@
     "source": "ar_avd_heb_book 2:8, tW subject, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-8-subject",
+    "id": "train-ar-heb-2-8-subject-k8ex",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16130,7 +16130,7 @@
     "source": "ar_avd_heb_book 2:8, tW subject, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-5-8-suffer",
+    "id": "train-ar-heb-5-8-suffer-ecyz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16173,7 +16173,7 @@
     "source": "ar_avd_heb_book 5:8, tW suffer, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-26-suffer",
+    "id": "train-ar-heb-9-26-suffer-se6c",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16224,7 +16224,7 @@
     "source": "ar_avd_heb_book 9:26, tW suffer, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-32-suffer",
+    "id": "train-ar-heb-10-32-suffer-vdqf",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16278,7 +16278,7 @@
     "source": "ar_avd_heb_book 10:32, tW suffer, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-25-suffer",
+    "id": "train-ar-heb-11-25-suffer-fpmr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16335,7 +16335,7 @@
     "source": "ar_avd_heb_book 11:25, tW suffer, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-13-12-suffer",
+    "id": "train-ar-heb-13-12-suffer-n44q",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16390,7 +16390,7 @@
     "source": "ar_avd_heb_book 13:12, tW suffer, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-34-sword",
+    "id": "train-ar-heb-11-34-sword-y66b",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16433,7 +16433,7 @@
     "source": "ar_avd_heb_book 11:34, tW sword, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-37-sword",
+    "id": "train-ar-heb-11-37-sword-q2ef",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16479,7 +16479,7 @@
     "source": "ar_avd_heb_book 11:37, tW sword, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-3-tabernacle",
+    "id": "train-ar-heb-9-3-tabernacle-u428",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16522,7 +16522,7 @@
     "source": "ar_avd_heb_book 9:3, tW tabernacle, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-6-tabernacle",
+    "id": "train-ar-heb-9-6-tabernacle-y2fq",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16568,7 +16568,7 @@
     "source": "ar_avd_heb_book 9:6, tW tabernacle, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-9-8-tabernacle",
+    "id": "train-ar-heb-9-8-tabernacle-fqnz",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16617,7 +16617,7 @@
     "source": "ar_avd_heb_book 9:8, tW tabernacle, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-4-15-tempt",
+    "id": "train-ar-heb-4-15-tempt-h52n",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16660,7 +16660,7 @@
     "source": "ar_avd_heb_book 4:15, tW tempt, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-37-tempt",
+    "id": "train-ar-heb-11-37-tempt-zvak",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16706,7 +16706,7 @@
     "source": "ar_avd_heb_book 11:37, tW tempt, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-5-tenth",
+    "id": "train-ar-heb-7-5-tenth-u459",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16754,7 +16754,7 @@
     "source": "ar_avd_heb_book 7:5, tW tenth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-6-tenth",
+    "id": "train-ar-heb-7-6-tenth-rerr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16805,7 +16805,7 @@
     "source": "ar_avd_heb_book 7:6, tW tenth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-8-tenth",
+    "id": "train-ar-heb-7-8-tenth-eprs",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16854,7 +16854,7 @@
     "source": "ar_avd_heb_book 7:8, tW tenth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-9-tenth",
+    "id": "train-ar-heb-7-9-tenth-a2ry",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16906,7 +16906,7 @@
     "source": "ar_avd_heb_book 7:9, tW tenth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-9-tenth",
+    "id": "train-ar-heb-7-9-tenth-c5vc",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -16969,7 +16969,7 @@
     "source": "ar_avd_heb_book 7:9, tW tenth, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-2-6-testimony",
+    "id": "train-ar-heb-2-6-testimony-mudm",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17012,7 +17012,7 @@
     "source": "ar_avd_heb_book 2:6, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-8-testimony",
+    "id": "train-ar-heb-7-8-testimony-b3p2",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17063,7 +17063,7 @@
     "source": "ar_avd_heb_book 7:8, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-7-17-testimony",
+    "id": "train-ar-heb-7-17-testimony-nc5f",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17112,7 +17112,7 @@
     "source": "ar_avd_heb_book 7:17, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-10-28-testimony",
+    "id": "train-ar-heb-10-28-testimony-vgtr",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17164,7 +17164,7 @@
     "source": "ar_avd_heb_book 10:28, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-4-testimony",
+    "id": "train-ar-heb-11-4-testimony-a6er",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17224,7 +17224,7 @@
     "source": "ar_avd_heb_book 11:4, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-4-testimony",
+    "id": "train-ar-heb-11-4-testimony-bbnk",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17287,7 +17287,7 @@
     "source": "ar_avd_heb_book 11:4, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-11-39-testimony",
+    "id": "train-ar-heb-11-39-testimony-g6kd",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",
@@ -17353,7 +17353,7 @@
     "source": "ar_avd_heb_book 11:39, tW testimony, GL en ult/v91_unfoldingWord"
   },
   {
-    "id": "train-ar-heb-12-1-testimony",
+    "id": "train-ar-heb-12-1-testimony-aju4",
     "targetLang": "ar",
     "glLang": "en",
     "glOwner": "unfoldingWord",

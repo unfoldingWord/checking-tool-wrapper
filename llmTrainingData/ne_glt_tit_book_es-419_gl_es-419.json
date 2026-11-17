@@ -1,6 +1,6 @@
 [
   {
-    "id": "train-ne-tit-2-8-evil",
+    "id": "train-ne-tit-2-8-evil-zdzc",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -48,7 +48,7 @@
     "source": "ne_glt_tit_book 2:8, tW evil, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-3-evil",
+    "id": "train-ne-tit-3-3-evil-strs",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -99,7 +99,7 @@
     "source": "ne_glt_tit_book 3:3, tW evil, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-2-faith",
+    "id": "train-ne-tit-2-2-faith-skyq",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -151,7 +151,7 @@
     "source": "ne_glt_tit_book 2:2, tW faith, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-10-faith",
+    "id": "train-ne-tit-2-10-faith-bn72",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -197,7 +197,7 @@
     "source": "ne_glt_tit_book 2:10, tW faith, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-9-faithful",
+    "id": "train-ne-tit-1-9-faithful-x67x",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -240,7 +240,7 @@
     "source": "ne_glt_tit_book 1:9, tW faithful, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-8-faithful",
+    "id": "train-ne-tit-3-8-faithful-dxb8",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -291,7 +291,7 @@
     "source": "ne_glt_tit_book 3:8, tW faithful, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-1-god-2",
+    "id": "train-ne-tit-1-1-god-f44k-2",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -335,7 +335,7 @@
     "source": "ne_glt_tit_book 1:1, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-7-god",
+    "id": "train-ne-tit-1-7-god-mm9y",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -378,7 +378,7 @@
     "source": "ne_glt_tit_book 1:7, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-16-god",
+    "id": "train-ne-tit-1-16-god-rjjt",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -422,7 +422,7 @@
     "source": "ne_glt_tit_book 1:16, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-10-god",
+    "id": "train-ne-tit-2-10-god-pynk",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -469,7 +469,7 @@
     "source": "ne_glt_tit_book 2:10, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-11-god",
+    "id": "train-ne-tit-2-11-god-xef2",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -525,7 +525,7 @@
     "source": "ne_glt_tit_book 2:11, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-4-god",
+    "id": "train-ne-tit-3-4-god-g4b9",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -572,7 +572,7 @@
     "source": "ne_glt_tit_book 3:4, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-8-god",
+    "id": "train-ne-tit-3-8-god-gbdk",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -622,7 +622,7 @@
     "source": "ne_glt_tit_book 3:8, tW god, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-12-godly",
+    "id": "train-ne-tit-2-12-godly-trje",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -674,7 +674,7 @@
     "source": "ne_glt_tit_book 2:12, tW godly, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-12-godly",
+    "id": "train-ne-tit-2-12-godly-wyfa",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -725,7 +725,7 @@
     "source": "ne_glt_tit_book 2:12, tW godly, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-16-good",
+    "id": "train-ne-tit-1-16-good-yxnn",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -768,7 +768,7 @@
     "source": "ne_glt_tit_book 1:16, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-5-good",
+    "id": "train-ne-tit-2-5-good-mguz",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -814,7 +814,7 @@
     "source": "ne_glt_tit_book 2:5, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-7-good",
+    "id": "train-ne-tit-2-7-good-ncv7",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -863,7 +863,7 @@
     "source": "ne_glt_tit_book 2:7, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-14-good",
+    "id": "train-ne-tit-2-14-good-jy6c",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -915,7 +915,7 @@
     "source": "ne_glt_tit_book 2:14, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-1-good",
+    "id": "train-ne-tit-3-1-good-w9yp",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -967,7 +967,7 @@
     "source": "ne_glt_tit_book 3:1, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-8-good",
+    "id": "train-ne-tit-3-8-good-cmmp",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1024,7 +1024,7 @@
     "source": "ne_glt_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-8-good",
+    "id": "train-ne-tit-3-8-good-sbrv",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1077,7 +1077,7 @@
     "source": "ne_glt_tit_book 3:8, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-14-good",
+    "id": "train-ne-tit-3-14-good-m7z9",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1130,7 +1130,7 @@
     "source": "ne_glt_tit_book 3:14, tW good, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-13-jesus",
+    "id": "train-ne-tit-2-13-jesus-mgn9",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1173,7 +1173,7 @@
     "source": "ne_glt_tit_book 2:13, tW jesus, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-6-jesus",
+    "id": "train-ne-tit-3-6-jesus-snat",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1219,7 +1219,7 @@
     "source": "ne_glt_tit_book 3:6, tW jesus, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-16-know",
+    "id": "train-ne-tit-1-16-know-napb",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1262,7 +1262,7 @@
     "source": "ne_glt_tit_book 1:16, tW know, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-11-know",
+    "id": "train-ne-tit-3-11-know-syjf",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1313,7 +1313,7 @@
     "source": "ne_glt_tit_book 3:11, tW know, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-4-love",
+    "id": "train-ne-tit-2-4-love-q8p8",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1366,7 +1366,7 @@
     "source": "ne_glt_tit_book 2:4, tW love, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-4-love",
+    "id": "train-ne-tit-2-4-love-m7kb",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1432,7 +1432,7 @@
     "source": "ne_glt_tit_book 2:4, tW love, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-15-purify",
+    "id": "train-ne-tit-1-15-purify-hr5s",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1480,7 +1480,7 @@
     "source": "ne_glt_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-15-purify",
+    "id": "train-ne-tit-1-15-purify-vg9y",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1531,7 +1531,7 @@
     "source": "ne_glt_tit_book 1:15, tW purify, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-5-purify",
+    "id": "train-ne-tit-2-5-purify-j8nj",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1580,7 +1580,7 @@
     "source": "ne_glt_tit_book 2:5, tW purify, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-14-purify",
+    "id": "train-ne-tit-2-14-purify-bxw8",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1642,7 +1642,7 @@
     "source": "ne_glt_tit_book 2:14, tW purify, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-1-13-rebuke",
+    "id": "train-ne-tit-1-13-rebuke-crce",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1685,7 +1685,7 @@
     "source": "ne_glt_tit_book 1:13, tW rebuke, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-15-rebuke",
+    "id": "train-ne-tit-2-15-rebuke-rvsu",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1731,7 +1731,7 @@
     "source": "ne_glt_tit_book 2:15, tW rebuke, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-4-savior",
+    "id": "train-ne-tit-3-4-savior-x4gg",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1783,7 +1783,7 @@
     "source": "ne_glt_tit_book 3:4, tW savior, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-6-savior",
+    "id": "train-ne-tit-3-6-savior-h9fu",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1838,7 +1838,7 @@
     "source": "ne_glt_tit_book 3:6, tW savior, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-2-9-subject",
+    "id": "train-ne-tit-2-9-subject-hhgu",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
@@ -1886,7 +1886,7 @@
     "source": "ne_glt_tit_book 2:9, tW subject, GL es-419 glt/v42_es-419_gl"
   },
   {
-    "id": "train-ne-tit-3-1-subject",
+    "id": "train-ne-tit-3-1-subject-s4xn",
     "targetLang": "ne",
     "glLang": "es-419",
     "glOwner": "es-419_gl",
