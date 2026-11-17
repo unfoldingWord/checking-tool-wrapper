@@ -295,16 +295,16 @@ fine_tune_type: lora
 num_layers: -1                      # LoRA on every layer
 lora_parameters:
   rank: 16
-  scale: 20.0                       # mlx-lm uses a scale, not lora_alpha
+  scale: 1.0                        # = lora_alpha / rank; see "Results" (20 broke the model)
   dropout: 0.0
   keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
          "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
 mask_prompt: true                   # loss on the assistant answer only
 max_seq_length: 2048
 batch_size: 8
-iters: 3000                         # about 2 epochs of ~12k examples at batch 8
+iters: 2000                         # 2 epochs of the 7,892 train examples at batch 8
 learning_rate: 2e-4
-lr_schedule: { name: cosine_decay, warmup: 150, arguments: [2e-4, 3000, 0] }
+lr_schedule: { name: cosine_decay, warmup: 100, arguments: [2e-4, 1900, 0] }
 grad_checkpoint: true
 steps_per_report: 20
 steps_per_eval: 200
@@ -550,3 +550,46 @@ and compare its Step 6 scores with the `mlx-lm` run A. Before relying on it, che
 
 Not confirmed in its docs: full fine-tuning on Mac, and whether Qwen3-1.7B is a supported Mac
 training model.
+
+## Results
+
+### 2026-11-17: Steps 1-3 done, smoke runs
+
+- Steps 1-3 are implemented: `applyThinkingDirective` and `buildBatchTranslationOptionsPrompt` in
+  `checkingSuggestionsUtils.js`, the exporter `npm run build:finetune-data`
+  (`__tests__/buildFineTuneData.test.js`, `__tests__/helpers/fineTuneHelpers.js`, with a parity
+  test in `npm test`), and `llmTraining/` (`check_data.py`, `lora-r16.yaml`, `lora-smoke.yaml`,
+  README). Batched examples (Q3) are not built.
+- First build: train 7,892 (incl. 1,385 algorithm-certain-and-right and 230 negatives), valid 449,
+  test 543. 274 cases fail the round trip because `expected` is a later occurrence (`:2`) than the
+  check's original-language occurrence, which the app's `moveSelectionsToOccurrence` cannot reach.
+  710 kept cases have a history rendering in the verse word for word but a different answer
+  (`contradictsRule3` in the manifest): worth a hand-check. The base set has no examples labelled
+  55, and its GLs are only en, ar, ru and es-419.
+- `check_data.py` passes on `mlx-lm` 0.32.2: its tokens equal the Qwen3 template with thinking off,
+  start with the app's generation prompt, and the loss covers only `<think>\n\n</think>\n\n`, the
+  answer and `<|im_end|>`. Compare tokens, not decoded text: the tokenizer normalizes to NFC, so
+  decoded Arabic can differ from the input. Longest example 1,096 tokens.
+- **`scale: 20` broke the model.** `mlx-lm` adds `scale * (x A) B`, so `scale` is PEFT's
+  `lora_alpha / rank`; 20 is `mlx-lm`'s default for its 1e-5 learning rate. With 2e-4 the smoke run
+  answered Spanish verses with Arabic fragments and mixed-script words (`"Boоз"`): 0 of 30 Ruth
+  test cases right, unquantized and unfused alike. `scale: 1.0` (alpha 16 at rank 16, as in
+  Appendix A): validation loss 0.040 after 200 iterations (0.355 with 20), 14 of 30 right.
+- Speed: ~3.8 s per iteration at batch 8 on the M5 Pro, so run A (2,000 iterations) is ~2.3 hours.
+- The section 1 baseline `qwen3-1.7b-mlx` is LM Studio's `Qwen3-1.7B-MLX-4bit`. For Step 6 use
+  `qwen3-1.7b-stock`, the stock model converted to 8-bit with `mlx_lm.convert` like the fine-tunes.
+- The fine-tune always answers one row (every training answer is one row), so top-3 = top-1.
+
+Held-out `es-419_est_rut` (84 cases, one run, app scoring with algorithm-first at 100), smoke model
+(200 iterations on 1,000 examples, `scale: 1.0`, 8-bit):
+
+| Model | Top-1 | Wrong | No suggestion | Mean confidence right / wrong |
+|---|---|---|---|---|
+| Algorithm | 37 | 44 | 3 | 100 / 69 |
+| `uw-tw-qwen3-1.7b-smoke-s1` | **56** | 28 | 0 | 91 / 88 |
+| `qwen3-1.7b-stock` (8-bit) | 42 | 36 | 6 | 98 / 91 |
+| `qwen3-1.7b-mlx` (4-bit) | 41 | 40 | 3 | 99 / 89 |
+| `qwen/qwen3-4b-2507` | 47 | 35 | 2 | 97 / 87 |
+
+One small file, so only a sign that the setup works, not a Step 6 result. Its confidences barely
+separate right from wrong (91 vs 88).

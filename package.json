@@ -25,6 +25,7 @@
     "build:llm-training-data": "cross-env LLM_TRAINING_BUILD=1 jest __tests__/buildLlmTrainingData.test.js",
     "run:llm-training-data": "cross-env LLM_TRAINING_RUN=1 jest __tests__/runLlmTrainingData.test.js",
     "check:llm-training-data": "cross-env LLM_TRAINING_CHECK=1 jest __tests__/findUnhelpfulTrainingCases.test.js",
+    "build:finetune-data": "cross-env LLM_FINETUNE_BUILD=1 jest __tests__/buildFineTuneData.test.js",
     "fix": "eslint ./src --fix",
     "bump:beta": "npm version prerelease --preid=beta --no-git-tag-version",
     "prebuild": "node -e \"require('fs').rmSync('lib', { recursive: true, force: true })\"",

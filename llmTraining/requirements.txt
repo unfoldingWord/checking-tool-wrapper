@@ -1,0 +1,4 @@
+mlx-lm
+transformers
+huggingface_hub
+jinja2

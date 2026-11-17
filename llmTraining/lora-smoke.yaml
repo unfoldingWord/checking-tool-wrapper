@@ -1,0 +1,30 @@
+# Smoke run of plans/fine-tune-qwen3.md (Step 4): 200 iterations on the 1,000-example copy written
+# by `check_data.py --smoke-dir llmTrainingData/finetune-smoke`. Run from the repo folder:
+#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-smoke.yaml
+model: Qwen/Qwen3-1.7B
+train: true
+data: llmTrainingData/finetune-smoke
+fine_tune_type: lora
+num_layers: -1
+lora_parameters:
+  rank: 16
+  scale: 1.0                          # = lora_alpha / rank (alpha 16, as in Appendix A); 20 with lr 2e-4 broke the model
+  dropout: 0.0
+  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
+         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
+mask_prompt: true
+max_seq_length: 2048
+batch_size: 8
+iters: 200
+learning_rate: 2e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 20
+  arguments: [2e-4, 180, 0]
+grad_checkpoint: true
+steps_per_report: 10
+steps_per_eval: 50
+val_batches: 25
+save_every: 100
+adapter_path: llmTraining/outputs/smoke-s1
+seed: 3407

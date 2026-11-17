@@ -283,6 +283,23 @@ function getAiAPIs() {
 }
 
 /**
+ * Adds the `/no_think` directive to the start of the system prompt and of the query when thinking
+ * is off, as {@link queryAiAPI} sends them. At the end of the system prompt it made small models drop
+ * the batch markers, so it goes first. Exported so the fine-tuning data exporter builds exactly the
+ * messages the app sends.
+ *
+ * @param {{systemPrompt: string, query: string}} prompt - system prompt and user query
+ * @param {boolean} enableThinking - true leaves both unchanged
+ * @returns {{systemPrompt: string, query: string}} - the texts to send
+ */
+export function applyThinkingDirective({ systemPrompt, query }, enableThinking) {
+  if (enableThinking) {
+    return { systemPrompt, query };
+  }
+  return { systemPrompt: `/no_think\n${systemPrompt}`, query: `/no_think\n${query}` };
+}
+
+/**
  * Sends a text query to a locally running OpenAI-compatible server and returns the model's response text
  * along with timing information.
  *
@@ -296,8 +313,8 @@ function getAiAPIs() {
  * - In web/Node environments: makes direct HTTP requests via streamChatMessage
  *
  * Thinking mode control:
- * When `enable_thinking` is false, the function appends '/no_think' to the query to disable
- * the model's chain-of-thought reasoning output, which can reduce response verbosity for
+ * When `enable_thinking` is false, the function puts '/no_think' at the start of the system prompt
+ * and the query ({@link applyThinkingDirective}) to disable the model's chain-of-thought reasoning output, which can reduce response verbosity for
  * simple queries.
  *
  * @param {string} query - The text prompt/question to send to the model
@@ -356,8 +373,7 @@ export async function queryAiAPI(query, options = {}) {
   } = options;
   const startTime = Date.now();
 
-  const finalQuery = enable_thinking ? query : `/no_think\n${query}`;
-  const finalSystemPrompt = enable_thinking ? systemPrompt : `/no_think\n${systemPrompt}`;
+  const { query: finalQuery, systemPrompt: finalSystemPrompt } = applyThinkingDirective({ systemPrompt, query }, enable_thinking);
 
   let replyText_ = null;
   let reasoningText_ = null;
@@ -874,6 +890,11 @@ iglesia,98 - missing the quotes
 `;
 }
 
+/*
+ * Changing the system prompts, `buildTranslationOptionsPrompt` or `applyThinkingDirective` changes
+ * what a fine-tuned model was trained on (plans/fine-tune-qwen3.md): regenerate the data with
+ * `npm run build:finetune-data` and retrain, or the fine-tuned model loses accuracy.
+ */
 /** system prompt for one request per query; a constant, so the server can reuse its prompt cache */
 const LLM_SINGLE_SYSTEM_PROMPT = buildLlmSystemPrompt(LLM_PREVIOUS_TRANSLATION_RULE_SINGLE, LLM_INFLECTED_FORM_EXAMPLE);
 /** system prompt for batched requests, before `LLM_BATCH_SYSTEM_PROMPT` is appended; also a constant */
@@ -2502,19 +2523,16 @@ function splitLlmBatchAnswer(answer, count) {
 }
 
 /**
- * Batched form of {@link getBestTWordSelectionWithConfidenceFromLlm}: sends all the requests
- * to the AI in a single `queryAiAPI` call and splits the answer back out per request.
- * The `lmOptions` of the first request are used for the shared query.
+ * Builds the prompt for several requests sent in one AI query: each request's input from
+ * {@link buildTranslationOptionsPrompt} (batch form) under a `### REQUEST n` line, one `Answer:` at
+ * the end, and the batch system prompt with `LLM_BATCH_SYSTEM_PROMPT` appended. Exported so the
+ * fine-tuning data exporter builds exactly the prompt the app sends.
  *
- * @param {Array<object>} requests - each with the same fields as the single-request options
- * @returns {Promise<Array<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>>} -
- *   one result per request, in the same order; `elapsedStr` is the time for the whole batch
+ * @param {Array<{wordList: Array<string>, targetLangCode: string, glPhrase: string, glLangCode: string, previousTranslationData: object}>} requests
+ *   - the requests, in order (at least one)
+ * @returns {{systemPrompt: string, input: string}} - the prompt, before `applyThinkingDirective`
  */
-async function getBestTWordSelectionsBatchFromLlm(requests) {
-  if (!requests.length) {
-    return [];
-  }
-
+export function buildBatchTranslationOptionsPrompt(requests) {
   let systemPrompt = '';
   const inputs = requests.map(({
     wordList, targetLangCode, glPhrase, glLangCode, previousTranslationData,
@@ -2530,10 +2548,28 @@ async function getBestTWordSelectionsBatchFromLlm(requests) {
     systemPrompt = prompt.systemPrompt;
     return `### REQUEST ${i + 1}${prompt.input.replace(/\n*Answer:\s*$/, '')}`;
   });
-  const input = `${inputs.join('\n\n')}\n\nAnswer:`;
+
+  return { systemPrompt: systemPrompt + LLM_BATCH_SYSTEM_PROMPT, input: `${inputs.join('\n\n')}\n\nAnswer:` };
+}
+
+/**
+ * Batched form of {@link getBestTWordSelectionWithConfidenceFromLlm}: sends all the requests
+ * to the AI in a single `queryAiAPI` call and splits the answer back out per request.
+ * The `lmOptions` of the first request are used for the shared query.
+ *
+ * @param {Array<object>} requests - each with the same fields as the single-request options
+ * @returns {Promise<Array<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>>} -
+ *   one result per request, in the same order; `elapsedStr` is the time for the whole batch
+ */
+async function getBestTWordSelectionsBatchFromLlm(requests) {
+  if (!requests.length) {
+    return [];
+  }
+
+  const { systemPrompt, input } = buildBatchTranslationOptionsPrompt(requests);
   const lmOptions = requests[0].lmOptions || { enable_thinking: false };
   const maxTokens = Math.max(LLM_DEFAULT_MAX_TOKENS, requests.length * LLM_BATCH_MAX_TOKENS_PER_REQUEST);
-  const options = buildLlmQueryOptions(lmOptions, systemPrompt + LLM_BATCH_SYSTEM_PROMPT, maxTokens);
+  const options = buildLlmQueryOptions(lmOptions, systemPrompt, maxTokens);
 
   let answer = '';
   let elapsedStr = '0';
@@ -3820,7 +3856,7 @@ export function updatedPreviousSelectionsData(
  * confidence, which `capForRendering` allows only for the exact GL key's rendering found word for
  * word in the verse.
  */
-const ALGORITHM_CERTAIN_CONFIDENCE = 100;
+export const ALGORITHM_CERTAIN_CONFIDENCE = 100;
 
 /**
  * Runs the algorithm path for one `getBestSelections` job.

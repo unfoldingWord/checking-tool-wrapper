@@ -6,6 +6,10 @@ lib/
 .idea
 /coverage/
 llm-eval-results/
+llmTrainingData/finetune/
+llmTrainingData/finetune-smoke/
+llmTraining/outputs/
+llmTraining/.venv/
 
 # Output of 'npm pack'
 *.tgz
