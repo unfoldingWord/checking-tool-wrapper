@@ -31,7 +31,10 @@
  * Each entry has the fields of the `llmEval` cases (`id`, `targetLang`, `glLang`, `verse`,
  * `glPhrase`, `occurrence`, `history`, `expected`, `tags`, `madeUp`, `source`) plus `glOwner`,
  * `groupId`, `contextId` and `selections` (the correct answer in the form translationCore saves a
- * selection, one per word).
+ * selection, one per word). The `id` is unique within a file:
+ * `train-<targetLang>-<book>-<chapter>-<verse>-<groupId>-<checkId>[-<occurrence>]`.
+ *
+ * To rebuild every file already in the output folder, use `scripts/rebuild-llm-training-data.sh`.
  *
  * Environment variables:
  *   LLM_TRAINING_BUILD      set to 1 to build
@@ -43,6 +46,10 @@
  *   LLM_TRAINING_TC_HOME    translationCore folder (default ~/translationCore)
  *   LLM_TRAINING_OUT_DIR    output folder (default <repo>/llmTrainingData)
  *   LLM_TRAINING_MAX_WORDS  longest answer kept, in words (default: no limit)
+ *   LLM_TRAINING_ALLOW_GL_MISMATCH  set to 1 to build for a GL other than the project's translationWords
+ *                           GL in its manifest. Normally refused: the project's check index is
+ *                           written by translationCore for the GL last selected there, and other
+ *                           GLs list different checks, so the file would hold the wrong checks
  *
  * jest is used because it is the repo's only babel runner; Node's `fs` is used because
  * `fs-extra` is mocked globally.
@@ -109,6 +116,18 @@ function buildProject(name) {
 
   if (!glLang || !glOwner) {
     throw new Error(`${name}: set LLM_TRAINING_GL_LANG and LLM_TRAINING_GL_OWNER (the manifest has no ${TOOL_NAME} GL)`);
+  }
+
+  // the project's check index is written by translationCore for the GL last selected there; for
+  // another GL it holds the wrong checks (each GL's translationWords lists different checks)
+  const projectGlLang = manifest.toolsSelectedGLs?.[TOOL_NAME];
+  const projectGlOwner = manifest.toolsSelectedOwners?.[TOOL_NAME];
+
+  if (projectGlLang && projectGlOwner && (projectGlLang !== glLang || projectGlOwner !== glOwner) &&
+    env.LLM_TRAINING_ALLOW_GL_MISMATCH !== '1') {
+    throw new Error(`${name}: its ${TOOL_NAME} checks are for GL ${projectGlOwner}/${projectGlLang}, the GL last ` +
+      `selected in translationCore, not ${glOwner}/${glLang}. Open the project in translationCore with ` +
+      `${glOwner}/${glLang} selected for ${TOOL_NAME}, or set LLM_TRAINING_ALLOW_GL_MISMATCH=1 to build anyway.`);
   }
 
   const { glBook, glBibleName } = loadGlBook(glLang, glOwner, bookId);
@@ -192,7 +211,8 @@ function toEntry(projectName, check, {
   const occurrence = contextId.occurrence || 1;
 
   return {
-    id: `train-${targetLang}-${bookId}-${chapter}-${verse}-${contextId.groupId}${occurrence > 1 ? `-${occurrence}` : ''}`,
+    // the check id makes it unique: a verse can have several checks of one group (different words)
+    id: `train-${targetLang}-${bookId}-${chapter}-${verse}-${contextId.groupId}-${contextId.checkId}${occurrence > 1 ? `-${occurrence}` : ''}`,
     targetLang,
     glLang,
     glOwner,

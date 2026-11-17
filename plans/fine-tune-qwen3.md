@@ -153,16 +153,88 @@ both train and test.
   stops being a fair measure.
 - **Validation**: 5% of the remaining (project, group) pairs, for eval loss and early stopping.
 
+**Filter the train set** (measured 2026-11-17 on the 26,369 cases; see "Evidence" below). The
+question for each case is whether the AI ever sees it in the app, not whether its answer is in the
+history. `findUnhelpfulTrainingCases` (`__tests__/helpers/suggestionsHelpers.js`, run with
+`npm run check:llm-training-data`) gives each case its history reason; the exporter reads the
+algorithm results (`*_Algorithm.results.json`, from `npm run run:llm-training-data`) for the
+algorithm's top option and confidence, matched to cases by `id`.
+
+1. **Drop:**
+   - Algorithm-certain cases (top confidence 100), except a random ~20% of the certain-and-right
+     ones (~1,800), kept so the model still learns to copy a previous translation. The app answers
+     certain cases without the AI (`algorithmFirst`), so more of them teaches a skill it never uses.
+     Drop all certain-but-wrong ones (~2,100): the app never sends them, and the disagreement
+     suggests a doubtful answer.
+   - Unusually long answers, judged per language: drop an answer only when it is longer than its
+     target language's 99th percentile answer length (computed from the training data) **and** more
+     than 2 words longer than the longest rendering in its history. A fixed word cap would not work:
+     languages space words differently (Vietnamese writes each syllable as a word, e.g. `Áp ra ham`;
+     its median answer is 2 words and its 98th percentile 5, while most languages have a median of 1).
+     Measured 2026-11-17, counting each check once: a fixed cap of 4 words would drop 382 checks,
+     348 of them Vietnamese; this rule drops 17 (11 Vietnamese). Some are clearly too wide (Telugu
+     `ఆదాము దేవుని యొక్క కుమారుడుగా ఉన్నాడు`, roughly "Adam ... was son of God", for "of God"); some are
+     fine (Vietnamese `anh chị em đã được kêu gọi` for "you were called"). At 17 cases, no length
+     filter at all would also be reasonable. `npm run check:llm-training-data` now reports these as
+     `unusuallyLongAnswer` (with `longAnswer: {words, languageLimit, longestHistoryRendering}`). On
+     review, about half of the 17 look right, mostly where the GL phrase itself is long (e.g.
+     `Giu đa kẻ được gọi là Ích ca ri ốt` for "Иуду прозванного Искариотом"), so treat the list as
+     cases to check by hand, not to drop automatically. Do not use the builder's `LLM_TRAINING_MAX_WORDS`
+     for this: it is one number for every language.
+   - Cases that fail the round-trip check (Step 2) and exact repeats (`duplicate`, 1 case).
+2. **Keep all:**
+   - Cases the app sends to the AI that pass every check (~5,050).
+   - `onlyOtherFormsInHistory` cases sent to the AI (~2,700): the answer is another form of a
+     history word. Label them 60-89 (rule 5).
+3. **Decide by experiment (Step 4B):**
+   - `someExpectedWordsNotInHistory` (~3,970 sent to the AI; the algorithm gets 3% right): mostly
+     the history rendering plus or minus small words (`của Áp ra ham` vs history `Áp ra ham`), about
+     2,800 of them Vietnamese. This is a label question: alignments include small words a checker may
+     not select. Hand-check ~50 first. Where a history rendering is in the verse word for word but the
+     expected answer differs, the case contradicts rule 3 ("copy exactly those words"); if those are
+     frequent, drop or relabel them.
+   - `noRelatedWordInHistory` (~3,380 sent to the AI; the algorithm gets 1% right): only knowledge of
+     the target language can solve these, which a 1.7B model may not learn. If kept, label them 55 or
+     lower (rule 5) so at worst the model learns to say it is unsure.
+
+Size: the base set (1 and 2) is about 9,500 cases before the holdout and caps; about 16,800 with
+both experimental groups.
+
 **Balance the train set:**
-- Keep every case whose algorithm confidence is below 100 (the cases the AI actually gets).
-- Keep a random 20% of the confidence-100 cases, so the model still learns the plain
-  "copy the previous translation" case without it dominating.
 - Cap each target project at ~2,000 examples and each (project, group) at ~40, so
   `ru_rlob_gen`, `ar_avt_psa`, `vi_glt_luk` and groups like `god`/`jesus` do not dominate.
-  Rough estimate before the round-trip drops: 10-13k training examples.
 - Optional, ~3%: negative examples answered `"",0`, made by pairing a case's GL phrase and history
   with another verse of the same project that contains neither the answer nor any history word.
   The builder drops unaligned checks, so without this the model never sees rule 6.
+
+**Evidence** (algorithm results joined to `findUnhelpfulTrainingCases` reasons; about 6% of rows
+may be misattributed because case ids were not unique when this was measured, since fixed):
+
+| Group | Cases | Algorithm certain | Sent to the AI | Algorithm right, of those sent |
+|---|---|---|---|---|
+| Passes every check | 15,408 | 10,361 | 5,047 | 3,594 (71%) |
+| `onlyOtherFormsInHistory` | 2,850 | 152 | 2,698 | 1,795 (67%) |
+| `someExpectedWordsNotInHistory` | 4,652 | 681 | 3,971 | 116 (3%) |
+| `noRelatedWordInHistory` | 3,458 | 81 | 3,377 | 36 (1%) |
+
+Answer lengths (all cases): 1 word 13,393; 2 words 7,376; 3 words 3,597; 4 words 1,343; 5+ words
+660. Per target language, counting each check once (median / 98th percentile / longest, in words):
+ru 1/3/5, vi 2/5/10, ar 1/2/4, te 1/3/5, fa 1/4/5, bn 1/4/6, ne 1/3/5, es-419 2/4/4, id 1/5/6,
+en 1/4/5.
+`wordSimilarity` misses some forms a person would call the same word (Arabic `عَلِيٌّ` vs history
+`ٱلْعَلِيِّ`), so `noRelatedWordInHistory` slightly overstates "nothing related".
+
+**Data upkeep:**
+- Case ids are unique within a file since 2026-11-17:
+  `train-<targetLang>-<book>-<chapter>-<verse>-<groupId>-<checkId>[-<occurrence>]`. Before that,
+  3,050 cases shared an id with another check of the same verse and group.
+- `scripts/rebuild-llm-training-data.sh` rebuilds every file in `llmTrainingData` from the
+  translationCore projects (`-c` and `-a` refresh the check and algorithm results). A project's
+  translationWords check list is written by translationCore for the GL last selected there, and
+  each GL lists different checks, so the script only rebuilds files whose GL is the project's
+  current GL. On 2026-11-17, 11 of 39 files did not match their project's GL; rebuilding them anyway
+  gave 7 of them the wrong checks. To rebuild one of those, open the project in translationCore
+  with that GL selected, then run the script again.
 
 Write the split and the per-project counts to `llmTrainingData/finetune/manifest.json`.
 
@@ -263,6 +335,21 @@ three runs in the results section.
 
 After choosing, other things to try if needed: 1 vs 3 epochs, and `learning_rate` 1e-4 for LoRA.
 Pick by the test-set top-1 from Step 6, not by validation loss alone.
+
+### Step 4B. Which doubtful groups to train on
+
+With the configuration chosen in Step 4A (LoRA r=16 if A and B are close), train three runs on the
+same split, seed and epochs:
+
+| Run | Train set |
+|---|---|
+| D1 | base set (Step 3, items 1 and 2) |
+| D2 | base + `someExpectedWordsNotInHistory` (after the hand-check) |
+| D3 | base + `noRelatedWordInHistory`, labelled 55 or lower |
+
+Score each with Step 6 (b), broken down by the same groups on the held-out files. Keep a group only
+if adding it raises top-1 on its own held-out group without lowering the others, and without more
+confident wrong answers. If both help, train once more with both.
 
 ### Step 5. Fuse and load in LM Studio
 
