@@ -351,7 +351,7 @@ the training data. A full fine-tune can learn more from the same data. Train the
 |---|---|---|
 | A | LoRA r=16 | as written |
 | B | LoRA r=64 | `rank: 64`, `adapter_path: outputs/lora-r64` |
-| C | Full fine-tune | `fine_tune_type: full`, no `lora_parameters`, `learning_rate: 1e-5` (try 2e-5), `adapter_path: outputs/full` |
+| C | Full fine-tune | `llmTraining/full.yaml`: `fine_tune_type: full`, no `lora_parameters`, `learning_rate: 1e-5` (try 2e-5), `save_every: 1000`, `adapter_path: outputs/full`; run through `llmTraining/train_full.py` (float32) |
 
 Notes:
 - C trains every weight, so it needs a far smaller learning rate than LoRA. A LoRA rate (2e-4) would
@@ -361,7 +361,22 @@ Notes:
   checkpointing and `batch_size` 2-4, it should fit, but close the other large apps (LM Studio
   included) while it trains. If it does not fit or is too slow, run C on an NVIDIA GPU with
   Unsloth (Appendix A) on the same data.
-- C saves full weights (~3.4 GB in bf16) rather than an adapter.
+- C saves full weights rather than an adapter: ~5.6 GB per checkpoint in float32 (the 28 layers;
+  the tied embeddings stay frozen), so `save_every` is 1000 to spare the disk.
+- **Train C in float32** (found 2026-11-17). `mlx_lm.lora` trains the weights in the dtype they
+  load in, bfloat16 for Qwen3-1.7B. An Adam step at lr 1e-5 is about 1e-5, but bfloat16 values
+  near a typical weight (0.02) are 1.2e-4 apart, so most updates would round away and C would
+  hardly train. `llmTraining/train_full.py` runs `mlx_lm.lora` with the model cast to float32.
+  Measured on 20 steps: ~5 s per step at `batch_size` 8 (~3 hours for 2,000 steps with
+  evaluations), validation loss 3.15 → 0.154, no memory swapping on 48 GB.
+- **Memory, measured:** the first full run (`batch_size` 8, float32) ran out of GPU memory at
+  step ~1,140 (`kIOGPUCommandBufferCallbackErrorOutOfMemory`), after the step-1,000 checkpoint
+  (validation loss 0.036). It was resumed from that checkpoint with `llmTraining/full-resume.yaml`:
+  `batch_size` 4 x `grad_accumulation_steps` 2 (same effective batch), the lr continuing the
+  original cosine from 5.41e-6 to 0, a new seed for the second epoch's order, and fresh Adam
+  moments (not saved by the first attempt). First validation after loading: 0.038. Start a new
+  full run with `batch_size` 4 x `grad_accumulation_steps` 2 (`iters` doubles, since it counts
+  micro-batches).
 
 **Choosing:** use the Step 6 (b) held-out top-1 and the rate of confident wrong answers, reported
 **separately for the `ne_*` files** (a target language not in training) and for the rest. Pick C
@@ -464,10 +479,13 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
 
 - **Q1. Fallback hardware.** Training runs on this Mac with MLX. If the full fine-tune (run C) does
   not fit in 48 GB or is too slow, is there an NVIDIA machine or Colab account for Appendix A?
+  - Answer: no NVIDIA machine or Colab, but do have a mac Mini M4Pro with 64GB if that would help.
 - **Q2. Test split.** Is holding out `ne_*`, `bn_glt_eph`, `es-419_est_rut` and `en_ult_tit_*` right,
   or should other projects be held out?
 - **Q3. Batched examples.** The app default is one request per call. Train single only, or add
   ~15% batched examples so `llmGrouping` > 1 also improves?
+  **Decided 2026-11-17: single requests only.** Batching is not helpful with small models, so it
+  is not trained or tested; a fine-tuned model must be used with one request per query.
 - **Q4. Success bar.** Are the thresholds in Step 6 the right bar to switch the default model?
 - **Q5. Distribution.** Will the fine-tuned model be published (e.g. Hugging Face) for
   translationCore users, or kept internal? This affects licensing and where the GGUF lives.
@@ -595,3 +613,142 @@ Held-out `es-419_est_rut` (84 cases, one run, app scoring with algorithm-first a
 
 One small file, so only a sign that the setup works, not a Step 6 result. Its confidences barely
 separate right from wrong (91 vs 88).
+
+### 2026-11-17: run A (LoRA r16, `scale: 1.0`, 2,000 iterations)
+
+Validation loss 3.15 → 0.047 (iteration 400) → 0.033 (1,200) → 0.035 (2,000); ~2.2 hours.
+Fused, converted with `mlx_lm.convert` to 8-bit (`uw-tw-qwen3-1.7b-r16`) and 4-bit, loaded in
+LM Studio. LM Studio lists the two as variants `uw-tw-qwen3-1.7b-r16@8bit` / `@4bit`; load them
+with `lms load <name>@8bit --identifier <id>`, or the plain name is not found.
+
+**Step 6 (b), held-out files** (the 9 test files, 835 cases, one run each, temperature 0.1, app
+scoring: algorithm answers at confidence 100, falls back to the algorithm when the AI gives
+nothing). Run in `llmTrainingData/finetune/heldout/` (copies of the test files and their algorithm
+results), so the pooled `results/<model>.byAlgorithmConfidence.json` of section 1 are not
+overwritten.
+
+| Algorithm confidence | Cases | Algorithm | Run A 8-bit | Run A 4-bit | Stock 1.7b 8-bit | Stock 4b |
+|---|---|---|---|---|---|---|
+| 100 | 281 | 84.3% | 84.3% | 84.3% | 84.3% | 84.3% |
+| 90-94 | 176 | 58.0% | **66.5%** | 63.6% | 52.8% | 61.9% |
+| 85-89 | 55 | 50.9% | **56.4%** | 50.9% | 41.8% | 47.3% |
+| 80-84 | 82 | 56.1% | **63.4%** | 59.8% | 45.1% | 48.8% |
+| 60-79 | 31 | 41.9% | 61.3% | 58.1% | 45.2% | **64.5%** |
+| 1-59 | 129 | 16.3% | **50.4%** | 45.0% | 19.4% | 29.5% |
+| no algorithm answer | 81 | 0% | **33.3%** | 32.1% | 6.2% | 32.1% |
+| **All, threshold 100** | 835 | 53.5% | **65.6%** | 63.2% | 52.0% | 59.4% |
+| `ne_*` only (362, unseen target language) | | 55.2% | 63.3% | 61.9% | 53.9% | 63.3% |
+| Wrong at confidence ≥ 80 | | 181 | **94** | 102 | 255 | 189 |
+
+Every model is best at threshold 100 here (run A: 548 at 100, 518 at 60), so Q6 needs no per-model
+threshold for the fine-tune.
+
+**Step 6 (a), suitability suite** (`scripts/test-llm.sh -r 3`, 55 cases):
+
+| | Run A 8-bit | Run A 4-bit | Stock 1.7b 8-bit | Stock 4b |
+|---|---|---|---|---|
+| Single: top-1 | 69% | 71% | 62% | 68% |
+| Single: top-1 real projects | 47% | 56% | 36% | 47% |
+| Single: wrong at ≥ 80 | **13%** | **13%** | 24% | 22% |
+| Batched (4 per query): top-1 | **36%** | **36%** | 55% | 65% |
+| Batched: empty answers | 87 | 87 | 24 | 15 |
+
+All four fail the suite's top-1 bar on single requests (run A 8-bit included), and both stock
+models fail its "rarely wrong with high confidence" bar, which run A passes.
+
+**Against the success bar (Step 6):**
+- Top-1 at threshold 100 beats stock 1.7b by ≥ 5 points and is not below stock 4b: **met**
+  (65.6% vs 52.0% and 59.4%).
+- At or above the algorithm in every band from 60 to 94: **met** (+5.5 to +19.4 points).
+- Confident wrong answers no higher than stock 1.7b on (a) and (b): **met** (13% vs 24%; 94 vs 255).
+- Not worse on `ne_*` than the rest: **met** (63.3%, equal to stock 4b).
+- 4-bit within 2 points of 8-bit: **missed narrowly** (63.2% vs 65.6%, -2.4), though still above
+  stock 4b.
+- **Batched requests break.** Trained on single requests only (Q3), the fine-tune does not write
+  the `### REQUEST n` markers, so with `llmGrouping` > 1 most answers are empty. Use it only with
+  one request per query (the app default), or add batched examples and retrain.
+
+**Second run of Step 6 (b)** (same settings; results in `heldout/results-run1` and `results-run2`):
+
+| Model | Run 1 top-1 | Run 2 top-1 | Wrong at ≥ 80, run 1 / 2 | Answers that changed |
+|---|---|---|---|---|
+| Run A 8-bit | 548 (65.6%) | 550 (65.9%) | 94 / 96 | 15 |
+| Run A 4-bit | 528 (63.2%) | 528 (63.2%) | 102 / 103 | 10 |
+| Stock 1.7b 8-bit | 434 (52.0%) | 432 (51.7%) | 255 / 257 | 9 |
+| Stock 4b | 496 (59.4%) | 495 (59.3%) | 189 / 193 | 5 |
+
+At temperature 0.1, runs differ by at most 2 cases, so one run per model is enough on these files.
+Paired on the same cases (run 2, exact McNemar test), run A is right where the other is wrong /
+the other right where run A is wrong: vs stock 1.7b 138 / 20 (p = 7e-23), vs stock 4b 89 / 34
+(p = 7e-7), vs its own 4-bit build 35 / 13 (p = 0.002). So the gains are not chance on these cases,
+and the 4-bit loss (-2.4 points) is real: the 8-bit build is the one to use. The test still covers
+only 9 files, five of them the same Titus verses under different GLs.
+
+### 2026-11-17: run B (LoRA r64, otherwise as run A)
+
+`llmTraining/lora-r64.yaml`: run A's config with `rank: 64` (`scale: 1.0`, lr 2e-4, 2,000
+iterations, seed 3407, same data). Validation loss 3.15 → 0.052 (iteration 400) → 0.032 (1,000)
+→ 0.033 (2,000), the same curve as run A; ~2.1 hours. Fused and converted to 8-bit
+(`uw-tw-qwen3-1.7b-r64`) and scored with Step 6 (b) on the same 835 held-out cases.
+
+| Algorithm confidence | Cases | Algorithm | Run A 8-bit (run 2) | Run B 8-bit |
+|---|---|---|---|---|
+| 100 | 281 | 84.3% | 84.3% | 84.3% |
+| 90-94 | 176 | 58.0% | **66.5%** | 64.2% |
+| 85-89 | 55 | 50.9% | **56.4%** | 52.7% |
+| 80-84 | 82 | 56.1% | **63.4%** | 62.2% |
+| 60-79 | 31 | 41.9% | 61.3% | **64.5%** |
+| 1-59 | 129 | 16.3% | **50.4%** | 40.3% |
+| no algorithm answer | 81 | 0% | **35.8%** | 32.1% |
+| **All, threshold 100** | 835 | 53.5% | **65.9%** (550) | 63.2% (528) |
+| `ne_*` only (362) | | 55.2% | **63.5%** | 61.3% |
+| Other held-out files (473) | | 52.2% | **67.7%** | 64.7% |
+| Wrong at confidence ≥ 80 | | 181 | 96 | 93 |
+
+Paired (exact McNemar): run A right where B is wrong 40 times, B right where A is wrong 18
+(p = 0.005; against run A's first run 38 / 18, p = 0.01). Run B ties run A's 4-bit build (528,
+29 / 29) and beats stock 4b (73 / 40, p = 0.002).
+
+**Choice: keep run A.** Rank 64 is 2.7 points worse overall and on `ne_*`, mostly on cases the
+algorithm is unsure of (1-59: -10 points), with about the same number of confident wrong answers.
+The extra capacity did not help with this data; it may fit the training projects more closely.
+One seed each, so the gap could shrink with other seeds, but it is not in B's favour.
+
+### 2026-11-17: run C (full fine-tune, float32, lr 1e-5)
+
+`llmTraining/full.yaml` through `llmTraining/train_full.py`, resumed at update 1,000 with
+`full-resume.yaml` after running out of memory (Step 4A notes). Validation loss 3.15 → 0.036
+(update 1,000); after the resume 0.038 → 0.062 (400 micro-batches) → 0.044 (end). The rise right
+after the resume is probably Adam restarting without its moments; the end (0.044) is above runs A
+and B (0.033). ~3.2 hours of training in all (1.8 + 1.5). Fused, converted to 8-bit (`uw-tw-qwen3-1.7b-full`)
+and scored with Step 6 (b).
+
+| Algorithm confidence | Cases | Algorithm | Run A (run 2) | Run B | Run C |
+|---|---|---|---|---|---|
+| 100 | 281 | 84.3% | 84.3% | 84.3% | 84.3% |
+| 90-94 | 176 | 58.0% | **66.5%** | 64.2% | 64.8% |
+| 85-89 | 55 | 50.9% | **56.4%** | 52.7% | 54.5% |
+| 80-84 | 82 | 56.1% | **63.4%** | 62.2% | 62.2% |
+| 60-79 | 31 | 41.9% | 61.3% | **64.5%** | 58.1% |
+| 1-59 | 129 | 16.3% | **50.4%** | 40.3% | 41.9% |
+| no algorithm answer | 81 | 0% | **35.8%** | 32.1% | **35.8%** |
+| **All, threshold 100** | 835 | 53.5% | **65.9%** (550) | 63.2% (528) | 63.8% (533) |
+| `ne_*` only (362) | | 55.2% | **63.5%** | 61.3% | **63.5%** |
+| Other held-out files (473) | | 52.2% | **67.7%** | 64.7% | 64.1% |
+| Wrong at confidence ≥ 80 | | 181 | 96 | 93 | 106 |
+
+Paired (exact McNemar): run A vs C 46 / 29 (p = 0.06); B vs C 31 / 36 (p = 0.6); C beats stock 4b
+80 / 42 (p = 0.0007).
+
+**Choice: keep run A.** C does not beat A overall (-2.0 points, not significant on its own but in
+the same direction as B), ties it on `ne_*`, is 3.6 points lower on the other files and gives
+more confident wrong answers. Training every weight did not help with ~7,900 examples, and C costs
+~1.5x the training time, 11 GB per checkpoint pair and a 5.8 GB fused model (float32) before
+quantizing. Caveat: C's second half
+restarted Adam, so this is not a clean single run; a clean run (`batch_size` 4 x
+`grad_accumulation_steps` 2 from the start) could close some of the gap, but not likely all.
+
+**Step 4A result:** LoRA r16 (run A) is the model to use: `uw-tw-qwen3-1.7b-r16`, 8-bit. Next
+per the plan: Step 4B (D1-D3) after the hand-checks, then Step 7.
+
+Not yet run: Step 4B (D1-D3).

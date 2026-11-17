@@ -38,6 +38,8 @@ after upgrading `mlx-lm` or changing the model.
 ```sh
 llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-smoke.yaml   # 200 iterations, 1,000 examples
 llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r16.yaml     # run A
+llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r64.yaml     # run B
+llmTraining/.venv/bin/python llmTraining/train_full.py --config llmTraining/full.yaml  # run C, full, float32
 ```
 
 Set `iters` in `lora-r16.yaml` from the train count in `llmTrainingData/finetune/manifest.json`
@@ -52,5 +54,8 @@ llmTraining/.venv/bin/mlx_lm.fuse --model Qwen/Qwen3-1.7B --adapter-path llmTrai
 llmTraining/.venv/bin/mlx_lm.convert --hf-path llmTraining/outputs/fused-r16 \
     --mlx-path llmTraining/outputs/uw-tw-qwen3-1.7b-8bit -q --q-bits 8
 ```
+
+For run C, pass `--adapter-path llmTraining/outputs/full`; `mlx_lm.fuse` loads the full weights
+from it the same way.
 
 Then copy the model folder into LM Studio's models folder and evaluate with Step 6 of the plan.
