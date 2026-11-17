@@ -1546,7 +1546,7 @@ const MIN_AFFIX_LENGTH = 6;
  * @param {string} b - normalized word
  * @returns {number} - 0, or a similarity in [`WORD_FUZZY_THRESHOLD`, 1]
  */
-function wordSimilarity(a, b) {
+export function wordSimilarity(a, b) {
   if (a === b) {
     return 1;
   }

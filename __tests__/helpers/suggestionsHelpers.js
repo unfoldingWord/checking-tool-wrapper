@@ -9,6 +9,8 @@
  *    `getBestSelections` and time each call (see `runTrainingCases.test.js`);
  *  - `summarizeTestResults` and `formatSummary` score those results against each case's `expected`
  *    answers and print a report, using `optionText`, `normalizePhrase`, `mean` and `percentile`.
+ *  - `findUnhelpfulTrainingCases` finds training cases that may not help train the AI, for the
+ *    reasons in `UNHELPFUL_REASONS` (see `findUnhelpfulTrainingCases.test.js`).
  *
  * This folder is in jest's `testPathIgnorePatterns`, so this file is not run as a test.
  */
@@ -17,7 +19,7 @@ import { normalizer } from 'string-punctuation-tokenizer';
 import usfmjs from 'usfm-js';
 import path from 'path-extra';
 import {
-  getBestSelections, getWordList, normalizeForCompare,
+  getBestSelections, getWordList, normalizeForCompare, wordSimilarity,
 } from '../../src/utils/checkingSuggestionsUtils';
 import { isNT } from '../../src/common/booksOfTheBible';
 import { NT_ORIG_LANG, OT_ORIG_LANG } from '../../src/common/constants';
@@ -514,3 +516,180 @@ export async function runAllTestCasesInFolderAndSaveResults(testDataFolder, sett
   return { fileCount, testCount };
 }
 
+/**
+ * Why a training case may not help train the AI, with what each reason means. The keys are the
+ * reason codes {@link findUnhelpfulTrainingCases} gives. "Another form" is a history word that
+ * `wordSimilarity` matches (as the app matches inflected or compound forms); words shorter than its
+ * minimum length only ever match exactly.
+ */
+export const UNHELPFUL_REASONS = {
+  noExpected: 'the case has no expected answer',
+  emptyGlPhrase: 'the case has no GL phrase',
+  noHistory: 'the case has no history, so it teaches nothing about using previous translations',
+  noRelatedWordInHistory: 'no expected word is in any history rendering, exactly or as another form',
+  onlyOtherFormsInHistory: 'no expected word is in the history exactly, but some are there as another form (may still be useful: rule 5 of the prompt)',
+  someExpectedWordsNotInHistory: 'some expected words are in the history exactly, others only as another form or not at all',
+  expectedNotInVerse: 'an expected word (at its occurrence) is not in the verse, so the answer cannot be selected',
+  duplicate: 'same verse, GL phrase, history and expected answer as an earlier case in the file',
+};
+
+/**
+ * Splits an expected answer such as `Chúa:3 Cứu:2 Thế` into words with their occurrence.
+ * @param {string} expected
+ * @returns {Array<{word: string, occurrence: number}>}
+ */
+function parseExpectedWords(expected) {
+  return (expected || '').split(/\s+/).filter(Boolean).map(token => {
+    const match = token.match(/^(.+):(\d+)$/);
+    return match ? { word: match[1], occurrence: Number(match[2]) } : { word: token, occurrence: 1 };
+  });
+}
+
+/**
+ * Finds how an expected word appears in the history: exactly, as another form, or not at all.
+ * @param {string} normalized - the expected word, through `normalizeForCompare`
+ * @param {Map<string, string>} historyWords - normalized history word to its first spelling
+ * @returns {{match: 'exact'|'otherForm'|'missing', historyWord?: string, similarity?: number}} -
+ *   for another form, the most similar history word (as spelled in the history) and its similarity
+ */
+function findWordInHistory(normalized, historyWords) {
+  if (historyWords.has(normalized)) {
+    return { match: 'exact' };
+  }
+
+  let best = { match: 'missing' };
+
+  for (const [historyNormalized, historyWord] of historyWords) {
+    const similarity = wordSimilarity(normalized, historyNormalized);
+
+    if (similarity > (best.similarity || 0)) {
+      best = {
+        match: 'otherForm', historyWord, similarity,
+      };
+    }
+  }
+  return best;
+}
+
+/**
+ * Finds the cases of a training data file that may not help train the AI. A case can have several
+ * reasons (see {@link UNHELPFUL_REASONS}). Words are compared with `normalizeForCompare` in the
+ * case's target language, after splitting with `getWordList`, and other forms are found with
+ * `wordSimilarity`; the verse is cleaned as {@link testCaseToSelectionOptions} cleans it. When a
+ * case has several expected answers, the one with the most words in the history exactly, then the
+ * most as another form, is used.
+ * @param {Array<object>} testCases - the cases of one training data file
+ *   (`llmTrainingData/*.json`)
+ * @returns {Array<{index: number, id: string, reasons: string[], missingFromHistory: string[],
+ *   otherFormsInHistory: Array<{word: string, historyWord: string, similarity: number}>,
+ *   missingFromVerse: string[], duplicateOf: string|undefined}>} - one element per unhelpful case,
+ *   in file order. Expected words are as written in `expected`: `missingFromHistory` are in the
+ *   history neither exactly nor as another form, `otherFormsInHistory` are there only as another
+ *   form (with the history word matched and its similarity, rounded to 2 places), and
+ *   `missingFromVerse` are not in the verse at their occurrence
+ * @example
+ * findUnhelpfulTrainingCases([{ id: 'a', targetLang: 'ru', verse: 'и Авеля', glPhrase: 'Abel',
+ *   history: { Abel: { 'Авель': 1 } }, expected: ['Авеля'] }]);
+ * // [{ index: 0, id: 'a', reasons: ['onlyOtherFormsInHistory'], missingFromHistory: [],
+ * //    otherFormsInHistory: [{ word: 'Авеля', historyWord: 'Авель', similarity: 0.8 }], ... }]
+ */
+export function findUnhelpfulTrainingCases(testCases) {
+  const seen = new Map();
+  const unhelpful = [];
+  const asText = ({ word, occurrence }) => (occurrence > 1 ? `${word}:${occurrence}` : word);
+
+  (testCases || []).forEach((testCase, index) => {
+    const lang = testCase.targetLang || '';
+    const normalize = word => normalizeForCompare(word, lang);
+    const reasons = [];
+    const history = testCase.history || {};
+    const historyWords = new Map();
+
+    for (const word of Object.values(history)
+      .flatMap(counts => Object.keys(counts || {}))
+      .flatMap(rendering => getWordList(rendering))) {
+      const normalized = normalize(word);
+
+      if (normalized && !historyWords.has(normalized)) {
+        historyWords.set(normalized, word);
+      }
+    }
+
+    const expectedList = (testCase.expected || []).filter(text => (text || '').trim());
+    let missingFromHistory = [];
+    let otherFormsInHistory = [];
+    let missingFromVerse = [];
+
+    if (!expectedList.length) {
+      reasons.push('noExpected');
+    }
+
+    if (!(testCase.glPhrase || '').trim()) {
+      reasons.push('emptyGlPhrase');
+    }
+
+    if (!historyWords.size) {
+      reasons.push('noHistory');
+    }
+
+    if (expectedList.length) {
+      const verseWords = getWordList(testCaseToSelectionOptions(testCase).verseText).map(normalize);
+      const checked = expectedList.map(text => {
+        const words = parseExpectedWords(text).map(item => ({ ...item, ...findWordInHistory(normalize(item.word), historyWords) }));
+        return {
+          words,
+          exact: words.filter(word => word.match === 'exact').length,
+          otherForms: words.filter(word => word.match === 'otherForm'),
+          missing: words.filter(word => word.match === 'missing'),
+          missingFromVerse: words.filter(({ word, occurrence }) =>
+            verseWords.filter(verseWord => verseWord === normalize(word)).length < occurrence),
+        };
+      });
+      const best = checked.reduce((a, b) => (
+        (b.exact > a.exact || (b.exact === a.exact && b.otherForms.length > a.otherForms.length)) ? b : a));
+
+      missingFromHistory = best.missing.map(asText);
+      otherFormsInHistory = best.otherForms.map(item => ({
+        word: asText(item),
+        historyWord: item.historyWord,
+        similarity: Math.round(item.similarity * 100) / 100,
+      }));
+      missingFromVerse = best.missingFromVerse.map(asText);
+
+      // with no history at all, `noHistory` already says it
+      if (historyWords.size && best.exact < best.words.length) {
+        if (best.exact) {
+          reasons.push('someExpectedWordsNotInHistory');
+        } else {
+          reasons.push(best.otherForms.length ? 'onlyOtherFormsInHistory' : 'noRelatedWordInHistory');
+        }
+      }
+
+      if (missingFromVerse.length) {
+        reasons.push('expectedNotInVerse');
+      }
+    }
+
+    const key = JSON.stringify([lang, testCase.verse, testCase.glPhrase, history, testCase.expected]);
+    const duplicateOf = seen.get(key);
+
+    if (duplicateOf !== undefined) {
+      reasons.push('duplicate');
+    } else {
+      seen.set(key, testCase.id);
+    }
+
+    if (reasons.length) {
+      unhelpful.push({
+        index,
+        id: testCase.id,
+        reasons,
+        missingFromHistory,
+        otherFormsInHistory,
+        missingFromVerse,
+        duplicateOf,
+      });
+    }
+  });
+  return unhelpful;
+}
