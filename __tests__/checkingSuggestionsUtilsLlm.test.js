@@ -422,4 +422,53 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
       { model: 'test-model', bestSelections: [{ selections: [{ text: 'Roma', occurrence: 1 }], confidence: 95 }] },
     ]);
   });
+
+  test('asks the AI for a confidence-100 job when algorithmCertainConfidence is above 100', async () => {
+    const query = jest.fn().mockResolvedValue({ replyText: '"iglesia",90', actualModel: 'test-model' });
+    window.AiAPIs = { query };
+
+    const results = await getBestSelections([{
+      llmQueryUrl: 'http://localhost:1234',
+      targetLanguageDetails: { id: 'es-419' },
+      gatewayLanguageCode: 'en',
+      verseText: 'Pablo saludó a la iglesia en Corinto',
+      alignedGLText: 'church',
+      selectionsData: { selections: { church: { 'la iglesia': 7 } } },
+      algorithmCertainConfidence: 101,
+    }]);
+
+    expect(query).toHaveBeenCalledTimes(1);
+    expect(results[0].algorithmFirst).toBeUndefined();
+    expect(results[0]).toMatchObject({
+      model: 'test-model', bestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 90 }],
+    });
+  });
+
+  test.each([
+    ['used when the top option reaches it', 80, true],
+    ['the default when not a number', '80', false],
+  ])('algorithmCertainConfidence is %s', async (_, algorithmCertainConfidence, algorithmFirst) => {
+    const query = jest.fn().mockResolvedValue({ replyText: '"iglesia",90', actualModel: 'test-model' });
+    window.AiAPIs = { query };
+
+    // a related GL key, so the algorithm's top option is below 100
+    const results = await getBestSelections([{
+      llmQueryUrl: 'http://localhost:1234',
+      targetLanguageDetails: { id: 'es-419' },
+      gatewayLanguageCode: 'en',
+      verseText: 'Pablo saludó a la iglesia en Corinto',
+      alignedGLText: 'churches',
+      selectionsData: { selections: { church: { 'la iglesia': 7 } } },
+      algorithmCertainConfidence,
+    }]);
+
+    expect(query).toHaveBeenCalledTimes(algorithmFirst ? 0 : 1);
+    expect(results[0].model).toBe(algorithmFirst ? ALGORITHM : 'test-model');
+    expect(!!results[0].algorithmFirst).toBe(algorithmFirst);
+
+    if (algorithmFirst) {
+      expect(results[0].bestSelections[0].confidence).toBeGreaterThanOrEqual(80);
+      expect(results[0].bestSelections[0].confidence).toBeLessThan(100);
+    }
+  });
 });

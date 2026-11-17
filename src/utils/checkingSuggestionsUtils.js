@@ -3854,7 +3854,7 @@ export function updatedPreviousSelectionsData(
 /**
  * The algorithm's answer is used without asking the AI when its top option has at least this
  * confidence, which `capForRendering` allows only for the exact GL key's rendering found word for
- * word in the verse.
+ * word in the verse. A job's `algorithmCertainConfidence` option overrides it.
  */
 export const ALGORITHM_CERTAIN_CONFIDENCE = 100;
 
@@ -3940,6 +3940,9 @@ async function getAlgorithmResultForJob(job) {
  *   `{ seed: 42, top_k: 20 }`; only applies in AI mode (see {@link streamChatMessage})
  * @param {object} [options.contextId] - the check's context; when `contextId.occurrence` is above 1,
  *   each suggestion is moved to that occurrence of its words (see {@link moveSelectionsToOccurrence})
+ * @param {number} [options.algorithmCertainConfidence=ALGORITHM_CERTAIN_CONFIDENCE] - in AI mode, the
+ *   algorithm's answer is used without asking the AI when its top option has at least this confidence;
+ *   above 100 always asks the AI; ignored when not a number
  * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}>}
  *   Promise resolving to an object containing:
  *   - **error**: `true` if the operation failed or no valid translations were found, `false` otherwise
@@ -4021,8 +4024,10 @@ export async function getBestSelections(options = {}) {
       for (let i = 0; i < jobs.length; i++) {
         // eslint-disable-next-line no-await-in-loop
         const algorithmResult = await getAlgorithmResultForJob(jobs[i]);
+        const certainConfidence = Number.isFinite(jobs[i].algorithmCertainConfidence) ?
+          jobs[i].algorithmCertainConfidence : ALGORITHM_CERTAIN_CONFIDENCE;
 
-        if (!algorithmResult.error && algorithmResult.bestSelections?.[0]?.confidence >= ALGORITHM_CERTAIN_CONFIDENCE) {
+        if (!algorithmResult.error && algorithmResult.bestSelections?.[0]?.confidence >= certainConfidence) {
           jobResults[i] = { ...algorithmResult, algorithmFirst: true };
         } else {
           aiJobIndexes.push(i);

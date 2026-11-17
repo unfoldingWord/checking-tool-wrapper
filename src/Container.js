@@ -329,6 +329,7 @@ function Container({
               if (gatewayLanguageQuote_) {
                 const llmQueryUrl_ = settingsForSuggestionsRef.current.llmSuggestionsEnabled ? settingsForSuggestionsRef.current.llmQueryUrl : '';
                 const data = {
+                  algorithmCertainConfidence: settingsForSuggestionsRef.current.llmAlgorithmCertainConfidence,
                   apiToken: settingsForSuggestionsRef.current.llmApiToken,
                   alignedGLText: gatewayLanguageQuote_,
                   contextId,
@@ -712,6 +713,9 @@ function Container({
    * @param {number} data.llmTemperature - 0.0 to 1.0
    * @param {object} [data.llmExtraParams] - extra chat-completion request body fields; when missing,
    *   `llmExtraParams` from the saved settings is used
+   * @param {number} [data.algorithmCertainConfidence] - with AI suggestions, the algorithm's answer is
+   *   used without asking the AI when its top option has at least this confidence; when missing,
+   *   `llmAlgorithmCertainConfidence` from the saved settings is used, else `ALGORITHM_CERTAIN_CONFIDENCE`
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
    * @param {object} data.targetLanguageDetails - target language details, including `id`
    * @param {string} data.verseText - target-language verse text
@@ -738,6 +742,8 @@ function Container({
     } = data || {};
     // the caller (tc-ui-toolkit) may not know about extra params, so fall back to the saved settings
     const llmExtraParams = data?.llmExtraParams ?? settingsForSuggestionsRef.current?.llmExtraParams;
+    const algorithmCertainConfidence = data?.algorithmCertainConfidence ??
+      settingsForSuggestionsRef.current?.llmAlgorithmCertainConfidence;
 
     const alignedGLText = cleanQuote(_alignedGLText);
     const groupId = contextId?.groupId || '';
@@ -779,6 +785,7 @@ function Container({
     await delay(1);
 
     const results = await makeLlmRequestAndWaitForResponse({
+      algorithmCertainConfidence,
       apiToken: llmApiToken,
       alignedGLText,
       contextId,
