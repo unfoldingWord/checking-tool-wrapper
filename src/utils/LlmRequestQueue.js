@@ -1,3 +1,4 @@
+import { ALGORITHM } from '../common/constants';
 import delay from './delay';
 import {
   getBestSelections,
@@ -562,12 +563,22 @@ export class LlmRequestQueue {
    *   - currentModel: AI model identifier
    *   - llmTemperature: AI temperature setting
    * @returns {Promise<Array<object>>} Array of Results objects containing error status, best selections, elapsed time,
-   *   model name, and the original request data. Returns `{error: errorMessage}` if an exception occurs
+   *   model name, and the original request data. Returns `{error: errorMessage}` if an exception occurs.
+   *   Each of the best selections of a result from the algorithm (`model` is ALGORITHM) has
+   *   `isAlgorithmSuggestion: true`.
    */
   async doQuery(results, requestData) {
     try {
       this.busy = true;
       const _results = await getBestSelections(requestData);
+
+      for (const result of _results) {
+        if (result?.model === ALGORITHM) {
+          for (const option of result.bestSelections || []) {
+            option.isAlgorithmSuggestion = true;
+          }
+        }
+      }
 
       if (!Array.isArray(requestData)) {
         _results[0].request = redactOptions(requestData);

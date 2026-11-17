@@ -475,6 +475,8 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
   4b, but stock 1.7b is best at 60 (section 1). If both models stay supported (1.7b for smaller
   computers), should it become a checking setting, e.g. `llmAlgorithmFirstConfidence` like
   `llmExtraParams`, defaulting to 100? Decide after Step 6 shows where the fine-tuned model lands.
+  Done as the optional `llmAlgorithmCertainConfidence` checking setting (no UI; default 100); what
+  remains is the default per model.
 
 ## Appendix A. Alternative: Unsloth Core on an NVIDIA GPU
 

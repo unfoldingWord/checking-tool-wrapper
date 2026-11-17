@@ -1,5 +1,6 @@
 /* eslint-env jest */
 
+import { ALGORITHM } from '../src/common/constants';
 import { LlmRequestQueue } from '../src/utils/LlmRequestQueue';
 
 describe('LlmRequestQueue.clearSuggestionsMemoryForKeyPrefix', () => {
@@ -188,5 +189,44 @@ describe('LlmRequestQueue answers every waiting caller', () => {
     await runAll(queue);
 
     expect(callback).toHaveBeenCalledWith(expect.objectContaining({ error: true }));
+  });
+});
+
+describe('LlmRequestQueue.doQuery marks algorithm suggestions', () => {
+  const job = {
+    targetLanguageDetails: { id: 'es-419' },
+    gatewayLanguageCode: 'en',
+    verseText: 'Pablo saludó a la iglesia en Corinto',
+    alignedGLText: 'church',
+    selectionsData: { selections: { church: { 'la iglesia': 7, iglesia: 2 } } },
+  };
+
+  afterEach(() => {
+    delete window.AiAPIs;
+  });
+
+  test('marks each option of an algorithm result', async () => {
+    const results = await new LlmRequestQueue({}).doQuery([], { ...job, llmQueryUrl: '' });
+
+    expect(results[0].model).toBe(ALGORITHM);
+    expect(results[0].bestSelections.length).toBeGreaterThan(0);
+    results[0].bestSelections.forEach(option => expect(option.isAlgorithmSuggestion).toBe(true));
+  });
+
+  test('marks the algorithm-first answer but not the AI answer in AI mode', async () => {
+    window.AiAPIs = { query: jest.fn().mockResolvedValue({ replyText: '"Roma",95', actualModel: 'test-model' }) };
+    const results = await new LlmRequestQueue({}).doQuery([], [
+      { ...job, llmQueryUrl: 'http://localhost:1234' },
+      {
+        ...job, llmQueryUrl: 'http://localhost:1234', verseText: 'para la iglesia de Roma',
+        alignedGLText: 'Rome', selectionsData: { selections: {} },
+      },
+    ]);
+
+    expect(results[0]).toMatchObject({ model: ALGORITHM, algorithmFirst: true });
+    results[0].bestSelections.forEach(option => expect(option.isAlgorithmSuggestion).toBe(true));
+    expect(results[1].model).toBe('test-model');
+    expect(results[1].bestSelections.length).toBeGreaterThan(0);
+    results[1].bestSelections.forEach(option => expect(option.isAlgorithmSuggestion).toBeUndefined());
   });
 });
