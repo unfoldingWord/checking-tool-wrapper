@@ -9,17 +9,20 @@
  *    `getBestSelections` and time each call (see `runTrainingCases.test.js`);
  *  - `summarizeTestResults` and `formatSummary` score those results against each case's `expected`
  *    answers and print a report, using `optionText`, `normalizePhrase`, `mean` and `percentile`.
+ *  - `installNodeAiApis` lets AI runs work under jest, which has no `fetch`;
  *  - `findUnhelpfulTrainingCases` finds training cases that may not help train the AI, for the
  *    reasons in `UNHELPFUL_REASONS` (see `findUnhelpfulTrainingCases.test.js`).
  *
  * This folder is in jest's `testPathIgnorePatterns`, so this file is not run as a test.
  */
 import fs from 'fs';
+import http from 'http';
+import https from 'https';
 import { normalizer } from 'string-punctuation-tokenizer';
 import usfmjs from 'usfm-js';
 import path from 'path-extra';
 import {
-  getBestSelections, getWordList, normalizeForCompare, wordSimilarity,
+  getBestSelections, getExtraParams, getWordList, normalizeForCompare, wordSimilarity,
 } from '../../src/utils/checkingSuggestionsUtils';
 import { isNT } from '../../src/common/booksOfTheBible';
 import { NT_ORIG_LANG, OT_ORIG_LANG } from '../../src/common/constants';
@@ -467,6 +470,15 @@ export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings 
   const destFolder = path.join(path.dirname(testDataPath), 'results');
   fs.mkdirSync(destFolder, { recursive: true });
 
+  // for an AI run, compare with the algorithm's saved results, band by band of its confidence
+  const algorithmResultsPath = path.join(destFolder, `${baseFileName_}_Algorithm.results.json`);
+
+  if (settings?.llmQueryUrl && fs.existsSync(algorithmResultsPath)) {
+    const testCases = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));
+    const algorithmResults = JSON.parse(fs.readFileSync(algorithmResultsPath, 'utf8'));
+    summary.byAlgorithmConfidence = summarizeByAlgorithmConfidence(testCases, results, algorithmResults);
+  }
+
   const resultsPath = path.join(destFolder, `${baseFileName}.results.json`);
   fs.writeFileSync(resultsPath, JSON.stringify(results, null, 2));
 
@@ -475,6 +487,112 @@ export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings 
   fs.writeFileSync(summaryPath, summaryJson);
 
   return { results, summary };
+}
+
+/**
+ * Bands of the algorithm's top confidence used by {@link summarizeByAlgorithmConfidence}, highest
+ * first. A case is in the first band whose `min` its confidence reaches; a case the algorithm gave
+ * no option is in `none`. 100 is what `ALGORITHM_CERTAIN_CONFIDENCE` in
+ * `checkingSuggestionsUtils.js` answers without the AI; 82-95 is the cap for a rendering reached
+ * through a related GL key (`capForRendering`).
+ */
+export const ALGORITHM_CONFIDENCE_BANDS = [
+  { band: '100', min: 100 },
+  { band: '95-99', min: 95 },
+  { band: '90-94', min: 90 },
+  { band: '85-89', min: 85 },
+  { band: '80-84', min: 80 },
+  { band: '60-79', min: 60 },
+  { band: '1-59', min: 1 },
+  { band: '0', min: 0 },
+  { band: 'none', min: null },
+];
+
+/**
+ * Compares an AI run with the algorithm on the same cases, band by band of the algorithm's top
+ * confidence, to choose `ALGORITHM_CERTAIN_CONFIDENCE`: where the AI is right less often than the
+ * algorithm, the algorithm's answer is the better one to show. Answers are scored as
+ * {@link summarizeTestResults} scores them. Cases are matched to the algorithm results by `id`;
+ * a case missing from either is counted in `unmatched`.
+ *
+ * In an AI run, `getBestSelections` answers a case with algorithm confidence 100 without the AI
+ * (`algorithmFirst`), so the `100` band shows the algorithm on both sides. `getBestSelections` does
+ * not fall back to the algorithm when the AI gives no option, but the app does (`LlmRequestQueue`
+ * marks those `algorithmFallback`), so `appTop1` scores the run with that fallback: it is what the
+ * user sees, and the number to compare with `algorithmTop1`. Pass the bands to
+ * {@link topOneByThreshold} for the top-1 at each possible `ALGORITHM_CERTAIN_CONFIDENCE`.
+ * @param {Array<object>} testCases - the cases that were run
+ * @param {Array<{id: string, result: object}>} results - the AI run (from {@link runTestCases})
+ * @param {Array<{id: string, result: object}>} algorithmResults - the algorithm's results for the
+ *   same file (`<file>_Algorithm.results.json`)
+ * @returns {{bands: Array<{band: string, cases: number, aiAsked: number, top1: number,
+ *   appTop1: number, algorithmTop1: number, noSuggestion: number}>, unmatched: number}} - per band:
+ *   the cases, how many were sent to the AI (not `algorithmFirst`), how many the run's top option got
+ *   right (`top1`), how many the run got right with the app's fallback to the algorithm when it gave
+ *   no option (`appTop1`), how many the algorithm's top option got right, and how many got no option
+ *   in the run
+ */
+export function summarizeByAlgorithmConfidence(testCases, results, algorithmResults) {
+  const algorithmById = new Map((algorithmResults || []).map(item => [item.id, item.result]));
+  const resultById = new Map((results || []).map(item => [item.id, item.result]));
+  const bands = ALGORITHM_CONFIDENCE_BANDS.map(({ band }) => ({
+    band, cases: 0, aiAsked: 0, top1: 0, appTop1: 0, algorithmTop1: 0, noSuggestion: 0,
+  }));
+  let unmatched = 0;
+
+  for (const testCase of testCases || []) {
+    if (!algorithmById.has(testCase.id) || !resultById.has(testCase.id)) {
+      unmatched++;
+      continue;
+    }
+
+    const expected = (testCase.expected || []).map(normalizePhrase);
+    const isRight = option => !!option && expected.includes(normalizePhrase(optionText(option)));
+    const algorithmTop = algorithmById.get(testCase.id)?.bestSelections?.[0];
+    const confidence = algorithmTop?.confidence;
+    const bandIndex = confidence === undefined ?
+      ALGORITHM_CONFIDENCE_BANDS.length - 1 :
+      ALGORITHM_CONFIDENCE_BANDS.findIndex(({ min }) => min !== null && confidence >= min);
+    const counts = bands[bandIndex];
+    const result = resultById.get(testCase.id);
+
+    counts.cases++;
+    counts.aiAsked += result?.algorithmFirst ? 0 : 1;
+    counts.top1 += isRight(result?.bestSelections?.[0]) ? 1 : 0;
+    counts.appTop1 += isRight(result?.bestSelections?.[0] || algorithmTop) ? 1 : 0;
+    counts.algorithmTop1 += isRight(algorithmTop) ? 1 : 0;
+    counts.noSuggestion += result?.bestSelections?.length ? 0 : 1;
+  }
+  return { bands: bands.filter(({ cases }) => cases), unmatched };
+}
+
+/**
+ * Top-1 at each possible `ALGORITHM_CERTAIN_CONFIDENCE`, from the bands of
+ * {@link summarizeByAlgorithmConfidence}: with threshold `t`, the bands whose `min` is at least `t`
+ * are answered by the algorithm (`algorithmTop1`) and the others by the AI with the app's fallback
+ * (`appTop1`). The thresholds are the bands' `min` values from 100 down to 1, so each is exact.
+ * The 100 band is answered by the algorithm in the run too, so a threshold above 100 cannot be
+ * measured from it.
+ * @param {Array<{band: string, cases: number, appTop1: number, algorithmTop1: number}>} bands
+ * @returns {Array<{threshold: number, cases: number, top1: number}>} - highest threshold first
+ * @example
+ * topOneByThreshold(summary.byAlgorithmConfidence.bands);
+ * // [{ threshold: 100, cases: 5349, top1: 3231 }, { threshold: 95, ... }, ...]
+ */
+export function topOneByThreshold(bands) {
+  const minByBand = new Map(ALGORITHM_CONFIDENCE_BANDS.map(({ band, min }) => [band, min]));
+  const cases = (bands || []).reduce((sum, counts) => sum + counts.cases, 0);
+
+  return ALGORITHM_CONFIDENCE_BANDS
+    .filter(({ min }) => min >= 1)
+    .map(({ min: threshold }) => ({
+      threshold,
+      cases,
+      top1: (bands || []).reduce((sum, counts) => {
+        const min = minByBand.get(counts.band);
+        return sum + (min !== null && min >= threshold ? counts.algorithmTop1 : counts.appTop1);
+      }, 0),
+    }));
 }
 
 export async function runAllTestCasesInFolderAndSaveResults(testDataFolder, settings = {}) {
@@ -762,4 +880,110 @@ export function findUnhelpfulTrainingCases(testCases, { answerLengthLimits = {} 
     }
   });
   return unhelpful;
+}
+
+/** longest wait for one AI request made by {@link installNodeAiApis}, in milliseconds */
+const NODE_AI_REQUEST_TIMEOUT_MS = 5 * 60 * 1000;
+
+/**
+ * Makes `queryAiAPI` work under jest. jest's jsdom environment has no `fetch`, so without this every
+ * AI request fails ("fetch is not defined") and each case gets no suggestion. It sets
+ * `window.AiAPIs.query`, which `queryAiAPI` uses when translationCore provides it, to a stand-in
+ * for translationCore's main process (`electronite/queryAiApisFromMainProcess.js`) that sends the
+ * same request body with Node's http, not streamed, as `llmModelSuitability.test.js` does.
+ * @returns {function(): void} - call it to remove `window.AiAPIs` again
+ * @example
+ * const uninstall = installNodeAiApis();
+ * try { await runTestCases(cases, { llmQueryUrl: 'http://localhost:1234', currentModel }); } finally { uninstall(); }
+ */
+export function installNodeAiApis() {
+  const previous = window.AiAPIs;
+  window.AiAPIs = { query: nodeAiApisQuery };
+  return () => {
+    if (previous === undefined) {
+      delete window.AiAPIs;
+    } else {
+      window.AiAPIs = previous;
+    }
+  };
+}
+
+/**
+ * The `window.AiAPIs.query` stand-in of {@link installNodeAiApis}.
+ * @param {string} query - user message (with `/no_think` already added by `queryAiAPI`)
+ * @param {object} options - the options `queryAiAPI` passes: `baseUrl`, `apiToken`, `model`,
+ *   `systemPrompt`, `temperature`, `maxTokens`, `enable_thinking`, `extraParams`
+ * @returns {Promise<{replyText: string, reasoningText: string, actualModel: string}>}
+ */
+async function nodeAiApisQuery(query, options) {
+  const reply = await postJsonWithNode(`${options.baseUrl}/v1/chat/completions`, {
+    temperature: options.temperature,
+    max_tokens: options.maxTokens,
+    chat_template_kwargs: { enable_thinking: options.enable_thinking },
+    ...getExtraParams(options.extraParams), // merged as translationCore's main process does
+    model: options.model,
+    messages: [
+      { role: 'system', content: options.systemPrompt },
+      { role: 'user', content: query },
+    ],
+    stream: false,
+  }, options.apiToken);
+  const message = reply?.choices?.[0]?.message || {};
+  const reasoning = message.reasoning_content || message.reasoning || '';
+  return {
+    replyText: message.content || reasoning,
+    reasoningText: reasoning,
+    actualModel: reply?.model,
+  };
+}
+
+/**
+ * POSTs JSON with Node's http or https and parses the JSON reply.
+ * @param {string} href - full URL
+ * @param {object} body
+ * @param {string} [apiToken] - sent as a bearer token when set
+ * @returns {Promise<object>}
+ */
+function postJsonWithNode(href, body, apiToken) {
+  return new Promise((resolve, reject) => {
+    const url = new URL(href);
+    const bodyStr = JSON.stringify(body);
+    const headers = { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(bodyStr) };
+
+    if (apiToken) {
+      headers.Authorization = `Bearer ${apiToken}`;
+    }
+
+    const transport = url.protocol === 'https:' ? https : http;
+    const req = transport.request({
+      method: 'POST',
+      hostname: url.hostname,
+      port: url.port,
+      path: `${url.pathname}${url.search}`,
+      headers,
+      timeout: NODE_AI_REQUEST_TIMEOUT_MS,
+    }, res => {
+      let data = '';
+      res.setEncoding('utf8');
+      res.on('data', chunk => {
+        data += chunk;
+      });
+      res.on('end', () => {
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          reject(new Error(`POST ${url.href} failed (${res.statusCode}): ${data.slice(0, 300)}`));
+          return;
+        }
+
+        try {
+          resolve(JSON.parse(data));
+        } catch (error) {
+          reject(new Error(`POST ${url.href} returned non-JSON: ${data.slice(0, 300)}`));
+        }
+      });
+    });
+
+    req.on('timeout', () => req.destroy(new Error(`POST ${url.href} timed out after ${NODE_AI_REQUEST_TIMEOUT_MS} ms`)));
+    req.on('error', error => reject(new Error(`Cannot reach ${url.href}: ${error.message}`)));
+    req.end(bodyStr);
+  });
 }

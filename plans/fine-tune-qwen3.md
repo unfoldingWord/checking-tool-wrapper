@@ -65,6 +65,43 @@ with `forBatch = true`, joins them as `### REQUEST n` blocks ending in `Answer:`
 Expected answer format (system prompt rules 4-6): CSV rows `"words",confidence`, 1-3 rows, best
 first; `"",0` when nothing fits. Parsed by `parseLlmSelectionOptions` (`:2224`).
 
+### Stock models against the algorithm (measured 2026-11-17)
+
+`npm run run:llm-training-data` with an AI model, on 9 training files (5,349 cases: `vi_glt_heb`,
+`fa_glt_mrk`, `ru_rlob_luk`, `te_glt_luk`, `ar_avd_heb`, `ne_glt_2co`, `bn_glt_2co`, `id_glt_1ti`,
+`es-419_est_rut`, GL `unfoldingWord/en`), one run each, temperature 0.1, LM Studio on the Mac.
+Bands are the algorithm's top confidence; the AI is scored as the app shows it, falling back to the
+algorithm when the AI gives no option. Pooled results are in
+`llmTrainingData/results/<model>.byAlgorithmConfidence.json`.
+
+| Algorithm confidence | Cases | Algorithm | `qwen3-1.7b-mlx` | `qwen/qwen3-4b-2507` |
+|---|---|---|---|---|
+| 100 (algorithm answers, `algorithmFirst`) | 1,958 | 83.9% | 83.9% | 83.9% |
+| 90-94 | 947 | 57.4% | 52.6% (-4.9) | 58.4% (+1.0) |
+| 85-89 | 285 | 53.3% | 50.2% (-3.2) | 56.8% (+3.5) |
+| 80-84 | 435 | 53.6% | 49.9% (-3.7) | 57.9% (+4.4) |
+| 60-79 | 408 | 59.1% | 53.9% (-5.1) | 61.8% (+2.7) |
+| 1-59 | 584 | 18.3% | 19.0% (+0.7) | 31.2% (+12.8) |
+| no algorithm answer | 727 | 0% | 12.7% | 25.2% |
+
+Top-1 at each `ALGORITHM_CERTAIN_CONFIDENCE` (the algorithm answers at or above it):
+
+| Threshold | 100 | 90 | 80 | 60 | 1 |
+|---|---|---|---|---|---|
+| `qwen3-1.7b-mlx` | 54.7% | 55.6% | 56.1% | **56.5%** | 56.4% |
+| `qwen/qwen3-4b-2507` | **60.4%** | 60.2% | 59.7% | 59.5% | 58.1% |
+
+The algorithm alone scores 54.7%. So the app with stock 1.7b at today's threshold of 100 adds
+nothing over the algorithm, and its best threshold is 60; 4b beats the algorithm in every band and
+is best at 100. **This is the bar for the fine-tune:** the stock 1.7b is 3-5 points below the
+algorithm at 60-94, where 4b is 1-4 points above it. Time for the ~2,900 AI requests: 1.7b 11 min,
+4b 18 min (about 225 and 370 ms each). The 1.7b here is LM Studio's MLX build, not the
+`qwen/qwen3-1.7b` that `plans/improve-llm-suggestions.md` measured.
+
+AI runs of `run:llm-training-data` before 2026-11-17 are not valid: jest has no `fetch`, so every
+AI request failed and those cases got no suggestion. The runner now sends them through
+`installNodeAiApis` (`__tests__/helpers/suggestionsHelpers.js`).
+
 ## 2. Approach
 
 1. A JS exporter turns each training case into the exact `messages` the app would send, using
@@ -381,13 +418,24 @@ a. **Suitability suite** (55 cases, none trained on after Step 3's exclusion):
 b. **Held-out training files**: `LLM_TRAINING_URL=http://localhost:1234 LLM_TRAINING_MODEL=<model>
    LLM_TRAINING_FILES="<test files>" npm run run:llm-training-data`, and the algorithm alone for
    reference. This is through `getBestSelections`, so the scores are the combined
-   algorithm-first + AI result a translator sees.
+   algorithm-first + AI result a translator sees. Run the algorithm on the same files first: the
+   runner then prints the per-band comparison and the top-1 at each `ALGORITHM_CERTAIN_CONFIDENCE`
+   (section 1, "Stock models against the algorithm"), with the app's fallback to the algorithm.
+   Measure stock 1.7b and stock 4b on the held-out files too; the section 1 figures come from files
+   the fine-tune trains on, so they are not the comparison.
 c. Optionally, `llmGrouping` 4 on (a) if batched examples were trained.
 
 Metrics: top-1, top-3, wrong answers at confidence ≥ 80, no-suggestion rate, median time.
-**Success** (proposed, Q4): on (b), fine-tuned 1.7b top-1 beats stock 1.7b by at least 5 points and
-is not below stock 4b; on both (a) and (b), confident wrong answers are no higher than stock 1.7b;
-4-bit within 2 points of 8-bit. Record the results in a results section at the end of this plan.
+**Success** (proposed, Q4), on (b) at threshold 100, scored as the app shows it:
+- fine-tuned 1.7b top-1 beats stock 1.7b by at least 5 points and is not below stock 4b (on the 9
+  files of section 1 that gap was 54.7% to 60.4%);
+- in each band from 60 to 94, fine-tuned 1.7b is at or above the algorithm, as stock 4b is. If it
+  is not, the fine-tune is only worth using with a lower threshold for it (see Q6);
+- on both (a) and (b), confident wrong answers are no higher than stock 1.7b;
+- 4-bit within 2 points of 8-bit.
+
+Record the results, including each model's best threshold, in a results section at the end of this
+plan.
 
 ### Step 7. Document (OFFLINE)
 
@@ -423,6 +471,10 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
 - **Q4. Success bar.** Are the thresholds in Step 6 the right bar to switch the default model?
 - **Q5. Distribution.** Will the fine-tuned model be published (e.g. Hugging Face) for
   translationCore users, or kept internal? This affects licensing and where the GGUF lives.
+- **Q6. `ALGORITHM_CERTAIN_CONFIDENCE` per model.** It is a constant (100), which is best for stock
+  4b, but stock 1.7b is best at 60 (section 1). If both models stay supported (1.7b for smaller
+  computers), should it become a checking setting, e.g. `llmAlgorithmFirstConfidence` like
+  `llmExtraParams`, defaulting to 100? Decide after Step 6 shows where the fine-tuned model lands.
 
 ## Appendix A. Alternative: Unsloth Core on an NVIDIA GPU
 
