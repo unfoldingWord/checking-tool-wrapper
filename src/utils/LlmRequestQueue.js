@@ -6,6 +6,28 @@ import {
 } from './checkingSuggestionsUtils';
 
 /**
+ * Merges the AI's and the algorithm's suggestion options, best first. An option whose words and
+ * occurrences are in both lists is kept once, with the higher confidence (the AI's on a tie).
+ * @param {Array<object>} aiOptions - the AI's `bestSelections`
+ * @param {Array<object>} algorithmOptions - the algorithm's `bestSelections`
+ * @returns {Array<object>} - the merged options, sorted by confidence (highest first)
+ */
+export function mergeBestSelections(aiOptions = [], algorithmOptions = []) {
+  const byWords = new Map();
+
+  for (const option of [...aiOptions, ...algorithmOptions]) {
+    const words = JSON.stringify((option?.selections || []).map(({ text, occurrence }) => [text, occurrence]));
+    const kept = byWords.get(words);
+
+    if (!kept || option.confidence > kept.confidence) {
+      byWords.set(words, option);
+    }
+  }
+  // sort is stable, so on equal confidence the AI's options stay first
+  return [...byWords.values()].sort((a, b) => b.confidence - a.confidence);
+}
+
+/**
  * A queue for managing AI-powered translation suggestion requests with pause/resume support.
  *
  * This class orchestrates the processing of AI-generated translation suggestion requests in the
@@ -454,14 +476,20 @@ export class LlmRequestQueue {
           const llmMode = isLlmRequest(requestData);
           let haveAsuggestion = this.testIfWeHaveASuggestion(result);
 
-          if (!haveAsuggestion && requestData?.llmQueryUrl) { // if llm query failed, fall back to algorithmic suggestion
-            const llmResults = result; // save llm results
-            // console.log(`processNextRequest - empty suggestion, trying algorithm`);
-            requestData.llmQueryUrl = '';
+          // in AI mode the algorithm suggestions are also made and merged with the AI's (unless the
+          // algorithm already answered first); if the AI gave none, the algorithm's are used alone
+          if (requestData?.llmQueryUrl && result?.model !== ALGORITHM) {
             // eslint-disable-next-line no-await-in-loop
-            [result] = await this.doQuery([], requestData);
-            result.llmError = llmResults?.error;
-            result.algorithmFallback = true;
+            const [algorithmResult] = await this.doQuery([], { ...requestData, llmQueryUrl: '' });
+
+            if (!haveAsuggestion) {
+              // console.log(`processNextRequest - empty suggestion, using algorithm`);
+              algorithmResult.llmError = result?.error;
+              algorithmResult.algorithmFallback = true;
+              result = algorithmResult;
+            } else if (this.testIfWeHaveASuggestion(algorithmResult)) {
+              result.bestSelections = mergeBestSelections(result.bestSelections, algorithmResult.bestSelections);
+            }
           }
 
           if (haveAsuggestion && llmMode) {

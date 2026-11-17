@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { ALGORITHM } from '../src/common/constants';
-import { LlmRequestQueue } from '../src/utils/LlmRequestQueue';
+import { LlmRequestQueue, mergeBestSelections } from '../src/utils/LlmRequestQueue';
 
 describe('LlmRequestQueue.clearSuggestionsMemoryForKeyPrefix', () => {
   const makeCache = () => ({
@@ -149,7 +149,9 @@ describe('LlmRequestQueue answers every waiting caller', () => {
 
     await runAll(queue);
 
-    expect(queue.doQuery).toHaveBeenCalledTimes(1); // the replaced request is not run as well
+    // the replaced request is not run as well (the other calls make the algorithm suggestions to merge)
+    expect(queue.doQuery.mock.calls.filter(([, requestData]) => Array.isArray(requestData) ||
+      requestData.llmQueryUrl).length).toBe(1);
     expect(callback).toHaveBeenCalledTimes(1);
     expect(callback.mock.calls[0][0].request.key).toBe(KEY);
   });
@@ -228,5 +230,76 @@ describe('LlmRequestQueue.doQuery marks algorithm suggestions', () => {
     expect(results[1].model).toBe('test-model');
     expect(results[1].bestSelections.length).toBeGreaterThan(0);
     results[1].bestSelections.forEach(option => expect(option.isAlgorithmSuggestion).toBeUndefined());
+  });
+});
+
+describe('LlmRequestQueue merges algorithm suggestions into AI suggestions', () => {
+  const KEY = 'translationWords_en_es-419_church_gal_1_1_c1';
+  const AI_URL = 'http://localhost:1234';
+  const option = (text, confidence, isAlgorithmSuggestion) => ({
+    selections: [{ text, occurrence: 1 }], confidence, ...(isAlgorithmSuggestion && { isAlgorithmSuggestion }),
+  });
+
+  /**
+   * Makes a queue whose AI answers with `aiResult` and whose algorithm answers with `algorithmOptions`.
+   * @param {object} aiResult - the AI's result
+   * @param {Array<object>} algorithmOptions - the algorithm's options
+   * @returns {LlmRequestQueue} - the queue
+   */
+  function makeQueue(aiResult, algorithmOptions) {
+    const queue = new LlmRequestQueue({});
+    queue.processNextRequestIfNotBusy = jest.fn();
+    queue.doQuery = jest.fn((_, request) => Promise.resolve([request.llmQueryUrl ?
+      { ...aiResult, request } :
+      { error: false, model: ALGORITHM, bestSelections: algorithmOptions, request }]));
+    return queue;
+  }
+
+  test('sorts the merged options and keeps a shared one once, with the higher confidence', async () => {
+    const queue = makeQueue(
+      { error: false, model: 'test-model', bestSelections: [option('iglesia', 90), option('la', 60)] },
+      [option('la iglesia', 100, true), option('iglesia', 70, true), option('de', 75, true)],
+    );
+    const callback = jest.fn();
+
+    queue.makeSuggestionRequest({ key: KEY, llmQueryUrl: AI_URL }, callback);
+    await queue.processNextRequest();
+
+    const result = callback.mock.calls[0][0];
+
+    expect(result.model).toBe('test-model');
+    expect(result.algorithmFallback).toBeUndefined();
+    expect(result.bestSelections).toEqual([
+      option('la iglesia', 100, true), option('iglesia', 90), option('de', 75, true), option('la', 60),
+    ]);
+    expect(queue.alreadyHaveSuggestionsForKey(KEY)).toBe(true); // saved with the merged options
+  });
+
+  test('uses the algorithm suggestions alone when the AI gives none', async () => {
+    const queue = makeQueue({ error: 'timeout', bestSelections: [] }, [option('la iglesia', 85, true)]);
+    const callback = jest.fn();
+    const request = { key: KEY, llmQueryUrl: AI_URL };
+
+    queue.makeSuggestionRequest(request, callback);
+    await queue.processNextRequest();
+
+    expect(callback).toHaveBeenCalledWith(expect.objectContaining({
+      model: ALGORITHM, algorithmFallback: true, llmError: 'timeout', bestSelections: [option('la iglesia', 85, true)],
+    }));
+    expect(request.llmQueryUrl).toBe(AI_URL); // the caller's request is not changed
+    expect(queue.alreadyHaveSuggestionsForKey(KEY)).toBe(false);
+  });
+
+  test('does not ask the algorithm again for an algorithm-first answer', async () => {
+    const queue = makeQueue({ error: false, model: ALGORITHM, algorithmFirst: true, bestSelections: [option('la iglesia', 100, true)] }, []);
+
+    queue.makeSuggestionRequest({ key: KEY, llmQueryUrl: AI_URL }, jest.fn());
+    await queue.processNextRequest();
+
+    expect(queue.doQuery).toHaveBeenCalledTimes(1);
+  });
+
+  test('mergeBestSelections keeps the AI option on a tie', () => {
+    expect(mergeBestSelections([option('iglesia', 80)], [option('iglesia', 80, true)])).toEqual([option('iglesia', 80)]);
   });
 });
