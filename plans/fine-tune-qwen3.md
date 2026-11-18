@@ -748,7 +748,117 @@ quantizing. Caveat: C's second half
 restarted Adam, so this is not a clean single run; a clean run (`batch_size` 4 x
 `grad_accumulation_steps` 2 from the start) could close some of the gap, but not likely all.
 
-**Step 4A result:** LoRA r16 (run A) is the model to use: `uw-tw-qwen3-1.7b-r16`, 8-bit. Next
-per the plan: Step 4B (D1-D3) after the hand-checks, then Step 7.
+**Step 4A result:** LoRA r16 (run A) is the configuration to use. Next per the plan: Step 4B.
 
-Not yet run: Step 4B (D1-D3).
+### 2026-11-17: Step 4B, run D3 (base + `noRelatedWordInHistory`, labelled 55)
+
+D1 is run A (base set). D3: `LLM_FINETUNE_INCLUDE=noRelatedWordInHistory
+LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-d3 npm run build:finetune-data`, 10,265 train
+examples (2,738 `noRelatedWordInHistory` at label 55; the project and group caps now drop ~500 base
+examples, so D3 is not exactly A + extras), `llmTraining/lora-r16-d3.yaml` (run A's config,
+2,566 iterations = 2 epochs). `check_data.py` PASS. Validation loss 3.14 → 0.065-0.075 from
+iteration 1,200 (not comparable with A: the validation set now has the 55-labelled cases too);
+~2.8 hours. Fused, 8-bit (`uw-tw-qwen3-1.7b-d3`), Step 6 (b):
+
+| Algorithm confidence | Cases | Algorithm | Run A (D1) | D3 |
+|---|---|---|---|---|
+| 100 | 281 | 84.3% | 84.3% | 84.3% |
+| 90-94 | 176 | 58.0% | **66.5%** | 65.9% |
+| 85-89 | 55 | 50.9% | 56.4% | **67.3%** |
+| 80-84 | 82 | 56.1% | **63.4%** | 62.2% |
+| 60-79 | 31 | 41.9% | 61.3% | **67.7%** |
+| 1-59 | 129 | 16.3% | 50.4% | **52.7%** |
+| no algorithm answer | 81 | 0% | 35.8% | **48.1%** |
+| **All, threshold 100** | 835 | 53.5% | 65.9% (550) | **68.1%** (569) |
+| `ne_*` only (362) | | 55.2% | 63.5% | **66.9%** |
+| Other held-out files (473) | | 52.2% | 67.7% | **69.1%** |
+| Wrong at confidence ≥ 80 | | 181 | 96 | **92** |
+| No suggestion at all | | 81 | 25 | **2** |
+
+By the case groups of Step 3 (held-out cases matched to `test.meta.jsonl` by id; top-1, wrong at
+≥ 80 in brackets; paired McNemar A-only / D3-only right):
+
+| Group | Cases | Algorithm | Run A | D3 | A / D3 only | p |
+|---|---|---|---|---|---|---|
+| passes | 233 | 83.3% (32) | **86.7%** (12) | 85.4% (15) | 8 / 5 | 0.58 |
+| onlyOtherFormsInHistory | 118 | 57.6% (23) | 72.0% (5) | **74.6%** (5) | 7 / 10 | 0.63 |
+| someExpectedWordsNotInHistory | 115 | 0.9% (68) | 24.3% (31) | **28.7%** (25) | 6 / 11 | 0.33 |
+| noRelatedWordInHistory | 133 | 0% (7) | 38.3% (3) | **48.9%** (2) | 6 / 20 | 0.009 |
+| not exported (algorithm-certain etc.) | 236 | 78.0% (51) | 78.0% (45) | 78.0% (45) | | |
+
+Overall, paired: A-only 27, D3-only 46 (p = 0.03). Best threshold still 100 (569; 533 at 60).
+
+**Choice: keep the `noRelatedWordInHistory` group (D3).** It raises its own group by 10.6 points
+(significant), the other groups move by ±3 cases (not significant; run A's two runs differed by 0
+on `passes`), confident wrong answers fall overall (96 → 92, though `passes` has 3 more), and the
+`ne_*` files gain 3.4 points. The model now nearly always suggests something (2 cases with no
+suggestion, from 25). D3 replaces run A as the candidate.
+
+**D3, rest of Step 6** (4-bit built from the fused model with `--q-bits 4`; in LM Studio
+`uw-tw-qwen3-1.7b-d3@8bit` / `@4bit`; suite with `scripts/test-llm.sh -r 3 -g 1`, single requests
+only, results in `llm-eval-results/finetune-d3/`):
+
+| | D3 8-bit | D3 4-bit | Run A 8-bit | Run A 4-bit | Stock 1.7b 8-bit | Stock 4b |
+|---|---|---|---|---|---|---|
+| (b) held-out top-1 | **68.1%** | 66.1% | 65.9% | 63.2% | 52.0% | 59.4% |
+| (b) `ne_*` | **66.9%** | 64.4% | 63.5% | 61.9% | 53.9% | 63.3% |
+| (b) wrong at ≥ 80 | **92** | 97 | 96 | 102 | 255 | 189 |
+| (a) top-1 | **75%** | 73% | 69% | 71% | 62% | 68% |
+| (a) top-1 real projects | **56%** | 51% | 47% | 56% | 36% | 47% |
+| (a) wrong at ≥ 80 | **11%** | **11%** | 13% | 13% | 24% | 22% |
+| (a) suite result | **PASS** | **PASS** | fail (top-1) | fail (top-1) | fail | fail |
+| (a) median ms | 148 | 114 | | | | |
+
+The 4-bit build loses 2.0 points on (b) (569 → 552; paired 31 / 14, p = 0.02), just at the 2-point
+bar, and 2 points on (a). The 8-bit build is the one to use; the 4-bit one is a fallback for
+computers with little memory, still above stock 4b.
+
+**Against the success bar with D3 (8-bit):** beats stock 1.7b by 16.1 points and stock 4b by 8.7
+on (b); at or above the algorithm in every band from 60 to 94; confident wrong answers well below
+stock 1.7b on (a) and (b); `ne_*` 66.9% (not worse than the rest, 69.1%, by more than 2.2
+points); 4-bit within 2 points: **met, at the limit** (-2.0). It is also the first model to pass
+the whole suitability suite on single requests.
+
+**Hand-check of `someExpectedWordsNotInHistory` (2026-11-18).** `python3 llmTraining/handcheck.py`
+sampled 50 of the 2,487 such cases in the D2 train and validation sets, spread over target
+languages (vi 26, ru 11, fa 3, te/bn/id/es-419/ar 2 each; 30 contradict rule 3), and wrote a local
+page (`llmTrainingData/finetune-d2/handcheck-someExpectedWordsNotInHistory.html`) showing the
+verse with the expected answer and the history renderings marked. The author judged **all 50
+expected answers right** (what a checker should select), including the 30 that contradict rule 3.
+So the extra or missing words are not an alignment habit to correct: the cases are kept as they
+are, at label 75, with no relabelling. It also suggests rule 3 ("copy exactly those words" when a
+history rendering is in the verse) is too strict for these cases; that is a prompt question for
+later, measured with the suite, not part of this fine-tune.
+
+D2: `LLM_FINETUNE_INCLUDE=someExpectedWordsNotInHistory LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-d2
+npm run build:finetune-data`, 9,332 train examples (the project cap drops 2,243, mostly Vietnamese),
+`llmTraining/lora-r16-d2.yaml` (2,333 iterations = 2 epochs), `check_data.py` PASS. Validation loss
+3.23 → 0.065 (1,000) → 0.060 (end); ~2.5 hours. Fused, 8-bit (`uw-tw-qwen3-1.7b-d2`), Step 6 (b):
+
+| | Run A (D1) | D3 | D2 |
+|---|---|---|---|
+| **All, threshold 100** | 65.9% (550) | **68.1%** (569) | 67.1% (560) |
+| `ne_*` only (362) | 63.5% | **66.9%** | 64.6% |
+| Other held-out files (473) | 67.7% | **69.1%** | 68.9% |
+| Wrong at confidence ≥ 80 | 96 | 92 | **79** |
+| passes (233) | **86.7%** | 85.4% | 80.7% |
+| onlyOtherFormsInHistory (118) | 72.0% | 74.6% | **76.3%** |
+| someExpectedWordsNotInHistory (115) | 24.3% | 28.7% | **36.5%** |
+| noRelatedWordInHistory (133) | 38.3% | **48.9%** | 42.1% |
+
+Paired with run A (A-only / D2-only right): overall 41 / 51 (p = 0.35); its own group 7 / 21
+(p = 0.01); **`passes` 17 / 3 (p = 0.003)**; the others not significant. D3 vs D2 overall 55 / 46
+(p = 0.43).
+
+All 17 `passes` cases D2 lost where run A was right are the same error: D2 answered the right
+words **plus more** ("the blessed hope" for `hope`, "good faith" for `good`, "ঈশ্বর পিতা" for
+`পিতা`, "rebuke them" for `rebuke`). Answers that differ from the history by extra words teach the
+model to widen answers in general, not only where the history differs.
+
+**Choice: do not keep the `someExpectedWordsNotInHistory` group.** It raises its own group
+(+12.2 points) and lowers confident wrong answers (96 → 79), but it significantly lowers `passes`,
+the most common case, which Step 4B's rule does not allow; overall it is below D3. So there is no
+run with both groups. **D3 stays the chosen model** (`uw-tw-qwen3-1.7b-d3`, 8-bit). The hand-check
+said these answers are right, so the group may still help with a way to keep the model from
+widening (e.g. a smaller share of these cases, or only those without `historyInVerseButDiffers`);
+that is a later experiment, not part of this plan.
