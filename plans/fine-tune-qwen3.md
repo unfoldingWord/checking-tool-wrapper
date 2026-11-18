@@ -528,6 +528,9 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
      GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is no longer needed.
   2. **One request per query.** The fine-tune breaks with `llmGrouping` > 1 (Q3); make sure that
      setting cannot quietly be used with it, or warn when it is.
+     **Decided 2026-11-18: documented in the model card only** (`llmTraining/model-card/README.md`,
+     "How to use it"), with no code guard. The default is 1, and with a larger value the app falls
+     back to the algorithm, so the cost of a miss is quality, not a failure.
   3. **A broader test (Q2).** The held-out set is 9 files, five of them the same Titus verses
      under different GLs. The margins are large, so this is unlikely to change the conclusion, but
      it should be confirmed on more projects.
