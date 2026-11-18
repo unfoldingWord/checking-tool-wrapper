@@ -414,7 +414,9 @@ confident wrong answers. If both help, train once more with both.
    `~/.lmstudio/models/unfoldingWord/uw-tw-qwen3-1.7b-8bit/` (check the folder in LM Studio's
    settings), confirm it shows Qwen3's chat template, and find its name with
    `scripts/test-llm.sh -l`.
-4. **Only for distribution** (Windows/Linux translationCore users need GGUF): convert the fused bf16
+4. **Only for distribution** (Windows/Linux translationCore users need GGUF; done for D3 on
+   2026-11-18, see the results and `llmTraining/README.md`, which also covers converting with the
+   base model's tokenizer files): convert the fused bf16
    model with llama.cpp, `python convert_hf_to_gguf.py outputs/fused-r16 --outtype q8_0`, and
    `llama-quantize` for `Q4_K_M`. Check that the fused folder loads in llama.cpp (tensor names and
    `config.json`) and that the GGUF scores the same as the MLX model on Step 6 (b).
@@ -503,6 +505,14 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
   four conditions the bars do not cover:
   1. **GGUF parity (Step 5.4).** Windows and Linux need GGUF; everything was measured on the MLX
      build. Convert it and check it scores the same on Step 6 (b).
+     **Measured 2026-11-18: not met** (results, "GGUF builds of D3"). In LM Studio's llama.cpp
+     engine, Q8_0 scores 65.7% and Q4_K_M 66.8% on (b), against 68.1% for MLX 8-bit (Q8_0 vs MLX
+     p = 0.02), and both fail the suite's top-1 bar; they still beat stock 1.7b (51.7%) and stock
+     4b (59.3%) clearly, with fewer confident wrong answers (78 / 75 vs 92). The gap comes from
+     the engine, not the conversion: the stock model diverges between the engines too.
+     Recommendation: release **both** builds, MLX 8-bit for Mac and GGUF Q4_K_M (as good as Q8_0
+     there, and smaller) for Windows and Linux, and accept the lower GGUF score, or first check
+     which engine matches transformers and whether a plain llama.cpp server behaves the same.
   2. **One request per query.** The fine-tune breaks with `llmGrouping` > 1 (Q3); make sure that
      setting cannot quietly be used with it, or warn when it is.
   3. **A broader test (Q2).** The held-out set is 9 files, five of them the same Titus verses
@@ -894,3 +904,44 @@ run with both groups. **D3 stays the chosen model** (`uw-tw-qwen3-1.7b-d3`, 8-bi
 said these answers are right, so the group may still help with a way to keep the model from
 widening (e.g. a smaller share of these cases, or only those without `historyInVerseButDiffers`);
 that is a later experiment, not part of this plan.
+
+### 2026-11-18: GGUF builds of D3 (Step 5.4)
+
+Built with llama.cpp 1.0.0 (Homebrew, commit `b1b770d90`) as in `llmTraining/README.md`: bf16
+GGUF from the fused weights with the base model's original tokenizer files (the tokenizer that
+`mlx_lm.fuse` re-saves cannot be read by the converter's transformers 4.57, and differs in some
+byte-level flags), then `llama-quantize` to Q8_0 (1.8 GB) and Q4_K_M (1.1 GB). Run in LM Studio's
+llama.cpp engine (`llama.cpp-mac-arm64-apple-metal-advsimd@2.73.0`).
+
+| | MLX 8-bit | GGUF Q8_0 | MLX 4-bit | GGUF Q4_K_M |
+|---|---|---|---|---|
+| (b) held-out top-1 | **68.1%** (569) | 65.7% (549) | 66.1% (552) | 66.8% (558) |
+| (b) `ne_*` | **66.9%** | 64.1% | 64.4% | 65.2% |
+| (b) wrong at ≥ 80 | 92 | **78** | 97 | **75** |
+| (a) suite top-1 | **75%** | 67% | 73% | 65% |
+| (a) wrong at ≥ 80 | 11% | 11% | 11% | 11% |
+| (a) suite result | PASS | fail (top-1) | PASS | fail (top-1) |
+
+Paired on (b): MLX 8-bit vs Q8_0 46 / 26 (p = 0.02); MLX 4-bit vs Q4_K_M 44 / 50 (p = 0.6).
+
+**Why the GGUF builds score lower**, measured on the 543 exported held-out prompts at temperature
+0, scoring the first answer row against the label:
+- **Not quantization.** The unquantized bf16 GGUF scores like Q8_0 (309 / 310 right), while MLX
+  bf16 and MLX 8-bit agree on 534 of 543 answers (332 / 331 right).
+- **Not the chat template or `enable_thinking`.** Sending the exact training prompt (raw
+  `/v1/completions`) gives the same scores as the app's chat request on both engines.
+- **Tokenization explains little.** llama.cpp tokenizes 55 of the 543 user messages differently
+  from the Hugging Face tokenizer (mostly Arabic, Farsi and Russian GL text on the Titus files,
+  around combining marks), but on the 488 that tokenize identically MLX and GGUF bf16 still give
+  different answers 101 times (306 vs 280 right).
+- **It is the engine, not our conversion.** Same weights at bf16: MLX and LM Studio's llama.cpp
+  agree on 436 of 543 answers. The **stock** Qwen3-1.7B, converted the same way from the Hugging
+  Face cache, diverges even more between the engines (335 of the first 483 answers the same;
+  LM Studio's MLX engine crashed with a segmentation fault on prompt 484 of the stock model).
+
+So the GGUF numbers are what Windows and Linux users would get through LM Studio's llama.cpp. The
+fine-tune still beats stock 1.7b (51.7%) and stock 4b (59.3%) clearly on GGUF, with fewer
+confident wrong answers than the MLX builds, but it loses ~2.4 points at Q8_0 and fails the
+suite's top-1 bar. Q4_K_M is as good as Q8_0 on GGUF (558 vs 549, p = 0.14), so it is the smaller
+choice there. Not yet known: which engine matches the reference implementation (transformers),
+and whether a llama.cpp server outside LM Studio behaves the same.
