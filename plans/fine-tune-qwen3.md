@@ -485,6 +485,8 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
 
 - **Q2. Test split.** Is holding out `ne_*`, `bn_glt_eph`, `es-419_est_rut` and `en_ult_tit_*` right,
   or should other projects be held out?
+  **Answered 2026-11-18 with a broader test** (results, "Broader held-out test"): with six more
+  projects held out, one per main training language, the fine-tune keeps its lead in every project.
   - Answer: no
 
 - **Q3. Batched examples.** The app default is one request per call. Train single only, or add
@@ -1012,3 +1014,52 @@ cases, where llama.cpp matches MLX 8-bit (574 vs 569), and plain llama.cpp is th
 matched the transformers reference (538 of 543). So the GGUF builds are faithful to the model; the
 suite's top-1 bar (70%) sits between the two engines on these few borderline cases. **Decided 2026-11-18 (author): the held-out result governs the GGUF release**, so the
 suite's top-1 bar does not block it.
+
+### 2026-11-18: Broader held-out test (Q2)
+
+The 9 held-out files cover 4 projects, five of them the same Titus verses, and none of the main
+training languages except Bengali and Spanish. So D3 was retrained with six more projects held out,
+one per main training language: `vi_glt_heb` (727 cases), `ru_rlob_luk` (2 files, GL en and ar,
+2,569), `te_glt_luk` (1,393), `ar_avd_heb` (349), `fa_glt_jas` (91), `id_glt_1ti` (112). Data:
+`llmTrainingData/finetune-d3-broad` (`LLM_FINETUNE_TEST_PROJECTS` with the ten projects, D3's
+`LLM_FINETUNE_INCLUDE`), 7,092 train examples (31% fewer than D3), `check_data.py` PASS;
+`llmTraining/lora-r16-d3-broad.yaml` (1,773 iterations = 2 epochs); validation loss 3.28 → 0.068
+(1,000) → 0.069 (end). Fused, **5-bit** (`uw-tw-qwen3-1.7b-d3-broad`, the Mac release format), and
+scored with Step 6 (b) on 16 held-out files, 6,076 cases, in LM Studio, with the stock models on the
+same files. Per-project figures from `llmTraining/compare/by-project.js`:
+
+| Project (held-out) | Cases | Algorithm | Fine-tune (broad) | Stock 1.7b 8-bit | Stock 4b |
+|---|---|---|---|---|---|
+| `ru_rlob_luk` | 2,569 | 64.1% | **82.2%** | 58.3% | 67.2% |
+| `te_glt_luk` | 1,393 | 53.3% | **68.3%** | 54.1% | 59.9% |
+| `vi_glt_heb` | 727 | 46.8% | **67.3%** | 43.7% | 50.2% |
+| `ar_avd_heb` | 349 | 59.9% | **82.2%** | 58.5% | 65.6% |
+| `ne_glt_2co` (unseen language) | 323 | 55.1% | **65.0%** | 53.9% | 63.5% |
+| `en_ult_tit` (5 GLs) | 291 | 49.5% | **57.4%** | 46.4% | 50.9% |
+| `id_glt_1ti` | 112 | 57.1% | **67.9%** | 47.3% | 57.1% |
+| `bn_glt_eph` | 98 | 67.3% | **85.7%** | 63.3% | 72.4% |
+| `fa_glt_jas` | 91 | 28.6% | **52.7%** | 27.5% | 36.3% |
+| `es-419_est_rut` | 84 | 44.0% | **71.4%** | 50.0% | 57.1% |
+| `ne_glt_tit` (unseen language) | 39 | 56.4% | **64.1%** | 51.3% | 61.5% |
+| **All, threshold 100** | **6,076** | 57.2% | **74.2%** | 54.1% | 61.7% |
+| Wrong at confidence ≥ 80 | | 1,049 | **547** | 1,802 | 1,357 |
+
+By algorithm confidence band (algorithm / fine-tune / stock 1.7b / stock 4b): 90-94 62.6 / **70.8**
+/ 55.6 / 63.5; 85-89 63.9 / **67.6** / 51.0 / 61.6; 80-84 63.8 / **70.4** / 48.6 / 61.2; 60-79
+63.1 / **78.7** / 52.9 / 63.7; 1-59 22.1 / **56.0** / 23.3 / 32.7; no algorithm answer 0 / **67.1** /
+9.5 / 24.7 (95-99 has only 4 cases). Best threshold: fine-tune 100 (74.2%, 70.6 at 60), stock 1.7b
+60 (58.8 vs 54.1 at 100), stock 4b flat (61.7-62.0), as on the 9 files (Q6). Paired: fine-tune vs
+stock 4b 972 / 210, vs stock 1.7b 1,382 / 157 (both p < 1e-100).
+
+**Result:** the fine-tune beats the algorithm and both stock models in every held-out project and
+in every band from 60 to 94, by 9-22 points over the algorithm per project, and halves the
+confident wrong answers (547 vs 1,049 for the algorithm, 1,357 for stock 4b). So the gain holds on
+unseen projects in all the main training languages, not just on the original Titus-heavy test.
+
+**Cost of less training data:** on the original 9 files the broad model (5-bit) scores 65.4%,
+against 68.3% for D3 5-bit, which trained on these projects too (paired 49 / 25, p = 0.007),
+mostly on `en_ult_tit` (-6.9 points; leaving out `ru_rlob_luk` removed most of the Arabic-GL
+training). More data helps, so the **release model stays D3, trained on every project except the
+original test projects**; this broad model was only a test.
+
+Not run on the broad model: the suitability suite and GGUF builds (the release model is D3).
