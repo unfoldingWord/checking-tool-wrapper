@@ -510,9 +510,12 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
      p = 0.02), and both fail the suite's top-1 bar; they still beat stock 1.7b (51.7%) and stock
      4b (59.3%) clearly, with fewer confident wrong answers (78 / 75 vs 92). The gap comes from
      the engine, not the conversion: the stock model diverges between the engines too.
-     Recommendation: release **both** builds, MLX 8-bit for Mac and GGUF Q4_K_M (as good as Q8_0
-     there, and smaller) for Windows and Linux, and accept the lower GGUF score, or first check
-     which engine matches transformers and whether a plain llama.cpp server behaves the same.
+     **Then found to be LM Studio's llama.cpp engine, not the GGUF:** the bf16 GGUF in plain
+     llama.cpp (`llama-server` 1.0.0) matches transformers on 538 of 543 answers (LM Studio's
+     engine: 428). Recommendation: release **both** builds (MLX 8-bit for Mac; GGUF for Windows
+     and Linux), and before choosing Q8_0 or Q4_K_M and calling the condition met, score the GGUF
+     with Step 6 (b) through plain `llama-server` and on the engine translationCore users will
+     run on Windows and Linux (LM Studio's Windows/Linux engines or another llama.cpp server).
   2. **One request per query.** The fine-tune breaks with `llmGrouping` > 1 (Q3); make sure that
      setting cannot quietly be used with it, or warn when it is.
   3. **A broader test (Q2).** The held-out set is 9 files, five of them the same Titus verses
@@ -943,5 +946,22 @@ So the GGUF numbers are what Windows and Linux users would get through LM Studio
 fine-tune still beats stock 1.7b (51.7%) and stock 4b (59.3%) clearly on GGUF, with fewer
 confident wrong answers than the MLX builds, but it loses ~2.4 points at Q8_0 and fails the
 suite's top-1 bar. Q4_K_M is as good as Q8_0 on GGUF (558 vs 549, p = 0.14), so it is the smaller
-choice there. Not yet known: which engine matches the reference implementation (transformers),
-and whether a llama.cpp server outside LM Studio behaves the same.
+choice there.
+
+**Which engine is right (2026-11-18).** The same 543 prompts (exact training prompt, temperature
+0), D3 at full precision in each engine, against transformers (PyTorch, float32) as the reference:
+
+| Engine | Right | Same answer as reference |
+|---|---|---|
+| transformers float32 (reference) | 337 | 543 |
+| GGUF bf16, plain llama.cpp (`llama-server` 1.0.0, Homebrew) | **338** | **538** |
+| MLX bf16, LM Studio | 332 | 529 |
+| GGUF bf16, LM Studio llama.cpp engine (2.73.0) | 309 | 428 |
+
+**The GGUF file is correct**: plain llama.cpp runs it almost exactly like the reference. Only
+LM Studio's bundled llama.cpp engine diverges (and it does for the stock model too), from a load
+setting or its own build; its logs show 4 parallel slots with a unified KV cache but not the cache
+type. So the lower GGUF scores above are an LM Studio llama.cpp problem on the Mac, not a
+property of the model. Not yet measured: LM Studio's Windows and Linux llama.cpp engines (CUDA,
+Vulkan, CPU builds), Ollama, and the app's full scoring (Step 6 (b)) through plain
+`llama-server`.
