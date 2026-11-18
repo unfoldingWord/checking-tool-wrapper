@@ -516,6 +516,14 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
      and Linux), and before choosing Q8_0 or Q4_K_M and calling the condition met, score the GGUF
      with Step 6 (b) through plain `llama-server` and on the engine translationCore users will
      run on Windows and Linux (LM Studio's Windows/Linux engines or another llama.cpp server).
+     **Scored 2026-11-18 through plain `llama-server`: met** for llama.cpp itself. Q8_0 68.7% and
+     Q4_K_M 68.7% against MLX 8-bit 68.1% (not significant either way), with fewer confident wrong
+     answers for Q4_K_M (85 vs 92), but both GGUF levels fail the suitability suite's top-1 bar
+     (67% vs MLX 75%, on 6 borderline cases; see the results). **Decided 2026-11-18: the held-out
+     result governs**, so this condition is met for plain llama.cpp. **Mac build decided 2026-11-18: MLX 5-bit**
+     (same accuracy as 8-bit, 1.1 GB, passes the suite). Still to check: the engine
+     Windows and Linux users will actually run. Builds to release: MLX 8-bit or 5-bit (same accuracy, 1.7 vs 1.1 GB) for Mac,
+     GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is no longer needed.
   2. **One request per query.** The fine-tune breaks with `llmGrouping` > 1 (Q3); make sure that
      setting cannot quietly be used with it, or warn when it is.
   3. **A broader test (Q2).** The held-out set is 9 files, five of them the same Titus verses
@@ -965,3 +973,42 @@ type. So the lower GGUF scores above are an LM Studio llama.cpp problem on the M
 property of the model. Not yet measured: LM Studio's Windows and Linux llama.cpp engines (CUDA,
 Vulkan, CPU builds), Ollama, and the app's full scoring (Step 6 (b)) through plain
 `llama-server`.
+
+**Quantization levels (2026-11-18).** D3 at every size, Step 6 (b) on the 835 held-out cases: MLX in
+LM Studio's MLX engine; GGUF in plain llama.cpp (`llama-server` 1.0.0, `-c 8192`), since LM Studio's
+llama.cpp engine is unreliable (above). Paired McNemar against MLX 8-bit:
+
+| Build | Size | Top-1 | `ne_*` | Wrong at ≥ 80 | vs MLX 8-bit (8-bit-only / other-only right) |
+|---|---|---|---|---|---|
+| MLX 8-bit | 1.7 GB | 68.1% (569) | 66.9% | 92 | |
+| MLX 6-bit | 1.3 GB | 67.5% (564) | 64.6% | 95 | 13 / 8, p = 0.38 |
+| MLX 5-bit | 1.1 GB | **68.3%** (570) | 66.6% | 91 | 9 / 10, p = 1.0 |
+| MLX 4-bit | 0.9 GB | 66.1% (552) | 64.4% | 97 | 31 / 14, **p = 0.02** |
+| GGUF Q8_0, llama.cpp | 1.7 GB | 68.7% (574) | 66.9% | 91 | 8 / 13, p = 0.38 |
+| GGUF Q6_K, llama.cpp | 1.3 GB | 68.9% (575) | 67.4% | 91 | 5 / 11, p = 0.21 |
+| GGUF Q5_K_M, llama.cpp | 1.2 GB | 68.3% (570) | 66.9% | 93 | 12 / 13, p = 1.0 |
+| GGUF Q4_K_M, llama.cpp | 1.0 GB | 68.7% (574) | **68.0%** | **85** | 21 / 26, p = 0.56 |
+
+(Sizes from `du`, in GiB.) Only MLX 4-bit loses accuracy. **MLX 5-bit is as accurate as 8-bit at
+two-thirds the size**, so it replaces 4-bit as the small Mac build; 6-bit adds nothing over 5-bit.
+In plain llama.cpp every GGUF level matches MLX 8-bit, **Q4_K_M included** (Q8_0 vs Q4_K_M 21 / 21),
+so Q4_K_M (1.0 GB) is enough for Windows and Linux; Q5_K_M and Q6_K add nothing.
+
+**Suitability suite (a) on the release candidates** (`scripts/test-llm.sh -r 3 -g 1`, results in
+`llm-eval-results/finetune-d3-release/`):
+
+| Build | Top-1 | Top-1 hand-written | Wrong at ≥ 80 | Median ms | Suite |
+|---|---|---|---|---|---|
+| MLX 8-bit (earlier run) | 75% | 90% | 11% | 148 | PASS |
+| MLX 5-bit | 75% | 90% | 11% | 126 | **PASS** |
+| GGUF Q8_0, plain llama.cpp | 67% | 87% | 11% | | fail (top-1 < 70%) |
+| GGUF Q4_K_M, plain llama.cpp | 67% | 87% | 11% | 92 | fail (top-1 < 70%) |
+
+Q8_0 and Q4_K_M score the same, so this is llama.cpp against MLX, not 4-bit rounding. Six of the 55
+cases differ between MLX 5-bit and Q4_K_M; llama.cpp misses five of them, mostly by answering
+fewer words ("thánh" for `các nơi thánh`, "святой" for `дух святой`, "cai trị" for `quyền cai trị`)
+and gets one MLX misses. That is a small, not significant sample (5 / 1) against the 835 held-out
+cases, where llama.cpp matches MLX 8-bit (574 vs 569), and plain llama.cpp is the engine that
+matched the transformers reference (538 of 543). So the GGUF builds are faithful to the model; the
+suite's top-1 bar (70%) sits between the two engines on these few borderline cases. **Decided 2026-11-18 (author): the held-out result governs the GGUF release**, so the
+suite's top-1 bar does not block it.
