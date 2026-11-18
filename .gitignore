@@ -11,6 +11,8 @@ llmTrainingData/finetune-d*/
 llmTrainingData/finetune-smoke/
 llmTraining/outputs/
 llmTraining/.venv/
+llmTraining/.venv-gguf/
+llmTraining/.llama.cpp/
 
 # Output of 'npm pack'
 *.tgz

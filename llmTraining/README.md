@@ -59,3 +59,38 @@ For run C, pass `--adapter-path llmTraining/outputs/full`; `mlx_lm.fuse` loads t
 from it the same way.
 
 Then copy the model folder into LM Studio's models folder and evaluate with Step 6 of the plan.
+
+## GGUF for Windows and Linux (llama.cpp)
+
+translationCore users on Windows and Linux need GGUF. Tested with llama.cpp 1.0.0 (Homebrew,
+commit `b1b770d90`, 2026-11-18):
+
+```sh
+brew install llama.cpp                                   # llama-quantize
+git clone --filter=blob:none --no-checkout https://github.com/ggml-org/llama.cpp llmTraining/.llama.cpp
+git -C llmTraining/.llama.cpp checkout b1b770d90         # the converter matching the installed build
+/opt/homebrew/bin/python3.12 -m venv llmTraining/.venv-gguf
+llmTraining/.venv-gguf/bin/pip install -r llmTraining/.llama.cpp/requirements/requirements-convert_hf_to_gguf.txt
+llmTraining/.venv-gguf/bin/pip install -e llmTraining/.llama.cpp/gguf-py
+```
+
+`mlx_lm.fuse` re-saves the tokenizer with transformers 5, which the converter's transformers 4.57
+cannot read, and its re-saved `tokenizer.json` differs from Qwen's in some byte-level flags. The
+fine-tune does not change the tokenizer, so convert from a folder with the fused weights and the
+base model's original tokenizer files:
+
+```sh
+BASE=$(ls -d ~/.cache/huggingface/hub/models--Qwen--Qwen3-1.7B/snapshots/*/)
+F=$PWD/llmTraining/outputs/fused-d3; ST=llmTraining/outputs/gguf-stage-d3; mkdir -p $ST
+for f in config.json generation_config.json model.safetensors model.safetensors.index.json; do ln -sf $F/$f $ST/$f; done
+for f in tokenizer.json tokenizer_config.json vocab.json merges.txt; do ln -sf $(readlink -f $BASE$f) $ST/$f; done
+G=llmTraining/outputs/uw-tw-qwen3-1.7b-d3-GGUF; mkdir -p $G
+llmTraining/.venv-gguf/bin/python llmTraining/.llama.cpp/convert_hf_to_gguf.py $ST --outtype bf16 \
+    --outfile $G/uw-tw-qwen3-1.7b-d3-bf16.gguf
+llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-1.7b-d3-Q8_0.gguf Q8_0
+llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-1.7b-d3-Q4_K_M.gguf Q4_K_M
+```
+
+Copy the `.gguf` files into a folder under LM Studio's models folder; it lists them as
+`uw-tw-qwen3-1.7b-d3@q8_0` / `@q4_k_m` and runs them with its llama.cpp engine. Score them with
+Step 6 of the plan before publishing.

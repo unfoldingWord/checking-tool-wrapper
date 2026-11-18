@@ -480,21 +480,50 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
 - **Q1. Fallback hardware.** Training runs on this Mac with MLX. If the full fine-tune (run C) does
   not fit in 48 GB or is too slow, is there an NVIDIA machine or Colab account for Appendix A?
   - Answer: no NVIDIA machine or Colab, but do have a mac Mini M4Pro with 64GB if that would help.
+
 - **Q2. Test split.** Is holding out `ne_*`, `bn_glt_eph`, `es-419_est_rut` and `en_ult_tit_*` right,
   or should other projects be held out?
+  - Answer: no
+
 - **Q3. Batched examples.** The app default is one request per call. Train single only, or add
   ~15% batched examples so `llmGrouping` > 1 also improves?
   **Decided 2026-11-17: single requests only.** Batching is not helpful with small models, so it
   is not trained or tested; a fine-tuned model must be used with one request per query.
 - **Q4. Success bar.** Are the thresholds in Step 6 the right bar to switch the default model?
+  **Recommendation after testing (2026-11-18):** the bars are the right kind of test, and D3
+  (`uw-tw-qwen3-1.7b-d3`, 8-bit) meets all four on the held-out files:
+  - top-1 68.1% vs stock 1.7b 51.7% (+16.4) and stock 4b 59.3% (+8.8);
+  - at or above the algorithm in every band from 60 to 94 (90-94: 65.9 vs 58.0; 85-89: 67.3 vs
+    50.9; 80-84: 62.2 vs 56.1; 60-79: 67.7 vs 41.9);
+  - wrong at confidence ≥ 80: 92 vs 255 for stock 1.7b on (b), 11% vs 24% on the suite (a);
+  - 4-bit 66.1%, within 2 points (-2.0), exactly at the limit.
+  It is also not much worse on unseen target languages (`ne_*` 66.9% vs 69.1% on the rest) and is
+  the first model to pass the whole suitability suite. Make it the default for quality, using the
+  **8-bit** build, with 4-bit only as a fallback for computers with little memory. Before switching,
+  four conditions the bars do not cover:
+  1. **GGUF parity (Step 5.4).** Windows and Linux need GGUF; everything was measured on the MLX
+     build. Convert it and check it scores the same on Step 6 (b).
+  2. **One request per query.** The fine-tune breaks with `llmGrouping` > 1 (Q3); make sure that
+     setting cannot quietly be used with it, or warn when it is.
+  3. **A broader test (Q2).** The held-out set is 9 files, five of them the same Titus verses
+     under different GLs. The margins are large, so this is unlikely to change the conclusion, but
+     it should be confirmed on more projects.
+  4. **Permission to distribute (Q5, Risks).** The model is trained on translators' projects, so
+     confirm it may be published before shipping it as the default.
 - **Q5. Distribution.** Will the fine-tuned model be published (e.g. Hugging Face) for
-  translationCore users, or kept internal? This affects licensing and where the GGUF lives.
+translationCore users, or kept internal? This affects licensing and where the GGUF lives.    - Answer: yes it will likely be published and needs to support windows and linux as well as mac.
+
 - **Q6. `ALGORITHM_CERTAIN_CONFIDENCE` per model.** It is a constant (100), which is best for stock
   4b, but stock 1.7b is best at 60 (section 1). If both models stay supported (1.7b for smaller
   computers), should it become a checking setting, e.g. `llmAlgorithmFirstConfidence` like
   `llmExtraParams`, defaulting to 100? Decide after Step 6 shows where the fine-tuned model lands.
   Done as the optional `llmAlgorithmCertainConfidence` checking setting (no UI; default 100); what
   remains is the default per model.
+  Measured on the held-out files (2026-11-18): the fine-tunes are best at 100 (D3 68.1% at 100,
+  66.5 at 90, 64.8 at 80, 63.8 at 60), stock 4b is flat (59.3 at 100, 59.4 at 80), stock 1.7b is
+  best at 80 or 60 (54.6 vs 51.7 at 100). So the default of 100 is right for the fine-tuned model
+  and stock 4b; only the stock 1.7b would gain (about 3 points) from 80, and it is the model the
+  fine-tune replaces.
 
 ## Appendix A. Alternative: Unsloth Core on an NVIDIA GPU
 
@@ -640,8 +669,11 @@ overwritten.
 | `ne_*` only (362, unseen target language) | | 55.2% | 63.3% | 61.9% | 53.9% | 63.3% |
 | Wrong at confidence ≥ 80 | | 181 | **94** | 102 | 255 | 189 |
 
-Every model is best at threshold 100 here (run A: 548 at 100, 518 at 60), so Q6 needs no per-model
-threshold for the fine-tune.
+Top-1 at each threshold on these files (run 2; 100 / 90 / 80 / 60 / 1): run A 65.9 / 64.1 / 63.0 /
+62.3 / 57.0; stock 4b 59.3 / 58.4 / 59.4 / 58.7 / 56.6; stock 1.7b 51.7 / 52.8 / **54.6** / **54.6** /
+54.1. The fine-tune is best at 100 by 1.8 points or more, stock 4b is flat (100 and 80 within 1
+case), and stock 1.7b is best at 80 or 60, as in section 1. (Corrected 2026-11-18: this note first
+said every model is best at 100.)
 
 **Step 6 (a), suitability suite** (`scripts/test-llm.sh -r 3`, 55 cases):
 
