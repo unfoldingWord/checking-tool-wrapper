@@ -1,0 +1,31 @@
+# Run C, second half: resumes llmTraining/full.yaml from its step-1000 checkpoint after the first
+# attempt ran out of GPU memory at step ~1140 (batch_size 8, float32). Run from the repo folder:
+#   llmTraining/.venv/bin/python llmTraining/train_full.py --config llmTraining/full-resume.yaml
+# batch_size 4 x grad_accumulation_steps 2 keeps the effective batch at 8 with about half the
+# activation memory. `iters` counts micro-batches, so 2000 iters = the remaining 1000 updates.
+# The lr continues the original schedule: at update 1000 the cosine (warmup 100, 1900 decay steps)
+# was 5.41e-6; it decays from there to 0 over the 1000 updates (the schedule counts updates).
+# Adam's moments restart (the first attempt did not save them). A new seed gives the second epoch
+# a different order than the first.
+model: Qwen/Qwen3-1.7B
+train: true
+data: llmTrainingData/finetune
+fine_tune_type: full
+num_layers: -1
+mask_prompt: true
+max_seq_length: 2048
+batch_size: 4
+grad_accumulation_steps: 2
+iters: 2000
+learning_rate: 5.41e-6
+lr_schedule:
+  name: cosine_decay
+  arguments: [5.41e-6, 1000, 0]
+resume_adapter_file: llmTraining/outputs/full/0001000_adapters.safetensors
+grad_checkpoint: true
+steps_per_report: 40
+steps_per_eval: 400
+val_batches: 100                      # 100 x 4 = the same 400 validation examples as 50 x 8
+save_every: 2000
+adapter_path: llmTraining/outputs/full-resume
+seed: 3408

@@ -1,0 +1,26 @@
+# Run C of plans/fine-tune-qwen3.md (Step 4A): full fine-tune, otherwise as run A (lora-r16.yaml).
+# Run from the repo folder, through the float32 wrapper (see its header for why):
+#   llmTraining/.venv/bin/python llmTraining/train_full.py --config llmTraining/full.yaml
+# Every transformer layer is trained (num_layers -1); the tied embeddings stay frozen.
+# Checkpoints are full float32 layer weights (~5.6 GB each), so save_every is 1000, not 200.
+model: Qwen/Qwen3-1.7B
+train: true
+data: llmTrainingData/finetune
+fine_tune_type: full
+num_layers: -1
+mask_prompt: true
+max_seq_length: 2048
+batch_size: 8
+iters: 2000                           # 2 epochs, as run A
+learning_rate: 1e-5                   # a LoRA rate (2e-4) would wreck a full fine-tune
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [1e-5, 1900, 0]
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 200
+val_batches: 50
+save_every: 1000
+adapter_path: llmTraining/outputs/full
+seed: 3407

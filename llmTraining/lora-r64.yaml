@@ -1,0 +1,31 @@
+# Run B of plans/fine-tune-qwen3.md (Step 4). Run from the repo folder:
+#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r64.yaml
+# iters = train examples x epochs / batch_size: 7,892 x 2 / 8 = ~2,000 for the 2026-11-17 build.
+# Update it when `npm run build:finetune-data` gives a different train count (see its manifest.json).
+model: Qwen/Qwen3-1.7B
+train: true
+data: llmTrainingData/finetune        # train.jsonl, valid.jsonl, test.jsonl
+fine_tune_type: lora
+num_layers: -1                        # LoRA on every layer
+lora_parameters:
+  rank: 64
+  scale: 1.0                          # = lora_alpha / rank (alpha 64 at rank 64, as in Appendix A run B); 20 with lr 2e-4 broke the model
+  dropout: 0.0
+  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
+         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
+mask_prompt: true                     # loss on the assistant answer only (checked by check_data.py)
+max_seq_length: 2048
+batch_size: 8
+iters: 2000
+learning_rate: 2e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [2e-4, 1900, 0]          # [initial lr, decay steps (iters - warmup), final lr]
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 200
+val_batches: 50
+save_every: 200
+adapter_path: llmTraining/outputs/lora-r64
+seed: 3407
