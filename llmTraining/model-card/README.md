@@ -189,37 +189,37 @@ words the translator aligned to the key term.
   algorithm is certain about but wrong, answers that could not be found in the verse, and checks
   from the held-out projects and the suitability suite.
 
-The training data is licensed under Creative Commons Attribution-ShareAlike (CC BY-SA). It comes
+The training data is licensed under various open licenses. It comes
 from the work of the translation teams below, and of the gateway-language teams whose texts they
-aligned to.
+aligned to.  See the LICENSE.md file of each project for details.
 
 Target-language projects in the training and validation data (21):
 
-<!-- TODO: fill in each project's owner (translation team or organization) and source link. -->
+Training data is on https://git.door43.org/
 
 | Project | Language | Book | Aligned to (GL) | Owner | Source |
 |---|---|---|---|---|---|
-| `ar_avd_heb` | Arabic | Hebrews | English (ULT) | TODO | TODO |
-| `ar_avd_tit` | Arabic | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `ar_avt_psa` | Arabic | Psalms | English (ULT) | TODO | TODO |
-| `bn_glt_2co` | Bengali | 2 Corinthians | English (ULT) | TODO | TODO |
-| `bn_glt_tit` | Bengali | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `es-419_est_jon` | Spanish (Latin America) | Jonah | English (ULT) | TODO | TODO |
-| `es-419_glt_jon` | Spanish (Latin America) | Jonah | English (ULT) | TODO | TODO |
-| `fa_glt_1ti` | Farsi | 1 Timothy | English (ULT) | TODO | TODO |
-| `fa_glt_jas` | Farsi | James | English (ULT) | TODO | TODO |
-| `fa_glt_mrk` | Farsi | Mark | English (ULT) | TODO | TODO |
-| `id_glt_1ti` | Indonesian | 1 Timothy | English (ULT) | TODO | TODO |
-| `id_glt_tit` | Indonesian | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `ru_rlob_gen` | Russian | Genesis | English (ULT) | TODO | TODO |
-| `ru_rlob_luk` | Russian | Luke | English (ULT), Arabic (ARST) | TODO | TODO |
-| `ru_rlob_tit` | Russian | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `te_glt_luk` | Telugu | Luke | English (ULT) | TODO | TODO |
-| `te_glt_tit` | Telugu | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `vi_glt_1co` | Vietnamese | 1 Corinthians | English (ULT) | TODO | TODO |
-| `vi_glt_heb` | Vietnamese | Hebrews | English (ULT) | TODO | TODO |
-| `vi_glt_luk` | Vietnamese | Luke | English (ULT), Arabic (ARST), Russian (RLOB) | TODO | TODO |
-| `vi_glt_tit` | Vietnamese | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| `BSOJ/ar_avd/heb.usfm` | Arabic | Hebrews | English (ULT) | TODO | TODO |
+| `BSOJ/ar_avd/tit.usfm` | Arabic | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| `BSOJ/ar_avt/psa.usfm` | Arabic | Psalms | English (ULT) | TODO | TODO |
+| `translationCore-Create-BCS/bn_glt/2co.usfm` | Bengali | 2 Corinthians | English (ULT) | TODO | TODO |
+| `translationCore-Create-BCS/bn_glt/tit.usfm` | Bengali | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| `es-419_gl/es-419_est/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) | TODO | TODO |
+| `es-419_gl/es-419_glt/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) | TODO | TODO |
+| `fa_gl/fa_glt/1ti.usfm` | Farsi | 1 Timothy | English (ULT) | TODO | TODO |
+| `fa_gl/fa_glt/jas.usfm` | Farsi | James | English (ULT) | TODO | TODO |
+| `fa_gl/fa_glt/mrk.usfm` | Farsi | Mark | English (ULT) | TODO | TODO |
+| `id_gl/id_glt/1ti.usfm` | Indonesian | 1 Timothy | English (ULT) | TODO | TODO |
+| `id_gl/id_glt/tit.usfm` | Indonesian | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| `ru_gl/ru_rlob/gen.usfm` | Russian | Genesis | English (ULT) | TODO | TODO |
+| `ru_gl/ru_rlob/luk.usfm` | Russian | Luke | English (ULT), Arabic (ARST) | TODO | TODO |
+| `ru_gl/ru_rlob/tit.usfm` | Russian | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| `translationCore-Create-BCS/te_glt/luk.usfm` | Telugu | Luke | English (ULT) | TODO | TODO |
+| `translationCore-Create-BCS/te_glt/tit.usfm` | Telugu | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| `vi_gl/vi_glt/1co.usfm` | Vietnamese | 1 Corinthians | English (ULT) | TODO | TODO |
+| `vi_gl/vi_glt/heb.usfm` | Vietnamese | Hebrews | English (ULT) | TODO | TODO |
+| `vi_gl/vi_glt/luk.usfm` | Vietnamese | Luke | English (ULT), Arabic (ARST), Russian (RLOB) | TODO | TODO |
+| `vi_gl/vi_glt/tit.usfm` | Vietnamese | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
 
 Gateway-language texts the projects are aligned to (versions as in the training data; owners are
 their Door43 organizations):
@@ -235,10 +235,10 @@ their Door43 organizations):
 ## Limitations
 
 - **Tied to translationCore's prompt.** If that prompt changes, the model should be retrained, or at
-  least measured again.
+  least measured again (see checking-tool-wrapper).
 - **The answers are alignments, not selections.** The training answers are the words translators
   aligned to a key term, which can include small words a checker would leave out.
-- **Confidences are a rule, not a probability.** They follow the labelling rule above and are not
+- **Confidences are a rule, not a probability.** They follow the labeling rule above and are not
   calibrated. How well they separate right from wrong answers has not been measured.
 - **Coverage.** Most training examples use an English GL. Nepali is the only language tested that
   is in no training project, and the model was not tested with GLs beyond those listed.
@@ -250,5 +250,4 @@ their Door43 organizations):
 
 The model weights are released under the
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), as is the base model, Qwen3-1.7B.
-The training data is licensed under Creative Commons Attribution-ShareAlike (CC BY-SA); see
-"Training data" for attribution.
+
