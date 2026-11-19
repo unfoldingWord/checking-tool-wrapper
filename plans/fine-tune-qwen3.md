@@ -1094,3 +1094,35 @@ it scores 79.6% (D3 68.3%), but it trained on them, so that only shows nothing b
 **Choice: keep D3 as the release model.** The extra data is small, the only clean test points (not
 significantly) the wrong way, and D3 has held-out evidence (68.3% on 835 cases, 74.2% for its
 broad-test twin on 6,076) that the new model cannot have.
+
+### 2026-11-18: Qwen3-0.6B as a candidate
+
+`llmTraining/lora-r16-d3-0.6b.yaml`: D3's recipe and data on `Qwen/Qwen3-0.6B`, which has the same
+tokenizer and chat template (`check_data.py --model Qwen/Qwen3-0.6B` passes on `finetune-d3`).
+Validation loss 2.95 → 0.087 (1,200) → 0.095 (end), against D3's ~0.065-0.075; 1.4 hours (D3 2.8).
+Fused and converted to MLX 8-bit and 5-bit; the stock 0.6B converted to MLX 8-bit the same way.
+Step 6 (b) on the 835 held-out cases and (a) the suite (`-r 3 -g 1`, results in
+`llm-eval-results/finetune-0.6b/`), LM Studio's MLX engine:
+
+| | Size | (b) top-1 | (b) `ne_*` | (b) wrong at ≥ 80 | (a) top-1 | (a) wrong at ≥ 80 | (a) median ms | (a) suite |
+|---|---|---|---|---|---|---|---|---|
+| D3 1.7B MLX 5-bit | 1.1 GB | **68.3%** | **66.6%** | 91 | **75%** | **11%** | 126 | PASS |
+| 0.6B fine-tune MLX 8-bit | 0.6 GB | 64.8% | 63.0% | 91 | 63% | 13% | 79 | fail (top-1) |
+| 0.6B fine-tune MLX 5-bit | 0.4 GB | 63.6% | 61.0% | 92 | 64% | 13% | **71** | fail (top-1) |
+| Stock 0.6B MLX 8-bit | 0.6 GB | 54.4% | 54.7% | 213 | 58% | 16% | 1,198 | fail (3 bars) |
+| Stock 1.7B MLX 8-bit | 1.7 GB | 51.7% | 53.3% | 257 | 62% | 24% | | fail |
+| Stock 4b | 2.3 GB | 59.3% | 63.3% | 193 | 68% | 22% | | fail |
+
+Paired on (b): D3 5-bit vs 0.6B 8-bit 53 / 24 (p = 0.001), vs 0.6B 5-bit 61 / 22 (p = 2e-5); 0.6B
+8-bit vs 5-bit 20 / 10 (p = 0.10); 0.6B 8-bit vs stock 4b 88 / 42 (p = 7e-5). The stock 0.6B often
+does not stop thinking (42 empty answers, 91% CSV format, 1.2 s per suggestion); the fine-tune
+fixes that (6 empty, 100% CSV).
+
+**Result:** fine-tuning lifts the 0.6B by 10 points, above stock 4b and stock 1.7B, with as few
+confident wrong answers as D3 on (b). But it is 3.5-4.7 points below D3 on (b), 11-12 on the
+suite (failing its top-1 bar), and below D3 on unseen languages, in every band from 60 to 94.
+It saves 0.7 GB (5-bit: 0.4 vs 1.1 GB) and ~55 ms per suggestion.
+
+**Choice: D3 (1.7B) stays the model.** The 0.6B fine-tune is a usable fallback only for computers
+that cannot hold the 1.1 GB 1.7B build; it is not released unless such users turn up. Its adapter
+is `llmTraining/outputs/lora-r16-d3-0.6b`.
