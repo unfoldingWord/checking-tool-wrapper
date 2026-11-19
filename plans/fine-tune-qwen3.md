@@ -525,7 +525,11 @@ means regenerating the data and retraining, or the fine-tuned model loses accura
      result governs**, so this condition is met for plain llama.cpp. **Mac build decided 2026-11-18: MLX 5-bit**
      (same accuracy as 8-bit, 1.1 GB, passes the suite). Still to check: the engine
      Windows and Linux users will actually run. Builds to release: MLX 8-bit or 5-bit (same accuracy, 1.7 vs 1.1 GB) for Mac,
-     GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is no longer needed.
+     GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is no longer needed. **Changed
+     2026-11-19 (author): the 1.7B GGUF release is Q5_K_M** (1.2 GB), rebuilt from `fused-d3`:
+     68.1% (569) on (b), `ne_*` 66.9%, wrong at ≥ 80 94; same as the earlier Q5_K_M build (570,
+     3 / 2 changed) and as MLX 5-bit (17 / 16, p = 1.0); suite 67% top-1, 11% wrong, 100 ms (as
+     Q4_K_M). 5 bits keep a margin, since the 0.6B loses accuracy at 4 bits.
   2. **One request per query.** The fine-tune breaks with `llmGrouping` > 1 (Q3); make sure that
      setting cannot quietly be used with it, or warn when it is.
      **Decided 2026-11-18: documented in the model card only** (`llmTraining/model-card/README.md`,
@@ -1124,5 +1128,35 @@ suite (failing its top-1 bar), and below D3 on unseen languages, in every band f
 It saves 0.7 GB (5-bit: 0.4 vs 1.1 GB) and ~55 ms per suggestion.
 
 **Choice: D3 (1.7B) stays the model.** The 0.6B fine-tune is a usable fallback only for computers
-that cannot hold the 1.1 GB 1.7B build; it is not released unless such users turn up. Its adapter
-is `llmTraining/outputs/lora-r16-d3-0.6b`.
+that cannot hold the 1.1 GB 1.7B build. Its adapter is `llmTraining/outputs/lora-r16-d3-0.6b`.
+
+**Released as the small companion (decided 2026-11-18, author).** GGUF built as for the 1.7B (bf16
+from the fused weights with the 0.6B base model's tokenizer files, then `llama-quantize`) and scored
+through plain llama.cpp (`llama-server` 1.0.0):
+
+| Build | Size | (b) top-1 | (b) `ne_*` | (b) wrong at ≥ 80 | (a) top-1 | (a) wrong at ≥ 80 | (a) median ms |
+|---|---|---|---|---|---|---|---|
+| MLX 8-bit | 0.6 GB | 64.8% (541) | 63.0% | 91 | 63% | 13% | 79 |
+| GGUF Q8_0, llama.cpp | 0.6 GB | 64.7% (540) | 63.5% | 92 | 60% | 11% | 55 |
+| GGUF Q4_K_M, llama.cpp | 0.4 GB | 63.0% (526) | 62.2% | 98 | 60% | | 44 |
+
+Paired on (b): MLX 8-bit vs Q8_0 6 / 5 (p = 1.0); Q8_0 vs Q4_K_M 23 / 9 (**p = 0.02**). Unlike the
+1.7B, the 0.6B loses accuracy at 4 bits, so the 0.6B builds are 8-bit at first: MLX 8-bit for
+Mac and GGUF Q8_0 for Windows and Linux (0.6 GB each).
+
+**5-bit GGUF (2026-11-19):** Q5_K_M (0.43 GB) 64.3% (537), `ne_*` 62.7%, wrong at ≥ 80 90, suite 60%
+top-1 / 11% wrong / 48 ms; Q6_K (0.48 GB) 64.8% (541). Paired against Q8_0: Q5_K_M 11 / 8
+(p = 0.65), Q6_K 4 / 5 (p = 1.0). So Q5_K_M loses nothing measurable, and **the 0.6B GGUF release is
+Q5_K_M**; Mac stays MLX 8-bit.
+
+**MLX 6-bit (2026-11-19):** 0.47 GB, 64.1% (535), `ne_*` 63.0%, wrong at ≥ 80 95, suite 64% top-1 /
+13% wrong / 75 ms. Paired: MLX 8-bit vs 6-bit 12 / 6 (p = 0.24), 6-bit vs 5-bit 18 / 14 (p = 0.60).
+On MLX the three levels are within noise (8-bit 64.8%, 6-bit 64.1%, 5-bit 63.6%), with 8-bit
+highest and the fewest confident wrong answers (91 vs 95 and 92). 6-bit saves only 0.14 GB over
+8-bit, so Mac stays MLX 8-bit.
+
+**Release decided 2026-11-19 (author): 6 bits for both 0.6B builds**, MLX 6-bit (0.47 GB) for Mac and
+GGUF Q6_K (0.48 GB) for Windows and Linux. Both are within noise of their 8-bit builds (MLX 64.1%
+vs 64.8%, p = 0.24; GGUF 64.8% vs 64.7%, p = 1.0) and above the 4-bit loss. Card: `llmTraining/model-card-0.6b/README.md`
+(it says to prefer the 1.7B when the computer can run it); `llmTraining/make_release.sh` builds its
+release folders with the 1.7B's.

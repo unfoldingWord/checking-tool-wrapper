@@ -297,7 +297,7 @@
 
 ⏺ Bash(python3 - <<'EOF'
       p='package.json'…)
-  ⎿      fine-tune data written to /Users/blm0/Development/Electron/checkin
+  ⎿      fine-tune data written to ~/Development/Electron/checkin
      g-tool-wrapper/llmTrainingData/finetune
            counts: {"train":7892,"valid":449,"test":543} (negatives in trai
      … +25 lines (ctrl+o to expand)
@@ -603,7 +603,7 @@
   2 epochs at batch 8 is about 2,000 iterations, not the plan's 3,000. I'll keep
   the paths relative to the repo root. · summary
 
-⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper/llmTraining &&
+⏺ Bash(cd ~/Development/Electron/checking-tool-wrapper/llmTraining &&
       cat > lora-r16.yaml <<'EOF'
       # Run A of plans/fine-tune-qwen3.md (Step 4). Run from the…)
   ⎿  sed: 1: "s#^data: .*#data: llmTr ...": bad flag in substitute command:
@@ -654,7 +654,7 @@
 ⏺ The # delimiter collided with the YAML comment; writing the smoke config
   directly instead.
 
-⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper/llmTraining &&
+⏺ Bash(cd ~/Development/Electron/checking-tool-wrapper/llmTraining &&
       cat > lora-smoke.yaml <<'EOF'
       # Smoke run of plans/fine-tune-qwen3.md (Step 4): 200 ite…)
   ⎿  llmTrainingData/finetune/
@@ -3162,7 +3162,7 @@
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      054744-plansfine-tune-qwen3md-start-to-implement-plan.md
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and the new D3 model (68.1% on held-out cases) is the first to pass the suitability suite. Next, you hand-check about 50 cases so run D2 can train.
@@ -3255,7 +3255,7 @@
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and D3 is now the best model, passing every bar. Next, mark the 50 cases on the open review page, press Save verdicts, and tell me where the file is.
 
-❯ answers are at /Users/blm0/Downloads/handcheck-verdicts.json                  
+❯ answers are at ~/Downloads/handcheck-verdicts.json                  
 
   Ran 1 shell command (ctrl+o to expand)
 
@@ -3394,7 +3394,7 @@
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      074237-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ❯ how many fine tuned models have you created so far                            
@@ -3460,7 +3460,7 @@
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      074452-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions; D3 is the best model so far at 68.1%, and D2 (trained on your hand-checked cases) is training now. When it finishes, I'll compare D2 with run A and D3.
@@ -3481,7 +3481,7 @@
   answers with extra words like "the blessed hope" for "hope." I'm recording
   that in the plan. · summary
 
-⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+⏺ Bash(cd ~/Development/Electron/checking-tool-wrapper; python3 -
       <<'EOF'
       p='plans/fine-tune-qwen3.md'…)
   ⎿  1
@@ -3874,7 +3874,7 @@
   Q4_K_M. · summary
 
   Did not run 1 call (ctrl+o to expand)
-  ⎿  $ cd /Users/blm0/Development/Electron/checking-tool-wrapper; grep -E '"(torch_)?dtype"|tie_word' llmTraining/outputs/fused-d3/config.json; G=llmTraining/outputs/uw-tw-qwen3-1.7b-d3-GGUF; mkdir -p $G; llmTraining/.venv-gguf/bin/python llmTraining/.llama.cpp/convert_hf_to_gguf.py llmTraining/outputs/…
+  ⎿  $ cd ~/Development/Electron/checking-tool-wrapper; grep -E '"(torch_)?dtype"|tie_word' llmTraining/outputs/fused-d3/config.json; G=llmTraining/outputs/uw-tw-qwen3-1.7b-d3-GGUF; mkdir -p $G; llmTraining/.venv-gguf/bin/python llmTraining/.llama.cpp/convert_hf_to_gguf.py llmTraining/outputs/…
   ⎿  Blocked by auto mode
      │ Auto mode: [Undermining Oversight]
 
@@ -4138,7 +4138,7 @@
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      101623-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ⏺ Background command "Measure answer agreement across engines and precisions"
@@ -4520,7 +4520,7 @@
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      105558-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ❯ do 1 and 2                                                                    

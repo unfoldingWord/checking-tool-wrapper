@@ -50,10 +50,11 @@ choice always stays with the checker.
 | Build | For | Size | Run it with |
 |---|---|---|---|
 | MLX 5-bit | Mac (Apple silicon) | 1.1 GB | LM Studio (MLX engine) |
-| GGUF Q4_K_M | Windows, Linux | 1.0 GB | llama.cpp (`llama-server`) |
+| GGUF Q5_K_M | Windows, Linux | 1.2 GB | llama.cpp (`llama-server`) |
 
-MLX 5-bit scores the same as MLX 8-bit on every test below, at two-thirds the size. In llama.cpp,
-GGUF Q4_K_M scores the same as Q8_0.
+Both builds are 5-bit. MLX 5-bit scores the same as MLX 8-bit on every test below, at two-thirds
+the size. In llama.cpp, GGUF Q5_K_M scores the same as Q8_0 and as the MLX build; Q4_K_M did too,
+but 5 bits keep a margin (the 0.6B model loses accuracy at 4 bits).
 
 **Engine note:** on a Mac, LM Studio's *llama.cpp* engine gave noticeably different and worse
 answers than llama.cpp itself (`llama-server`), for this model and for the stock Qwen3-1.7B alike.
@@ -132,7 +133,8 @@ GLs.
 |---|---|---|---|
 | This model, MLX 5-bit | **68.3%** | 66.6% | **91** |
 | This model, MLX 8-bit | 68.1% | 66.9% | 92 |
-| This model, GGUF Q4_K_M (llama.cpp) | 68.7% | 68.0% | 85 |
+| This model, GGUF Q5_K_M (llama.cpp) | 68.1% | 66.9% | 94 |
+| This model, GGUF Q4_K_M (llama.cpp, not released) | 68.7% | 68.0% | 85 |
 | This model, GGUF Q8_0 (llama.cpp) | 68.7% | 66.9% | 91 |
 | Qwen3-4B-2507 | 59.3% | | 193 |
 | Qwen3-1.7B (MLX 8-bit) | 51.7% | | 257 |
@@ -148,7 +150,7 @@ translationCore's model suitability suite (55 hand-written and real cases, asked
 | Build | Top-1 | Wrong at ≥ 80 | Median time per suggestion | Result |
 |---|---|---|---|---|
 | MLX 5-bit (LM Studio) | 75% | 11% | 126 ms | Pass |
-| GGUF Q4_K_M (llama.cpp) | 67% | 11% | 92 ms | Below the 70% top-1 bar |
+| GGUF Q5_K_M (llama.cpp) | 67% | 11% | 100 ms | Below the 70% top-1 bar |
 
 Times on an M5 Pro Mac. Stock Qwen3-1.7B scored 62% with 24% wrong at ≥ 80, stock Qwen3-4B-2507
 68% with 22%. The GGUF build answers 6 of the 55 cases differently from MLX, mostly by giving fewer
@@ -162,7 +164,7 @@ words; on the 835 checks above it matches MLX.
 - **Settings:** 2 epochs (2,566 steps), batch 8, learning rate 2e-4 with 100 warmup steps and
   cosine decay, maximum length 2,048 tokens, seed 3407. About 2.8 hours.
 - **Then:** the adapter is merged into the base weights and quantized (MLX 5-bit; GGUF with
-  llama.cpp, Q4_K_M).
+  llama.cpp, Q5_K_M).
 - **Compared and not chosen:** LoRA rank 64 and a full fine-tune scored 2-3 points lower; adding
   the cases where the expected answer only partly matches the history raised that group but made
   the model add extra words elsewhere.

@@ -89,6 +89,7 @@ llmTraining/.venv-gguf/bin/python llmTraining/.llama.cpp/convert_hf_to_gguf.py $
     --outfile $G/uw-tw-qwen3-1.7b-d3-bf16.gguf
 llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-1.7b-d3-Q8_0.gguf Q8_0
 llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-1.7b-d3-Q4_K_M.gguf Q4_K_M
+llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-1.7b-d3-Q5_K_M.gguf Q5_K_M   # released
 ```
 
 Copy the `.gguf` files into a folder under LM Studio's models folder; it lists them as
@@ -97,7 +98,8 @@ Step 6 of the plan before publishing.
 
 ## Release
 
-The chosen model is D3 (`lora-r16-d3.yaml`): MLX 5-bit for Mac, GGUF Q4_K_M for Windows and Linux.
+The chosen model is D3 (`lora-r16-d3.yaml`): MLX 5-bit for Mac, GGUF Q5_K_M for Windows and Linux.
+Its small companion is D3's recipe on Qwen3-0.6B (`lora-r16-d3-0.6b.yaml`): MLX 6-bit and GGUF Q6_K.
 `llmTraining/make_release.sh` assembles `outputs/release/` from those builds with the model card
 (`llmTraining/model-card/README.md`) and the Apache 2.0 `LICENSE`, and prints the upload commands in
 its header. Finish the card's TODOs (attribution, CC BY-SA version, repository names) first.

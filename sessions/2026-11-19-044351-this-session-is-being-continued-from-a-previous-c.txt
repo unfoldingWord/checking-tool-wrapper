@@ -1146,7 +1146,7 @@
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      054744-plansfine-tune-qwen3md-start-to-implement-plan.md
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and the new D3 model (68.1% on held-out cases) is the first to pass the suitability suite. Next, you hand-check about 50 cases so run D2 can train.
@@ -1235,11 +1235,11 @@
   - Mostly "history rendering": drop the cases that contradict rule 3 (1,303 of
     the 2,487) or replace their answers, then train D2.
 
-✻ Cogitated for 2m 1s · done 5:59 AM
+✻ Cogitated for 2m 1s · done Wednesday 5:59 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and D3 is now the best model, passing every bar. Next, mark the 50 cases on the open review page, press Save verdicts, and tell me where the file is.
 
-❯ answers are at /Users/blm0/Downloads/handcheck-verdicts.json                  
+❯ answers are at ~/Downloads/handcheck-verdicts.json                  
 
   Ran 1 shell command (ctrl+o to expand)
 
@@ -1373,13 +1373,13 @@
   page and its generator, llmTraining/handcheck.py, can be reused for other
   groups. Nothing new is committed yet.
 
-✻ Churned for 47s · done 6:26 AM
+✻ Churned for 47s · done Wednesday 6:26 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for better translationWords suggestions; run D3 (68.1% held-out) is currently best, and run D2 is now training and will score itself. Next, when it finishes, I'll compare D2 with D3.
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      074237-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ❯ how many fine tuned models have you created so far                            
@@ -1440,11 +1440,11 @@
   If D2 also helps, the plan adds one more run with both groups, which would
   make eight.
 
-✻ Cooked for 11s · done 7:44 AM
+✻ Cooked for 11s · done Wednesday 7:44 AM
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      074452-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions; D3 is the best model so far at 68.1%, and D2 (trained on your hand-checked cases) is training now. When it finishes, I'll compare D2 with run A and D3.
@@ -1465,7 +1465,7 @@
   answers with extra words like "the blessed hope" for "hope." I'm recording
   that in the plan. · summary
 
-⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+⏺ Bash(cd ~/Development/Electron/checking-tool-wrapper; python3 -
       <<'EOF'
       p='plans/fine-tune-qwen3.md'…)
   ⎿  1
@@ -1570,7 +1570,7 @@
     README, .gitignore, handcheck.py, train_full.py and five configs: lora-r64,
     full, full-resume, lora-r16-d3 and lora-r16-d2.
 
-✻ Baked for 39s · done 8:56 AM
+✻ Baked for 39s · done Wednesday 8:56 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for better translationWords suggestions; all training runs are done and D3 is the chosen model, at 68.1% on held-out cases. Next, finish the CLAUDE.md documentation step and commit today's work, if you approve.
 
@@ -1685,7 +1685,7 @@
   threshold 100". That was wrong for stock 1.7b. I've fixed that note in the
   plan and added these measurements under Q6.
 
-✻ Crunched for 31s · done 9:33 AM
+✻ Crunched for 31s · done Wednesday 9:33 AM
 
 ❯ could you help me understand question 4?  what were the recommendations after 
   testing                                                                       
@@ -1757,7 +1757,7 @@
   I haven't written this into the plan yet. If you agree, I'll record it under
   Q4 as the recommendation, with the four conditions.
 
-✻ Baked for 18s · done 9:35 AM
+✻ Baked for 18s · done Wednesday 9:35 AM
 
 ❯ yes, record it under Q4                                                       
 
@@ -1835,7 +1835,7 @@
 
   None of today's changes are committed yet.
 
-✻ Cogitated for 14s · done 9:38 AM
+✻ Cogitated for 14s · done Wednesday 9:38 AM
 
 ❯ yes, build the GGUF and test it                                               
 
@@ -1858,7 +1858,7 @@
   Q4_K_M. · summary
 
   Did not run 1 call (ctrl+o to expand)
-  ⎿  $ cd /Users/blm0/Development/Electron/checking-tool-wrapper; grep -E '"(torch_)?dtype"|tie_word' llmTraining/outputs/fused-d3/config.json; G=llmTraining/outputs/uw-tw-qwen3-1.7b-d3-GGUF; mkdir -p $G; llmTraining/.venv-gguf/bin/python llmTraining/.llama.cpp/convert_hf_to_gguf.py llmTraining/outputs/…
+  ⎿  $ cd ~/Development/Electron/checking-tool-wrapper; grep -E '"(torch_)?dtype"|tie_word' llmTraining/outputs/fused-d3/config.json; G=llmTraining/outputs/uw-tw-qwen3-1.7b-d3-GGUF; mkdir -p $G; llmTraining/.venv-gguf/bin/python llmTraining/.llama.cpp/convert_hf_to_gguf.py llmTraining/outputs/…
   ⎿  Blocked by auto mode
      │ Auto mode: [Undermining Oversight]
 
@@ -2028,7 +2028,7 @@
     openssl@3. Tools that call /opt/homebrew/bin/openssl now get version 4. If
     anything relies on 3, brew link --overwrite openssl@3 restores it.
 
-✻ Sautéed for 3m 39s · done 9:43 AM
+✻ Sautéed for 3m 39s · done Wednesday 9:43 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and the chosen model (D3) now has GGUF builds for Windows and Linux. Next, when the background tests finish, I'll check that the GGUF builds score the same as the Mac builds.
 
@@ -2118,11 +2118,11 @@
   first. If it's something fixable in the conversion, the gap may close and GGUF
   alone could be enough.
 
-✻ Brewed for 29m 33s · done 10:16 AM
+✻ Brewed for 29m 33s · done Wednesday 10:16 AM
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      101623-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ⏺ Background command "Measure answer agreement across engines and precisions"
@@ -2143,7 +2143,7 @@
   systematic in the conversion or in llama.cpp's handling of this model. The
   stock-model test will show which.
 
-✻ Churned for 21s · done 10:33 AM
+✻ Churned for 21s · done Wednesday 10:33 AM
 
 ※ recap: We're checking whether the GGUF build of the chosen fine-tuned model (D3), for Windows and Linux, matches the Mac MLX build; it scores about 2½ points lower. Next: a stock-model comparison, now running, will show whether the conversion or llama.cpp itself causes the gap.
 
@@ -2189,7 +2189,7 @@
     does, the gap is how llama.cpp runs Qwen3. If it doesn't, something in
     converting the fine-tuned model is wrong and may be fixable.
 
-✻ Cogitated for 26s · done 10:36 AM
+✻ Cogitated for 26s · done Wednesday 10:36 AM
 
 ※ recap: We're checking the fine-tuned model's GGUF build for Windows and Linux, which scores about 2.5 points below the Mac (MLX) build. Next, I'll see whether the stock model shows the same gap once the running test finishes.
 
@@ -2365,7 +2365,7 @@
   - Uncommitted: the plan, the README and .gitignore edits, and the new scripts
     and configs.
 
-✻ Brewed for 8m 41s · done 10:49 AM
+✻ Brewed for 8m 41s · done Wednesday 10:49 AM
 
 ❯ record the GGUF results in the plan                                           
 
@@ -2452,7 +2452,7 @@
   These plan changes are uncommitted, along with the README and .gitignore edits
   and the new scripts and configs.
 
-✻ Sautéed for 14s · done 10:50 AM
+✻ Sautéed for 14s · done Wednesday 10:50 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and the GGUF builds for Windows and Linux are now built, tested and recorded in the plan. The next step is your call: commit the work, or first check which engine matches the reference implementation.
 
@@ -2500,11 +2500,11 @@
   Recommended order: commit (1), then Step 7 (5). Both are quick. Then the
   decisions (3) before any release work (4).
 
-✻ Crunched for 8s · done 10:54 AM
+✻ Crunched for 8s · done Wednesday 10:54 AM
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      105558-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ❯ do 1 and 2                                                                    
@@ -2539,7 +2539,7 @@
   llama.cpp behaves like plain llama.cpp. The transformers run is the slowest
   part, so expect about 20–30 minutes in all.
 
-✻ Worked for 38s · done 10:57 AM
+✻ Worked for 38s · done Wednesday 10:57 AM
 
 ※ recap: We're preparing the fine-tuned D3 model for release, and a background test is checking whether the Mac (MLX) or Windows/Linux (GGUF) engine matches the reference implementation. Next, I'll report which engine matches once the test finishes.
 
@@ -2681,7 +2681,7 @@
   I've recorded the table and conclusions in the plan's GGUF results section and
   updated Q4's GGUF parity condition. Those plan edits are uncommitted.
 
-✻ Churned for 45s · done 11:11 AM
+✻ Churned for 45s · done Wednesday 11:11 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions; D3 is chosen, and its GGUF build checks out on plain llama.cpp. Next, I'd score the GGUF on all 835 held-out cases through plain llama-server to choose between Q8_0 and Q4_K_M.
 
@@ -2703,11 +2703,11 @@
     Windows and Linux users will run before calling the condition met.
 
   These edits aren't committed yet.
-✻ Sautéed for 7s · done 11:21 AM
+✻ Sautéed for 7s · done Wednesday 11:21 AM
 
 ❯ /export                                                                       
   ⎿  Conversation exported to
-     /Users/blm0/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
      112246-plansfine-tune-qwen3md-start-to-implement-plan.txt
 
 ❯ what is next                                                                  
@@ -2748,7 +2748,7 @@
   I'd do 1, 2 and 6 now, since they don't need anything from you, and take 3–5
   when you're ready.
 
-✻ Worked for 6s · done 11:25 AM
+✻ Worked for 6s · done Wednesday 11:25 AM
 
 ❯ - [ ] Could a 5-bit or 6-bit model be a good replacement to 4-bit and close   
   to accuracy of 8-bit?                                                         
@@ -2784,7 +2784,7 @@
   list its file size. That will show whether 5-bit or 6-bit stays within the
   2-point bar at a useful size saving.
 
-✻ Cogitated for 20s · done 11:28 AM
+✻ Cogitated for 20s · done Wednesday 11:28 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and right now we're testing whether 5-bit or 6-bit builds (MLX and GGUF) match 8-bit accuracy. Next, I'll compare all six builds once the hour-long held-out test finishes.
 
@@ -2926,7 +2926,7 @@
   I added these results to the plan as a "Quantization levels" section and
   updated Q4's GGUF parity condition. Those edits aren't committed yet.
 
-✻ Brewed for 36s · done 11:37 AM
+✻ Brewed for 36s · done Wednesday 11:37 AM
 
 ※ recap: We're choosing which builds of the fine-tuned D3 model to release: MLX 5-bit (or 8-bit) for Mac and GGUF Q4_K_M for Windows/Linux, both as accurate as 8-bit. Next, I'd run the suitability suite on those two builds.
 
@@ -2950,7 +2950,7 @@
   These edits aren't committed yet. You've been committing the plan yourself, so
   I've left that to you.
 
-✻ Crunched for 6s · done 11:46 AM
+✻ Crunched for 6s · done Wednesday 11:46 AM
 
 ❯ what is next                                                                  
 
@@ -2986,7 +2986,7 @@
 
   I'd start with 1 and 2 now.
 
-✻ Worked for 6s · done 11:47 AM
+✻ Worked for 6s · done Wednesday 11:47 AM
 
 ❯ do 1 2 and 3                                                                  
 
@@ -3107,7 +3107,7 @@
   I'll wait for the suite to finish before deleting anything, since it uses the
   5-bit and Q4_K_M builds. Shall I go ahead with this list?
 
-✻ Sautéed for 33s · done 11:49 AM
+✻ Sautéed for 33s · done Wednesday 11:49 AM
 
 ⏺ Background command "Run suitability suite on MLX 5-bit and GGUF Q4_K_M"
   completed (exit code 0)
@@ -3254,7 +3254,7 @@
   more. Reply "yes" to delete the list from my last message (about 50 GB), or
   tell me what to change.
 
-✻ Cooked for 1m 0s · done 11:50 AM
+✻ Cooked for 1m 0s · done Wednesday 11:50 AM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and D3 is chosen, with MLX 5-bit for Mac and GGUF Q4_K_M for Windows and Linux. Next, please confirm the roughly 50 GB cleanup list and decide whether the held-out result or the suite bar decides the GGUF release.
 
@@ -3288,7 +3288,7 @@
 
   Still uncommitted: the plan's suite results and the CLAUDE.md update.
 
-✻ Cooked for 25s · done 12:03 PM
+✻ Cooked for 25s · done Wednesday 12:03 PM
 
 ❯ what is next                                                                  
 
@@ -3324,7 +3324,7 @@
 
   I'd commit now. Questions 2–5 are the ones blocking a release.
 
-✻ Churned for 5s · done 12:03 PM
+✻ Churned for 5s · done Wednesday 12:03 PM
 
 ※ recap: We're fine-tuning Qwen3-1.7B for better translationWords suggestions, and model D3 is chosen and built for Mac (MLX) and Windows/Linux (GGUF). Next, commit the plan and CLAUDE.md updates, then decide whether GGUF can ship despite failing the suite's top-1 bar.
 
@@ -3397,7 +3397,7 @@
   The plan and CLAUDE.md changes are still uncommitted. I can commit them
   whenever you want.
 
-✻ Churned for 13s · done 12:45 PM
+✻ Churned for 13s · done Wednesday 12:45 PM
 
 ❯ use the 5-bit on Mac build.  what does this mean: Q2: a broader held-out      
   test.                                                                         
@@ -3479,7 +3479,7 @@
 
   The plan and CLAUDE.md edits are still uncommitted.
 
-✻ Crunched for 24s · done 12:48 PM
+✻ Crunched for 24s · done Wednesday 12:48 PM
 
 ❯ do the broader held-out test                                                  
 
@@ -3888,7 +3888,7 @@
     with them.
   - I added by-project.js for the per-language breakdown.
 
-✻ Cogitated for 2m 1s · done 12:54 PM
+✻ Cogitated for 2m 1s · done Wednesday 12:54 PM
 
 ※ recap: We're checking that the fine-tuned model holds up on unseen projects in more languages before release. The broader held-out test is still running in the background; when it finishes, I'll compare the new model with the algorithm and stock models per language. (turn off recaps in /config)
 
@@ -3914,7 +3914,7 @@
   The stock 4b scoring is still running. I'll write up the full comparison when
   it finishes.
 
-✻ Worked for 21s · done 3:08 PM
+✻ Worked for 21s · done Wednesday 3:08 PM
 
 ※ recap: We're running the broader held-out test before releasing the fine-tuned model. On 6,076 cases it scores 74.2%, against 54.1% for stock 1.7b. Stock 4b is still being scored; when it finishes, I'll compare and record everything in the plan. (turn off recaps in /config)
 
@@ -4067,4 +4067,2805 @@
   Uncommitted: the plan, CLAUDE.md, llmTraining/lora-r16-d3-broad.yaml and the
   new llmTraining/compare/ scripts.
 
-✻ Worked for 40s · done 3:27 PM
+✻ Worked for 40s · done Wednesday 3:27 PM
+
+❯ /export                                                                         ⎿  Conversation exported to
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     152833-this-session-is-being-continued-from-a-previous-c.txt
+
+❯ add a script to package.json to rsync ./llmTraining with '/Volumes/T7-2nd/uW  
+  Llm Training/llmTraining'                                                     
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ package.json already has the sync script on line 26, so I must have added it
+  myself. The target folder exists on the drive too; next I'll check the drive's
+  file system, since rsync -a copies symlinks and permissions. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The exFAT drive can't hold symlinks or Unix permissions, so I'll switch the
+  script to copy files and timestamps only, skipping .venv, .venv-gguf and
+  .llama.cpp. That still copies outputs/ (18 GB), the configs, scripts and logs.
+  · summary
+
+⏺ Update(package.json)
+  ⎿  Added 1 line, removed 1 line
+      23      "test:llm": "jest __tests__/llmModelSuitability.test.js",
+      24      "build:llm-eval-cases": "cross-env LLM_EVAL_BUILD_REAL=1 je
+          st __tests__/buildLlmEvalRealCases.test.js",
+      25      "build:llm-training-data": "cross-env LLM_TRAINING_BUILD=1 
+          jest __tests__/buildLlmTrainingData.test.js",
+      26 -    "sync:llm-training": "rsync -av ./llmTraining/ \"/Volumes/T
+         -7-2nd/uW Llm Training/llmTraining/\"",                         
+      26 +    "sync:llm-training": "rsync -rtv --modify-window=1 --exclud
+         +e .venv/ --exclude .venv-gguf/ --exclude .llama.cpp/ ./llmTrain
+         +ing/ \"/Volumes/T7-2nd/uW Llm Training/llmTraining/\"",        
+      27      "run:llm-training-data": "cross-env LLM_TRAINING_RUN=1 jest
+           __tests__/runLlmTrainingData.test.js",
+      28      "check:llm-training-data": "cross-env LLM_TRAINING_CHECK=1 
+          jest __tests__/findUnhelpfulTrainingCases.test.js",
+      29      "build:finetune-data": "cross-env LLM_FINETUNE_BUILD=1 jest
+           __tests__/buildFineTuneData.test.js",
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ npm run sync:llm-training now copies ./llmTraining to /Volumes/T7-2nd/uW Llm 
+  Training/llmTraining. The script already existed in package.json (you must
+  have added it); I changed what it copies, because the drive uses exFAT, which
+  can't store symbolic links or Unix permissions.
+
+  "sync:llm-training": "rsync -rtv --modify-window=1 --exclude .venv/ --exclude 
+  .venv-gguf/ --exclude .llama.cpp/ ./llmTraining/ \"/Volumes/T7-2nd/uW Llm 
+  Training/llmTraining/\"",
+
+  - Copies files and timestamps only: -a would try to copy symbolic links and
+    permissions, which exFAT can't store. --modify-window=1 allows for the
+    drive's timestamp precision, so unchanged files aren't copied again.
+  - Skips .venv/, .venv-gguf/ and .llama.cpp/: the two Python environments are
+    mostly symbolic links to Homebrew's Python, so they'd fail to copy and
+    wouldn't work elsewhere anyway. .llama.cpp is a source clone. All three can
+    be rebuilt from llmTraining/README.md.
+  - Copies everything else: outputs/ (the models, about 18 GB), the configs, the
+    scripts and the logs.
+  - Deletes nothing on the drive: files you remove locally stay there. If you
+    want an exact mirror, add --delete; it removes files from the drive that are
+    no longer in ./llmTraining.
+
+  A dry run (npm run sync:llm-training -- --dry-run) found 205 files, 19 GB, and
+  only one of them needs copying. The drive is already nearly up to date, so
+  you've probably synced before.
+
+  The package.json change is uncommitted, along with the plan, CLAUDE.md and the
+  new llmTraining files.
+
+✻ Brewed for 25s · done Wednesday 3:29 PM
+
+❯ what other folders should be rsync'd                                          
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Only two more folders inside the repo are worth syncing: the ones git doesn't
+  save and that would take hours to recreate.
+
+  Folder: llmTrainingData/
+  Size: 415 MB
+  Why: finetune*/ (git-ignored) holds the exported training data and, in each
+    heldout/results/, every model's scored answers. All the figures in the
+    plan come from those, and recreating them takes hours of LM Studio runs.
+    results/ (not tracked by git) holds the algorithm results the comparisons
+    need.
+  ────────────────────────────────────────
+  Folder: llm-eval-results/
+  Size: 40 MB
+  Why: The suitability-suite logs and JSON results behind the plan's suite
+    tables (git-ignored).
+
+  One outside the repo, if it isn't already backed up:
+  - ~/translationCore/projects (496 MB): the translators' aligned projects the
+    training data was built from. Everything else can be rebuilt from these, but
+    they can't be rebuilt. Skip this if they're already on DCS or backed up
+    elsewhere.
+
+  Not worth syncing:
+  - sessions/ and the training data's .json files: already in git.
+  - node_modules/, lib/: rebuilt by npm install and npm run build.
+  - The Hugging Face cache (base Qwen model): can be downloaded again.
+  - LM Studio's unfoldingWord models folder: copies of what's in
+    llmTraining/outputs/, which is already synced.
+
+  I can turn the script into one that syncs all three repo folders: llmTraining,
+  llmTrainingData and llm-eval-results. It would copy them into the same uW Llm
+  Training folder on the T7 drive and use the same exFAT-safe options. Shall I,
+  and do you want ~/translationCore/projects included too?
+
+✻ Cooked for 17s · done Wednesday 3:31 PM
+
+❯ yes, add llmTrainingData and llm-eval-results                                 
+
+⏺ Update(package.json)
+  ⎿  Added 1 line, removed 1 line
+      23      "test:llm": "jest __tests__/llmModelSuitability.test.js",
+      24      "build:llm-eval-cases": "cross-env LLM_EVAL_BUILD_REAL=1 je
+          st __tests__/buildLlmEvalRealCases.test.js",
+      25      "build:llm-training-data": "cross-env LLM_TRAINING_BUILD=1 
+          jest __tests__/buildLlmTrainingData.test.js",
+      26 -    "sync:llm-training": "rsync -rtv --modify-window=1 --exclud
+         -e .venv/ --exclude .venv-gguf/ --exclude .llama.cpp/ ./llmTrain
+         -ing/ \"/Volumes/T7-2nd/uW Llm Training/llmTraining/\"",        
+      26 +    "sync:llm-training": "rsync -rtv --modify-window=1 --exclud
+         +e .venv/ --exclude .venv-gguf/ --exclude .llama.cpp/ ./llmTrain
+         +ing ./llmTrainingData ./llm-eval-results \"/Volumes/T7-2nd/uW L
+         +lm Training/\"",                                               
+      27      "run:llm-training-data": "cross-env LLM_TRAINING_RUN=1 jest
+           __tests__/runLlmTrainingData.test.js",
+      28      "check:llm-training-data": "cross-env LLM_TRAINING_CHECK=1 
+          jest __tests__/findUnhelpfulTrainingCases.test.js",
+      29      "build:finetune-data": "cross-env LLM_FINETUNE_BUILD=1 jest
+           __tests__/buildFineTuneData.test.js",
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ npm run sync:llm-training now copies all three folders:
+
+  "sync:llm-training": "rsync -rtv --modify-window=1 --exclude .venv/ --exclude 
+  .venv-gguf/ --exclude .llama.cpp/ ./llmTraining ./llmTrainingData 
+  ./llm-eval-results \"/Volumes/T7-2nd/uW Llm Training/\"",
+
+  - Same folder on the drive: each folder is copied under /Volumes/T7-2nd/uW Llm
+    Training/ with its own name. llmTraining goes to the folder it already
+    uses, so nothing is copied twice.
+  - Same exFAT-safe options as before: files and timestamps only. The two Python
+    environments and the llama.cpp source are still skipped, and nothing on the
+    drive is deleted.
+
+  A dry run lists 898 items in llmTrainingData and 264 in llm-eval-results to
+  copy. llmTraining is already up to date, so only its folder entry shows.
+  Everything synced comes to about 19.5 GB, almost all of it the models in
+  llmTraining/outputs.
+
+  The package.json change is uncommitted, along with the plan, CLAUDE.md and the
+  new llmTraining files.
+
+✻ Sautéed for 12s · done Wednesday 3:32 PM
+
+❯ what is next                                                                  
+
+⏺ The experiments are finished and most of your decisions are made. What's left
+  is release work, and three things only you can settle.
+
+  I can do these now:
+  1. Commit: the plan, CLAUDE.md, package.json (the sync script),
+     llmTraining/lora-r16-d3-broad.yaml and the llmTraining/compare/ scripts.
+  2. Run the sync (npm run sync:llm-training) so the T7 drive has today's
+     results.
+  3. Draft the model card:
+     - what the model does;
+     - held-out results, including the broader test;
+     - the single-request requirement and the recommended engines (MLX 5-bit on
+       Mac, GGUF Q4_K_M on plain llama.cpp);
+     - training data and limits.
+
+     You'd publish it with the builds.
+
+  These need you:
+  4. Q5, permission: confirm that a model trained on translators' projects may
+  be published, and under which license. Qwen3 is Apache 2.0; the training
+  data's terms are the open question.
+  5. The engine on Windows and Linux: which server will translationCore users
+  run? It needs a test on that engine, on a Windows or Linux machine, because LM
+  Studio's Mac llama.cpp engine gave worse answers.
+  6. Condition 2: where should the guard or warning for llmGrouping > 1 go:
+  here, in translationCore, or only in the model card?
+
+  Optional:
+  7. Retrain the release model on all projects, including the original nine test
+  files. The broader test showed more data helps (about 3 points), but that
+  model would have no clean held-out set of its own.
+
+  After those are settled:
+  8. Publish the builds, for example on Hugging Face, and set the model as the
+  default in translationCore. That's a change in translationCore, not here.
+
+  I'd do 1–3 now. Item 4 is what blocks a release.
+
+✻ Cogitated for 10s · done Wednesday 3:34 PM
+
+❯ /export                                                                       
+  ⎿  Conversation exported to
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     153453-this-session-is-being-continued-from-a-previous-c.txt
+
+❯  Draft the model card.  permission can be Apache 2.0, the training data is    
+  Creative Commons Attribution-ShareAlike (CC BY-SA)                            
+
+⏺ I'll gather the facts the card needs from D3's data manifest and the training
+  config, so every number in it is traceable.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I have what I need. I'll write the card as llmTraining/model-card/README.md,
+  the file Hugging Face displays as a model's page. Every figure comes from the
+  plan's results.
+
+⏺ Write(llmTraining/model-card/README.md)
+  ⎿  Wrote 211 lines to llmTraining/model-card/README.md
+       1 ---
+       2 license: apache-2.0
+       3 base_model: Qwen/Qwen3-1.7B
+       4 pipeline_tag: text-generation
+       5 library_name: mlx
+       6 tags:
+       7   - bible-translation
+       8   - translationcore
+       9   - translationwords
+      10   - qwen3
+     … +201 lines (ctrl+o to expand)
+
+⏺ Before showing you the draft, I'll check the claims in it I'm least sure of.
+  The first is what the label-0 "negative" examples actually are.
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ The negatives are built from verses that lack the check's words and get a
+  confidence-0 "no answer." I'm also correcting two card claims: the confidence
+  separation was never measured for this model, and the "about half are right"
+  figure actually measures checks with no related history. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      p='llmTraining/model-card/README.md'…)
+  ⎿  ok
+  ⎿  Updated llmTraining/model-card/README.md +7 -5
+      179  - **Gateway languages:** English (most examples), Arabic, Russ
+           ian and Spanish.
+      180  - **Confidence labels** follow a fixed rule, not a measurement
+           : 95 when the answer is an earlier
+      181    rendering found word for word in the verse, 75 when it is re
+           lated to one, 55 when the history
+      182 -  has nothing related, and 0 for a small share of examples whe
+          -re nothing should be selected.                                
+      182 +  has nothing related. 299 examples (3%) pair a check with ano
+          +ther verse that contains none of                              
+      183 +  its words, answered with nothing at confidence 0, so the mod
+          +el learns to give no answer.                                  
+      184  - **Left out:** checks the algorithm already gets right with c
+           ertainty (most of them), checks the
+      185    algorithm is certain about but wrong, answers that could not
+            be found in the verse, and checks
+      186    from the held-out projects and the suitability suite.
+     ...
+      197    least measured again.
+      198  - **The answers are alignments, not selections.** The training
+            answers are the words translators
+      199    aligned to a key term, which can include small words a check
+           er would leave out.
+      199 -- **Confidences are a rule, not a probability.** They follow t
+          -he labelling rule above. They separate                        
+      200 -  right from wrong answers well enough to be useful, but they 
+          -are not calibrated.                                           
+      200 +- **Confidences are a rule, not a probability.** They follow t
+          +he labelling rule above and are not                           
+      201 +  calibrated. How well they separate right from wrong answers 
+          +has not been measured.                                        
+      202  - **Coverage.** Most training examples use an English GL. Nepa
+           li is the only language tested that
+      203    is in no training project, and the model was not tested with
+            GLs beyond those listed.
+      203 -- **Small model.** When nothing in the history fits, it often 
+          -still guesses. Those guesses are                              
+      204 -  marked with a lower confidence (55), and about half of them 
+          -are right.                                                    
+      204 +- **Small model.** When nothing in the history is related to t
+          +he right answer, it is right about                            
+      205 +  half the time (48.9% of 133 such held-out checks), and it is
+          + trained to mark those answers with a                         
+      206 +  lower confidence (55).                                      
+      207 
+      208  ## License
+      209 
+
+⏺ I've drafted the model card at llmTraining/model-card/README.md, the file
+  Hugging Face shows as a model's page. Every figure comes from the plan's
+  results. I removed two claims I couldn't back up.
+
+  What it covers:
+  - Header: the metadata Hugging Face reads: Apache 2.0 license, base model
+    Qwen/Qwen3-1.7B, languages and tags.
+  - What the model does: suggests the target-language words for a
+    translationWords check, run offline, with the checker making the final
+    choice.
+  - Builds: MLX 5-bit for Mac and GGUF Q4_K_M for Windows and Linux. It includes
+    the warning about LM Studio's llama.cpp engine.
+  - How to use it: the exact translationCore prompt, thinking off, one request
+    per call (llmGrouping 1), temperature 0.1, and the algorithm cutoff at 100.
+  - Results:
+    - the broader test (6,076 checks, every project, against the algorithm and
+      both stock models);
+    - the released model on its own held-out files, in all four formats;
+    - the suitability suite. It says plainly that the GGUF build falls below the
+      suite's top-1 bar.
+  - Training: the method, settings and data, and the alternatives tried and not
+    chosen.
+  - Limitations:
+    - tied to translationCore's prompt;
+    - the answers are alignments, not selections;
+    - the confidences follow a rule and aren't calibrated;
+    - mostly English GLs, and Nepali is the only fully unseen language tested.
+  - License: weights under Apache 2.0, training data under CC BY-SA.
+
+  Fixed while checking the draft:
+  - I'd written that the confidences "separate right from wrong answers well
+    enough to be useful". That was never measured, so the card now says so.
+  - The "about half right" figure now names what it measures: 48.9% of 133
+    held-out checks where the history has nothing related.
+  - The label-0 examples are described as what they are: checks paired with an
+    unrelated verse.
+
+  Three TODOs are marked in a comment at the top of the card:
+  1. Repository names and download links, once you decide where to publish.
+  2. The attribution list for the training data: each project (vi_glt_luk,
+     ru_rlob_gen and so on), its owner or organization, and a source link. CC
+     BY-SA requires attribution, and I don't have those names.
+  3. The CC BY-SA version, for example 4.0.
+
+  One licensing point to check: CC BY-SA's ShareAlike term says adaptations of
+  the data must use the same license. Whether model weights trained on the data
+  count as an adaptation isn't settled. Releasing the weights under Apache 2.0
+  is a reasonable reading, but it's worth confirming with whoever handles
+  licensing at unfoldingWord before publishing.
+
+  The card is uncommitted, along with the plan, CLAUDE.md, package.json and the
+  new llmTraining files.
+
+✻ Churned for 1m 34s · done Wednesday 3:41 PM
+
+❯ explain what this means:  Condition 2: where should the guard or warning for  
+  llmGrouping > 1 go: here, in translationCore, or only in the model card?      
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ What llmGrouping is: a checking setting that controls how many checks
+  translationCore sends to the AI in one request.
+  - At 1 (the default): one check per request.
+    DEFAULT_SUGGESTION_REQUESTS_PER_CALL = 1 in src/Container.js:95.
+  - Above 1: several checks are bundled into one request, and the model has to
+    answer each one under a ### REQUEST n marker. With large models, batching
+    saves time.
+
+  Why it matters for the fine-tune: the model was trained on single requests
+  only. When we tested it with 4 checks per request, it left out the ### REQUEST
+  n markers, so translationCore couldn't tell which answer belonged to which
+  check. Most answers came back empty: 36% top-1, with 87 empty answers.
+
+  So if someone raises llmGrouping while using this model, their suggestions
+  quietly get worse. It isn't a crash. translationCore falls back to its
+  matching algorithm when the AI gives nothing, so the user gets the algorithm's
+  suggestions without the AI's improvement and without any sign of why.
+  Condition 2 under Q4 asks for that to be prevented, or at least flagged.
+
+  Where the guard could go:
+
+  Where: Here (checking-tool-wrapper, Container.js)
+  What it would do: Treat llmGrouping as 1 when the model name looks like the
+    fine-tune (e.g. contains uw-tw-), and log a warning
+  For: Automatic, a few lines, and the same place that reads the setting
+  Against: Detecting the model by name is fragile: someone can load it in LM
+    Studio under another name
+  ────────────────────────────────────────
+  Where: translationCore (its settings)
+  What it would do: Warn or disable grouping when this model is selected
+  For: The user sees the warning when they change the setting
+  Against: A change in another repository; same name-detection problem
+  ────────────────────────────────────────
+  Where: Model card only
+  What it would do: Document "use one request per call"
+  For: No code
+  Against: Relies on people reading it; the failure is silent
+
+  My recommendation: the model card already says this. Add the small guard here
+  as well. The default is already 1, so the guard only matters for someone who
+  changes the setting, and the fallback means a miss costs quality rather than
+  breaking anything. It's cheap insurance.
+
+  I don't know whether translationCore's settings screen shows llmGrouping to
+  users. If it does, the warning there would be the most visible option.
+
+✻ Churned for 17s · done Wednesday 3:43 PM
+
+❯ handle it only in the Model card                                              
+
+⏺ The card already covers this under "How to use it". I'll add what happens if
+  the setting is changed, and record your decision under Q4 in the plan.
+
+⏺ Bash(python3 - <<'EOF'
+      p='llmTraining/model-card/README.md'…)
+  ⎿  ok
+  ⎿  Updated llmTraining/model-card/README.md +4 -2
+      78  Use it with that prompt. A different prompt may work, but it ha
+          s not been measured.
+      79 
+      80  - **One request per call.** The model was trained on single req
+          uests. With several checks batched
+      81 -  in one call, it drops the `### REQUEST n` markers and most an
+         -swers come back empty. In                                      
+      82 -  translationCore, keep `llmGrouping` at 1 (the default).      
+      81 +  in one call, it drops the `### REQUEST n` markers and most an
+         +swers come back empty (36% top-1                               
+      82 +  with 4 checks per call, against 75% one at a time). In transl
+         +ationCore, keep `llmGrouping` at 1,                            
+      83 +  the default. Nothing warns you if it is raised: translationCo
+         +re falls back to its matching                                  
+      84 +  algorithm when the model gives no answer, so suggestions quie
+         +tly get worse instead of failing.                              
+      85  - **Temperature 0.1** (translationCore's default). Answers are
+          short (about 8 tokens).
+      86  - **Let the algorithm answer first.** translationCore's matchin
+          g algorithm answers on its own when
+      87    it is certain (confidence 100) and asks the model otherwise.
+          This model is most accurate with
+  ⎿  Updated plans/fine-tune-qwen3.md +3
+      528       GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is
+           no longer needed.
+      529    2. **One request per query.** The fine-tune breaks with `llm
+           Grouping` > 1 (Q3); make sure that
+      530       setting cannot quietly be used with it, or warn when it i
+           s.
+      531 +     **Decided 2026-11-18: documented in the model card only**
+          + (`llmTraining/model-card/README.md`,                         
+      532 +     "How to use it"), with no code guard. The default is 1, a
+          +nd with a larger value the app falls                          
+      533 +     back to the algorithm, so the cost of a miss is quality, 
+          +not a failure.                                                
+      534    3. **A broader test (Q2).** The held-out set is 9 files, fiv
+           e of them the same Titus verses
+      535       under different GLs. The margins are large, so this is un
+           likely to change the conclusion, but
+      536       it should be confirmed on more projects.
+
+⏺ Done. The model card handles it, with no code guard.
+
+  Model card (llmTraining/model-card/README.md, "How to use it"): the "one
+  request per call" point now also says:
+  - how much worse batching is: 36% top-1 with 4 checks per call, against 75%
+    one at a time;
+  - that nothing warns you if llmGrouping is raised. translationCore falls back
+    to its matching algorithm when the model gives no answer, so suggestions
+    quietly get worse instead of failing.
+
+  Plan: I recorded your decision under Q4, condition 2, with the reason: the
+  default is already 1, and a wrong setting costs quality rather than breaking
+  anything.
+
+  Both edits are uncommitted, along with the rest of today's changes.
+
+✻ Worked for 10s · done Wednesday 3:45 PM
+
+❯ what is next                                                                  
+
+⏺ The plan's work is done. What's left is finishing the model card and
+  releasing.
+
+  I can do these now:
+  1. Commit today's changes: the plan, CLAUDE.md, package.json (the sync
+     script), the model card, lora-r16-d3-broad.yaml and the
+     llmTraining/compare/ scripts.
+  2. Sync to the T7 drive with npm run sync:llm-training.
+  3. Start the attribution list for the model card: every project D3 trained on,
+     with its language, book and GL. You'd then fill in each owner and source
+     link.
+
+  These need you:
+  4. The model card's three TODOs:
+  - project owners and source links for the attribution list;
+  - the CC BY-SA version (for example 4.0);
+  - where to publish, with repository names.
+  5. Licensing check: confirm with whoever handles licensing that Apache 2.0 for
+     the weights is fine, given the CC BY-SA training data.
+  6. Windows and Linux: which server translationCore users will run there, and a
+     test of the GGUF build on it. That needs a Windows or Linux machine.
+
+  Then:
+  7. Publish: upload the MLX 5-bit and GGUF Q4_K_M builds with the card. I can
+  prepare the upload folders (model files, card, license file) and the commands.
+  8. Point translationCore at the model as the default, in the translationCore
+  repository.
+
+  Optional:
+  9. Retrain on all projects, including the nine original test files. That's
+  about 3 points better on the evidence so far, but leaves no clean test set for
+  the released model.
+
+  I'd do 1–3 now. After that, everything waits on 4–6.
+
+✻ Churned for 9s · done Wednesday 3:45 PM
+
+❯ do 9                                                                          
+
+⏺ I'll check how the exporter treats an empty held-out list, because an empty
+  value may fall back to the default four projects.
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ An empty value does fall back to the default four projects, so I'll pass a
+  project name that matches nothing (none-held-out). Next I'll build the data.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The data was written: 10,728 training examples from all 26 projects, and no
+  test set. But one exporter test failed, and the data check printed nothing.
+  I'll look at the failure.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The exporter's test needs at least one example, and it writes test.jsonl as a
+  blank line instead of an empty file, which breaks mlx-lm's loader. I'm
+  checking the writer next. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ I'll fix both: the writer will write an empty file for an empty split, and the
+  test will accept an empty test set only when no file matched the held-out
+  projects.
+
+⏺ Update(__tests__/helpers/fineTuneHelpers.js)
+  ⎿  Added 5 lines, removed 4 lines
+      670 
+      671    fs.mkdirSync(outDir, { recursive: true });
+      672 
+      673 +  // an empty split (e.g. no test projects) is an empty file: 
+          +a lone newline is a JSON error for mlx-lm                     
+      674 +  const toJsonl = rows => rows.map(row => JSON.stringify(row))
+          +.join('\n') + (rows.length ? '\n' : '');                      
+      675 +                                                              
+      676    for (const [split, examples] of Object.entries(splits)) {
+      674 -    fs.writeFileSync(path.join(outDir, `${split}.jsonl`),     
+      675 -      examples.map(({ messages }) => JSON.stringify({ messages
+          - })).join('\n') + '\n');                                      
+      676 -    fs.writeFileSync(path.join(outDir, `${split}.meta.jsonl`),
+      677 -      examples.map(({ meta }) => JSON.stringify(meta)).join('\
+          -n') + '\n');                                                  
+      677 +    fs.writeFileSync(path.join(outDir, `${split}.jsonl`), toJs
+          +onl(examples.map(({ messages }) => ({ messages }))));         
+      678 +    fs.writeFileSync(path.join(outDir, `${split}.meta.jsonl`),
+          + toJsonl(examples.map(({ meta }) => meta)));                  
+      679    }
+      680 
+      681    const manifest = {
+
+⏺ Update(__tests__/buildFineTuneData.test.js)
+  ⎿  Added 2 lines, removed 1 line
+      240      ].join('\n'));
+      241      expect(manifest.counts.train).toBeGreaterThan(0);
+      242      expect(manifest.counts.valid).toBeGreaterThan(0);
+      243 -    expect(manifest.counts.test).toBeGreaterThan(0);          
+      243 +    // no test examples only when the test projects match no f
+          +ile (training on every project)                               
+      244 +    expect(manifest.counts.test > 0 || manifest.testFiles.leng
+          +th === 0).toBe(true);                                         
+      245    }, 30 * 60 * 1000);
+      246  });
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The exporter tests pass, lint is clean, and the default build is byte-for-byte
+  unchanged. But the data check printed nothing again, so I'll look at its full
+  output.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The current rewrite is a bit off: it repeats a whole sentence's wording and
+  the narration here doesn't sit in a stray-ask scenario. Here is the compressed
+  rewrite in my own words.
+
+  mlx-lm's loader crashes on an empty split file, so the exporter should skip
+  empty splits entirely and delete any leftover copy from an earlier build. 
+  · summary
+
+⏺ Update(__tests__/helpers/fineTuneHelpers.js)
+  ⎿  Added 12 lines, removed 4 lines
+      670 
+      671    fs.mkdirSync(outDir, { recursive: true });
+      672 
+      673 -  // an empty split (e.g. no test projects) is an empty file: 
+          -a lone newline is a JSON error for mlx-lm                     
+      674 -  const toJsonl = rows => rows.map(row => JSON.stringify(row))
+          -.join('\n') + (rows.length ? '\n' : '');                      
+      673 +  const toJsonl = rows => rows.map(row => JSON.stringify(row))
+          +.join('\n') + '\n';                                           
+      674 
+      675    for (const [split, examples] of Object.entries(splits)) {
+      677 -    fs.writeFileSync(path.join(outDir, `${split}.jsonl`), toJs
+          -onl(examples.map(({ messages }) => ({ messages }))));         
+      678 -    fs.writeFileSync(path.join(outDir, `${split}.meta.jsonl`),
+          - toJsonl(examples.map(({ meta }) => meta)));                  
+      676 +    const dataFile = path.join(outDir, `${split}.jsonl`);     
+      677 +    const metaFile = path.join(outDir, `${split}.meta.jsonl`);
+      678 +                                                              
+      679 +    if (!examples.length) {                                   
+      680 +      // an empty split (e.g. no test projects) gets no file: 
+          +mlx-lm skips a missing split but fails on an empty one        
+      681 +      fs.rmSync(dataFile, { force: true });                   
+      682 +      fs.rmSync(metaFile, { force: true });                   
+      683 +      continue;                                               
+      684 +    }                                                         
+      685 +    fs.writeFileSync(dataFile, toJsonl(examples.map(({ message
+          +s }) => ({ messages }))));                                    
+      686 +    fs.writeFileSync(metaFile, toJsonl(examples.map(({ meta })
+          + => meta)));                                                  
+      687    }
+      688 
+      689    const manifest = {
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The data check passes and the default build is unchanged, but training on
+  every project adds only 463 examples (+4.5%), so the gain will likely be
+  small. There's no clean held-out set, so I'll use the suitability suite, where
+  D3 5-bit scored 75%, and write the config next. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      s=open('llmTraining/lora-r16-d3.yaml').read()…)
+  ⎿  12:data: llmTrainingData/finetune-d3-all     # train.jsonl, valid.json
+     l, test.jsonl
+     24:iters: 2682
+     … +3 lines (ctrl+o to expand)
+  ⎿  Created llmTraining/lora-r16-d3-all.yaml +36
+       1 +# Release model of plans/fine-tune-qwen3.md: D3 (lora-r16-d3.ya
+         +ml) trained on every project,                                  
+       2 +# the original four test projects included, so it has no held-o
+         +ut projects of its own (the                                    
+       3 +# suitability suite's verses are still left out). Data:        
+       4 +#   LLM_FINETUNE_INCLUDE=noRelatedWordInHistory LLM_FINETUNE_OU
+         +T_DIR=llmTrainingData/finetune-d3-all \                        
+       5 +#     LLM_FINETUNE_TEST_PROJECTS="none-held-out" npm run build:
+         +finetune-data                                                  
+       6 +# ("none-held-out" matches no project; an empty value falls bac
+         +k to the default test projects.)                               
+       7 +# Train from the repo folder:                                  
+       8 +#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora
+         +-r16-d3-all.yaml                                               
+       9 +# iters = 10,728 train examples x 2 epochs / 8 = ~2,682 for the
+         + 2026-11-18 build.                                             
+      10 +model: Qwen/Qwen3-1.7B                                         
+      11 +train: true                                                    
+      12 +data: llmTrainingData/finetune-d3-all     # train.jsonl, valid.
+         +jsonl, test.jsonl                                              
+      13 +fine_tune_type: lora                                           
+      14 +num_layers: -1                        # LoRA on every layer    
+      15 +lora_parameters:                                               
+      16 +  rank: 16                                                     
+      17 +  scale: 1.0                          # = lora_alpha / rank (al
+         +pha 16, as in Appendix A); 20 with lr 2e-4 broke the model     
+      18 +  dropout: 0.0                                                 
+      19 +  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_p
+         +roj", "self_attn.o_proj",                                      
+      20 +         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]      
+      21 +mask_prompt: true                     # loss on the assistant a
+         +nswer only (checked by check_data.py)                          
+      22 +max_seq_length: 2048                                           
+      23 +batch_size: 8                                                  
+      24 +iters: 2682                                                    
+      25 +learning_rate: 2e-4                                            
+      26 +lr_schedule:                                                   
+      27 +  name: cosine_decay                                           
+      28 +  warmup: 100                                                  
+      29 +  arguments: [2e-4, 2582, 0]          # [initial lr, decay step
+         +s (iters - warmup), final lr]                                  
+      30 +grad_checkpoint: true                                          
+      31 +steps_per_report: 20                                           
+      32 +steps_per_eval: 200                                            
+      33 +val_batches: 50                                                
+      34 +save_every: 200                                                
+      35 +adapter_path: llmTraining/outputs/lora-r16-d3-all              
+      36 +seed: 3407                                                     
+
+  Did not run 1 call (ctrl+o to expand)
+  ⎿  $ cd ~/Development/Electron/checking-tool-wrapper; B=llmTraining/.venv/bin; L=~/.cache/lm-studio/bin/lms; O=llmTraining/outputs; N=uw-tw-qwen3-1.7b-all; R=llm-eval-results/finetune-all
+     $L unload --all >/dev/null 2>&1…
+  ⎿  Not run · permission denied
+     │ Reason: Permission for this command was denied by a built-in Claude Code safety check
+
+⏺ The safety check blocked the command, because it deletes a file through shell
+  variables. Nothing ran. I'll use the safe form it suggests, which stops if a
+  variable is empty, and run the same chain.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I'm training the release model on all projects (item 9) in the background. It
+  should take about 3½ hours, then build and test both release formats.
+
+  Data: 10,728 training examples from all 26 projects, including the four
+  original test projects. That's only 463 more than D3 (+4.5%), because the caps
+  and filters drop most of those four projects; five of their files are the
+  same Titus verses. Expect a small gain at most. The new examples do add Nepali
+  and English targets, which D3 never trained on. The config is
+  llmTraining/lora-r16-d3-all.yaml, with D3's settings and 2,682 iterations.
+
+  After training, automatically:
+  1. Build the MLX 5-bit (Mac) and GGUF Q4_K_M (Windows and Linux) release
+     builds, as uw-tw-qwen3-1.7b-all.
+  2. Run the suitability suite on both. It's the only clean test left, since its
+     verses are excluded from all training. D3 scored 75% (MLX 5-bit) and 67%
+     (GGUF).
+  3. Score the MLX build on the original nine files. Those are now training
+     data, so this only checks that nothing broke.
+
+  Two exporter fixes were needed for training on every project:
+  - An empty test split made the exporter write a file that mlx-lm can't load
+    (first a lone newline, then an empty file). The exporter now leaves out an
+    empty split's files.
+  - The exporter's test required at least one test example. It now allows none
+    when no file matches the held-out projects.
+
+  The exporter tests pass, lint is clean, and the default build is byte-for-byte
+  unchanged.
+
+  Blocked command: a safety check stopped my first attempt, because it deleted
+  the temporary bf16 GGUF through shell variables. Nothing had run. I reissued
+  it in the form the check accepts.
+✻ Baked for 3m 28s · done Wednesday 3:57 PM
+
+※ recap: We're preparing the fine-tuned translationWords model for release. The all-projects version is training in the background, and when it finishes I'll compare its suitability-suite scores with D3's (75% on Mac, 67% GGUF). (turn off recaps in /config)
+
+⏺ Background command "Train, build and test the all-projects release model"
+  completed (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The all-projects model scored lower than D3 on the suitability suite (70% vs
+  75% for MLX 5-bit, 62% vs 67% for GGUF), so both builds now fail it. I'm
+  comparing the suite answers case by case to see whether that drop is real. 
+  · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Only 3 of the 55 suite cases changed, and the new model was wrong in all
+  three; I'm recording that in the plan. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      p='plans/fine-tune-qwen3.md'…)
+  ⎿  ok
+  ⎿  Updated plans/fine-tune-qwen3.md +28
+      1066  original test projects**; this broad model was only a test.
+      1067 
+      1068  Not run on the broad model: the suitability suite and GGUF bu
+            ilds (the release model is D3).
+      1069 +                                                             
+      1070 +### 2026-11-18: D3 trained on every project (release candidat
+           +e, not chosen)                                               
+      1071 +                                                             
+      1072 +`llmTraining/lora-r16-d3-all.yaml`: D3 on every project, the 
+           +four original test projects included                         
+      1073 +(`LLM_FINETUNE_TEST_PROJECTS="none-held-out"`, which matches 
+           +no project; the exporter now leaves out                      
+      1074 +an empty split's files, since mlx-lm fails on an empty or bla
+           +nk `test.jsonl`). Only **463 more                            
+      1075 +training examples** than D3 (10,728 vs 10,265, +4.5%): the ca
+           +ps and filters drop most of the four                         
+      1076 +projects (five of their files are the same Titus verses). Val
+           +idation loss 3.17 → 0.063 (1,000) →                          
+      1077 +0.065 (end). Built as MLX 5-bit and GGUF Q4_K_M (`uw-tw-qwen3
+           +-1.7b-all`).                                                 
+      1078 +                                                             
+      1079 +With no held-out projects, the clean test is the suitability 
+           +suite (its verses are left out of all                        
+      1080 +training):                                                   
+      1081 +                                                             
+      1082 +| Build | Top-1 | Top-1 hand-written | Wrong at ≥ 80 | Suite 
+           +|                                                            
+      1083 +|---|---|---|---|---|                                        
+      1084 +| D3 MLX 5-bit | **75%** | **90%** | **11%** | PASS |        
+      1085 +| All projects MLX 5-bit | 70% | 84% | 13% | fail |          
+      1086 +| D3 GGUF Q4_K_M (llama.cpp) | **67%** | **87%** | 11% | fail
+           + |                                                           
+      1087 +| All projects GGUF Q4_K_M (llama.cpp) | 62% | 78% | 11% | fa
+           +il |                                                         
+      1088 +                                                             
+      1089 +Per case (run 1, MLX 5-bit), 3 of 55 differ, all right for D3
+           + and wrong for the new model (p = 0.25):                     
+      1090 +`es-nothing-fits` (nothing should be selected; D3 gives no an
+           +swer, the new model "la casa" at 75),                        
+      1091 +`xx-related-key` ("sema" for `kirano sema`) and `real-bn-2co-
+           +3-13-veil`. On the original 9 files                          
+      1092 +it scores 79.6% (D3 68.3%), but it trained on them, so that o
+           +nly shows nothing broke.                                     
+      1093 +                                                             
+      1094 +**Choice: keep D3 as the release model.** The extra data is s
+           +mall, the only clean test points (not                        
+      1095 +significantly) the wrong way, and D3 has held-out evidence (6
+           +8.3% on 835 cases, 74.2% for its                             
+      1096 +broad-test twin on 6,076) that the new model cannot have.    
+
+⏺ Training on every project didn't help, so I recommend D3 stays the release
+  model.
+
+  Why it didn't help:
+  - Little new data: only 463 more training examples than D3 (+4.5%), because
+    the caps and filters drop most of the four original test projects.
+  - The one clean test points the wrong way. The suitability suite's verses are
+    excluded from all training, so it's the only unbiased check for this model:
+
+  ┌──────────────────────┬───────┬─────────────────────┬────────────────────┐
+  │        Build         │ Top-1 │ Wrong at confidence │       Suite        │
+  │                      │       │         80+         │                    │
+  ├──────────────────────┼───────┼─────────────────────┼────────────────────┤
+  │ D3, MLX 5-bit        │ 75%   │ 11%                 │ PASS               │
+  ├──────────────────────┼───────┼─────────────────────┼────────────────────┤
+  │ All projects, MLX    │ 70%   │ 13%                 │ fail               │
+  │ 5-bit                │       │                     │                    │
+  ├──────────────────────┼───────┼─────────────────────┼────────────────────┤
+  │ D3, GGUF Q4_K_M      │ 67%   │ 11%                 │ fail (below the    │
+  │                      │       │                     │ 70% bar)           │
+  ├──────────────────────┼───────┼─────────────────────┼────────────────────┤
+  │ All projects, GGUF   │ 62%   │ 11%                 │ fail               │
+  │ Q4_K_M               │       │                     │                    │
+  └──────────────────────┴───────┴─────────────────────┴────────────────────┘
+
+  - Three suite cases changed, all against the new model. That's not significant
+    on its own (p = 0.25). One is a case where nothing should be selected: D3
+    correctly gave no answer, and the new model answered "la casa" at
+    confidence 75.
+  - Its 79.6% on the original nine files doesn't count: it trained on them. It
+    only shows nothing broke.
+
+  My recommendation: keep D3 (MLX 5-bit and GGUF Q4_K_M) as the release model.
+  It has held-out evidence the new model can't have: 68.3% on 835 cases, and
+  74.2% on 6,076 cases for its broader-test twin. The model card already
+  describes D3, so it needs no change.
+
+  Housekeeping:
+  - I recorded this in the plan as "D3 trained on every project (release
+    candidate, not chosen)".
+  - The exporter fix stays: it now leaves out an empty test split's files, so
+    training on every project works if you try it again with more data.
+  - The new model's files are in llmTraining/outputs/
+    (uw-tw-qwen3-1.7b-all-5bit, its GGUF and fused-all) and in LM Studio. I can
+    delete them; tell me if you want to.
+
+  Everything is still uncommitted: the plan, CLAUDE.md, package.json, the model
+  card, the two new configs, the llmTraining/compare/ scripts, and the exporter
+  fix with its test.
+
+✻ Churned for 37s · done Wednesday 6:51 PM
+
+※ recap: We're preparing the fine-tuned Qwen3-1.7B translationWords model, D3, for release. Training on every project didn't beat D3, so D3 stays the release model. Next, commit today's uncommitted changes, then fill in the model card's attribution list.
+
+❯ what is next                                                                  
+
+⏺ The training work is finished, and D3 is the release model. What's left is
+  release work.
+
+  I can do these now:
+  1. Commit everything from today: the plan, CLAUDE.md, package.json, the model
+     card, the two new configs, the llmTraining/compare/ scripts, and the
+     exporter fix with its test.
+  2. Sync to the T7 drive with npm run sync:llm-training.
+  3. Clean up the all-projects model: about 5 GB in llmTraining/outputs/ and LM
+     Studio. Its adapter is small, so I'd keep that.
+  4. Start the attribution list for the model card: the 21 projects D3 trained
+     on, with language, book and GL. You'd fill in each owner and source link.
+  5. Prepare the release folders:
+     - MLX 5-bit and GGUF Q4_K_M, each with the model card and a LICENSE file;
+     - the upload commands for whatever host you choose.
+
+  These need you:
+  6. The model card's TODOs: project owners and links, the CC BY-SA version, and
+  the repository names.
+  7. Licensing check: confirm that Apache 2.0 for the weights is fine, given the
+  CC BY-SA training data.
+  8. Windows and Linux: which server translationCore users will run there, and a
+  test on it.
+
+  Then:
+  9. Publish the builds, and set the model as the default in translationCore
+  (that change is in the translationCore repository).
+
+  I'd do 1–5 now. Each is short, and after them everything waits on 6–8.
+
+✻ Cooked for 11s · done Wednesday 7:37 PM
+
+❯ do 1-5                                                                        
+
+⏺ I'll start with the cleanup (3), so the sync doesn't copy those files. These
+  are the all-projects model's builds; its small adapter lora-r16-d3-all stays.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Cleanup is done. Next is the attribution list (4). I'll gather D3's training
+  projects with their GL resources from the cases' source field.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I have all 21 projects, and the GL resources and their Door43 owners are named
+  in the card's source text. The target projects' owners aren't in the data, so
+  I'll leave those for you to fill in on the card. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      p='llmTraining/model-card/README.md'…)
+  ⎿  21
+  ⎿  Updated llmTraining/model-card/README.md +39 -2
+      28  <!--
+      29  DRAFT model card for uw-tw-qwen3-1.7b-d3. Before publishing:
+      30  - TODO: set the published repository names (MLX and GGUF) and t
+          he download links below.
+      31 -- TODO: add the attribution list for the training data (see "Tr
+         -aining data").                                                 
+      31 +- TODO: fill in the owners and source links in the attribution 
+         +tables (see "Training data").                                  
+      32  - TODO: give the CC BY-SA version of the training data (e.g. 4.
+          0).
+      33  Figures are from plans/fine-tune-qwen3.md (Results) in the chec
+          king-tool-wrapper repository.
+      34  -->
+     ...
+      191  from the work of the translation teams below, and of the gatew
+           ay-language teams whose texts they
+      192  aligned to.
+      193 
+      194 -<!-- TODO: attribution list: each project (e.g. vi_glt_luk), i
+          -ts owner/organization, and its source link. -->               
+      194 +Target-language projects in the training and validation data (
+          +21):                                                          
+      195 +                                                              
+      196 +<!-- TODO: fill in each project's owner (translation team or o
+          +rganization) and source link. -->                             
+      197 +                                                              
+      198 +| Project | Language | Book | Aligned to (GL) | Owner | Source
+          + |                                                            
+      199 +|---|---|---|---|---|---|                                     
+      200 +| `ar_avd_heb` | Arabic | Hebrews | English (ULT) | TODO | TOD
+          +O |                                                           
+      201 +| `ar_avd_tit` | Arabic | Titus | English (ULT), Spanish (GLT)
+          + | TODO | TODO |                                              
+      202 +| `ar_avt_psa` | Arabic | Psalms | English (ULT) | TODO | TODO
+          + |                                                            
+      203 +| `bn_glt_2co` | Bengali | 2 Corinthians | English (ULT) | TOD
+          +O | TODO |                                                    
+      204 +| `bn_glt_tit` | Bengali | Titus | English (ULT), Spanish (GLT
+          +) | TODO | TODO |                                             
+      205 +| `es-419_est_jon` | Spanish (Latin America) | Jonah | English
+          + (ULT) | TODO | TODO |                                        
+      206 +| `es-419_glt_jon` | Spanish (Latin America) | Jonah | English
+          + (ULT) | TODO | TODO |                                        
+      207 +| `fa_glt_1ti` | Farsi | 1 Timothy | English (ULT) | TODO | TO
+          +DO |                                                          
+      208 +| `fa_glt_jas` | Farsi | James | English (ULT) | TODO | TODO |
+      209 +| `fa_glt_mrk` | Farsi | Mark | English (ULT) | TODO | TODO | 
+      210 +| `id_glt_1ti` | Indonesian | 1 Timothy | English (ULT) | TODO
+          + | TODO |                                                     
+      211 +| `id_glt_tit` | Indonesian | Titus | English (ULT), Spanish (
+          +GLT) | TODO | TODO |                                          
+      212 +| `ru_rlob_gen` | Russian | Genesis | English (ULT) | TODO | T
+          +ODO |                                                         
+      213 +| `ru_rlob_luk` | Russian | Luke | English (ULT), Arabic (ARST
+          +) | TODO | TODO |                                             
+      214 +| `ru_rlob_tit` | Russian | Titus | English (ULT), Spanish (GL
+          +T) | TODO | TODO |                                            
+      215 +| `te_glt_luk` | Telugu | Luke | English (ULT) | TODO | TODO |
+      216 +| `te_glt_tit` | Telugu | Titus | English (ULT), Spanish (GLT)
+          + | TODO | TODO |                                              
+      217 +| `vi_glt_1co` | Vietnamese | 1 Corinthians | English (ULT) | 
+          +TODO | TODO |                                                 
+      218 +| `vi_glt_heb` | Vietnamese | Hebrews | English (ULT) | TODO |
+          + TODO |                                                       
+      219 +| `vi_glt_luk` | Vietnamese | Luke | English (ULT), Arabic (AR
+          +ST), Russian (RLOB) | TODO | TODO |                           
+      220 +| `vi_glt_tit` | Vietnamese | Titus | English (ULT), Spanish (
+          +GLT) | TODO | TODO |                                          
+      221 +                                                              
+     … +13 lines (ctrl+o to expand)
+
+⏺ Next I'm building the five release folders with a script, so they can be
+  rebuilt after any change, and first checking that the base model's LICENSE is
+  the Apache 2.0 text. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Write(llmTraining/make_release.sh)
+  ⎿  Wrote 45 lines to llmTraining/make_release.sh
+       1 #!/bin/bash
+       2 # Assembles the release folders of the chosen model (plans/fine-
+         tune-qwen3.md: D3) from the builds in
+       3 # llmTraining/outputs, each with the model card (llmTraining/mod
+         el-card/README.md) and the Apache 2.0
+       4 # LICENSE (the base model's copy):
+       5 #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-mlx-5bit/  MLX 
+         5-bit, for Mac
+       6 #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGUF
+          Q4_K_M, for Windows and Linux
+     … +39 lines (ctrl+o to expand)
+
+⏺ Bash(chmod +x llmTraining/make_release.sh && llmTraining/make_release.sh && ls
+      -la llmTraining/outputs/release/*; head -6
+      llmTraining/outputs/release/uw-tw-qwen3-1.7…)
+  ⎿  note: the model card still has TODOs (29 lines); finish them before up
+     loading
+     1.0G    llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF
+     … +27 lines (ctrl+o to expand)
+  ⎿  1 file changed (binary, mode only or too large to show)
+     llmTraining/make_release.sh
+
+⏺ Both release builds are done (1.1 GB MLX and 1.0 GB GGUF, each with its card
+  and license). I'm adding a short release section to llmTraining/README.md,
+  then running the full test suite before committing. · summary
+
+⏺ Bash(cat >> llmTraining/README.md <<'EOF'…)
+  ⎿  ✖ 1 problem (0 errors, 1 warning)
+       0 errors and 1 warning potentially fixable with the `--fix` option.
+         console.error node_modules/prop-types/factoryWithTypeCheckers.js:2
+     … +5 lines (ctrl+o to expand)
+  ⎿  Updated llmTraining/README.md +14
+       94  Copy the `.gguf` files into a folder under LM Studio's models
+           folder; it lists them as
+       95  `uw-tw-qwen3-1.7b-d3@q8_0` / `@q4_k_m` and runs them with its
+           llama.cpp engine. Score them with
+       96  Step 6 of the plan before publishing.
+       97 +                                                              
+       98 +## Release                                                    
+       99 +                                                              
+      100 +The chosen model is D3 (`lora-r16-d3.yaml`): MLX 5-bit for Mac
+          +, GGUF Q4_K_M for Windows and Linux.                          
+      101 +`llmTraining/make_release.sh` assembles `outputs/release/` fro
+          +m those builds with the model card                            
+      102 +(`llmTraining/model-card/README.md`) and the Apache 2.0 `LICEN
+          +SE`, and prints the upload commands in                        
+      103 +its header. Finish the card's TODOs (attribution, CC BY-SA ver
+          +sion, repository names) first.                                
+      104 +                                                              
+      105 +`compare/` holds the scripts that compare models on held-out f
+          +iles (`by-project.js`,                                        
+      106 +`compare-heldout.js`, `by-category.js`, `mcnemar.js`, `mcnemar
+          +-cat.js`); each says how to run it in                         
+      107 +its first lines.                                              
+      108 +                                                              
+      109 +`npm run sync:llm-training` copies `llmTraining`, `llmTraining
+          +Data` and `llm-eval-results` to the                           
+      110 +external drive (without the virtual environments and the llama
+          +.cpp source).                                                 
+  ⎿  (timeout 10m)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The test run reports 120 failed suites but no failed tests, so jest is likely
+  picking up files outside the repo's own tests. I'm checking which suites
+  failed. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Jest is picking up test files inside the llama.cpp clone at
+  llmTraining/.llama.cpp, which breaks npm test locally but not CI, so I'm
+  adding llmTraining/ to jest's ignore list. · summary
+
+⏺ Update(package.json)
+  ⎿  Added 5 lines, removed 1 line
+      38    "jest": {
+      39      "testPathIgnorePatterns": [
+      40        "/node_modules/",
+      41 -      "<rootDir>/__tests__/helpers/"                           
+      41 +      "<rootDir>/__tests__/helpers/",                          
+      42 +      "<rootDir>/llmTraining/"                                 
+      43      ],
+      44 +    "modulePathIgnorePatterns": [                              
+      45 +      "<rootDir>/llmTraining/"                                 
+      46 +    ],                                                         
+      47      "setupFilesAfterEnv": [
+      48        "<rootDir>/jest.setup.js"
+      49      ],
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ All tests pass now: 23 suites and 289 tests, with 20 tests skipped as usual.
+  The one lint warning is an existing one in src, not from today's changes. Now
+  the commit (1).
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Committed as 8473863. The last item is the sync to the T7 drive (2). It copies
+  about 20 GB, so I'll run it in the background.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Four of the five are done, and the fifth, the sync to the T7 drive, is running
+  in the background.
+
+  3. Cleanup: I deleted the all-projects model's builds: fused-all, its 5-bit
+  and GGUF builds, and the copy in LM Studio, about 5 GB. Its small adapter
+  lora-r16-d3-all is kept.
+
+  4. Attribution list: the model card now has two tables under "Training data":
+  - the 21 projects D3 trained on, with language, book and the GL each is
+    aligned to. The Owner and Source columns say TODO for you to fill in.
+  - the four GL texts with version and Door43 owner, from the training data:
+    English ULT v91 (unfoldingWord), Spanish GLT v42 (es-419_gl), Arabic ARST
+    v4.9 (BSOJ) and Russian RLOB v13.0 (ru_gl). Their links are also TODO.
+
+  5. Release folders: llmTraining/make_release.sh builds
+  llmTraining/outputs/release/:
+  - uw-tw-qwen3-1.7b-mlx-5bit/ (1.1 GB): the Mac build, with the card and the
+    Apache 2.0 LICENSE;
+  - uw-tw-qwen3-1.7b-GGUF/ (1.0 GB): the Q4_K_M file, with the card and the
+    license.
+
+  The upload commands are in the script's header. The script also warns while
+  the card still has TODOs; there are 29 lines now. Rerun it after editing the
+  card.
+
+  1. Commit: 8473863. You'd already committed CLAUDE.md and the sync script
+  yourself. Before committing I ran the full test suite and found a problem I'd
+  caused: jest was running the test files inside the llama.cpp clone, failing
+  120 suites on this Mac. CI wasn't affected, because the clone is git-ignored.
+  jest now ignores llmTraining/, and everything passes: 23 suites, 289 tests.
+  The one lint warning is an existing one in src/Container.js.
+
+  2. Sync: I'll confirm when it finishes.
+
+  What's left for you:
+  - the card's TODOs: owners and links, the CC BY-SA version, and the repository
+    names;
+  - the licensing check;
+  - the Windows and Linux engine test.
+
+✻ Cogitated for 2m 6s · done Wednesday 7:40 PM
+
+⏺ Background command "Sync training folders to the T7 drive" completed (exit
+  code 0)
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ The sync to the T7 drive finished without errors. It copied 3.3 GB of new and
+  changed files, and the three folders together now hold 22.9 GB locally.
+
+  On the drive, llmTraining takes 41 GB, much more than the local copy. The
+  script never deletes anything on the drive, so models I removed locally
+  earlier are still there: run A, B and C, D2, the smoke tests, the 4-bit and
+  6-bit builds, and the all-projects model. That's useful as an archive. If
+  you'd rather have an exact mirror, I can add --delete to the script. On the
+  next sync it would remove about 18 GB of old builds from the drive, which
+  can't be undone.
+
+  With that, all five items are done. The rest needs you:
+  - the model card's TODOs (owners and links, the CC BY-SA version, the
+    repository names);
+  - the licensing check;
+  - the Windows and Linux engine test.
+
+✻ Baked for 11s · done Wednesday 7:40 PM
+
+※ recap: We're fine-tuning Qwen3-1.7B for translationWords suggestions, and the chosen model (D3) is committed, packaged for release and backed up to the T7 drive. Next, fill in the model card's TODOs: project owners and links, the CC BY-SA version and the repository names.
+
+❯ now evaluate model qwen3-0.6b as a candidate for fine training                
+
+⏺ I'll test Qwen3-0.6B the same way as the 1.7B:
+  1. Stock baseline: the stock 0.6B on the 835 held-out cases and the suite. The
+     comparison point is stock 1.7B at 51.7%.
+  2. Fine-tune: D3's exact recipe and data, so the only difference is the model
+     size.
+  3. Score the fine-tune on the same tests. The comparison point is D3 at 68.3%
+     held-out and 75% on the suite.
+
+  First I'll download the base model (about 1.2 GB) and check that D3's data
+  renders the same with the 0.6B tokenizer.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The 0.6B model shares D3's tokenizer and chat template, and D3's data passes
+  the check unchanged, so I'm writing its config to reuse D3's data and settings
+  and starting the chain in the background. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      s=open('llmTraining/lora-r16-d3.yaml').read()…)
+  ⎿  6:model: Qwen/Qwen3-0.6B
+     8:data: llmTrainingData/finetune-d3      # train.jsonl, valid.jsonl, t
+     est.jsonl
+     … +2 lines (ctrl+o to expand)
+  ⎿  Created llmTraining/lora-r16-d3-0.6b.yaml +32
+       1 +# Qwen3-0.6B as a candidate (plans/fine-tune-qwen3.md): D3's re
+         +cipe and data (lora-r16-d3.yaml)                               
+       2 +# on the smaller base model, so the only change is the model si
+         +ze. The 0.6B has the same tokenizer                            
+       3 +# and chat template as the 1.7B (check_data.py --model Qwen/Qwe
+         +n3-0.6B passes on finetune-d3).                                
+       4 +# Train from the repo folder:                                  
+       5 +#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora
+         +-r16-d3-0.6b.yaml                                              
+       6 +model: Qwen/Qwen3-0.6B                                         
+       7 +train: true                                                    
+       8 +data: llmTrainingData/finetune-d3      # train.jsonl, valid.jso
+         +nl, test.jsonl                                                 
+       9 +fine_tune_type: lora                                           
+      10 +num_layers: -1                        # LoRA on every layer    
+      11 +lora_parameters:                                               
+      12 +  rank: 16                                                     
+      13 +  scale: 1.0                          # = lora_alpha / rank (al
+         +pha 16, as in Appendix A); 20 with lr 2e-4 broke the model     
+      14 +  dropout: 0.0                                                 
+      15 +  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_p
+         +roj", "self_attn.o_proj",                                      
+      16 +         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]      
+      17 +mask_prompt: true                     # loss on the assistant a
+         +nswer only (checked by check_data.py)                          
+      18 +max_seq_length: 2048                                           
+      19 +batch_size: 8                                                  
+      20 +iters: 2566                                                    
+      21 +learning_rate: 2e-4                                            
+      22 +lr_schedule:                                                   
+      23 +  name: cosine_decay                                           
+      24 +  warmup: 100                                                  
+      25 +  arguments: [2e-4, 2466, 0]          # [initial lr, decay step
+         +s (iters - warmup), final lr]                                  
+      26 +grad_checkpoint: true                                          
+      27 +steps_per_report: 20                                           
+      28 +steps_per_eval: 200                                            
+      29 +val_batches: 50                                                
+      30 +save_every: 200                                                
+      31 +adapter_path: llmTraining/outputs/lora-r16-d3-0.6b             
+      32 +seed: 3407                                                     
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The Qwen3-0.6B evaluation is running in the background. Training a model a
+  third the size should be faster than D3's 2.8 hours, so expect about 2 hours
+  in all.
+
+  Setup:
+  - Base model: downloaded (Qwen/Qwen3-0.6B). It has the same tokenizer and chat
+    template as the 1.7B, so D3's data passes the check unchanged.
+  - Config: llmTraining/lora-r16-d3-0.6b.yaml, D3's recipe exactly (same data,
+    LoRA rank 16, learning rate, two epochs, seed) with only the base model
+    changed. Any difference in results comes from model size alone.
+
+  The run, in order:
+  1. Convert the stock 0.6B to MLX 8-bit and score it on the 835 held-out cases
+     and the suite.
+  2. Fine-tune it.
+  3. Build 8-bit and 5-bit versions, and score both on the same tests.
+
+  I'll compare it against:
+
+  ┌───────────────────────┬─────────────┬──────────┬────────────────────────┐
+  │                       │  Held-out   │  Suite   │  Wrong at confidence   │
+  │                       │    top-1    │  top-1   │     80+ (held-out)     │
+  ├───────────────────────┼─────────────┼──────────┼────────────────────────┤
+  │ Stock 1.7B            │ 51.7%       │ 62%      │ 257                    │
+  ├───────────────────────┼─────────────┼──────────┼────────────────────────┤
+  │ D3 (1.7B fine-tune),  │ 68.3%       │ 75%      │ 91                     │
+  │ MLX 5-bit             │             │          │                        │
+  ├───────────────────────┼─────────────┼──────────┼────────────────────────┤
+  │ Algorithm alone       │ 53.5%       │ —        │ 181                    │
+  └───────────────────────┴─────────────┴──────────┴────────────────────────┘
+
+  I'll also report size and speed. The point of a 0.6B model is to run on
+  computers with less memory, so the question is how much accuracy that costs.
+
+✻ Baked for 1m 54s · done Wednesday 7:51 PM
+
+※ recap: We're fine-tuning a small model for translationWords suggestions. Right now Qwen3-0.6B is training on D3's recipe to see whether it's a smaller candidate. Next I'll compare its scores with D3's when the run finishes.
+
+⏺ Background command "Score stock 0.6B, fine-tune it, score 8-bit and 5-bit"
+  completed (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The fine-tuned 0.6B trails D3 by about 3.5 points on the held-out cases (64.8%
+  at 8-bit, 63.6% at 5-bit against 68.3%, p = 0.001), though it still clearly
+  beats stock 4b. Next I'll look at the suite, sizes and speed. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The 0.6B is a workable fine-tune but a clear step down from the 1.7B. I'll
+  record the results in the plan.
+
+⏺ Bash(python3 - <<'EOF'
+      p='plans/fine-tune-qwen3.md'…)
+  ⎿  ok
+  ⎿  Updated plans/fine-tune-qwen3.md +32
+      1094  **Choice: keep D3 as the release model.** The extra data is s
+            mall, the only clean test points (not
+      1095  significantly) the wrong way, and D3 has held-out evidence (6
+            8.3% on 835 cases, 74.2% for its
+      1096  broad-test twin on 6,076) that the new model cannot have.
+      1097 +                                                             
+      1098 +### 2026-11-18: Qwen3-0.6B as a candidate                    
+      1099 +                                                             
+      1100 +`llmTraining/lora-r16-d3-0.6b.yaml`: D3's recipe and data on 
+           +`Qwen/Qwen3-0.6B`, which has the same                        
+      1101 +tokenizer and chat template (`check_data.py --model Qwen/Qwen
+           +3-0.6B` passes on `finetune-d3`).                            
+      1102 +Validation loss 2.95 → 0.087 (1,200) → 0.095 (end), against D
+           +3's ~0.065-0.075; 1.4 hours (D3 2.8).                        
+      1103 +Fused and converted to MLX 8-bit and 5-bit; the stock 0.6B co
+           +nverted to MLX 8-bit the same way.                           
+      1104 +Step 6 (b) on the 835 held-out cases and (a) the suite (`-r 3
+           + -g 1`, results in                                           
+      1105 +`llm-eval-results/finetune-0.6b/`), LM Studio's MLX engine:  
+      1106 +                                                             
+      1107 +| | Size | (b) top-1 | (b) `ne_*` | (b) wrong at ≥ 80 | (a) t
+           +op-1 | (a) wrong at ≥ 80 | (a) median ms | (a) suite |       
+      1108 +|---|---|---|---|---|---|---|---|---|                        
+      1109 +| D3 1.7B MLX 5-bit | 1.1 GB | **68.3%** | **66.6%** | 91 | *
+           +*75%** | **11%** | 126 | PASS |                              
+      1110 +| 0.6B fine-tune MLX 8-bit | 0.6 GB | 64.8% | 63.0% | 91 | 63
+           +% | 13% | 79 | fail (top-1) |                                
+      1111 +| 0.6B fine-tune MLX 5-bit | 0.4 GB | 63.6% | 61.0% | 92 | 64
+           +% | 13% | **71** | fail (top-1) |                            
+      1112 +| Stock 0.6B MLX 8-bit | 0.6 GB | 54.4% | 54.7% | 213 | 58% |
+           + 16% | 1,198 | fail (3 bars) |                               
+      1113 +| Stock 1.7B MLX 8-bit | 1.7 GB | 51.7% | 53.3% | 257 | 62% |
+           + 24% | | fail |                                              
+      1114 +| Stock 4b | 2.3 GB | 59.3% | 63.3% | 193 | 68% | 22% | | fai
+           +l |                                                          
+      1115 +                                                             
+      1116 +Paired on (b): D3 5-bit vs 0.6B 8-bit 53 / 24 (p = 0.001), vs
+           + 0.6B 5-bit 61 / 22 (p = 2e-5); 0.6B                         
+      1117 +8-bit vs 5-bit 20 / 10 (p = 0.10); 0.6B 8-bit vs stock 4b 88 
+           +/ 42 (p = 7e-5). The stock 0.6B often                        
+      1118 +does not stop thinking (42 empty answers, 91% CSV format, 1.2
+           + s per suggestion); the fine-tune                            
+      1119 +fixes that (6 empty, 100% CSV).                              
+      1120 +                                                             
+      1121 +**Result:** fine-tuning lifts the 0.6B by 10 points, above st
+           +ock 4b and stock 1.7B, with as few                           
+      1122 +confident wrong answers as D3 on (b). But it is 3.5-4.7 point
+           +s below D3 on (b), 11-12 on the                              
+      1123 +suite (failing its top-1 bar), and below D3 on unseen languag
+           +es, in every band from 60 to 94.                             
+      1124 +It saves 0.7 GB (5-bit: 0.4 vs 1.1 GB) and ~55 ms per suggest
+           +ion.                                                         
+      1125 +                                                             
+      1126 +**Choice: D3 (1.7B) stays the model.** The 0.6B fine-tune is 
+           +a usable fallback only for computers                         
+      1127 +that cannot hold the 1.1 GB 1.7B build; it is not released un
+           +less such users turn up. Its adapter                         
+      1128 +is `llmTraining/outputs/lora-r16-d3-0.6b`.                   
+
+⏺ Qwen3-0.6B works as a fine-tune, but it's a clear step down from the 1.7B. I'd
+  keep D3 (1.7B) as the model and treat the 0.6B only as a possible fallback
+  for low-memory computers.
+
+  ┌─────────┬──────┬─────────┬─────────┬─────────┬───────┬────────┬───────┐
+  │         │      │ Held-ou │ Nepali  │ Wrong   │ Suite │        │       │
+  │         │ Size │ t top-1 │ (unseen │ at conf │       │ Median │ Suite │
+  │         │      │  (835)  │  langua │ idence  │ top-1 │  time  │       │
+  │         │      │         │   ge)   │   80+   │       │        │       │
+  ├─────────┼──────┼─────────┼─────────┼─────────┼───────┼────────┼───────┤
+  │ D3      │      │         │         │         │       │        │       │
+  │ (1.7B), │ 1.1  │ 68.3%   │ 66.6%   │ 91      │ 75%   │ 126 ms │ PASS  │
+  │  MLX    │ GB   │         │         │         │       │        │       │
+  │ 5-bit   │      │         │         │         │       │        │       │
+  ├─────────┼──────┼─────────┼─────────┼─────────┼───────┼────────┼───────┤
+  │ 0.6B    │      │         │         │         │       │        │       │
+  │ fine-tu │ 0.6  │ 64.8%   │ 63.0%   │ 91      │ 63%   │ 79 ms  │ fail  │
+  │ ne,     │ GB   │         │         │         │       │        │       │
+  │ 8-bit   │      │         │         │         │       │        │       │
+  ├─────────┼──────┼─────────┼─────────┼─────────┼───────┼────────┼───────┤
+  │ 0.6B    │      │         │         │         │       │        │       │
+  │ fine-tu │ 0.4  │ 63.6%   │ 61.0%   │ 92      │ 64%   │ 71 ms  │ fail  │
+  │ ne,     │ GB   │         │         │         │       │        │       │
+  │ 5-bit   │      │         │         │         │       │        │       │
+  ├─────────┼──────┼─────────┼─────────┼─────────┼───────┼────────┼───────┤
+  │ Stock   │ 0.6  │ 54.4%   │ 54.7%   │ 213     │ 58%   │ 1,198  │ fail  │
+  │ 0.6B    │ GB   │         │         │         │       │ ms     │       │
+  ├─────────┼──────┼─────────┼─────────┼─────────┼───────┼────────┼───────┤
+  │ Stock   │ 2.3  │ 59.3%   │ 63.3%   │ 193     │ 68%   │ —      │ fail  │
+  │ 4b      │ GB   │         │         │         │       │        │       │
+  └─────────┴──────┴─────────┴─────────┴─────────┴───────┴────────┴───────┘
+
+  What fine-tuning does for the 0.6B:
+  - Accuracy: about 10 points better than the stock 0.6B, and it beats stock 4b
+    (p < 0.001).
+  - Confident wrong answers: as few as D3's (91–92).
+  - The thinking problem: the stock 0.6B often doesn't stop "thinking" (42 empty
+    answers, 1.2 seconds per suggestion). The fine-tune fixes that.
+
+  Why D3 is still the better choice:
+  - Less accurate: 3.5 points below D3 at 8-bit and 4.7 at 5-bit on the held-out
+    cases, both significant (p = 0.001 and p = 0.00002).
+  - Fails the suite's top-1 bar: 63–64% against D3's 75%.
+  - Worse almost everywhere: lower on the unseen Nepali files, and below D3 in
+    every confidence band from 60 to 94.
+  - Small savings: 0.7 GB of memory and about 55 ms per suggestion. Both are
+    small in practice, since D3's 5-bit build is already only 1.1 GB.
+
+  My recommendation: don't release the 0.6B unless translators turn up whose
+  computers can't run the 1.1 GB build. If that happens, its adapter
+  (llmTraining/outputs/lora-r16-d3-0.6b) can be released within the hour.
+
+  I recorded the results and the decision in the plan. The new config
+  (llmTraining/lora-r16-d3-0.6b.yaml) and the plan update are uncommitted. The
+  0.6B builds take about 1.6 GB in llmTraining/outputs/ and LM Studio; I can
+  remove them.
+
+✻ Sautéed for 39s · done Wednesday 9:39 PM
+
+※ recap: You're fine-tuning Qwen3 to improve translationWords suggestions, and the Qwen3-0.6B test is done: it scores about 4 points below D3 (1.7B), which stays the release model. Next, fill in the model card's attribution TODOs before publishing.
+
+❯ /export                                                                       
+  ⎿  Conversation exported to
+     ~/Development/Electron/checking-tool-wrapper/sessions/2026-11-18-
+     214925-this-session-is-being-continued-from-a-previous-c.txt
+
+※ recap: The goal is a fine-tuned Qwen3 model for translationWords suggestions; testing Qwen3-0.6B showed it is 3.5 to 4.7 points below D3, so D3 stays the release model. Next, fill in the model card's TODOs (owners, CC BY-SA version, repository names) before publishing.
+
+❯  release the 0.6B trained model                                               
+
+⏺ I'll prepare the 0.6B release the same way as the 1.7B: release builds, a
+  model card and release folders. I won't upload anything. The 1.7B isn't
+  published yet either, because its card's TODOs (attribution, CC BY-SA version,
+  repository names) and the upload itself are waiting on you, and the 0.6B
+  shares them.
+
+  Mac build: I'd ship 5-bit. On the held-out cases it was within noise of 8-bit
+  (63.6% vs 64.8%, p = 0.10), and a low-memory fallback should be as small as
+  possible.
+
+  Windows and Linux build: the GGUF hasn't been built or tested for the 0.6B.
+  Smaller models can lose more to 4-bit rounding, so I'll build Q4_K_M and Q8_0,
+  score both through plain llama.cpp in the background, and write the card
+  meanwhile.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ While that runs, I'll write the 0.6B card from the 1.7B card. I'll read the
+  current version first, since it changed after the attribution tables were
+  added.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ The GGUF figures aren't back yet, so the model card waits on them. Meanwhile
+  I'm collecting the 0.6B-specific details, including the history check and the
+  base model's license. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+⏺ I have the 0.6B's own figures for the card:
+  - Base model license: Qwen3-0.6B is also Apache 2.0, with its own LICENSE
+    file.
+  - "Nothing related in the history" group: the 5-bit build gets 42.1% of those
+    cases right, against 49.6% for D3 5-bit.
+  - Weaker than D3 everywhere: it's lower in every case group, most of all on
+    answers that are another form of a history word (66.1% vs 75.4%).
+
+  The GGUF scoring is still running. When it finishes, I'll write the card with
+  the GGUF results, add the 0.6B to make_release.sh and build its release
+  folders.
+
+✻ Brewed for 31s · done Wednesday 9:57 PM
+
+⏺ Background command "Build 0.6B GGUF and score it via llama.cpp" completed
+  (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Q4_K_M trails Q8_0 on the 0.6B (526 vs 540, p = 0.02), and Q8_0 ties MLX
+  8-bit, so I'm switching my recommendation to 8-bit for both 0.6B builds.
+  Pulling the GGUF suite figures for the card next. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I have all the figures, so I'm building the 0.6B model card from the 1.7B card
+  and swapping out the model-specific parts. · summary
+
+⏺ Bash(mkdir -p llmTraining/model-card-0.6b && python3 - <<'EOF'
+      src=open('llmTraining/model-card/README.md',encoding='utf-8').read()…)
+  ⎿  29:DRAFT model card for uw-tw-qwen3-0.6b-d3 (the small companion of uw
+     -tw-qwen3-1.7b-d3). Before publishing:
+     33:The training data and attribution sections are the same as the 1.7B
+     … +19 lines (ctrl+o to expand)
+  ⎿  Created llmTraining/model-card-0.6b/README.md +234
+        1 +---                                                           
+        2 +license: apache-2.0                                           
+        3 +base_model: Qwen/Qwen3-0.6B                                   
+        4 +pipeline_tag: text-generation                                 
+        5 +library_name: mlx                                             
+        6 +tags:                                                         
+        7 +  - bible-translation                                         
+        8 +  - translationcore                                           
+        9 +  - translationwords                                          
+       10 +  - qwen3                                                     
+       11 +  - lora                                                      
+       12 +  - mlx                                                       
+       13 +  - gguf                                                      
+       14 +language:                                                     
+       15 +  - multilingual                                              
+       16 +  - en                                                        
+       17 +  - ar                                                        
+       18 +  - ru                                                        
+       19 +  - es                                                        
+       20 +  - vi                                                        
+       21 +  - te                                                        
+       22 +  - fa                                                        
+       23 +  - id                                                        
+       24 +  - bn                                                        
+       25 +  - ne                                                        
+       26 +---                                                           
+       27 +                                                              
+       28 +<!--                                                          
+       29 +DRAFT model card for uw-tw-qwen3-0.6b-d3 (the small companion 
+          +of uw-tw-qwen3-1.7b-d3). Before publishing:                   
+       30 +- TODO: set the published repository names (MLX and GGUF) and 
+          +the download links below.                                     
+       31 +- TODO: fill in the owners and source links in the attribution
+          + tables (see "Training data").                                
+       32 +- TODO: give the CC BY-SA version of the training data (e.g. 4
+          +.0).                                                          
+       33 +The training data and attribution sections are the same as the
+          + 1.7B card (llmTraining/model-card);                          
+       34 +keep them in step. Figures are from plans/fine-tune-qwen3.md (
+          +"Qwen3-0.6B as a candidate").                                 
+       35 +-->                                                           
+       36 +                                                              
+       37 +# uw-tw-qwen3-0.6b (translationWords suggestions, small)      
+       38 +                                                              
+       39 +A very small model, fine-tuned from [Qwen3-0.6B](https://huggi
+          +ngface.co/Qwen/Qwen3-0.6B), that helps                        
+       40 +Bible translation checkers in [translationCore](https://github
+          +.com/unfoldingWord/translationCore). In a                     
+     … +194 lines (ctrl+o to expand)
+
+⏺ I checked the card's figures against the results and found one wrong phrase:
+  the 0.6B trails D3 in every confidence band below 100, while the 100 band ties
+  all models. I'm adding the 0.6B to the release script next. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      p='llmTraining/model-card-0.6b/README.md';
+      s=open(p,encoding='utf-8').read()…)
+  ⎿  note: llmTraining/model-card/README.md still has TODOs (29 lines); fin
+     ish them before uploading
+     note: llmTraining/model-card-0.6b/README.md still has TODOs (29 lines)
+     … +34 lines (ctrl+o to expand)
+  ⎿  Updated llmTraining/make_release.sh +36 -25
+       1  #!/bin/bash
+       2 -# Assembles the release folders of the chosen model (plans/fine
+         --tune-qwen3.md: D3) from the builds in                         
+       3 -# llmTraining/outputs, each with the model card (llmTraining/mo
+         -del-card/README.md) and the Apache 2.0                         
+       4 -# LICENSE (the base model's copy):                             
+       2 +# Assembles the release folders of the chosen model (plans/fine
+         +-tune-qwen3.md: D3) and its small                              
+       3 +# companion (D3's recipe on Qwen3-0.6B) from the builds in llmT
+         +raining/outputs, each with its model                           
+       4 +# card (llmTraining/model-card*/README.md) and the Apache 2.0 L
+         +ICENSE (its base model's copy):                                
+       5  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-mlx-5bit/  MLX
+           5-bit, for Mac
+       6  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGU
+          F Q4_K_M, for Windows and Linux
+       7 +#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-8bit/  MLX
+         + 8-bit, for Mac (0.6B: 4-bit loses accuracy)                   
+       8 +#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/      GGU
+         +F Q8_0, for Windows and Linux                                  
+       9  # Run from the repo folder after building the 5-bit and GGUF bu
+          ilds (llmTraining/README.md). Rerun it
+      10  # after changing the card; it replaces the release folders.
+      11  #
+     ...
+      13  #   llmTraining/.venv/bin/hf auth login
+      14  #   llmTraining/.venv/bin/hf upload REPO-MLX-5bit llmTraining/o
+          utputs/release/uw-tw-qwen3-1.7b-mlx-5bit .
+      15  #   llmTraining/.venv/bin/hf upload REPO-GGUF llmTraining/outpu
+          ts/release/uw-tw-qwen3-1.7b-GGUF .
+      16 +#   (and the same for the two uw-tw-qwen3-0.6b folders)        
+      17  set -euo pipefail
+      18 
+      19  OUT=llmTraining/outputs
+      20  REL=$OUT/release
+      18 -CARD=llmTraining/model-card/README.md                          
+      19 -MLX=$OUT/uw-tw-qwen3-1.7b-d3-5bit                              
+      20 -GGUF=$OUT/uw-tw-qwen3-1.7b-d3-GGUF/uw-tw-qwen3-1.7b-d3-Q4_K_M.g
+         -guf                                                            
+      21 -BASE=$(ls -d ~/.cache/huggingface/hub/models--Qwen--Qwen3-1.7B/
+         -snapshots/*/ | head -1)                                        
+      22 -LICENSE=${BASE}LICENSE                                         
+      21 
+      24 -for f in "$CARD" "$MLX/model.safetensors" "$GGUF" "$LICENSE"; d
+         -o                                                              
+      25 -  [ -e "$f" ] || { echo "missing: $f" >&2; exit 1; }           
+      26 -done                                                           
+      27 -grep -q "Apache License" "$LICENSE" || { echo "not the Apache l
+         -icense: $LICENSE" >&2; exit 1; }                               
+      22 +# release NAME MLX_DIR MLX_TAG GGUF_FILE GGUF_TAG CARD BASE_REP
+         +O_DIR                                                          
+      23 +release() {                                                    
+      24 +  local name=$1 mlx=$2 mlxTag=$3 gguf=$4 ggufTag=$5 card=$6 bas
+         +eDir=$7                                                        
+      25 +  local base license                                           
+      26 +  base=$(ls -d ~/.cache/huggingface/hub/"$baseDir"/snapshots/*/
+         + | head -1)                                                    
+      27 +  license=${base}LICENSE                                       
+      28 +  for f in "$card" "$mlx/model.safetensors" "$gguf" "$license";
+         + do                                                            
+      29 +    [ -e "$f" ] || { echo "missing: $f" >&2; exit 1; }         
+     … +40 lines (ctrl+o to expand)
+  ⎿  Updated llmTraining/model-card-0.6b/README.md +2 -1
+      120  The Qwen models are the stock models given the same prompt. Fi
+           ne-tuning lifts Qwen3-0.6B by about
+      121  10 points, above the stock 4B model (paired, 88 checks right o
+           nly for this model against 42 only
+      122  for the 4B, p < 0.001), with as few confident wrong answers as
+            the 1.7B fine-tune. It stays about
+      123 -3.5 points below the 1.7B fine-tune (p = 0.001), in every conf
+          -idence band. The stock 0.6B often                             
+      123 +3.5 points below the 1.7B fine-tune (p = 0.001), in every band
+          + of the algorithm's confidence                                
+      124 +below 100 (at 100 the algorithm answers). The stock 0.6B often
+      125  does not stop "thinking" (empty answers, over a second per sug
+           gestion); the fine-tune fixes that.
+      126 
+      127  ### Suitability suite
+
+⏺ The release folders are built. Last, I'll record in the plan that the 0.6B is
+  released, with its GGUF results and the change to 8-bit.
+
+⏺ Bash(python3 - <<'EOF'
+      p='plans/fine-tune-qwen3.md'; s=open(p,encoding='utf-8').read()…)
+  ⎿   M llmTraining/make_release.sh
+      M plans/fine-tune-qwen3.md
+     ?? llmTraining/lora-r16-d3-0.6b.yaml
+     … +2 lines (ctrl+o to expand)
+  ⎿  Updated plans/fine-tune-qwen3.md +17 -2
+      1124  It saves 0.7 GB (5-bit: 0.4 vs 1.1 GB) and ~55 ms per suggest
+            ion.
+      1125 
+      1126  **Choice: D3 (1.7B) stays the model.** The 0.6B fine-tune is
+            a usable fallback only for computers
+      1127 -that cannot hold the 1.1 GB 1.7B build; it is not released un
+           -less such users turn up. Its adapter                         
+      1128 -is `llmTraining/outputs/lora-r16-d3-0.6b`.                   
+      1127 +that cannot hold the 1.1 GB 1.7B build. Its adapter is `llmTr
+           +aining/outputs/lora-r16-d3-0.6b`.                            
+      1128 +                                                             
+      1129 +**Released as the small companion (decided 2026-11-18, author
+           +).** GGUF built as for the 1.7B (bf16                        
+      1130 +from the fused weights with the 0.6B base model's tokenizer f
+           +iles, then `llama-quantize`) and scored                      
+      1131 +through plain llama.cpp (`llama-server` 1.0.0):              
+      1132 +                                                             
+      1133 +| Build | Size | (b) top-1 | (b) `ne_*` | (b) wrong at ≥ 80 |
+           + (a) top-1 | (a) wrong at ≥ 80 | (a) median ms |             
+      1134 +|---|---|---|---|---|---|---|---|                            
+      1135 +| MLX 8-bit | 0.6 GB | 64.8% (541) | 63.0% | 91 | 63% | 13% |
+           + 79 |                                                        
+      1136 +| GGUF Q8_0, llama.cpp | 0.6 GB | 64.7% (540) | 63.5% | 92 | 
+           +60% | 11% | 55 |                                             
+      1137 +| GGUF Q4_K_M, llama.cpp | 0.4 GB | 63.0% (526) | 62.2% | 98 
+           +| 60% | | 44 |                                               
+      1138 +                                                             
+      1139 +Paired on (b): MLX 8-bit vs Q8_0 6 / 5 (p = 1.0); Q8_0 vs Q4_
+           +K_M 23 / 9 (**p = 0.02**). Unlike the                        
+      1140 +1.7B, the 0.6B loses accuracy at 4 bits, so **both 0.6B relea
+           +se builds are 8-bit**: MLX 8-bit for                         
+      1141 +Mac and GGUF Q8_0 for Windows and Linux (0.6 GB each). Card: 
+           +`llmTraining/model-card-0.6b/README.md`                      
+      1142 +(it says to prefer the 1.7B when the computer can run it); `l
+           +lmTraining/make_release.sh` builds its                       
+      1143 +release folders with the 1.7B's.                             
+
+⏺ The 0.6B is ready to release next to the 1.7B: release folders, model card and
+  license. Nothing has been uploaded. Both models wait on the same model-card
+  TODOs and on your go-ahead to upload.
+
+  One change from what I said earlier: both 0.6B builds are 8-bit. I'd proposed
+  MLX 5-bit for Mac. Testing the GGUF builds showed that 4-bit rounding costs
+  this small model accuracy, which it didn't for the 1.7B:
+
+  ┌─────────────────┬──────┬───────────────────┬────────────────┬─────────┐
+  │   0.6B build    │ Size │  Held-out top-1   │   Wrong at     │ Suite   │
+  │                 │      │       (835)       │ confidence 80+ │  top-1  │
+  ├─────────────────┼──────┼───────────────────┼────────────────┼─────────┤
+  │ MLX 8-bit (Mac) │ 0.6  │ 64.8%             │ 91             │ 63%     │
+  │                 │ GB   │                   │                │         │
+  ├─────────────────┼──────┼───────────────────┼────────────────┼─────────┤
+  │ GGUF Q8_0       │ 0.6  │                   │                │         │
+  │ (Windows,       │ GB   │ 64.7%             │ 92             │ 60%     │
+  │ Linux)          │      │                   │                │         │
+  ├─────────────────┼──────┼───────────────────┼────────────────┼─────────┤
+  │ GGUF Q4_K_M     │ 0.4  │ 63.0% (worse than │ 98             │ 60%     │
+  │                 │ GB   │  Q8_0, p = 0.02)  │                │         │
+  ├─────────────────┼──────┼───────────────────┼────────────────┼─────────┤
+  │ MLX 5-bit       │ 0.4  │ 63.6%             │ 92             │ 64%     │
+  │                 │ GB   │                   │                │         │
+  └─────────────────┴──────┴───────────────────┴────────────────┴─────────┘
+
+  - Q8_0 vs MLX 8-bit: the same score (540 vs 541), so on plain llama.cpp the
+    GGUF build matches the Mac build.
+  - The cost: moving from 4- and 5-bit to 8-bit costs 0.2 GB, which is small
+    next to the 1.7B's 1.1 GB.
+
+  What's prepared:
+  - Model card (llmTraining/model-card-0.6b/README.md). It's built from the 1.7B
+    card: the usage, training data, attribution tables and limitations are the
+    same. Its own sections cover the results, builds and training. It says
+    plainly to use the 1.7B when the computer can run it: the 0.6B is about 3.5
+    points less accurate and fails the suite's top-1 bar.
+  - Release folders: make_release.sh now builds all four in
+    llmTraining/outputs/release/:
+    - 1.7B: MLX 5-bit and GGUF Q4_K_M;
+    - 0.6B: uw-tw-qwen3-0.6b-mlx-8bit and uw-tw-qwen3-0.6b-GGUF, each with its
+      card and the Qwen3-0.6B Apache 2.0 license.
+  - Plan: the release decision, the GGUF results and the switch to 8-bit are
+    recorded under "Qwen3-0.6B as a candidate".
+
+  Still needed before uploading either model:
+  - The cards' TODOs: the same 29 lines in each. Fill in the 1.7B card's
+    attribution tables; the 0.6B card has the same tables, so I'll copy them
+    across before uploading.
+  - The repository names, and your go-ahead to upload.
+
+  Uncommitted: the 0.6B config and card, the release script and the plan.
+
+✻ Baked for 1m 25s · done Wednesday 10:00 PM
+
+※ recap: We're preparing to release the fine-tuned translationWords models, and the 1.7B and 0.6B release folders and model cards are built but not uploaded or committed. Next, fill in the cards' attribution TODOs and repository names so they can be uploaded.
+
+❯ try 5 bits for GGUF                                                           
+  ⎿  1 skill available
+
+⏺ I'll build GGUF Q5_K_M for the 0.6B and score it the same way: the 835
+  held-out cases plus the suite, through plain llama.cpp. I'll include Q6_K as
+  well; it costs about 10 minutes and shows where the curve flattens between
+  Q4_K_M (63.0%) and Q8_0 (64.7%).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I'm building GGUF Q5_K_M (and Q6_K) for the 0.6B and scoring both in the
+  background through plain llama.cpp. It should take about 20 minutes.
+
+  I'll compare them with the two 0.6B GGUF builds already scored:
+
+  ┌───────────────────────────┬───────┬────────────────────────────────────┐
+  │         0.6B GGUF         │ Size  │        Held-out top-1 (835)        │
+  ├───────────────────────────┼───────┼────────────────────────────────────┤
+  │ Q8_0 (current release     │ 0.6   │ 64.7%                              │
+  │ pick)                     │ GB    │                                    │
+  ├───────────────────────────┼───────┼────────────────────────────────────┤
+  │ Q4_K_M                    │ 0.4   │ 63.0% (significantly worse, p =    │
+  │                           │ GB    │ 0.02)                              │
+  └───────────────────────────┴───────┴────────────────────────────────────┘
+
+  If Q5_K_M scores within noise of Q8_0, it can replace Q8_0 as the Windows and
+  Linux build.
+
+✻ Churned for 13s · done 4:12 AM
+
+⏺ Background command "Build and score 0.6B GGUF Q5_K_M and Q6_K" completed (exit
+  code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Q5_K_M scores the same as Q8_0, while Q4_K_M is the only level that loses.
+  Next I'll get Q5_K_M's suite figures for the card.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ I'm switching the 0.6B Windows and Linux release to Q5_K_M, which matches Q8_0
+  on every measure at 70% of the size, then updating the scripts, card and plan
+  before rebuilding. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      import re…)
+  ⎿  424M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF
+     615M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-8bit
+     1.0G    llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF
+     … +4 lines (ctrl+o to expand)
+  ⎿  Updated llmTraining/make_release.sh +2 -2
+       5  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-mlx-5bit/  MLX
+           5-bit, for Mac
+       6  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGU
+          F Q4_K_M, for Windows and Linux
+       7  #   llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-8bit/  MLX
+           8-bit, for Mac (0.6B: 4-bit loses accuracy)
+       8 -#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/      GGU
+         -F Q8_0, for Windows and Linux                                  
+       8 +#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/      GGU
+         +F Q5_K_M, for Windows and Linux (Q4_K_M loses accuracy)        
+       9  # Run from the repo folder after building the 5-bit and GGUF bu
+          ilds (llmTraining/README.md). Rerun it
+      10  # after changing the card; it replaces the release folders.
+      11  #
+     ...
+      51    "$OUT/uw-tw-qwen3-1.7b-d3-GGUF/uw-tw-qwen3-1.7b-d3-Q4_K_M.ggu
+          f" Q4_K_M \
+      52    llmTraining/model-card/README.md models--Qwen--Qwen3-1.7B
+      53  release uw-tw-qwen3-0.6b "$OUT/uw-tw-qwen3-0.6b-d3-8bit" 8bit \
+      54 -  "$OUT/uw-tw-qwen3-0.6b-d3-GGUF/uw-tw-qwen3-0.6b-d3-Q8_0.gguf"
+         - Q8_0 \                                                        
+      54 +  "$OUT/uw-tw-qwen3-0.6b-d3-GGUF/uw-tw-qwen3-0.6b-d3-Q5_K_M.ggu
+         +f" Q5_K_M \                                                    
+      55    llmTraining/model-card-0.6b/README.md models--Qwen--Qwen3-0.6
+          B
+      56  du -sh "$REL"/*
+  ⎿  Updated llmTraining/model-card-0.6b/README.md +8 -5
+      56  | Build | For | Size | Run it with |
+      57  |---|---|---|---|
+      58  | MLX 8-bit | Mac (Apple silicon) | 0.6 GB | LM Studio (MLX eng
+          ine) |
+      59 -| GGUF Q8_0 | Windows, Linux | 0.6 GB | llama.cpp (`llama-serve
+         -r`) |                                                          
+      59 +| GGUF Q5_K_M | Windows, Linux | 0.4 GB | llama.cpp (`llama-ser
+         +ver`) |                                                        
+      60 
+      61  At this size, 4-bit rounding costs accuracy: GGUF Q4_K_M scored
+           63.0% against 64.7% for Q8_0
+      62 -(p = 0.02), so both builds are 8-bit. In llama.cpp, Q8_0 scores
+         - the same as MLX 8-bit.                                        
+      62 +(p = 0.02). Q5_K_M scores the same as Q8_0 (64.3%, p = 0.65) at
+         + 70% of the size, so it is the GGUF                            
+      63 +build; in llama.cpp it also matches MLX 8-bit. On the Mac, MLX 
+         +8-bit is used (MLX 5-bit scored                                
+      64 +63.6%, not significantly lower, p = 0.10).                     
+      65 
+      66  **Engine note:** on a Mac, LM Studio's *llama.cpp* engine gave
+          noticeably different and worse
+      67  answers than llama.cpp itself (`llama-server`) for Qwen3 models
+           (measured with the 1.7B). On a Mac,
+     ...
+      111  |---|---|---|---|---|
+      112  | uw-tw-qwen3-1.7b, MLX 5-bit (for comparison) | 1.1 GB | **68
+           .3%** | **66.6%** | 91 |
+      113  | This model, MLX 8-bit | 0.6 GB | 64.8% | 63.0% | 91 |
+      112 -| This model, GGUF Q8_0 (llama.cpp) | 0.6 GB | 64.7% | 63.5% |
+          - 92 |                                                         
+      114 +| This model, GGUF Q5_K_M (llama.cpp) | 0.4 GB | 64.3% | 62.7%
+          + | 90 |                                                       
+      115 +| This model, GGUF Q8_0 (llama.cpp, not released) | 0.6 GB | 6
+          +4.7% | 63.5% | 92 |                                           
+      116  | This model, MLX 5-bit (not released) | 0.4 GB | 63.6% | 61.0
+           % | 92 |
+      117  | This model, GGUF Q4_K_M (not released) | 0.4 GB | 63.0% | 62
+           .2% | 98 |
+      118  | Qwen3-4B-2507 | 2.3 GB | 59.3% | 63.3% | 193 |
+     ...
+      134  | Build | Top-1 | Wrong at ≥ 80 | Median time per suggestion |
+            Result |
+      135  |---|---|---|---|---|
+      136  | MLX 8-bit (LM Studio) | 63% | 13% | 79 ms | Below the 70% to
+           p-1 bar |
+      134 -| GGUF Q8_0 (llama.cpp) | 60% | 11% | 55 ms | Below the 70% to
+          -p-1 bar |                                                     
+      137 +| GGUF Q5_K_M (llama.cpp) | 60% | 11% | 48 ms | Below the 70% 
+          +top-1 bar |                                                   
+      138  | uw-tw-qwen3-1.7b, MLX 5-bit | 75% | 11% | 126 ms | Pass |
+      139 
+      140  Times on an M5 Pro Mac. Stock Qwen3-0.6B scored 58% with 16% w
+           rong at ≥ 80.
+     ...
+      148    cosine decay, maximum length 2,048 tokens, seed 3407: the 1.
+           7B model's recipe unchanged. About
+      149    1.4 hours.
+      150  - **Then:** the adapter is merged into the base weights and qu
+           antized (MLX 8-bit; GGUF with
+      148 -  llama.cpp, Q8_0).                                           
+      151 +  llama.cpp, Q5_K_M).                                         
+      152  - **Settings choice:** taken from the 1.7B model, where LoRA r
+           ank 64, a full fine-tune and other
+      153    training sets were compared; they were not tuned again for 0
+           .6B.
+      154 
+  ⎿  Updated plans/fine-tune-qwen3.md +7 -2
+      1137  | GGUF Q4_K_M, llama.cpp | 0.4 GB | 63.0% (526) | 62.2% | 98
+            | 60% | | 44 |
+      1138 
+      1139  Paired on (b): MLX 8-bit vs Q8_0 6 / 5 (p = 1.0); Q8_0 vs Q4_
+            K_M 23 / 9 (**p = 0.02**). Unlike the
+      1140 -1.7B, the 0.6B loses accuracy at 4 bits, so **both 0.6B relea
+           -se builds are 8-bit**: MLX 8-bit for                         
+      1141 -Mac and GGUF Q8_0 for Windows and Linux (0.6 GB each). Card: 
+           -`llmTraining/model-card-0.6b/README.md`                      
+      1140 +1.7B, the 0.6B loses accuracy at 4 bits, so the 0.6B builds a
+           +re 8-bit at first: MLX 8-bit for                             
+      1141 +Mac and GGUF Q8_0 for Windows and Linux (0.6 GB each).       
+      1142 +                                                             
+      1143 +**5-bit GGUF (2026-11-19):** Q5_K_M (0.43 GB) 64.3% (537), `n
+           +e_*` 62.7%, wrong at ≥ 80 90, suite 60%                      
+      1144 +top-1 / 11% wrong / 48 ms; Q6_K (0.48 GB) 64.8% (541). Paired
+           + against Q8_0: Q5_K_M 11 / 8                                 
+      1145 +(p = 0.65), Q6_K 4 / 5 (p = 1.0). So Q5_K_M loses nothing mea
+           +surable, and **the 0.6B GGUF release is                      
+      1146 +Q5_K_M**; Mac stays MLX 8-bit. Card: `llmTraining/model-card-
+           +0.6b/README.md`                                              
+      1147  (it says to prefer the 1.7B when the computer can run it); `l
+            lmTraining/make_release.sh` builds its
+      1148  release folders with the 1.7B's.
+
+⏺ 5 bits works for the 0.6B GGUF. Q5_K_M scores the same as Q8_0 at 70% of the
+  size, so I've made it the Windows and Linux release build.
+
+  ┌─────────────┬──────┬───────────┬───────┬─────────────┬───────┬────────┐
+  │ 0.6B GGUF   │      │ Held-out  │  vs   │  Wrong at   │ Suite │ Median │
+  │   (plain    │ Size │  top-1    │ Q8_0  │ confidence  │       │  time  │
+  │ llama.cpp)  │      │   (835)   │       │     80+     │ top-1 │        │
+  ├─────────────┼──────┼───────────┼───────┼─────────────┼───────┼────────┤
+  │ Q8_0        │ 0.61 │ 64.7%     │ —     │ 92          │ 60%   │ 55 ms  │
+  │             │  GB  │           │       │             │       │        │
+  ├─────────────┼──────┼───────────┼───────┼─────────────┼───────┼────────┤
+  │             │ 0.48 │           │ same  │             │       │        │
+  │ Q6_K        │  GB  │ 64.8%     │ (p =  │ 92          │ 60%   │ —      │
+  │             │      │           │ 1.0)  │             │       │        │
+  ├─────────────┼──────┼───────────┼───────┼─────────────┼───────┼────────┤
+  │             │ 0.43 │           │ same  │             │       │        │
+  │ Q5_K_M      │  GB  │ 64.3%     │ (p =  │ 90          │ 60%   │ 48 ms  │
+  │             │      │           │ 0.65) │             │       │        │
+  ├─────────────┼──────┼───────────┼───────┼─────────────┼───────┼────────┤
+  │             │      │           │ worse │             │       │        │
+  │ Q4_K_M      │ 0.38 │ 63.0%     │  (p = │ 98          │ 60%   │ 44 ms  │
+  │             │  GB  │           │       │             │       │        │
+  │             │      │           │ 0.02) │             │       │        │
+  └─────────────┴──────┴───────────┴───────┴─────────────┴───────┴────────┘
+
+  - Only 4-bit loses accuracy. Q5_K_M and Q6_K are within noise of Q8_0 on the
+    held-out cases, and all four levels score the same on the suite.
+  - Q5_K_M is the smallest level without a measurable loss. It's also slightly
+    faster than Q8_0 and has the fewest confident wrong answers.
+
+  Changes:
+  - make_release.sh: the 0.6B GGUF release is now uw-tw-qwen3-0.6b-Q5_K_M.gguf
+    (424 MB); the release folders are rebuilt.
+  - The 0.6B card: the builds table, the explanation of the levels, and both
+    results tables now show Q5_K_M. Q8_0 is listed as not released.
+  - The plan: the 5-bit results and the switch are recorded.
+
+  On the Mac I kept MLX 8-bit. MLX 5-bit scored 63.6% against 64.8% for 8-bit, a
+  gap that isn't significant (p = 0.10) but points the same way as the GGUF
+  4-bit loss. If you'd rather use 5-bit there too (0.4 GB instead of 0.6 GB),
+  it's a one-line change in the script and the card.
+
+  If you'd rather keep Q8_0 on Windows and Linux, that's also a one-line change
+  in make_release.sh and the card.
+
+  Uncommitted: the 0.6B config and card, the release script and the plan.
+
+✻ Crunched for 40s · done 4:15 AM
+
+❯ try 6 bit for mlx                                                             
+
+⏺ I'll build an MLX 6-bit version of the 0.6B and score it the same way as the
+  others: the 835 held-out cases and the suite, in LM Studio's MLX engine.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I'm building and scoring MLX 6-bit for the 0.6B in the background. It should
+  take about 10 minutes.
+
+  I'll compare it with the two MLX builds already scored:
+
+  ┌─────────────────────┬───────┬───────────────────────────────┬──────────┐
+  │      0.6B MLX       │ Size  │     Held-out top-1 (835)      │  Suite   │
+  │                     │       │                               │  top-1   │
+  ├─────────────────────┼───────┼───────────────────────────────┼──────────┤
+  │ 8-bit (current Mac  │ 0.6   │ 64.8%                         │ 63%      │
+  │ release)            │ GB    │                               │          │
+  ├─────────────────────┼───────┼───────────────────────────────┼──────────┤
+  │ 5-bit               │ 0.4   │ 63.6% (not significantly      │ 64%      │
+  │                     │ GB    │ lower, p = 0.10)              │          │
+  └─────────────────────┴───────┴───────────────────────────────┴──────────┘
+
+  If 6-bit matches 8-bit, it can replace it as the Mac build at about 0.5 GB.
+
+✻ Cooked for 10s · done 4:21 AM
+
+⏺ Background command "Build and score 0.6B MLX 6-bit" completed (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+⏺ MLX 6-bit (0.47 GB) lands between the other two on the held-out cases: 64.1%,
+  against 64.8% for 8-bit and 63.6% for 5-bit. None of the differences are
+  significant. Next I'll get its suite figures.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='plans/fine-tune-qwen3.md'; s=open(p,encoding='utf-8').read()…)
+  ⎿  424M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF
+     615M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-8bit
+     1.0G    llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF
+     1.1G    llmTraining/outputs/release/uw-tw-qwen3-1.7b-mlx-5bit
+  ⎿  Updated llmTraining/model-card-0.6b/README.md +2 -2
+      60 
+      61  At this size, 4-bit rounding costs accuracy: GGUF Q4_K_M scored
+           63.0% against 64.7% for Q8_0
+      62  (p = 0.02). Q5_K_M scores the same as Q8_0 (64.3%, p = 0.65) at
+           70% of the size, so it is the GGUF
+      63 -build; in llama.cpp it also matches MLX 8-bit. On the Mac, MLX 
+         -8-bit is used (MLX 5-bit scored                                
+      64 -63.6%, not significantly lower, p = 0.10).                     
+      63 +build; in llama.cpp it also matches MLX 8-bit. On the Mac, MLX 
+         +8-bit is used: MLX 6-bit (64.1%)                               
+      64 +and 5-bit (63.6%) were not significantly lower, but not better 
+         +either, and save little.                                       
+      65 
+      66  **Engine note:** on a Mac, LM Studio's *llama.cpp* engine gave
+          noticeably different and worse
+      67  answers than llama.cpp itself (`llama-server`) for Qwen3 models
+           (measured with the 1.7B). On a Mac,
+  ⎿  Updated plans/fine-tune-qwen3.md +7 -1
+      1143  **5-bit GGUF (2026-11-19):** Q5_K_M (0.43 GB) 64.3% (537), `n
+            e_*` 62.7%, wrong at ≥ 80 90, suite 60%
+      1144  top-1 / 11% wrong / 48 ms; Q6_K (0.48 GB) 64.8% (541). Paired
+             against Q8_0: Q5_K_M 11 / 8
+      1145  (p = 0.65), Q6_K 4 / 5 (p = 1.0). So Q5_K_M loses nothing mea
+            surable, and **the 0.6B GGUF release is
+      1146 -Q5_K_M**; Mac stays MLX 8-bit. Card: `llmTraining/model-card-
+           -0.6b/README.md`                                              
+      1146 +Q5_K_M**; Mac stays MLX 8-bit.                               
+      1147 +                                                             
+      1148 +**MLX 6-bit (2026-11-19):** 0.47 GB, 64.1% (535), `ne_*` 63.0
+           +%, wrong at ≥ 80 95, suite 64% top-1 /                       
+      1149 +13% wrong / 75 ms. Paired: MLX 8-bit vs 6-bit 12 / 6 (p = 0.2
+           +4), 6-bit vs 5-bit 18 / 14 (p = 0.60).                       
+      1150 +On MLX the three levels are within noise (8-bit 64.8%, 6-bit 
+           +64.1%, 5-bit 63.6%), with 8-bit                              
+      1151 +highest and the fewest confident wrong answers (91 vs 95 and 
+           +92). 6-bit saves only 0.14 GB over                           
+      1152 +8-bit, so **Mac stays MLX 8-bit**. Card: `llmTraining/model-c
+           +ard-0.6b/README.md`                                          
+      1153  (it says to prefer the 1.7B when the computer can run it); `l
+            lmTraining/make_release.sh` builds its
+      1154  release folders with the 1.7B's.
+
+⏺ MLX 6-bit gives no clear benefit for the 0.6B, so I'd keep MLX 8-bit as the
+  Mac build.
+
+  0.6B MLX: 8-bit (release)
+  Size: 0.62 GB
+  Held-out top-1 (835): 64.8%
+  Nepali (unseen language): 63.0%
+  Wrong at confidence 80+: 91
+  Suite top-1: 63%
+  Suite wrong at 80+: 13%
+  Median time: 79 ms
+  ────────────────────────────────────────
+  0.6B MLX: 6-bit
+  Size: 0.47 GB
+  Held-out top-1 (835): 64.1%
+  Nepali (unseen language): 63.0%
+  Wrong at confidence 80+: 95
+  Suite top-1: 64%
+  Suite wrong at 80+: 13%
+  Median time: 75 ms
+  ────────────────────────────────────────
+  0.6B MLX: 5-bit
+  Size: 0.40 GB
+  Held-out top-1 (835): 63.6%
+  Nepali (unseen language): 61.0%
+  Wrong at confidence 80+: 92
+  Suite top-1: 64%
+  Suite wrong at 80+: 13%
+  Median time: 71 ms
+
+  - All three are within noise of each other: 8-bit vs 6-bit p = 0.24, and 6-bit
+    vs 5-bit p = 0.60. 8-bit scores highest and has the fewest confident wrong
+    answers.
+  - 6-bit saves only 0.14 GB over 8-bit and gets a few more answers wrong, so it
+    isn't worth switching.
+  - MLX lines up less neatly than GGUF did. For GGUF, 5-bit and above matched
+    8-bit and only 4-bit lost. On MLX the scores step down slightly with each
+    level, though none of the steps is significant.
+
+  If memory matters more than a point of accuracy, MLX 5-bit (0.40 GB) is the
+  defensible small option. Otherwise 8-bit stays.
+
+  Recorded: the 6-bit results are in the plan under the 0.6B section. The 0.6B
+  card's builds note now mentions 6-bit and 5-bit. I rebuilt the release folders
+  with the updated card; the builds themselves haven't changed (0.6B: MLX 8-bit
+  and GGUF Q5_K_M; 1.7B: MLX 5-bit and GGUF Q4_K_M).
+
+  Uncommitted: the 0.6B config and card, the release script and the plan.
+
+✻ Baked for 28s · done 4:22 AM
+
+❯ do release with 6 bits for MLX and GGUF                                       
+
+⏺ I'll switch the 0.6B release to 6-bit for both builds: MLX 6-bit for Mac and
+  GGUF Q6_K for Windows and Linux. The 1.7B release stays as it is (MLX 5-bit
+  and GGUF Q4_K_M). First, the Q6_K suite figures for the card.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      def edit(p, pairs):…)
+  ⎿  472M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF
+     473M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-6bit
+     1.0G    llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF
+     … +20 lines (ctrl+o to expand)
+  ⎿  Updated llmTraining/make_release.sh +4 -4
+       4  # card (llmTraining/model-card*/README.md) and the Apache 2.0 L
+          ICENSE (its base model's copy):
+       5  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-mlx-5bit/  MLX
+           5-bit, for Mac
+       6  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGU
+          F Q4_K_M, for Windows and Linux
+       7 -#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-8bit/  MLX
+         - 8-bit, for Mac (0.6B: 4-bit loses accuracy)                   
+       8 -#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/      GGU
+         -F Q5_K_M, for Windows and Linux (Q4_K_M loses accuracy)        
+       7 +#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-6bit/  MLX
+         + 6-bit, for Mac                                                
+       8 +#   llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/      GGU
+         +F Q6_K, for Windows and Linux (0.6B: Q4_K_M loses accuracy)    
+       9  # Run from the repo folder after building the 5-bit and GGUF bu
+          ilds (llmTraining/README.md). Rerun it
+      10  # after changing the card; it replaces the release folders.
+      11  #
+     ...
+      50  release uw-tw-qwen3-1.7b "$OUT/uw-tw-qwen3-1.7b-d3-5bit" 5bit \
+      51    "$OUT/uw-tw-qwen3-1.7b-d3-GGUF/uw-tw-qwen3-1.7b-d3-Q4_K_M.ggu
+          f" Q4_K_M \
+      52    llmTraining/model-card/README.md models--Qwen--Qwen3-1.7B
+      53 -release uw-tw-qwen3-0.6b "$OUT/uw-tw-qwen3-0.6b-d3-8bit" 8bit \
+      54 -  "$OUT/uw-tw-qwen3-0.6b-d3-GGUF/uw-tw-qwen3-0.6b-d3-Q5_K_M.ggu
+         -f" Q5_K_M \                                                    
+      53 +release uw-tw-qwen3-0.6b "$OUT/uw-tw-qwen3-0.6b-d3-6bit" 6bit \
+      54 +  "$OUT/uw-tw-qwen3-0.6b-d3-GGUF/uw-tw-qwen3-0.6b-d3-Q6_K.gguf"
+         + Q6_K \                                                        
+      55    llmTraining/model-card-0.6b/README.md models--Qwen--Qwen3-0.6
+          B
+      56  du -sh "$REL"/*
+  ⎿  Updated llmTraining/model-card-0.6b/README.md +15 -13
+      55 
+      56  | Build | For | Size | Run it with |
+      57  |---|---|---|---|
+      58 -| MLX 8-bit | Mac (Apple silicon) | 0.6 GB | LM Studio (MLX eng
+         -ine) |                                                         
+      59 -| GGUF Q5_K_M | Windows, Linux | 0.4 GB | llama.cpp (`llama-ser
+         -ver`) |                                                        
+      58 +| MLX 6-bit | Mac (Apple silicon) | 0.5 GB | LM Studio (MLX eng
+         +ine) |                                                         
+      59 +| GGUF Q6_K | Windows, Linux | 0.5 GB | llama.cpp (`llama-serve
+         +r`) |                                                          
+      60 
+      61 -At this size, 4-bit rounding costs accuracy: GGUF Q4_K_M scored
+         - 63.0% against 64.7% for Q8_0                                  
+      62 -(p = 0.02). Q5_K_M scores the same as Q8_0 (64.3%, p = 0.65) at
+         - 70% of the size, so it is the GGUF                            
+      63 -build; in llama.cpp it also matches MLX 8-bit. On the Mac, MLX 
+         -8-bit is used: MLX 6-bit (64.1%)                               
+      64 -and 5-bit (63.6%) were not significantly lower, but not better 
+         -either, and save little.                                       
+      61 +Both builds are 6-bit. At this size, 4-bit rounding costs accur
+         +acy (GGUF Q4_K_M scored 63.0%                                  
+      62 +against 64.7% for Q8_0, p = 0.02); 5 to 8 bits score within noi
+         +se of each other on both engines                               
+      63 +(GGUF Q6_K 64.8%, MLX 6-bit 64.1%, against 64.7% and 64.8% for 
+         +the 8-bit builds), and 6 bits keep a                           
+      64 +margin above the 4-bit loss at 0.5 GB.                         
+      65 
+      66  **Engine note:** on a Mac, LM Studio's *llama.cpp* engine gave
+          noticeably different and worse
+      67  answers than llama.cpp itself (`llama-server`) for Qwen3 models
+           (measured with the 1.7B). On a Mac,
+     ...
+      110  | Model | Size | Top-1 | Nepali only (362) | Wrong at ≥ 80 |
+      111  |---|---|---|---|---|
+      112  | uw-tw-qwen3-1.7b, MLX 5-bit (for comparison) | 1.1 GB | **68
+           .3%** | **66.6%** | 91 |
+      113 -| This model, MLX 8-bit | 0.6 GB | 64.8% | 63.0% | 91 |       
+      114 -| This model, GGUF Q5_K_M (llama.cpp) | 0.4 GB | 64.3% | 62.7%
+          - | 90 |                                                       
+      113 +| This model, MLX 6-bit | 0.5 GB | 64.1% | 63.0% | 95 |       
+      114 +| This model, GGUF Q6_K (llama.cpp) | 0.5 GB | 64.8% | 63.8% |
+          + 92 |                                                         
+      115 +| This model, MLX 8-bit (not released) | 0.6 GB | 64.8% | 63.0
+          +% | 91 |                                                      
+      116  | This model, GGUF Q8_0 (llama.cpp, not released) | 0.6 GB | 6
+           4.7% | 63.5% | 92 |
+      117 +| This model, GGUF Q5_K_M (llama.cpp, not released) | 0.4 GB |
+          + 64.3% | 62.7% | 90 |                                         
+      118  | This model, MLX 5-bit (not released) | 0.4 GB | 63.6% | 61.0
+           % | 92 |
+      117 -| This model, GGUF Q4_K_M (not released) | 0.4 GB | 63.0% | 62
+          -.2% | 98 |                                                    
+      119 +| This model, GGUF Q4_K_M (llama.cpp, not released) | 0.4 GB |
+          + 63.0% | 62.2% | 98 |                                         
+      120  | Qwen3-4B-2507 | 2.3 GB | 59.3% | 63.3% | 193 |
+      121  | Qwen3-0.6B (MLX 8-bit) | 0.6 GB | 54.4% | 54.7% | 213 |
+      122  | Qwen3-1.7B (MLX 8-bit) | 1.7 GB | 51.7% | 53.3% | 257 |
+     ...
+      135 
+      136  | Build | Top-1 | Wrong at ≥ 80 | Median time per suggestion |
+            Result |
+      137  |---|---|---|---|---|
+      136 -| MLX 8-bit (LM Studio) | 63% | 13% | 79 ms | Below the 70% to
+          -p-1 bar |                                                     
+      137 -| GGUF Q5_K_M (llama.cpp) | 60% | 11% | 48 ms | Below the 70% 
+          -top-1 bar |                                                   
+     … +15 lines (ctrl+o to expand)
+  ⎿  Updated plans/fine-tune-qwen3.md +5 -1
+      1149  13% wrong / 75 ms. Paired: MLX 8-bit vs 6-bit 12 / 6 (p = 0.2
+            4), 6-bit vs 5-bit 18 / 14 (p = 0.60).
+      1150  On MLX the three levels are within noise (8-bit 64.8%, 6-bit
+            64.1%, 5-bit 63.6%), with 8-bit
+      1151  highest and the fewest confident wrong answers (91 vs 95 and
+            92). 6-bit saves only 0.14 GB over
+      1152 -8-bit, so **Mac stays MLX 8-bit**. Card: `llmTraining/model-c
+           -ard-0.6b/README.md`                                          
+      1152 +8-bit, so Mac stays MLX 8-bit.                               
+      1153 +                                                             
+      1154 +**Release decided 2026-11-19 (author): 6 bits for both 0.6B b
+           +uilds**, MLX 6-bit (0.47 GB) for Mac and                     
+      1155 +GGUF Q6_K (0.48 GB) for Windows and Linux. Both are within no
+           +ise of their 8-bit builds (MLX 64.1%                         
+      1156 +vs 64.8%, p = 0.24; GGUF 64.8% vs 64.7%, p = 1.0) and above t
+           +he 4-bit loss. Card: `llmTraining/model-card-0.6b/README.md` 
+      1157  (it says to prefer the 1.7B when the computer can run it); `l
+            lmTraining/make_release.sh` builds its
+      1158  release folders with the 1.7B's.
+
+⏺ The 0.6B release now uses 6 bits for both builds, and the release folders are
+  rebuilt:
+
+  ┌───────────────┬──────────┬──────┬──────────┬────────────┬───────┬────────┐
+  │ 0.6B release  │          │      │ Held-out │ Wrong at   │ Suite │ Median │
+  │     build     │   For    │ Size │  top-1   │ confidence │       │  time  │
+  │               │          │      │  (835)   │     80+    │ top-1 │        │
+  ├───────────────┼──────────┼──────┼──────────┼────────────┼───────┼────────┤
+  │ MLX 6-bit (uw │          │ 473  │          │            │       │        │
+  │ -tw-qwen3-0.6 │ Mac      │ MB   │ 64.1%    │ 95         │ 64%   │ 75 ms  │
+  │ b-mlx-6bit)   │          │      │          │            │       │        │
+  ├───────────────┼──────────┼──────┼──────────┼────────────┼───────┼────────┤
+  │ GGUF Q6_K (uw │ Windows, │ 472  │          │            │       │        │
+  │ -tw-qwen3-0.6 │  Linux   │ MB   │ 64.8%    │ 92         │ 60%   │ 50 ms  │
+  │ b-Q6_K.gguf)  │          │      │          │            │       │        │
+  └───────────────┴──────────┴──────┴──────────┴────────────┴───────┴────────┘
+
+  Both are within noise of their 8-bit versions: MLX 64.1% against 64.8% (p =
+  0.24), and GGUF 64.8% against 64.7% (p = 1.0). Both stay clear of the 4-bit
+  loss. The two builds are also nearly the same size.
+
+  Changes:
+  - make_release.sh: the 0.6B builds are now MLX 6-bit and GGUF Q6_K.
+  - The 0.6B card:
+    - the builds table and the explanation of why 6-bit;
+    - the results and suite tables. They lead with the 6-bit builds and list the
+      other levels as not released.
+    - the training section.
+  - The plan: your decision is recorded.
+
+  Unchanged: the 1.7B release (MLX 5-bit and GGUF Q4_K_M).
+
+  llmTraining/outputs/release/ now holds four folders, each with its card and
+  the Apache 2.0 license:
+  - uw-tw-qwen3-1.7b-mlx-5bit and uw-tw-qwen3-1.7b-GGUF;
+  - uw-tw-qwen3-0.6b-mlx-6bit and uw-tw-qwen3-0.6b-GGUF.
+
+  Nothing is uploaded yet. Both cards still have their TODOs: attribution owners
+  and links, the CC BY-SA version, and the repository names. Once those are
+  done and you give the go-ahead, the upload commands are in the header of
+  make_release.sh.
+
+  Uncommitted: the 0.6B config and card, the release script and the plan.
+
+✻ Baked for 39s · done 4:27 AM
+
+❯ show comparison between the stock 0.6B, 1.7B, and 4B models and the released  
+  tuned models in performance                                                   
+
+⏺ I'll gather every figure from the saved results, rather than from memory. The
+  suite timings for stock 1.7B and 4B aren't in my notes, so I'll look those up
+  too.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The held-out figures are all there. Next I'll find the 2026-11-17 suite runs
+  of stock 1.7B and 4B for their timings.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Here is how the released fine-tuned models compare with the stock Qwen3
+  models. All of them were given translationCore's exact prompt, one check per
+  request, at temperature 0.1.
+
+  Held-out test (835 checks from 4 projects no model trained on)
+
+  ┌───────────────────────┬──────┬───────┬────────────────┬───────────────┐
+  │                       │      │       │ Nepali (362,   │   Wrong at    │
+  │         Model         │ Size │ Top-1 │    unseen      │  confidence   │
+  │                       │      │       │   language)    │      80+      │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Stock Qwen3-0.6B (MLX │ 0.6  │ 54.4% │ 54.7%          │ 213           │
+  │  8-bit)               │ GB   │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Stock Qwen3-1.7B (MLX │ 1.7  │ 51.7% │ 53.3%          │ 257           │
+  │  8-bit)               │ GB   │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Stock Qwen3-4B-2507   │ 2.3  │ 59.3% │ 63.3%          │ 193           │
+  │ (MLX 4-bit)           │ GB   │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Tuned 0.6B, MLX 6-bit │ 0.5  │ 64.1% │ 63.0%          │ 95            │
+  │  (Mac)                │ GB   │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Tuned 0.6B, GGUF Q6_K │ 0.5  │ 64.8% │ 63.8%          │ 92            │
+  │  (Windows/Linux)      │ GB   │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Tuned 1.7B, MLX 5-bit │ 1.1  │ 68.3% │ 66.6%          │ 91            │
+  │  (Mac)                │ GB   │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Tuned 1.7B, GGUF      │ 1.0  │       │                │               │
+  │ Q4_K_M                │ GB   │ 68.7% │ 68.0%          │ 85            │
+  │ (Windows/Linux)       │      │       │                │               │
+  ├───────────────────────┼──────┼───────┼────────────────┼───────────────┤
+  │ Algorithm alone (no   │ —    │ 53.5% │ 55.2%          │ 181           │
+  │ AI)                   │      │       │                │               │
+  └───────────────────────┴──────┴───────┴────────────────┴───────────────┘
+
+  "Top-1" is how often the first suggestion matches the words the translator
+  aligned, scored as translationCore shows it. The algorithm answers on its own
+  when it's certain, and is the fallback when the model gives nothing. The GGUF
+  builds were run on plain llama.cpp.
+
+  By how sure the algorithm was (top-1)
+
+  ┌───────────┬────────┬───────────┬───────┬───────┬───────┬────────┬────────┐
+  │ Algorithm │        │           │       │       │       │ Tuned  │ Tuned  │
+  │  confiden │ Checks │ Algorithm │ Stock │ Stock │ Stock │ 0.6B   │ 1.7B   │
+  │    ce     │        │           │  0.6B │  1.7B │   4B  │ (MLX   │ (MLX   │
+  │           │        │           │       │       │       │ 6-bit) │ 5-bit) │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ 100 (algo │        │           │       │       │       │        │        │
+  │ rithm     │ 281    │ 84.3%     │ 84.3% │ 84.3% │ 84.3% │ 84.3%  │ 84.3%  │
+  │ answers)  │        │           │       │       │       │        │        │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ 90–94     │ 176    │ 58.0%     │ 58.5% │ 52.8% │ 61.9% │ 62.5%  │ 65.3%  │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ 85–89     │ 55     │ 50.9%     │ 52.7% │ 41.8% │ 47.3% │ 56.4%  │ 65.5%  │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ 80–84     │ 82     │ 56.1%     │ 57.3% │ 43.9% │ 48.8% │ 56.1%  │ 63.4%  │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ 60–79     │ 31     │ 41.9%     │ 41.9% │ 41.9% │ 61.3% │ 61.3%  │ 67.7%  │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ 1–59      │ 129    │ 16.3%     │ 17.8% │ 19.4% │ 29.5% │ 45.7%  │ 52.7%  │
+  ├───────────┼────────┼───────────┼───────┼───────┼───────┼────────┼────────┤
+  │ No        │        │           │       │       │       │        │        │
+  │ algorithm │ 81     │ 0%        │ 2.5%  │ 6.2%  │ 32.1% │ 40.7%  │ 50.6%  │
+  │  answer   │        │           │       │       │       │        │        │
+  └───────────┴────────┴───────────┴───────┴───────┴───────┴────────┴────────┘
+
+  Suitability suite (55 cases × 3, M5 Pro Mac)
+
+  ┌─────────────────┬───────┬───────────────┬────────────────┬────────────┐
+  │                 │       │   Wrong at    │  Median time   │            │
+  │      Model      │ Top-1 │  confidence   │ per suggestion │   Result   │
+  │                 │       │      80+      │                │            │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Stock           │ 58%   │ 16%           │ 1,198 ms       │ fail       │
+  │ Qwen3-0.6B      │       │               │                │            │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Stock           │ 62%   │ 24%           │ 151 ms         │ fail       │
+  │ Qwen3-1.7B      │       │               │                │            │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Stock           │ 68%   │ 22%           │ 177 ms         │ fail       │
+  │ Qwen3-4B-2507   │       │               │                │            │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Tuned 0.6B, MLX │       │               │                │ fail       │
+  │  6-bit          │ 64%   │ 13%           │ 75 ms          │ (top-1     │
+  │                 │       │               │                │ below 70%) │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Tuned 0.6B,     │       │               │                │ fail       │
+  │ GGUF Q6_K       │ 60%   │ 11%           │ 50 ms          │ (top-1     │
+  │                 │       │               │                │ below 70%) │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Tuned 1.7B, MLX │ 75%   │ 11%           │ 126 ms         │ PASS       │
+  │  5-bit          │       │               │                │            │
+  ├─────────────────┼───────┼───────────────┼────────────────┼────────────┤
+  │ Tuned 1.7B,     │       │               │                │ fail       │
+  │ GGUF Q4_K_M     │ 67%   │ 11%           │ 92 ms          │ (top-1     │
+  │                 │       │               │                │ below 70%) │
+  └─────────────────┴───────┴───────────────┴────────────────┴────────────┘
+
+  The stock 0.6B is slow because it often doesn't stop "thinking": 42 empty
+  answers, and 9% of its answers aren't in the expected format.
+
+  What this shows:
+  - Both fine-tunes beat every stock model, including the larger 4B. The tuned
+    1.7B is 9 points above stock 4B (right where 4B was wrong 103 times, the
+    reverse 28 times; p < 0.001). The tuned 0.6B is 5 points above stock 4B (86
+    against 46, p < 0.001), at a fifth of its size.
+  - Confident wrong answers drop by about half or more: 85–95 for the tuned
+    models, against 193–257 for the stock models. These are the costly errors,
+    because a checker is most likely to accept them.
+  - Fine-tuning matters more than size here. Stock 1.7B scores below stock 0.6B
+    and below the algorithm alone. Once tuned, the 1.7B is the best model.
+  - Biggest gains where the algorithm is unsure: below 60 or with no answer, the
+    tuned models get 41–53% right, against 3–32% for the stock models.
+  - The tuned 1.7B is the only model that passes the suite. The tuned 0.6B comes
+    close on the held-out test but falls short on the suite. Its card says to
+    prefer the 1.7B whenever the computer can run it.
+
+  Two caveats:
+  - The test set is narrow. The 835 checks come from 4 projects. The broader
+    6,076-check test, which showed the same pattern, was run only for the 1.7B
+    and its stock comparisons, not for the 0.6B.
+  - The suite timings come from different days: the stock 1.7B and 4B on 17
+    November, the rest on 18–19 November, all on the same Mac.
+
+✻ Cogitated for 42s · done 4:33 AM
+
+❯ changed the 1.7B GGUF rlease to be 5 bit                                      
+
+⏺ I'll check whether you've already edited the release script, and whether the
+  1.7B Q5_K_M file still exists. I deleted it in the earlier cleanup, together
+  with the bf16 GGUF it was made from.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The script still uses Q4_K_M, so I'm switching it over and rebuilding fused-d3
+  from its bf16 GGUF, since the 1.7B Q5_K_M file was removed earlier. I'll then
+  rescore both models on the suitability suite, because the card needs that
+  figure and it will also confirm the rebuilt file matches the tested one. 
+  · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Meanwhile I'll update the release script. The card waits for the scores.
+
+⏺ Bash(python3 - <<'EOF'
+      p='llmTraining/make_release.sh'; s=open(p).read()…)
+  ⎿  6:#   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGUF Q5_
+     K_M, for Windows and Linux
+     51:  "$OUT/uw-tw-qwen3-1.7b-d3-GGUF/uw-tw-qwen3-1.7b-d3-Q5_K_M.gguf" Q
+     5_K_M \
+  ⎿  Updated llmTraining/make_release.sh +2 -2
+      3  # companion (D3's recipe on Qwen3-0.6B) from the builds in llmTr
+         aining/outputs, each with its model
+      4  # card (llmTraining/model-card*/README.md) and the Apache 2.0 LI
+         CENSE (its base model's copy):
+      5  #   llmTraining/outputs/release/uw-tw-qwen3-1.7b-mlx-5bit/  MLX 
+         5-bit, for Mac
+      6 -#   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGUF
+        - Q4_K_M, for Windows and Linux                                  
+      6 +#   llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/      GGUF
+        + Q5_K_M, for Windows and Linux                                  
+      7  #   llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-6bit/  MLX 
+         6-bit, for Mac
+      8  #   llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/      GGUF
+          Q6_K, for Windows and Linux (0.6B: Q4_K_M loses accuracy)
+      9  # Run from the repo folder after building the 5-bit and GGUF bui
+         lds (llmTraining/README.md). Rerun it
+     ...
+      48 
+      49  rm -rf "${REL:?}"
+      50  release uw-tw-qwen3-1.7b "$OUT/uw-tw-qwen3-1.7b-d3-5bit" 5bit \
+      51 -  "$OUT/uw-tw-qwen3-1.7b-d3-GGUF/uw-tw-qwen3-1.7b-d3-Q4_K_M.ggu
+         -f" Q4_K_M \                                                    
+      51 +  "$OUT/uw-tw-qwen3-1.7b-d3-GGUF/uw-tw-qwen3-1.7b-d3-Q5_K_M.ggu
+         +f" Q5_K_M \                                                    
+      52    llmTraining/model-card/README.md models--Qwen--Qwen3-1.7B
+      53  release uw-tw-qwen3-0.6b "$OUT/uw-tw-qwen3-0.6b-d3-6bit" 6bit \
+      54    "$OUT/uw-tw-qwen3-0.6b-d3-GGUF/uw-tw-qwen3-0.6b-d3-Q6_K.gguf"
+           Q6_K \
+
+⏺ I'm switching the 1.7B Windows and Linux release from GGUF Q4_K_M to Q5_K_M.
+  The release script now points at Q5_K_M. The file itself is being rebuilt and
+  scored in the background, about 15 minutes.
+
+  Why it needs a rebuild: I deleted the 1.7B Q5_K_M file, and the bf16 GGUF it
+  came from, in the earlier cleanup. I'm making it again from fused-d3, the same
+  way as before.
+
+  What the earlier test showed:
+
+  ┌───────────────────────┬───────┬──────────────────┬─────────────────────┐
+  │   1.7B GGUF (plain    │ Size  │ Held-out top-1   │ Wrong at confidence │
+  │      llama.cpp)       │       │      (835)       │         80+         │
+  ├───────────────────────┼───────┼──────────────────┼─────────────────────┤
+  │ Q8_0                  │ 1.7   │ 68.7%            │ 91                  │
+  │                       │ GB    │                  │                     │
+  ├───────────────────────┼───────┼──────────────────┼─────────────────────┤
+  │ Q5_K_M (new release)  │ 1.2   │ 68.3%            │ 93                  │
+  │                       │ GB    │                  │                     │
+  ├───────────────────────┼───────┼──────────────────┼─────────────────────┤
+  │ Q4_K_M (previous      │ 1.0   │ 68.7%            │ 85                  │
+  │ release)              │ GB    │                  │                     │
+  └───────────────────────┴───────┴──────────────────┴─────────────────────┘
+
+  All three were within noise of each other. Q5_K_M has never been through the
+  suitability suite, though, so I'm running both the held-out test and the suite
+  on the rebuilt file. That gives the card its suite figure and confirms the
+  rebuilt file matches the one tested before.
+
+  When it finishes, I'll update the 1.7B card, rebuild the release folders and
+  record the change in the plan.
+
+✻ Brewed for 26s · done 4:38 AM
+
+⏺ Background command "Rebuild 1.7B GGUF Q5_K_M and score it" completed (exit
+  code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The rebuilt Q5_K_M matches the earlier build (569 vs 570) and Q4_K_M on the
+  suite, so I'm now finding every place the 1.7B GGUF release is named. 
+  · summary
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ I'm updating the 1.7B card, the llmTraining README, CLAUDE.md and the plan's
+  Q4 release decision, and adding the 0.6B to CLAUDE.md. The plan's historical
+  results stay as they are, with a dated note added. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def edit(p, pairs):…)
+  ⎿  472M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF
+     473M    llmTraining/outputs/release/uw-tw-qwen3-0.6b-mlx-6bit
+     1.2G    llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF
+     … +9 lines (ctrl+o to expand)
+  ⎿  Updated CLAUDE.md +1 -1
+      21  - `npm run check:llm-training-data` — finds the cases in `llmTr
+          ainingData/*.json` that may not help train the AI (e.g. no expe
+          cted word in the history, exactly or as another form by `wordSi
+          milarity`, or an answer unusually long for its language: over t
+          hat language's 99th percentile from `getAnswerLengthLimits` and
+           over the longest history rendering + 2 words; languages space
+          words differently, so there is no fixed word limit) and saves t
+          hem, grouped by file, in `llmTrainingData/results/unhelpfulTrai
+          ningCases.json`. The reasons are `UNHELPFUL_REASONS` in `__test
+          s__/helpers/suggestionsHelpers.js`; the unit tests in `__tests_
+          _/findUnhelpfulTrainingCases.test.js` run in `npm test`, the sc
+          an does not.
+      22  - `scripts/rebuild-llm-training-data.sh [-n] [-c] [-a] [-f]` —
+          rebuilds every file in `llmTrainingData` from the translationCo
+          re projects with `__tests__/buildLlmTrainingData.test.js` (`-n`
+           dry run, `-c`/`-a` refresh the unhelpful-case and algorithm re
+          sults). A project's translationWords checks are for the GL last
+           selected in translationCore, so files for another GL are skipp
+          ed unless `-f`; the builder refuses them too unless `LLM_TRAINI
+          NG_ALLOW_GL_MISMATCH=1`. `plans/fine-tune-qwen3.md` holds the f
+          ine-tuning plan that uses this data.
+      23  - `npm run build:finetune-data` — builds the fine-tuning data o
+          f `plans/fine-tune-qwen3.md` (Steps 2-3) in `llmTrainingData/fi
+          netune/` (git-ignored): `train.jsonl`, `valid.jsonl` and `test.
+          jsonl` in the `messages` format `mlx_lm.lora` reads, matching `
+          *.meta.jsonl` and `manifest.json` (counts, drops, round-trip fa
+          ilures, cases to hand-check). Each example is the exact prompt
+          the app sends (`buildTranslationOptionsPrompt` + `applyThinking
+          Directive`), split by target project, filtered with the algorit
+          hm results and `findUnhelpfulTrainingCases`; run `npm run run:l
+          lm-training-data` (algorithm) first. Settings are `LLM_FINETUNE
+          _*` variables in the header of `__tests__/buildFineTuneData.tes
+          t.js`, whose parity test (in `npm test`) fails if the app's pro
+          mpt changes without the exporter.
+      24 -- `llmTraining/` — the Python side of that fine-tune (Apple MLX
+         -, `mlx-lm`; its own `.venv`, git-ignored, as are `outputs/`, `.
+         -venv-gguf/` and `.llama.cpp/`). `llmTraining/README.md` has set
+         -up, training, fusing and the GGUF conversion for Windows and Li
+         -nux. `check_data.py` checks the exported data renders like the 
+         -app's prompt (run it after `build:finetune-data`); the `*.yaml`
+         - files are the training runs of the plan (`lora-r16-d3.yaml` is
+         - the chosen one: LoRA r16 on the base set plus the `noRelatedWo
+         -rdInHistory` cases, built with `LLM_FINETUNE_INCLUDE=noRelatedW
+         -ordInHistory LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-d3`)
+         -; `train_full.py` runs a full fine-tune in float32; `handcheck.
+         -py` makes a local page for hand-checking a sample of a case gro
+         -up. The resulting model, `uw-tw-qwen3-1.7b-d3`, scores 68% top-
+         -1 on the held-out files against 52% for stock `qwen3-1.7b` and 
+         -59% for `qwen3-4b-2507` (results at the end of the plan). Relea
+         -se builds: MLX 8-bit or 5-bit for Mac, GGUF Q4_K_M for Windows 
+         -and Linux. Score GGUF builds through plain llama.cpp (`llama-se
+         -rver`): LM Studio's llama.cpp engine on the Mac gives lower, di
+         -fferent answers for Qwen3-1.7B (stock too). The fine-tune is tr
+         -ained on single requests only: it must be used with one request
+         - per query (`llmGrouping` 1, the default), since with batches i
+         -t drops the `### REQUEST n` markers and most answers come back 
+         -empty. Changing the system prompts or `formatPreviousTranslatio
+         -ns` means rebuilding the data and retraining.                  
+      24 +- `llmTraining/` — the Python side of that fine-tune (Apple MLX
+         +, `mlx-lm`; its own `.venv`, git-ignored, as are `outputs/`, `.
+         +venv-gguf/` and `.llama.cpp/`). `llmTraining/README.md` has set
+         +up, training, fusing and the GGUF conversion for Windows and Li
+         +nux. `check_data.py` checks the exported data renders like the 
+         +app's prompt (run it after `build:finetune-data`); the `*.yaml`
+         + files are the training runs of the plan (`lora-r16-d3.yaml` is
+         + the chosen one: LoRA r16 on the base set plus the `noRelatedWo
+         +rdInHistory` cases, built with `LLM_FINETUNE_INCLUDE=noRelatedW
+         +ordInHistory LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-d3`)
+         +; `train_full.py` runs a full fine-tune in float32; `handcheck.
+         +py` makes a local page for hand-checking a sample of a case gro
+         +up. The resulting model, `uw-tw-qwen3-1.7b-d3`, scores 68% top-
+         +1 on the held-out files against 52% for stock `qwen3-1.7b` and 
+         +59% for `qwen3-4b-2507` (results at the end of the plan). Relea
+         +se builds (`llmTraining/make_release.sh`, cards in `llmTraining
+         +/model-card*/`): MLX 5-bit for Mac, GGUF Q5_K_M for Windows and
+         + Linux; a small companion on Qwen3-0.6B (`lora-r16-d3-0.6b.yaml
+         +`, 64-65% held-out top-1, fails the suite's top-1 bar) as MLX 6
+         +-bit and GGUF Q6_K, for computers that cannot run the 1.7B. Sco
+         +re GGUF builds through plain llama.cpp (`llama-server`): LM Stu
+         +dio's llama.cpp engine on the Mac gives lower, different answer
+         +s for Qwen3-1.7B (stock too). The fine-tune is trained on singl
+         +e requests only: it must be used with one request per query (`l
+         +lmGrouping` 1, the default), since with batches it drops the `#
+         +## REQUEST n` markers and most answers come back empty. Changin
+         +g the system prompts or `formatPreviousTranslations` means rebu
+         +ilding the data and retraining.                                
+      25 
+      26  Scripts in `scripts/` wrap that suite. Each prints its usage wi
+          th `-h`. They write logs and JSON results to `llm-eval-results/
+          `, which is git-ignored.
+      27  - `scripts/test-llm.sh [-u URL] [-r RUNS] [-g GROUPING] [-t TEM
+          P] [-k TOKEN] [-o DIR] model ...` — runs the suite once per mod
+          el and prints each report plus a pass/fail summary. `-l` lists
+          the server's models. Defaults: `http://localhost:1234`, falling
+           back to `$LLM_EVAL_FALLBACK_URL` or `http://192.168.142.56:123
+          4` when it does not answer and no `-u` was given; 2 runs; 4 req
+          uests per batched query; temperature 0.1 (the app's default). T
+          he reference models are `qwen/qwen3-1.7b` and `qwen/qwen3-4b-25
+          07`; compare changes with `-r 3`. Exits 1 when any model fails
+          a bar and 2 for a usage or server error.
+  ⎿  Updated llmTraining/README.md +3 -1
+      89      --outfile $G/uw-tw-qwen3-1.7b-d3-bf16.gguf
+      90  llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-
+          1.7b-d3-Q8_0.gguf Q8_0
+      91  llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-
+          1.7b-d3-Q4_K_M.gguf Q4_K_M
+      92 +llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-
+         +1.7b-d3-Q5_K_M.gguf Q5_K_M   # released                        
+      93  ```
+      94 
+      95  Copy the `.gguf` files into a folder under LM Studio's models f
+          older; it lists them as
+     ...
+       98 
+       99  ## Release
+      100 
+      100 -The chosen model is D3 (`lora-r16-d3.yaml`): MLX 5-bit for Mac
+          -, GGUF Q4_K_M for Windows and Linux.                          
+      101 +The chosen model is D3 (`lora-r16-d3.yaml`): MLX 5-bit for Mac
+          +, GGUF Q5_K_M for Windows and Linux.                          
+      102 +Its small companion is D3's recipe on Qwen3-0.6B (`lora-r16-d3
+          +-0.6b.yaml`): MLX 6-bit and GGUF Q6_K.                        
+      103  `llmTraining/make_release.sh` assembles `outputs/release/` fro
+           m those builds with the model card
+      104  (`llmTraining/model-card/README.md`) and the Apache 2.0 `LICEN
+           SE`, and prints the upload commands in
+      105  its header. Finish the card's TODOs (attribution, CC BY-SA ver
+           sion, repository names) first.
+  ⎿  Updated llmTraining/model-card/README.md +8 -6
+      50  | Build | For | Size | Run it with |
+      51  |---|---|---|---|
+      52  | MLX 5-bit | Mac (Apple silicon) | 1.1 GB | LM Studio (MLX eng
+          ine) |
+      53 -| GGUF Q4_K_M | Windows, Linux | 1.0 GB | llama.cpp (`llama-ser
+         -ver`) |                                                        
+      53 +| GGUF Q5_K_M | Windows, Linux | 1.2 GB | llama.cpp (`llama-ser
+         +ver`) |                                                        
+      54 
+      55 -MLX 5-bit scores the same as MLX 8-bit on every test below, at 
+         -two-thirds the size. In llama.cpp,                             
+      56 -GGUF Q4_K_M scores the same as Q8_0.                           
+      55 +Both builds are 5-bit. MLX 5-bit scores the same as MLX 8-bit o
+         +n every test below, at two-thirds                              
+      56 +the size. In llama.cpp, GGUF Q5_K_M scores the same as Q8_0 and
+         + as the MLX build; Q4_K_M did too,                             
+      57 +but 5 bits keep a margin (the 0.6B model loses accuracy at 4 bi
+         +ts).                                                           
+      58 
+      59  **Engine note:** on a Mac, LM Studio's *llama.cpp* engine gave
+          noticeably different and worse
+      60  answers than llama.cpp itself (`llama-server`), for this model
+          and for the stock Qwen3-1.7B alike.
+     ...
+      133  |---|---|---|---|
+      134  | This model, MLX 5-bit | **68.3%** | 66.6% | **91** |
+      135  | This model, MLX 8-bit | 68.1% | 66.9% | 92 |
+      135 -| This model, GGUF Q4_K_M (llama.cpp) | 68.7% | 68.0% | 85 |  
+      136 +| This model, GGUF Q5_K_M (llama.cpp) | 68.1% | 66.9% | 94 |  
+      137 +| This model, GGUF Q4_K_M (llama.cpp, not released) | 68.7% | 
+          +68.0% | 85 |                                                  
+      138  | This model, GGUF Q8_0 (llama.cpp) | 68.7% | 66.9% | 91 |
+      139  | Qwen3-4B-2507 | 59.3% | | 193 |
+      140  | Qwen3-1.7B (MLX 8-bit) | 51.7% | | 257 |
+     ...
+      150  | Build | Top-1 | Wrong at ≥ 80 | Median time per suggestion |
+            Result |
+      151  |---|---|---|---|---|
+      152  | MLX 5-bit (LM Studio) | 75% | 11% | 126 ms | Pass |
+      151 -| GGUF Q4_K_M (llama.cpp) | 67% | 11% | 92 ms | Below the 70% 
+          -top-1 bar |                                                   
+      153 +| GGUF Q5_K_M (llama.cpp) | 67% | 11% | 100 ms | Below the 70%
+          + top-1 bar |                                                  
+      154 
+      155  Times on an M5 Pro Mac. Stock Qwen3-1.7B scored 62% with 24% w
+           rong at ≥ 80, stock Qwen3-4B-2507
+      156  68% with 22%. The GGUF build answers 6 of the 55 cases differe
+           ntly from MLX, mostly by giving fewer
+     ...
+      164  - **Settings:** 2 epochs (2,566 steps), batch 8, learning rate
+            2e-4 with 100 warmup steps and
+      165    cosine decay, maximum length 2,048 tokens, seed 3407. About
+           2.8 hours.
+      166  - **Then:** the adapter is merged into the base weights and qu
+           antized (MLX 5-bit; GGUF with
+      165 -  llama.cpp, Q4_K_M).                                         
+      167 +  llama.cpp, Q5_K_M).                                         
+      168  - **Compared and not chosen:** LoRA rank 64 and a full fine-tu
+           ne scored 2-3 points lower; adding
+      169    the cases where the expected answer only partly matches the
+           history raised that group but made
+      170    the model add extra words elsewhere.
+  ⎿  Updated plans/fine-tune-qwen3.md +5 -1
+      525       result governs**, so this condition is met for plain llam
+           a.cpp. **Mac build decided 2026-11-18: MLX 5-bit**
+      526       (same accuracy as 8-bit, 1.1 GB, passes the suite). Still
+            to check: the engine
+      527       Windows and Linux users will actually run. Builds to rele
+           ase: MLX 8-bit or 5-bit (same accuracy, 1.7 vs 1.1 GB) for Mac
+           ,
+      528 -     GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is 
+          -no longer needed.                                             
+      528 +     GGUF Q4_K_M (1.0 GB) for Windows and Linux; MLX 4-bit is 
+          +no longer needed. **Changed                                   
+      529 +     2026-11-19 (author): the 1.7B GGUF release is Q5_K_M** (1
+          +.2 GB), rebuilt from `fused-d3`:                              
+      530 +     68.1% (569) on (b), `ne_*` 66.9%, wrong at ≥ 80 94; same 
+          +as the earlier Q5_K_M build (570,                             
+      531 +     3 / 2 changed) and as MLX 5-bit (17 / 16, p = 1.0); suite
+          + 67% top-1, 11% wrong, 100 ms (as                             
+      532 +     Q4_K_M). 5 bits keep a margin, since the 0.6B loses accur
+          +acy at 4 bits.                                                
+      533    2. **One request per query.** The fine-tune breaks with `llm
+           Grouping` > 1 (Q3); make sure that
+      534       setting cannot quietly be used with it, or warn when it i
+           s.
+      535       **Decided 2026-11-18: documented in the model card only**
+            (`llmTraining/model-card/README.md`,
+
+⏺ The 1.7B Windows and Linux release is now GGUF Q5_K_M (1.2 GB). The rebuilt
+  file tests the same as before:
+
+  1.7B build: GGUF Q5_K_M (new release)
+  Size: 1.2 GB
+  Held-out top-1 (835): 68.1%
+  Nepali (unseen language): 66.9%
+  Wrong at confidence 80+: 94
+  Suite top-1: 67%
+  Suite wrong at 80+: 11%
+  Median time: 100 ms
+  ────────────────────────────────────────
+  1.7B build: GGUF Q4_K_M (previous release)
+  Size: 1.0 GB
+  Held-out top-1 (835): 68.7%
+  Nepali (unseen language): 68.0%
+  Wrong at confidence 80+: 85
+  Suite top-1: 67%
+  Suite wrong at 80+: 11%
+  Median time: 92 ms
+  ────────────────────────────────────────
+  1.7B build: MLX 5-bit (Mac release)
+  Size: 1.1 GB
+  Held-out top-1 (835): 68.3%
+  Nepali (unseen language): 66.6%
+  Wrong at confidence 80+: 91
+  Suite top-1: 75%
+  Suite wrong at 80+: 11%
+  Median time: 126 ms
+
+  - The rebuild matches the earlier Q5_K_M file: 569 against 570 correct, with
+    only 5 answers different.
+  - It matches the Mac build: 569 against 570, not significant (p = 1.0).
+  - On the suite it's the same as Q4_K_M (67% top-1, 11% wrong). Like every GGUF
+    build tested, it's below the suite's 70% bar, which you decided doesn't
+    block the GGUF release.
+  - The trade-off: Q5_K_M is 0.2 GB larger than Q4_K_M and no more accurate on
+    these tests. The reason for 5 bits is a safety margin, since the 0.6B lost
+    accuracy at 4 bits.
+
+  What changed:
+  - make_release.sh: the 1.7B GGUF build is now uw-tw-qwen3-1.7b-Q5_K_M.gguf;
+    the release folders are rebuilt.
+  - The 1.7B card: the builds table and note, the results table (Q4_K_M is now
+    listed as not released), the suite table and the training section.
+  - llmTraining/README.md: the release section, plus a llama-quantize line for
+    Q5_K_M.
+  - CLAUDE.md: the release builds. It now also mentions the 0.6B companion (MLX
+    6-bit and GGUF Q6_K), which it hadn't before.
+  - The plan: a dated note under Q4 with the rebuilt file's scores. The earlier
+    Q4_K_M results stay as recorded.
+
+  All four release folders, ready to upload once the card TODOs are done:
+
+  ┌───────┬─────────────────────┬──────────────────────┐
+  │ Model │         Mac         │    Windows, Linux    │
+  ├───────┼─────────────────────┼──────────────────────┤
+  │ 1.7B  │ MLX 5-bit (1.1 GB)  │ GGUF Q5_K_M (1.2 GB) │
+  ├───────┼─────────────────────┼──────────────────────┤
+  │ 0.6B  │ MLX 6-bit (0.47 GB) │ GGUF Q6_K (0.47 GB)  │
+  └───────┴─────────────────────┴──────────────────────┘
+
+  Uncommitted: the 0.6B config and card, the release script, the 1.7B card,
+  CLAUDE.md, llmTraining/README.md and the plan.
+
+✻ Churned for 41s · done 4:40 AM
