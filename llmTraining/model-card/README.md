@@ -29,7 +29,6 @@ language:
 DRAFT model card for uw-tw-qwen3-1.7b-d3. Before publishing:
 - TODO: set the published repository names (MLX and GGUF) and the download links below.
 - TODO: fill in the owners and source links in the attribution tables (see "Training data").
-- TODO: give the CC BY-SA version of the training data (e.g. 4.0).
 Figures are from plans/fine-tune-qwen3.md (Results) in the checking-tool-wrapper repository.
 -->
 
@@ -197,39 +196,39 @@ Target-language projects in the training and validation data (21):
 
 Training data is on https://git.door43.org/
 
-| Project | Language | Book | Aligned to (GL) | Owner | Source |
-|---|---|---|---|---|---|
-| `BSOJ/ar_avd/heb.usfm` | Arabic | Hebrews | English (ULT) | TODO | TODO |
-| `BSOJ/ar_avd/tit.usfm` | Arabic | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `BSOJ/ar_avt/psa.usfm` | Arabic | Psalms | English (ULT) | TODO | TODO |
-| `translationCore-Create-BCS/bn_glt/2co.usfm` | Bengali | 2 Corinthians | English (ULT) | TODO | TODO |
-| `translationCore-Create-BCS/bn_glt/tit.usfm` | Bengali | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `es-419_gl/es-419_est/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) | TODO | TODO |
-| `es-419_gl/es-419_glt/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) | TODO | TODO |
-| `fa_gl/fa_glt/1ti.usfm` | Farsi | 1 Timothy | English (ULT) | TODO | TODO |
-| `fa_gl/fa_glt/jas.usfm` | Farsi | James | English (ULT) | TODO | TODO |
-| `fa_gl/fa_glt/mrk.usfm` | Farsi | Mark | English (ULT) | TODO | TODO |
-| `id_gl/id_glt/1ti.usfm` | Indonesian | 1 Timothy | English (ULT) | TODO | TODO |
-| `id_gl/id_glt/tit.usfm` | Indonesian | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `ru_gl/ru_rlob/gen.usfm` | Russian | Genesis | English (ULT) | TODO | TODO |
-| `ru_gl/ru_rlob/luk.usfm` | Russian | Luke | English (ULT), Arabic (ARST) | TODO | TODO |
-| `ru_gl/ru_rlob/tit.usfm` | Russian | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `translationCore-Create-BCS/te_glt/luk.usfm` | Telugu | Luke | English (ULT) | TODO | TODO |
-| `translationCore-Create-BCS/te_glt/tit.usfm` | Telugu | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
-| `vi_gl/vi_glt/1co.usfm` | Vietnamese | 1 Corinthians | English (ULT) | TODO | TODO |
-| `vi_gl/vi_glt/heb.usfm` | Vietnamese | Hebrews | English (ULT) | TODO | TODO |
-| `vi_gl/vi_glt/luk.usfm` | Vietnamese | Luke | English (ULT), Arabic (ARST), Russian (RLOB) | TODO | TODO |
-| `vi_gl/vi_glt/tit.usfm` | Vietnamese | Titus | English (ULT), Spanish (GLT) | TODO | TODO |
+| Project | Language | Book | Aligned to (GL) |
+|---|---|---|---|
+| `BSOJ/ar_avd/heb.usfm` | Arabic | Hebrews | English (ULT) |
+| `BSOJ/ar_avd/tit.usfm` | Arabic | Titus | English (ULT), Spanish (GLT) |
+| `BSOJ/ar_avt/psa.usfm` | Arabic | Psalms | English (ULT) |
+| `translationCore-Create-BCS/bn_glt/2co.usfm` | Bengali | 2 Corinthians | English (ULT) |
+| `translationCore-Create-BCS/bn_glt/tit.usfm` | Bengali | Titus | English (ULT), Spanish (GLT) |
+| `es-419_gl/es-419_est/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) |
+| `es-419_gl/es-419_glt/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) |
+| `fa_gl/fa_glt/1ti.usfm` | Farsi | 1 Timothy | English (ULT) |
+| `fa_gl/fa_glt/jas.usfm` | Farsi | James | English (ULT) |
+| `fa_gl/fa_glt/mrk.usfm` | Farsi | Mark | English (ULT) |
+| `id_gl/id_glt/1ti.usfm` | Indonesian | 1 Timothy | English (ULT) |
+| `id_gl/id_glt/tit.usfm` | Indonesian | Titus | English (ULT), Spanish (GLT) |
+| `ru_gl/ru_rlob/gen.usfm` | Russian | Genesis | English (ULT) |
+| `ru_gl/ru_rlob/luk.usfm` | Russian | Luke | English (ULT), Arabic (ARST) |
+| `ru_gl/ru_rlob/tit.usfm` | Russian | Titus | English (ULT), Spanish (GLT) |
+| `translationCore-Create-BCS/te_glt/luk.usfm` | Telugu | Luke | English (ULT) |
+| `translationCore-Create-BCS/te_glt/tit.usfm` | Telugu | Titus | English (ULT), Spanish (GLT) |
+| `vi_gl/vi_glt/1co.usfm` | Vietnamese | 1 Corinthians | English (ULT) |
+| `vi_gl/vi_glt/heb.usfm` | Vietnamese | Hebrews | English (ULT) |
+| `vi_gl/vi_glt/luk.usfm` | Vietnamese | Luke | English (ULT), Arabic (ARST), Russian (RLOB) |
+| `vi_gl/vi_glt/tit.usfm` | Vietnamese | Titus | English (ULT), Spanish (GLT) |
 
 Gateway-language texts the projects are aligned to (versions as in the training data; owners are
 their Door43 organizations):
 
-| GL text | Version | Owner | Source |
-|---|---|---|---|
-| English, unfoldingWord Literal Text (ULT) | v91 | unfoldingWord | TODO |
-| Spanish (Latin America), GLT | v42 | es-419_gl | TODO |
-| Arabic, ARST | v4.9 | BSOJ | TODO |
-| Russian, RLOB | v13.0 | ru_gl | TODO |
+| GL text | Version | Owner |
+|---|---|---|
+| English, unfoldingWord Literal Text (ULT) | v91 | unfoldingWord |
+| Spanish (Latin America), GLT | v42 | es-419_gl |
+| Arabic, ARST | v4.9 | BSOJ |
+| Russian, RLOB | v13.0 | ru_gl |
 
 
 ## Limitations
