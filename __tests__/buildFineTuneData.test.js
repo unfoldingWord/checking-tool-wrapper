@@ -240,6 +240,7 @@ describeIfBuild('build fine-tune data', () => {
     ].join('\n'));
     expect(manifest.counts.train).toBeGreaterThan(0);
     expect(manifest.counts.valid).toBeGreaterThan(0);
-    expect(manifest.counts.test).toBeGreaterThan(0);
+    // no test examples only when the test projects match no file (training on every project)
+    expect(manifest.counts.test > 0 || manifest.testFiles.length === 0).toBe(true);
   }, 30 * 60 * 1000);
 });

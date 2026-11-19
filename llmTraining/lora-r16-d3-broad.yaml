@@ -1,0 +1,36 @@
+# Broader held-out test of D3 (plans/fine-tune-qwen3.md, Q2): lora-r16-d3.yaml with six more test
+# projects held out (vi_glt_heb ru_rlob_luk te_glt_luk ar_avd_heb fa_glt_jas id_glt_1ti), so the
+# model is scored on unseen projects in the main training languages. Data:
+#   LLM_FINETUNE_INCLUDE=noRelatedWordInHistory LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-d3-broad \
+#     LLM_FINETUNE_TEST_PROJECTS="ne_glt_* bn_glt_eph es-419_est_rut en_ult_tit vi_glt_heb ru_rlob_luk te_glt_luk ar_avd_heb fa_glt_jas id_glt_1ti" \
+#     npm run build:finetune-data
+# Train from the repo folder:
+#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r16-d3-broad.yaml
+# iters = 7,092 train examples x 2 epochs / 8 = ~1,773 for the 2026-11-18 build.
+model: Qwen/Qwen3-1.7B
+train: true
+data: llmTrainingData/finetune-d3-broad     # train.jsonl, valid.jsonl, test.jsonl
+fine_tune_type: lora
+num_layers: -1                        # LoRA on every layer
+lora_parameters:
+  rank: 16
+  scale: 1.0                          # = lora_alpha / rank (alpha 16, as in Appendix A); 20 with lr 2e-4 broke the model
+  dropout: 0.0
+  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
+         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
+mask_prompt: true                     # loss on the assistant answer only (checked by check_data.py)
+max_seq_length: 2048
+batch_size: 8
+iters: 1773
+learning_rate: 2e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [2e-4, 1673, 0]          # [initial lr, decay steps (iters - warmup), final lr]
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 200
+val_batches: 50
+save_every: 200
+adapter_path: llmTraining/outputs/lora-r16-d3-broad
+seed: 3407

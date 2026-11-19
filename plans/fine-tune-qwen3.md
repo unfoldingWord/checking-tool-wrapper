@@ -1066,3 +1066,31 @@ training). More data helps, so the **release model stays D3, trained on every pr
 original test projects**; this broad model was only a test.
 
 Not run on the broad model: the suitability suite and GGUF builds (the release model is D3).
+
+### 2026-11-18: D3 trained on every project (release candidate, not chosen)
+
+`llmTraining/lora-r16-d3-all.yaml`: D3 on every project, the four original test projects included
+(`LLM_FINETUNE_TEST_PROJECTS="none-held-out"`, which matches no project; the exporter now leaves out
+an empty split's files, since mlx-lm fails on an empty or blank `test.jsonl`). Only **463 more
+training examples** than D3 (10,728 vs 10,265, +4.5%): the caps and filters drop most of the four
+projects (five of their files are the same Titus verses). Validation loss 3.17 → 0.063 (1,000) →
+0.065 (end). Built as MLX 5-bit and GGUF Q4_K_M (`uw-tw-qwen3-1.7b-all`).
+
+With no held-out projects, the clean test is the suitability suite (its verses are left out of all
+training):
+
+| Build | Top-1 | Top-1 hand-written | Wrong at ≥ 80 | Suite |
+|---|---|---|---|---|
+| D3 MLX 5-bit | **75%** | **90%** | **11%** | PASS |
+| All projects MLX 5-bit | 70% | 84% | 13% | fail |
+| D3 GGUF Q4_K_M (llama.cpp) | **67%** | **87%** | 11% | fail |
+| All projects GGUF Q4_K_M (llama.cpp) | 62% | 78% | 11% | fail |
+
+Per case (run 1, MLX 5-bit), 3 of 55 differ, all right for D3 and wrong for the new model (p = 0.25):
+`es-nothing-fits` (nothing should be selected; D3 gives no answer, the new model "la casa" at 75),
+`xx-related-key` ("sema" for `kirano sema`) and `real-bn-2co-3-13-veil`. On the original 9 files
+it scores 79.6% (D3 68.3%), but it trained on them, so that only shows nothing broke.
+
+**Choice: keep D3 as the release model.** The extra data is small, the only clean test points (not
+significantly) the wrong way, and D3 has held-out evidence (68.3% on 835 cases, 74.2% for its
+broad-test twin on 6,076) that the new model cannot have.

@@ -38,7 +38,11 @@
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "<rootDir>/__tests__/helpers/"
+      "<rootDir>/__tests__/helpers/",
+      "<rootDir>/llmTraining/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/llmTraining/"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.js"

@@ -94,3 +94,17 @@ llama-quantize $G/uw-tw-qwen3-1.7b-d3-bf16.gguf $G/uw-tw-qwen3-1.7b-d3-Q4_K_M.gg
 Copy the `.gguf` files into a folder under LM Studio's models folder; it lists them as
 `uw-tw-qwen3-1.7b-d3@q8_0` / `@q4_k_m` and runs them with its llama.cpp engine. Score them with
 Step 6 of the plan before publishing.
+
+## Release
+
+The chosen model is D3 (`lora-r16-d3.yaml`): MLX 5-bit for Mac, GGUF Q4_K_M for Windows and Linux.
+`llmTraining/make_release.sh` assembles `outputs/release/` from those builds with the model card
+(`llmTraining/model-card/README.md`) and the Apache 2.0 `LICENSE`, and prints the upload commands in
+its header. Finish the card's TODOs (attribution, CC BY-SA version, repository names) first.
+
+`compare/` holds the scripts that compare models on held-out files (`by-project.js`,
+`compare-heldout.js`, `by-category.js`, `mcnemar.js`, `mcnemar-cat.js`); each says how to run it in
+its first lines.
+
+`npm run sync:llm-training` copies `llmTraining`, `llmTrainingData` and `llm-eval-results` to the
+external drive (without the virtual environments and the llama.cpp source).

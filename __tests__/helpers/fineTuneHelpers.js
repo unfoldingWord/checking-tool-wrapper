@@ -670,11 +670,20 @@ export function buildFineTuneData({
 
   fs.mkdirSync(outDir, { recursive: true });
 
+  const toJsonl = rows => rows.map(row => JSON.stringify(row)).join('\n') + '\n';
+
   for (const [split, examples] of Object.entries(splits)) {
-    fs.writeFileSync(path.join(outDir, `${split}.jsonl`),
-      examples.map(({ messages }) => JSON.stringify({ messages })).join('\n') + '\n');
-    fs.writeFileSync(path.join(outDir, `${split}.meta.jsonl`),
-      examples.map(({ meta }) => JSON.stringify(meta)).join('\n') + '\n');
+    const dataFile = path.join(outDir, `${split}.jsonl`);
+    const metaFile = path.join(outDir, `${split}.meta.jsonl`);
+
+    if (!examples.length) {
+      // an empty split (e.g. no test projects) gets no file: mlx-lm skips a missing split but fails on an empty one
+      fs.rmSync(dataFile, { force: true });
+      fs.rmSync(metaFile, { force: true });
+      continue;
+    }
+    fs.writeFileSync(dataFile, toJsonl(examples.map(({ messages }) => ({ messages }))));
+    fs.writeFileSync(metaFile, toJsonl(examples.map(({ meta }) => meta)));
   }
 
   const manifest = {
