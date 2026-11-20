@@ -1666,8 +1666,31 @@ function levenshteinDistance(a, b) {
  *   {@link rankGlKeys} for locale-aware lowercasing of the GL phrase and history keys
  * @param {object} previousTranslationData - prior translation counts, nested `{glPhrase: {target: count}}`
  *   or flat `{target: count}`
- * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>>} -
- *   up to 3 options, best first; empty when this phrase has no history or nothing in it fits the verse
+ * @param {object} [options]
+ * @param {boolean} [options.explain=false] - also return each option's `features`: how it was found
+ *   and the evidence for it, for measuring and calibrating the confidence
+ *   (plans/algorithm-confidence.md, `npm run calibrate:algorithm`). The options and confidences are the
+ *   same either way.
+ * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number, features?: object}>>} -
+ *   up to 3 options, best first; empty when this phrase has no history or nothing in it fits the verse.
+ *   With `explain`, each option's `features` are:
+ *   - `path`: how its words were found: 'verbatim' (adjacent and in order), 'ordered' (in order with
+ *     gaps), 'unordered' (slightly out of order), 'partial' (only some of the rendering's words),
+ *     'slice' (a contiguous slice of the rendering), or 'fuzzy' (similar word forms)
+ *   - `exactKey`, `relatedness`: whether its rendering came from the exact GL key, else how related
+ *     the key is (0-1)
+ *   - `count`, `share`, `usageRank`, `renderings`: the rendering's history count, its share of all
+ *     pooled counts, its rank among them (0 = most used), and how many renderings were pooled
+ *   - `renderingWords`, `matchedWords`, `gap`: words in the rendering, words found, and verse words
+ *     between the first and last found word that are not part of it
+ *   - `similarity`: mean word similarity (1 unless fuzzy matched)
+ *   - `runsInVerse`: how many times its words occur in the verse (as separate adjacent runs when they
+ *     are adjacent, else the fewest times any of its words occurs)
+ *   - `neighbourInHistory`: how many of the verse words just before and after it (0-2) are words of
+ *     a history rendering
+ *   - `pointScore`, `cap`: the score before the GL-key cap, and the cap
+ *   - `verbatimRenderings`: how many history renderings were found verbatim in this verse
+ *   - `candidates`, `rank`: how many candidates were found, and this option's place among them
  * @example
  * await getBestTWordSelectionWithConfidenceAlgorithm(
  *   ['para', 'la', 'iglesia', 'de', 'Éfeso'],
@@ -1688,6 +1711,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   glPhrase,
   glLangCode,
   previousTranslationData,
+  { explain = false } = {},
 ) {
   // Initialize wordList, defaulting to empty array if null/undefined
   const words = wordList || [];
@@ -1717,10 +1741,57 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
   // Map to store candidates, keyed by position string (e.g. "2:3:5") to deduplicate same words
   const candidates = new Map(); // keyed by matched positions, so the same words appear once
+  // only for `explain`: the evidence behind each candidate
+  const totalCount = explain ? countEntries.reduce((total, { count }) => total + count, 0) : 0;
+  const historyWords = explain ? new Set(countEntries.flatMap(({ rendering }) => rendering.split(/\s+/))) : null;
+  let verbatimRenderings = 0;
+
+  /**
+   * Features of a candidate for `explain` (see the function's doc comment).
+   * @returns {object}
+   */
+  function describeCandidate({
+    positions, phraseWordCount, entry, path, isContiguous, span, totalSimilarity, score,
+  }) {
+    const matchedWords = positions.map(position => normalizedWordList[position]);
+    let runsInVerse = Math.min(...matchedWords.map(word => verseWordCounts.get(word)));
+
+    if (isContiguous) {
+      runsInVerse = 0;
+
+      for (let start = 0; start <= normalizedWordList.length - matchedWords.length; start++) {
+        if (matchedWords.every((word, offset) => normalizedWordList[start + offset] === word)) {
+          runsInVerse++;
+          start += matchedWords.length - 1; // runs may not overlap
+        }
+      }
+    }
+
+    const neighbours = [normalizedWordList[positions[0] - 1], normalizedWordList[positions[positions.length - 1] + 1]];
+
+    return {
+      path,
+      exactKey: entry.isExact,
+      relatedness: Math.round(entry.relatedness * 1000) / 1000,
+      count: entry.count,
+      share: Math.round(entry.count / totalCount * 1000) / 1000,
+      usageRank: countEntries.indexOf(entry),
+      renderings: countEntries.length,
+      renderingWords: phraseWordCount,
+      matchedWords: positions.length,
+      gap: span - (positions.length - 1),
+      similarity: totalSimilarity === null ? 1 : Math.round(totalSimilarity / phraseWordCount * 1000) / 1000,
+      runsInVerse,
+      neighbourInHistory: neighbours.filter(word => word && historyWords.has(word)).length,
+      pointScore: score,
+      cap: capForRendering(entry),
+    };
+  }
 
   // Helper function to evaluate and store a candidate match; `inOrder` is false for an out-of-order
-  // placement, and `totalSimilarity` is set (sum of word similarities) when words were fuzzy matched
-  function considerCandidate(positions, phraseWordCount, entry, inOrder = true, totalSimilarity = null) {
+  // placement, and `totalSimilarity` is set (sum of word similarities) when words were fuzzy matched;
+  // `path` names how the words were found, for `explain`
+  function considerCandidate(positions, phraseWordCount, entry, inOrder = true, totalSimilarity = null, path = '') {
     // Skip if no positions found
     if (!positions?.length) {
       return;
@@ -1766,6 +1837,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       count,
       span,
       matchedWordCount: positions.length,
+      features: explain ? describeCandidate({
+        positions, phraseWordCount, entry, path, isContiguous, span, totalSimilarity, score,
+      }) : undefined,
     });
   }
 
@@ -1783,7 +1857,8 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     const exactPositions = findContiguousMatchPositions(normalizedWordList, phraseWords);
 
     if (exactPositions) { // verbatim match, nothing weaker from this rendering can beat it
-      considerCandidate(exactPositions, phraseWords.length, entry);
+      verbatimRenderings++;
+      considerCandidate(exactPositions, phraseWords.length, entry, true, null, 'verbatim');
       continue;
     }
 
@@ -1802,7 +1877,8 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     const placement = placeWords(positionsPerWord);
 
     if (placement) {
-      considerCandidate(placement.positions, phraseWords.length, entry, placement.inOrder);
+      considerCandidate(placement.positions, phraseWords.length, entry, placement.inOrder, null,
+        placement.inOrder ? 'ordered' : 'unordered');
       continue;
     }
 
@@ -1815,14 +1891,14 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       const presentPlacement = placeWords(presentPositions);
 
       if (presentPlacement) {
-        considerCandidate(presentPlacement.positions, phraseWords.length, entry, presentPlacement.inOrder);
+        considerCandidate(presentPlacement.positions, phraseWords.length, entry, presentPlacement.inOrder, null, 'partial');
         continue;
       }
     }
 
     // Fallback: the best ordered contiguous slice of the rendering that exists in the verse
     const availablePositions = findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords);
-    considerCandidate(availablePositions, phraseWords.length, entry);
+    considerCandidate(availablePositions, phraseWords.length, entry, true, null, 'slice');
   }
 
   const minimumConfidenceLevel = 80;
@@ -1868,7 +1944,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       if (placement) {
         const totalSimilarity = placement.positions.reduce((total, position) => total +
           Math.max(...presentWords.map(phraseWord => getSimilarity(phraseWord, normalizedWordList[position]))), 0);
-        considerCandidate(placement.positions, phraseWords.length, entry, placement.inOrder, totalSimilarity);
+        considerCandidate(placement.positions, phraseWords.length, entry, placement.inOrder, totalSimilarity, 'fuzzy');
       }
     }
 
@@ -1893,7 +1969,15 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       || a.span - b.span
     ))
     .slice(0, 3)
-    .map(({ selections, confidence }) => ({ selections, confidence }));
+    .map(({
+      selections, confidence, features,
+    }, rank) => (explain ? {
+      selections,
+      confidence,
+      features: {
+        ...features, verbatimRenderings, candidates: candidates.size, rank,
+      },
+    } : { selections, confidence }));
 
   // // Log the results for debugging
   // console.log('algorithm response:', {
@@ -3880,6 +3964,7 @@ async function getAlgorithmResultForJob(job) {
       alignedGLText,
       gatewayLanguageCode,
       selectionsData?.selections,
+      { explain: !!job.explainAlgorithm }, // for measuring the confidences, see `explain`
     );
 
     return {

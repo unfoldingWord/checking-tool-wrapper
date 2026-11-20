@@ -323,3 +323,61 @@ describe('moveSelectionsToOccurrence', () => {
     expect(result.bestSelections[0].selections).toEqual([{ text: 'Dios', occurrence: 2 }]);
   });
 });
+
+describe('getBestTWordSelectionWithConfidenceAlgorithm explain', () => {
+  const words = getWordList('la iglesia de Dios y la iglesia de Éfeso');
+  const history = { 'church': { 'la iglesia': 7, 'congregación': 2 }, 'the churches': { 'las iglesias': 1 } };
+
+  test('without explain the options have no features', async () => {
+    const options = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es-419', 'church', 'en', history);
+
+    expect(options[0]).toEqual({
+      selections: [{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }],
+      confidence: 100,
+    });
+  });
+
+  test('explain keeps the options and adds how each was found', async () => {
+    const plain = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es-419', 'church', 'en', history);
+    const explained = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es-419', 'church', 'en', history, { explain: true });
+
+    expect(explained.map(({ selections, confidence }) => ({ selections, confidence }))).toEqual(plain);
+    expect(explained[0].features).toMatchObject({
+      path: 'verbatim',
+      exactKey: true,
+      count: 7,
+      share: 0.7, // 7 of 10 pooled uses
+      usageRank: 0,
+      renderings: 3,
+      renderingWords: 2,
+      matchedWords: 2,
+      gap: 0,
+      similarity: 1,
+      runsInVerse: 2, // 'la iglesia' occurs twice
+      neighbourInHistory: 0,
+      pointScore: 100,
+      cap: 100,
+      verbatimRenderings: 1,
+      rank: 0,
+    });
+  });
+
+  test('explain reports partial, related-key and fuzzy matches', async () => {
+    const [partial] = await getBestTWordSelectionWithConfidenceAlgorithm(
+      getWordList('para la gran iglesia'), 'es-419', 'church', 'en', { church: { 'la iglesia': 3 } }, { explain: true });
+    const [related] = await getBestTWordSelectionWithConfidenceAlgorithm(
+      words, 'es-419', 'church', 'en', { 'churches of God': { 'iglesia de Dios': 2 } }, { explain: true });
+    const [fuzzy] = await getBestTWordSelectionWithConfidenceAlgorithm(
+      getWordList('las iglesias de Galacia'), 'es-419', 'church', 'en', { church: { iglesia: 4 } }, { explain: true });
+
+    expect(partial.features).toMatchObject({
+      path: 'ordered', matchedWords: 2, gap: 1,
+    });
+    expect(related.features).toMatchObject({ path: 'verbatim', exactKey: false });
+    expect(related.features.relatedness).toBeGreaterThan(0);
+    expect(related.features.cap).toBeLessThan(100);
+    expect(fuzzy.features.path).toBe('fuzzy');
+    expect(fuzzy.features.similarity).toBeLessThan(1);
+  });
+});
+
