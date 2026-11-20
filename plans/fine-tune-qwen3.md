@@ -1160,3 +1160,35 @@ GGUF Q6_K (0.48 GB) for Windows and Linux. Both are within noise of their 8-bit 
 vs 64.8%, p = 0.24; GGUF 64.8% vs 64.7%, p = 1.0) and above the 4-bit loss. Card: `llmTraining/model-card-0.6b/README.md`
 (it says to prefer the 1.7B when the computer can run it); `llmTraining/make_release.sh` builds its
 release folders with the 1.7B's.
+
+### 2026-11-20: Qwen2.5-0.5B-Instruct as the low-memory candidate (not chosen)
+
+`llmTraining/lora-r16-d3-qwen2.5-0.5b.yaml`: D3's recipe and data on `Qwen/Qwen2.5-0.5B-Instruct`
+(Apache 2.0; 24 layers, hidden size 896). Qwen2.5 has no thinking mode: `check_data.py --model
+Qwen/Qwen2.5-0.5B-Instruct` passes with the answer alone as the trained part, and the app's
+`/no_think` is plain prompt text. Validation loss 3.54 → 0.24 (1,000) → 0.21 (end), against 0.095
+for Qwen3-0.6B and ~0.07 for D3; 1.1 hours. GGUF only (the author's choice for this test): stock
+model and fine-tune converted with the base model's tokenizer files, scored through plain
+llama.cpp (`llama-server` 1.0.0) with Step 6 (b) and (a):
+
+| GGUF build | Size | (b) top-1 | (b) `ne_*` | (b) wrong at ≥ 80 | (a) top-1 | (a) wrong at ≥ 80 | (a) empty | (a) median ms |
+|---|---|---|---|---|---|---|---|---|
+| Qwen3-1.7B fine-tune, Q5_K_M | 1.2 GB | **68.1%** | **66.9%** | 94 | **67%** | 11% | | 100 |
+| Qwen3-0.6B fine-tune, Q6_K (released) | 0.5 GB | 64.8% | 63.8% | **92** | 60% | 11% | | 50 |
+| Qwen2.5-0.5B fine-tune, Q6_K | 0.5 GB | 55.1% (460) | 56.1% | 101 | 49% | 12% | 31 | 40 |
+| Qwen2.5-0.5B fine-tune, Q8_0 | 0.5 GB | 55.8% (466) | 55.5% | 105 | 50% | 11% | 24 | 41 |
+| Qwen2.5-0.5B stock, Q8_0 | 0.5 GB | 42.9% (358) | 39.5% | 282 | 45% | 31% | 29 | 49 |
+| Algorithm alone | | 53.5% | 55.2% | 181 | | | | |
+
+Paired on (b): Qwen3-0.6B Q6_K vs Qwen2.5-0.5B Q6_K 108 / 27 (p = 1e-12), vs Q8_0 108 / 33
+(p = 2e-10); Qwen2.5 Q8_0 vs Q6_K 13 / 7 (p = 0.26). By band, the Qwen2.5 fine-tune is below the
+algorithm at 85-89 and 80-84 (47-49% and 50-56% vs 50.9% and 56.1%) and gains little where the
+algorithm is unsure (1-59: 21-23% vs 49% for Qwen3-0.6B; no algorithm answer: 11-14% vs 42%). It
+also gives no suggestion at all for 34 held-out checks outside `ne_*` (Qwen3-0.6B: 2), and 24-31
+empty answers on the suite.
+
+**Result:** fine-tuning lifts Qwen2.5-0.5B by 12-13 points and fixes its output format (stock: 52%
+CSV), but it ends barely above the algorithm alone (+1.6 to +2.3 points), below it in two bands,
+and 9-10 points below the Qwen3-0.6B fine-tune at the same size; it fails the Step 6 bar and the
+suite (top-1 49-50%). **The Qwen3-0.6B fine-tune stays the low-memory model.** Qwen2.5-0.5B is
+not worth more tuning here: it saves no memory (both 0.5 GB at 6 bits) and is only ~10 ms faster.
