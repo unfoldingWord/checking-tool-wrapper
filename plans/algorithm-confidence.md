@@ -647,3 +647,49 @@ costs the released fine-tuned model 3-5 points in the first suggestion shown; B 
 hard-coding or a setting, which the author did not want. `scoreSelectionsFromHistory` stays in the code
 as a measuring tool, documented as not used by the app. This revises Q2: the history-based score is the
 algorithm's confidence only.
+
+### Step 6 (2026-11-21): the whole app — decision needed
+
+Saved results before the change are in `results-before-calibration/` next to each `results/`
+(`llmTrainingData`, `llmTrainingData/finetune/heldout`, `llmTrainingData/finetune-d3-broad/heldout`). The
+algorithm was re-run on all three; then, with the new algorithm, the released 1.7B (MLX 5-bit in LM
+Studio, GGUF Q5_K_M in `llama-server`) on the 835 held-out cases, the broad twin (MLX 5-bit) on the 6,076,
+and the suitability suite (MLX 5-bit, `-r 3 -g 1`, `llm-eval-results/algorithm-calibration/`). App top-1
+is what the app shows first (the algorithm when certain, else the AI, falling back to the algorithm).
+
+| App top-1 | Before (old algorithm, cutoff 100) | New, cutoff 100 | New, cutoff 95 | New, cutoff 85 |
+|---|---|---|---|---|
+| MLX 5-bit, 835 | **570** (68.3%) | 560 (67.1%) | 568 | 568 |
+| GGUF Q5_K_M, 835 | **569** (68.1%) | 558 (66.8%) | 566 | 566 |
+| Broad twin, 6,076 | 4,510 (74.2%) | 4,479 (73.7%) | 4,512 | **4,520** |
+| AI asked (835 / 6,076) | 554 / 4,136 | 786 / 5,653 | 628 / 4,588 | |
+
+**The stricter 100 rule lowered app top-1 by 0.5-1.3 points with the fine-tuned model.** It sends ~40%
+more checks to the AI, and the new 95-99 band (mostly exact-key verbatim matches chosen fewer than 5
+times, scored 99) is right 91% of the time by the algorithm against 86% by the fine-tuned AI (835: 144
+against 136 of 158; 6,076: 973 against 940 of 1,065). Step 4's expectation that "the AI beats the
+algorithm in every band below 100" held for the old bands, not for answers that drop out of 100.
+
+At **cutoff 95** the app is where it was before (568 / 566 / 4,512 against 570 / 569 / 4,510) and the
+answers given without the AI are right 92.8% (835) / 92.4% (6,076), against 86.4% for the old rule's
+100s, with 13-11% more AI calls than before (628 against 554; 4,588 against 4,136).
+
+Suitability suite (MLX 5-bit): top-1 75% → 73% (still PASS), hand-written 90% → 84%, real projects 56% →
+60%, algorithm-certain (AI skipped) 66 → 12, wrong at ≥ 80 11% → 10%.
+
+**Decision needed:** (1) keep the certain cutoff at 100 (certain answers 95% right, Q3; app top-1 0.5-1.3
+points lower with the fine-tuned model, ~40% more AI calls); (2) set the default
+`ALGORITHM_CERTAIN_CONFIDENCE` to **95** (app top-1 as before, answers without the AI ~92.5% right, ~12%
+more AI calls); or (3) loosen the 100 rule itself (e.g. count ≥ 3, which gave 94.2% in Step 4).
+
+**Decided 2026-11-21 (author): option 2, `ALGORITHM_CERTAIN_CONFIDENCE` = 95** (was 100). The 100 rule is
+unchanged (100 still means 95% right); the app also answers 95-99 without the AI. Doc comments updated
+(`ALGORITHM_CERTAIN_CONFIDENCE`, `getBestSelections`, `runTestCase`, `ALGORITHM_CONFIDENCE_BANDS`,
+`summarizeByAlgorithmConfidence`). App top-1 at 95 comes from the Step 6 runs (every case at 95-99 has
+both answers): MLX 5-bit 568 / 835 (68.0%), GGUF Q5_K_M 566 (67.8%), broad twin 4,512 / 6,076 (74.3%),
+against 570 / 569 / 4,510 before. Suite re-run at 95 (`llm-eval-results/algorithm-calibration-95/`): top-1
+73% (40 of 55 per run, against 41 before the plan), hand-written 83%, real projects 60%, algorithm-certain
+21, wrong at ≥ 80 11%, PASS. `npm test`: 24 suites, 301 tests pass.
+
+The fine-tune exporter (`fineTuneHelpers.js`) also uses `ALGORITHM_CERTAIN_CONFIDENCE` to drop checks the
+algorithm answers with certainty, so its data now changes (Step 7).

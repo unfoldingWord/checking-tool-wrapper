@@ -215,7 +215,8 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
  * {@link testCaseToSelectionOptions}; only the call itself is timed, not building the options.
  *
  * With no `settings.llmQueryUrl` this is the algorithm path and makes no network call. With one,
- * a case whose algorithm answer is certain (confidence 100) is answered without asking the AI
+ * a case whose algorithm answer is certain (confidence `ALGORITHM_CERTAIN_CONFIDENCE`, 95, or more)
+ * is answered without asking the AI
  * (`result.algorithmFirst`), as in the app.
  * @param {object} testCase - a training or evaluation case (see {@link testCaseToSelectionOptions})
  * @param {object} [settings] - suggestion settings, passed to {@link testCaseToSelectionOptions}
@@ -492,9 +493,8 @@ export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings 
 /**
  * Bands of the algorithm's top confidence used by {@link summarizeByAlgorithmConfidence}, highest
  * first. A case is in the first band whose `min` its confidence reaches; a case the algorithm gave
- * no option is in `none`. 100 is what `ALGORITHM_CERTAIN_CONFIDENCE` in
- * `checkingSuggestionsUtils.js` answers without the AI (a certain match, see
- * `scoreSuggestionFromHistory`).
+ * no option is in `none`. The 100 and 95-99 bands are what `ALGORITHM_CERTAIN_CONFIDENCE` (95) in
+ * `checkingSuggestionsUtils.js` answers without the AI (see `scoreSuggestionFromHistory`).
  */
 export const ALGORITHM_CONFIDENCE_BANDS = [
   { band: '100', min: 100 },
@@ -515,8 +515,9 @@ export const ALGORITHM_CONFIDENCE_BANDS = [
  * {@link summarizeTestResults} scores them. Cases are matched to the algorithm results by `id`;
  * a case missing from either is counted in `unmatched`.
  *
- * In an AI run, `getBestSelections` answers a case with algorithm confidence 100 without the AI
- * (`algorithmFirst`), so the `100` band shows the algorithm on both sides. `getBestSelections` does
+ * In an AI run, `getBestSelections` answers a case with algorithm confidence
+ * `ALGORITHM_CERTAIN_CONFIDENCE` (95) or more without the AI (`algorithmFirst`), so the `100` and
+ * `95-99` bands show the algorithm on both sides. `getBestSelections` does
  * not fall back to the algorithm when the AI gives no option, but the app does (`LlmRequestQueue`
  * marks those `algorithmFallback`), so `appTop1` scores the run with that fallback: it is what the
  * user sees, and the number to compare with `algorithmTop1`. Pass the bands to

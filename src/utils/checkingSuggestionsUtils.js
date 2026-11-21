@@ -4229,10 +4229,15 @@ export function updatedPreviousSelectionsData(
 
 /**
  * The algorithm's answer is used without asking the AI when its top option has at least this
- * confidence, which `capForRendering` allows only for the exact GL key's rendering found word for
- * word in the verse. A job's `algorithmCertainConfidence` option overrides it.
+ * confidence (`scoreSuggestionFromHistory`). 95 rather than 100: 100 is given only to matches right 95%
+ * of the time, but the 95-99 band (mostly exact-key verbatim matches chosen fewer than
+ * `CERTAIN_MIN_HISTORY_COUNT` times) was right 91% of the time by the algorithm against 86% by the
+ * fine-tuned model, so with 100 the app's first suggestion was right 0.5-1.3 points less often; with 95 it
+ * is as before, and the answers given without the AI are right ~92.5% of the time, against 86% for the old
+ * algorithm (plans/algorithm-confidence.md, Step 6). A job's `algorithmCertainConfidence` option, from
+ * the `llmAlgorithmCertainConfidence` setting, overrides it.
  */
-export const ALGORITHM_CERTAIN_CONFIDENCE = 100;
+export const ALGORITHM_CERTAIN_CONFIDENCE = 95;
 
 /**
  * Runs the algorithm path for one `getBestSelections` job.
@@ -4285,8 +4290,8 @@ async function getAlgorithmResultForJob(job) {
  * - Returns immediately with `elapsedStr: '0'` and `model: ALGORITHM`
  *
  * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
- * - The algorithm runs first; a job whose top option has confidence 100 (certain, see
- *   `scoreSuggestionFromHistory`) gets the algorithm's answer, marked `algorithmFirst: true`,
+ * - The algorithm runs first; a job whose top option has confidence `ALGORITHM_CERTAIN_CONFIDENCE`
+ *   (95) or more (see `scoreSuggestionFromHistory`) gets the algorithm's answer, marked `algorithmFirst: true`,
  *   and is not sent to the AI
  * - The other jobs are sent to the AI in one query
  * - Queries a locally-running LM Studio server
