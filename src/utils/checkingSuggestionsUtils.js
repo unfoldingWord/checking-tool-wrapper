@@ -1496,19 +1496,25 @@ const HISTORY_SCORE = {
   relatedKeyMax: 0.6,
   relatedKeyBase: 0.6,
   /** the matched words occur more than once in the verse, so another occurrence may be meant */
-  repeatedInVerse: 0.6,
-  /** a verse word next to the match is a word of a history rendering, so a longer selection may be meant */
-  historyNeighbour: 0.5,
+  repeatedInVerse: 0.5,
+  /**
+   * a verse word next to the match is a word of a rendering of the exact GL key, so the user's own
+   * selections for this phrase suggest a longer selection. Words of other keys' renderings are left out:
+   * they misfired ('la' of 'la ley' for 'the faith'), and they put a longer related-key rendering ('la
+   * foi' for 'fe') above the exact key's ('foi'), which was right twice as often (Step 4).
+   */
+  historyNeighbour: 0.4,
   /** another history rendering is also in the verse word for word */
   competingRendering: 0.7,
 };
 
 /**
  * Times a rendering must have been chosen before for a match to be certain (confidence 100), with the
- * other conditions of {@link scoreSuggestionFromHistory}. With it, certain answers were right 94.7% of
- * the time on the held-out projects (95.0% on tune), against 86.4% for today's rule.
+ * other conditions of {@link scoreSuggestionFromHistory}. With 5, certain answers were right 95.0% of
+ * the time on the held-out projects and 95.2% on tune (3: 94.2% and 94.2%; 4: 94.5% and 95.0%),
+ * against 86.4% held out for the old rule (exact GL key, verbatim); the target is 95% (Step 4).
  */
-const CERTAIN_MIN_HISTORY_COUNT = 3;
+const CERTAIN_MIN_HISTORY_COUNT = 5;
 
 /**
  * Confidence of a suggestion from the user's selection history (plans/algorithm-confidence.md): how
@@ -1534,16 +1540,16 @@ const CERTAIN_MIN_HISTORY_COUNT = 3;
  *
  * @param {object} features - how the suggestion was found, as `explain` reports them in
  *   {@link getBestTWordSelectionWithConfidenceAlgorithm}: `path`, `exactKey`, `relatedness`, `count`,
- *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInHistory`, `verbatimRenderings`
+ *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInExactKeyHistory`, `verbatimRenderings`
  * @returns {number} - 100 when certain, else 1-99
  */
 function scoreSuggestionFromHistory(features) {
   const {
     path, exactKey, relatedness = 0, count = 0, renderingWords = 1, matchedWords = 1, gap = 0,
-    runsInVerse = 1, neighbourInHistory = 0, verbatimRenderings = 1,
+    runsInVerse = 1, neighbourInExactKeyHistory = 0, verbatimRenderings = 1,
   } = features;
   const repeated = runsInVerse > 1;
-  const neighbour = neighbourInHistory > 0;
+  const neighbour = neighbourInExactKeyHistory > 0;
   const competing = verbatimRenderings > 1;
 
   if (path === 'verbatim' && exactKey && !repeated && !neighbour && !competing && count >= CERTAIN_MIN_HISTORY_COUNT) {
@@ -1799,10 +1805,13 @@ function levenshteinDistance(a, b) {
  *   - `runsInVerse`: how many times its words occur in the verse (as separate adjacent runs when they
  *     are adjacent, else the fewest times any of its words occurs)
  *   - `neighbourInHistory`: how many of the verse words just before and after it (0-2) are words of
- *     a history rendering
+ *     a history rendering; `neighbourInExactKeyHistory` counts only renderings of the exact GL key (the
+ *     one the confidence uses), `neighbourInRelatedHistory` those of the exact or a closely related key
+ *     (relatedness 0.5 or more), and `neighbourExtendsRendering` renderings that also hold one of its words
  *   - `pointScore`, `cap`: the score before the GL-key cap, and the cap
  *   - `verbatimRenderings`: how many history renderings were found verbatim in this verse
  *   - `candidates`, `rank`: how many candidates were found, and this option's place among them
+ *   - `matchScore`: the candidate's match score (see above)
  * @example
  * await getBestTWordSelectionWithConfidenceAlgorithm(
  *   ['para', 'la', 'iglesia', 'de', 'Éfeso'],
@@ -1856,6 +1865,13 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   // the evidence behind each candidate, for its confidence (`scoreSuggestionFromHistory`) and `explain`
   const totalCount = countEntries.reduce((total, { count }) => total + count, 0);
   const historyWords = new Set(countEntries.flatMap(({ rendering }) => rendering.split(/\s+/)));
+  // words of renderings from the exact or a closely related GL key (plans/algorithm-confidence.md, Step 4)
+  const relatedHistoryWords = new Set(countEntries
+    .filter(({ isExact, relatedness }) => isExact || relatedness >= 0.5)
+    .flatMap(({ rendering }) => rendering.split(/\s+/)));
+  const renderingWordSets = countEntries.map(({ rendering }) => new Set(rendering.split(/\s+/)));
+  const exactKeyHistoryWords = new Set(countEntries.filter(({ isExact }) => isExact)
+    .flatMap(({ rendering }) => rendering.split(/\s+/)));
   let verbatimRenderings = 0;
 
   /**
@@ -1896,6 +1912,11 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       similarity: totalSimilarity === null ? 1 : Math.round(totalSimilarity / phraseWordCount * 1000) / 1000,
       runsInVerse,
       neighbourInHistory: neighbours.filter(word => word && historyWords.has(word)).length,
+      neighbourInRelatedHistory: neighbours.filter(word => word && relatedHistoryWords.has(word)).length,
+      neighbourInExactKeyHistory: neighbours.filter(word => word && exactKeyHistoryWords.has(word)).length,
+      // a history rendering holds the neighbour and one of these words: a longer selection may be meant
+      neighbourExtendsRendering: neighbours.filter(word => word && renderingWordSets.some(set => set.has(word)
+        && matchedWords.some(matched => set.has(matched)))).length,
       pointScore: score,
       cap: capForRendering(entry),
     };
@@ -2073,28 +2094,34 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     }
   }
 
-  // Sort all candidates by quality (match score, count, matched word count, compactness), take the
-  // top 3, and give each the confidence of its evidence (`scoreSuggestionFromHistory`)
+  // Give every candidate the confidence of its evidence (`scoreSuggestionFromHistory`), order them by
+  // it (ties by match score, count, matched word count, compactness), and take the top 3. Ordering by
+  // the confidence raised top-1 on the tune projects and kept it on the held-out ones (Step 4), and
+  // keeps the confidences shown falling from first to last.
   const bestSelections = [...candidates.values()]
+    .map(candidate => ({
+      ...candidate,
+      confidence: scoreSuggestionFromHistory({
+        ...candidate.features, verbatimRenderings, candidates: candidates.size,
+      }),
+    }))
     .sort((a, b) => (
-      b.matchScore - a.matchScore
+      b.confidence - a.confidence
+      || b.matchScore - a.matchScore
       || b.count - a.count
       || b.matchedWordCount - a.matchedWordCount
       || a.span - b.span
     ))
     .slice(0, 3)
     .map(({
-      selections, matchScore, features,
-    }, rank) => {
-      const allFeatures = {
-        ...features, verbatimRenderings, candidates: candidates.size, rank,
-      };
-      const confidence = scoreSuggestionFromHistory(allFeatures);
-
-      return explain ? {
-        selections, confidence, features: { ...allFeatures, matchScore },
-      } : { selections, confidence };
-    });
+      selections, confidence, matchScore, features,
+    }, rank) => (explain ? {
+      selections,
+      confidence,
+      features: {
+        ...features, verbatimRenderings, candidates: candidates.size, rank, matchScore,
+      },
+    } : { selections, confidence }));
 
   // // Log the results for debugging
   // console.log('algorithm response:', {

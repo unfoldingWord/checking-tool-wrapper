@@ -61,7 +61,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
           'the Holy': { 'Nơi Thánh': 1 },
           'holy place': { 'một nơi thánh': 1 },
         },
-        'nơi thánh', 15, 35, // related keys only; 25
+        'nơi thánh', 40, 60, // related keys only; 51
       ],
       [
         'es-419 with the exact GL key (perfect)',
@@ -94,17 +94,17 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
       [
         'pools renderings from every related key (vi, Heb 9:12, full history)',
         VERSE_HEB_9_12, normalizer('holy places'), fullViHistory,
-        'các nơi thánh', 10, 30, // related key, and other history renderings are in the verse; 20
+        'các nơi thánh', 30, 50, // related key, and other history renderings are in the verse; 40
       ],
       [
         'is independent of history key order - law first (es)',
         VERSE_ES_FAITH, 'the faith', { 'the law': { 'la ley': 3 }, 'faith': { 'fe': 5 } },
-        'fe', 10, 30, // related key, 'la' (a history word) next to it, 'la ley' also in the verse; 20
+        'fe', 30, 50, // related key and 'la ley' also in the verse; 'la' is not an exact-key word; 40
       ],
       [
         'is independent of history key order - faith first (es)',
         VERSE_ES_FAITH, 'the faith', { 'faith': { 'fe': 5 }, 'the law': { 'la ley': 3 } },
-        'fe', 10, 30, // as above, whatever the key order; 20
+        'fe', 30, 50, // as above, whatever the key order; 40
       ],
       [
         'is independent of history key order (hi, Devanagari; made-up data)',
@@ -119,7 +119,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
       [
         'uses the most-used group rendering when the GL phrase is only morphologically related (vi, Heb 12:10, full history)',
         VERSE_HEB_12_10, 'holiness', fullViHistory,
-        'thánh khiết', 10, 30, // related key, other history renderings in the verse; 18
+        'thánh khiết', 25, 45, // related key, other history renderings in the verse; 36
       ],
     ])('%s', checkTopChoice);
   });
@@ -184,14 +184,14 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
         'la iglesia', 100, 100,
       ],
       [
-        'is not certain from a rendering chosen fewer than 3 times (es)',
-        'para la iglesia de Éfeso', 'church', { 'church': { 'la iglesia': 2 } },
+        'is not certain from a rendering chosen fewer than 5 times (es)',
+        'para la iglesia de Éfeso', 'church', { 'church': { 'la iglesia': 4 } },
         'la iglesia', 99, 99, // exact key and verbatim, but too little history for 100
       ],
       [
         'is not certain when the rendering occurs twice in the verse (es)',
         'la iglesia de Dios y la iglesia de Éfeso', 'church', { 'church': { 'la iglesia': 7 } },
-        'la iglesia', 55, 65, // another occurrence may be meant (x 0.6); 60
+        'la iglesia', 45, 55, // another occurrence may be meant (x 0.5); 50
       ],
       [
         'is not certain when another history rendering is in the verse (es)',
@@ -351,7 +351,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm explain', () => {
 
     expect(options[0]).toEqual({
       selections: [{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }],
-      confidence: 60, // not certain: 'la iglesia' occurs twice in the verse (x 0.6)
+      confidence: 50, // not certain: 'la iglesia' occurs twice in the verse (x 0.5)
     });
   });
 
