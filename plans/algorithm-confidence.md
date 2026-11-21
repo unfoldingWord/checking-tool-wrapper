@@ -34,11 +34,11 @@ the app does not ask the AI, so it must be right at least **95%** of the time on
 occurs once, no history word next to it, no competing history phrase in the verse); they are used only
 to decide 100, not the rest of the scale.
 
-**AI suggestions (Q2, decided):** more AI calls are acceptable. The AI's own confidence numbers are
-only good for ordering its suggestions. When there is selection history, each AI suggestion's
-confidence is **replaced by the same history-based score** (its closeness to the most similar history
-phrase, weighted the same way); the AI's number only orders suggestions that score the same, and is kept
-only when there is no history.
+**AI suggestions (Q2, decided; revised in Step 5b):** more AI calls are acceptable. The plan was to
+replace each AI suggestion's confidence with the same history-based score when there is selection
+history. Step 5b measured that it makes the first suggestion shown in AI mode worse with the released
+fine-tuned model (its own confidences are calibrated), so the author chose to leave AI confidences as
+the AI gives them (decision D).
 
 Out of scope: finding answers the algorithm does not list today (section 2.4 shows that is most of the
 remaining error), suggesting the longer "plus more" selections of 2.2 (Q4, decided: usually the user has
@@ -586,3 +586,64 @@ now only chooses between candidates for the same words and breaks ties).
 **Result after Step 5** (harness): top-1 tune 57.3% (11,625), test **57.4%** (3,487, from 3,476 at the
 start); test AUC 0.871, ECE top / all 12.1 / 7.8, Brier 0.152, at 100 423 / 95.0%. `npm test`: 24 suites,
 301 tests pass; `ALGORITHM_TOP1` unchanged.
+
+### Step 5b (2026-11-21): AI suggestions scored from the history — measured, decision needed
+
+`scoreSelectionsFromHistory(wordList, selections, glPhrase, glLangCode, history)` (exported) scores any
+suggestion against every history rendering with `scoreSuggestionFromHistory`: verbatim, in order with
+gaps, partial or fuzzy, as for the algorithm, plus `extraWords` (words of the suggestion not in the
+rendering), each multiplying closeness by `HISTORY_SCORE.extraWord` (0.7); null when no rendering shares a
+word or similar form with it. The algorithm's options have no extra words, so they are unchanged (`npm
+test` passes). Not yet used by the app.
+
+Measured offline with `__tests__/calibrateAiConfidence.test.js` (skipped unless `LLM_ALGO_AI_MODEL`):
+the saved AI answers on the broader held-out set (`llmTrainingData/finetune-d3-broad/heldout`, run with the
+old 100 rule), split into **fit** (the six projects added for the broader test) and **check** (the
+original four). Cases answered by the algorithm are left out. Extra-word factors 0.4-1 and several
+treatments of no-match answers were tried; shown: factor 0.7, no-match answers given the AI's
+confidence capped at 50 (the best compromise across models).
+
+AI options alone:
+
+| | Fine-tuned 1.7B (broad twin) | Stock Qwen3-4B | Stock Qwen3-1.7B |
+|---|---|---|---|
+| No-match options right (fit / check) | 68% / 51% | 43% / 40% | 13% / 9% |
+| AUC, AI's own → history (check) | 0.597 → 0.679 | 0.614 → 0.768 | 0.550 → 0.800 |
+| Brier, AI's own → history (check) | 0.277 → 0.258 | 0.357 → 0.207 | 0.470 → 0.182 |
+| Brier, AI's own → history (fit) | **0.216 → 0.280** | 0.315 → 0.232 | 0.418 → 0.212 |
+
+**What the app shows first in AI mode** (the AI's options merged with the new algorithm's by
+`mergeBestSelections`):
+
+| First suggestion right | AI's own confidence | History score |
+|---|---|---|
+| Fine-tuned 1.7B, fit (3,507) / check (544) | **71.6% / 56.8%** | 66.2% / 53.9% |
+| Stock 4B, fit (2,933) / check (471) | 59.0% / 50.7% | 60.1% / 49.7% |
+| Stock 1.7B, fit (2,792) / check (341) | 46.3% / 39.3% | **53.6% / 44.9%** |
+
+Findings:
+- The history score ranks AI answers better than the AI's own numbers for every model, and calibrates
+  the stock models' answers much better.
+- But the fine-tuned model's own confidences (trained on the 95/75/55 labels) are already calibrated,
+  and its choice of answer is evidence the history cannot see: the history score under-rates its answers,
+  so in the merged list the algorithm's option is shown first more often (AI first 3,270 → 2,898 of
+  3,507 on fit), and **the first suggestion is right 2.9-5.4 points less often**. For stock 1.7B it is
+  right 5-7 points more often; for stock 4B about the same.
+
+**Decision needed (revisits Q2):** (A) replace the AI's confidence with the history score for every model
+(as decided; costs the fine-tuned model 3-5 points in what checkers see first); (B) keep the AI's own
+confidence and use the history score only for models whose numbers are not trustworthy (needs a setting
+or a list of fine-tuned models); (C) show the history score as the AI options' confidence but keep the AI's
+options first in the merge (the order checkers see stays the AI's; the shown numbers no longer fall from
+first to last); or (D) leave AI confidences as they are.
+
+Significance (paired exact McNemar, first suggestion right only with the AI's own confidence / only with
+the history score, no-match capped at 50): fine-tuned 1.7B fit **297 / 107 (p ≈ 1e-21)**, check 43 / 27
+(p = 0.07); stock 4B fit 99 / 132 (p = 0.04), check 25 / 20 (p = 0.55); stock 1.7B fit 66 / 269
+(p ≈ 3e-30), check 11 / 30 (p = 0.004).
+
+**Decided 2026-11-21 (author): D, AI confidences stay as the AI gives them.** A (replace for every model)
+costs the released fine-tuned model 3-5 points in the first suggestion shown; B (per model) would need
+hard-coding or a setting, which the author did not want. `scoreSelectionsFromHistory` stays in the code
+as a measuring tool, documented as not used by the app. This revises Q2: the history-based score is the
+algorithm's confidence only.

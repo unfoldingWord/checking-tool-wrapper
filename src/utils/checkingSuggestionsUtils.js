@@ -1485,6 +1485,12 @@ const HISTORY_SCORE = {
    * them, and the fit found no further reduction.
    */
   fuzzyExactKey: 0.85,
+  /**
+   * each word of a suggestion that is not a word of the history rendering it is compared with multiplies
+   * its closeness by this; only for `scoreSelectionsFromHistory` (measuring AI answers, Step 5b), since
+   * the algorithm's own options have no extra words
+   */
+  extraWord: 0.7,
   /** coverage (words found / rendering words) is raised to this power for partial and fuzzy matches */
   coverageExponent: 1.5,
   /** each verse word between the matched words multiplies closeness by this */
@@ -1552,16 +1558,17 @@ const FUZZY_PASS_BELOW_CONFIDENCE = 50;
  *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInExactKeyHistory`, `verbatimRenderings`
  * @returns {number} - 100 when certain, else 1-99
  */
-function scoreSuggestionFromHistory(features) {
+function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.extraWord } = {}) {
   const {
     path, exactKey, relatedness = 0, count = 0, renderingWords = 1, matchedWords = 1, gap = 0,
-    runsInVerse = 1, neighbourInExactKeyHistory = 0, verbatimRenderings = 1,
+    runsInVerse = 1, neighbourInExactKeyHistory = 0, verbatimRenderings = 1, extraWords = 0,
   } = features;
   const repeated = runsInVerse > 1;
   const neighbour = neighbourInExactKeyHistory > 0;
   const competing = verbatimRenderings > 1;
 
-  if (path === 'verbatim' && exactKey && !repeated && !neighbour && !competing && count >= CERTAIN_MIN_HISTORY_COUNT) {
+  if (path === 'verbatim' && exactKey && !repeated && !neighbour && !competing && !extraWords
+    && count >= CERTAIN_MIN_HISTORY_COUNT) {
     return 100;
   }
 
@@ -1581,7 +1588,136 @@ function scoreSuggestionFromHistory(features) {
     * (neighbour ? HISTORY_SCORE.historyNeighbour : 1)
     * (competing ? HISTORY_SCORE.competingRendering : 1);
 
-  return Math.max(1, Math.min(99, Math.round(100 * closeness * keyWeight * verseWeight)));
+  return Math.max(1, Math.min(99, Math.round(100 * closeness * keyWeight * verseWeight * extraWordFactor ** extraWords)));
+}
+
+/**
+ * Positions in `wordList` of a suggestion's words, each at its occurrence.
+ * @param {Array<string>} wordList - verse words
+ * @param {Array<{text: string, occurrence: number}>} selections
+ * @returns {Array<number>|null} - ascending positions, or null when a word is not in the verse
+ */
+function positionsOfSelections(wordList, selections) {
+  const positions = (selections || []).map(({ text, occurrence = 1 }) => {
+    let seen = 0;
+    return wordList.findIndex(word => word === text && ++seen === occurrence);
+  });
+  return positions.length && positions.every(position => position >= 0) ? positions.sort((a, b) => a - b) : null;
+}
+
+/**
+ * Confidence of any suggestion (an AI answer, for one) from the user's selection history, on the same
+ * scale as the algorithm's (plans/algorithm-confidence.md, Step 5b). **Not used by the app:** for
+ * measuring only (`__tests__/calibrateAiConfidence.test.js`). Giving AI answers this score instead of the
+ * AI's own confidence made the first suggestion shown in AI mode right 3-5 points less often with the
+ * fine-tuned model (whose own confidences are calibrated), so AI confidences are left as the AI gives
+ * them (decision D). The suggestion is compared with
+ * every history rendering, and the best {@link scoreSuggestionFromHistory} wins. Against a rendering it
+ * is verbatim when it is the rendering's words, adjacent and in order; it is in order with gaps when it is
+ * the rendering's words with verse words between them; partial when it has some of the rendering's
+ * words; fuzzy when it has none but similar forms (`wordSimilarity`). Words of the suggestion that are
+ * not the rendering's count as `extraWords`.
+ *
+ * @param {Array<string>} wordList - verse words in reading order
+ * @param {Array<{text: string, occurrence: number}>} selections - the suggestion's words
+ * @param {string} glPhrase - gateway-language phrase
+ * @param {string} glLangCode - gateway-language code
+ * @param {object} previousTranslationData - the selection history, as for the algorithm
+ * @param {object} [weights] - for measuring: `extraWordFactor` (default `HISTORY_SCORE.extraWord`)
+ * @returns {{confidence: number, features: object}|null} - the best score and its features, or null when
+ *   the history is empty or no rendering shares a word (or a similar form) with the suggestion
+ */
+export function scoreSelectionsFromHistory(wordList, selections, glPhrase, glLangCode, previousTranslationData, weights = {}) {
+  const words = wordList || [];
+  const countEntries = poolRenderings(rankGlKeys(previousTranslationData, glPhrase, glLangCode));
+  const positions = positionsOfSelections(words, selections);
+
+  if (!countEntries.length || !positions) {
+    return null;
+  }
+
+  const normalizedWordList = words.map(word => normalizeForCompare(word));
+  const optionWords = positions.map(position => normalizedWordList[position]);
+  const span = positions[positions.length - 1] - positions[0];
+  const isContiguous = span === positions.length - 1;
+  const exactKeyWords = new Set(countEntries.filter(({ isExact }) => isExact).flatMap(({ rendering }) => rendering.split(/\s+/)));
+  const neighbours = [normalizedWordList[positions[0] - 1], normalizedWordList[positions[positions.length - 1] + 1]];
+  let runsInVerse = Math.min(...optionWords.map(word => normalizedWordList.filter(verseWord => verseWord === word).length));
+
+  if (isContiguous) {
+    runsInVerse = 0;
+
+    for (let start = 0; start <= normalizedWordList.length - optionWords.length; start++) {
+      if (optionWords.every((word, offset) => normalizedWordList[start + offset] === word)) {
+        runsInVerse++;
+        start += optionWords.length - 1; // runs may not overlap
+      }
+    }
+  }
+
+  const verbatimRenderings = countEntries.filter(({ rendering }) => findContiguousMatchPositions(normalizedWordList, rendering.split(/\s+/))).length;
+  const shared = {
+    runsInVerse,
+    neighbourInExactKeyHistory: neighbours.filter(word => word && exactKeyWords.has(word)).length,
+    verbatimRenderings,
+    gap: span + 1 - positions.length,
+  };
+  let best = null;
+
+  for (const entry of countEntries) {
+    const renderingWords = entry.rendering.split(/\s+/).filter(Boolean);
+    const unused = [...optionWords];
+    let matchedWords = 0;
+
+    for (const word of renderingWords) {
+      const index = unused.indexOf(word);
+
+      if (index >= 0) {
+        unused.splice(index, 1);
+        matchedWords++;
+      }
+    }
+
+    let path;
+
+    if (matchedWords === renderingWords.length) {
+      const inOrder = renderingWords.join(' ') === optionWords.filter(word => renderingWords.includes(word)).join(' ');
+      path = inOrder ? 'ordered' : 'unordered';
+
+      if (isContiguous && inOrder) {
+        path = 'verbatim';
+      }
+    } else if (matchedWords) {
+      path = 'partial';
+    } else {
+      matchedWords = renderingWords.filter(word => optionWords.some(optionWord => wordSimilarity(word, optionWord) > 0)).length;
+      path = 'fuzzy';
+      unused.splice(0, unused.length, ...optionWords.filter(optionWord => !renderingWords.some(word => wordSimilarity(word, optionWord) > 0)));
+    }
+
+    if (!matchedWords) {
+      continue;
+    }
+
+    const features = {
+      ...shared,
+      path,
+      exactKey: entry.isExact,
+      relatedness: entry.relatedness,
+      count: entry.count,
+      renderingWords: renderingWords.length,
+      matchedWords,
+      extraWords: unused.length,
+      gap: path === 'verbatim' ? 0 : shared.gap,
+    };
+    const confidence = scoreSuggestionFromHistory(features, weights);
+
+    if (!best || confidence > best.confidence) {
+      best = { confidence, features };
+    }
+  }
+
+  return best;
 }
 
 /**
