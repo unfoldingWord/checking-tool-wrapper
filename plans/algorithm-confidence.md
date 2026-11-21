@@ -183,7 +183,8 @@ alike:
   order, or similar word forms (fuzzy), by path.
 - **Frequency weight** (0-1): from the phrase's count and its share of the history's counts.
 - **GL-key weight** (0-1): 1 for the exact GL phrase, lower by relatedness for other keys.
-- **The 100 rule:** exact GL key, verbatim, and the verse checks of Step 2 (see section 1).
+- **The 100 rule:** exact GL key, verbatim, the verse checks, and a rendering chosen at least 5 times
+  (Step 4; 3 in Step 3).
 
 The shapes and weights of the three parts are chosen on the tune projects (Step 2) and checked on the
 test projects. No per-language lists or tables (CLAUDE.md: target languages can be anything). The
@@ -499,3 +500,52 @@ keys'; Step 4 should measure re-ordering with and without limiting it to renderi
 The saved algorithm results in `llmTrainingData/results/` still hold the old confidences; re-run
 `npm run run:llm-training-data` (algorithm) before Step 6, and note that the fine-tune exporter reads
 them (Step 7).
+
+### Step 4 (2026-11-21): order the options by the confidence
+
+**Re-ordering.** All candidates now get `scoreSuggestionFromHistory` and are ordered by it (ties by
+match score, count, words, compactness) before the top 3 are taken, so the confidences shown fall from
+first to last (in AI mode `mergeBestSelections` sorts by confidence anyway).
+
+**The neighbour check.** Re-ordering exposed a mis-ranking: when a short exact-key rendering and a longer
+related-key rendering containing it are both in the verse (`foi` from `fe` and `la foi` from `la fe`;
+`disciples` and `ses disciples` from `his disciples`), the longer one's first word sits next to the short
+one, so the short one was marked down and the longer one ranked first. In the data the short exact-key
+rendering is right about twice as often (tune 145 against 68 of 328 such cases; test 12 against 4 of
+21), and three hand-written suite cases (`es-the-faith`, `fr-gl-es`, `fr-long-history`) flipped to wrong.
+Four versions of the check were recorded as features and compared (each refitted on tune):
+
+| Neighbour counted when it is a word of… | Test AUC | Test at 100 / right | Test top-1 re-ordered (of 5,152) | Tune top-1 re-ordered (of 18,959) | That situation: right first, tune / test |
+|---|---|---|---|---|---|
+| any history rendering (Step 3) | 0.874 | 695 / 94.7% | 3,472 | 11,693 | 155 / 11 |
+| a rendering of the exact or a related key (relatedness ≥ 0.5) | 0.874 | 704 / 94.5% | 3,476 | 11,652 | 150 / 10 |
+| a rendering that also holds one of the match's words | 0.872 | 714 / 94.1% | 3,481 | 11,683 | |
+| **a rendering of the exact GL key** (chosen) | 0.872 | 721 / 94.2% | **3,478** | 11,606 | **179 / 16** |
+
+"Exact GL key" matches what the check is for (the user's own selections for this GL phrase include the
+neighbour), fixes the mis-ranking and the three suite cases, and is the best on test; it costs about 46
+right top answers on tune against the related-key version. Refitted factors: phrase repeated in the verse
+0.5 (was 0.6), exact-key neighbour 0.4 (was 0.5); the rest unchanged.
+
+**The 100 rule.** With the narrower neighbour check, count ≥ 3 left certain answers at 94.2% (tune and
+test), below the 95% target. Minimum count for 100: 3 gives 94.2% / 94.2%, 4 gives 95.0% / 94.5%, **5
+gives 95.2% / 95.0%** (tune / test), 6 gives 95.4% / 94.8%. `CERTAIN_MIN_HISTORY_COUNT` is now **5**.
+
+**Result** (harness; options or order differ from the saved results in 4,522 of 26,369 cases):
+
+| | Tune | Test |
+|---|---|---|
+| Top-1 | 55.2% → **57.1%** (11,208 → 11,590) | 57.2% (3,476 → 3,478) |
+| AUC, all options | 0.909 | 0.872 |
+| ECE top / all options | 5.9 / 3.7 | 12.3 / 8.0 |
+| Brier, all options | 0.115 | 0.152 |
+| At 100 / right | 3,149 / **95.2%** | 423 / **95.0%** |
+
+Against the original baseline (section 2) on test: AUC 0.789 → 0.872, ECE all options 24.3 → 8.0, right at
+100 86.4% → 95.0% (1,940 → 423 certain answers, so more checks go to the AI), top-1 unchanged.
+
+Tests: ranges updated for the new factors (related-key cases 25-60; `la iglesia` twice in a verse 50);
+the 100-rule test uses 4 uses (99); `ALGORITHM_TOP1` stays `{ hand: 25, real: 9 }` (the three hand cases
+that flipped with the any-rendering check are right again). `npm test`: 24 suites, 301 tests pass. The
+features `neighbourInHistory`, `neighbourInRelatedHistory` and `neighbourExtendsRendering` stay in
+`explain` for later analysis; the score uses `neighbourInExactKeyHistory`.
