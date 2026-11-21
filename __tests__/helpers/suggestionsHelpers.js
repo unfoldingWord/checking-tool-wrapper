@@ -493,8 +493,8 @@ export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings 
  * Bands of the algorithm's top confidence used by {@link summarizeByAlgorithmConfidence}, highest
  * first. A case is in the first band whose `min` its confidence reaches; a case the algorithm gave
  * no option is in `none`. 100 is what `ALGORITHM_CERTAIN_CONFIDENCE` in
- * `checkingSuggestionsUtils.js` answers without the AI; 82-95 is the cap for a rendering reached
- * through a related GL key (`capForRendering`).
+ * `checkingSuggestionsUtils.js` answers without the AI (a certain match, see
+ * `scoreSuggestionFromHistory`).
  */
 export const ALGORITHM_CONFIDENCE_BANDS = [
   { band: '100', min: 100 },

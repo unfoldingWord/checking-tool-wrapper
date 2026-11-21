@@ -46,6 +46,9 @@ const checkTopChoice = async (name, verseText, glPhrase, history, expectedText, 
   }
 };
 
+// Confidences follow `scoreSuggestionFromHistory` (plans/algorithm-confidence.md): closeness to the
+// history rendering x GL-key weight x verse checks, 100 only for a certain match. A rendering reached
+// through a related GL key scores 36-60% of an exact-key match, so the related-key cases below are low.
 describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
   describe('existing translation history', () => {
     test.each([
@@ -58,7 +61,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
           'the Holy': { 'Nơi Thánh': 1 },
           'holy place': { 'một nơi thánh': 1 },
         },
-        'nơi thánh', 76, 100,
+        'nơi thánh', 15, 35, // related keys only; 25
       ],
       [
         'es-419 with the exact GL key (perfect)',
@@ -70,7 +73,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
           'in coming together': { 'cuando reúnen': 1 },
           'coming together': { 'cuando reúnen': 1 },
         }),
-        'cuando reúnan', 76, 100,
+        'cuando reúnan', 35, 55, // a fuzzy match (reúnen/reúnan); 43
       ],
       [
         'es-419 without the exact GL key (imperfect)',
@@ -81,7 +84,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
           'you come together': { 'cuando reúnen': 1 },
           'in coming together': { 'cuando reúnen': 1 },
         }),
-        'cuando reúnan', 76, 100,
+        'cuando reúnan', 20, 40, // fuzzy and through a related key; 29
       ],
     ])('Should find match - %s', checkTopChoice);
   });
@@ -91,32 +94,32 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
       [
         'pools renderings from every related key (vi, Heb 9:12, full history)',
         VERSE_HEB_9_12, normalizer('holy places'), fullViHistory,
-        'các nơi thánh', 85, 95,
+        'các nơi thánh', 10, 30, // related key, and other history renderings are in the verse; 20
       ],
       [
         'is independent of history key order - law first (es)',
         VERSE_ES_FAITH, 'the faith', { 'the law': { 'la ley': 3 }, 'faith': { 'fe': 5 } },
-        'fe', 85, 95,
+        'fe', 10, 30, // related key, 'la' (a history word) next to it, 'la ley' also in the verse; 20
       ],
       [
         'is independent of history key order - faith first (es)',
         VERSE_ES_FAITH, 'the faith', { 'faith': { 'fe': 5 }, 'the law': { 'la ley': 3 } },
-        'fe', 85, 95,
+        'fe', 10, 30, // as above, whatever the key order; 20
       ],
       [
         'is independent of history key order (hi, Devanagari; made-up data)',
         'विश्वास से हम समझते हैं कि व्यवस्था दी गई', 'the faith', { 'the law': { 'व्यवस्था': 3 }, 'faith': { 'विश्वास': 5 } },
-        'विश्वास', 85, 95,
+        'विश्वास', 30, 50, // related key, another history rendering in the verse; 40
       ],
       [
         'never reports 100 through a partial key (es)',
         'por la fe Abraham', 'by faith', { 'faith': { 'la fe': 3 } },
-        'la fe', 82, 95,
+        'la fe', 45, 70, // related key: never 100; 58
       ],
       [
         'uses the most-used group rendering when the GL phrase is only morphologically related (vi, Heb 12:10, full history)',
         VERSE_HEB_12_10, 'holiness', fullViHistory,
-        'thánh khiết', 80, 90,
+        'thánh khiết', 10, 30, // related key, other history renderings in the verse; 18
       ],
     ])('%s', checkTopChoice);
   });
@@ -126,7 +129,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
       [
         'matches a compound target word by shared prefix (de-like, made-up data)',
         'und die Kirchengemeinde versammelte sich', 'the church', { 'church': { 'Kirche': 4 } },
-        'Kirchengemeinde', 60, 80,
+        'Kirchengemeinde', 45, 70, // fuzzy through a related key; 58
       ],
     ])('%s', checkTopChoice);
 
@@ -143,7 +146,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
         }),
       );
       expect(topChoiceText).toBe(normalizer('sự thánh'));
-      expectInRange(confidence, 50, 79);
+      expectInRange(confidence, 5, 25); // part of a rendering, through related keys; 12
       const withVoi = results.filter(({ selections }) => getSelectionsText(selections).includes(normalizer('với')));
       expect(withVoi).toEqual([]);
     });
@@ -181,6 +184,21 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
         'la iglesia', 100, 100,
       ],
       [
+        'is not certain from a rendering chosen fewer than 3 times (es)',
+        'para la iglesia de Éfeso', 'church', { 'church': { 'la iglesia': 2 } },
+        'la iglesia', 99, 99, // exact key and verbatim, but too little history for 100
+      ],
+      [
+        'is not certain when the rendering occurs twice in the verse (es)',
+        'la iglesia de Dios y la iglesia de Éfeso', 'church', { 'church': { 'la iglesia': 7 } },
+        'la iglesia', 55, 65, // another occurrence may be meant (x 0.6); 60
+      ],
+      [
+        'is not certain when another history rendering is in the verse (es)',
+        'la iglesia y la congregación de Éfeso', 'church', { 'church': { 'la iglesia': 7, 'la congregación': 3 } },
+        'la iglesia', 65, 75, // which rendering is meant is unclear (x 0.7); 70
+      ],
+      [
         'inflected target word through the exact key (hi, made-up)',
         'सब विश्वासी एक साथ थे', 'faith', { 'faith': { 'विश्वास': 5 } },
         'विश्वासी', 75, 90,
@@ -188,17 +206,17 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm', () => {
       [
         'finds the outer words when the middle word is missing (vi)',
         'để dự phần vào sự thánh khiết của Ngài', 'sanctification', { 'sanctification': { 'sự nên thánh': 1 } },
-        'sự thánh', 50, 79,
+        'sự thánh', 25, 45, // two of three words, around a gap; 33
       ],
       [
         'fuzzy inflection in a non-Latin script (el, made-up)',
         'ο θεός αγαπά τους πιστούς', 'the faithful', { 'faithful': { 'πιστοί': 2 } },
-        'πιστούς', 65, 80,
+        'πιστούς', 45, 70, // fuzzy through a related key; 58
       ],
       [
         'keeps finding an adjacent swap of a known rendering (ru-like, made-up)',
         'и дух святой сошёл', 'holy spirit', { 'holy spirit': { 'святой дух': 3 } },
-        'дух святой', 80, 90,
+        'дух святой', 20, 40, // swapped words; 30
       ],
     ])('%s', checkTopChoice);
   });
@@ -333,7 +351,7 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm explain', () => {
 
     expect(options[0]).toEqual({
       selections: [{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }],
-      confidence: 100,
+      confidence: 60, // not certain: 'la iglesia' occurs twice in the verse (x 0.6)
     });
   });
 

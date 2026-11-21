@@ -200,7 +200,7 @@ describe('LlmRequestQueue.doQuery marks algorithm suggestions', () => {
     gatewayLanguageCode: 'en',
     verseText: 'Pablo saludó a la iglesia en Corinto',
     alignedGLText: 'church',
-    selectionsData: { selections: { church: { 'la iglesia': 7, iglesia: 2 } } },
+    selectionsData: { selections: { church: { 'la iglesia': 7, 'iglesia': 2 } } },
   };
 
   afterEach(() => {
@@ -218,7 +218,10 @@ describe('LlmRequestQueue.doQuery marks algorithm suggestions', () => {
   test('marks the algorithm-first answer but not the AI answer in AI mode', async () => {
     window.AiAPIs = { query: jest.fn().mockResolvedValue({ replyText: '"Roma",95', actualModel: 'test-model' }) };
     const results = await new LlmRequestQueue({}).doQuery([], [
-      { ...job, llmQueryUrl: 'http://localhost:1234' },
+      // one rendering, so the algorithm's answer is certain (with 'iglesia' too, two renderings compete)
+      {
+        ...job, llmQueryUrl: 'http://localhost:1234', selectionsData: { selections: { church: { 'la iglesia': 7 } } },
+      },
       {
         ...job, llmQueryUrl: 'http://localhost:1234', verseText: 'para la iglesia de Roma',
         alignedGLText: 'Rome', selectionsData: { selections: {} },
@@ -251,13 +254,17 @@ describe('LlmRequestQueue merges algorithm suggestions into AI suggestions', () 
     queue.processNextRequestIfNotBusy = jest.fn();
     queue.doQuery = jest.fn((_, request) => Promise.resolve([request.llmQueryUrl ?
       { ...aiResult, request } :
-      { error: false, model: ALGORITHM, bestSelections: algorithmOptions, request }]));
+      {
+        error: false, model: ALGORITHM, bestSelections: algorithmOptions, request,
+      }]));
     return queue;
   }
 
   test('sorts the merged options and keeps a shared one once, with the higher confidence', async () => {
     const queue = makeQueue(
-      { error: false, model: 'test-model', bestSelections: [option('iglesia', 90), option('la', 60)] },
+      {
+        error: false, model: 'test-model', bestSelections: [option('iglesia', 90), option('la', 60)],
+      },
       [option('la iglesia', 100, true), option('iglesia', 70, true), option('de', 75, true)],
     );
     const callback = jest.fn();
@@ -291,7 +298,9 @@ describe('LlmRequestQueue merges algorithm suggestions into AI suggestions', () 
   });
 
   test('does not ask the algorithm again for an algorithm-first answer', async () => {
-    const queue = makeQueue({ error: false, model: ALGORITHM, algorithmFirst: true, bestSelections: [option('la iglesia', 100, true)] }, []);
+    const queue = makeQueue({
+      error: false, model: ALGORITHM, algorithmFirst: true, bestSelections: [option('la iglesia', 100, true)],
+    }, []);
 
     queue.makeSuggestionRequest({ key: KEY, llmQueryUrl: AI_URL }, jest.fn());
     await queue.processNextRequest();

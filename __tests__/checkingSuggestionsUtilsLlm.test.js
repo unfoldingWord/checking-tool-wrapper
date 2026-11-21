@@ -351,7 +351,9 @@ describe('AI extra request params', () => {
   });
 
   test('direct request merges extra params, which cannot replace model, stream or messages', async () => {
-    global.fetch = jest.fn().mockResolvedValue({ ok: false, status: 500, text: () => Promise.resolve('error') });
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: false, status: 500, text: () => Promise.resolve('error'),
+    });
 
     await expect(queryAiAPI('question', {
       baseUrl: 'http://localhost:1234',
@@ -439,13 +441,11 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
 
     expect(query).toHaveBeenCalledTimes(1);
     expect(results[0].algorithmFirst).toBeUndefined();
-    expect(results[0]).toMatchObject({
-      model: 'test-model', bestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 90 }],
-    });
+    expect(results[0]).toMatchObject({ model: 'test-model', bestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 90 }] });
   });
 
   test.each([
-    ['used when the top option reaches it', 80, true],
+    ['used when the top option reaches it', 50, true], // the related-key option scores in the 50s
     ['the default when not a number', '80', false],
   ])('algorithmCertainConfidence is %s', async (_, algorithmCertainConfidence, algorithmFirst) => {
     const query = jest.fn().mockResolvedValue({ replyText: '"iglesia",90', actualModel: 'test-model' });
@@ -467,7 +467,7 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
     expect(!!results[0].algorithmFirst).toBe(algorithmFirst);
 
     if (algorithmFirst) {
-      expect(results[0].bestSelections[0].confidence).toBeGreaterThanOrEqual(80);
+      expect(results[0].bestSelections[0].confidence).toBeGreaterThanOrEqual(50);
       expect(results[0].bestSelections[0].confidence).toBeLessThan(100);
     }
   });

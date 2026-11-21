@@ -35,7 +35,7 @@ import {
   normalizePhrase, optionText, testCaseToSelectionOptions,
 } from './helpers/suggestionsHelpers';
 import {
-  DEFAULT_CALIBRATION_TEST_PROJECTS, accuracyByBand, brierScore, calibrationBand, calibrationByProject,
+  DEFAULT_CALIBRATION_TEST_PROJECTS, accuracyByBand, areaUnderCurve, brierScore, calibrationBand, calibrationByProject,
   expectedCalibrationError, matchesProject, projectOfFile, summarizeCalibration, wrongKind,
 } from './helpers/algorithmCalibrationHelpers';
 
@@ -48,6 +48,10 @@ const TEST_PROJECTS = (env.LLM_ALGO_TEST_PROJECTS || '').split(/\s+/).filter(Boo
 const plainWords = text => normalizePhrase(text).split(/\s+/).map(word => word.replace(/:\d+$/, '')).join(' ');
 
 /** same answer (words, occurrences and confidences of every option) as a saved result */
+/** same options (words and occurrences, in order) as a saved result, whatever their confidences */
+const sameOptions = (a, b) => JSON.stringify((a || []).map(({ selections }) => selections))
+  === JSON.stringify((b || []).map(({ selections }) => selections));
+
 const sameAnswer = (a, b) => JSON.stringify((a || []).map(({ selections, confidence }) => [selections, confidence]))
   === JSON.stringify((b || []).map(({ selections, confidence }) => [selections, confidence]));
 
@@ -63,7 +67,7 @@ function reportSplit(name, s) {
   const lines = [
     `== ${name}: ${s.cases} cases, ${s.options} options shown, no suggestion ${s.noSuggestion}`,
     `top-1 ${s.top1} (${percent(s.top1, s.cases)})`,
-    `ECE top ${s.eceTop.toFixed(1)}, all options ${s.eceAll.toFixed(1)}; Brier top ${s.brierTop.toFixed(3)}, all ${s.brierAll.toFixed(3)}`,
+    `ECE top ${s.eceTop.toFixed(1)}, all options ${s.eceAll.toFixed(1)}; Brier top ${s.brierTop.toFixed(3)}, all ${s.brierAll.toFixed(3)}; AUC all ${s.aucAll.toFixed(3)}`,
     `wrong at >= 80: top option ${s.wrongTopAt80}, any option ${s.wrongAnyAt80}`,
     `at 100: ${s.at100}, right ${percent(s.rightAt100, s.at100)}; wrong at 100 by kind ${JSON.stringify(s.wrongKindsAt100)}`,
     'band      top: options right    lower options: options right',
@@ -92,6 +96,13 @@ describe('algorithm calibration helpers', () => {
     // bin 100: confidence 100, accuracy 50 -> 50; bin 50: confidence 52.5, accuracy 50 -> 2.5
     expect(expectedCalibrationError(rows)).toBeCloseTo((50 * 2 + 2.5 * 2) / 4);
     expect(expectedCalibrationError([])).toBe(0);
+  });
+
+  test('areaUnderCurve is the chance a right option outranks a wrong one', () => {
+    // right 100 and 50 against wrong 100 and 55: 100-100 ties (0.5), 100-55 wins (1), 50 loses both
+    expect(areaUnderCurve(rows)).toBeCloseTo(1.5 / 4);
+    expect(areaUnderCurve([{ confidence: 90, right: true }, { confidence: 10, right: false }])).toBe(1);
+    expect(areaUnderCurve([{ confidence: 90, right: true }])).toBe(0.5);
   });
 
   test('brierScore is the mean squared error of confidence as a probability', () => {
@@ -171,6 +182,7 @@ describe('algorithm calibration helpers', () => {
     const rowsBySplit = { tune: [], test: [] };
     const rowLines = [];
     let differsFromSaved = 0;
+    let optionsDifferFromSaved = 0;
     let comparedWithSaved = 0;
 
     for (const file of files) {
@@ -190,6 +202,7 @@ describe('algorithm calibration helpers', () => {
         if (savedById.has(testCase.id)) {
           comparedWithSaved++;
           differsFromSaved += sameAnswer(options, savedById.get(testCase.id)) ? 0 : 1;
+          optionsDifferFromSaved += sameOptions(options, savedById.get(testCase.id)) ? 0 : 1;
         }
 
         if (!testCase.expected?.length) {
@@ -223,7 +236,8 @@ describe('algorithm calibration helpers', () => {
 
     const lines = [
       `${files.length} files; test projects: ${testProjects.join(' ')}`,
-      `answers differing from the saved algorithm results: ${differsFromSaved} of ${comparedWithSaved}`,
+      `answers differing from the saved algorithm results: ${differsFromSaved} of ${comparedWithSaved}`
+        + ` (options or their order: ${optionsDifferFromSaved}; the rest differ only in confidence)`,
     ];
 
     for (const split of ['tune', 'test']) {

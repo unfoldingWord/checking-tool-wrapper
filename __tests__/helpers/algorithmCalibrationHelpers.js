@@ -101,6 +101,39 @@ export function brierScore(rows) {
 }
 
 /**
+ * Area under the ROC curve: the chance that a right option has a higher confidence than a wrong one
+ * (ties count half). 0.5 is no better than chance, 1 separates them perfectly.
+ * @param {Array<{confidence: number, right: boolean}>} rows
+ * @returns {number} - 0-1; 0.5 when every row is right or every row is wrong
+ */
+export function areaUnderCurve(rows) {
+  const sorted = [...rows].sort((a, b) => a.confidence - b.confidence);
+  let rightCount = 0;
+  let rankSum = 0;
+
+  for (let start = 0; start < sorted.length;) {
+    let end = start;
+
+    while (end < sorted.length && sorted[end].confidence === sorted[start].confidence) {
+      end++;
+    }
+
+    const averageRank = (start + end + 1) / 2; // 1-based ranks, ties share the average
+
+    for (let i = start; i < end; i++) {
+      if (sorted[i].right) {
+        rightCount++;
+        rankSum += averageRank;
+      }
+    }
+    start = end;
+  }
+
+  const wrongCount = sorted.length - rightCount;
+  return rightCount && wrongCount ? (rankSum - rightCount * (rightCount + 1) / 2) / (rightCount * wrongCount) : 0.5;
+}
+
+/**
  * Rows and accuracy per {@link CALIBRATION_BANDS} band.
  * @param {Array<{confidence: number, right: boolean}>} rows
  * @returns {Array<{band: string, count: number, right: number}>} - every band, highest first
@@ -171,6 +204,7 @@ export function summarizeCalibration(cases, rows) {
     eceAll: expectedCalibrationError(rows),
     brierTop: brierScore(top),
     brierAll: brierScore(rows),
+    aucAll: areaUnderCurve(rows),
     wrongTopAt80: top.filter(row => !row.right && row.confidence >= 80).length,
     wrongAnyAt80: rows.filter(row => !row.right && row.confidence >= 80).length,
     at100: at100.length,

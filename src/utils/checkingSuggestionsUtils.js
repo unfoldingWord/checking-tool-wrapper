@@ -1468,7 +1468,111 @@ function findBestAvailableOrderedMatchPositions(normalizedWordList, phraseWords)
 }
 
 /**
- * Scores how good a match is, 0-100, standing in for the AI's confidence.
+ * Weights of {@link scoreSuggestionFromHistory}, fitted on the training data's tune projects and
+ * checked on its held-out projects (plans/algorithm-confidence.md, Step 2 revised: held-out AUC 0.789
+ * -> 0.874, wrong options shown at confidence 80 or more 1,585 -> 121).
+ */
+const HISTORY_SCORE = {
+  /** closeness of a rendering found in order with other verse words between its words */
+  ordered: 0.2,
+  /** closeness of a rendering found with its words slightly out of order */
+  unordered: 0.3,
+  /** closeness of a match with some of the rendering's words missing, before coverage */
+  partial: 0.6,
+  /**
+   * closeness of a fuzzy match (similar word forms) through the exact GL key; such matches were right
+   * 79% of the time on tune and 92% on test. Through a related key the GL-key weight already lowers
+   * them, and the fit found no further reduction.
+   */
+  fuzzyExactKey: 0.85,
+  /** coverage (words found / rendering words) is raised to this power for partial and fuzzy matches */
+  coverageExponent: 1.5,
+  /** each verse word between the matched words multiplies closeness by this */
+  gapFactor: 0.5,
+  /**
+   * a related (not exact) GL key: weight `relatedKeyMax * (relatedKeyBase + (1 - relatedKeyBase) *
+   * relatedness)`, so 0.36-0.6
+   */
+  relatedKeyMax: 0.6,
+  relatedKeyBase: 0.6,
+  /** the matched words occur more than once in the verse, so another occurrence may be meant */
+  repeatedInVerse: 0.6,
+  /** a verse word next to the match is a word of a history rendering, so a longer selection may be meant */
+  historyNeighbour: 0.5,
+  /** another history rendering is also in the verse word for word */
+  competingRendering: 0.7,
+};
+
+/**
+ * Times a rendering must have been chosen before for a match to be certain (confidence 100), with the
+ * other conditions of {@link scoreSuggestionFromHistory}. With it, certain answers were right 94.7% of
+ * the time on the held-out projects (95.0% on tune), against 86.4% for today's rule.
+ */
+const CERTAIN_MIN_HISTORY_COUNT = 3;
+
+/**
+ * Confidence of a suggestion from the user's selection history (plans/algorithm-confidence.md): how
+ * closely it matches the most similar history rendering, lower when that rendering came from a GL key
+ * that is not the exact GL phrase, and lower when the verse makes the match doubtful.
+ *
+ *   confidence = 100 x closeness x GL-key weight x verse checks, 1-99
+ *
+ * - closeness: 1 for the rendering found word for word; `HISTORY_SCORE.ordered` or `.unordered` when its
+ *   words are separated or swapped; `HISTORY_SCORE.partial` x coverage^`coverageExponent` when some are
+ *   missing; coverage^`coverageExponent` for a fuzzy match (times `fuzzyExactKey` through the exact GL
+ *   key); each gap word multiplies by `gapFactor`.
+ *   Word similarity of a fuzzy match is not used: on the training data it did not predict whether the
+ *   match was right.
+ * - GL-key weight: 1 for the exact GL key, else 0.36-0.6 by relatedness.
+ * - verse checks: `repeatedInVerse`, `historyNeighbour`, `competingRendering`.
+ *
+ * How often the rendering was chosen is not a factor: on the training data it did not predict the right
+ * answer once the verse checks were applied (the history holds many inflected forms, and the one in the
+ * verse is usually right however rarely it was chosen). It decides certainty only: 100, the level at
+ * which the app does not ask the AI, needs a verbatim match from the exact GL key that passes every verse
+ * check, from a rendering chosen at least {@link CERTAIN_MIN_HISTORY_COUNT} times.
+ *
+ * @param {object} features - how the suggestion was found, as `explain` reports them in
+ *   {@link getBestTWordSelectionWithConfidenceAlgorithm}: `path`, `exactKey`, `relatedness`, `count`,
+ *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInHistory`, `verbatimRenderings`
+ * @returns {number} - 100 when certain, else 1-99
+ */
+function scoreSuggestionFromHistory(features) {
+  const {
+    path, exactKey, relatedness = 0, count = 0, renderingWords = 1, matchedWords = 1, gap = 0,
+    runsInVerse = 1, neighbourInHistory = 0, verbatimRenderings = 1,
+  } = features;
+  const repeated = runsInVerse > 1;
+  const neighbour = neighbourInHistory > 0;
+  const competing = verbatimRenderings > 1;
+
+  if (path === 'verbatim' && exactKey && !repeated && !neighbour && !competing && count >= CERTAIN_MIN_HISTORY_COUNT) {
+    return 100;
+  }
+
+  const coverage = (matchedWords / renderingWords) ** HISTORY_SCORE.coverageExponent;
+  const gapWeight = HISTORY_SCORE.gapFactor ** gap;
+  const closeness = {
+    verbatim: 1,
+    ordered: HISTORY_SCORE.ordered * gapWeight,
+    unordered: HISTORY_SCORE.unordered * gapWeight,
+    partial: HISTORY_SCORE.partial * coverage * gapWeight,
+    slice: HISTORY_SCORE.partial * coverage,
+    fuzzy: (exactKey ? HISTORY_SCORE.fuzzyExactKey : 1) * coverage * gapWeight,
+  }[path] ?? HISTORY_SCORE.partial * coverage;
+  const keyWeight = exactKey ? 1 :
+    HISTORY_SCORE.relatedKeyMax * (HISTORY_SCORE.relatedKeyBase + (1 - HISTORY_SCORE.relatedKeyBase) * relatedness);
+  const verseWeight = (repeated ? HISTORY_SCORE.repeatedInVerse : 1)
+    * (neighbour ? HISTORY_SCORE.historyNeighbour : 1)
+    * (competing ? HISTORY_SCORE.competingRendering : 1);
+
+  return Math.max(1, Math.min(99, Math.round(100 * closeness * keyWeight * verseWeight)));
+}
+
+/**
+ * Scores how good a match is, 0-100. Used to choose between candidates for the same words, to decide
+ * whether the fuzzy pass runs, and to order the options; the confidence reported for an option is
+ * {@link scoreSuggestionFromHistory}.
  *
  * Only a complete rendering found adjacently and in order scores 100 - that is the exact match.
  * Every weaker match is capped at 99 so a caller applying a confidence threshold can tell an
@@ -1642,8 +1746,9 @@ function levenshteinDistance(a, b) {
  * phrase was rendered before is the only evidence available. The history holds one translationWords
  * group, so every history key is scored against `glPhrase` (`rankGlKeys`) and the renderings of all
  * keys are pooled (`poolRenderings`). Each pooled rendering is looked for in the verse, strongest
- * usage count first:
- * - found adjacently and in order through the exact GL key: 100 (the only way to reach 100)
+ * usage count first, and each candidate gets a match score (`scoreAlgorithmicMatch`) that chooses and
+ * orders the candidates:
+ * - found adjacently and in order through the exact GL key: 100
  * - found adjacently and in order through a related GL key: 82-95, higher the more weighted GL words
  *   the key shares with the phrase (`capForRendering`)
  * - found in order with other verse words in between: below 100, by compactness (and under the key's cap)
@@ -1657,6 +1762,13 @@ function levenshteinDistance(a, b) {
  * The same verse words can be reached from more than one rendering (`iglesia` is both its own
  * rendering and part of `de la iglesia`), so a candidate keeps the best score any rendering
  * earns for it rather than whichever was examined first.
+ *
+ * The confidence reported for each of the (up to 3) options is not the match score but
+ * {@link scoreSuggestionFromHistory}: closeness to the history rendering x GL-key weight x verse checks,
+ * fitted on the training data (plans/algorithm-confidence.md). It is 100 (certain, so the app does not
+ * ask the AI) only for a verbatim match through the exact GL key that occurs once in the verse, has no
+ * history word next to it, is the only history rendering in the verse, and was chosen at least
+ * {@link CERTAIN_MIN_HISTORY_COUNT} times.
  *
  * @param {Array<string>} wordList - target-language verse words in reading order
  * @param {string} targetLangCode - language code of the verse, e.g. 'es-419'; unused, kept so this
@@ -1741,13 +1853,14 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
   // Map to store candidates, keyed by position string (e.g. "2:3:5") to deduplicate same words
   const candidates = new Map(); // keyed by matched positions, so the same words appear once
-  // only for `explain`: the evidence behind each candidate
-  const totalCount = explain ? countEntries.reduce((total, { count }) => total + count, 0) : 0;
-  const historyWords = explain ? new Set(countEntries.flatMap(({ rendering }) => rendering.split(/\s+/))) : null;
+  // the evidence behind each candidate, for its confidence (`scoreSuggestionFromHistory`) and `explain`
+  const totalCount = countEntries.reduce((total, { count }) => total + count, 0);
+  const historyWords = new Set(countEntries.flatMap(({ rendering }) => rendering.split(/\s+/)));
   let verbatimRenderings = 0;
 
   /**
-   * Features of a candidate for `explain` (see the function's doc comment).
+   * Features of a candidate (see the function's doc comment); `verbatimRenderings`, `candidates` and
+   * `rank` are added once every candidate is known.
    * @returns {object}
    */
   function describeCandidate({
@@ -1817,29 +1930,30 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       score = Math.max(1, Math.min(FUZZY_TARGET_MAX_CONFIDENCE, Math.round(score * (totalSimilarity / phraseWordCount))));
     }
 
-    // capped here, before candidates are compared, so ordering reflects the reported confidence
-    const confidence = Math.min(score, capForRendering(entry));
+    // capped by how closely the GL key matched; this match score chooses and orders candidates, the
+    // reported confidence comes from `scoreSuggestionFromHistory` once every candidate is known
+    const matchScore = Math.min(score, capForRendering(entry));
     // Create unique key from positions for deduplication
     const key = positions.join(':');
     const existing = candidates.get(key);
 
-    // Keep only the best match for these positions (highest confidence, then highest count)
+    // Keep only the best match for these positions (highest match score, then highest count)
     // These words may already have been matched by another rendering - keep the stronger reading
-    if (existing && (existing.confidence > confidence
-      || (existing.confidence === confidence && existing.count >= count))) {
+    if (existing && (existing.matchScore > matchScore
+      || (existing.matchScore === matchScore && existing.count >= count))) {
       return;
     }
 
     // Store or update the candidate with its metadata
     candidates.set(key, {
       selections: buildSelectionsFromPositions(words, positions),
-      confidence,
+      matchScore,
       count,
       span,
       matchedWordCount: positions.length,
-      features: explain ? describeCandidate({
+      features: describeCandidate({
         positions, phraseWordCount, entry, path, isContiguous, span, totalSimilarity, score,
-      }) : undefined,
+      }),
     });
   }
 
@@ -1903,7 +2017,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
   const minimumConfidenceLevel = 80;
   const haveConfidentCandidate = [...candidates.values()]
-    .some(candidate => candidate.confidence > minimumConfidenceLevel);
+    .some(candidate => candidate.matchScore > minimumConfidenceLevel);
 
   if (!haveConfidentCandidate) {
     // Fuzzy pass: match each rendering word to similar verse words (inflected, compound or accent-variant
@@ -1959,25 +2073,28 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     }
   }
 
-  // Sort all candidates by quality (confidence, count, matched word count, compactness)
-  // and take the top 3 results
+  // Sort all candidates by quality (match score, count, matched word count, compactness), take the
+  // top 3, and give each the confidence of its evidence (`scoreSuggestionFromHistory`)
   const bestSelections = [...candidates.values()]
     .sort((a, b) => (
-      b.confidence - a.confidence
+      b.matchScore - a.matchScore
       || b.count - a.count
       || b.matchedWordCount - a.matchedWordCount
       || a.span - b.span
     ))
     .slice(0, 3)
     .map(({
-      selections, confidence, features,
-    }, rank) => (explain ? {
-      selections,
-      confidence,
-      features: {
+      selections, matchScore, features,
+    }, rank) => {
+      const allFeatures = {
         ...features, verbatimRenderings, candidates: candidates.size, rank,
-      },
-    } : { selections, confidence }));
+      };
+      const confidence = scoreSuggestionFromHistory(allFeatures);
+
+      return explain ? {
+        selections, confidence, features: { ...allFeatures, matchScore },
+      } : { selections, confidence };
+    });
 
   // // Log the results for debugging
   // console.log('algorithm response:', {
@@ -3992,8 +4109,8 @@ async function getAlgorithmResultForJob(job) {
  * - Returns immediately with `elapsedStr: '0'` and `model: ALGORITHM`
  *
  * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
- * - The algorithm runs first; a job whose top option has confidence 100 (the exact GL key's
- *   rendering found word for word) gets the algorithm's answer, marked `algorithmFirst: true`,
+ * - The algorithm runs first; a job whose top option has confidence 100 (certain, see
+ *   `scoreSuggestionFromHistory`) gets the algorithm's answer, marked `algorithmFirst: true`,
  *   and is not sent to the AI
  * - The other jobs are sent to the AI in one query
  * - Queries a locally-running LM Studio server

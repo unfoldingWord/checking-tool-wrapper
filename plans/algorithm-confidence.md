@@ -23,13 +23,26 @@ Make the algorithm's confidence mean what it says, using the measured outcomes i
 3. **Fuzzy matches (inflected, compound or accent-variant forms) scored by how often they prove right,**
    not by a fixed cap.
 
-Proposed meaning (Q1): **a suggestion shown at confidence N is right about N% of the time**, for every
-option shown (1st, 2nd, 3rd), measured on held-out projects. 100 stays special: it is the algorithm's
-"certain" level, where the app does not ask the AI, so it is given only to suggestions whose measured
-accuracy is at or above a target (Q3, proposed 95%).
+**Meaning (Q1, decided by the author 2026-11-21):** the confidence is **how closely the suggestion
+matches the most similar target phrase in the user's selection history, weighted by how often that
+phrase was selected (its counts), and lower when the history's GL phrase does not match exactly.** The
+training data does not change that meaning; it sets the weights of the three parts (match closeness,
+frequency, GL-key match) and the shape of each, so that a higher confidence goes with a likelier answer
+and fewer confident false positives. 100 stays special: it is the algorithm's "certain" level, where
+the app does not ask the AI, so it must be right at least **95%** of the time on held-out projects
+(Q3, decided). Step 2 showed that 95% needs checks of the verse beyond the three parts (the phrase
+occurs once, no history word next to it, no competing history phrase in the verse); they are used only
+to decide 100, not the rest of the scale.
+
+**AI suggestions (Q2, decided):** more AI calls are acceptable. The AI's own confidence numbers are
+only good for ordering its suggestions. When there is selection history, each AI suggestion's
+confidence is **replaced by the same history-based score** (its closeness to the most similar history
+phrase, weighted the same way); the AI's number only orders suggestions that score the same, and is kept
+only when there is no history.
 
 Out of scope: finding answers the algorithm does not list today (section 2.4 shows that is most of the
-remaining error), the AI prompt, and the fine-tuned models.
+remaining error), suggesting the longer "plus more" selections of 2.2 (Q4, decided: usually the user has
+not yet made enough selections for that GL phrase), the AI prompt, and the fine-tuned models.
 
 ## 2. What the data shows (baseline)
 
@@ -160,10 +173,21 @@ What reads these confidences:
 ## 4. Approach
 
 Keep the matching (which words are found) as it is, and replace how a found candidate's confidence is
-set: **compute language-neutral features for every candidate, and map them to a confidence with a small
-table fitted on the tune projects.** No per-language lists or tables (CLAUDE.md: target languages can be
-anything). The mapping must stay readable in the code: a few constants with comments citing the
-measurements, not a trained model.
+set with **one scoring function of the Q1 parts**, used for algorithm candidates and AI suggestions
+alike:
+
+    confidence = 100 x match closeness x frequency weight x GL-key weight, capped at 99
+    unless the 100 rule holds
+
+- **Match closeness** (0-1): 1 for the phrase found verbatim; lower for gaps, missing words, swapped
+  order, or similar word forms (fuzzy), by path.
+- **Frequency weight** (0-1): from the phrase's count and its share of the history's counts.
+- **GL-key weight** (0-1): 1 for the exact GL phrase, lower by relatedness for other keys.
+- **The 100 rule:** exact GL key, verbatim, and the verse checks of Step 2 (see section 1).
+
+The shapes and weights of the three parts are chosen on the tune projects (Step 2) and checked on the
+test projects. No per-language lists or tables (CLAUDE.md: target languages can be anything). The
+function must stay readable in the code: a few constants with comments citing the measurements.
 
 Candidate features, all available inside `considerCandidate` (lines 1723-1771) or cheap to add:
 
@@ -246,6 +270,17 @@ fraction, and test whether the fuzzy pass should also run when the best candidat
 own calibrated level (today it runs only when nothing is above 80). Keep a change only if fuzzy options'
 calibration improves and top-1 does not fall.
 
+### Step 5b. Score AI suggestions from the history (`src` change)
+
+When the job has selection history, give each AI suggestion the Step 3 score: match its words against
+every history rendering (exactly, then by `wordSimilarity`, as the algorithm does) and score the
+closest one with the same match closeness, frequency and GL-key weights. Keep the AI's order for
+suggestions that score the same, and keep the AI's own confidence only when there is no history.
+`FUZZY_TARGET_MAX_CONFIDENCE` (the cap for AI answers matched to the verse by similarity) is then
+replaced by the score's match closeness. Measure with Step 6: the AI's confidences on the held-out
+files before and after (ECE, wrong at ≥ 80), and that the merged list (`mergeBestSelections`) still
+orders AI and algorithm options sensibly.
+
 ### Step 6. The whole app (LIVE, LM Studio and llama.cpp)
 
 The confidence decides when the AI is asked, so measure the app, not only the algorithm, on the held-out
@@ -286,14 +321,18 @@ files of the fine-tune plan (`llmTrainingData/finetune/heldout`, 835 checks) and
 ## 7. Open questions for the author
 
 - **Q1. Meaning.** Should confidence N mean "right about N% of the time" for every option shown?
+  - Answer: it is how closely the suggestion matches the most similar target phrase in the historical user selections (selectionData) and weighted by how frequently that phrase was selected (based on the counts in selectionData).  Also lower weight should be given to historical user selections where the GL language phrase does not exactly match. The AI suggestions are an exception that it can make use of its language training data when there is not much in the user selection history.  Depending on the model this could be an advantage or fiction.  So if there is user selection history the AI confidence values should be replaced by the confidence numbers generated by the algorithm.
 - **Q2. AI calls.** Fewer 100s send more checks to the AI. With the fine-tuned model that should raise
   accuracy (it beats the algorithm in every band below 100), but it costs time. Acceptable, and is there
   a limit?
+  - Answer: it's OK if it costs more time.  Unfortunately the confidence numbers from AI are suspect and only useful for sorting the AI recommendataions.  The confidence value in the AI suggestions should be replaced using the same algorithm mentioned in Q1.
 - **Q3. Target for 100.** What accuracy should "certain" need: 95% (proposed), or higher, since
   certain answers are not checked by the AI?
+  - Answer: 95% would work.
 - **Q4. The "plus more" pattern (2.2).** It is the largest error at 100. Calibration can only lower the
   confidence; actually suggesting the longer selection (for example, extending to adjacent words that
   other renderings of the key include) would be a separate matching change. In scope, or a later plan?
+  - Answer: This is out of scope for now.  Typically, this is because the user has not yet done enough selections for this Gateway language phrase for the algorithm to determine the extra words to be included.
 
 ## Results
 
@@ -366,3 +405,97 @@ to the AI, and the held-out projects have short histories (few renderings used 1
 10" keeps only 157 of their 1,940 certain answers. Proposed: **clean and count ≥ 3** (94.7% right on
 test, about the 95% target, 36% of today's certain answers kept); Step 6 then measures what the extra AI
 calls give with the fine-tuned model.
+
+### Step 2, revised for the Q1 answer (2026-11-21): the history-based score
+
+The score of section 4 (100 x match closeness x frequency weight x GL-key weight, 100 only by the rule
+"exact key, verbatim, occurs once, no history word next to it, the only verbatim rendering, count ≥ 3"),
+with each part's shape fitted on tune by minimising the Brier score (coordinate search over a grid),
+then checked on test. The same harness rows as Step 2; option order unchanged unless stated.
+
+| Held-out (test) | Today | Q1 score | Q1 score + verse checks | Q1 + verse, frequency forced share^0.25 × count/(count+1) | … forced share^0.5 × count/(count+2) |
+|---|---|---|---|---|---|
+| AUC (all options) | 0.789 | 0.844 | **0.874** | 0.846 | 0.812 |
+| Brier (all options) | 0.243 | 0.188 | **0.151** | 0.201 | 0.263 |
+| ECE top / all options | 18.4 / 24.3 | 22.3 / 14.6 | **13.1 / 8.4** | 25.2 / 17.2 | 35.5 / 25.7 |
+| Wrong options at ≥ 80 | 1,585 | 132 | 121 | 41 | 39 |
+| At 100 / right | 1,940 / 86.4% | 695 / 94.7% | 695 / 94.7% | 695 / 94.7% | 695 / 94.7% |
+| Top-1 if options re-ordered by the score (tune; today 11,208) | | 11,241 | **11,664** | 11,332 | 10,795 |
+
+Fitted parts (tune):
+- **Q1 score:** closeness verbatim 1, in order with gaps 0.4 × 0.5 per gap word, out of order 0.3 ×
+  0.5 per gap, partial or slice (words found / rendering words)², fuzzy the same with **no effect of word
+  similarity** (exponent 0); frequency share^0.1 × count/(count + 0.5), nearly flat; GL key 1 exact,
+  0.36-0.6 for related keys (0.6 × (0.6 + 0.4 × relatedness)).
+- **+ verse checks** (a factor for the phrase occurring more than once, 0.6; a history word next to it,
+  0.5; another history phrase verbatim in the verse, 0.7): the fit sets the **frequency weight to 1
+  (no effect)**; closeness in order with gaps 0.2 × 0.5 per gap, partial or slice 0.6 × (found/words)^1.5,
+  GL key as above.
+
+Findings:
+- **Frequency does not predict the right answer** once the verse is considered: the fit removes it, and
+  forcing it in lowers AUC and calibration and, at share^0.5, re-ordering by the score would lose 413
+  right top answers on tune. The likely reason: the history holds many inflected forms of a term, each
+  chosen a few times; whichever form is in this verse verbatim is usually right, however rarely it was
+  chosen before. History count still matters for 100 (count ≥ 3) and as today's tie-breaker in the order.
+- **Word similarity does not predict whether a fuzzy match is right** (exponent 0 in both fits); found
+  words per rendering word does.
+- **The verse checks matter beyond 100:** without them, verbatim exact-key matches that fail them (right
+  50-64%) score 85-99, and the top option's ECE on test gets worse than today (22.3 against 18.4).
+- Re-ordering by the score gains up to 456 right top answers on tune (Step 4); on test it is flat
+  (3,473-3,487 against 3,476).
+
+**Decision needed:** the author's Q1 definition weights by frequency, but the data says frequency does
+not help and can hurt. Proposed: **the Q1 score plus the verse checks, with frequency used only for 100
+(count ≥ 3) and to order options that score the same**; or keep a nominal frequency weight
+(share^0.25 × count/(count+1)) at the cost shown in the fourth column.
+
+### Step 3 (2026-11-21): the history-based score in the algorithm (author's choice A)
+
+Option A of the Step 2 decision: the Q1 score with the verse checks, frequency used only for 100
+(count ≥ 3) and the existing tie-breaker. In `src/utils/checkingSuggestionsUtils.js`:
+- `scoreSuggestionFromHistory(features)` with the weights in `HISTORY_SCORE` and
+  `CERTAIN_MIN_HISTORY_COUNT = 3`, documented with the measurements. It takes the `explain` features, so
+  Step 5b can score AI suggestions with it.
+- One change from the Step 2 fit: a fuzzy match through the exact GL key gets closeness
+  `fuzzyExactKey` 0.85 instead of 1. With 1 it scored 99 while such matches were right 79% (tune) and
+  92% (test) of the time; a separate factor fitted to 0.85 at no measurable cost (test AUC 0.874 either
+  way) and matches Q1 (another word form is less close).
+- The candidate's old point score is kept as `matchScore` and still chooses between candidates for the
+  same words, triggers the fuzzy pass, and orders the options, so **the options and their order are
+  unchanged**; each returned option's `confidence` is the new score. Features are now computed for every
+  candidate (they were only computed for `explain`).
+
+Harness (`npm run calibrate:algorithm`): options or their order differ from the saved results in **0**
+of 26,369 cases; 21,346 differ only in confidence.
+
+| | Tune | Test |
+|---|---|---|
+| Top-1 | 55.2% (unchanged) | 57.2% (unchanged) |
+| AUC, all options | 0.830 → **0.909** | 0.789 → **0.874** |
+| ECE top / all options | 28.1 / 37.8 → **8.1 / 3.5** | 18.4 / 24.3 → **13.4 / 8.6** |
+| Brier, all options | 0.327 → **0.115** | 0.243 → **0.151** |
+| At 100 / right | 9,336 / 80.0% → **3,646 / 95.0%** | 1,940 / 86.4% → **695 / 94.7%** |
+| Wrong at 100 that are "another occurrence" | 481 → 3 | 60 → 0 |
+
+Tests: 13 confidence ranges in `checkingSuggestionsUtils.test.js` updated, each with the new value and
+reason (related keys now 10-60, fuzzy and partial matches 30-60); the explain test's `la iglesia` (twice
+in its verse) is 60, not 100; three new tests for the 100 rule (count below 3 gives 99, a repeated
+rendering 60, a competing rendering 70). In `checkingSuggestionsUtilsLlm.test.js` the custom
+`algorithmCertainConfidence` test uses 50 (its related-key option now scores in the 50s), and in
+`LlmRequestQueue.test.js` the algorithm-first job has one rendering (with `iglesia` too, two renderings
+compete and it is not certain). `npm test`: 24 suites, 301 tests pass; `ALGORITHM_TOP1` unchanged. Doc
+comments of the algorithm, `getBestSelections` and `ALGORITHM_CONFIDENCE_BANDS` updated; CLAUDE.md is
+Step 7.
+
+**For Step 4:** because the order is kept, a lower option can now show a higher confidence than the top
+one. In AI mode `mergeBestSelections` sorts by confidence, so such an option would be shown first. Example
+(unit test "independent of history key order", GL `the faith`, history `the law: la ley`, `faith: fe`,
+verse `Por la fe Abraham ... la ley ...`): the right `fe` scores 20 (related key; `la`, a word of the
+unrelated rendering `la ley`, is next to it; `la ley` is also verbatim in the verse) and the wrong 2nd
+option `la ley` 29. The neighbour check counts words of every pooled rendering, including unrelated
+keys'; Step 4 should measure re-ordering with and without limiting it to renderings of related keys.
+
+The saved algorithm results in `llmTrainingData/results/` still hold the old confidences; re-run
+`npm run run:llm-training-data` (algorithm) before Step 6, and note that the fine-tune exporter reads
+them (Step 7).
