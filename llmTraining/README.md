@@ -110,3 +110,14 @@ its first lines.
 
 `npm run sync:llm-training` copies `llmTraining`, `llmTrainingData` and `llm-eval-results` to the
 external drive (without the virtual environments and the llama.cpp source).
+
+## Rebuilding the released model's data
+
+The exporter drops checks the algorithm answers with certainty, using the saved algorithm results in
+`llmTrainingData/results/` and `ALGORITHM_CERTAIN_CONFIDENCE`. Both changed with the algorithm
+calibration (`plans/algorithm-confidence.md`, 2026-11-21): the released D3 model was trained on data
+built from the old results (backed up in `llmTrainingData/results-before-calibration/`) with the old
+cutoff 100. Built today, the same recipe gives 11,068 training examples instead of 10,265 (7,070 the same;
+`llmTrainingData/finetune-d3-calibrated`). To rebuild the original data, check out the commit before the
+calibration (`5fd445b`) and use the backed-up results as `llmTrainingData/results/`. The model was not
+retrained: with the new algorithm and cutoff 95 the app's top-1 with it is as before (Step 6).

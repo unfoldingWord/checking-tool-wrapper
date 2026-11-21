@@ -693,3 +693,39 @@ against 570 / 569 / 4,510 before. Suite re-run at 95 (`llm-eval-results/algorith
 
 The fine-tune exporter (`fineTuneHelpers.js`) also uses `ALGORITHM_CERTAIN_CONFIDENCE` to drop checks the
 algorithm answers with certainty, so its data now changes (Step 7).
+
+### Step 7 (2026-11-21): fine-tune data and docs
+
+**Fine-tune data.** The exporter drops checks the algorithm answers with certainty (saved algorithm
+results and `ALGORITHM_CERTAIN_CONFIDENCE`), so the D3 recipe now gives different data
+(`llmTrainingData/finetune-d3-calibrated`, against `finetune-d3`): train 10,265 → 11,068 (7,070 the same,
+1,693 only old, 2,474 only new); dropped as certain and right 6,746 → 4,767, certain and wrong 2,000 →
+512; label 95 3,873 → 4,853; round-trip failures 271 → 784 (the newly included checks hold the old
+"another occurrence" cases, whose answers cannot be placed back in the verse unambiguously). **Not
+retrained:** with cutoff 95 the app's top-1 with the released model is as before (Step 6). How to rebuild
+the released model's original data is in `llmTraining/README.md` (old results backed up in
+`llmTrainingData/results-before-calibration/`; commit `5fd445b`).
+
+**Docs.** CLAUDE.md: the algorithm paragraph (match score vs reported confidence, `scoreSuggestionFromHistory`,
+the 100 rule, `explain`), the AI path (cutoff 95), and a Commands entry for `npm run calibrate:algorithm`
+and `calibrateAiConfidence.test.js`. `plans/algorithm-partial-match.md`: a note that its point scores are
+no longer the reported confidence. `llmTraining/README.md`: rebuilding the released model's data.
+
+## Summary (2026-11-21)
+
+On the held-out projects (6,076 checks, never used for fitting), the algorithm's confidence now follows the
+author's definition (closeness to the history rendering x GL-key weight, with verse checks) and:
+
+| | Before | After |
+|---|---|---|
+| AUC (all options) | 0.789 | 0.871 |
+| Calibration error, all options | 24.3 | 7.8 |
+| Brier score, all options | 0.243 | 0.152 |
+| Wrong options shown at ≥ 80 | 1,585 | 121 |
+| Algorithm top-1 | 57.2% | 57.4% (tune 55.2% → 57.3%) |
+| Answers at 100 right | 86.4% (1,940) | 95.0% (423) |
+| App with the fine-tuned model: first suggestion right (835 / 6,076) | 68.3% / 74.2% | 68.0% / 74.3% |
+| Answers given without the AI right | 86.4% | ~92.5% (cutoff 95) |
+
+Not done, by decision: AI confidences stay as the AI gives them (Step 5b, D); the "plus more" selections
+are not suggested (Q4).

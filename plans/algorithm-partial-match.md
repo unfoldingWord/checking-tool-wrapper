@@ -1,5 +1,12 @@
 # Plan: better partial GL matching in `getBestTWordSelectionWithConfidenceAlgorithm()`
 
+> **Note (2026-11-21):** the point scores designed here (`scoreAlgorithmicMatch`, `capForRendering`, the
+> 89/90 caps) are no longer the confidence the algorithm reports. They now only choose between candidates
+> for the same words and break ties; the reported confidence, which also orders the options and decides
+> 100, is `scoreSuggestionFromHistory`, fitted on the training data (`plans/algorithm-confidence.md`).
+> The matching described here (key ranking, pooling, ordered and unordered placement, fuzzy pass) is
+> unchanged, except that the fuzzy pass now runs when no candidate's confidence reaches 50.
+
 **File:** `src/utils/checkingSuggestionsUtils.js`
 **Tests:** `__tests__/checkingSuggestionsUtils.test.js`
 **Written against commit:** `2e69910c4e4a0476d4370c01fb290378bb810b06` (branch `feature-mcleanb-add-suggestions-support`).
