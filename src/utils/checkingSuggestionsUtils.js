@@ -1517,6 +1517,15 @@ const HISTORY_SCORE = {
 const CERTAIN_MIN_HISTORY_COUNT = 5;
 
 /**
+ * The fuzzy pass (similar word forms) runs when no candidate's confidence reaches this. With it, fuzzy
+ * candidates compete by confidence whenever the verbatim and partial matches are weak: top-1 rose on tune
+ * (11,590 -> 11,625) and test (3,478 -> 3,487) against the old trigger (no match score above 80); any
+ * cutoff from 50 to "always" gave the same top-1, and higher ones only added low-ranked options
+ * (plans/algorithm-confidence.md, Step 5).
+ */
+const FUZZY_PASS_BELOW_CONFIDENCE = 50;
+
+/**
  * Confidence of a suggestion from the user's selection history (plans/algorithm-confidence.md): how
  * closely it matches the most similar history rendering, lower when that rendering came from a GL key
  * that is not the exact GL phrase, and lower when the verse makes the match doubtful.
@@ -1752,8 +1761,8 @@ function levenshteinDistance(a, b) {
  * phrase was rendered before is the only evidence available. The history holds one translationWords
  * group, so every history key is scored against `glPhrase` (`rankGlKeys`) and the renderings of all
  * keys are pooled (`poolRenderings`). Each pooled rendering is looked for in the verse, strongest
- * usage count first, and each candidate gets a match score (`scoreAlgorithmicMatch`) that chooses and
- * orders the candidates:
+ * usage count first, and each candidate gets a match score (`scoreAlgorithmicMatch`) that chooses
+ * between candidates for the same words and breaks ties in the order:
  * - found adjacently and in order through the exact GL key: 100
  * - found adjacently and in order through a related GL key: 82-95, higher the more weighted GL words
  *   the key shares with the phrase (`capForRendering`)
@@ -1763,14 +1772,15 @@ function levenshteinDistance(a, b) {
  *   still, by how much of the rendering they cover (discounted when the verse repeats those words)
  *   and how tightly they sit together
  * - found only by fuzzy word matching (inflection, compound, accent): at most 90, scaled by average
- *   word similarity (`wordSimilarity`); this pass runs only when nothing above scored over 80
+ *   word similarity (`wordSimilarity`); this pass runs only when no candidate above has a confidence of
+ *   `FUZZY_PASS_BELOW_CONFIDENCE` (50) or more
  *
  * The same verse words can be reached from more than one rendering (`iglesia` is both its own
  * rendering and part of `de la iglesia`), so a candidate keeps the best score any rendering
  * earns for it rather than whichever was examined first.
  *
- * The confidence reported for each of the (up to 3) options is not the match score but
- * {@link scoreSuggestionFromHistory}: closeness to the history rendering x GL-key weight x verse checks,
+ * The confidence reported for each of the (up to 3) options, which also orders them, is not the match
+ * score but {@link scoreSuggestionFromHistory}: closeness to the history rendering x GL-key weight x verse checks,
  * fitted on the training data (plans/algorithm-confidence.md). It is 100 (certain, so the app does not
  * ask the AI) only for a verbatim match through the exact GL key that occurs once in the verse, has no
  * history word next to it, is the only history rendering in the verse, and was chosen at least
@@ -1789,6 +1799,8 @@ function levenshteinDistance(a, b) {
  *   and the evidence for it, for measuring and calibrating the confidence
  *   (plans/algorithm-confidence.md, `npm run calibrate:algorithm`). The options and confidences are the
  *   same either way.
+ * @param {number} [options.fuzzyPassBelow=FUZZY_PASS_BELOW_CONFIDENCE] - run the fuzzy pass when no
+ *   candidate's confidence reaches this; for measuring (plans/algorithm-confidence.md, Step 5)
  * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number, features?: object}>>} -
  *   up to 3 options, best first; empty when this phrase has no history or nothing in it fits the verse.
  *   With `explain`, each option's `features` are:
@@ -1832,7 +1844,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   glPhrase,
   glLangCode,
   previousTranslationData,
-  { explain = false } = {},
+  { explain = false, fuzzyPassBelow = FUZZY_PASS_BELOW_CONFIDENCE } = {},
 ) {
   // Initialize wordList, defaulting to empty array if null/undefined
   const words = wordList || [];
@@ -2036,9 +2048,9 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
     considerCandidate(availablePositions, phraseWords.length, entry, true, null, 'slice');
   }
 
-  const minimumConfidenceLevel = 80;
-  const haveConfidentCandidate = [...candidates.values()]
-    .some(candidate => candidate.matchScore > minimumConfidenceLevel);
+  const haveConfidentCandidate = [...candidates.values()].some(candidate => scoreSuggestionFromHistory({
+    ...candidate.features, verbatimRenderings, candidates: candidates.size,
+  }) >= fuzzyPassBelow);
 
   if (!haveConfidentCandidate) {
     // Fuzzy pass: match each rendering word to similar verse words (inflected, compound or accent-variant
@@ -4108,7 +4120,8 @@ async function getAlgorithmResultForJob(job) {
       alignedGLText,
       gatewayLanguageCode,
       selectionsData?.selections,
-      { explain: !!job.explainAlgorithm }, // for measuring the confidences, see `explain`
+      // for measuring the confidences: `explain`, and any other options of the algorithm
+      { ...job.algorithmOptions, explain: !!job.explainAlgorithm },
     );
 
     return {

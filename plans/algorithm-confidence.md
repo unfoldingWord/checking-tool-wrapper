@@ -549,3 +549,40 @@ the 100-rule test uses 4 uses (99); `ALGORITHM_TOP1` stays `{ hand: 25, real: 9 
 that flipped with the any-rendering check are right again). `npm test`: 24 suites, 301 tests pass. The
 features `neighbourInHistory`, `neighbourInRelatedHistory` and `neighbourExtendsRendering` stay in
 `explain` for later analysis; the score uses `neighbourInExactKeyHistory`.
+
+### Step 5 (2026-11-21): fuzzy matches
+
+**Their confidence** was already set in Step 3 by the Q1 score: closeness (words found / rendering
+words)^1.5, × `fuzzyExactKey` 0.85 through the exact GL key, × the related-key weight otherwise; mean word
+similarity is not used (it did not predict whether a fuzzy match was right). By band (mean confidence /
+right):
+
+| Fuzzy options | Tune (4,427) | Test (1,732) |
+|---|---|---|
+| 80-89 | 85 / 82% | 85 / 92% |
+| 40-59 | 53 / 59% | 52 / 69% |
+| 20-39 | 31 / 19% | 33 / 51% |
+| 1-19 | 10 / 4% | 10 / 18% |
+
+Ordered on both splits; close on tune, 7-18 points under-confident on test (the project differences of
+2.5).
+
+**When the fuzzy pass runs.** It ran only when no candidate's old match score was above 80. A new option,
+`fuzzyPassBelow` (and `LLM_ALGO_OPTIONS` in the harness, passed as the job's `algorithmOptions`), runs it
+when no candidate's confidence reaches a cutoff instead:
+
+| Fuzzy pass runs when… | Tune top-1 | Test top-1 | Test AUC | Test ECE all | Harness time |
+|---|---|---|---|---|---|
+| no match score above 80 (old) | 11,590 | 3,478 | 0.872 | 8.0 | 12 s |
+| **no confidence reaches 50** | **11,625** | **3,487** | 0.871 | 7.8 | 15 s |
+| … 70 / 90 / 100 | 11,625 | 3,487 | 0.869-0.868 | 7.5-7.1 | |
+| always | 11,625 | 3,487 | 0.867 | 6.9 | 22 s |
+
+Every confidence cutoff finds the same extra right top answers (+35 tune, +9 test); higher ones only add
+low-ranked fuzzy options. **`FUZZY_PASS_BELOW_CONFIDENCE` = 50** is the default; at 100 nothing changes
+(3,149 / 95.2% tune, 423 / 95.0% test). About 0.1 ms more per check. Doc comments updated (the match score
+now only chooses between candidates for the same words and breaks ties).
+
+**Result after Step 5** (harness): top-1 tune 57.3% (11,625), test **57.4%** (3,487, from 3,476 at the
+start); test AUC 0.871, ECE top / all 12.1 / 7.8, Brier 0.152, at 100 423 / 95.0%. `npm test`: 24 suites,
+301 tests pass; `ALGORITHM_TOP1` unchanged.

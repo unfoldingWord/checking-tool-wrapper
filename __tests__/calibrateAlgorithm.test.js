@@ -24,6 +24,9 @@
  *   LLM_ALGO_DATA_DIR         folder of training data files (default llmTrainingData)
  *   LLM_ALGO_TEST_PROJECTS    test projects, space-separated, `*` allowed (default
  *                             `DEFAULT_CALIBRATION_TEST_PROJECTS`)
+ *   LLM_ALGO_OPTIONS          JSON object of extra algorithm options, passed as the job's
+ *                             `algorithmOptions`, e.g. '{"fuzzyPassBelow":90}'; the rows and report
+ *                             then go to files named with an `.options` suffix
  *
  * jest is used because it is the repo's only babel runner; Node's `fs` is used because `fs-extra` is
  * mocked globally.
@@ -43,6 +46,8 @@ const env = process.env;
 const RUN = env.LLM_ALGO_CALIBRATE === '1';
 const DATA_DIR = path.resolve(__dirname, '..', env.LLM_ALGO_DATA_DIR || 'llmTrainingData');
 const TEST_PROJECTS = (env.LLM_ALGO_TEST_PROJECTS || '').split(/\s+/).filter(Boolean);
+const ALGO_OPTIONS = env.LLM_ALGO_OPTIONS ? JSON.parse(env.LLM_ALGO_OPTIONS) : undefined;
+const OUTPUT_NAME = ALGO_OPTIONS ? 'algorithmCalibration.options' : 'algorithmCalibration';
 
 /** words of an option or expected answer, normalized, without `:2` occurrence suffixes */
 const plainWords = text => normalizePhrase(text).split(/\s+/).map(word => word.replace(/:\d+$/, '')).join(' ');
@@ -196,7 +201,9 @@ describe('algorithm calibration helpers', () => {
 
       for (const testCase of testCases) {
         // eslint-disable-next-line no-await-in-loop
-        const [result] = await getBestSelections({ ...testCaseToSelectionOptions(testCase), explainAlgorithm: true });
+        const [result] = await getBestSelections({
+          ...testCaseToSelectionOptions(testCase), explainAlgorithm: true, algorithmOptions: ALGO_OPTIONS,
+        });
         const options = result?.bestSelections || [];
 
         if (savedById.has(testCase.id)) {
@@ -235,7 +242,8 @@ describe('algorithm calibration helpers', () => {
     }
 
     const lines = [
-      `${files.length} files; test projects: ${testProjects.join(' ')}`,
+      `${files.length} files; test projects: ${testProjects.join(' ')}`
+        + (ALGO_OPTIONS ? `; algorithm options ${JSON.stringify(ALGO_OPTIONS)}` : ''),
       `answers differing from the saved algorithm results: ${differsFromSaved} of ${comparedWithSaved}`
         + ` (options or their order: ${optionsDifferFromSaved}; the rest differ only in confidence)`,
     ];
@@ -252,8 +260,8 @@ describe('algorithm calibration helpers', () => {
     }
 
     fs.mkdirSync(resultsDir, { recursive: true });
-    fs.writeFileSync(path.join(resultsDir, 'algorithmCalibration.jsonl'), rowLines.join('\n') + '\n');
-    fs.writeFileSync(path.join(resultsDir, 'algorithmCalibration.report.txt'), lines.join('\n') + '\n');
+    fs.writeFileSync(path.join(resultsDir, `${OUTPUT_NAME}.jsonl`), rowLines.join('\n') + '\n');
+    fs.writeFileSync(path.join(resultsDir, `${OUTPUT_NAME}.report.txt`), lines.join('\n') + '\n');
     console.log(lines.join('\n'));
     expect(casesBySplit.tune.length + casesBySplit.test.length).toBeGreaterThan(0);
   }, 60 * 60 * 1000);
