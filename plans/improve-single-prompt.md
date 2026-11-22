@@ -17,10 +17,38 @@ Questions this plan answers with measurements, not opinion:
    examples as earlier chat turns?
 4. With **no selection history**, what prompt works best?
 
+### Revised after the author's answers (2026-11-22): the fine-tunes are the target
+
+The answers in section 6 change what success means. Where this section and a later one disagree,
+this section wins.
+- **The fine-tuned models are the target (Q1).** The goal is a better `uw-tw-qwen3-1.7b` (and the
+  0.6B companion) retrained on the new prompt. Stock models are a **cheap screen**: one run on
+  DEV takes minutes, a retrain takes hours. Their scores only shortlist variants.
+- **One prompt for every model (Q2).** No prompt chosen by model name. So the prompt that ships
+  must still be acceptable for stock models: D5's "not significantly worse on stock 1.7B, 0.6B and
+  4B" stays as a guard, not as the goal.
+- **What a fine-tune can gain from a prompt change.** A fine-tune learns the task and the answer
+  format from about 10,000 examples, so rewording the rules (S1, S2, S5, S6) should matter little
+  to its accuracy. What can help it is **information it does not have today**: X1-X6 and the
+  no-history handling (N1, N3, N4). One instruction change can still matter for **speed**: a
+  fine-tune may not need the 600-token system prompt at all, so S1 (short) is retrained to see
+  whether a much shorter prompt keeps the accuracy (fewer tokens per request, less time).
+- **No-history examples go into training (Q4)**, in every retrain of Step 7, including the
+  control run R0, so a comparison measures the prompt, not the extra data.
+- **Stock GGUFs are converted here (Q5)**, as D1 says.
+- **S4 (examples as chat turns) stays in (Q3, author 2026-11-22)**, and translationCore gets a
+  `messages` option now (Step 1A), since sending any list of messages is useful for experiments.
+  S4 is also a candidate for a retrain (R3) if it does well on stock 1.7B.
+- **Aligned verses (Q6) move to a later plan.**
+
+The order becomes: Steps 0, 1, 1A (translationCore) and 2 as written; Steps 3-5 on stock 1.7B only (0.6B and 4B only for the
+shortlist, as the guard); then Step 7 retrains up to 4 candidates; then Steps 6, 8 and 9.
+
 Testing uses **GGUF models only, served by plain llama.cpp (`llama-server`)**. GGUF runs on Mac,
 Windows and Linux; plain `llama-server` matched the transformers reference on 538 of 543 answers,
 while LM Studio's bundled llama.cpp engine on the Mac did not (`plans/fine-tune-qwen3.md`, results
-of 2026-11-18, "Which engine is right").
+of 2026-11-18, "Which engine is right"). LM Studio was considered and set aside for that reason
+(author, 2026-11-22).
 
 ## 1. What we already know
 
@@ -107,9 +135,13 @@ tends to help them, and what each variant below tests:
 
 ## 3. Decisions
 
-- **D1. Engine and models.** Plain `llama-server` (Homebrew, record `llama-server --version`),
-  one slot (`-np 1`), `-c 8192`, `--jinja`, on `http://localhost:8080` (keep 1234 for LM
-  Studio). Models, all GGUF, every build's file name and sha256 recorded in the results:
+- **D1. Engine and models.** Plain `llama-server` (Homebrew; `version: 1.0.0 (build 12359,
+  commit b1b770d90)` on 2026-11-22, the build that matched the reference in the fine-tune plan;
+  record `llama-server --version` with every run), one slot (`-np 1`), `-c 8192`, `--jinja`, on
+  `http://localhost:8080`, one model per server, e.g.
+  `llama-server -m <file>.gguf -np 1 -c 8192 --jinja --port 8080`. Keep port 1234 for LM Studio,
+  and quit LM Studio's server (or unload its models) during runs so the two do not share the GPU.
+  Models, all GGUF, every build's file name and sha256 recorded in the results:
   - **Primary: stock Qwen3-1.7B, Q8_0.** The fine-tune's base and the model a prompt change must
     help.
   - **Stock Qwen3-0.6B, Q8_0.** The low-memory end.
@@ -119,7 +151,11 @@ tends to help them, and what each variant below tests:
     what a change costs them before retraining) and Step 7.
   Build the stock GGUFs from the Hugging Face weights with the steps in `llmTraining/README.md`
   (bf16 convert, then `llama-quantize`), as was done for stock 1.7B on 2026-11-18, so stock and
-  fine-tune builds come from the same converter.
+  fine-tune builds come from the same converter (Q5). **On 2026-11-22 no stock Qwen3 GGUF is on
+  disk** (LM Studio's `qwen3-1.7b-stock`, `qwen3-0.6b-stock` and `qwen/qwen3-4b-2507` are MLX), so
+  all three must be converted; put them in `llmTraining/outputs/<model>-stock-GGUF/`. The
+  released fine-tunes are already built: `llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/uw-tw-qwen3-1.7b-Q5_K_M.gguf`
+  and `llmTraining/outputs/release/uw-tw-qwen3-0.6b-GGUF/uw-tw-qwen3-0.6b-Q6_K.gguf`.
 - **D2. Sampling.** Temperature 0.1 (the app's default) with `{"seed":42}` in the extra params,
   so a rerun gives the same answers and two variants can be compared case by case. Confirm the
   winner at the app's settings without a seed, 2 runs (Step 8).
@@ -189,6 +225,33 @@ that `getBestTWordSelectionWithConfidenceAlgorithm` returns no option when the h
 `LLM_PROMPT_VARIANT=baseline` sends byte-identical requests to a run without it (compare the
 logged bodies of 5 cases).
 
+### Step 1A. `messages` option in translationCore (OFFLINE, `../translationCore`)
+
+On translationCore's branch `feature-mcleanb-add-suggestions-support` (checked 2026-11-22 at
+`6800ef66d`; it has uncommitted changes to `package.json`, `package-lock.json` and the
+`src/tC_apps/translationWords` submodule, which this step must not touch or commit).
+
+1. `electronite/queryAiApisFromMainProcess.js`: `queryAiApiFromMainProcess` reads an optional
+   `options.messages` and passes it to `streamChatMessageFromMainProcess`. When it is a non-empty
+   array whose items are `{ role: 'system' | 'user' | 'assistant', content: string }`, the body's
+   `messages` is a copy of it and `systemPrompt` / `query` are ignored; otherwise the body is
+   built exactly as today. `messages` still cannot be overridden by `extraParams`. JSDoc both.
+2. `electronite/preloadAiApi.js`: no change to `query` (it passes `options` through, and
+   `electronite/index.js:49` hands them on). Add `features: { messages: true }` to
+   `window.AiAPIs` (and `window.lmStudio`), so the checking tool can tell an old translationCore,
+   which would silently ignore `messages`, from a new one.
+3. A unit test, if translationCore has tests for this file; otherwise a manual check: one query
+   with `messages` against `llama-server` returns an answer, and one without is unchanged.
+4. In this repo, `queryAiAPI` sends `messages` through `window.AiAPIs` only when
+   `AiAPIs.features?.messages` is true. Otherwise it falls back to the system + user form of the
+   same prompt and logs a warning. Note that a model fine-tuned on S4 would then see a prompt it
+   was not trained on, so if S4 ships, the checking tool's release notes need the minimum
+   translationCore version.
+
+**Done when:** translationCore's lint/tests pass, the manual check works, the changes are left
+uncommitted for the author to review, and this repo's tests cover both `features` cases with
+`window.AiAPIs` mocked.
+
 ### Step 2. Build the data sets and the baseline (OFFLINE, then LIVE)
 
 1. Write `llmTrainingData/promptEval/dev.json` and `test.json` per D3 (a small script, seeded).
@@ -254,7 +317,9 @@ Start from `X*` (or `baseline` if nothing in Step 3 was adopted).
   handles that; Step 9 must too if S3 is adopted.
 - **S4. Examples as chat turns.** System prompt with the rules only; each example as a user turn
   (exactly the request layout) and an assistant turn (the answer rows); then the real request.
-  Needs `messages` support in translationCore's main process if adopted (Step 9, Q3).
+  Uses the `messages` option of Step 1A. For a retrain, the exporter writes the same turns and
+  the loss must fall on the **last** assistant turn only; check how the installed `mlx-lm`
+  masks multi-turn examples (`mask_prompt`) before training, and with `check_data.py`.
 - **S5. Reminder at the end.** Keep the system prompt; end the user message with one line before
   `Answer:` repeating the most-broken rule (e.g. `Copy words exactly as in TARGET VERSE.`).
   Cheap, cache-safe (the request part is not cached anyway).
@@ -301,26 +366,42 @@ the fine-tunes do without history (never trained).
 
 **Done when:** four rows per fine-tune are in section 7.
 
-### Step 7. Retrain on the new prompt (OFFLINE build, MLX training, LIVE GGUF scoring)
+### Step 7. Retrain on the candidate prompts (OFFLINE build, MLX training, LIVE GGUF scoring)
 
-Only if `F` is adopted and Step 6 shows a loss for the fine-tunes (or Q1 says to retrain anyway).
+This is the main step (Q1). Each retrain of the 1.7B takes about 2.8 hours on the Mac, so retrain
+at most 4 runs, one at a time:
+- **R0 (control):** today's prompt + the no-history examples. It shows what the extra data alone
+  gives, so R1-R3 are compared with R0, not with D3.
+- **R1:** the best Step 3 + Step 5 variant (extra data and no-history handling).
+- **R2:** R1 with S1's short instructions (the speed question).
+- **R3:** S4 (examples as chat turns) on top of R1, if it did well on stock 1.7B; otherwise
+  one more shortlisted variant, if Steps 3-5 left a close second.
 
-1. Put `F` into the app (Step 9 first, on a branch) so `npm run build:finetune-data` produces the
-   new prompt; the parity test proves the match.
-2. Decide with the author (Q4) whether to add no-history training examples: the existing cases
-   with history removed and the expected answer labelled at the no-history confidence, about 10%
-   of the training set.
-3. Train with `llmTraining/lora-r16-d3.yaml` (new data dir), fuse, convert to GGUF Q5_K_M
-   (`llmTraining/README.md`), score on TEST and TEST-NOHIST with `llama-server`.
+1. Let `npm run build:finetune-data` build from a variant: `LLM_FINETUNE_PROMPT_VARIANT` uses the
+   builder from `promptVariants.js`, and the parity test runs per variant. Add any per-case data
+   a variant needs (e.g. `glVerse` for X3) to the exporter.
+2. No-history examples (Q4): add `LLM_FINETUNE_NO_HISTORY_SHARE` (default 0.1) to the exporter.
+   It copies that share of the training cases with `history` set to `{}`, labelled at the
+   no-history confidence chosen in Step 5. Keep the projects' train/valid/test split, so no test
+   verse is trained on. Run `check_data.py` on the result.
+3. Train with `llmTraining/lora-r16-d3.yaml` (new data dir and output dir per run), fuse, convert
+   to GGUF Q5_K_M (`llmTraining/README.md`), score on TEST and TEST-NOHIST with `llama-server` (D1).
+4. If R1 or R2 is adopted for the 1.7B, train the 0.6B the same way (`lora-r16-d3-0.6b.yaml`, Q6_K)
+   and check it is not worse than the released 0.6B on TEST.
 
-**Done when:** the retrained model is at or above D3 on TEST (McNemar not significantly worse)
-and better on TEST-NOHIST, or the result is recorded as "not worth retraining".
+Fine-tunes can only be scored on TEST (DEV cases are training data), so with few runs TEST is used
+to choose among R0-R3. That is a small risk of tuning to TEST; report it with the results.
+
+**Done when:** for each run, TEST and TEST-NOHIST rows are in section 7, with paired counts
+against D3 and against R0. A run is adopted when it is at or above D3 on TEST (not significantly
+worse), better than D3 on TEST-NOHIST, and not slower per request than D3 by more than 30%. If
+R0 wins over R1-R3, the prompt stays as it is and only the no-history training data ships.
 
 ### Step 8. Confirm (LIVE, TEST)
 
 On the stock 1.7B, 0.6B and 4B: `baseline` and `F` on TEST and TEST-NOHIST, at the app's settings
-without a seed, 2 runs pooled; plus the suite with `scripts/test-llm.sh -r 3 -g 1 -u
-http://localhost:8080`. This is the first look at TEST.
+without a seed, 2 runs pooled; plus the suite with `scripts/test-llm.sh -r 3 -g 1 -u http://localhost:8080`. This is the first
+look at TEST.
 
 **Done when:** `F` is not worse than `baseline` on TEST for 1.7B (if it is, the DEV gain was
 tuning to DEV: report it and stop), and the rows are in section 7.
@@ -330,9 +411,10 @@ tuning to DEV: report it and stop), and the rows are in section 7.
 1. Move the adopted variant from `promptVariants.js` into `buildLlmSystemPrompt` /
    `buildTranslationOptionsPrompt` for the single path only; batch constants untouched (D7).
 2. If X3 or N4 is adopted: carry `glVerseText` in the job from `Container.js` to the request.
-3. If S3 or S4 is adopted: the change crosses into translationCore
-   (`electronite/queryAiApisFromMainProcess.js`, and `preloadAiApi.js` if a `messages` option is
-   added); write down the exact change for the author rather than making it here.
+3. If S4 is adopted: it relies on Step 1A's translationCore change; record the minimum
+   translationCore version. If S3 is adopted, no translationCore change is needed (an empty
+   `systemPrompt` already sends no system message), but `applyThinkingDirective` must not turn
+   `''` into `'/no_think\n'`.
 4. Keep `setSinglePromptOverrideForEval` (it is useful for the next round) but document it as
    eval-only.
 5. Update the tests that assert prompt text, the fine-tune parity test, `CLAUDE.md` (the prompt
@@ -374,6 +456,18 @@ tuning to DEV: report it and stop), and the rows are in section 7.
   the thinking directive is handled here; S4 (examples as chat turns) needs translationCore to
   accept a `messages` array. Is a translationCore change acceptable if S4 wins?
   - Answer: i need more clarity on this questions
+  - Clarification (2026-11-22): today the app sends every model exactly two messages: a
+    **system** message (the rules and the worked examples) and a **user** message (this verse,
+    history and phrase). translationCore's main process builds those two from two strings,
+    `systemPrompt` and `query`. S4 would instead send a short pretend conversation: user (Example
+    1's request), assistant (Example 1's answer), user (Example 2's request), assistant (its
+    answer), then the real request. translationCore cannot send that today: its main process
+    and `preloadAiApi.js` would have to accept a list of messages, and checking tools could
+    only rely on it once that translationCore version is installed. S3 (everything in one user
+    message) needs no translationCore change.
+  - Proposed: since the target is now the fine-tunes (Q1), which already answer in the right
+    format every time, drop S4 and make no translationCore change. Confirm or overrule.
+  - Answer: go ahead and make that change to translationCore since that would be useful for experimenting. the open translationCore project is at: ../translationCore
 
 - **Q4. No-history training data.** Should Step 7 train on cases with the history removed, so
   the fine-tune learns the no-history case? It makes the training set larger (about 10%) and the
