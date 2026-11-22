@@ -22,7 +22,8 @@ import { normalizer } from 'string-punctuation-tokenizer';
 import usfmjs from 'usfm-js';
 import path from 'path-extra';
 import {
-  getBestSelections, getExtraParams, getWordList, normalizeForCompare, wordSimilarity,
+  buildChatMessages, getBestSelections, getExtraParams, getValidChatMessages, getWordList,
+  normalizeForCompare, wordSimilarity,
 } from '../../src/utils/checkingSuggestionsUtils';
 import { isNT } from '../../src/common/booksOfTheBible';
 import { NT_ORIG_LANG, OT_ORIG_LANG } from '../../src/common/constants';
@@ -458,6 +459,8 @@ export function percentile(sorted, fraction) {
  *
  * @param {string} testDataPath - path to a JSON file holding an array of cases
  * @param {object} [settings] - suggestion settings, passed to {@link runTestCasesFromJson}
+ * @param {string} [settings.runLabel] - for an AI run, added to the file names after the model
+ *   name, e.g. `prompt-X1` gives `<file>_<model>_prompt-X1.results.json`
  * @returns {Promise<{results: Array<object>, summary: object}>} the results and summary that were
  *   saved, as {@link runTestCasesFromJson} returns them
  */
@@ -467,7 +470,9 @@ export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings 
   const baseFileName_ = path.basename(testDataPath, '.json');
   // a model id such as `qwen/qwen3-4b` has characters that cannot be in a file name
   const modelName = settings?.llmQueryUrl ? String(settings.currentModel).replace(/[^\w.-]+/g, '-') : 'Algorithm';
-  const baseFileName = `${baseFileName_}_${modelName}`;
+  // e.g. `_prompt-X1` for a prompt variant (plans/improve-single-prompt.md)
+  const runLabel = settings?.llmQueryUrl && settings.runLabel ? `_${settings.runLabel}` : '';
+  const baseFileName = `${baseFileName_}_${modelName}${runLabel}`;
   const destFolder = path.join(path.dirname(testDataPath), 'results');
   fs.mkdirSync(destFolder, { recursive: true });
 
@@ -899,7 +904,8 @@ const NODE_AI_REQUEST_TIMEOUT_MS = 5 * 60 * 1000;
  */
 export function installNodeAiApis() {
   const previous = window.AiAPIs;
-  window.AiAPIs = { query: nodeAiApisQuery };
+  // `features` as translationCore declares them (`electronite/preloadAiApi.js`)
+  window.AiAPIs = { query: nodeAiApisQuery, features: { messages: true } };
   return () => {
     if (previous === undefined) {
       delete window.AiAPIs;
@@ -911,9 +917,12 @@ export function installNodeAiApis() {
 
 /**
  * The `window.AiAPIs.query` stand-in of {@link installNodeAiApis}.
- * @param {string} query - user message (with `/no_think` already added by `queryAiAPI`)
+ * Builds the messages as translationCore's main process does
+ * (`electronite/queryAiApisFromMainProcess.js`): `options.messages` when valid, otherwise a system
+ * message (left out when `systemPrompt` is empty) and `query` as the user message.
+ * @param {string} query - user message, as `queryAiAPI` passes it
  * @param {object} options - the options `queryAiAPI` passes: `baseUrl`, `apiToken`, `model`,
- *   `systemPrompt`, `temperature`, `maxTokens`, `enable_thinking`, `extraParams`
+ *   `systemPrompt`, `temperature`, `maxTokens`, `enable_thinking`, `extraParams`, `messages`
  * @returns {Promise<{replyText: string, reasoningText: string, actualModel: string}>}
  */
 async function nodeAiApisQuery(query, options) {
@@ -923,10 +932,7 @@ async function nodeAiApisQuery(query, options) {
     chat_template_kwargs: { enable_thinking: options.enable_thinking },
     ...getExtraParams(options.extraParams), // merged as translationCore's main process does
     model: options.model,
-    messages: [
-      { role: 'system', content: options.systemPrompt },
-      { role: 'user', content: query },
-    ],
+    messages: getValidChatMessages(options.messages) || buildChatMessages(options.systemPrompt, query),
     stream: false,
   }, options.apiToken);
   const message = reply?.choices?.[0]?.message || {};

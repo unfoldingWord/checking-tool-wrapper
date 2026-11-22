@@ -110,6 +110,8 @@ const MAX_PROMPT_UNMATCHED_TRANSLATIONS = 5;
  *   response_format). They are applied after temperature, max_tokens and chat_template_kwargs, so
  *   they can override those; a key set to undefined is left out of the request. They cannot
  *   override model, stream or messages. Same rules as translationCore's main-process query.
+ * @param {Array<{role: string, content: string}>} [options.messages] - chat messages to send in
+ *   place of `systemPrompt` and `query`, when valid (see {@link getValidChatMessages})
  * @returns {Promise<{replyText: string, reasoningText: string, actualModel: string}>} Object containing:
  *   - replyText: Complete accumulated answer text from the model, or its reasoning text when
  *     the model gave no separate answer
@@ -133,6 +135,7 @@ const MAX_PROMPT_UNMATCHED_TRANSLATIONS = 5;
 async function streamChatMessage(options) {
   const {
     apiToken, baseUrl, model, systemPrompt, query, temperature, maxTokens, enable_thinking, extraParams,
+    messages,
   } = options;
   const url = `${baseUrl}/v1/chat/completions`;
   const headers = { 'Content-Type': 'application/json' };
@@ -154,10 +157,7 @@ async function streamChatMessage(options) {
         // these are always set here and cannot be overridden
         model,
         stream: true,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: query },
-        ],
+        messages: getValidChatMessages(messages) || buildChatMessages(systemPrompt, query),
       }),
     });
   } catch (error) {
@@ -299,6 +299,92 @@ export function applyThinkingDirective({ systemPrompt, query }, enableThinking) 
   return { systemPrompt: `/no_think\n${systemPrompt}`, query: `/no_think\n${query}` };
 }
 
+/** roles a chat message may have in a `messages` list sent to the AI */
+const CHAT_MESSAGE_ROLES = ['system', 'user', 'assistant'];
+
+/**
+ * Checks a list of chat messages and copies it: a non-empty array of
+ * `{ role: 'system' | 'user' | 'assistant', content: string }` ending in a user message. Anything
+ * else gives null, so callers fall back to the system prompt + query pair.
+ *
+ * @param {*} messages - the list to check
+ * @returns {Array<{role: string, content: string}>|null} - a copy holding only `role` and `content`
+ */
+export function getValidChatMessages(messages) {
+  if (!Array.isArray(messages) || !messages.length) {
+    return null;
+  }
+
+  const valid = messages.every(message => CHAT_MESSAGE_ROLES.includes(message?.role) &&
+    typeof message.content === 'string');
+
+  if (!valid || messages[messages.length - 1].role !== 'user') {
+    return null;
+  }
+  return messages.map(({ role, content }) => ({ role, content }));
+}
+
+/**
+ * The `messages` form of {@link applyThinkingDirective}: when thinking is off, `/no_think` goes
+ * at the start of the first system message, if there is one, and of the last user message (the
+ * request). For `[system, user]` that is exactly what {@link applyThinkingDirective} does; earlier
+ * user turns (worked examples given as chat turns) are left as they are.
+ *
+ * @param {Array<{role: string, content: string}>} messages - valid messages (see
+ *   {@link getValidChatMessages})
+ * @param {boolean} enableThinking - true leaves them unchanged
+ * @returns {Array<{role: string, content: string}>} - a new list
+ */
+export function applyThinkingDirectiveToMessages(messages, enableThinking) {
+  const result = messages.map(message => ({ ...message }));
+
+  if (enableThinking) {
+    return result;
+  }
+
+  const system = result.find(message => message.role === 'system');
+
+  if (system) {
+    system.content = `/no_think\n${system.content}`;
+  }
+
+  const lastUser = result[result.length - 1];
+  lastUser.content = `/no_think\n${lastUser.content}`;
+  return result;
+}
+
+/**
+ * Turns a `messages` list into the system prompt + query pair, for a translationCore that cannot
+ * send `messages` (no `window.AiAPIs.features.messages`). The first system message is the system
+ * prompt (or '' when there is none); every other message's text, in order, is the query, separated
+ * by blank lines. For `[system, user]` this gives back exactly the two texts.
+ *
+ * @param {Array<{role: string, content: string}>} messages - valid messages
+ * @returns {{systemPrompt: string, query: string}}
+ */
+export function chatMessagesToSystemAndQuery(messages) {
+  const systemIndex = messages.findIndex(message => message.role === 'system');
+  const systemPrompt = systemIndex >= 0 ? messages[systemIndex].content : '';
+  const query = messages.filter((message, index) => index !== systemIndex)
+    .map(message => message.content)
+    .join('\n\n');
+  return { systemPrompt, query };
+}
+
+/**
+ * The `messages` of a chat-completions request built from a system prompt and a query, as
+ * translationCore's main process builds them: no system message when the system prompt is empty.
+ *
+ * @param {string} systemPrompt - system prompt; '' or missing sends no system message
+ * @param {string} query - user message
+ * @returns {Array<{role: string, content: string}>}
+ */
+export function buildChatMessages(systemPrompt, query) {
+  const messages = systemPrompt ? [{ role: 'system', content: systemPrompt }] : [];
+  messages.push({ role: 'user', content: query });
+  return messages;
+}
+
 /**
  * Sends a text query to a locally running OpenAI-compatible server and returns the model's response text
  * along with timing information.
@@ -334,6 +420,12 @@ export function applyThinkingDirective({ systemPrompt, query }, enableThinking) 
  *   AI's behavior and context for the conversation
  * @param {object} [options.extraParams] - Extra request body fields, e.g. `{ seed: 42, top_k: 20 }`;
  *   see {@link streamChatMessage} for how they are merged. Passed to `window.AiAPIs.query` too.
+ * @param {Array<{role: string, content: string}>} [options.messages] - chat messages to send in
+ *   place of `systemPrompt` and `query` (e.g. worked examples as earlier chat turns). Used only when
+ *   valid ({@link getValidChatMessages}); `/no_think` is added by
+ *   {@link applyThinkingDirectiveToMessages}. A translationCore whose `window.AiAPIs` lacks
+ *   `features.messages` cannot send them, so they are sent there as the system prompt + query pair
+ *   of {@link chatMessagesToSystemAndQuery}, with a warning.
  * @returns {Promise<{response: string, elapsedStr: string, model: string}>} Object containing:
  *   - **response**: The complete text of the model's reply
  *   - **elapsedStr**: Elapsed time in seconds as a string with 2 decimal places (e.g., "2.35")
@@ -370,10 +462,25 @@ export async function queryAiAPI(query, options = {}) {
     enable_thinking = false,
     systemPrompt = 'You are a helpful assistant.',
     extraParams,
+    messages,
   } = options;
   const startTime = Date.now();
+  const AiAPIs = getAiAPIs();
+  const validMessages = getValidChatMessages(messages);
+  let finalMessages = validMessages && applyThinkingDirectiveToMessages(validMessages, enable_thinking);
+  let finalQuery;
+  let finalSystemPrompt;
 
-  const { query: finalQuery, systemPrompt: finalSystemPrompt } = applyThinkingDirective({ systemPrompt, query }, enable_thinking);
+  if (finalMessages) {
+    ({ query: finalQuery, systemPrompt: finalSystemPrompt } = chatMessagesToSystemAndQuery(finalMessages));
+
+    if (AiAPIs && !AiAPIs.features?.messages) {
+      console.warn('queryAiAPI - this translationCore cannot send chat messages, so they are sent as a system prompt and query');
+      finalMessages = undefined;
+    }
+  } else {
+    ({ query: finalQuery, systemPrompt: finalSystemPrompt } = applyThinkingDirective({ systemPrompt, query }, enable_thinking));
+  }
 
   let replyText_ = null;
   let reasoningText_ = null;
@@ -390,14 +497,20 @@ export async function queryAiAPI(query, options = {}) {
     systemPrompt: finalSystemPrompt,
     temperature,
   };
-  const AiAPIs = getAiAPIs();
+
+  if (finalMessages) {
+    lmQueryOptions.messages = finalMessages;
+  }
 
   // console.log('queryAiAPI - starting fetch isAiAPIQueryAvailable', isAiAPIQueryAvailable);
   let error = false;
 
   if (AiAPIs) { // calling Electron process
     try {
-      const answer = await AiAPIs.query(query, lmQueryOptions);
+      // translationCore's main process sends this argument as the user message, so it gets the
+      // thinking directive too, as on the direct HTTP path and in the fine-tuning data
+      // (plans/improve-single-prompt.md, Q7)
+      const answer = await AiAPIs.query(finalQuery, lmQueryOptions);
       // console.log(answer);
       replyText_ = answer.replyText || answer.reasoningText;
       reasoningText_ = answer.reasoningText;
@@ -696,6 +809,12 @@ export function normalizeForCompare(word, langId = '') {
  * @param {string} glLangCode - gateway-language code, for lowercasing GL words
  * @param {string} verseContent - target-language verse words, separated by spaces
  * @param {string} [targetLangCode=''] - target-language code, for lowercasing target words
+ * @param {object} [options]
+ * @param {boolean} [options.markVerseFit=false] - **prompt experiments only** (variant X1 of
+ *   plans/improve-single-prompt.md; the app's prompt does not use it): end each line with what was
+ *   found in the verse: ` - in verse` (verse fit 2), ` - verse has "<words>"` (verse fit 1: the verse
+ *   words matching the rendering's words, exactly or by {@link wordSimilarity}, in verse order), or
+ *   ` - not in verse`
  * @returns {string} - the lines joined by `\n`, or '' when there is no history
  * @example
  * formatPreviousTranslations(
@@ -704,10 +823,12 @@ export function normalizeForCompare(word, langId = '') {
  * );
  * // '"các nơi thánh" (chosen 1 time for "of the holy places")\n"Nơi Thánh" (chosen 1 time for "Holy")'
  */
-function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '') {
+export function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '', options = {}) {
+  const { markVerseFit = false } = options;
   const normalizeWords = text => (text || '').split(/\s+/).filter(Boolean)
     .map(word => normalizeForCompare(word, targetLangCode));
   const verseWords = normalizeWords(verseContent);
+  const originalVerseWords = (verseContent || '').split(/\s+/).filter(Boolean);
   const verseWordSet = new Set(verseWords);
   const byRendering = new Map();
 
@@ -762,10 +883,52 @@ function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCod
     entries.slice(0, MAX_PROMPT_UNMATCHED_TRANSLATIONS);
 
   // one plain line per rendering - easier for small models to read than JSON, and fewer tokens
-  return chosen.map(({
-    phrase, rendering, count,
-  }) => `"${rendering}" (chosen ${count} time${count === 1 ? '' : 's'} for "${phrase}")`)
-    .join('\n');
+  /**
+   * The verse words of a rendering found in the verse only as other forms, in verse order.
+   * @param {string} rendering
+   * @returns {string}
+   */
+  const verseFormsOf = rendering => {
+    const positions = new Set();
+
+    for (const word of normalizeWords(rendering)) {
+      let best = verseWords.indexOf(word);
+
+      if (best < 0) {
+        let bestSimilarity = 0;
+
+        verseWords.forEach((verseWord, index) => {
+          const similarity = wordSimilarity(word, verseWord);
+
+          if (similarity > bestSimilarity) {
+            bestSimilarity = similarity;
+            best = index;
+          }
+        });
+      }
+
+      if (best >= 0) {
+        positions.add(best);
+      }
+    }
+    return [...positions].sort((a, b) => a - b).map(index => originalVerseWords[index]).join(' ');
+  };
+
+  const verseFitMark = ({ rendering, verseFit }) => {
+    if (verseFit === 2) {
+      return ' - in verse';
+    }
+    return verseFit === 1 ? ` - verse has "${verseFormsOf(rendering)}"` : ' - not in verse';
+  };
+
+  // one plain line per rendering - easier for small models to read than JSON, and fewer tokens
+  return chosen.map(entry => {
+    const {
+      phrase, rendering, count,
+    } = entry;
+    const line = `"${rendering}" (chosen ${count} time${count === 1 ? '' : 's'} for "${phrase}")`;
+    return markVerseFit ? `${line}${verseFitMark(entry)}` : line;
+  }).join('\n');
 }
 
 /**
@@ -2658,6 +2821,30 @@ export function parseLlmSelectionOptions(answer, wordList, requestIndex = 0) {
 }
 
 /**
+ * Prompt builder that replaces `buildTranslationOptionsPrompt` for single AI requests while set;
+ * for prompt experiments only (plans/improve-single-prompt.md). See
+ * {@link setSinglePromptOverrideForEval}.
+ */
+let singlePromptOverrideForEval = null;
+
+/**
+ * **For evaluation only** (plans/improve-single-prompt.md): makes single AI requests (one request
+ * per query) use `builder` to build the chat messages instead of the app's prompt, so prompt
+ * variants go through the same code path as the app. Batched requests are not affected. The app
+ * never calls it.
+ *
+ * @param {function(object): {messages: Array<{role: string, content: string}>}|null} builder -
+ *   called with the request given to {@link getBestTWordSelectionWithConfidenceFromLlm} (`wordList`,
+ *   `targetLangCode`, `glPhrase`, `glLangCode`, `previousTranslationData`, `contextId`,
+ *   `algorithmBestSelections`, `lmOptions`); it returns the messages without `/no_think`, which
+ *   `queryAiAPI` adds. `null` goes back to the app's prompt.
+ * @returns {void}
+ */
+export function setSinglePromptOverrideForEval(builder) {
+  singlePromptOverrideForEval = typeof builder === 'function' ? builder : null;
+}
+
+/**
  * Translates a gateway language phrase to target-language word(s) within a verse
  * using an AI model, returning an array of selection objects with confidence scores.
  *
@@ -2698,7 +2885,7 @@ export function parseLlmSelectionOptions(answer, wordList, requestIndex = 0) {
  * @param {number} [request.lmOptions.maxTokens] - max response tokens; defaults to
  *   `LLM_DEFAULT_MAX_TOKENS` when thinking is off
  * @param {string} [request.lmOptions.apiToken] - bearer token for servers that require one
- * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string}|Array<object>>} -
+ * @returns {Promise<{error: boolean, bestSelections: Array<{selections: Array<{text: string, occurrence: number}>, confidence: number}>, elapsedStr: string, model: string, rawAnswer?: string}|Array<object>>} -
  *   an array of these results, in request order, when `request` is an array.
  *   `bestSelections` holds up to 3 options sorted by confidence, each containing:
  *   - selections: array of {text, occurrence} objects representing matched words
@@ -2709,7 +2896,9 @@ export function parseLlmSelectionOptions(answer, wordList, requestIndex = 0) {
  *   `error` is true only when the AI request itself failed. If the answer could not be parsed,
  *   `error` is false and `bestSelections` is empty. `elapsedStr` is the query time in seconds
  *   (e.g. '2.35'). `model` is the model name the server reported, or '' on failure or when
- *   nothing could be parsed.
+ *   nothing could be parsed. For a single request answered by the server, `rawAnswer` is the
+ *   answer text as received, before parsing; the app does not use it, the evaluation results keep
+ *   it (plans/improve-single-prompt.md).
  * @throws Does not throw for AI or parsing failures: they are logged and an empty
  *   `bestSelections` is returned. Throws if `wordList` is missing.
  * @example
@@ -2744,14 +2933,32 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
     previousTranslationData,
     lmOptions = { enable_thinking: false },
   } = request;
-  const { systemPrompt, input } = buildTranslationOptionsPrompt(
-    wordList.join(' '),
-    targetLangCode,
-    glPhrase,
-    glLangCode,
-    previousTranslationData,
-  );
+  let systemPrompt;
+  let input;
+  let messages;
+
+  if (singlePromptOverrideForEval) {
+    ({ messages } = singlePromptOverrideForEval(request));
+    input = '';
+
+    if (!getValidChatMessages(messages)) {
+      throw new Error('setSinglePromptOverrideForEval - the prompt builder returned invalid messages');
+    }
+  } else {
+    ({ systemPrompt, input } = buildTranslationOptionsPrompt(
+      wordList.join(' '),
+      targetLangCode,
+      glPhrase,
+      glLangCode,
+      previousTranslationData,
+    ));
+  }
+
   const options = buildLlmQueryOptions(lmOptions, systemPrompt, LLM_DEFAULT_MAX_TOKENS);
+
+  if (messages) {
+    options.messages = messages;
+  }
 
   let answer = '';
   let elapsedStr = '0';
@@ -2781,6 +2988,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
       bestSelections,
       elapsedStr,
       model,
+      rawAnswer: answer,
     };
   }
 
@@ -2795,6 +3003,7 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
     bestSelections: [],
     elapsedStr,
     model: '',
+    rawAnswer: answer,
   };
 }
 
@@ -4403,10 +4612,12 @@ export async function getBestSelections(options = {}) {
       // answer is used and the job is not sent: it saves a request, and the AI is not more right
       // there (plans/improve-llm-suggestions.md, Step 10)
       const aiJobIndexes = [];
+      const algorithmResults = [];
 
       for (let i = 0; i < jobs.length; i++) {
         // eslint-disable-next-line no-await-in-loop
         const algorithmResult = await getAlgorithmResultForJob(jobs[i]);
+        algorithmResults[i] = algorithmResult;
         const certainConfidence = Number.isFinite(jobs[i].algorithmCertainConfidence) ?
           jobs[i].algorithmCertainConfidence : ALGORITHM_CERTAIN_CONFIDENCE;
 
@@ -4421,6 +4632,7 @@ export async function getBestSelections(options = {}) {
         const {
           alignedGLText,
           apiToken,
+          contextId,
           currentModel,
           gatewayLanguageCode,
           key,
@@ -4438,6 +4650,10 @@ export async function getBestSelections(options = {}) {
           glPhrase: alignedGLText,
           glLangCode: gatewayLanguageCode,
           previousTranslationData: selectionsData?.selections,
+          // not sent to the AI by the app's prompt; for prompt experiments
+          // (`setSinglePromptOverrideForEval`)
+          contextId,
+          algorithmBestSelections: algorithmResults[i]?.bestSelections || [],
           lmOptions: {
             apiToken,
             baseUrl: llmQueryUrl,

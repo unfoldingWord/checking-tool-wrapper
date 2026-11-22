@@ -28,6 +28,9 @@
  *   LLM_EVAL_CASES         which cases to ask: all (default), hand or real
  *   LLM_EVAL_OUT           if set, the full results are written to this JSON file
  *   LLM_EVAL_TIMEOUT_MS    time allowed for all queries (default 1800000)
+ *   LLM_PROMPT_VARIANT     prompt variant for single requests, a key of `PROMPT_VARIANTS` in
+ *                          `helpers/promptVariants.js` (default: the app's prompt, no override);
+ *                          batched requests always use the app's prompt
  * Thresholds (all can be overridden):
  *   LLM_EVAL_MIN_TOP1             share of cases whose top option is right (default 0.7)
  *   LLM_EVAL_MAX_CONFIDENT_WRONG  share of cases wrong at confidence >= 80 (default 0.15)
@@ -44,10 +47,13 @@ import https from 'https';
 import fs from 'fs';
 import { normalizer } from 'string-punctuation-tokenizer';
 import {
+  buildChatMessages,
   getBestSelections,
   getExtraParams,
+  getValidChatMessages,
   getWordList,
 } from '../src/utils/checkingSuggestionsUtils';
+import { getPromptVariantFromEnv, installPromptVariant } from './helpers/promptVariants';
 import handCases from './__fixtures__/llmEval/cases.json';
 import realCases from './__fixtures__/llmEval/realCases.json';
 
@@ -60,6 +66,8 @@ const EXTRA_PARAMS = jsonObjectEnv('LLM_EVAL_EXTRA_PARAMS');
 const GROUPING = numberEnv('LLM_EVAL_GROUPING', 4);
 const RUNS = Math.max(1, Math.round(numberEnv('LLM_EVAL_RUNS', 2)));
 const CASE_SET = env.LLM_EVAL_CASES || 'all';
+/** prompt variant for single requests, '' for the app's prompt (plans/improve-single-prompt.md) */
+const PROMPT_VARIANT = MODEL ? getPromptVariantFromEnv(env) : '';
 const allCases = [...handCases, ...realCases];
 const cases = { hand: handCases, real: realCases }[CASE_SET] || allCases;
 /**
@@ -81,6 +89,7 @@ console.log('LLM eval settings:', {
   GROUPING,
   RUNS,
   CASE_SET,
+  PROMPT_VARIANT: PROMPT_VARIANT || '(app prompt)',
   cases: cases.length,
 });
 
@@ -153,6 +162,7 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
     runs: RUNS,
     thresholds: THRESHOLDS,
     caseSet: CASE_SET,
+    promptVariant: PROMPT_VARIANT,
     available: [],
     warmUp: null,
     algorithm: [],
@@ -162,8 +172,14 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
   };
   let calls = [];
 
+  let uninstallVariant = () => {};
+
   beforeAll(async () => {
     run.available = await getAvailableModels();
+
+    if (PROMPT_VARIANT) {
+      uninstallVariant = installPromptVariant(PROMPT_VARIANT);
+    }
 
     if (!run.available.includes(MODEL)) {
       return; // the first test reports it
@@ -174,7 +190,7 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
       run.algorithm.push(await runAlgorithm(evalCase));
     }
 
-    window.AiAPIs = { query: bridgeQuery };
+    window.AiAPIs = { query: bridgeQuery, features: { messages: true } };
 
     // first request loads the model and fills the prompt cache - timed apart from the rest
     calls = [];
@@ -229,6 +245,7 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
   }, TIMEOUT_MS);
 
   afterAll(() => {
+    uninstallVariant();
     delete window.AiAPIs;
     run.summary = summarize(run);
     console.log(formatReport(run));
@@ -258,10 +275,8 @@ describeIfModel(`model suitability: ${MODEL}`, () => {
         chat_template_kwargs: { enable_thinking: options.enable_thinking },
         ...getExtraParams(options.extraParams), // merged as translationCore's main process does
         model: options.model,
-        messages: [
-          { role: 'system', content: options.systemPrompt },
-          { role: 'user', content: query },
-        ],
+        // as translationCore's main process builds them
+        messages: getValidChatMessages(options.messages) || buildChatMessages(options.systemPrompt, query),
         stream: false,
       });
       const choice = reply?.choices?.[0] || {};

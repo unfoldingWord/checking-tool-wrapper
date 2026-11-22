@@ -23,6 +23,9 @@
  *   LLM_TRAINING_TEMPERATURE   AI temperature (default: the app's default)
  *   LLM_TRAINING_TOKEN         bearer token for the AI server
  *   LLM_TRAINING_EXTRA_PARAMS  JSON object of extra request body fields, e.g. '{"seed":42}'
+ *   LLM_PROMPT_VARIANT         prompt variant for single AI requests, a key of `PROMPT_VARIANTS` in
+ *                              `helpers/promptVariants.js` (default: the app's prompt, no override).
+ *                              The result files get `_prompt-<variant>` after the model name.
  *
  * For an AI run, a file whose algorithm results are already saved (`<file>_Algorithm.results.json`,
  * from a run without `LLM_TRAINING_URL`) also gets `byAlgorithmConfidence` in its summary: the AI
@@ -46,6 +49,7 @@ import {
   ALGORITHM_CONFIDENCE_BANDS, installNodeAiApis, runTestCasesFromJsonAndSaveResults,
   summarizeByAlgorithmConfidence, topOneByThreshold,
 } from './helpers/suggestionsHelpers';
+import { getPromptVariantFromEnv, installPromptVariant } from './helpers/promptVariants';
 
 const env = process.env;
 const RUN = env.LLM_TRAINING_RUN === '1';
@@ -59,6 +63,13 @@ const SETTINGS = {
   apiToken: env.LLM_TRAINING_TOKEN || undefined,
   llmExtraParams: env.LLM_TRAINING_EXTRA_PARAMS ? JSON.parse(env.LLM_TRAINING_EXTRA_PARAMS) : undefined,
 };
+/** prompt variant of an AI run, '' for the app's prompt (plans/improve-single-prompt.md) */
+const PROMPT_VARIANT = env.LLM_TRAINING_URL ? getPromptVariantFromEnv(env) : '';
+
+if (PROMPT_VARIANT) {
+  SETTINGS.runLabel = `prompt-${PROMPT_VARIANT}`;
+}
+
 /** an AI run can take minutes per file */
 const TIMEOUT_MS = 24 * 60 * 60 * 1000;
 
@@ -158,6 +169,8 @@ describeIfRun(`run training data in ${DATA_DIR}`, () => {
     // jest has no `fetch`: send the AI requests with Node's http, as translationCore's main process would
     const uninstall = SETTINGS.llmQueryUrl ? installNodeAiApis() : () => {};
 
+    const uninstallVariant = PROMPT_VARIANT ? installPromptVariant(PROMPT_VARIANT) : () => {};
+
     try {
       for (const file of files) {
         // eslint-disable-next-line no-await-in-loop
@@ -165,6 +178,7 @@ describeIfRun(`run training data in ${DATA_DIR}`, () => {
         rows.push({ file, ...summary });
       }
     } finally {
+      uninstallVariant();
       uninstall();
     }
 
@@ -314,5 +328,6 @@ function formatBandTable({
  * @returns {string}
  */
 function modelFileName() {
-  return String(SETTINGS.currentModel).replace(/[^\w.-]+/g, '-');
+  const name = String(SETTINGS.currentModel).replace(/[^\w.-]+/g, '-');
+  return SETTINGS.runLabel ? `${name}_${SETTINGS.runLabel}` : name;
 }
