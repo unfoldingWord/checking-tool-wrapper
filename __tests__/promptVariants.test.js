@@ -195,6 +195,19 @@ describe('prompt variants through getBestSelections', () => {
     expect(request.wordList.length).toBeGreaterThan(0);
   });
 
+  test('the builder gets the case\'s GL verse as glVerseText', async () => {
+    const builder = jest.fn(request => PROMPT_VARIANTS.baseline(request));
+    setSinglePromptOverrideForEval(builder);
+    const testCase = realCases.find(c => !c.history || Object.keys(c.history).length === 0) || realCases[0];
+
+    await quietly(() => getBestSelections(testCaseToSelectionOptions(
+      {
+        ...testCase, history: {}, glVerse: 'the GL verse',
+      }, settings,
+    )));
+    expect(builder.mock.calls[0][0].glVerseText).toBe('the GL verse');
+  });
+
   test('a builder returning invalid messages makes the request fail', async () => {
     setSinglePromptOverrideForEval(() => ({ messages: [] }));
     const results = await quietly(() => getBestSelections(testCaseToSelectionOptions(
@@ -417,5 +430,380 @@ describe('variant X4b (X4 only when the algorithm has options)', () => {
     expect(PROMPT_VARIANTS.X4b(withOptions)).toEqual(PROMPT_VARIANTS.X4(withOptions));
     expect(PROMPT_VARIANTS.X4b({ ...request, algorithmBestSelections: [] })).toEqual(PROMPT_VARIANTS.baseline(request));
     expect(PROMPT_VARIANTS.X4b(request)).toEqual(PROMPT_VARIANTS.baseline(request));
+  });
+});
+
+describe('variant X3 (GL verse with the phrase in brackets)', () => {
+  // eslint-disable-next-line global-require
+  const {
+    X3_SYSTEM_PROMPT, X3_X4_SYSTEM_PROMPT, markGlPhraseInVerse,
+  } = require('./helpers/promptVariants');
+  // eslint-disable-next-line global-require
+  const { verseDataToText } = require('./helpers/promptEvalCases');
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    previousTranslationData: { church: { iglesia: 7 } },
+    glVerseText: 'to the church in Ephesus,',
+  };
+  const withOptions = { ...request, algorithmBestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 70 }] };
+
+  test('verseDataToText: words and text of verse objects, footnotes and markers left out', () => {
+    expect(verseDataToText('In the  beginning\n')).toBe('In the beginning');
+    expect(verseDataToText({
+      verseObjects: [
+        {
+          tag: 'zaln', type: 'milestone', children: [{ text: 'Make', type: 'word' }, { type: 'text', text: ' ' }, { text: 'music', type: 'word' }],
+        },
+        { type: 'text', text: ' {to} ' },
+        {
+          type: 'footnote', tag: 'f', content: 'a note',
+        },
+        { text: 'the', type: 'word' },
+        { type: 'text', text: ' \\q2 Lord,' },
+      ],
+    })).toBe('Make music {to} the Lord,');
+  });
+
+  test('markGlPhraseInVerse brackets the phrase, split or inflected words included', () => {
+    expect(markGlPhraseInVerse('Make music {to} the Lord, Selah', 'to the Lord'))
+      .toEqual({ text: 'Make music [to the Lord,] Selah', marked: true });
+    expect(markGlPhraseInVerse('in my Father’s house', 'Father s').text).toBe('in my [Father’s] house');
+    expect(markGlPhraseInVerse('alive in Christ—by grace you', 'by grace').text).toBe('alive in Christ — [by grace] you');
+    // gaps allowed, in the shortest stretch
+    expect(markGlPhraseInVerse('the Lord said, the will of the Lord', 'the Lord').text)
+      .toBe('[the Lord] said, the will of the Lord');
+    expect(markGlPhraseInVerse('Que los siervos se sometan', 'Que se sometan').text)
+      .toBe('[Que] los siervos [se sometan]');
+    expect(markGlPhraseInVerse('nothing here', 'church')).toEqual({ text: 'nothing here', marked: false });
+  });
+
+  test('the GATEWAY VERSE line goes before GATEWAY PHRASE and is the only change to X4b\'s request', () => {
+    const line = '\nGATEWAY VERSE (en): to the [church] in Ephesus,';
+    const plain = PROMPT_VARIANTS.X3(request).messages;
+    const options = PROMPT_VARIANTS.X3(withOptions).messages;
+
+    expect(plain[1].content).toContain(`${line}\nGATEWAY PHRASE (en): church`);
+    expect(plain[1].content.replace(line, '')).toBe(PROMPT_VARIANTS.X4b(request).messages[1].content);
+    expect(options[1].content.replace(line, '')).toBe(PROMPT_VARIANTS.X4b(withOptions).messages[1].content);
+    expect(plain[0].content).toBe(X3_SYSTEM_PROMPT);
+    expect(options[0].content).toBe(X3_X4_SYSTEM_PROMPT);
+  });
+
+  test('without a GL verse it is X4b', () => {
+    const noVerse = { ...withOptions, glVerseText: undefined };
+    expect(PROMPT_VARIANTS.X3(noVerse)).toEqual(PROMPT_VARIANTS.X4b(noVerse));
+    expect(PROMPT_VARIANTS.X3({ ...noVerse, algorithmBestSelections: [] })).toEqual(PROMPT_VARIANTS.baseline(noVerse));
+  });
+
+  test('both system prompts describe the line and both examples show it', () => {
+    for (const prompt of [X3_SYSTEM_PROMPT, X3_X4_SYSTEM_PROMPT]) {
+      expect(prompt).toContain('GATEWAY VERSE - the same verse in the gateway language');
+      expect(prompt).toContain('GATEWAY VERSE (en): to the [church] in Ephesus\nGATEWAY PHRASE (en): church\n');
+      expect(prompt).toContain('GATEWAY VERSE (en): all the [believers] were together\nGATEWAY PHRASE (en): believers\n');
+    }
+    expect(X3_X4_SYSTEM_PROMPT).toContain('POSSIBLE ANSWERS:');
+    expect(X3_SYSTEM_PROMPT).not.toContain('POSSIBLE ANSWERS');
+  });
+});
+
+describe('variant X5 (occurrence)', () => {
+  // eslint-disable-next-line global-require
+  const {
+    X5_SYSTEM_PROMPT, X5_X4_SYSTEM_PROMPT, hasRepeatedCandidateWord,
+  } = require('./helpers/promptVariants');
+  const request = {
+    wordList: ['Dios', 'amó', 'al', 'mundo', 'y', 'dios', 'envió'],
+    targetLangCode: 'es-419',
+    glPhrase: 'God',
+    glLangCode: 'en',
+    previousTranslationData: { God: { Dios: 7 } },
+    contextId: { occurrence: 2 },
+  };
+  const withOptions = { ...request, algorithmBestSelections: [{ selections: [{ text: 'Dios', occurrence: 1 }], confidence: 70 }] };
+
+  test('hasRepeatedCandidateWord looks at option and history words', () => {
+    expect(hasRepeatedCandidateWord(request)).toBe(true);
+    expect(hasRepeatedCandidateWord({ ...request, previousTranslationData: {} })).toBe(false);
+    expect(hasRepeatedCandidateWord({ ...withOptions, previousTranslationData: {} })).toBe(true);
+    expect(hasRepeatedCandidateWord({ ...request, previousTranslationData: { God: { mundo: 1 } } })).toBe(false);
+  });
+
+  test('the OCCURRENCE line goes under GATEWAY PHRASE and is the only change to X4b\'s request', () => {
+    for (const r of [request, withOptions]) {
+      const x5 = PROMPT_VARIANTS.X5(r).messages;
+      expect(x5[1].content).toContain('GATEWAY PHRASE (en): God\nOCCURRENCE: 2\n\nAnswer:');
+      expect(x5[1].content.replace('\nOCCURRENCE: 2', '')).toBe(PROMPT_VARIANTS.X4b(r).messages[1].content);
+    }
+    expect(PROMPT_VARIANTS.X5(request).messages[0].content).toBe(X5_SYSTEM_PROMPT);
+    expect(PROMPT_VARIANTS.X5(withOptions).messages[0].content).toBe(X5_X4_SYSTEM_PROMPT);
+  });
+
+  test('X4b when the occurrence is 1 or no candidate word repeats', () => {
+    const first = { ...withOptions, contextId: { occurrence: 1 } };
+    expect(PROMPT_VARIANTS.X5(first)).toEqual(PROMPT_VARIANTS.X4b(first));
+    const noRepeat = { ...request, previousTranslationData: { God: { mundo: 1 } } };
+    expect(PROMPT_VARIANTS.X5(noRepeat)).toEqual(PROMPT_VARIANTS.X4b(noRepeat));
+  });
+
+  test('the system prompts describe OCCURRENCE, add its rule and keep the rules numbered', () => {
+    for (const prompt of [X5_SYSTEM_PROMPT, X5_X4_SYSTEM_PROMPT]) {
+      expect(prompt).toContain('OCCURRENCE - when the phrase comes more than once');
+      expect(prompt).toContain('6. When OCCURRENCE is given');
+      expect(prompt).toContain('9. Answer only as CSV rows');
+    }
+  });
+});
+
+describe('variant N4 (GL verse only without history)', () => {
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    previousTranslationData: { church: { iglesia: 7 } },
+    glVerseText: 'to the church in Ephesus',
+  };
+  const withOptions = { ...request, algorithmBestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 70 }] };
+
+  test('with history it is X4b, without it is X3', () => {
+    expect(PROMPT_VARIANTS.N4(request)).toEqual(PROMPT_VARIANTS.X4b(request));
+    expect(PROMPT_VARIANTS.N4(withOptions)).toEqual(PROMPT_VARIANTS.X4b(withOptions));
+
+    for (const empty of [{}, { church: {} }, undefined]) {
+      const noHistory = { ...request, previousTranslationData: empty };
+      expect(PROMPT_VARIANTS.N4(noHistory)).toEqual(PROMPT_VARIANTS.X3(noHistory));
+      expect(PROMPT_VARIANTS.N4(noHistory).messages[1].content).toContain('GATEWAY VERSE (en): to the [church] in Ephesus');
+    }
+  });
+});
+
+describe('variants N1 (explicit none) and N6 (unrelated history treated like none)', () => {
+  // eslint-disable-next-line global-require
+  const { hasOnlyUnrelatedHistory } = require('./helpers/promptVariants');
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    previousTranslationData: { church: { iglesia: 7 } },
+  };
+  const unrelated = { ...request, previousTranslationData: { church: { congregación: 3, asamblea: 1 } } };
+  const option = { selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 60 };
+
+  test('N1: with history it is X4b; without, PREVIOUS TRANSLATIONS: none before GATEWAY PHRASE', () => {
+    expect(PROMPT_VARIANTS.N1(request)).toEqual(PROMPT_VARIANTS.X4b(request));
+
+    const noHistory = { ...request, previousTranslationData: {} };
+    const app = PROMPT_VARIANTS.baseline(noHistory).messages;
+    const n1 = PROMPT_VARIANTS.N1(noHistory).messages;
+    expect(n1[0]).toEqual(app[0]);
+    expect(n1[1].content).toContain('\n\nPREVIOUS TRANSLATIONS: none\n\nGATEWAY PHRASE (en): church');
+    expect(n1[1].content.replace('\nPREVIOUS TRANSLATIONS: none\n', '')).toBe(app[1].content);
+  });
+
+  test('hasOnlyUnrelatedHistory: history whose renderings are not in the verse', () => {
+    expect(hasOnlyUnrelatedHistory(unrelated)).toBe(true);
+    expect(hasOnlyUnrelatedHistory(request)).toBe(false);
+    expect(hasOnlyUnrelatedHistory({ ...request, previousTranslationData: {} })).toBe(false);
+    // another form of a verse word fits
+    expect(hasOnlyUnrelatedHistory({ ...request, previousTranslationData: { church: { iglesias: 2 } } })).toBe(false);
+  });
+
+  test('N6: unrelated history is sent as no history, keeping any options; otherwise X4b', () => {
+    expect(PROMPT_VARIANTS.N6(request)).toEqual(PROMPT_VARIANTS.X4b(request));
+
+    const n6 = PROMPT_VARIANTS.N6(unrelated).messages[1].content;
+    expect(n6).not.toContain('PREVIOUS TRANSLATIONS');
+    expect(n6).toBe(PROMPT_VARIANTS.baseline({ ...unrelated, previousTranslationData: {} }).messages[1].content);
+
+    const withOption = { ...unrelated, algorithmBestSelections: [option] };
+    expect(PROMPT_VARIANTS.N6(withOption)).toEqual(PROMPT_VARIANTS.X4({ ...withOption, previousTranslationData: {} }));
+  });
+});
+
+describe('variant N2 (a no-history example)', () => {
+  // eslint-disable-next-line global-require
+  const {
+    N2_SYSTEM_PROMPT, N2_X4_SYSTEM_PROMPT, N2_EXAMPLE,
+  } = require('./helpers/promptVariants');
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    previousTranslationData: { church: { iglesia: 7 } },
+  };
+  const withOptions = { ...request, algorithmBestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 70 }] };
+
+  test('only the system prompt changes: Example 3 before the wrong answers', () => {
+    for (const r of [request, withOptions]) {
+      const n2 = PROMPT_VARIANTS.N2(r).messages;
+      const x4b = PROMPT_VARIANTS.X4b(r).messages;
+      expect(n2[1]).toEqual(x4b[1]);
+      expect(n2[0].content.replace(N2_EXAMPLE, '')).toBe(x4b[0].content);
+    }
+    expect(PROMPT_VARIANTS.N2(request).messages[0].content).toBe(N2_SYSTEM_PROMPT);
+    expect(PROMPT_VARIANTS.N2(withOptions).messages[0].content).toBe(N2_X4_SYSTEM_PROMPT);
+    expect(N2_SYSTEM_PROMPT).toContain('"Gläubigen",75\n\nExample 3:\nTARGET VERSE (sw):');
+    expect(N2_SYSTEM_PROMPT).toContain('"wagonjwa",65\n\nWrong answer for Example 1:');
+  });
+});
+
+describe('variant N3 (a separate no-history system prompt)', () => {
+  // eslint-disable-next-line global-require
+  const { N3_SYSTEM_PROMPT, APP_SINGLE_SYSTEM_PROMPT } = require('./helpers/promptVariants');
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    previousTranslationData: { church: { iglesia: 7 } },
+  };
+
+  test('with history it is X4b; without, only the system prompt changes', () => {
+    expect(PROMPT_VARIANTS.N3(request)).toEqual(PROMPT_VARIANTS.X4b(request));
+
+    const noHistory = { ...request, previousTranslationData: {} };
+    const n3 = PROMPT_VARIANTS.N3(noHistory).messages;
+    expect(n3[0].content).toBe(N3_SYSTEM_PROMPT);
+    expect(n3[1]).toEqual(PROMPT_VARIANTS.baseline(noHistory).messages[1]);
+  });
+
+  test('the prompt never mentions previous translations and keeps the app\'s output rules', () => {
+    expect(N3_SYSTEM_PROMPT).not.toMatch(/PREVIOUS|previous|chosen/);
+    expect(N3_SYSTEM_PROMPT).toContain('from 0 to 70');
+
+    for (const line of ['1. Answer only with words copied from TARGET VERSE', 'If no words in TARGET VERSE fit, answer: "",0',
+      'Answer only as CSV rows: no header, no explanation, no markdown fences.', 'Required output format:\n"word word",confidence']) {
+      expect(APP_SINGLE_SYSTEM_PROMPT).toContain(line);
+      expect(N3_SYSTEM_PROMPT).toContain(line);
+    }
+
+    // every example confidence is within the ceiling
+    const confidences = [...N3_SYSTEM_PROMPT.matchAll(/",(\d+)/g)].map(m => Number(m[1]));
+    expect(confidences.length).toBeGreaterThan(5);
+    expect(Math.max(...confidences)).toBeLessThanOrEqual(70);
+  });
+});
+
+describe('variant N34 (N3 + N4)', () => {
+  // eslint-disable-next-line global-require
+  const { N3_SYSTEM_PROMPT, N34_SYSTEM_PROMPT } = require('./helpers/promptVariants');
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    glVerseText: 'to the church in Ephesus',
+    previousTranslationData: { church: { iglesia: 7 } },
+  };
+
+  test('with history it is X4b; without, N3\'s prompt with GATEWAY VERSE and N4\'s request', () => {
+    expect(PROMPT_VARIANTS.N34(request)).toEqual(PROMPT_VARIANTS.X4b(request));
+
+    const noHistory = { ...request, previousTranslationData: {} };
+    const [system, user] = PROMPT_VARIANTS.N34(noHistory).messages;
+    expect(system.content).toBe(N34_SYSTEM_PROMPT);
+    expect(user).toEqual(PROMPT_VARIANTS.N4(noHistory).messages[1]);
+    expect(user.content).toContain('GATEWAY VERSE (en): to the [church] in Ephesus\nGATEWAY PHRASE (en): church');
+  });
+
+  test('the prompt is N3\'s plus the GATEWAY VERSE field and one GATEWAY VERSE per example', () => {
+    expect(N34_SYSTEM_PROMPT.match(/^GATEWAY VERSE \(en\):/gm).length).toBe(3);
+    expect(N34_SYSTEM_PROMPT).toContain('GATEWAY VERSE - the same verse in the gateway language');
+    expect(N34_SYSTEM_PROMPT.replace(/^GATEWAY VERSE.*\n/gm, '')).toBe(N3_SYSTEM_PROMPT);
+    expect(N34_SYSTEM_PROMPT).not.toMatch(/PREVIOUS|previous|chosen/);
+  });
+});
+
+describe('Step 4 variants S1-S6 (instruction length and structure, on X4b)', () => {
+  // eslint-disable-next-line global-require
+  const {
+    S_SYSTEM_PROMPTS, S5_REMINDER, getPromptExamples, reorderRequestBlocks, X4_SYSTEM_PROMPT,
+  } = require('./helpers/promptVariants');
+  const request = {
+    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],
+    targetLangCode: 'es-419',
+    glPhrase: 'church',
+    glLangCode: 'en',
+    previousTranslationData: { church: { iglesia: 7 } },
+  };
+  const withOptions = { ...request, algorithmBestSelections: [{ selections: [{ text: 'iglesia', occurrence: 1 }], confidence: 70 }] };
+  const x4b = r => PROMPT_VARIANTS.X4b(r).messages;
+
+  test('getPromptExamples gives each example in the request layout', () => {
+    const examples = getPromptExamples(X4_SYSTEM_PROMPT);
+    expect(examples).toHaveLength(2);
+    expect(examples[0].request).toMatch(/^\nTARGET VERSE \(es-419\): para la iglesia de Éfeso\n\nPREVIOUS TRANSLATIONS:\n/);
+    expect(examples[0].request).toMatch(/\n\nPOSSIBLE ANSWERS:\n"iglesia"\n"la iglesia"\n\nGATEWAY PHRASE \(en\): church\n\nAnswer:$/);
+    expect(examples[0].answer).toBe('"iglesia",98\n"la iglesia",70');
+    expect(examples[1].answer).toBe('"Gläubigen",75');
+  });
+
+  test('S1 is shorter, with Example 1 only and no wrong-answer list; request text unchanged', () => {
+    for (const r of [request, withOptions]) {
+      const s1 = PROMPT_VARIANTS.S1(r).messages;
+      expect(s1[1]).toEqual(x4b(r)[1]);
+      expect(s1[0].content.length).toBeLessThan(x4b(r)[0].content.length * 0.75);
+      expect(s1[0].content).not.toContain('Example 2');
+      expect(s1[0].content).not.toContain('Wrong answer');
+      expect(s1[0].content).toContain('Example:\nTARGET VERSE (es-419): para la iglesia de Éfeso');
+    }
+    expect(S_SYSTEM_PROMPTS.S1.options).toContain('POSSIBLE ANSWERS');
+    expect(S_SYSTEM_PROMPTS.S1.plain).not.toContain('POSSIBLE ANSWERS');
+  });
+
+  test('S2 replaces the rules with steps; the rest is unchanged', () => {
+    const s2 = PROMPT_VARIANTS.S2(withOptions).messages;
+    expect(s2[1]).toEqual(x4b(withOptions)[1]);
+    expect(s2[0].content).toContain('Steps - follow them in order');
+    expect(s2[0].content).not.toContain('Rules:');
+    expect(s2[0].content.slice(s2[0].content.indexOf('Required output format:')))
+      .toBe(x4b(withOptions)[0].content.slice(x4b(withOptions)[0].content.indexOf('Required output format:')));
+  });
+
+  test('S3 sends one user message: the system prompt, then the request', () => {
+    const s3 = PROMPT_VARIANTS.S3(withOptions).messages;
+    const [system, user] = x4b(withOptions);
+    expect(s3).toEqual([{ role: 'user', content: `${system.content.trimEnd()}\n${user.content}` }]);
+  });
+
+  test('S4 sends the examples as chat turns, then the request', () => {
+    const s4 = PROMPT_VARIANTS.S4(withOptions).messages;
+    expect(s4.map(m => m.role)).toEqual(['system', 'user', 'assistant', 'user', 'assistant', 'user']);
+    expect(s4[0].content).not.toContain('Example 1:');
+    expect(s4[0].content).toContain('"church",98 - gateway words are not in TARGET VERSE');
+    expect(s4[2].content).toBe('"iglesia",98\n"la iglesia",70');
+    expect(s4[5]).toEqual(x4b(withOptions)[1]);
+  });
+
+  test('S5 adds the reminder before Answer: only', () => {
+    const s5 = PROMPT_VARIANTS.S5(request).messages;
+    expect(s5[0]).toEqual(x4b(request)[0]);
+    expect(s5[1].content).toContain(`\n\n${S5_REMINDER}\nAnswer:`);
+    expect(s5[1].content.replace(`${S5_REMINDER}\n`, '')).toBe(x4b(request)[1].content);
+  });
+
+  test('S6 puts GATEWAY PHRASE first and TARGET VERSE right after it, in the request and the examples', () => {
+    const order = text => ['GATEWAY PHRASE', 'TARGET VERSE', 'PREVIOUS TRANSLATIONS', 'POSSIBLE ANSWERS', 'Answer:']
+      .map(label => text.indexOf(label));
+    const s6 = PROMPT_VARIANTS.S6(withOptions).messages;
+    const positions = order(s6[1].content);
+    expect(positions.every(p => p >= 0)).toBe(true);
+    expect([...positions].sort((a, b) => a - b)).toEqual(positions);
+    expect(s6[1].content.startsWith('\nGATEWAY PHRASE (en): church\n\nTARGET VERSE')).toBe(true);
+    expect(s6[1].content).not.toContain('\n\n\n');
+    expect([...s6[1].content].sort()).toEqual([...x4b(withOptions)[1].content].sort());
+
+    for (const example of getPromptExamples(s6[0].content)) {
+      expect(example.request.startsWith('\nGATEWAY PHRASE (en):')).toBe(true);
+      expect(example.request.indexOf('TARGET VERSE')).toBeLessThan(example.request.indexOf('PREVIOUS TRANSLATIONS'));
+    }
+    expect(s6[0].content).toContain('You are given:\nGATEWAY PHRASE - the phrase');
+    expect(reorderRequestBlocks('\nTARGET VERSE (x): a\n\nGATEWAY PHRASE (en): b\n\nAnswer:'))
+      .toBe('\nGATEWAY PHRASE (en): b\n\nTARGET VERSE (x): a\n\nAnswer:');
   });
 });

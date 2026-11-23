@@ -2836,7 +2836,7 @@ let singlePromptOverrideForEval = null;
  * @param {function(object): {messages: Array<{role: string, content: string}>}|null} builder -
  *   called with the request given to {@link getBestTWordSelectionWithConfidenceFromLlm} (`wordList`,
  *   `targetLangCode`, `glPhrase`, `glLangCode`, `previousTranslationData`, `contextId`,
- *   `algorithmBestSelections`, `lmOptions`); it returns the messages without `/no_think`, which
+ *   `algorithmBestSelections`, `glVerseText`, `lmOptions`); it returns the messages without `/no_think`, which
  *   `queryAiAPI` adds. `null` goes back to the app's prompt.
  * @returns {void}
  */
@@ -4449,6 +4449,34 @@ export function updatedPreviousSelectionsData(
 export const ALGORITHM_CERTAIN_CONFIDENCE = 95;
 
 /**
+ * Highest confidence shown for an AI suggestion made with no selection history. Without history the
+ * stock models' answers were right 20-28% (Qwen3-1.7B) and 22-51% (Qwen3-4B) of the time whatever
+ * confidence they gave, mostly 90 or more (plans/improve-single-prompt.md, Step 5, N5), so a guess
+ * is not shown as certain. Only lowers confidences, so the order of the options does not change.
+ */
+export const LLM_NO_HISTORY_MAX_CONFIDENCE = 70;
+
+/**
+ * Caps the confidences of an AI result for a request with no selection history at
+ * `LLM_NO_HISTORY_MAX_CONFIDENCE`; other results are returned unchanged.
+ * @param {object} result - from `getBestTWordSelectionWithConfidenceFromLlm`
+ * @param {object} previousTranslationData - the request's history, `{ glKey: { rendering: count } }`
+ * @returns {object} - a copy with capped confidences, or `result`
+ */
+export function capConfidenceWithoutHistory(result, previousTranslationData) {
+  const hasHistory = Object.values(previousTranslationData || {})
+    .some(renderings => Object.keys(renderings || {}).length);
+
+  if (hasHistory || !result?.bestSelections?.length) {
+    return result;
+  }
+  return {
+    ...result,
+    bestSelections: result.bestSelections.map(option => ({ ...option, confidence: Math.min(option.confidence, LLM_NO_HISTORY_MAX_CONFIDENCE) })),
+  };
+}
+
+/**
  * Runs the algorithm path for one `getBestSelections` job.
  * @param {object} job - one `getBestSelections` job
  * @returns {Promise<{error: boolean, bestSelections: Array<object>, elapsedStr: string, model: string}>} -
@@ -4635,6 +4663,7 @@ export async function getBestSelections(options = {}) {
           contextId,
           currentModel,
           gatewayLanguageCode,
+          glVerseText,
           key,
           llmExtraParams,
           llmTemperature,
@@ -4654,6 +4683,8 @@ export async function getBestSelections(options = {}) {
           // (`setSinglePromptOverrideForEval`)
           contextId,
           algorithmBestSelections: algorithmResults[i]?.bestSelections || [],
+          // the gateway-language verse, when the job has it (prompt experiments only, for now)
+          glVerseText,
           lmOptions: {
             apiToken,
             baseUrl: llmQueryUrl,
@@ -4673,7 +4704,8 @@ export async function getBestSelections(options = {}) {
         const resultList = Array.isArray(results) ? results : [results];
 
         aiJobIndexes.forEach((jobIndex, i) => {
-          jobResults[jobIndex] = resultList[i];
+          // without history the AI's confidence says little (N5 of plans/improve-single-prompt.md)
+          jobResults[jobIndex] = capConfidenceWithoutHistory(resultList[i], llmRequests[i].previousTranslationData);
         });
       }
     }

@@ -172,3 +172,42 @@ export function countBy(cases, keyOf) {
   }
   return Object.fromEntries([...counts.entries()].sort((a, b) => b[1] - a[1]));
 }
+
+/**
+ * The plain text of a verse from a bible book file: string verses as they are, verse objects
+ * (aligned bibles) as their words and text in order, without footnotes or USFM markers, with
+ * whitespace collapsed.
+ * @param {string|{verseObjects: Array<object>}} verseData
+ * @returns {string}
+ */
+export function verseDataToText(verseData) {
+  const parts = [];
+
+  const walk = objects => {
+    for (const object of objects || []) {
+      if (object.type === 'footnote' || object.tag === 'f' || object.tag === 'fe') {
+        continue;
+      }
+
+      if (object.children) {
+        walk(object.children);
+      } else if (typeof object.text === 'string') {
+        parts.push(object.text);
+      }
+
+      if (object.type === 'paragraph' || object.type === 'quote') {
+        parts.push(' ');
+      }
+    }
+  };
+
+  if (typeof verseData === 'string') {
+    parts.push(verseData);
+  } else {
+    walk(verseData?.verseObjects);
+  }
+  return parts.join('')
+    .replace(/\\[a-z0-9-]+\*?/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}

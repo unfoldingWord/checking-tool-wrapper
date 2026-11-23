@@ -407,6 +407,45 @@ variants that pass on 1.7B.
   load it in the runner from `~/translationCore/resources/<gl>/bibles/<glBibleName>` using the
   `source` field. Prefer the builder (one place). In the app, `Container.js` has `glBibles` and
   `contextId` where it builds each job (`:320-345`), so the job can carry `glVerseText`.
+  **Built 2026-11-22, on top of X4b** (the adopted Step 3 best), so it is compared with X4b on DEV
+  and with the baseline on DEV-NOHIST (where X4b is the baseline).
+  - *Data.* `glVerse` was added to the four set files in place (`LLM_PROMPT_EVAL_ADD_GL_VERSE=1
+    npx jest __tests__/buildPromptEvalCases.test.js`; same cases and ids, so earlier results stay
+    comparable; a full rebuild adds it too). It is read from the GL bible named in each case's
+    `source` and made plain text with `verseDataToText` (`helpers/promptEvalCases.js`). Found for
+    all 3,920 cases. Not added to `llmTrainingData/*.json` yet: the fine-tune exporter needs it only
+    if X3 goes to a retrain (Step 7.1).
+  - *Request.* `testCaseToSelectionOptions` passes it as `glVerseText` in the job, and
+    `getBestSelections` passes the job's `glVerseText` to the request (the app's prompt ignores it).
+  - *Prompt.* `GATEWAY VERSE (<gl>): <verse>` right before GATEWAY PHRASE, the phrase in [brackets]
+    by `markGlPhraseInVerse` (verse words cleaned as `cleanGlQuote` cleans the phrase, matched in
+    order with gaps, shortest stretch; ULT's braces removed, dashes spaced). It brackets 1,497 of
+    1,500 DEV and 834 of 835 TEST phrases; the others are sent unbracketed. The system prompt adds
+    `GATEWAY VERSE - the same verse in the gateway language, with GATEWAY PHRASE in [brackets] (may
+    be missing). It shows what the phrase means in the verse.`, and both examples show the line
+    ("to the [church] in Ephesus", "all the [believers] were together"). Requests with algorithm
+    options use X4's system prompt with these edits (`X3_X4_SYSTEM_PROMPT`), the others the app's
+    (`X3_SYSTEM_PROMPT`).
+  **X3 measured 2026-11-22** (logs in `llm-eval-results/prompt-X3-20261122/`). DEV against X4b,
+  DEV-NOHIST against the baseline (= X4b there):
+
+  | Model | Set | Top-1 | Right only in A / B | Wrong at ≥ 80 | Median ms |
+  |---|---|---|---|---|---|
+  | 1.7B | DEV | 44.6% → 43.7% | 40 / 26 (p 0.11) | 492 → **634** | 165 → 170 |
+  | 1.7B | DEV-NOHIST | 16.4% → 18.7% | 38 / 55 (p 0.097) | 273 → **364** | 123 → 130 |
+  | 0.6B | DEV | 39.5% → 38.3% | 55 / 36 (p 0.059) | 343 → 439 | 81 → 91 |
+  | 0.6B | DEV-NOHIST | 1.1% → 0.4% | 6 / 1 (p 0.13) | 78 → 71 | 81 → 92 |
+  | 4B | DEV | 51.7% → 52.6% | 56 / 69 (p 0.28) | 529 → 618 | 267 → 278 |
+  | **4B** | **DEV-NOHIST** | 34.0% → **39.5%** | 50 / 91 (**p 0.0007**) | 367 → 390 | 244 → 250 |
+
+  **Decision: not adopted (D5).** The 1.7B gains nothing with history and gives 142 more confident
+  wrong answers on DEV (9.5% of cases, against the 1% limit); every model raises its confidences
+  (mean confidence when wrong: 1.7B 82.8 → 87.0). Without history it is the best variant so far
+  for the 4B (+5.5 points; X6 gave +3.6, X3 against X6 is 77 / 63, p 0.27) and helps the 1.7B
+  somewhat (+2.3, not significant, X6 gave +1.6), but with more confident wrong answers. The GL
+  verse is the main candidate for N4 (no-history requests only, Step 5), where a confidence cap
+  (N5) can deal with the confident wrong answers, and for a retrain, where the fine-tune can learn
+  when the line helps.
 - **X4. Algorithm candidates.** A block `POSSIBLE ANSWERS:` listing the algorithm's options (up to
   3, text only, no confidence), with a rule that the answer may be one of them or other verse
   words. `getBestSelections` already computes them before the AI call (`getAlgorithmResultForJob`).
@@ -469,6 +508,18 @@ variants that pass on 1.7B.
 - **X5. Occurrence.** When the check's `contextId.occurrence` > 1 and a candidate word repeats in
   the verse, add `OCCURRENCE: 2` with a one-line rule. Small; only if DEV has enough such cases
   (count first; skip if under 30).
+  **Counted and measured 2026-11-22.** 34 DEV cases have `contextId.occurrence` > 1; in 32 the
+  answer word repeats in the verse (vi 15, ru 8, te 6, ar 2, id 1), so it ran. The model cannot give
+  an occurrence (the parser drops `word:n`; `moveSelectionsToOccurrence` places the answer), so the
+  line can only change which words are chosen. In those 32, X4b is right in 14 for each model and
+  only 4-5 more have the right words at the wrong occurrence. X5 (on X4b): `OCCURRENCE: n` under
+  GATEWAY PHRASE when the check's occurrence is above 1 and a word of an algorithm option or a
+  history rendering repeats in the verse, plus rule 6 "When OCCURRENCE is given, answer with the
+  words that translate that occurrence of the phrase." DEV only (no DEV-NOHIST request has a
+  candidate word, so it is the baseline there). Against X4b: 1.7B 669 → 669 (0 / 0), 0.6B 593 → 593
+  (1 / 1), 4B 776 → 774 (3 / 1, p 0.63); wrong at ≥ 80 +2, +6, +1. **Not adopted.** Placing the
+  answer at the right occurrence is the code's job; the 5 cases per model it gets wrong are a matter
+  for `moveSelectionsToOccurrence`, not the prompt.
 - **X6. translationWords term.** `TERM: <groupId>` (e.g. `bear`, `holyplace`), the tW article id.
   Cheap; may help meaning when the GL phrase is an inflected or idiomatic form.
 
@@ -533,6 +584,54 @@ Start from `X*` (or `baseline` if nothing in Step 3 was adopted).
 Run S1-S6 each against the current best; combine the adopted ones and check the combination
 once more (D5).
 
+**S1-S6 measured 2026-11-22** (each built on X4b, applied to both of its system prompts; logs in
+`llm-eval-results/prompt-S<n>-20261122/`). DEV is compared with X4b, DEV-NOHIST with `baseline`
+(X4b sends DEV-NOHIST the app's prompt). Every S run has the N5 cap, so wrong ≥ 80 on DEV-NOHIST
+is 0 for all of them and is left out; the baseline there had 273 (1.7B), 78 (0.6B), 367 (4B).
+S2 is worded for the current prompt (X1's `in verse` marks were not adopted): previous
+translation word for word (90+), another form of one (60-89), a meaning match, then `"",0`.
+
+| Variant | Model | DEV top-1 (X4b → S, only-X4b / only-S, p) | DEV wrong ≥ 80 | DEV no option | DEV-NOHIST top-1 (p) | median ms (1.7B DEV) |
+|---|---|---|---|---|---|---|
+| S1 short | 1.7B | 44.6 → 44.1%, 35 / 27, p 0.37 | 492 → 565 | 176 → 265 | 16.4 → 19.3%, p 0.021 | 165 → 162 |
+| | 0.6B | 39.5 → 41.0%, 43 / 65, p 0.043 | 343 → **653** | 328 → 240 | 1.1 → 1.6%, p 0.39 | |
+| | 4B | 51.7 → 50.1%, 56 / 31, **p 0.0097** | 529 → 544 | 140 → 180 | 34.0 → 33.2%, p 0.54 | |
+| S2 procedure | 1.7B | 44.6 → 43.3%, 29 / 10, **p 0.0034** | 492 → 430 | 176 → 158 | 16.4 → 13.5%, **p 0.0032** | 165 → 169 |
+| | 0.6B | 39.5 → 40.3%, p 0.26 | 343 → 442 | 328 → 196 | 1.1 → 2.3%, p 0.049 | |
+| | 4B | 51.7 → 50.7%, p 0.11 | 529 → 492 | 140 → 144 | 34.0 → 34.4%, p 0.80 | |
+| S3 merged | 1.7B | 44.6 → 41.2%, 78 / 27, **p 6.5e-7** | 492 → 596 | 176 → 197 | 16.4 → 13.2%, **p 0.0056** | 165 → 174 |
+| | 0.6B | 39.5 → 37.0%, **p 0.0013** | 343 → 285 | 328 → 591 | 1.1 → 1.2% | |
+| | 4B | 51.7 → 49.3%, **p 0.0002** | 529 → 459 | 140 → 158 | 34.0 → 30.4%, **p 0.0045** | |
+| S4 chat turns | 1.7B | 44.6 → 45.1%, 27 / 34, p 0.44 | 492 → **278** | 176 → 225 | 16.4 → **23.2%**, 23 / 74, **p 2e-7** | 165 → 128 |
+| | 0.6B | 39.5 → **41.5%**, 33 / 62, p 0.0038 | 343 → **6** | 328 → 350 | 1.1 → 0.8%, p 0.75 | |
+| | 4B | 51.7 → 49.4%, 77 / 42, **p 0.0017** | 529 → 437 | 140 → 211 | 34.0 → 35.2%, p 0.36 | |
+| S5 reminder | 1.7B | 44.6 → 43.1%, 44 / 22, **p 0.0092** | 492 → 404 | 176 → 160 | 16.4 → 13.3%, **p 0.0059** | 165 → 156 |
+| | 0.6B | 39.5 → 40.6%, p 0.064 | 343 → 319 | 328 → 307 | 1.1 → 1.2% | |
+| | 4B | 51.7 → 51.1%, p 0.37 | 529 → 572 | 140 → 92 | 34.0 → 31.9%, **p 0.033** | |
+| S6 field order | 1.7B | 44.6 → 44.5%, 38 / 37, p 1.0 | 492 → 634 | 176 → 180 | 16.4 → 9.9%, **p 6e-6** (no option 225 → 469) | 165 → 161 |
+| | 0.6B | 39.5 → 39.7%, p 0.92 | 343 → 356 | 328 → 298 | 1.1 → 2.9%, p 0.0026 | |
+| | 4B | 51.7 → 51.3%, p 0.71 | 529 → 445 | 140 → 148 | 34.0 → 32.8%, p 0.49 | |
+
+**Decisions (D5): none adopted; `S*` = X4b.**
+- S2, S3, S5: significantly worse for the 1.7B on both sets. S3 is worse on every model; the
+  system message matters. S5's reminder lowers confident wrong answers but costs right ones.
+- S6: no change on DEV; with no history the 1.7B gives up twice as often (no option 225 → 469).
+- S1: no DEV gain for the 1.7B, 4B worse (p 0.0097), 0.6B's confident wrong answers double. The
+  shorter prompt does not make stock runs faster (165 → 162 ms median), since llama-server
+  caches the fixed system prompt. It stays a retrain candidate (Step 7) only as the plan says:
+  to see whether a fine-tune keeps its accuracy without the long prompt.
+- **S4 is the closest and the strongest retrain candidate**, but fails D5 on two counts: the
+  1.7B's DEV gain is not significant (p 0.44), and the 4B is worse on DEV (p 0.0017). What it
+  does gain: confident wrong answers on DEV fall for every model (1.7B 492 → 278, 0.6B 343 → 6,
+  4B 529 → 437), the 1.7B gains 6.8 points with no history (p 2e-7), the 0.6B gains on DEV
+  (p 0.0038), and the 1.7B is faster (128 ms median). Mean confidence falls too (1.7B right
+  86 → 80, wrong 83 → 76), so the effect is partly that the model copies the examples'
+  lower confidences.
+  Where S4 loses: on DEV requests with no algorithm options (238 cases), the answers it loses
+  are mostly `"",0` (1.7B: 14 of 15; 4B: 22 of 26). On requests with options the 1.7B gains
+  (25 / 12) and the 4B loses (51 / 28, 14 of them empty).
+- Nothing adopted, so there is no combination to check.
+
 **Done when:** each of S1-S6 has a row, and the best combination is named `S*`.
 
 ### Step 5. No history (LIVE, DEV-NOHIST)
@@ -554,6 +653,95 @@ an example every request sees), so DEV must not change except for N2: check that
   (or the value where DEV-NOHIST answers are right half the time) so a guess is not shown at 90.
   Measure the right/wrong confidence split first; adopt only if wrong-at-≥80 drops without
   changing top-1.
+
+**N4 + N5 measured 2026-11-22** (logs in `llm-eval-results/prompt-N4-20261122/`).
+- *N4* is a variant (`buildN4`): X3's GATEWAY VERSE line only when the request has no history,
+  X4b otherwise. A unit test shows it sends X4b's prompt with history and X3's without; DEV has no
+  empty-history case and DEV-NOHIST only those, so N4 is X4b on DEV and X3 on DEV-NOHIST.
+- *N5* is in the app (`LLM_NO_HISTORY_MAX_CONFIDENCE` = 70 and `capConfidenceWithoutHistory` in
+  `checkingSuggestionsUtils.js`, applied in `getBestSelections` to single and batched AI results).
+  Split first, DEV-NOHIST, top answer right by its confidence: 1.7B 22-28% in every band from 70
+  (baseline 20-26%); 4B 22-26% below 90, 40-47% at 90-94, 51-57% at 95-100; 0.6B 0-21%. No band
+  of the 1.7B reaches half, so the plan's default 70 was used; any cap below 80 gives the same
+  numbers below, so the value is a choice of what translators see, not a measured one (50 would
+  match the 1.7B's accuracy better). tc-ui-toolkit applies any suggestion with a confidence, with
+  no threshold, and without history the algorithm has no options to merge, so the cap changes
+  only the number shown.
+- Rerun of N4 with the cap on DEV-NOHIST: every answer the same as X3's (0 differ, for all three
+  models), highest confidence 70.
+
+| Model | DEV-NOHIST top-1, baseline → N4 + N5 | Right only in A / B | Wrong at ≥ 80 |
+|---|---|---|---|
+| 1.7B | 16.4% → 18.7% | 38 / 55 (p 0.097) | 273 → 0 |
+| 0.6B | 1.1% → 0.4% | 6 / 1 (p 0.13) | 78 → 0 |
+| 4B | 34.0% → **39.5%** | 50 / 91 (**p 0.0007**) | 367 → 0 |
+
+**Decisions:** **N5 adopted** (its rule: wrong at ≥ 80 drops, here to 0, with top-1 unchanged).
+**N4 not adopted for now (D5):** the 1.7B's gain is not significant (p 0.097), though no model is
+significantly worse and N5 removes the confident wrong answers X3 added. It stays the main
+no-history candidate for the retrain (R1), where the fine-tune can learn to use the line, and
+for F if a larger sample confirms the 1.7B's gain.
+
+**N1 and N6 measured 2026-11-22** (on X4b, with N5 in the code; logs in
+`llm-eval-results/prompt-N1-20261122/`, `prompt-N6-20261122/`).
+- *N1* (`PREVIOUS TRANSLATIONS: none` when there is no history; system prompt unchanged; X4b
+  otherwise, so DEV cannot change), DEV-NOHIST against the baseline: 1.7B 16.4% → **0.8%**
+  (117 / 0, p 1e-35): it reads "none" as "no answer" and replies `"",0` to 719 of 750 requests
+  (no option 225 → 734); 0.6B 1.1% → 0.5% (7 / 3); 4B 34.0% → 33.5% (22 / 18, p 0.64), with more
+  empty answers (76 → 97). **Not adopted.** Leaving the block out, as the app does, is better.
+  (Wrong at ≥ 80 is not compared: the baseline was run before N5.)
+- *N6* (history whose renderings none fit the verse, by `formatPreviousTranslations`' own verse
+  fit, is sent as no history; algorithm options kept): it changes 422 of 1,500 DEV requests
+  (28%). Against X4b (all other requests are the same, so the paired counts are the same on DEV
+  and on the 422):
+
+  | Model | DEV top-1 | The 422: top-1 | Right only in A / B | Wrong at ≥ 80 (DEV) | No option (DEV) |
+  |---|---|---|---|---|---|
+  | 1.7B | 44.6% → 44.8% | 20.4% → 21.1% | 25 / 28 (p 0.78) | 492 → 506 | 176 → 79 |
+  | 0.6B | 39.5% → 39.5% | 10.0% → 9.7% | 5 / 4 (p 1.0) | 343 → 352 | 328 → 320 |
+  | 4B | 51.7% → 52.9% | 36.0% → 40.0% | 36 / 53 (p 0.089) | 529 → 594 | 140 → 79 |
+
+  Without the unrelated lines the 1.7B and 4B answer far more often (no option 176 → 79) but are
+  not more often right, and give more confident wrong answers (N5 does not cap these: they have
+  history). **Not adopted** (no gain for the 1.7B). The 4B's +4 points on these requests is not
+  significant.
+
+**N2 measured 2026-11-22** (on X4b; logs in `llm-eval-results/prompt-N2-20261122/`). Example 3 in
+both system prompts, after Example 2: `TARGET VERSE (sw): Yesu aliwaponya wagonjwa wengi`, no
+history, `GATEWAY PHRASE (en): the sick`, answer `"wagonjwa",65` (Swahili is in no eval set, so
+its words in an answer show copying).
+
+| Model | DEV top-1 (vs X4b) | DEV right only A / B | DEV wrong at ≥ 80 | DEV-NOHIST top-1 (vs baseline) | NOHIST right only A / B | Raw answers with "wagonjwa"/"Yesu" (DEV / NOHIST) |
+|---|---|---|---|---|---|---|
+| 1.7B | 44.6% → 44.2% | 18 / 12 (p 0.36) | 492 → 453 | 16.4% → 15.3% | 32 / 24 (p 0.35) | 3 / **59** |
+| 0.6B | 39.5% → 39.3% | 42 / 39 (p 0.82) | 343 → 195 | 1.1% → 0.5% | 6 / 2 (p 0.29) | **241 / 417** |
+| 4B | 51.7% → 51.8% | 25 / 26 (p 1.0) | 529 → 515 | 34.0% → 35.6% | 22 / 34 (p 0.14) | 0 / 8 |
+
+**Not adopted.** No model gains. The small models copy the example (W10): the 0.6B puts its words
+in 417 of 750 no-history answers, the 1.7B in 59. The parser drops those (the words are not in the
+verse), so they show as no option (1.7B NOHIST 225 → 265). The drop in confident wrong answers on
+DEV comes from fewer answers, not better ones.
+
+**N3 measured 2026-11-22** (logs in `llm-eval-results/prompt-N3-20261122/`). `N3_SYSTEM_PROMPT` for
+requests with no history: no mention of previous translations; rule 3 "Find the verse words with
+the same meaning as GATEWAY PHRASE. They may be another form of the word, or a different word with
+that meaning."; confidence 0 to 70; three examples without history (the app's two at 70/55 and 65,
+and N2's Swahili one); the app's output rules word for word. The request text is the app's, and
+requests with history get X4b, so DEV cannot change: DEV-NOHIST only. (N1+N2, the plan's
+comparison, was not built: N1 failed outright; N3 is compared with the baseline and with N4.)
+
+| Model | DEV-NOHIST top-1, baseline → N3 | Right only in A / B | No option | N4 → N3 (right only in A / B) |
+|---|---|---|---|---|
+| 1.7B | 16.4% → 16.5% | 25 / 26 (p 1.0) | 225 → 144 | 18.7% → 16.5% (58 / 42, p 0.13) |
+| 0.6B | 1.1% → 1.6% | 4 / 8 (p 0.39) | 663 → 581 | 0.4% → 1.6% (2 / 11, p 0.022) |
+| 4B | 34.0% → **41.2%** | 16 / 70 (**p 3e-9**) | 76 → 56 | 39.5% → 41.2% (71 / 84, p 0.34) |
+
+The models keep to the ceiling (mean confidence 60-67), and copying is rare (answers with any
+example's words: 1.7B 1, 0.6B 53, 4B 2), unlike N2, where the same example came after two with
+history. **Not adopted for now (D5):** the 1.7B answers more often (no option 225 → 144) but is
+not more often right. It is the best no-history prompt for the 4B (+7.2 points, the largest gain
+of Step 5), so it stays a candidate. Next to try: N3 with N4's GATEWAY VERSE line (both helped the
+4B separately; the 1.7B gained most from the verse).
 - **N6. Unrelated history treated like none.** When no history line fits the verse
   (`noRelatedWordInHistory` cases: today up to 5 unrelated lines are sent), send the no-history
   form instead. Measure on the DEV cases with that tag

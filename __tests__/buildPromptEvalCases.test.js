@@ -18,6 +18,9 @@
  *
  * Environment variables:
  *   LLM_PROMPT_EVAL_BUILD     set to 1 to build
+ *   LLM_PROMPT_EVAL_ADD_GL_VERSE  set to 1 to only add `glVerse` to the set files already built
+ *                             (same cases and ids, so earlier results stay comparable)
+ *   LLM_PROMPT_EVAL_TC_HOME   translationCore folder with the GL bibles (default ~/translationCore)
  *   LLM_PROMPT_EVAL_DATA_DIR  training data folder (default llmTrainingData)
  *   LLM_PROMPT_EVAL_OUT_DIR   output folder (default llmTrainingData/promptEval)
  *
@@ -25,13 +28,15 @@
  * `fs-extra` is mocked globally.
  */
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { execSync } from 'child_process';
 import { ALGORITHM_CERTAIN_CONFIDENCE } from '../src/utils/checkingSuggestionsUtils';
+import { getBestVerseFromChapter } from '../src/helpers/verseHelpers';
 import { runTestCase } from './helpers/suggestionsHelpers';
 import {
   countBy, FINETUNE_TEST_FILES, projectOfFile, PROMPT_EVAL_DEFAULTS, seededShuffle,
-  selectDevCases, toEvalCase, withoutHistory,
+  selectDevCases, toEvalCase, verseDataToText, withoutHistory,
 } from './helpers/promptEvalCases';
 
 const env = process.env;
@@ -39,6 +44,46 @@ const BUILD = env.LLM_PROMPT_EVAL_BUILD === '1';
 const ROOT = path.resolve(__dirname, '..');
 const DATA_DIR = path.resolve(ROOT, env.LLM_PROMPT_EVAL_DATA_DIR || 'llmTrainingData');
 const OUT_DIR = path.resolve(ROOT, env.LLM_PROMPT_EVAL_OUT_DIR || 'llmTrainingData/promptEval');
+const ADD_GL_VERSE = env.LLM_PROMPT_EVAL_ADD_GL_VERSE === '1';
+const TC_HOME = env.LLM_PROMPT_EVAL_TC_HOME || path.join(os.homedir(), 'translationCore');
+const SET_NAMES = ['dev', 'dev-nohist', 'test', 'test-nohist'];
+
+/**
+ * Adds `glVerse` to cases in place: the plain text of the case's verse in the GL bible its GL
+ * phrase came from (named at the end of `source`, e.g. `GL en ult/v91_unfoldingWord`), read from
+ * `<TC_HOME>/resources/<glLang>/bibles/<bible>/<book>/<chapter>.json`. For X3 of the plan.
+ * @param {Array<object>} cases
+ * @returns {{added: number, missing: Array<string>}} - ids of cases with no GL verse found
+ */
+function addGlVerses(cases) {
+  const chapters = new Map();
+  const missing = [];
+  let added = 0;
+
+  for (const evalCase of cases) {
+    const bible = (evalCase.source || '').split(' GL ')[1]?.split(' ')[1];
+    const {
+      bookId, chapter, verse,
+    } = evalCase.contextId?.reference || {};
+    const file = bible && path.join(TC_HOME, 'resources', evalCase.glLang, 'bibles', bible, bookId, `${chapter}.json`);
+
+    if (file && !chapters.has(file)) {
+      chapters.set(file, fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null);
+    }
+
+    const chapterData = file && chapters.get(file);
+    const text = chapterData ? verseDataToText(getBestVerseFromChapter(chapterData, verse)) : '';
+
+    if (text) {
+      evalCase.glVerse = text;
+      added++;
+    } else {
+      missing.push(evalCase.id);
+    }
+  }
+  return { added, missing };
+}
+
 /** the algorithm runs on a few thousand cases */
 const TIMEOUT_MS = 60 * 60 * 1000;
 
@@ -85,6 +130,22 @@ describe('promptEvalCases helpers', () => {
 });
 
 const describeIfBuild = BUILD ? describe : describe.skip;
+const describeIfAddGlVerse = ADD_GL_VERSE ? describe : describe.skip;
+
+describeIfAddGlVerse('add the GL verse to the prompt evaluation sets', () => {
+  test('adds glVerse to each case of dev, dev-nohist, test and test-nohist', () => {
+    for (const name of SET_NAMES) {
+      const file = path.join(OUT_DIR, `${name}.json`);
+      const cases = JSON.parse(fs.readFileSync(file, 'utf8'));
+      const ids = cases.map(c => c.id);
+      const { added, missing } = addGlVerses(cases);
+
+      expect(cases.map(c => c.id)).toEqual(ids);
+      fs.writeFileSync(file, `${JSON.stringify(cases, null, 2)}\n`);
+      console.log(`${name}: glVerse added to ${added} of ${cases.length}; missing ${missing.length}`, missing.slice(0, 5));
+    }
+  });
+});
 
 describeIfBuild('build the prompt evaluation sets', () => {
   test('writes dev, dev-nohist, test and test-nohist', async () => {
@@ -140,6 +201,8 @@ describeIfBuild('build the prompt evaluation sets', () => {
 
     fs.mkdirSync(OUT_DIR, { recursive: true });
 
+    const glVerses = addGlVerses(Object.values(sets).flat());
+
     for (const [name, cases] of Object.entries(sets)) {
       fs.writeFileSync(path.join(OUT_DIR, `${name}.json`), `${JSON.stringify(cases, null, 2)}\n`);
     }
@@ -166,6 +229,7 @@ describeIfBuild('build the prompt evaluation sets', () => {
       devByGlLanguage: countBy(dev.cases, c => c.glLang),
       devByProject: countBy(dev.cases, c => projectOfFile(c.sourceFile)),
       testByFile: countBy(testCases, c => c.sourceFile),
+      glVerseMissing: glVerses.missing.length,
     };
 
     fs.mkdirSync(path.join(OUT_DIR, 'meta'), { recursive: true });

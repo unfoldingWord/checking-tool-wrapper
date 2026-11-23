@@ -200,6 +200,7 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
     targetLanguageDetails: { id: testCase.targetLang },
     alignedGLText: testCase.glPhrase,
     gatewayLanguageCode: testCase.glLang,
+    glVerseText: testCase.glVerse,
     selectionsData: { selections: testCase.history || {} },
     contextId: { ...contextId, occurrence: contextId.occurrence || testCase.occurrence || 1 },
     key,

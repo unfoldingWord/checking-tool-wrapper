@@ -2,9 +2,11 @@
 import { ALGORITHM } from '../src/common/constants';
 import {
   buildTranslationOptionsPrompt,
+  capConfidenceWithoutHistory,
   getBestSelections,
   getBestTWordSelectionWithConfidenceFromLlm,
   getExtraParams,
+  LLM_NO_HISTORY_MAX_CONFIDENCE,
   parseLlmSelectionOptions,
   queryAiAPI,
 } from '../src/utils/checkingSuggestionsUtils';
@@ -421,7 +423,7 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
         model: ALGORITHM, elapsedStr: '0', algorithmFirst: true,
         bestSelections: [{ selections: [{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }], confidence: 100 }],
       },
-      { model: 'test-model', bestSelections: [{ selections: [{ text: 'Roma', occurrence: 1 }], confidence: 95 }] },
+      { model: 'test-model', bestSelections: [{ selections: [{ text: 'Roma', occurrence: 1 }], confidence: LLM_NO_HISTORY_MAX_CONFIDENCE }] }, // no history: capped
     ]);
   });
 
@@ -470,5 +472,45 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
       expect(results[0].bestSelections[0].confidence).toBeGreaterThanOrEqual(50);
       expect(results[0].bestSelections[0].confidence).toBeLessThan(100);
     }
+  });
+});
+
+describe('AI confidence without history (N5)', () => {
+  const job = selections => ({
+    verseText: 'Pablo saludó a la iglesia',
+    llmQueryUrl: 'http://localhost:1234',
+    targetLanguageDetails: { id: 'es-419' },
+    alignedGLText: 'church',
+    gatewayLanguageCode: 'en',
+    selectionsData: { selections },
+  });
+
+  afterEach(() => {
+    delete window.AiAPIs;
+  });
+
+  test(`is capped at ${LLM_NO_HISTORY_MAX_CONFIDENCE} with no history, keeping the order`, async () => {
+    window.AiAPIs = { query: jest.fn().mockResolvedValue({ replyText: '"iglesia",98\n"la iglesia",75\n"a",40' }) };
+    const [result] = await getBestSelections(job({}));
+
+    expect(result.bestSelections.map(option => option.confidence)).toEqual([70, 70, 40]);
+    expect(result.bestSelections[0].selections).toEqual([{ text: 'iglesia', occurrence: 1 }]);
+  });
+
+  test('is unchanged with history', async () => {
+    window.AiAPIs = { query: jest.fn().mockResolvedValue({ replyText: '"iglesia",98' }) };
+    // a rendering not in the verse, so the algorithm is not certain and the AI is asked
+    const [result] = await getBestSelections(job({ church: { congregación: 3 } }));
+
+    expect(result.bestSelections[0].confidence).toBe(98);
+  });
+
+  test('capConfidenceWithoutHistory leaves empty and history results alone', () => {
+    const result = { error: false, bestSelections: [{ selections: [], confidence: 90 }] };
+
+    expect(capConfidenceWithoutHistory(result, { church: { iglesia: 1 } })).toBe(result);
+    expect(capConfidenceWithoutHistory({ error: true, bestSelections: [] }, {})).toEqual({ error: true, bestSelections: [] });
+    expect(capConfidenceWithoutHistory(result, { church: {} }).bestSelections[0].confidence).toBe(70);
+    expect(result.bestSelections[0].confidence).toBe(90);
   });
 });
