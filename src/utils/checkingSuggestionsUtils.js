@@ -293,6 +293,31 @@ export function usesAiServer(request) {
 }
 
 /**
+ * Reports whether translationCore's bundled AI server (`window.AiAPIs.localServer`, see
+ * electronite/preloadAiApi.js) can be used, and how many models are in its models folder. Doesn't start
+ * the server.
+ * @returns {Promise<{available: boolean, modelCount: number}>} - `available` is false when there is no
+ *   `window.AiAPIs`, it is too old to have a local server, or the server isn't bundled for this platform
+ */
+export async function getLocalAiServerStatus() {
+  const AiAPIs = getAiAPIs();
+  const notAvailable = { available: false, modelCount: 0 };
+
+  if (!AiAPIs?.features?.localServer || typeof AiAPIs.localServer?.getStatus !== 'function') {
+    return notAvailable;
+  }
+
+  try {
+    const status = await AiAPIs.localServer.getStatus();
+    const modelCount = Array.isArray(status?.models) ? status.models.length : 0;
+    return { available: !!status?.available, modelCount };
+  } catch (e) {
+    console.warn('getLocalAiServerStatus - error getting local server status', e);
+    return notAvailable;
+  }
+}
+
+/**
  * Throws if `localServer` is asked for but this translationCore can't provide it: there is no
  * `window.AiAPIs` (the local server is only reachable through translationCore's main process), or its
  * `window.AiAPIs` is older and lacks `features.localServer` (electronite/preloadAiApi.js).
@@ -4579,6 +4604,8 @@ async function getAlgorithmResultForJob(job) {
  * @param {string} options.verseText - The target-language verse text to search within (may contain punctuation)
  * @param {string|null} [options.llmQueryUrl] - Base URL of the OpenAI-compatible server (e.g., 'http://localhost:1234');
  *   if `null` or `undefined`, uses algorithmic mode instead of AI (unless `llmUseLocalServer` is true)
+ * @param {boolean} [options.llmEnableThinking=false] - true to have the AI reason before answering (slower);
+ *   only applies in AI mode
  * @param {boolean} [options.llmUseLocalServer] - true to use the AI server bundled with translationCore
  *   (`window.AiAPIs.localServer`) in place of `llmQueryUrl`
  * @param {object} options.targetLanguageDetails - Metadata about the target language
@@ -4703,6 +4730,7 @@ export async function getBestSelections(options = {}) {
           gatewayLanguageCode,
           glVerseText,
           key,
+          llmEnableThinking,
           llmExtraParams,
           llmTemperature,
           selectionsData,
@@ -4728,7 +4756,7 @@ export async function getBestSelections(options = {}) {
             // with the local server translationCore supplies the URL and token
             baseUrl: llmUseLocalServer ? undefined : llmQueryUrl,
             localServer: llmUseLocalServer || undefined,
-            enable_thinking: false,
+            enable_thinking: !!llmEnableThinking,
             extraParams: llmExtraParams,
             model: currentModel,
             // ?? so that a setting of 0 is used; 0.1 gave the same accuracy as 0.7 or better, with

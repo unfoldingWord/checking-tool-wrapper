@@ -37,6 +37,7 @@ import {
   cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
+  getLocalAiServerStatus,
   normalizeForCompare,
   queryAiAPIModels,
   readSettingsForChecking_,
@@ -341,6 +342,7 @@ function Container({
                   force,
                   gatewayLanguageCode,
                   key,
+                  llmEnableThinking: !!settingsForSuggestionsRef.current.llmEnableThinking,
                   llmExtraParams: settingsForSuggestionsRef.current.llmExtraParams,
                   llmSuggestionsEnabled: settingsForSuggestionsRef.current.llmSuggestionsEnabled,
                   llmTemperature: settingsForSuggestionsRef.current.llmTemperature,
@@ -722,6 +724,8 @@ function Container({
    *   used without asking the AI when its top option has at least this confidence; when missing,
    *   `llmAlgorithmCertainConfidence` from the saved settings is used, else `ALGORITHM_CERTAIN_CONFIDENCE`
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
+   * @param {boolean} [data.llmEnableThinking] - true to have the AI reason before answering; when missing,
+   *   `llmEnableThinking` from the saved settings is used
    * @param {boolean} [data.llmUseLocalServer] - true to use translationCore's local AI server in place of
    *   `llmQueryUrl`; when missing, `llmUseLocalServer` from the saved settings is used
    * @param {object} data.targetLanguageDetails - target language details, including `id`
@@ -755,6 +759,8 @@ function Container({
     const alignedGLText = cleanQuote(_alignedGLText);
     const groupId = contextId?.groupId || '';
     const llmQueryUrl_ = llmSuggestionsEnabled ? llmQueryUrl : null;
+    // an older tc-ui-toolkit doesn't pass llmEnableThinking, so fall back to the saved settings
+    const llmEnableThinking = !!(data?.llmEnableThinking ?? settingsForSuggestionsRef.current?.llmEnableThinking);
     // an older tc-ui-toolkit doesn't pass llmUseLocalServer, so fall back to the saved settings
     const llmUseLocalServer_ = !!(llmSuggestionsEnabled &&
       (data?.llmUseLocalServer ?? settingsForSuggestionsRef.current?.llmUseLocalServer));
@@ -803,6 +809,7 @@ function Container({
       force,
       gatewayLanguageCode,
       key,
+      llmEnableThinking,
       llmExtraParams,
       llmQueryUrl: llmQueryUrl_,
       llmUseLocalServer: llmUseLocalServer_,
@@ -907,6 +914,7 @@ function Container({
             saveSettingsForChecking={data => saveSettingsForChecking(data)}
             readSettingsForChecking={() => readSettingsForChecking()}
             getModelsForChecking={options => getModelsForChecking(options)}
+            getLocalServerStatus={getLocalAiServerStatus}
           />
         </div>
         <TranslationHelpsWrapper
