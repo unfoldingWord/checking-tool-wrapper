@@ -3,6 +3,7 @@ import delay from './delay';
 import {
   getBestSelections,
   redactOptions,
+  usesAiServer,
 } from './checkingSuggestionsUtils';
 
 /**
@@ -434,6 +435,7 @@ export class LlmRequestQueue {
    * 4. Call `getBestSelections()` with an options object built from the request:
    *    - `verseText`: Target-language verse text
    *    - `llmQueryUrl`: AI server URL or `null` for algorithmic mode
+   *    - `llmUseLocalServer`: true to use translationCore's local AI server in place of `llmQueryUrl`
    *    - `targetLanguageDetails`: Language metadata
    *    - `alignedGLText`: Gateway-language phrase
    *    - `gatewayLanguageCode`: Gateway language code
@@ -472,15 +474,17 @@ export class LlmRequestQueue {
         for (let i = 0; i < results.length; i++) {
           let result = results[i];
           const requestData = result?.request;
-          // read before the fallback below clears llmQueryUrl
+          // read before the fallback below clears llmQueryUrl and llmUseLocalServer
           const llmMode = isLlmRequest(requestData);
           let haveAsuggestion = this.testIfWeHaveASuggestion(result);
 
           // in AI mode the algorithm suggestions are also made and merged with the AI's (unless the
           // algorithm already answered first); if the AI gave none, the algorithm's are used alone
-          if (requestData?.llmQueryUrl && result?.model !== ALGORITHM) {
+          if (llmMode && result?.model !== ALGORITHM) {
             // eslint-disable-next-line no-await-in-loop
-            const [algorithmResult] = await this.doQuery([], { ...requestData, llmQueryUrl: '' });
+            const [algorithmResult] = await this.doQuery([], {
+              ...requestData, llmQueryUrl: '', llmUseLocalServer: false,
+            });
 
             if (!haveAsuggestion) {
               // console.log(`processNextRequest - empty suggestion, using algorithm`);
@@ -709,12 +713,13 @@ export class LlmRequestQueue {
 }
 
 /**
- * Whether a suggestion request asks the AI (has a query URL) rather than only the algorithm.
+ * Whether a suggestion request asks the AI (has a query URL, or uses translationCore's local AI server)
+ * rather than only the algorithm.
  * @param {object} request - suggestion request
  * @returns {boolean} - true for an AI request
  */
 function isLlmRequest(request) {
-  return !!request?.llmQueryUrl;
+  return usesAiServer(request);
 }
 
 /**

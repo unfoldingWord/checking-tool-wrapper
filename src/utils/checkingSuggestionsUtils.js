@@ -283,6 +283,30 @@ function getAiAPIs() {
 }
 
 /**
+ * Whether a suggestion request asks an AI server: either it has a query URL, or it uses the AI server
+ * bundled with translationCore (`llmUseLocalServer`, which needs no URL).
+ * @param {object} request - suggestion request (or settings) with `llmQueryUrl` and `llmUseLocalServer`
+ * @returns {boolean} - true when an AI server is to be asked
+ */
+export function usesAiServer(request) {
+  return !!(request?.llmQueryUrl || request?.llmUseLocalServer);
+}
+
+/**
+ * Throws if `localServer` is asked for but this translationCore can't provide it: there is no
+ * `window.AiAPIs` (the local server is only reachable through translationCore's main process), or its
+ * `window.AiAPIs` is older and lacks `features.localServer` (electronite/preloadAiApi.js).
+ * @param {object|null} AiAPIs - result of {@link getAiAPIs}
+ * @param {boolean} localServer - whether the local server is asked for
+ * @throws {Error} when the local server is asked for and not supported
+ */
+function checkLocalServerSupported(AiAPIs, localServer) {
+  if (localServer && !AiAPIs?.features?.localServer) {
+    throw new Error('The local AI server is not supported by this version of translationCore');
+  }
+}
+
+/**
  * Adds the `/no_think` directive to the start of the system prompt and of the query when thinking
  * is off, as {@link queryAiAPI} sends them. At the end of the system prompt it made small models drop
  * the batch markers, so it goes first. Exported so the fine-tuning data exporter builds exactly the
@@ -463,9 +487,12 @@ export async function queryAiAPI(query, options = {}) {
     systemPrompt = 'You are a helpful assistant.',
     extraParams,
     messages,
+    localServer = false,
   } = options;
   const startTime = Date.now();
   const AiAPIs = getAiAPIs();
+
+  checkLocalServerSupported(AiAPIs, localServer);
   const validMessages = getValidChatMessages(messages);
   let finalMessages = validMessages && applyThinkingDirectiveToMessages(validMessages, enable_thinking);
   let finalQuery;
@@ -500,6 +527,11 @@ export async function queryAiAPI(query, options = {}) {
 
   if (finalMessages) {
     lmQueryOptions.messages = finalMessages;
+  }
+
+  if (localServer) {
+    // translationCore's main process starts its bundled llama-server and fills in baseUrl and apiToken
+    lmQueryOptions.localServer = true;
   }
 
   // console.log('queryAiAPI - starting fetch isAiAPIQueryAvailable', isAiAPIQueryAvailable);
@@ -596,6 +628,7 @@ export async function queryAiAPIModels(options = {}) {
   const {
     // baseUrl = 'http://localhost:1234',
     baseUrl = AI_API_URL,
+    localServer = false,
   } = options;
 
   const url = `${baseUrl}/v1/models`;
@@ -603,6 +636,8 @@ export async function queryAiAPIModels(options = {}) {
 
   const AiAPIs = getAiAPIs();
   let answer;
+
+  checkLocalServerSupported(AiAPIs, localServer);
 
   if (AiAPIs) { // calling Electron process
     try {
@@ -4520,13 +4555,13 @@ async function getAlgorithmResultForJob(job) {
  * This function identifies the most appropriate target-language word(s) that correspond to a gateway-language
  * phrase in the context of a specific verse. It operates in two distinct modes:
  *
- * **1. Algorithmic mode** (when `llmQueryUrl` is `null` or `undefined`):
+ * **1. Algorithmic mode** (when `llmQueryUrl` is `null` or `undefined` and `llmUseLocalServer` is not set):
  * - Uses historical translation data and pattern matching algorithms
  * - Suggests selections based on previous translation choices
  * - Works entirely offline without requiring an AI model
  * - Returns immediately with `elapsedStr: '0'` and `model: ALGORITHM`
  *
- * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
+ * **2. AI-assisted mode** (when `llmQueryUrl` is provided, or `llmUseLocalServer` is true):
  * - The algorithm runs first; a job whose top option has confidence `ALGORITHM_CERTAIN_CONFIDENCE`
  *   (95) or more (see `scoreSuggestionFromHistory`) gets the algorithm's answer, marked `algorithmFirst: true`,
  *   and is not sent to the AI
@@ -4543,7 +4578,9 @@ async function getAlgorithmResultForJob(job) {
  * @param {object} options - Request options
  * @param {string} options.verseText - The target-language verse text to search within (may contain punctuation)
  * @param {string|null} [options.llmQueryUrl] - Base URL of the OpenAI-compatible server (e.g., 'http://localhost:1234');
- *   if `null` or `undefined`, uses algorithmic mode instead of AI
+ *   if `null` or `undefined`, uses algorithmic mode instead of AI (unless `llmUseLocalServer` is true)
+ * @param {boolean} [options.llmUseLocalServer] - true to use the AI server bundled with translationCore
+ *   (`window.AiAPIs.localServer`) in place of `llmQueryUrl`
  * @param {object} options.targetLanguageDetails - Metadata about the target language
  * @param {string} options.targetLanguageDetails.id - Language code (e.g., 'es-419' for Latin American Spanish)
  * @param {string} options.alignedGLText - Gateway-language phrase to translate (e.g., 'church', 'the elders')
@@ -4626,11 +4663,12 @@ export async function getBestSelections(options = {}) {
   }
 
   const jobResults = [];
-  // TRICKY - llmQueryUrl assumed the same in all jobs
+  // TRICKY - llmQueryUrl and llmUseLocalServer assumed the same in all jobs
   const llmQueryUrl = jobs[0]?.llmQueryUrl;
+  const llmUseLocalServer = !!jobs[0]?.llmUseLocalServer;
 
   try {
-    if (!llmQueryUrl) {
+    if (!usesAiServer(jobs[0])) {
       for (const job of jobs) {
         // eslint-disable-next-line no-await-in-loop
         jobResults.push(await getAlgorithmResultForJob(job));
@@ -4687,7 +4725,9 @@ export async function getBestSelections(options = {}) {
           glVerseText,
           lmOptions: {
             apiToken,
-            baseUrl: llmQueryUrl,
+            // with the local server translationCore supplies the URL and token
+            baseUrl: llmUseLocalServer ? undefined : llmQueryUrl,
+            localServer: llmUseLocalServer || undefined,
             enable_thinking: false,
             extraParams: llmExtraParams,
             model: currentModel,
