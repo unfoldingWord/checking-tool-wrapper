@@ -885,9 +885,11 @@ export function normalizeForCompare(word, langId = '') {
  */
 export function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '', options = {}) {
   const { markVerseFit = false } = options;
-  const normalizeWords = text => (text || '').split(/\s+/).filter(Boolean)
+  // renderings are split like the verse words (getWordList), which verseContent already holds
+  const normalizeWords = text => splitIntoWords(text)
     .map(word => normalizeForCompare(word, targetLangCode));
-  const verseWords = normalizeWords(verseContent);
+  const verseWords = (verseContent || '').split(/\s+/).filter(Boolean)
+    .map(word => normalizeForCompare(word, targetLangCode));
   const originalVerseWords = (verseContent || '').split(/\s+/).filter(Boolean);
   const verseWordSet = new Set(verseWords);
   const byRendering = new Map();
@@ -1308,7 +1310,7 @@ function poolRenderings(rankedKeys) {
     counts, relatedness, isExact,
   } of rankedKeys) {
     for (const [rendering, count] of Object.entries(counts || {})) {
-      const normalizedRendering = (rendering || '').split(/\s+/).filter(Boolean)
+      const normalizedRendering = splitIntoWords(rendering)
         .map(word => normalizeForCompare(word)).join(' ');
 
       if (normalizedRendering && count > 0) {
@@ -2756,7 +2758,10 @@ function foldAccents(word) {
 function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict) {
   const phraseWords = (phrase || '')
     .split(/[\s,]+/)
-    .map(word => normalizeForCompare(word.replace(/:\d+$/, ''))) // drop `word:3` positions
+    .map(word => word.replace(/:\d+$/, '')) // drop `word:3` positions
+    .filter(Boolean)
+    .flatMap(segmentUnspacedWord) // the verse words were split the same way (getWordList)
+    .map(word => normalizeForCompare(word))
     .filter(Boolean);
 
   if (!phraseWords.length) {
@@ -3577,9 +3582,144 @@ export function getCheckDataFilename(langId, bookId) {
  * @returns {Array<string>} - words in reading order
  */
 export function getWordList(verseText) {
-  const tokenList = Lexer.tokenize(verseText);
-  const wordList = tokenList.map(token => (token.text));
-  return wordList;
+  return getLexerWords(verseText).flatMap(segmentUnspacedWord);
+}
+
+/**
+ * Tokenizes text with the wordmap-lexer only, without splitting scripts written without spaces.
+ * @param {string} text
+ * @returns {Array<string>} - tokens in reading order
+ */
+function getLexerWords(text) {
+  return Lexer.tokenize(text).map(token => token.text);
+}
+
+/**
+ * Scripts usually written without spaces between words (Chinese, Japanese, Thai, Lao, Khmer,
+ * Myanmar): the lexer leaves a whole clause of them as one token. Built with `new RegExp` so that
+ * babel leaves the Unicode property escapes alone.
+ */
+const UNSPACED_SCRIPT_REGEX = new RegExp(
+  '[\\p{Script=Han}\\p{Script=Hiragana}\\p{Script=Katakana}\\p{Script=Thai}\\p{Script=Lao}' +
+  '\\p{Script=Khmer}\\p{Script=Myanmar}]', 'u');
+
+let wordSegmenter; // undefined until first use; null when Intl.Segmenter is not available
+
+/**
+ * @returns {Intl.Segmenter|null} - a word segmenter, or null when the runtime has none
+ */
+function getWordSegmenter() {
+  if (wordSegmenter === undefined) {
+    // ICU splits these scripts with its own dictionaries, whatever the locale
+    wordSegmenter = (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') ?
+      new Intl.Segmenter('und', { granularity: 'word' }) : null;
+  }
+  return wordSegmenter;
+}
+
+/**
+ * Splits a token of a script written without spaces (see `UNSPACED_SCRIPT_REGEX`) into words with
+ * `Intl.Segmenter`, so that part of it can be matched and selected, e.g. `警戒过一两次` →
+ * `['警戒', '过', '一', '两次']`. Other tokens, and every token when the runtime has no
+ * `Intl.Segmenter`, are returned whole.
+ *
+ * @param {string} word - one token, without spaces
+ * @returns {Array<string>} - its words in reading order
+ */
+export function segmentUnspacedWord(word) {
+  const segmenter = word && UNSPACED_SCRIPT_REGEX.test(word) ? getWordSegmenter() : null;
+
+  if (!segmenter) {
+    return [word];
+  }
+
+  const words = [...segmenter.segment(word)]
+    .filter(({ isWordLike }) => isWordLike)
+    .map(({ segment }) => segment);
+  return words.length ? words : [word];
+}
+
+/**
+ * Splits target-language text (a history rendering or an AI answer) into words: at whitespace,
+ * then each part with {@link segmentUnspacedWord}, the way {@link getWordList} splits the verse.
+ *
+ * @param {string} text
+ * @returns {Array<string>} - non-empty words
+ */
+export function splitIntoWords(text) {
+  return (text || '').split(/\s+/).filter(Boolean).flatMap(segmentUnspacedWord);
+}
+
+/**
+ * Turns the selections of one suggestion into the form translationCore saves for text written
+ * without spaces. tc-ui-toolkit selections are spans of the verse text: a selection of such
+ * script is found by counting every match of its text in the verse, even inside a longer run of
+ * characters (`occurrencesInString`), while {@link getWordList} counts whole words. So adjacent
+ * words of such scripts are joined into one selection, as a user dragging over them would make,
+ * and their occurrence is counted in the verse text. Other selections are left unchanged.
+ *
+ * @param {Array<{text: string, occurrence: number}>} selections - words of `wordList`
+ * @param {Array<string>} wordList - from {@link getWordList}(verseText)
+ * @param {string} verseText - the verse the words came from
+ * @returns {Array<{text: string, occurrence: number}>} - the selections for the verse text
+ */
+export function toVerseTextSelections(selections, wordList, verseText) {
+  if (!selections?.length || !verseText || !selections.some(({ text }) => UNSPACED_SCRIPT_REGEX.test(text || ''))) {
+    return selections;
+  }
+
+  // character offset of each word of wordList in the verse text
+  const offsets = [];
+  let cursor = 0;
+
+  for (const word of wordList) {
+    const start = verseText.indexOf(word, cursor);
+    offsets.push(start);
+    cursor = start >= 0 ? start + word.length : cursor;
+  }
+
+  const spans = selections.map(selection => {
+    let seen = 0;
+    const index = wordList.findIndex(word => word === selection.text && ++seen === (selection.occurrence || 1));
+    const start = index >= 0 ? offsets[index] : -1;
+    return start >= 0 ? {
+      selection, start, end: start + selection.text.length,
+    } : { selection };
+  });
+
+  if (spans.some(({ start }) => start === undefined)) {
+    return selections; // not words of this verse - leave them as they are
+  }
+
+  const merged = [];
+
+  for (const span of [...spans].sort((a, b) => a.start - b.start)) {
+    const last = merged[merged.length - 1];
+
+    if (last && last.end === span.start && UNSPACED_SCRIPT_REGEX.test(last.selection.text) &&
+      UNSPACED_SCRIPT_REGEX.test(span.selection.text)) {
+      last.end = span.end;
+    } else {
+      merged.push({ ...span });
+    }
+  }
+
+  return merged.map(({
+    selection, start, end,
+  }) => {
+    if (!UNSPACED_SCRIPT_REGEX.test(selection.text)) {
+      return selection;
+    }
+
+    const text = verseText.slice(start, end);
+    let occurrence = 1;
+
+    // non-overlapping matches before this one, as tc-ui-toolkit counts them
+    for (let position = verseText.indexOf(text); position >= 0 && position < start; position = verseText.indexOf(text, position + text.length)) {
+      occurrence++;
+    }
+    return { text, occurrence };
+  });
 }
 
 /**
@@ -3588,7 +3728,8 @@ export function getWordList(verseText) {
  * @returns {string} - text with punctuation removed
  */
 export function removePunctuation(glText) {
-  const wordList = getWordList(glText);
+  // not getWordList: GL quotes are history keys and must keep their saved form
+  const wordList = getLexerWords(glText);
   return wordList.join(' ');
 }
 
@@ -4782,18 +4923,21 @@ export async function getBestSelections(options = {}) {
     return jobs.map(() => ({ error: true }));
   }
 
-  // both paths place each suggestion at its first match; move it to the check's occurrence
+  // both paths place each suggestion at its first match; move it to the check's occurrence, then
+  // put selections of scripts written without spaces in the form tc-ui-toolkit saves
   jobs.forEach((job, i) => {
     const occurrence = job?.contextId?.occurrence;
     const result = jobResults[i];
 
-    if (occurrence > 1 && result?.bestSelections?.length) {
+    if (result?.bestSelections?.length) {
       const wordList = getWordList(job.verseText);
 
-      result.bestSelections = result.bestSelections.map(option => ({
-        ...option,
-        selections: moveSelectionsToOccurrence(option.selections, wordList, occurrence, job.targetLanguageDetails?.id),
-      }));
+      result.bestSelections = result.bestSelections.map(option => {
+        const selections = occurrence > 1 ?
+          moveSelectionsToOccurrence(option.selections, wordList, occurrence, job.targetLanguageDetails?.id) :
+          option.selections;
+        return { ...option, selections: toVerseTextSelections(selections, wordList, job.verseText) };
+      });
     }
   });
 
