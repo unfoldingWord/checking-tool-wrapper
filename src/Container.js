@@ -37,6 +37,7 @@ import {
   cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
+  getLocalAiServerStatus,
   normalizeForCompare,
   queryAiAPIModels,
   readSettingsForChecking_,
@@ -45,6 +46,7 @@ import {
   saveSettingsForChecking_,
   updatedPreviousSelectionsData,
   updateLlmMetrics,
+  usesAiServer,
 } from './utils/checkingSuggestionsUtils';
 import { LlmRequestQueue } from './utils/LlmRequestQueue';
 import delay from './utils/delay';
@@ -141,13 +143,14 @@ function Container({
   const { chapter, verse } = reference || {};
 
   /**
-   * Whether AI suggestions are in use: suggestions and AI suggestions turned on, with a server URL.
+   * Whether AI suggestions are in use: suggestions and AI suggestions turned on, with a server URL or
+   * the local AI server.
    * Only AI suggestions are cached, so only then are suggestions made ahead of time.
    * @returns {boolean} - true when AI suggestions are in use
    */
   function isAiSuggestionsOn() {
     const settings = settingsForSuggestionsRef.current;
-    return !!(settings?.suggestionsEnabled && settings.llmSuggestionsEnabled && settings.llmQueryUrl);
+    return !!(settings?.suggestionsEnabled && settings.llmSuggestionsEnabled && usesAiServer(settings));
   }
 
   /**
@@ -328,6 +331,8 @@ function Container({
 
               if (gatewayLanguageQuote_) {
                 const llmQueryUrl_ = settingsForSuggestionsRef.current.llmSuggestionsEnabled ? settingsForSuggestionsRef.current.llmQueryUrl : '';
+                const llmUseLocalServer_ = !!(settingsForSuggestionsRef.current.llmSuggestionsEnabled &&
+                  settingsForSuggestionsRef.current.llmUseLocalServer);
                 const data = {
                   algorithmCertainConfidence: settingsForSuggestionsRef.current.llmAlgorithmCertainConfidence,
                   apiToken: settingsForSuggestionsRef.current.llmApiToken,
@@ -337,10 +342,12 @@ function Container({
                   force,
                   gatewayLanguageCode,
                   key,
+                  llmEnableThinking: !!settingsForSuggestionsRef.current.llmEnableThinking,
                   llmExtraParams: settingsForSuggestionsRef.current.llmExtraParams,
                   llmSuggestionsEnabled: settingsForSuggestionsRef.current.llmSuggestionsEnabled,
                   llmTemperature: settingsForSuggestionsRef.current.llmTemperature,
                   llmQueryUrl: llmQueryUrl_,
+                  llmUseLocalServer: llmUseLocalServer_,
                   targetLanguageDetails,
                   verseText,
                 };
@@ -717,6 +724,10 @@ function Container({
    *   used without asking the AI when its top option has at least this confidence; when missing,
    *   `llmAlgorithmCertainConfidence` from the saved settings is used, else `ALGORITHM_CERTAIN_CONFIDENCE`
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
+   * @param {boolean} [data.llmEnableThinking] - true to have the AI reason before answering; when missing,
+   *   `llmEnableThinking` from the saved settings is used
+   * @param {boolean} [data.llmUseLocalServer] - true to use translationCore's local AI server in place of
+   *   `llmQueryUrl`; when missing, `llmUseLocalServer` from the saved settings is used
    * @param {object} data.targetLanguageDetails - target language details, including `id`
    * @param {string} data.verseText - target-language verse text
    * @returns {Promise<{error: string|boolean, bestSelections: Array, elapsedStr: string, model: string, contextId: object}>} -
@@ -748,6 +759,11 @@ function Container({
     const alignedGLText = cleanQuote(_alignedGLText);
     const groupId = contextId?.groupId || '';
     const llmQueryUrl_ = llmSuggestionsEnabled ? llmQueryUrl : null;
+    // an older tc-ui-toolkit doesn't pass llmEnableThinking, so fall back to the saved settings
+    const llmEnableThinking = !!(data?.llmEnableThinking ?? settingsForSuggestionsRef.current?.llmEnableThinking);
+    // an older tc-ui-toolkit doesn't pass llmUseLocalServer, so fall back to the saved settings
+    const llmUseLocalServer_ = !!(llmSuggestionsEnabled &&
+      (data?.llmUseLocalServer ?? settingsForSuggestionsRef.current?.llmUseLocalServer));
 
     if (selectionsData?.groupId !== groupId) {
       const selectionsForWord = fetchPreviousSelectionData(
@@ -793,8 +809,10 @@ function Container({
       force,
       gatewayLanguageCode,
       key,
+      llmEnableThinking,
       llmExtraParams,
       llmQueryUrl: llmQueryUrl_,
+      llmUseLocalServer: llmUseLocalServer_,
       llmTemperature,
       selectionsData,
       targetLanguageDetails,
@@ -846,7 +864,7 @@ function Container({
 
       if (!cached) {
         delay(100).then(() => {
-          updateLlmMetrics(projectSaveLocation, llmQueryUrl, model, elapsedStr);
+          updateLlmMetrics(projectSaveLocation, llmUseLocalServer_ ? 'localServer' : llmQueryUrl, model, elapsedStr);
         });
       }
     } else {
@@ -896,6 +914,7 @@ function Container({
             saveSettingsForChecking={data => saveSettingsForChecking(data)}
             readSettingsForChecking={() => readSettingsForChecking()}
             getModelsForChecking={options => getModelsForChecking(options)}
+            getLocalServerStatus={getLocalAiServerStatus}
           />
         </div>
         <TranslationHelpsWrapper

@@ -283,6 +283,67 @@ function getAiAPIs() {
 }
 
 /**
+ * Whether a suggestion request asks an AI server: either it has a query URL, or it uses the AI server
+ * bundled with translationCore (`llmUseLocalServer`, which needs no URL).
+ * @param {object} request - suggestion request (or settings) with `llmQueryUrl` and `llmUseLocalServer`
+ * @returns {boolean} - true when an AI server is to be asked
+ */
+export function usesAiServer(request) {
+  return !!(request?.llmQueryUrl || request?.llmUseLocalServer);
+}
+
+/**
+ * Reports whether translationCore's bundled AI server (`window.AiAPIs.localServer`, see
+ * electronite/preloadAiApi.js) can be used, and how many models are in its models folder. Doesn't start
+ * the server.
+ * @returns {Promise<{available: boolean, modelCount: number, modelSizes: Object<string, number>}>} -
+ *   `available` is false when there is no `window.AiAPIs`, it is too old to have a local server, or the
+ *   server isn't bundled for this platform. `modelSizes` maps each model id to its size in bytes.
+ */
+export async function getLocalAiServerStatus() {
+  const AiAPIs = getAiAPIs();
+  const notAvailable = {
+    available: false, modelCount: 0, modelSizes: {},
+  };
+
+  if (!AiAPIs?.features?.localServer || typeof AiAPIs.localServer?.getStatus !== 'function') {
+    return notAvailable;
+  }
+
+  try {
+    const status = await AiAPIs.localServer.getStatus();
+    const models = Array.isArray(status?.models) ? status.models : [];
+    const modelSizes = {};
+
+    for (const model of models) {
+      if (model?.id && Number.isFinite(model.size)) {
+        modelSizes[model.id] = model.size;
+      }
+    }
+    return {
+      available: !!status?.available, modelCount: models.length, modelSizes,
+    };
+  } catch (e) {
+    console.warn('getLocalAiServerStatus - error getting local server status', e);
+    return notAvailable;
+  }
+}
+
+/**
+ * Throws if `localServer` is asked for but this translationCore can't provide it: there is no
+ * `window.AiAPIs` (the local server is only reachable through translationCore's main process), or its
+ * `window.AiAPIs` is older and lacks `features.localServer` (electronite/preloadAiApi.js).
+ * @param {object|null} AiAPIs - result of {@link getAiAPIs}
+ * @param {boolean} localServer - whether the local server is asked for
+ * @throws {Error} when the local server is asked for and not supported
+ */
+function checkLocalServerSupported(AiAPIs, localServer) {
+  if (localServer && !AiAPIs?.features?.localServer) {
+    throw new Error('The local AI server is not supported by this version of translationCore');
+  }
+}
+
+/**
  * Adds the `/no_think` directive to the start of the system prompt and of the query when thinking
  * is off, as {@link queryAiAPI} sends them. At the end of the system prompt it made small models drop
  * the batch markers, so it goes first. Exported so the fine-tuning data exporter builds exactly the
@@ -463,9 +524,12 @@ export async function queryAiAPI(query, options = {}) {
     systemPrompt = 'You are a helpful assistant.',
     extraParams,
     messages,
+    localServer = false,
   } = options;
   const startTime = Date.now();
   const AiAPIs = getAiAPIs();
+
+  checkLocalServerSupported(AiAPIs, localServer);
   const validMessages = getValidChatMessages(messages);
   let finalMessages = validMessages && applyThinkingDirectiveToMessages(validMessages, enable_thinking);
   let finalQuery;
@@ -500,6 +564,11 @@ export async function queryAiAPI(query, options = {}) {
 
   if (finalMessages) {
     lmQueryOptions.messages = finalMessages;
+  }
+
+  if (localServer) {
+    // translationCore's main process starts its bundled llama-server and fills in baseUrl and apiToken
+    lmQueryOptions.localServer = true;
   }
 
   // console.log('queryAiAPI - starting fetch isAiAPIQueryAvailable', isAiAPIQueryAvailable);
@@ -558,35 +627,14 @@ export async function queryAiAPI(query, options = {}) {
 }
 
 /**
- * Filters and extracts sorted model identifiers from a list of model objects.
- *
- * Evaluates model entries from an OpenAI-compatible or LM Studio models endpoint,
- * retaining objects that possess a valid `id` (either explicitly typed as `'model'`
- * or lacking an `object` type specifier), and returns their IDs sorted alphabetically.
- *
- * @param {Array<object>} models - Array of raw model objects from the API response
- * @returns {Array<string>} Alphabetically sorted array of model ID strings
- */
-function extractModels(models) {
-  // filter response by model objects
-  // {id: 'liquid/lfm2-24b-a2b', object: 'model', owned_by: 'organization_owner'}
-  return models.filter(model => {
-    let validModel = model.object === 'model' && model.id; // LmStudio format
-
-    if (!validModel) {
-      validModel = !model.object && model.id;
-    }
-    return validModel;
-  }).map(model => (model.id)).sort();
-}
-
-/**
  * Queries a running OpenAI-compatible server for the list of available AI models.
  * LM Studio exposes an OpenAI-compatible models endpoint once "Local Server" is started.
  *
  * @param {object} [options] - optional overrides
  * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the OpenAI-compatible server
- * @returns {Promise<Array<string>>} - available model identifiers returned by OpenAI-compatible
+ * @returns {Promise<Array<object>>} - the model objects as the server returns them, unfiltered and
+ *   unsorted, e.g. `{id: 'qwen/qwen3-1.7b', object: 'model', owned_by: 'organization_owner'}`; the
+ *   caller (tc-ui-toolkit) picks what it needs, such as `id`
  * @throws {Error} - if the server is unreachable or returns an error status
  * @example
  * const models = await queryAiAPIModels();
@@ -596,6 +644,7 @@ export async function queryAiAPIModels(options = {}) {
   const {
     // baseUrl = 'http://localhost:1234',
     baseUrl = AI_API_URL,
+    localServer = false,
   } = options;
 
   const url = `${baseUrl}/v1/models`;
@@ -603,6 +652,8 @@ export async function queryAiAPIModels(options = {}) {
 
   const AiAPIs = getAiAPIs();
   let answer;
+
+  checkLocalServerSupported(AiAPIs, localServer);
 
   if (AiAPIs) { // calling Electron process
     try {
@@ -635,15 +686,12 @@ export async function queryAiAPIModels(options = {}) {
     answer = await response.json();
   }
 
-  let models = answer;
-
-  if (!Array.isArray(models)) {
+  if (!Array.isArray(answer)) {
     const message = 'Unexpected OpenAI-compatible models response shape';
     console.log(message, answer);
     throw new Error(message);
   }
-  models = extractModels(models);
-  return models;
+  return answer;
 }
 
 /**
@@ -825,9 +873,11 @@ export function normalizeForCompare(word, langId = '') {
  */
 export function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '', options = {}) {
   const { markVerseFit = false } = options;
-  const normalizeWords = text => (text || '').split(/\s+/).filter(Boolean)
+  // renderings are split like the verse words (getWordList), which verseContent already holds
+  const normalizeWords = text => splitIntoWords(text)
     .map(word => normalizeForCompare(word, targetLangCode));
-  const verseWords = normalizeWords(verseContent);
+  const verseWords = (verseContent || '').split(/\s+/).filter(Boolean)
+    .map(word => normalizeForCompare(word, targetLangCode));
   const originalVerseWords = (verseContent || '').split(/\s+/).filter(Boolean);
   const verseWordSet = new Set(verseWords);
   const byRendering = new Map();
@@ -1248,7 +1298,7 @@ function poolRenderings(rankedKeys) {
     counts, relatedness, isExact,
   } of rankedKeys) {
     for (const [rendering, count] of Object.entries(counts || {})) {
-      const normalizedRendering = (rendering || '').split(/\s+/).filter(Boolean)
+      const normalizedRendering = splitIntoWords(rendering)
         .map(word => normalizeForCompare(word)).join(' ');
 
       if (normalizedRendering && count > 0) {
@@ -2696,7 +2746,10 @@ function foldAccents(word) {
 function resolveLlmPhraseInVerse(phrase, wordList, normalizedWordList, foldedWordList, strict) {
   const phraseWords = (phrase || '')
     .split(/[\s,]+/)
-    .map(word => normalizeForCompare(word.replace(/:\d+$/, ''))) // drop `word:3` positions
+    .map(word => word.replace(/:\d+$/, '')) // drop `word:3` positions
+    .filter(Boolean)
+    .flatMap(segmentUnspacedWord) // the verse words were split the same way (getWordList)
+    .map(word => normalizeForCompare(word))
     .filter(Boolean);
 
   if (!phraseWords.length) {
@@ -3517,9 +3570,144 @@ export function getCheckDataFilename(langId, bookId) {
  * @returns {Array<string>} - words in reading order
  */
 export function getWordList(verseText) {
-  const tokenList = Lexer.tokenize(verseText);
-  const wordList = tokenList.map(token => (token.text));
-  return wordList;
+  return getLexerWords(verseText).flatMap(segmentUnspacedWord);
+}
+
+/**
+ * Tokenizes text with the wordmap-lexer only, without splitting scripts written without spaces.
+ * @param {string} text
+ * @returns {Array<string>} - tokens in reading order
+ */
+function getLexerWords(text) {
+  return Lexer.tokenize(text).map(token => token.text);
+}
+
+/**
+ * Scripts usually written without spaces between words (Chinese, Japanese, Thai, Lao, Khmer,
+ * Myanmar): the lexer leaves a whole clause of them as one token. Built with `new RegExp` so that
+ * babel leaves the Unicode property escapes alone.
+ */
+const UNSPACED_SCRIPT_REGEX = new RegExp(
+  '[\\p{Script=Han}\\p{Script=Hiragana}\\p{Script=Katakana}\\p{Script=Thai}\\p{Script=Lao}' +
+  '\\p{Script=Khmer}\\p{Script=Myanmar}]', 'u');
+
+let wordSegmenter; // undefined until first use; null when Intl.Segmenter is not available
+
+/**
+ * @returns {Intl.Segmenter|null} - a word segmenter, or null when the runtime has none
+ */
+function getWordSegmenter() {
+  if (wordSegmenter === undefined) {
+    // ICU splits these scripts with its own dictionaries, whatever the locale
+    wordSegmenter = (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') ?
+      new Intl.Segmenter('und', { granularity: 'word' }) : null;
+  }
+  return wordSegmenter;
+}
+
+/**
+ * Splits a token of a script written without spaces (see `UNSPACED_SCRIPT_REGEX`) into words with
+ * `Intl.Segmenter`, so that part of it can be matched and selected, e.g. `警戒过一两次` →
+ * `['警戒', '过', '一', '两次']`. Other tokens, and every token when the runtime has no
+ * `Intl.Segmenter`, are returned whole.
+ *
+ * @param {string} word - one token, without spaces
+ * @returns {Array<string>} - its words in reading order
+ */
+export function segmentUnspacedWord(word) {
+  const segmenter = word && UNSPACED_SCRIPT_REGEX.test(word) ? getWordSegmenter() : null;
+
+  if (!segmenter) {
+    return [word];
+  }
+
+  const words = [...segmenter.segment(word)]
+    .filter(({ isWordLike }) => isWordLike)
+    .map(({ segment }) => segment);
+  return words.length ? words : [word];
+}
+
+/**
+ * Splits target-language text (a history rendering or an AI answer) into words: at whitespace,
+ * then each part with {@link segmentUnspacedWord}, the way {@link getWordList} splits the verse.
+ *
+ * @param {string} text
+ * @returns {Array<string>} - non-empty words
+ */
+export function splitIntoWords(text) {
+  return (text || '').split(/\s+/).filter(Boolean).flatMap(segmentUnspacedWord);
+}
+
+/**
+ * Turns the selections of one suggestion into the form translationCore saves for text written
+ * without spaces. tc-ui-toolkit selections are spans of the verse text: a selection of such
+ * script is found by counting every match of its text in the verse, even inside a longer run of
+ * characters (`occurrencesInString`), while {@link getWordList} counts whole words. So adjacent
+ * words of such scripts are joined into one selection, as a user dragging over them would make,
+ * and their occurrence is counted in the verse text. Other selections are left unchanged.
+ *
+ * @param {Array<{text: string, occurrence: number}>} selections - words of `wordList`
+ * @param {Array<string>} wordList - from {@link getWordList}(verseText)
+ * @param {string} verseText - the verse the words came from
+ * @returns {Array<{text: string, occurrence: number}>} - the selections for the verse text
+ */
+export function toVerseTextSelections(selections, wordList, verseText) {
+  if (!selections?.length || !verseText || !selections.some(({ text }) => UNSPACED_SCRIPT_REGEX.test(text || ''))) {
+    return selections;
+  }
+
+  // character offset of each word of wordList in the verse text
+  const offsets = [];
+  let cursor = 0;
+
+  for (const word of wordList) {
+    const start = verseText.indexOf(word, cursor);
+    offsets.push(start);
+    cursor = start >= 0 ? start + word.length : cursor;
+  }
+
+  const spans = selections.map(selection => {
+    let seen = 0;
+    const index = wordList.findIndex(word => word === selection.text && ++seen === (selection.occurrence || 1));
+    const start = index >= 0 ? offsets[index] : -1;
+    return start >= 0 ? {
+      selection, start, end: start + selection.text.length,
+    } : { selection };
+  });
+
+  if (spans.some(({ start }) => start === undefined)) {
+    return selections; // not words of this verse - leave them as they are
+  }
+
+  const merged = [];
+
+  for (const span of [...spans].sort((a, b) => a.start - b.start)) {
+    const last = merged[merged.length - 1];
+
+    if (last && last.end === span.start && UNSPACED_SCRIPT_REGEX.test(last.selection.text) &&
+      UNSPACED_SCRIPT_REGEX.test(span.selection.text)) {
+      last.end = span.end;
+    } else {
+      merged.push({ ...span });
+    }
+  }
+
+  return merged.map(({
+    selection, start, end,
+  }) => {
+    if (!UNSPACED_SCRIPT_REGEX.test(selection.text)) {
+      return selection;
+    }
+
+    const text = verseText.slice(start, end);
+    let occurrence = 1;
+
+    // non-overlapping matches before this one, as tc-ui-toolkit counts them
+    for (let position = verseText.indexOf(text); position >= 0 && position < start; position = verseText.indexOf(text, position + text.length)) {
+      occurrence++;
+    }
+    return { text, occurrence };
+  });
 }
 
 /**
@@ -3528,7 +3716,8 @@ export function getWordList(verseText) {
  * @returns {string} - text with punctuation removed
  */
 export function removePunctuation(glText) {
-  const wordList = getWordList(glText);
+  // not getWordList: GL quotes are history keys and must keep their saved form
+  const wordList = getLexerWords(glText);
   return wordList.join(' ');
 }
 
@@ -4520,13 +4709,13 @@ async function getAlgorithmResultForJob(job) {
  * This function identifies the most appropriate target-language word(s) that correspond to a gateway-language
  * phrase in the context of a specific verse. It operates in two distinct modes:
  *
- * **1. Algorithmic mode** (when `llmQueryUrl` is `null` or `undefined`):
+ * **1. Algorithmic mode** (when `llmQueryUrl` is `null` or `undefined` and `llmUseLocalServer` is not set):
  * - Uses historical translation data and pattern matching algorithms
  * - Suggests selections based on previous translation choices
  * - Works entirely offline without requiring an AI model
  * - Returns immediately with `elapsedStr: '0'` and `model: ALGORITHM`
  *
- * **2. AI-assisted mode** (when `llmQueryUrl` is provided):
+ * **2. AI-assisted mode** (when `llmQueryUrl` is provided, or `llmUseLocalServer` is true):
  * - The algorithm runs first; a job whose top option has confidence `ALGORITHM_CERTAIN_CONFIDENCE`
  *   (95) or more (see `scoreSuggestionFromHistory`) gets the algorithm's answer, marked `algorithmFirst: true`,
  *   and is not sent to the AI
@@ -4543,7 +4732,11 @@ async function getAlgorithmResultForJob(job) {
  * @param {object} options - Request options
  * @param {string} options.verseText - The target-language verse text to search within (may contain punctuation)
  * @param {string|null} [options.llmQueryUrl] - Base URL of the OpenAI-compatible server (e.g., 'http://localhost:1234');
- *   if `null` or `undefined`, uses algorithmic mode instead of AI
+ *   if `null` or `undefined`, uses algorithmic mode instead of AI (unless `llmUseLocalServer` is true)
+ * @param {boolean} [options.llmEnableThinking=false] - true to have the AI reason before answering (slower);
+ *   only applies in AI mode
+ * @param {boolean} [options.llmUseLocalServer] - true to use the AI server bundled with translationCore
+ *   (`window.AiAPIs.localServer`) in place of `llmQueryUrl`
  * @param {object} options.targetLanguageDetails - Metadata about the target language
  * @param {string} options.targetLanguageDetails.id - Language code (e.g., 'es-419' for Latin American Spanish)
  * @param {string} options.alignedGLText - Gateway-language phrase to translate (e.g., 'church', 'the elders')
@@ -4628,11 +4821,12 @@ export async function getBestSelections(options = {}) {
   }
 
   const jobResults = [];
-  // TRICKY - llmQueryUrl assumed the same in all jobs
+  // TRICKY - llmQueryUrl and llmUseLocalServer assumed the same in all jobs
   const llmQueryUrl = jobs[0]?.llmQueryUrl;
+  const llmUseLocalServer = !!jobs[0]?.llmUseLocalServer;
 
   try {
-    if (!llmQueryUrl) {
+    if (!usesAiServer(jobs[0])) {
       for (const job of jobs) {
         // eslint-disable-next-line no-await-in-loop
         jobResults.push(await getAlgorithmResultForJob(job));
@@ -4690,7 +4884,9 @@ export async function getBestSelections(options = {}) {
           glVerseText,
           lmOptions: {
             apiToken,
-            baseUrl: llmQueryUrl,
+            // with the local server translationCore supplies the URL and token
+            baseUrl: llmUseLocalServer ? undefined : llmQueryUrl,
+            localServer: llmUseLocalServer || undefined,
             enable_thinking: !!llmEnableThinking,
             extraParams: llmExtraParams,
             model: currentModel,
@@ -4717,18 +4913,21 @@ export async function getBestSelections(options = {}) {
     return jobs.map(() => ({ error: true }));
   }
 
-  // both paths place each suggestion at its first match; move it to the check's occurrence
+  // both paths place each suggestion at its first match; move it to the check's occurrence, then
+  // put selections of scripts written without spaces in the form tc-ui-toolkit saves
   jobs.forEach((job, i) => {
     const occurrence = job?.contextId?.occurrence;
     const result = jobResults[i];
 
-    if (occurrence > 1 && result?.bestSelections?.length) {
+    if (result?.bestSelections?.length) {
       const wordList = getWordList(job.verseText);
 
-      result.bestSelections = result.bestSelections.map(option => ({
-        ...option,
-        selections: moveSelectionsToOccurrence(option.selections, wordList, occurrence, job.targetLanguageDetails?.id),
-      }));
+      result.bestSelections = result.bestSelections.map(option => {
+        const selections = occurrence > 1 ?
+          moveSelectionsToOccurrence(option.selections, wordList, occurrence, job.targetLanguageDetails?.id) :
+          option.selections;
+        return { ...option, selections: toVerseTextSelections(selections, wordList, job.verseText) };
+      });
     }
   });
 

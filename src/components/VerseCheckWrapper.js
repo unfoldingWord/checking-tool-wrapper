@@ -77,6 +77,7 @@ function VerseCheckWrapper({
   saveSettingsForChecking, // if defined will call save latest settings
   readSettingsForChecking, // if defined will get latest settings
   getModelsForChecking, // if defined will fetch available models
+  getLocalServerStatus, // if defined will report whether the local AI server is usable
 }) {
   // Determine screen mode
   const initialMode = getInitialMode();
@@ -404,6 +405,7 @@ function VerseCheckWrapper({
         saveSettingsForChecking={saveSettingsForChecking}
         readSettingsForChecking={readSettingsForChecking}
         getModelsForChecking={getModelsForChecking}
+        getLocalServerStatus={getLocalServerStatus}
       />
     );
   } else {
@@ -445,6 +447,7 @@ VerseCheckWrapper.propTypes = {
   saveSettingsForChecking: PropTypes.func,
   readSettingsForChecking: PropTypes.func,
   getModelsForChecking: PropTypes.func,
+  getLocalServerStatus: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {
