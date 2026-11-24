@@ -296,12 +296,15 @@ export function usesAiServer(request) {
  * Reports whether translationCore's bundled AI server (`window.AiAPIs.localServer`, see
  * electronite/preloadAiApi.js) can be used, and how many models are in its models folder. Doesn't start
  * the server.
- * @returns {Promise<{available: boolean, modelCount: number}>} - `available` is false when there is no
- *   `window.AiAPIs`, it is too old to have a local server, or the server isn't bundled for this platform
+ * @returns {Promise<{available: boolean, modelCount: number, modelSizes: Object<string, number>}>} -
+ *   `available` is false when there is no `window.AiAPIs`, it is too old to have a local server, or the
+ *   server isn't bundled for this platform. `modelSizes` maps each model id to its size in bytes.
  */
 export async function getLocalAiServerStatus() {
   const AiAPIs = getAiAPIs();
-  const notAvailable = { available: false, modelCount: 0 };
+  const notAvailable = {
+    available: false, modelCount: 0, modelSizes: {},
+  };
 
   if (!AiAPIs?.features?.localServer || typeof AiAPIs.localServer?.getStatus !== 'function') {
     return notAvailable;
@@ -309,8 +312,17 @@ export async function getLocalAiServerStatus() {
 
   try {
     const status = await AiAPIs.localServer.getStatus();
-    const modelCount = Array.isArray(status?.models) ? status.models.length : 0;
-    return { available: !!status?.available, modelCount };
+    const models = Array.isArray(status?.models) ? status.models : [];
+    const modelSizes = {};
+
+    for (const model of models) {
+      if (model?.id && Number.isFinite(model.size)) {
+        modelSizes[model.id] = model.size;
+      }
+    }
+    return {
+      available: !!status?.available, modelCount: models.length, modelSizes,
+    };
   } catch (e) {
     console.warn('getLocalAiServerStatus - error getting local server status', e);
     return notAvailable;
@@ -615,35 +627,14 @@ export async function queryAiAPI(query, options = {}) {
 }
 
 /**
- * Filters and extracts sorted model identifiers from a list of model objects.
- *
- * Evaluates model entries from an OpenAI-compatible or LM Studio models endpoint,
- * retaining objects that possess a valid `id` (either explicitly typed as `'model'`
- * or lacking an `object` type specifier), and returns their IDs sorted alphabetically.
- *
- * @param {Array<object>} models - Array of raw model objects from the API response
- * @returns {Array<string>} Alphabetically sorted array of model ID strings
- */
-function extractModels(models) {
-  // filter response by model objects
-  // {id: 'liquid/lfm2-24b-a2b', object: 'model', owned_by: 'organization_owner'}
-  return models.filter(model => {
-    let validModel = model.object === 'model' && model.id; // LmStudio format
-
-    if (!validModel) {
-      validModel = !model.object && model.id;
-    }
-    return validModel;
-  }).map(model => (model.id)).sort();
-}
-
-/**
  * Queries a running OpenAI-compatible server for the list of available AI models.
  * LM Studio exposes an OpenAI-compatible models endpoint once "Local Server" is started.
  *
  * @param {object} [options] - optional overrides
  * @param {string} [options.baseUrl='http://localhost:1234'] - base URL of the OpenAI-compatible server
- * @returns {Promise<Array<string>>} - available model identifiers returned by OpenAI-compatible
+ * @returns {Promise<Array<object>>} - the model objects as the server returns them, unfiltered and
+ *   unsorted, e.g. `{id: 'qwen/qwen3-1.7b', object: 'model', owned_by: 'organization_owner'}`; the
+ *   caller (tc-ui-toolkit) picks what it needs, such as `id`
  * @throws {Error} - if the server is unreachable or returns an error status
  * @example
  * const models = await queryAiAPIModels();
@@ -695,15 +686,12 @@ export async function queryAiAPIModels(options = {}) {
     answer = await response.json();
   }
 
-  let models = answer;
-
-  if (!Array.isArray(models)) {
+  if (!Array.isArray(answer)) {
     const message = 'Unexpected OpenAI-compatible models response shape';
     console.log(message, answer);
     throw new Error(message);
   }
-  models = extractModels(models);
-  return models;
+  return answer;
 }
 
 /**
