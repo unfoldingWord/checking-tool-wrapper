@@ -263,6 +263,8 @@ and the number of answers that differ from the previous plan's Homebrew-build ru
 (`test_uw-tw-qwen3-1.7b-q5_k_m_prompt-baseline.results.json`) is written in section 8. If many
 differ, that is a finding about the bundled engine: report it to the author before going on.
 
+**Done 2026-11-24** at `9247511` (results in section 8, "Step 0").
+
 ### Step 1. Span breakdown in the comparison script (OFFLINE)
 
 Add the section 1 breakdown to `scripts/compare-prompt-variants.js` (or a helper it imports):
@@ -442,3 +444,56 @@ the app's old prompt byte for byte.
 (One row per run: variant, model, set, cases, top-1, multi-word / single-word top-1, too short,
 too long, wrong ≥ 80, no answer, median ms, system prompt tokens, paired vs parent
 (only A / only B, p), decision.)
+
+### 2026-11-24: Step 0
+
+- `npm test`: passed (386 tests, 24 skipped; lint clean).
+- **`llama-quantize`**: built from `llmTraining/.llama.cpp` at `b1b770d90` in a separate folder,
+  `llmTraining/.llama.cpp/build-quantize/`, with Apple clang (`CC=/usr/bin/clang
+  CXX=/usr/bin/clang++`) and `-DGGML_NATIVE=OFF`. That clang rejects `-mcpu=native`, so the
+  default build fails. The existing `build/` folder was left alone. The checkout shows 4,037
+  modified files, but they are file-mode changes only (no content). Check: re-quantizing
+  `qwen2.5-0.5b-stock-bf16.gguf` to Q8_0 gave a file **byte-identical** to the earlier
+  `qwen2.5-0.5b-stock-Q8_0.gguf`.
+- **Stock builds** (logs `quantize-Q5_K_M.log` / `quantize-Q6_K.log` next to them):
+  `llmTraining/outputs/qwen3-1.7b-stock-GGUF/qwen3-1.7b-stock-Q5_K_M.gguf` (1.47 GB; larger than
+  D3's 1.26 GB because Qwen's stock checkpoint keeps a separate `output.weight`, see the previous
+  plan's section 7) and `llmTraining/outputs/qwen3-0.6b-stock-GGUF/qwen3-0.6b-stock-Q6_K.gguf`
+  (0.62 GB).
+- **Eval folder** `llmTraining/outputs/eval-models/`: hard links (link count 2, same inodes as
+  the originals). sha256 in `llmTraining/outputs/eval-models.sha256.txt`:
+
+  | Model id (`GET /v1/models`) | sha256 (first 12) |
+  |---|---|
+  | `uw-tw-qwen3-1.7b-Q5_K_M` | `c1b04b6b5c5b` |
+  | `uw-tw-qwen3-0.6b-Q6_K` | `cc1adc1628ec` |
+  | `Qwen3-4B-Instruct-2507-Q4_K_M` | `8cdb57cbb880` |
+  | `qwen3-1.7b-stock-Q5_K_M` | `ff813065f7ae` |
+  | `qwen3-0.6b-stock-Q6_K` | `0bd6bc62b8ac` |
+
+- **Server**: `../translationCore/vendor/llama-server/darwin-arm64/llama-server`, `version:
+  1.0.0-dev (build 12651, commit f5e6915c2)`, started as D1 says on port 8080. The router lists
+  all five hard links, so no second server is needed. Logs, the model list and the runs are in
+  `llm-eval-results/span-step0-20261124/`. translationCore's own server (router over
+  `~/translationCore/models`, with the 4B loaded) was running at the same time.
+- **Repeatability and engine** (D3 1.7B, `baseline`, TEST, seed 42):
+
+  | Run | top-1 | differ from run A (answer, confidence or raw text) | median ms |
+  |---|---|---|---|
+  | A (build 12651, router) | 67.4% | | 226 |
+  | B (build 12651, router) | 67.4% | **0 of 835** | 207 |
+  | previous plan (Homebrew build 12359, single model) | 67.4% | **0 of 835** | 102 |
+
+  So seeded runs repeat exactly under router mode (no noise floor is needed), and the bundled
+  engine gives the same answers as the build the previous plan used. **Time per request about
+  doubled.** The likely causes are the router's proxy to a child server and translationCore's
+  server running at the same time; this was not measured. Compare times only within this plan's
+  runs.
+- **File-name clash (for later steps):** the runner names result files after the model id
+  (`test_uw-tw-qwen3-1.7b-Q5_K_M_prompt-baseline.results.json`), and macOS file names ignore
+  case, so a TEST run of a released model **overwrites** the previous plan's lowercase-named file.
+  The previous plan's D3 TEST and TEST-NOHIST files were copied to
+  `llmTrainingData/promptEval/results/before-span-plan/` first and restored after the runs. Do
+  the same before Step 5's TEST runs. The FT-DEV and NEW-DEV sets are new names, so they cannot
+  clash.
+
