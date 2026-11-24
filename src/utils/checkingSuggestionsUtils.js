@@ -863,6 +863,9 @@ export function normalizeForCompare(word, langId = '') {
  *   found in the verse: ` - in verse` (verse fit 2), ` - verse has "<words>"` (verse fit 1: the verse
  *   words matching the rendering's words, exactly or by {@link wordSimilarity}, in verse order), or
  *   ` - not in verse`
+ * @param {boolean} [options.markOtherKey=false] - **prompt experiments only** (variant C3 of
+ *   plans/prompt-span-experiments.md; the app's prompt does not use it): end each line whose GL
+ *   key is not the exact phrase (`isExact` false in {@link rankGlKeys}) with ` - for another phrase`
  * @returns {string} - the lines joined by `\n`, or '' when there is no history
  * @example
  * formatPreviousTranslations(
@@ -872,7 +875,7 @@ export function normalizeForCompare(word, langId = '') {
  * // '"các nơi thánh" (chosen 1 time for "of the holy places")\n"Nơi Thánh" (chosen 1 time for "Holy")'
  */
 export function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '', options = {}) {
-  const { markVerseFit = false } = options;
+  const { markVerseFit = false, markOtherKey = false } = options;
   // renderings are split like the verse words (getWordList), which verseContent already holds
   const normalizeWords = text => splitIntoWords(text)
     .map(word => normalizeForCompare(word, targetLangCode));
@@ -976,7 +979,8 @@ export function formatPreviousTranslations(previousTranslationData, glPhrase, gl
     const {
       phrase, rendering, count,
     } = entry;
-    const line = `"${rendering}" (chosen ${count} time${count === 1 ? '' : 's'} for "${phrase}")`;
+    const line = `"${rendering}" (chosen ${count} time${count === 1 ? '' : 's'} for "${phrase}")` +
+      (markOtherKey && !entry.isExact ? ' - for another phrase' : '');
     return markVerseFit ? `${line}${verseFitMark(entry)}` : line;
   }).join('\n');
 }

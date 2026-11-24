@@ -355,7 +355,41 @@ median). DEV runs for the stock models are Step 4.
   more verse words.` Build it with a `markPartialKey` option on `formatPreviousTranslations`,
   default off, the way the previous plan built X1's `markVerseFit`. The app's output must not
   change: the existing tests and the fine-tune parity test must still pass.
-- **C4.** The best of C1/C2 combined with C3, run only if both pass on their own.
+- **C5 (added 2026-11-24, author's decision after Step 2's gate). C1 + an example of one GL
+  word rendered by several target words**, the pattern of most of NEW-DEV's too-short answers
+  (section 8, Step 2). Added after Example 2:
+  ```
+  Example 3:
+  TARGET VERSE (en): they went into the house of the king
+
+  PREVIOUS TRANSLATIONS:
+  "king" (chosen 4 times for "царь")
+
+  GATEWAY PHRASE (ru): царя
+
+  Answer:
+  "of the king",80
+  ```
+  It shares NEW-DEV's language pair (English target, Russian GL) but none of its words. That
+  makes tuning to NEW-DEV a risk: read C5's gain on FT-DEV and on NEW-DEV's `es-419` and Arabic-GL
+  cases too, and rely on Step 5's TEST (bn, en, es-419, ne targets) to confirm. Check copying per
+  D8 (raw answers containing "of the king").
+- **C4.** The best of C1/C2/C5 combined with C3, run only if both parts pass on their own.
+  Built as `C13`, `C23` and `C53`; only the one with the best part runs.
+
+**Author's decision after Step 2's gate (2026-11-24): run Step 3 anyway, and add C5.** Read C1
+and C2 for H2 on multi-word GL phrases only; read C1 and C5 on all cases, since one-word GL phrases
+are most of NEW-DEV's too-short answers.
+
+**C3 as built differs from the text above:** the mark is ` - for another phrase`, not ` - for part
+of the phrase`. It goes on every line whose key is not exact (`isExact` false), and most of those
+keys are not part of the phrase. Some are longer ("the church" for "church"), and in NEW-DEV most
+are other inflections ("ангел" for "ангелов"). So the plan's mark would be false on most of the
+lines it marks. The sentence added to the PREVIOUS TRANSLATIONS line is `A line marked "for another
+phrase" was chosen for a different phrase than GATEWAY PHRASE, so the answer may need more or fewer
+verse words.` The example lines for another key are marked as the code marks them ("la iglesia",
+"las iglesias", "Glaube"; in the combinations also "Gemeinde" and "king"). The option on
+`formatPreviousTranslations` is `markOtherKey` (default off).
 
 Also run the ablation **C0** (rule 2 deleted, the other rules renumbered) to separate "fewest
 words removed" from "new wording added". It is diagnostic only and is not adopted on its own.
