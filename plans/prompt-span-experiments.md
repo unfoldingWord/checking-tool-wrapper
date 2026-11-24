@@ -104,9 +104,9 @@ when the AI gives nothing). Script: section 4, Step 1.
 | D3 run | right | **too short** (expected words minus some) | too long (extra words) | right words, wrong occurrence | partial overlap | other words | no answer |
 |---|---|---|---|---|---|---|---|
 | 1.7B TEST (835) | 563 | **136** | 46 | 23 | 14 | 50 | 3 |
-| 1.7B TEST-NOHIST | 453 | **123** | 86 | 19 | 24 | 96 | 34 |
+| 1.7B TEST-NOHIST | 453 | **123** | 87 | 19 | 23 | 96 | 34 |
 | 0.6B TEST | 534 | **119** | 54 | 23 | 31 | 70 | 4 |
-| 0.6B TEST-NOHIST | 302 | 106 | 73 | 13 | 27 | 210 | 104 |
+| 0.6B TEST-NOHIST | 302 | 106 | 74 | 13 | 26 | 210 | 104 |
 
 - **Span errors are most of the 1.7B's errors with history:** 182 of 272 wrong answers are too
   short or too long. Of the 136 too-short answers, 103 miss one word.
@@ -277,6 +277,11 @@ both runs, with the paired counts per group.
 **Done when:** a unit test in `__tests__/promptVariants.test.js` covers each category on
 hand-made cases, `npm test` passes, and running it on the saved D3 1.7B TEST baseline reproduces
 section 1's row (563 right, 136 too short, 46 too long, 23 wrong occurrence).
+
+**Done 2026-11-24** at `b8a233e`: `classifySpan`, `spanBreakdown`, `pairedCounts` and `phraseWords`
+in `scripts/compare-prompt-variants.js`; 8 tests under "span breakdown" in
+`__tests__/promptVariants.test.js`. Section 1's TEST rows come out exactly, both models; the
+TEST-NOHIST rows were corrected by one case each (see section 8).
 
 ### Step 2. FT-DEV and NEW-DEV sets, baselines, and the hypotheses rechecked (OFFLINE, then LIVE)
 
@@ -497,3 +502,35 @@ too long, wrong ≥ 80, no answer, median ms, system prompt tokens, paired vs pa
   the same before Step 5's TEST runs. The FT-DEV and NEW-DEV sets are new names, so they cannot
   clash.
 
+### 2026-11-24: Step 1
+
+`scripts/compare-prompt-variants.js` now prints, after the paired counts, the wrong top answers by
+kind and top-1 by GL phrase length (1 word, 2+) with paired counts and McNemar p per group. On the
+saved TEST baselines (A = D3 1.7B, B = D3 0.6B):
+
+| | 1.7B | 0.6B |
+|---|---|---|
+| right | 563 | 534 |
+| too short | 136 | 119 |
+| too long | 46 | 54 |
+| wrong occurrence | 23 | 23 |
+| partial overlap | 14 | 31 |
+| other words | 50 | 70 |
+| no answer | 3 | 4 |
+| top-1, 1-word GL phrase (391) | 278 (71.1%) | 271 (69.3%) |
+| top-1, 2+-word GL phrase (444) | 285 (64.2%) | 263 (59.2%) |
+
+1-word group: only 1.7B 27, only 0.6B 20, p 0.38. 2+-word group: 35 against 13, p 0.0021.
+
+- **Correction to section 1:** the scratch script behind section 1 compared word sets. Because of
+  that, an answer that repeats a word and holds every expected word plus more was counted as
+  partial overlap. The script now counts repeated words (multiset). This moves one TEST-NOHIST
+  case per model from partial to too long. For the 1.7B it is `es-419_est_rut…bethlehem-g8uq#nohist`:
+  answered "de Belén de Judá", expected "de Belén". For the 0.6B it is
+  `en_ult_tit…subject-hhgu#nohist`. The section 1 table is updated; the TEST rows are unchanged.
+- "No answer" means the AI gave no option and the algorithm's fallback answer was wrong. An empty
+  AI answer that the fallback gets right counts as right, as the app shows it.
+- When a case has more than one expected answer, the closest kind over all of them is used, in
+  this order: wrong occurrence, too short, too long, partial. No TEST case has more than one.
+- `npm test`: 394 passed, 24 skipped. The one lint warning (`src/Container.js:472`) was there
+  before this change.

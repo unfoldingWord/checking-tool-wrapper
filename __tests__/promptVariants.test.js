@@ -276,6 +276,107 @@ describe('scripts/compare-prompt-variants.js', () => {
       medianMs: 200,
     });
   });
+
+  describe('span breakdown (plans/prompt-span-experiments.md, Step 1)', () => {
+    // eslint-disable-next-line global-require
+    const {
+      classifySpan, pairedCounts, phraseWords, SPAN_CATEGORIES, spanBreakdown,
+    } = require('../scripts/compare-prompt-variants');
+    const words = (...pairs) => ({
+      selections: pairs.map(([text, occurrence = 1]) => ({ text, occurrence })),
+      confidence: 80,
+    });
+
+    test('phraseWords drops occurrence suffixes and normalizes', () => {
+      expect(phraseWords('La:2 Iglesia de:3 Roma')).toEqual(['la', 'iglesia', 'de', 'roma']);
+      expect(phraseWords('')).toEqual([]);
+      expect(phraseWords(undefined)).toEqual([]);
+    });
+
+    test('each kind of wrong answer', () => {
+      expect(classifySpan(words(['Gemeinde']), ['für die Gemeinde'], false)).toBe('tooShort');
+      expect(classifySpan(words(['wir']), ['für die Gemeinde'], false)).toBe('other');
+      expect(classifySpan(words(['für']), ['für die Gemeinde'], false)).toBe('tooShort');
+      expect(classifySpan(words(['für die Gemeinde in Rom']), ['für die Gemeinde'], false)).toBe('tooLong');
+      expect(classifySpan(words(['Gemeinde', 2]), ['Gemeinde'], false)).toBe('wrongOccurrence');
+      expect(classifySpan(words(['Gemeinde']), ['Gemeinde:2'], false)).toBe('wrongOccurrence');
+      expect(classifySpan(words(['die Gemeinde in']), ['für die Gemeinde'], false)).toBe('partial');
+      expect(classifySpan(words(['beten']), ['für die Gemeinde'], false)).toBe('other');
+      expect(classifySpan(words(['Gemeinde']), ['Gemeinde'], true)).toBe('noAnswer');
+      expect(classifySpan(undefined, ['Gemeinde'], false)).toBe('noAnswer');
+    });
+
+    test('compares case-insensitively, words split across selections', () => {
+      expect(classifySpan(words(['FÜR'], ['DIE']), ['für die Gemeinde'], false)).toBe('tooShort');
+    });
+
+    test('a repeated word counts once per time it appears', () => {
+      // "de Belén de Judá" has both expected words and more: too long, not a partial overlap
+      expect(classifySpan(words(['de Belén de Judá']), ['de Belén'], false)).toBe('tooLong');
+      // the expected "de" twice, the answer once: too short
+      expect(classifySpan(words(['de Belén']), ['de Belén de Judá'], false)).toBe('tooShort');
+      // "de de" is not inside "de Belén", which has one "de"
+      expect(classifySpan(words(['de de']), ['de Belén'], false)).toBe('partial');
+    });
+
+    test('the closest kind over every expected answer wins', () => {
+      expect(classifySpan(words(['Rom']), ['die Gemeinde', 'in Rom'], false)).toBe('tooShort');
+      expect(classifySpan(words(['Rom']), ['Gemeinde', 'Rom:2'], false)).toBe('wrongOccurrence');
+    });
+
+    test('scoreRun marks the kind and the GL phrase length; spanBreakdown counts the kinds', () => {
+      const cases = [
+        {
+          id: 'a', glPhrase: 'church', expected: ['Gemeinde'],
+        },
+        {
+          id: 'b', glPhrase: 'for the church', expected: ['für die Gemeinde'],
+        },
+        {
+          id: 'c', glPhrase: 'for the church', expected: ['für die Gemeinde'],
+        },
+        {
+          id: 'd', glPhrase: 'pray', expected: ['beten'],
+        },
+      ];
+      const results = [
+        { id: 'a', result: { bestSelections: [words(['Gemeinde'])] } },
+        { id: 'b', result: { bestSelections: [words(['Gemeinde'])] } },
+        { id: 'c', result: { bestSelections: [] } },
+        { id: 'd', result: { bestSelections: [words(['wir beten'])] } },
+      ];
+      const scores = scoreRun(cases, results, new Map());
+
+      expect(scores.map(s => [s.span, s.glWords])).toEqual([
+        [null, 1], ['tooShort', 3], ['noAnswer', 3], ['tooLong', 1],
+      ]);
+      expect(spanBreakdown(scores)).toEqual({
+        tooShort: 1, tooLong: 1, wrongOccurrence: 0, partial: 0, other: 0, noAnswer: 1,
+      });
+      expect(Object.keys(spanBreakdown([]))).toEqual(SPAN_CATEGORIES);
+    });
+
+    test('a wrong AI answer replaced by a right algorithm answer is not counted', () => {
+      const cases = [{
+        id: 'a', glPhrase: 'church', expected: ['Gemeinde'],
+      }];
+      const results = [{ id: 'a', result: { bestSelections: [] } }];
+      const scores = scoreRun(cases, results, new Map([['a', { bestSelections: [words(['Gemeinde'])] }]]));
+
+      expect(scores[0]).toMatchObject({
+        right: true, span: null, aiEmpty: true,
+      });
+    });
+
+    test('pairedCounts', () => {
+      const pair = (a, b) => [{ right: a }, { right: b }];
+
+      expect(pairedCounts([pair(true, false), pair(true, true), pair(false, true), pair(true, false)]))
+        .toEqual({
+          onlyA: 2, onlyB: 1, p: 1,
+        });
+    });
+  });
 });
 
 describe('no-history cases (DEV-NOHIST, TEST-NOHIST)', () => {
