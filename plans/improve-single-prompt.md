@@ -935,6 +935,42 @@ look at TEST.
 **Done when:** `F` is not worse than `baseline` on TEST for 1.7B (if it is, the DEV gain was
 tuning to DEV: report it and stop), and the rows are in section 7.
 
+**Run 2026-11-24 for R0 instead** (Step 7 kept the app's prompt, so there is no `F` to confirm on
+stock models; what needs confirming is R0 against the released D3). Both on the app's prompt,
+temperature 0.1, no seed, 2 runs each on TEST and TEST-NOHIST, then the suite
+(`scripts/test-llm.sh -r 3 -g 1`); logs in `llm-eval-results/step8/`.
+
+| Set | Run | D3 → R0 top-1 | only D3 / only R0, p | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|---|
+| TEST | seed 42 (Step 7) | 67.4 → 69.1% | 28 / 42, p 0.12 | 99 → 77 | 3 → 3 | 77 → 80 |
+| TEST | a | 67.4 → 68.6% | 31 / 41, p 0.29 | 99 → 80 | 3 → 3 | 98 → 80 |
+| TEST | b | 67.8 → 69.0% | 30 / 40, p 0.28 | 97 → 80 | 2 → 3 | 87 → 80 |
+| TEST-NOHIST | seed 42 (Step 7) | 54.3 → 56.0% | 36 / 51, p 0.13 | 0 (cap) | 34 → 9 | 109 → 105 |
+| TEST-NOHIST | a | 53.5 → 55.7% | 34 / 52, p 0.066 | 0 | 35 → 11 | 107 → 106 |
+| TEST-NOHIST | b | 53.8 → 55.9% | 33 / 51, p 0.063 | 0 | 33 → 10 | 104 → 105 |
+
+Suite (55 single cases x 3 runs): D3 top-1 62% (34, 34, 34 of 55; real projects 40%), R0 70%
+(39, 37, 39; real projects 51%); both fail the 70% bar by rounding (R0 69.7%); wrong at ≥ 80:
+D3 9%, R0 11%; median 94 → 86 ms.
+
+**Result:** R0 is ahead of D3 in every run, by 1.2-1.7 points on TEST and 2.1-2.2 on TEST-NOHIST,
+with about 20% fewer confident wrong answers on TEST and a third as many empty no-history answers,
+at the same speed. No single run is significant (TEST p 0.12-0.29, TEST-NOHIST p 0.06-0.13); the
+runs are not independent samples (same cases), so they cannot be pooled into one test, but the
+direction never changes. The suite agrees (+8 points). R0 passes Step 7's rule except for
+"better than D3 on TEST-NOHIST", which it misses on significance only.
+
+**R0's data on the 0.6B** (`lora-r16-r0-0.6b.yaml`: the released 0.6B's settings with R0's
+data, 3,036 iters, 1.6 h; GGUF Q6_K; seed 42, as Step 6), against the released 0.6B:
+
+| Set | released 0.6B → R0 0.6B | only released / only R0, p | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|
+| TEST | 64.0 → 62.9% | 42 / 33, p 0.36 | 96 → 89 | 4 → 6 | 50 → 46 |
+| TEST-NOHIST | 36.2 → **41.6%** | 46 / 91, **p 0.0002** | 0 (cap) | 104 → 17 | 67 → 64 |
+
+The 0.6B gains significantly with no history (+5.4 points; empty answers 104 → 17) and is not
+significantly worse with history (-1.1 points, p 0.36).
+
 ### Step 9. Put the result in the app (OFFLINE)
 
 1. Move the adopted variant from `promptVariants.js` into `buildLlmSystemPrompt` /
