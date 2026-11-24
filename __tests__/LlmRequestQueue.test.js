@@ -311,4 +311,20 @@ describe('LlmRequestQueue merges algorithm suggestions into AI suggestions', () 
   test('mergeBestSelections keeps the AI option on a tie', () => {
     expect(mergeBestSelections([option('iglesia', 80)], [option('iglesia', 80, true)])).toEqual([option('iglesia', 80)]);
   });
+
+  test('mergeBestSelections logs the options it drops', () => {
+    const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+
+    try {
+      mergeBestSelections([option('iglesia', 60), option('Dios', 90)], [option('iglesia', 80, true), option('Dios', 70, true)]);
+      const messages = log.mock.calls.map(([message]) => message).filter(message => message.startsWith('mergeBestSelections'));
+
+      expect(messages).toEqual([
+        'mergeBestSelections - dropped "iglesia:1" (AI, confidence 60), same words as "iglesia:1" (algorithm, confidence 80)',
+        'mergeBestSelections - dropped "Dios:1" (algorithm, confidence 70), same words as "Dios:1" (AI, confidence 90)',
+      ]);
+    } finally {
+      log.mockRestore();
+    }
+  });
 });

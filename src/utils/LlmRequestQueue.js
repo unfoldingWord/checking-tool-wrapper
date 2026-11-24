@@ -8,13 +8,20 @@ import {
 
 /**
  * Merges the AI's and the algorithm's suggestion options, best first. An option whose words and
- * occurrences are in both lists is kept once, with the higher confidence (the AI's on a tie).
+ * occurrences are in both lists is kept once, with the higher confidence (the AI's on a tie); each
+ * option dropped that way is logged.
  * @param {Array<object>} aiOptions - the AI's `bestSelections`
  * @param {Array<object>} algorithmOptions - the algorithm's `bestSelections`
  * @returns {Array<object>} - the merged options, sorted by confidence (highest first)
  */
 export function mergeBestSelections(aiOptions = [], algorithmOptions = []) {
   const byWords = new Map();
+  const sourceOf = new Map(); // option -> 'AI' or 'algorithm', for the log
+  const describe = option => `"${(option?.selections || []).map(({ text, occurrence }) => `${text}:${occurrence}`).join(' ')}" ` +
+    `(${sourceOf.get(option)}, confidence ${option?.confidence})`;
+
+  aiOptions.forEach(option => sourceOf.set(option, 'AI'));
+  algorithmOptions.forEach(option => sourceOf.set(option, 'algorithm'));
 
   for (const option of [...aiOptions, ...algorithmOptions]) {
     const words = JSON.stringify((option?.selections || []).map(({ text, occurrence }) => [text, occurrence]));
@@ -22,6 +29,12 @@ export function mergeBestSelections(aiOptions = [], algorithmOptions = []) {
 
     if (!kept || option.confidence > kept.confidence) {
       byWords.set(words, option);
+
+      if (kept) {
+        console.log(`mergeBestSelections - dropped ${describe(kept)}, same words as ${describe(option)}`);
+      }
+    } else {
+      console.log(`mergeBestSelections - dropped ${describe(option)}, same words as ${describe(kept)}`);
     }
   }
   // sort is stable, so on equal confidence the AI's options stay first
