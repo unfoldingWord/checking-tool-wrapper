@@ -1,0 +1,35 @@
+# Run R0v2 of plans/improve-single-prompt.md: the control (R0) on the training data of 2026-11-24 (8 new
+# projects, Arabic GL phrases from avd): the app's prompt + 10% no-history examples
+# Same settings as lora-r16-d3.yaml (the released D3). Data:
+#   LLM_FINETUNE_INCLUDE=noRelatedWordInHistory LLM_FINETUNE_NO_HISTORY_SHARE=0.1 LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-r0v2 \
+#     npm run build:finetune-data
+# Train from the repo folder:
+#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r16-r0v2.yaml
+# iters = 17,380 train examples x 2 epochs / 8 = 4,345.
+model: Qwen/Qwen3-1.7B
+train: true
+data: llmTrainingData/finetune-r0v2      # train.jsonl, valid.jsonl, test.jsonl
+fine_tune_type: lora
+num_layers: -1                        # LoRA on every layer
+lora_parameters:
+  rank: 16
+  scale: 1.0                          # = lora_alpha / rank (alpha 16, as in Appendix A); 20 with lr 2e-4 broke the model
+  dropout: 0.0
+  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
+         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
+mask_prompt: true                     # loss on the assistant answer only (checked by check_data.py)
+max_seq_length: 2048
+batch_size: 8
+iters: 4345
+learning_rate: 2e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [2e-4, 4245, 0]          # [initial lr, decay steps (iters - warmup), final lr]
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 200
+val_batches: 50
+save_every: 200
+adapter_path: llmTraining/outputs/lora-r16-r0v2
+seed: 3407
