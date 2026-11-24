@@ -313,6 +313,10 @@ TEST-NOHIST rows were corrected by one case each (see section 8).
    answers that are a history rendering copied whole whose GL key is not the exact phrase. Put
    each fine-tune next to its stock equivalent: do the stock models make the same span errors?
 
+**Done 2026-11-24 (2.0-2.4)** at `4e16abd` (builder changes uncommitted). **Stopped at the gate:**
+fewer than half of D3 1.7B's too-short answers come from multi-word phrases (96 of 279, 34%).
+Waiting for the author's decision before Step 3 (see section 8).
+
 **Done when:** baseline rows for every model and set are in section 8, with the breakdown.
 **Gate:** if on FT-DEV and NEW-DEV together, with D3 1.7B, the too-short answers are fewer than 30, or fewer than
 half of them come from multi-word phrases, H1/H2 are not supported. Then stop and report to the
@@ -534,3 +538,118 @@ saved TEST baselines (A = D3 1.7B, B = D3 0.6B):
   this order: wrong occurrence, too short, too long, partial. No TEST case has more than one.
 - `npm test`: 394 passed, 24 skipped. The one lint warning (`src/Container.js:472`) was there
   before this change.
+
+### 2026-11-24: Step 2 (stopped at the gate)
+
+**2.0 Data settled:** no jest or `mlx_lm` running, no `llmTrainingData/.*.json.*` temp file, no change
+to the committed data files. The temp file of Q4 is gone; the data was committed at `aadbefc`.
+
+**2.1 Sets:** `LLM_PROMPT_EVAL_SETS=ftdev,newdev npm run build:prompt-eval-cases` (new setting; the
+default `dev,test` builds the old sets as before). The old four set files and the old manifest keys
+were checked with `cmp` against copies taken first: byte-identical. The new sets are recorded
+under `spanPlan` in `meta/manifest.json`, with the sha256 of all 28 source data files.
+- **FT-DEV:** 539 cases. All 629 validation ids were found in the current data; the algorithm is
+  now certain (≥ 95) about 90 of them. FT-DEV-NOHIST: the same 539.
+- **NEW-DEV:** 1,000 cases (seed 20261124, at most 40% per **file**: three of the four files are
+  English targets, so a per-language cap could not reach 1,000). By file: en_ult_luk 400,
+  en_ult_jos 400, en_ult_gal 148, es-419_est_est 52. 347 of the 1,347 cases examined were
+  certain. **NEW-DEV-NOHIST is all 1,000 without history** (as FT-DEV-NOHIST; the old DEV-NOHIST
+  was half of DEV). **Only 52 cases are `es-419`**, too few to judge that language on its own.
+- 2+-word GL phrases: FT-DEV 304 of 539, NEW-DEV 328 of 1,000.
+
+**2.2-2.3 Runs:** algorithm on the four sets, then `baseline` with seed 42 on the bundled
+llama-server (Step 0): the four new sets for all five models, DEV and DEV-NOHIST for the three
+stock models. 26 runs, 15:15-16:42. Script, logs and full tables:
+`llm-eval-results/span-step2-20261124/` (`run-baselines.sh`, `analyze.js`, `baseline-tables.txt`).
+H3 copies = wrong top answers that are, word for word, a history rendering of a GL key other than
+the exact phrase, and not also a rendering of the exact key (in brackets, those that are too
+short). On TEST this gives 52 (30) for D3 1.7B. Section 1's "40" counted too-short copies of a
+rendering of any key, including the exact one.
+
+FT-DEV (539; paired comparisons only, it comes from training projects):
+
+| model | top-1 | 1-word GL | 2+-word GL | too short | too long | wrong occ. | partial | other | no answer | H3 copies (too short) | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| D3 1.7B | 425 (78.8%) | 184/235 | 241/304 | 37 | 25 | 0 | 2 | 47 | 3 | 36 (15) | 37 | 205 |
+| stock 1.7B Q5_K_M | 237 (44.0%) | 123/235 | 114/304 | 37 | 53 | 0 | 6 | 100 | 106 | 44 (21) | 181 | 210 |
+| D3 0.6B | 394 (73.1%) | 176/235 | 218/304 | 34 | 27 | 0 | 2 | 67 | 15 | 28 (5) | 29 | 93 |
+| stock 0.6B Q6_K | 232 (43.0%) | 112/235 | 120/304 | 48 | 20 | 0 | 3 | 37 | 199 | 61 (29) | 97 | 144 |
+| 4B Q4_K_M | 320 (59.4%) | 151/235 | 169/304 | 28 | 77 | 0 | 4 | 38 | 72 | 48 (17) | 108 | 415 |
+
+FT-DEV-NOHIST (539):
+
+| model | top-1 | 1-word GL | 2+-word GL | too short | too long | wrong occ. | partial | other | no answer | H3 copies (too short) | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| D3 1.7B | 349 (64.7%) | 141/235 | 208/304 | 39 | 42 | 0 | 6 | 67 | 36 | - | 0 | 185 |
+| stock 1.7B | 90 (16.7%) | 45/235 | 45/304 | 15 | 141 | 0 | 10 | 168 | 115 | - | 0 | 206 |
+| D3 0.6B | 254 (47.1%) | 95/235 | 159/304 | 26 | 23 | 0 | 7 | 156 | 73 | - | 0 | 87 |
+| stock 0.6B | 4 (0.7%) | 2/235 | 2/304 | 3 | 7 | 0 | 1 | 23 | 501 | - | 0 | 128 |
+| 4B | 218 (40.4%) | 104/235 | 114/304 | 18 | 166 | 0 | 9 | 44 | 84 | - | 0 | 334 |
+
+NEW-DEV (1,000; en 948, es-419 52):
+
+| model | top-1 | 1-word GL | 2+-word GL | too short | too long | wrong occ. | partial | other | no answer | H3 copies (too short) | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| D3 1.7B | 549 (54.9%) | 374/672 | 175/328 | **242** | 84 | 72 | 25 | 24 | 4 | 129 (94) | 238 | 164 |
+| stock 1.7B | 425 (42.5%) | 329/672 | 96/328 | 35 | 27 | 8 | 10 | 15 | 480 | 23 (18) | 91 | 175 |
+| D3 0.6B | 510 (51.0%) | 336/672 | 174/328 | **290** | 75 | 60 | 30 | 23 | 12 | 137 (107) | 237 | 75 |
+| stock 0.6B | 325 (32.5%) | 263/672 | 62/328 | 341 | 39 | 43 | 59 | 58 | 135 | 272 (203) | 520 | 129 |
+| 4B | 467 (46.7%) | 336/672 | 131/328 | 201 | 145 | 62 | 55 | 27 | 43 | 173 (103) | 410 | 312 |
+
+Top-1 en / es-419: D3 1.7B 527/948 (55.6%) / 22/52; stock 1.7B 413/948 / 12/52; D3 0.6B 486/948 /
+24/52; stock 0.6B 317/948 / 8/52; 4B 447/948 / 20/52.
+
+NEW-DEV-NOHIST (1,000):
+
+| model | top-1 | 1-word GL | 2+-word GL | too short | too long | wrong occ. | partial | other | no answer | H3 copies (too short) | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| D3 1.7B | 387 (38.7%) | 255/672 | 132/328 | 270 | 122 | 44 | 39 | 61 | 77 | - | 0 | 132 |
+| stock 1.7B | 20 (2.0%) | 16/672 | 4/328 | 30 | 30 | 5 | 6 | 31 | 878 | - | 0 | 148 |
+| D3 0.6B | 265 (26.5%) | 164/672 | 101/328 | 222 | 58 | 30 | 48 | 51 | 326 | - | 0 | 69 |
+| stock 0.6B | 65 (6.5%) | 60/672 | 5/328 | 106 | 7 | 15 | 6 | 269 | 532 | - | 0 | 114 |
+| 4B | 254 (25.4%) | 165/672 | 89/328 | 156 | 280 | 32 | 68 | 27 | 183 | - | 0 | 235 |
+
+DEV (1,500) and DEV-NOHIST (750), stock models:
+
+| model | top-1 | 1-word GL | 2+-word GL | too short | too long | wrong occ. | partial | other | no answer | H3 copies (too short) | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| stock 1.7B, DEV | 578 (38.5%) | 242/528 | 336/972 | 188 | 130 | 36 | 50 | 217 | 301 | 148 (93) | 576 | 214 |
+| stock 0.6B, DEV | 586 (39.1%) | 229/528 | 357/972 | 211 | 35 | 32 | 27 | 67 | 542 | 195 (127) | 364 | 137 |
+| 4B, DEV | 806 (53.7%) | 312/528 | 494/972 | 182 | 188 | 42 | 59 | 91 | 132 | 171 (95) | 440 | 403 |
+| stock 1.7B, DEV-NOHIST | 114 (15.2%) | 64/283 | 50/467 | 35 | 171 | 11 | 26 | 215 | 178 | - | 0 | 196 |
+| stock 0.6B, DEV-NOHIST | 6 (0.8%) | 1/283 | 5/467 | 8 | 9 | 1 | 0 | 45 | 681 | - | 0 | 117 |
+| 4B, DEV-NOHIST | 253 (33.7%) | 126/283 | 127/467 | 51 | 219 | 20 | 33 | 62 | 112 | - | 0 | 282 |
+
+**2.4 Findings:**
+- **Gate (D3 1.7B, FT-DEV + NEW-DEV):** too short 37 + 242 = 279 (≥ 30, passes); from 2+-word
+  GL phrases 21 + 75 = **96 of 279 (34%), under half: fails.** FT-DEV alone is 21 of 37 (57%),
+  TEST was 87 of 136 (64%); NEW-DEV (75 of 242, 31%) is what moves it.
+- **What NEW-DEV's too-short answers are:** 167 of the 242 are for a 1-word GL phrase, almost all
+  in the English targets with a Russian or Arabic GL (luk 91, jos 44, gal 30, es-419 2). The
+  missing words are English function words that the GL word carries in its inflection: "of" 36,
+  "the" 31, "a" 22, then pronouns and auxiliaries ("you", "will", "is", "they"). Examples: ru
+  "ангелов" → "angels", expected "of angels"; ru "зерно" → "seed", expected "a seed"; ar
+  "يَغَارُونَ" → "zealous", expected "They are zealous"; ru "сеял" → "sow", expected "did I sow".
+  The expected answer is a history rendering in 56 of the 167. Translators are not consistent
+  here: ru "Господа" has the history "of the Lord" 10, "the Lord" 3, "Lord" 1.
+- So the gate's proxy (multi-word GL phrases) misses this case, but it is still a short span:
+  one GL word whose target rendering needs more than one word. Rule 2's "fewest words" may
+  well cause it too, but H2 as written (small GL words in a multi-word phrase) is not what
+  drives NEW-DEV. C2's example covers H2 only.
+- **H3 count:** D3 1.7B 36 + 129 = 165 copies on FT-DEV + NEW-DEV (94 + 15 = 109 of them too
+  short), well over 20, so C3 and C4 stay if Step 3 runs.
+- **Fine-tune against stock:** with history, the stock models' errors differ in kind. The stock
+  1.7B gives no usable answer for 480 of the 1,000 NEW-DEV cases: it often answers with the GL
+  word (e.g. `"Израиля",90` for an English verse), which is not in the verse. The stock 0.6B
+  makes more too-short answers than D3 (341 against 290). Without history both stock small
+  models mostly give no usable answer (FT-DEV-NOHIST 115 and 501 of 539).
+- **Wrong occurrence is 0 on FT-DEV for every model**, against 72 on NEW-DEV for D3 1.7B. Only
+  33 FT-DEV cases expect an occurrence above 1, against 372 in NEW-DEV (English verses repeat
+  "the", "of" and the like).
+- Median times are comparable only within this plan (Step 0).
+
+**For the author:** the gate is not met as written. Options: (a) stop, as the plan says;
+(b) run Step 3 anyway, since rule 2 may also cause NEW-DEV's 1-word too-short answers, but read
+H2/C2 only on multi-word phrases; (c) add a variant aimed at this case first, e.g. an example
+where one GL word is rendered by several target words, such as "of angels". Whichever is chosen
+goes into decision D6 / Step 3 before any variant runs.
