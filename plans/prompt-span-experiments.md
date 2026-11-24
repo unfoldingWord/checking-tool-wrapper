@@ -15,6 +15,10 @@ N1-N6, Q-SAMP, Q-THINK) and retrained three times (R0, R1, R1b). None of its pro
 adopted; its only adopted change was N5 (the no-history confidence cap, in code). **Do not re-run
 its variants.** This plan tests a weakness that plan did not target: **answer spans** (section 1).
 
+**Scope (author, 2026-11-24):** prompt changes only, **no retraining**. Comparisons use the
+models in `~/translationCore/models` and the equivalent stock models (decision D3). The expected answers
+(alignments) are the target (D9).
+
 ## 1. What we know, with evidence
 
 ### The models (checked 2026-11-24)
@@ -24,13 +28,12 @@ sha256, and they were checked against the builds in `llmTraining/outputs/`:
 
 | File | What it is | sha256 (first 12) |
 |---|---|---|
-| `uw-tw-qwen3-1.7b-Q5_K_M.gguf` | the **released D3** fine-tune (= `llmTraining/outputs/github-release/`) | `c1b04b6b5c5b` |
+| `uw-tw-qwen3-1.7b-Q5_K_M.gguf` | the **released D3** fine-tune (= `llmTraining/outputs/release/uw-tw-qwen3-1.7b-GGUF/`) | `c1b04b6b5c5b` |
 | `uw-tw-qwen3-0.6b-Q6_K.gguf` | the released D3 0.6B companion | `cc1adc1628ec` |
 | `Qwen3-4B-Instruct-2507-Q4_K_M.gguf` | stock 4B, **the publisher's Q4_K_M** (not the Q8_0 the previous plan converted) | `8cdb57cbb880` |
 
 These are **not** R0 (`llmTraining/outputs/uw-tw-qwen3-1.7b-r0-GGUF/...Q5_K_M.gguf` is
-`8ee03e6edc08`, the 0.6B R0 is `0ba2d62a0633`). R0 beat D3 in the previous plan (Step 8) but is
-not in the models folder (Q1).
+`8ee03e6edc08`, the 0.6B R0 is `0ba2d62a0633`). R0 and r0v2 are out of scope (Q1).
 
 ### New training data (added 2026-11-24, committed with this plan)
 
@@ -60,9 +63,9 @@ built before it.
 - **`llmTrainingData/finetune-r0v2/`** (train 17,380 / valid 1,077 / test 601, same 9 test files
   as D3) trains on all eight new files, with `llmTraining/lora-r16-r0v2.yaml` (4,345 iters).
   Its output `llmTraining/outputs/lora-r16-r0v2/` has checkpoints up to iteration 3,000
-  (11:06). The data manifest is stamped 12:45, after that. None of FT-DEV's 629 cases is in
-  r0v2's training split, so FT-DEV is fair for r0v2 too. NEW-DEV is not, since r0v2 trains on
-  those files.
+  (11:06). The data manifest is stamped 12:45, after that. Retrains are out of scope here, so
+  r0v2 is not scored. For a later plan: none of FT-DEV's 629 cases is in r0v2's training split,
+  but NEW-DEV's files are.
 - `llmTrainingData/.en_ult_luk_book_ru_gl_ru.json.UcAt8WI7Cb` (2.1 MB, 12:47) looks like an
   interrupted rewrite of that file. **The data was still changing when this plan was written:**
   Step 2 starts by checking it is settled (Q4).
@@ -129,8 +132,9 @@ when the AI gives nothing). Script: section 4, Step 1.
   language (the stock 0.6B's main failure in the previous plan), are left out for them.
 
 **Caution: these numbers come from TEST**, which the previous plan has already used several
-times. The hypotheses come from TEST, so they **must be confirmed on FT-DEV and NEW-DEV before any variant is
-built** (Step 2), and TEST is used once more at the end (Step 6). Report that with the results.
+times. The hypotheses come from TEST, so they **must be confirmed on FT-DEV and NEW-DEV before
+any variant is built** (Step 2), and TEST is used once more at the end (Step 5). Report that with
+the results.
 
 ## 2. Hypotheses
 
@@ -142,33 +146,54 @@ built** (Step 2), and TEST is used once more at the end (Step 6). Report that wi
 - **H3. Showing that a history line is for part of the phrase stops the whole-rendering copy.**
   Today the line shows its key (`for "Christ"`), but nothing says that "Christ" is not the whole
   phrase "for Christ". Targets the 40 copies.
-- **H4. The fine-tunes need a retrain to use a request-side change (H3), but not a system-prompt
-  rewording (H1, H2) if the rewording takes effect at all.** In the previous plan (R1b vs R0),
-  trained-in request data neither helped nor hurt. Measured here, not assumed.
+- **H4. The fine-tunes may follow their training more than the rules.** They learned from about
+  10,000 labelled examples, so a rewording (C1, C2) may change few of their answers, while the
+  stock models of the same size, which read the rules, change more. Comparing each fine-tune with
+  its stock equivalent (decision D3) shows which it is. If only the stock models move, the fix for the
+  fine-tunes would be a retrain, which is out of scope: record it for a later plan.
 
 ## 3. Decisions
 
 - **D1. Server: the app's own llama-server, the app's way.** Run the bundled binary from
-  `../translationCore/vendor/llama-server/darwin-arm64/llama-server` (build 12651) in router mode
-  over `~/translationCore/models`, as `buildServerArgs` does, on a fixed port:
-  `llama-server --models-dir ~/translationCore/models --models-max 1 --host 127.0.0.1 --port 8080 --no-ui`.
-  Record `--version` and the three sha256 values with every run. Model ids are whatever
+  `../translationCore/vendor/llama-server/darwin-arm64/llama-server` (build 12651) in router mode,
+  as `buildServerArgs` does, on a fixed port, over an eval folder `llmTraining/outputs/eval-models/`
+  (git-ignored, like all of `outputs/`) that holds **hard links** to the three files in
+  `~/translationCore/models` and the two stock builds of D3:
+  `llama-server --models-dir llmTraining/outputs/eval-models --models-max 1 --host 127.0.0.1 --port 8080 --no-ui`.
+  Hard links take no disk space (both folders are on the same volume, checked 2026-11-24), and
+  stock models are kept out of `~/translationCore/models`, so the app does not list them. Record
+  `--version` and the five sha256 values with every run. Model ids are whatever
   `GET /v1/models` lists (Step 0 writes them down). Quit LM Studio's server during runs. Why: the
   previous plan found that answers depend on the engine build (fine-tune plan, "Which engine is
   right"), so measure on the build users run.
 - **D2. Sampling.** Temperature 0.1 (the app's default), `LLM_TRAINING_EXTRA_PARAMS='{"seed":42}'`,
   thinking off. Step 0 confirms that a repeat run gives 0 different answers under router mode. If
   it does not, use the number that differ as the noise floor, and record that.
-- **D3. Models and roles.** **Primary: D3 1.7B** (the recommended model users have). Guards:
-  D3 0.6B and stock 4B Q4_K_M, which must not be significantly worse. **One prompt for every
-  model** (the previous plan's Q2 answer: no prompt chosen by model name). R0 1.7B (in
-  `llmTraining/outputs`) is scored only in Steps 5-6 as the retrain control.
+- **D3. Models and roles** ("D3" elsewhere in this plan is the released fine-tune; this
+  decision is "decision D3". Author, 2026-11-24: the models in `~/translationCore/models` and the
+  equivalent stock models). Each fine-tune is paired with its base model at the **same
+  quantization**, so that only the training differs between the two:
+
+  | Shipped model (gates adoption) | Stock equivalent (comparison) |
+  |---|---|
+  | D3 1.7B, `uw-tw-qwen3-1.7b-Q5_K_M.gguf` (**primary**) | Qwen3-1.7B Q5_K_M, `qwen3-1.7b-stock-Q5_K_M.gguf` (built in Step 0) |
+  | D3 0.6B, `uw-tw-qwen3-0.6b-Q6_K.gguf` | Qwen3-0.6B Q6_K, `qwen3-0.6b-stock-Q6_K.gguf` (built in Step 0) |
+  | Qwen3-4B-Instruct-2507 Q4_K_M (already stock) | itself |
+
+  The stock 1.7B and 0.6B are built with `llama-quantize` from the bf16 files already in
+  `llmTraining/outputs/qwen3-{1.7b,0.6b}-stock-GGUF/`, which were converted with the
+  `llmTraining/.llama.cpp` checkout at `b1b770d90`, the converter of the fine-tune GGUFs (the
+  previous plan's section 7). The previous plan's stock runs were Q8_0, so they are not reused.
+  The stock 1.7B and 0.6B do not gate adoption (users are not offered them). They show whether a
+  change works by being read (H4). **One prompt for every model** (the previous plan's Q2 answer:
+  no prompt chosen by model name).
 - **D4. Data sets.**
   - **FT-DEV** (new, the screening set): the 629 cases of D3's validation split
     (`llmTrainingData/finetune-d3/valid.meta.jsonl`), keeping only those the app sends to the AI
     (current algorithm top confidence below `ALGORITHM_CERTAIN_CONFIDENCE`, 95), plus
     **FT-DEV-NOHIST** (the same cases with `history` `{}`). Checked 2026-11-24: none of the 629
-    is in D3's or R0's training split, so it is fair for both. It comes from the training
+    is in D3's training split, so it is fair for D3 (stock models never trained on any
+    project). It comes from the training
     projects, so its scores run higher than TEST: use it for **paired comparisons only**, not as
     a model's accuracy. Cases are taken from the **current** data files (the app would send the
     current GL text), so the 85 from the two modified files differ from what D3 was validated on.
@@ -177,44 +202,59 @@ built** (Step 2), and TEST is used once more at the end (Step 6). Report that wi
     (20261124), about 1,000 cases with no file over 40%, plus **NEW-DEV-NOHIST**. No model in
     `~/translationCore/models` has seen these projects, so this is the fairest set for D3 and the
     only one not drawn from training projects. Its weakness: three of the four files are English
-    targets, so report `en` and `es-419` targets separately. Not fair for r0v2 (it trains on them).
-  - **DEV / DEV-NOHIST** (existing, `llmTrainingData/promptEval/`): for the stock 4B only (it
-    was never trained on any project). FT-DEV is also run on it.
-  - **TEST / TEST-NOHIST** (existing): confirmation, once, in Step 6.
+    targets, so report `en` and `es-419` targets separately.
+  - **DEV / DEV-NOHIST** (existing, `llmTrainingData/promptEval/`): for the three stock models
+    only (DEV is training data for the fine-tunes). The largest set, so it is the stock models'
+    main screen.
+  - **TEST / TEST-NOHIST** (existing): confirmation, once, in Step 5.
 - **D5. Metrics** for every run: top-1 (as the app shows it), top-1 on multi-word and on
   single-word GL phrases, the span breakdown of section 1 (too short / too long / wrong
   occurrence / partial / other / no answer), wrong at confidence ≥ 80, median ms. Also the token
   count of the fixed system prompt, from `POST /tokenize` on the loaded model (llama-server
   caches the fixed system prompt, so per-request time is the measure that matters; the previous
   plan found S1's half-length prompt no faster).
-- **D6. Adoption rule** (as the previous plan's D5, on FT-DEV): a variant beats its parent when,
-  on D3 1.7B:
-  - top-1 is higher with McNemar p < 0.05 on FT-DEV **or** NEW-DEV, and not significantly worse
-    (p < 0.05) on the other;
-  - wrong at ≥ 80 is not higher by more than 1% of cases;
-  - FT-DEV-NOHIST and NEW-DEV-NOHIST are not significantly worse (p < 0.05);
-  - D3 0.6B and the 4B are not significantly worse on FT-DEV and NEW-DEV (the 4B also on DEV).
-  If variants tie, keep the shorter prompt. Every variant gets a results row, adopted or not.
+- **D6. Adoption rule** (as the previous plan's D5): a variant beats its parent when:
+  - on **at least one shipped model** (D3 1.7B, D3 0.6B, 4B), top-1 is higher with McNemar
+    p < 0.05 on FT-DEV **or** NEW-DEV (for the 4B also DEV), and not significantly worse
+    (p < 0.05) on the others;
+  - **no shipped model** is significantly worse on any of FT-DEV, NEW-DEV, their NOHIST sets,
+    or (4B) DEV and DEV-NOHIST;
+  - for each shipped model, wrong at ≥ 80 is not higher by more than 1% of cases.
+  A gain for D3 1.7B, the primary model, counts most: if two variants pass, prefer the one with
+  the larger D3 1.7B gain. The stock 1.7B and 0.6B are reported with every variant but do not
+  gate. If variants tie, keep the shorter prompt. Every variant gets a results row, adopted or not.
   With 629 cases a gain of about 3 points is detectable, and 1-2 points usually is not. Say so
   when a variant is close.
 - **D7. Out of scope and unchanged:** the batched prompt and its constants
   (`LLM_BATCH_BASE_SYSTEM_PROMPT`, `LLM_BATCH_SYSTEM_PROMPT`). The fine-tunes need single requests
-  anyway. Thinking stays off (author, 2026-11-23: too slow). The app's prompt changes only in
-  Step 7. Until then variants live in `promptVariants.js` and reach the app's code path through
+  anyway. No retraining (author, 2026-11-24). Thinking stays off (author, 2026-11-23: too slow). The app's prompt changes only in
+  Step 6. Until then variants live in `promptVariants.js` and reach the app's code path through
   `setSinglePromptOverrideForEval`.
 - **D8. Example language.** A new worked example uses German, which is already in the prompt
   (Example 2) and in no eval set, so copied example words show up as "other words" answers.
   Count raw answers containing the example's words, as the previous plan did for N2 (the
   copying problem it called W10).
+- **D9. The expected answers (alignments) are the target** (author, 2026-11-24, Q2). When the
+  alignment includes the word for a small GL word (`খ্রীষ্টের জন্য` for "for Christ"), that is the
+  right answer. No hand-check against tW selection habits is needed.
 
 ## 4. Steps
 
 ### Step 0. Starting point (OFFLINE, then LIVE)
 
 1. `git log -1` shows `2e752cb` or later; `npm test` passes; the names in section 1 exist.
-2. Start the server per D1. Record `llama-server --version`, `GET /v1/models` (the model ids to
-   pass as `LLM_TRAINING_MODEL`) and the sha256 of the three files.
-3. Rerun `baseline` with D3 1.7B on TEST, `LLM_TRAINING_DATA_DIR=llmTrainingData/promptEval
+2. Build the two stock models of decision D3. Build only the `llama-quantize` target of the
+   `llmTraining/.llama.cpp` checkout (`cmake -B build && cmake --build build --target
+   llama-quantize`; it is at `b1b770d90`, record it), then:
+   `llama-quantize llmTraining/outputs/qwen3-1.7b-stock-GGUF/qwen3-1.7b-stock-bf16.gguf llmTraining/outputs/qwen3-1.7b-stock-GGUF/qwen3-1.7b-stock-Q5_K_M.gguf Q5_K_M`
+   and the same for `qwen3-0.6b-stock` with `Q6_K`. About 1.8 GB in all. The disk had 30 GB free
+   on 2026-11-24 (97% full), so check `df -h` first.
+3. Make `llmTraining/outputs/eval-models/` with hard links (`ln`, not `ln -s`) to the three files
+   in `~/translationCore/models` and the two new stock files. Start the server per D1. Record
+   `llama-server --version`, `GET /v1/models` (it must list all five; the ids are what to pass as
+   `LLM_TRAINING_MODEL`) and the sha256 of the five files. If the router does not list a hard
+   link, run a second server over `~/translationCore/models` on port 8081 instead.
+4. Rerun `baseline` with D3 1.7B on TEST, `LLM_TRAINING_DATA_DIR=llmTrainingData/promptEval
    LLM_TRAINING_FILES=test`, twice. (TEST is safe to run here: these are the same requests the
    previous plan already scored. Only the engine is new.)
 
@@ -259,10 +299,12 @@ section 1's row (563 right, 136 too short, 46 too long, 23 wrong occurrence).
    `LLM_PROMPT_EVAL_SETS=ftdev,newdev` setting), and check the old four with `cmp` against copies
    taken first (`llmTrainingData/promptEval/` is not committed).
 2. Algorithm run: `LLM_TRAINING_DATA_DIR=llmTrainingData/promptEval LLM_TRAINING_FILES="ftdev ftdev-nohist newdev newdev-nohist" npm run run:llm-training-data`.
-3. `baseline` on FT-DEV, FT-DEV-NOHIST, NEW-DEV and NEW-DEV-NOHIST for D3 1.7B, D3 0.6B and the
-   4B, and on DEV and DEV-NOHIST for the 4B (the 4B's DEV numbers in the previous plan were Q8_0).
-4. Run Step 1's breakdown on the FT-DEV and NEW-DEV baselines, and count H3's case: wrong answers that are a
-   history rendering copied whole whose GL key is not the exact phrase.
+3. `baseline` on FT-DEV, FT-DEV-NOHIST, NEW-DEV and NEW-DEV-NOHIST for all five models (decision D3), and
+   on DEV and DEV-NOHIST for the three stock models (the previous plan's DEV numbers were Q8_0
+   builds, so they are not reused).
+4. Run Step 1's breakdown on the FT-DEV and NEW-DEV baselines, and count H3's case: wrong
+   answers that are a history rendering copied whole whose GL key is not the exact phrase. Put
+   each fine-tune next to its stock equivalent: do the stock models make the same span errors?
 
 **Done when:** baseline rows for every model and set are in section 8, with the breakdown.
 **Gate:** if on FT-DEV and NEW-DEV together, with D3 1.7B, the too-short answers are fewer than 30, or fewer than
@@ -272,7 +314,9 @@ author instead of running Step 3. If the H3 count is under 20, drop C3 and C4.
 ### Step 3. Span variants (LIVE, FT-DEV and NEW-DEV, each with its NOHIST set)
 
 Each variant goes in `PROMPT_VARIANTS` as an edit of the app's prompt (`editPrompt`), with a unit
-test of its text. Run D3 1.7B first. Run 0.6B and 4B only for variants that pass on the 1.7B.
+test of its text. Run every variant on all five models, on FT-DEV, NEW-DEV and their NOHIST sets.
+That is about 3,300 requests per model, a few minutes each at the previous plan's speeds (77-280 ms
+median). DEV runs for the stock models are Step 4.
 
 - **C1. Rule 2 covers the whole phrase.** Replace rule 2 with:
   `2. Choose the verse words that translate all of GATEWAY PHRASE, including any small words in it, and no other words. Keep them in verse order.`
@@ -306,50 +350,27 @@ Also run the ablation **C0** (rule 2 deleted, the other rules renumbered) to sep
 words removed" from "new wording added". It is diagnostic only and is not adopted on its own.
 
 **Done when:** every C variant has a row with D5's metrics and paired counts against `baseline`
-(C4 also against its parts), and each has a written D6 decision. Mainly for the fine-tunes: does
-a system-prompt rewording change their answers at all? Report how many of the 629 answers change
-under C1.
+(C4 also against its parts), with each fine-tune beside its stock equivalent. For H4, report
+how many FT-DEV answers each variant changes, for each fine-tune and its stock equivalent.
 
 ### Step 4. Guard runs (LIVE)
 
-For each variant that passes on the 1.7B: D3 0.6B on FT-DEV, NEW-DEV and their NOHIST sets; the 4B on those four
-sets and on DEV and DEV-NOHIST.
+For each variant not ruled out in Step 3 (no shipped model significantly worse): the three stock
+models on DEV and DEV-NOHIST, the 4B's being part of D6 and the other two for comparison.
 
 **Done when:** rows are in section 8, and the D6 decision is final for each variant.
 
-### Step 5. Retrain, only if H4 says so (OFFLINE build, MLX training, LIVE GGUF scoring)
+### Step 5. Confirm on TEST (LIVE)
 
-Retrain only when a **request-side** variant (C3, or C4) helps the 4B, or helps D3 1.7B without
-reaching p < 0.05. The reason: a fine-tune may use data it was trained on better than one it
-sees for the first time. Do not retrain for system-prompt rewording alone (C1/C2). The training
-labels already hold the full spans, so retraining on reworded rules changes only the prompt text
-the model sees, and the previous plan's R1b ≈ R0 suggests that does not matter.
-
-1. Build with `LLM_FINETUNE_PROMPT_VARIANT=<variant>` and the settings of the retrain the author
-   names as the next release (Q1): r0v2's (`llmTrainingData/finetune-r0v2/manifest.json`
-   `options`, `llmTraining/lora-r16-r0v2.yaml`) if r0v2 is finished and chosen, otherwise R0's
-   (`LLM_FINETUNE_NO_HISTORY_SHARE=0.1`; the rest as recorded for `llmTraining/lora-r16-r0.yaml`
-   in the previous plan's Step 7), so the only difference from R0 is the prompt. Run
-   `llmTraining/check_data.py` on the result.
-2. Train with a copy of that run's yaml (new data and output dirs): about 3.5 h for R0's data, longer for r0v2's (4,345 iters). Fuse, then
-   convert to GGUF Q5_K_M (`llmTraining/README.md`).
-3. Score it and its control (R0 1.7B Q5_K_M, already built, or r0v2 as GGUF Q5_K_M) on FT-DEV and FT-DEV-NOHIST (not NEW-DEV if the data includes the new files), with the bundled
-   server (put the GGUF in a separate models folder for the run, not in `~/translationCore/models`).
-
-**At most two retrains.** **Done when:** each has rows against R0 and against D3; adopt per D6
-with R0 as the parent.
-
-### Step 6. Confirm on TEST (LIVE)
-
-For the adopted variant `F`: `baseline` and `F` on TEST and TEST-NOHIST for the three models
-(plus the retrained model if Step 5 adopted one), seed 42. Then twice more at the app's settings
+For the adopted variant `F`: `baseline` and `F` on TEST and TEST-NOHIST for all five models,
+seed 42. Then twice more at the app's settings
 with no seed. Then the suite: `scripts/test-llm.sh -r 3 -g 1 -u http://localhost:8080 <model>`.
 
-**Done when:** `F` is not worse than `baseline` on TEST for D3 1.7B. If it is worse, the
-FT-DEV gain was tuning to FT-DEV: report that and stop. Rows go in section 8, with the warning
+**Done when:** `F` is not significantly worse than `baseline` on TEST for any shipped model. If
+it is, the screening gain was tuning to FT-DEV or NEW-DEV: report that and stop. Rows go in section 8, with the warning
 that TEST has now been used many times.
 
-### Step 7. Put the result in the app (OFFLINE)
+### Step 6. Put the result in the app (OFFLINE)
 
 Only if a variant was adopted.
 1. Move it from `promptVariants.js` into `buildLlmSystemPrompt` / `buildTranslationOptionsPrompt`
@@ -360,19 +381,15 @@ Only if a variant was adopted.
 3. Update the tests that assert prompt text, the fine-tune parity test
    (`__tests__/buildFineTuneData.test.js`), the prompt description in `CLAUDE.md` (under
    "Auto-select suggestions"), and the comment above `LLM_SINGLE_SYSTEM_PROMPT`.
-4. If a retrained model was adopted: the new prompt and the new model ship together. Whatever
-   ships must also not be worse for users who keep D3 (that is Step 3's D3 row). Note the
-   pairing for translationCore's model updater (`../translationCore/electronite/modelUpdater.js`).
+4. The fine-tune training data must match the app's prompt (the parity test checks it), so
+   the next retrain, in a later plan, trains on the new prompt. Record that in
+   `plans/fine-tune-qwen3.md`.
 
 **Done when:** `npm test` passes, the batch tests are unchanged, and `baseline`/`v1` reproduce
 the app's old prompt byte for byte.
 
 ## 5. Risks
 
-- **Expected answers are alignments, not selections.** A word aligned to a GL particle (জন্য for
-  "for") may be something a translator would not select in a tW check. If so, C1/C2 tune the
-  model to alignment habits (Q2). Hand-check 30 answers that C1 changes from wrong to right, and
-  30 it changes from right to wrong, before adopting it.
 - **Longer spans on single-word phrases.** C1/C2 may add articles or particles where the
   expected answer is one word. Step 1's "too long" count on single-word phrases is the check.
 - **The training data was changing while this plan was written** (section 1). Sets are built
@@ -382,9 +399,11 @@ the app's old prompt byte for byte.
 - **FT-DEV is small and comes from the training projects.** Paired tests handle the first. The
   second can inflate absolute scores, which is why only paired differences are used.
 - **TEST has been looked at many times**, including to form this plan's hypotheses. Step 2's
-  gate and the FT-DEV screening guard against that. Report it with the Step 6 rows.
-- **A prompt change reaches every user, including those who keep D3.** One prompt for all
-  models (D3) means the D3 row is the real-world cost.
+  gate and the FT-DEV screening guard against that. Report it with the Step 5 rows.
+- **The fine-tunes may not respond to rule changes** (H4). Then nothing passes D6 for them, and
+  the result is a finding for a later retrain plan, not a failure of this one.
+- **A prompt change reaches every user of every model.** One prompt for all models, so D6
+  needs every shipped model to be not significantly worse.
 - **The engine changed** (build 12359 → 12651, router mode). Step 0 measures the difference.
   Don't compare new rows with the previous plan's numbers.
 
@@ -399,23 +418,19 @@ the app's old prompt byte for byte.
   previous plan's X5).
 - Constrained decoding (a grammar limited to verse words) and a gateway-language guard: the
   fine-tunes almost never answer with words that are not in the verse (section 1).
+- Retraining, and scoring R0 or r0v2 (author, 2026-11-24). A variant that would need a
+  retrain to help the fine-tunes is recorded for a later plan.
 - Batched prompt, thinking, `translatePhraseWithConfidence` (the older single-phrase path, not
   touched).
 
 ## 7. Open questions for the author
 
-- **Q1. Which model is the next release: R0, r0v2, or still D3?** The models folder has D3.
-  r0v2 (trained on the new data) stopped at iteration 3,000 of 4,345, and its data was rebuilt
-  after that. If R0 or r0v2 is to ship, it becomes the primary model of Steps 2-4. FT-DEV is fair
-  for both, NEW-DEV only for R0. The plan assumes D3, since that is
-  what users have today.
+- **Q1. Which models?** Answer (2026-11-24): the models in `~/translationCore/models` and the
+  equivalent stock models (decision D3). R0 and r0v2 are not used.
 - **Q2. Should a tW selection include the words for GL function words?** For "for Christ", is
-  `খ্রীষ্টের জন্য` what translators should select, or only `খ্রীষ্টের`? The expected answers
-  (alignments) say the first. If the checking guidance says the second, H1/H2 would make answers
-  worse in practice even when they score better, and this plan should stop at Step 2.
-- **Q3. Retrain budget.** Step 5 allows at most two retrains of about 3.5 h each on the Mac. Is
-  that acceptable, or should Step 5 wait for approval when it is reached?
-
+  `খ্রীষ্টের জন্য` or only `খ্রীষ্টের` the right selection? Answer (2026-11-24): use the expected
+  answers (alignments) (D9).
+- **Q3. Retrain budget.** Answer (2026-11-24): retrains are out of scope for this plan.
 - **Q4. Is the new data final?** The eight new files and two changed ones are committed with
   this plan (each parses as complete JSON), but
   `llmTrainingData/.en_ult_luk_book_ru_gl_ru.json.UcAt8WI7Cb` (not committed) looks like an
