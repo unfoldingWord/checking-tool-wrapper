@@ -971,6 +971,62 @@ data, 3,036 iters, 1.6 h; GGUF Q6_K; seed 42, as Step 6), against the released 0
 The 0.6B gains significantly with no history (+5.4 points; empty answers 104 → 17) and is not
 significantly worse with history (-1.1 points, p 0.36).
 
+### Step 8A. More training projects (2026-11-24)
+
+The training data had no English target, few non-English GLs (76% of train examples had the
+English GL), 70 Spanish-target examples, and its "Arabic GL" phrases were English: Arabic
+`arst` v4.9_BSOJ has English (UST-like) text aligned in most books (Arabic in Titus and 1
+Timothy), and the builder took the first bible with the book. Fixed in commit c804d99: the builder
+takes the first GL bible whose book is aligned (as the app's `getAlignedGLTextHelperMajor` does)
+and `LLM_TRAINING_GL_BIBLE` names one; `vi_glt_luk_book_BSOJ_ar` and `ru_rlob_luk_book_BSOJ_ar`
+were rebuilt from `avd` (Arabic). New files (each project's translationWords GL switched in
+translationCore first): `en_ult_gal_book_BSOJ_ar` (avd), `en_ult_luk_book_ru_gl_ru`,
+`en_ult_jos_book_ru_gl_ru`, `es-419_est_est_book_unfoldingWord_en`, `te_glt_luk_book_ru_gl_ru`,
+`vi_glt_1co_book_ru_gl_ru`, `fa_glt_1ti_book_ru_gl_ru`, `bn_glt_2co_book_BSOJ_ar` (avd). The test
+files are unchanged.
+
+**R0v2** = R0's settings on this data (`lora-r16-r0v2.yaml`): 17,380 train examples (R0 12,143);
+GL en 9,134 / ru 5,890 / ar 2,170 / es-419 186; English targets 3,021 (R0 none); 4,345 iters,
+4.8 h; final validation loss 0.061. Scored as Q5_K_M, app's prompt, seed 42.
+
+| Set | D3 → R0v2 (only D3 / only R0v2, p) | R0 → R0v2 (only R0 / only R0v2, p) | wrong ≥ 80 (D3 / R0 / R0v2) | no option | median ms |
+|---|---|---|---|---|---|
+| TEST | 67.4 → **72.3%**, 24 / 65, **p 2e-5** | 69.1 → 72.3%, 34 / 61, **p 0.007** | 99 / 77 / 83 | 3 / 3 / 3 | 77 / 80 / 80 |
+| TEST-NOHIST | 54.3 → **65.0%**, 31 / 121, **p 9e-14** | 56.0 → 65.0%, 40 / 115, **p 1e-9** | 0 (cap) | 34 / 9 / 1 | 109 / 105 / 108 |
+
+By test file (top-1 D3 / R0 / R0v2): the English-target `en_ult_tit` files gain the most, with
+every GL: with history ar 58 / 53 / 65, id 63 / 71 / 79, es-419 61 / 61 / 67, fa 60 / 60 / 69, ru
+65 / 67 / 76; with no history ar 25 / 29 / 45 (p 0.02 vs R0), id 33 / 38 / 69 (p 0.0001), es-419
+52 / 52 / 65 (p 0.02), fa 33 / 38 / 56 (p 0.05), ru 53 / 52 / 74 (p 0.002). The other test files
+are level with R0 with history (bn_glt_eph 87 → 86, es-419_est_rut 71 → 74, ne_glt_2co 70 → 70,
+ne_glt_tit 64 → 64) and level or better with none (bn_glt_eph 70 → 81, p 0.04).
+
+**R0v2 passes Step 7's rule against D3** (TEST better, p 2e-5; TEST-NOHIST better, p 9e-14; same
+speed) and is the best 1.7B so far. The gain comes from the data (English targets, more GLs,
+Arabic GL phrases), not the prompt; TEST's English-target files share their language pair with
+the new training projects (en target; ar, ru GLs), though not their books, so part of the gain
+there is that pairing. Before release: confirm without a seed (as Step 8), train the 0.6B on the
+same data.
+
+**Confirmed without a seed** (2 runs, as Step 8; logs in `llm-eval-results/step8/`), against D3's
+seedless runs: TEST 67.4 → 72.5% (24 / 66, p 1e-5) and 67.8 → 71.9% (27 / 61, p 0.0004);
+TEST-NOHIST 53.5 → 65.0% (p 1e-15) and 53.8 → 64.7% (p 1e-15); wrong at ≥ 80 99 → 80 and 97 → 83;
+median 80 ms. **Suite** (55 single cases x 3): R0v2 64% (35, 36, 35 of 55; hand-written 81%, real
+projects 44%), against D3 62% and R0 70% (39, 37, 39; real projects 51%); wrong at ≥ 80 10%. The
+suite is small (about 3 cases per run separate R0 and R0v2), and its real cases come from projects
+the training data also uses (their verses are left out of training), so TEST, which is held out
+by project, is the measure to trust; the drop from R0 is noted, not explained.
+
+**R0v2's data on the 0.6B** (`lora-r16-r0v2-0.6b.yaml`, 4,345 iters, 2.4 h, GGUF Q6_K, seed 42):
+
+| Set | released 0.6B → R0v2 0.6B (only A / only B, p) | R0 0.6B → R0v2 0.6B (p) | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|
+| TEST | 64.0 → **67.7%**, 33 / 64, **p 0.002** | 62.9 → 67.7%, 27 / 67, **p 5e-5** | 96 → 89 | 4 → 6 | 50 → 48 |
+| TEST-NOHIST | 36.2 → **49.7%**, 45 / 158, **p 6e-16** | 41.6 → 49.7%, 60 / 128, **p 8e-7** | 0 (cap) | 104 → 9 | 67 → 63 |
+
+The 0.6B on the new data is better than the released 0.6B on both sets, significantly, at the same
+speed; with history it now scores what the released 1.7B did (67.7% vs 67.4%).
+
 ### Step 9. Put the result in the app (OFFLINE)
 
 1. Move the adopted variant from `promptVariants.js` into `buildLlmSystemPrompt` /
