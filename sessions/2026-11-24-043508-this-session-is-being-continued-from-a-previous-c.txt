@@ -1,0 +1,2612 @@
+ ▐▛███▛█   Claude Code v2.1.330
+▝▜██████▀  Opus 5.5 · Claude Team
+ ▝▝   ▝▝   ~/Development/Electron/checking-tool-wrapper
+
+
+⏺ Step 4 is running: S1–S6, each on DEV and the no-history set for all three
+  models, about 2.5 hours in total. Each variant is compared with X4b, the
+  current best. I'll report all six when the chain finishes.
+
+  ┌───────────────┬─────────────────────────────────────────────────────────┐
+  │    Variant    │                      What changes                       │
+  ├───────────────┼─────────────────────────────────────────────────────────┤
+  │               │ Intro, the field list, 4 rules, Example 1 only, no      │
+  │ S1, short     │ wrong-answer list. Under 75% of the length (checked by  │
+  │               │ a test).                                                │
+  ├───────────────┼─────────────────────────────────────────────────────────┤
+  │               │ The rules become steps followed in order, each with its │
+  │ S2, procedure │  confidence range: a previous translation word for word │
+  │               │  (90+), then another form of one (60–89), then a        │
+  │               │ meaning match, then "",0.                               │
+  ├───────────────┼─────────────────────────────────────────────────────────┤
+  │ S3, merged    │ No system message: the instructions and the request in  │
+  │               │ one user message.                                       │
+  ├───────────────┼─────────────────────────────────────────────────────────┤
+  │ S4, examples  │ The system prompt keeps the rules only; each example    │
+  │ as chat turns │ becomes a user turn and an assistant turn before the    │
+  │               │ real request.                                           │
+  ├───────────────┼─────────────────────────────────────────────────────────┤
+  │               │ Answer only with words copied exactly from TARGET       │
+  │ S5, reminder  │ VERSE. right before Answer:. Copying a history          │
+  │               │ rendering that isn't in the verse is the 1.7B's most    │
+  │               │ common failure.                                         │
+  ├───────────────┼─────────────────────────────────────────────────────────┤
+  │ S6, field     │ GATEWAY PHRASE first, then TARGET VERSE, the history    │
+  │ order         │ and the possible answers. The field list and examples   │
+  │               │ are reordered to match.                                 │
+  └───────────────┴─────────────────────────────────────────────────────────┘
+
+  - Requests with possible answers: each variant applies the same change to
+    X4b's second system prompt.
+  - S2's wording: the plan wrote S2 around X1's "in verse" marks, which weren't
+    adopted. Its steps are worded for the current prompt instead.
+  - Tests: I reviewed the rendered prompts, and fixed a block-order bug in S6
+    and a stray blank line in S3. Tests check each variant's structure. All 367
+    tests pass, and nothing is committed.
+
+✻ Churned for 2m 9s · done Sunday 5:00 PM
+
+※ recap: We're improving the single-request prompt for small models. Step 4 (six wording and layout variants, S1–S6) is running on all three models and takes about 2.5 hours. Next, I'll compare each variant with X4b and report which pass the adoption rule.
+  ⎿  Referenced file ../../../../../private/tmp/claude-509/-Users-blm0-Developme
+     nt-Electron-checking-tool-wrapper/660b4189-b9de-4fcd-8da2-46d6dddf9329/scra
+     tchpad/s-variants.txt
+  ⎿  Referenced file __tests__/helpers/promptVariants.js
+  ⎿  Read ../../../../../private/tmp/claude-509/-Users-blm0-Development-Electron
+     -checking-tool-wrapper/660b4189-b9de-4fcd-8da2-46d6dddf9329/tasks/batlisr58
+     .output (21 lines)
+  ⎿  Read ../../../../../private/tmp/claude-509/-Users-blm0-Development-Electron
+     -checking-tool-wrapper/660b4189-b9de-4fcd-8da2-46d6dddf9329/tasks/bvkv93jnz
+     .output (74 lines)
+  ⎿  Read __tests__/buildPromptEvalCases.test.js (241 lines)
+
+⏺ Task "Run S1-S6 on DEV and DEV-NOHIST for three models" still running in 
+  background
+
+⏺ Compacted while idle, before the prompt cache expired · turn off with 
+  "idleCompaction": false in settings.json
+
+⏺ Background command "Run S1-S6 on DEV and DEV-NOHIST for three models"
+  completed (exit code 0)
+
+  Searched for 1 pattern, ran 5 shell commands (ctrl+o to expand)
+
+⏺ Step 4 finished; I'm comparing S1–S6 with X4b and writing the results into the
+  plan.
+
+  Ran 5 shell commands (ctrl+o to expand)
+
+⏺ Now writing the Step 4 results into the plan.
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 48 lines
+      584  Run S1-S6 each against the current best; combine the adopted o
+           nes and check the combination
+      585  once more (D5).
+      586 
+      587 +**S1-S6 measured 2026-11-22** (each built on X4b, applied to b
+          +oth of its system prompts; logs in                            
+      588 +`llm-eval-results/prompt-S<n>-20261122/`). DEV is compared wit
+          +h X4b, DEV-NOHIST with `baseline`                             
+      589 +(X4b sends DEV-NOHIST the app's prompt). Every S run has the N
+          +5 cap, so wrong ≥ 80 on DEV-NOHIST                            
+      590 +is 0 for all of them and is left out; the baseline there had 2
+          +73 (1.7B), 78 (0.6B), 367 (4B).                               
+      591 +S2 is worded for the current prompt (X1's `in verse` marks wer
+          +e not adopted): previous                                      
+      592 +translation word for word (90+), another form of one (60-89), 
+          +a meaning match, then `"",0`.                                 
+      593 +                                                              
+      594 +| Variant | Model | DEV top-1 (X4b → S, only-X4b / only-S, p) 
+          +| DEV wrong ≥ 80 | DEV no option | DEV-NOHIST top-1 (p) | medi
+          +an ms (1.7B DEV) |                                            
+      595 +|---|---|---|---|---|---|---|                                 
+      596 +| S1 short | 1.7B | 44.6 → 44.1%, 35 / 27, p 0.37 | 492 → 565 
+          +| 176 → 265 | 16.4 → 19.3%, p 0.021 | 165 → 162 |             
+      597 +| | 0.6B | 39.5 → 41.0%, 43 / 65, p 0.043 | 343 → **653** | 32
+          +8 → 240 | 1.1 → 1.6%, p 0.39 | |                              
+      598 +| | 4B | 51.7 → 50.1%, 56 / 31, **p 0.0097** | 529 → 544 | 140
+          + → 180 | 34.0 → 33.2%, p 0.54 | |                             
+      599 +| S2 procedure | 1.7B | 44.6 → 43.3%, 29 / 10, **p 0.0034** | 
+          +492 → 430 | 176 → 158 | 16.4 → 13.5%, **p 0.0032** | 165 → 169
+          + |                                                            
+      600 +| | 0.6B | 39.5 → 40.3%, p 0.26 | 343 → 442 | 328 → 196 | 1.1 
+          +→ 2.3%, p 0.049 | |                                           
+      601 +| | 4B | 51.7 → 50.7%, p 0.11 | 529 → 492 | 140 → 144 | 34.0 →
+          + 34.4%, p 0.80 | |                                            
+      602 +| S3 merged | 1.7B | 44.6 → 41.2%, 78 / 27, **p 6.5e-7** | 492
+          + → 596 | 176 → 197 | 16.4 → 13.2%, **p 0.0056** | 165 → 174 | 
+      603 +| | 0.6B | 39.5 → 37.0%, **p 0.0013** | 343 → 285 | 328 → 591 
+          +| 1.1 → 1.2% | |                                              
+      604 +| | 4B | 51.7 → 49.3%, **p 0.0002** | 529 → 459 | 140 → 158 | 
+          +34.0 → 30.4%, **p 0.0045** | |                                
+      605 +| S4 chat turns | 1.7B | 44.6 → 45.1%, 27 / 34, p 0.44 | 492 →
+          + **278** | 176 → 225 | 16.4 → **23.2%**, 23 / 74, **p 2e-7** |
+          + 165 → 128 |                                                  
+      606 +| | 0.6B | 39.5 → **41.5%**, 33 / 62, p 0.0038 | 343 → **6** |
+          + 328 → 350 | 1.1 → 0.8%, p 0.75 | |                           
+      607 +| | 4B | 51.7 → 49.4%, 77 / 42, **p 0.0017** | 529 → 437 | 140
+          + → 211 | 34.0 → 35.2%, p 0.36 | |                             
+      608 +| S5 reminder | 1.7B | 44.6 → 43.1%, 44 / 22, **p 0.0092** | 4
+          +92 → 404 | 176 → 160 | 16.4 → 13.3%, **p 0.0059** | 165 → 156 
+          +|                                                             
+      609 +| | 0.6B | 39.5 → 40.6%, p 0.064 | 343 → 319 | 328 → 307 | 1.1
+          + → 1.2% | |                                                   
+      610 +| | 4B | 51.7 → 51.1%, p 0.37 | 529 → 572 | 140 → 92 | 34.0 → 
+          +31.9%, **p 0.033** | |                                        
+      611 +| S6 field order | 1.7B | 44.6 → 44.5%, 38 / 37, p 1.0 | 492 →
+          + 634 | 176 → 180 | 16.4 → 9.9%, **p 6e-6** (no option 225 → 46
+          +9) | 165 → 161 |                                              
+      612 +| | 0.6B | 39.5 → 39.7%, p 0.92 | 343 → 356 | 328 → 298 | 1.1 
+          +→ 2.9%, p 0.0026 | |                                          
+      613 +| | 4B | 51.7 → 51.3%, p 0.71 | 529 → 445 | 140 → 148 | 34.0 →
+          + 32.8%, p 0.49 | |                                            
+      614 +                                                              
+      615 +**Decisions (D5): none adopted; `S*` = X4b.**                 
+      616 +- S2, S3, S5: significantly worse for the 1.7B on both sets. S
+          +3 is worse on every model; the                                
+      617 +  system message matters. S5's reminder lowers confident wrong
+          + answers but costs right ones.                                
+      618 +- S6: no change on DEV; with no history the 1.7B gives up twic
+          +e as often (no option 225 → 469).                             
+      619 +- S1: no DEV gain for the 1.7B, 4B worse (p 0.0097), 0.6B's co
+          +nfident wrong answers double. The                             
+      620 +  shorter prompt does not make stock runs faster (165 → 162 ms
+          + median), since llama-server                                  
+      621 +  caches the fixed system prompt. It stays a retrain candidate
+          + (Step 7) only as the plan says:                              
+      622 +  to see whether a fine-tune keeps its accuracy without the lo
+          +ng prompt.                                                    
+      623 +- **S4 is the closest and the strongest retrain candidate**, b
+          +ut fails D5 on two counts: the                                
+      624 +  1.7B's DEV gain is not significant (p 0.44), and the 4B is w
+          +orse on DEV (p 0.0017). What it                               
+      625 +  does gain: confident wrong answers on DEV fall for every mod
+          +el (1.7B 492 → 278, 0.6B 343 → 6,                             
+      626 +  4B 529 → 437), the 1.7B gains 6.8 points with no history (p 
+          +2e-7), the 0.6B gains on DEV                                  
+      627 +  (p 0.0038), and the 1.7B is faster (128 ms median). Mean con
+          +fidence falls too (1.7B right                                 
+      628 +  86 → 80, wrong 83 → 76), so the effect is partly that the mo
+          +del copies the examples'                                      
+      629 +  lower confidences.                                          
+      630 +  Where S4 loses: on DEV requests with no algorithm options (2
+          +38 cases), the answers it loses                               
+      631 +  are mostly `"",0` (1.7B: 14 of 15; 4B: 22 of 26). On request
+          +s with options the 1.7B gains                                 
+      632 +  (25 / 12) and the 4B loses (51 / 28, 14 of them empty).     
+      633 +- Nothing adopted, so there is no combination to check.       
+      634 +                                                              
+      635  **Done when:** each of S1-S6 has a row, and the best combinati
+           on is named `S*`.
+      636 
+      637  ### Step 5. No history (LIVE, DEV-NOHIST)
+
+⏺ I wrote the Step 4 results into the plan, and none of S1–S6 is adopted. So the
+  starting point for the next steps (S*) stays X4b. Below, DEV is compared with
+  X4b and the no-history set with the baseline. "Confident wrong" means wrong
+  at confidence 80 or more.
+
+  ┌────────────┬────────────┬───────────────┬───────────────────────────────┐
+  │            │ 1.7B DEV   │     1.7B      │                               │
+  │  Variant   │   top-1    │  no-history   │            Verdict            │
+  │            │            │     top-1     │                               │
+  ├────────────┼────────────┼───────────────┼───────────────────────────────┤
+  │            │ 44.6 →     │               │ No. 4B is worse (p 0.01),     │
+  │ S1 short   │ 44.1% (p   │ 16.4 → 19.3%  │ 0.6B's confident wrong        │
+  │            │ 0.37)      │ (p 0.02)      │ answers double, and it is no  │
+  │            │            │               │ faster                        │
+  ├────────────┼────────────┼───────────────┼───────────────────────────────┤
+  │ S2         │ 44.6 →     │ 16.4 → 13.5%  │                               │
+  │ procedure  │ 43.3% (p   │ (p 0.003)     │ No. Worse on both sets        │
+  │            │ 0.003)     │               │                               │
+  ├────────────┼────────────┼───────────────┼───────────────────────────────┤
+  │            │ 44.6 →     │               │                               │
+  │ S3 merged  │ 41.2% (p   │ 16.4 → 13.2%  │ No. Worse on every model      │
+  │            │ 7e-7)      │               │                               │
+  ├────────────┼────────────┼───────────────┼───────────────────────────────┤
+  │ S4 chat    │ 44.6 →     │ 16.4 → 23.2%  │ Closest, but fails the        │
+  │ turns      │ 45.1% (p   │ (p 2e-7)      │ adoption rule                 │
+  │            │ 0.44)      │               │                               │
+  ├────────────┼────────────┼───────────────┼───────────────────────────────┤
+  │ S5         │ 44.6 →     │ 16.4 → 13.3%  │                               │
+  │ reminder   │ 43.1% (p   │ (p 0.006)     │ No                            │
+  │            │ 0.009)     │               │                               │
+  ├────────────┼────────────┼───────────────┼───────────────────────────────┤
+  │ S6 field   │ 44.6 →     │ 16.4 → 9.9%   │ No. Without history the 1.7B  │
+  │ order      │ 44.5% (p   │ (p 6e-6)      │ gives up twice as often       │
+  │            │ 1.0)       │               │                               │
+  └────────────┴────────────┴───────────────┴───────────────────────────────┘
+
+  S4 fails the rule for two reasons:
+  - The 1.7B's gain on DEV isn't significant.
+  - The 4B is significantly worse on DEV: 51.7 → 49.4%, p 0.002.
+
+  S4 still has the most going for it of the six:
+  - Fewer confident wrong answers on every model. On DEV, 1.7B 492 → 278, 0.6B
+    343 → 6, 4B 529 → 437. This matters because the UI applies any suggestion
+    that has a confidence.
+  - 0.6B gains on DEV. 39.5 → 41.5%, p 0.004.
+  - The 1.7B is faster. Median time drops from 165 to 128 ms.
+
+  Part of that drop comes from lower confidences overall: the 1.7B's mean
+  confidence on right answers falls from 86 to 80. It seems to copy the lower
+  confidences in the examples.
+
+  Where S4 loses cases:
+  - Requests with no possible answers listed: mostly answers of "",0. That's 14
+    of 15 lost cases for the 1.7B and 22 of 26 for the 4B.
+  - Requests that list possible answers: the 1.7B gains (25 cases won, 12 lost),
+    but the 4B loses (28 won, 51 lost).
+
+  S1 doesn't help the stock models. llama-server caches the system prompt, so
+  the shorter prompt isn't faster. It stays a retrain candidate only to test
+  whether a fine-tune needs the long prompt.
+
+  My recommendation is to take S4, and S1 if you still want the speed test, into
+  the Step 7 retrains. They would be retrain candidates, not changes to the
+  prompt that ships. A fine-tune learns the format from its training data, so
+  the 4B's drop on the stock model matters less there. Before an S4 retrain, I
+  need to check how mlx-lm masks multi-turn examples, so training only learns
+  from the last answer.
+
+  Two other options:
+  - Try S4 with the separate no-history prompt (N3). That would target S4's
+    empty answers on requests without possible answers.
+  - Run Step 6 next.
+
+  Nothing is committed.
+
+✻ Baked for 1m 35s · done Sunday 7:17 PM
+
+※ recap: The goal is a better single-request prompt for small models, and Step 4 found no prompt-structure change worth adopting, though S4 (examples as chat turns) came closest. Next, you decide whether S4 goes into the Step 7 retrains.
+
+❯ when Step 4 finishes, run N3 + N4 together                                    
+
+⏺ Step 4 has already finished, so I'm starting N3 + N4 now. First, how the two
+  builders work:
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+⏺ Now the combined variant: the N3 prompt, plus X3's GATEWAY VERSE line, used
+  only when there's no history.
+
+⏺ Update(__tests__/helpers/promptVariants.js)
+  ⎿  Added 24 lines
+      555    return hasNoHistory(request) ? { messages: buildChatMessages
+           (N3_SYSTEM_PROMPT, messages[1].content) } : { messages };
+      556  }
+      557 
+      558 +/** N34's edits to N3's prompt: X3's GATEWAY VERSE field, and 
+          +a GATEWAY VERSE in each example */                            
+      559 +const N34_EDITS = [                                           
+      560 +  ...X3_EDITS,                                                
+      561 +  ['GATEWAY PHRASE (en): the sick\n', 'GATEWAY VERSE (en): Jes
+          +us healed many of [the sick]\nGATEWAY PHRASE (en): the sick\n'
+          +],                                                            
+      562 +];                                                            
+      563 +                                                              
+      564 +/** N34's system prompt for requests with no history: N3's, wi
+          +th X3's GATEWAY VERSE line */                                 
+      565 +export const N34_SYSTEM_PROMPT = editPrompt(N3_SYSTEM_PROMPT, 
+          +N34_EDITS);                                                   
+      566 +                                                              
+      567 +/**                                                           
+      568 + * N3 + N4: for requests with no history, N3's separate system
+          + prompt with X3's GATEWAY VERSE line                          
+      569 + * (in the prompt and in the request, as N4 sends it); X4b oth
+          +erwise.                                                       
+      570 + * @param {object} request                                    
+      571 + * @returns {{messages: Array<{role: string, content: string}>
+          +}}                                                            
+      572 + */                                                           
+      573 +function buildN34(request) {                                  
+      574 +  if (!hasNoHistory(request)) {                               
+      575 +    return buildX4b(request);                                 
+      576 +  }                                                           
+      577 +                                                              
+      578 +  const { messages } = buildX3(request);                      
+      579 +  return { messages: buildChatMessages(N34_SYSTEM_PROMPT, mess
+          +ages[messages.length - 1].content) };                         
+      580 +}                                                             
+      581 +                                                              
+      582  /*
+      583   * Step 4 variants (S1-S6): instruction length and structure,
+           each on X4b. X4b has two fixed system
+      584   * prompts (the app's, and X4's for requests with POSSIBLE ANS
+           WERS), so each S variant is a function
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; sed -i ''
+      's/N3: buildN3, N4: buildN4,/N3: buildN3, N4: buildN4, N34: buildN34,/'
+      __tests__/helpers/p…)
+  ⎿  816:  baseline: buildBaseline, X1: buildX1, X3: buildX3, X4: buildX4,
+     X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: buildN2, N3:
+      buildN3, N4: buildN4, N34: buildN34, S1: withSystemPrompt('S1'), S2:
+     … +39 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/helpers/promptVariants.js +1 -1
+      813 
+      814  /** builders by variant id */
+      815  export const PROMPT_VARIANTS = {
+      816 -  baseline: buildBaseline, X1: buildX1, X3: buildX3, X4: build
+          -X4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: 
+          -buildN2, N3: buildN3, N4: buildN4, S1: withSystemPrompt('S1'),
+          - S2: withSystemPrompt('S2'), S3: buildS3, S4: buildS4, S5: bui
+          -ldS5, S6: buildS6, N6: buildN6,                               
+      816 +  baseline: buildBaseline, X1: buildX1, X3: buildX3, X4: build
+          +X4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: 
+          +buildN2, N3: buildN3, N4: buildN4, N34: buildN34, S1: withSyst
+          +emPrompt('S1'), S2: withSystemPrompt('S2'), S3: buildS3, S4: b
+          +uildS4, S5: buildS5, S6: buildS6, N6: buildN6,                
+      817  };
+      818 
+      819  /**
+
+⏺ Update(__tests__/promptVariants.test.js)
+  ⎿  Added 30 lines
+      689    });
+      690  });
+      691 
+      692 +describe('variant N34 (N3 + N4)', () => {                     
+      693 +  // eslint-disable-next-line global-require                  
+      694 +  const { N3_SYSTEM_PROMPT, N34_SYSTEM_PROMPT } = require('./h
+          +elpers/promptVariants');                                      
+      695 +  const request = {                                           
+      696 +    wordList: ['para', 'la', 'iglesia', 'de', 'Éfeso'],       
+      697 +    targetLangCode: 'es-419',                                 
+      698 +    glPhrase: 'church',                                       
+      699 +    glLangCode: 'en',                                         
+      700 +    glVerseText: 'to the church in Ephesus',                  
+      701 +    previousTranslationData: { church: { iglesia: 7 } },      
+      702 +  };                                                          
+      703 +                                                              
+      704 +  test('with history it is X4b; without, N3\'s prompt with GAT
+          +EWAY VERSE and N4\'s request', () => {                        
+      705 +    expect(PROMPT_VARIANTS.N34(request)).toEqual(PROMPT_VARIAN
+          +TS.X4b(request));                                             
+      706 +                                                              
+      707 +    const noHistory = { ...request, previousTranslationData: {
+          +} };                                                          
+      708 +    const [system, user] = PROMPT_VARIANTS.N34(noHistory).mess
+          +ages;                                                         
+      709 +    expect(system.content).toBe(N34_SYSTEM_PROMPT);           
+      710 +    expect(user).toEqual(PROMPT_VARIANTS.N4(noHistory).message
+          +s[1]);                                                        
+      711 +    expect(user.content).toContain('GATEWAY VERSE (en): to the
+          + [church] in Ephesus\nGATEWAY PHRASE (en): church');          
+      712 +  });                                                         
+      713 +                                                              
+      714 +  test('the prompt is N3\'s plus the GATEWAY VERSE field and o
+          +ne GATEWAY VERSE per example', () => {                        
+      715 +    expect(N34_SYSTEM_PROMPT.match(/^GATEWAY VERSE \(en\):/gm)
+          +.length).toBe(3);                                             
+      716 +    expect(N34_SYSTEM_PROMPT).toContain('GATEWAY VERSE - the s
+          +ame verse in the gateway language');                          
+      717 +    expect(N34_SYSTEM_PROMPT.replace(/^GATEWAY VERSE.*\n/gm, '
+          +')).toBe(N3_SYSTEM_PROMPT);                                   
+      718 +    expect(N34_SYSTEM_PROMPT).not.toMatch(/PREVIOUS|previous|c
+          +hosen/);                                                      
+      719 +  });                                                         
+      720 +});                                                           
+      721 +                                                              
+      722  describe('Step 4 variants S1-S6 (instruction length and struct
+           ure, on X4b)', () => {
+      723    // eslint-disable-next-line global-require
+      724    const {
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Tests and lint pass. Starting the three model runs:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I've started N3 + N4 (I named it N34) on all three models, on DEV and the
+  no-history set. Step 4 had already finished, so there was nothing to wait for.
+  It should take about 25 minutes.
+
+  What N34 sends:
+  - With history: the same prompt as X4b, the current best.
+  - With no history: N3's separate prompt, which never mentions previous
+    translations and caps confidence at 70. It adds X3's gateway verse line,
+    which shows the verse in the gateway language with the phrase in [brackets].
+    The request text is the same as N4's.
+  - Examples: each of the prompt's three examples now has a gateway verse line
+    too. For the Swahili one I wrote "Jesus healed many of [the sick]".
+
+  Tests: I added two for N34, and all 61 variant tests and lint pass.
+
+  When the runs finish, I'll compare N34 with the baseline on the no-history
+  set, which is where it should help. I'll also check that DEV hardly changes.
+  Most DEV requests have history, so they get the same prompt as X4b. Then I'll
+  record the results in the plan.
+
+✻ Churned for 40s · done Monday 4:24 AM
+
+※ recap: We're improving the small models' prompt for single requests, and the N3 + N4 combined variant is now running on all three models. When it finishes, I'll compare it with the baseline, mainly on the no-history set, and record the results in the plan.
+
+⏺ Background command "Run N34 on DEV and DEV-NOHIST for three models" completed
+  (exit code 0)
+  Ran 3 shell commands (ctrl+o to expand)
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 16 lines
+      742  not more often right. It is the best no-history prompt for the
+            4B (+7.2 points, the largest gain
+      743  of Step 5), so it stays a candidate. Next to try: N3 with N4's
+            GATEWAY VERSE line (both helped the
+      744  4B separately; the 1.7B gained most from the verse).
+      745 +                                                              
+      746 +  **N3 + N4 measured 2026-11-23** (variant `N34`; logs in `llm
+          +-eval-results/prompt-N34-20261123/`).                         
+      747 +  With no history: N3's prompt plus X3's GATEWAY VERSE field, 
+          +a GATEWAY VERSE in each of its three                          
+      748 +  examples (Example 3: "Jesus healed many of [the sick]"), and
+          + N4's request text; X4b otherwise.                            
+      749 +  DEV is identical to X4b on every model (0 / 0 changed cases)
+          +, as it should be.                                            
+      750 +                                                              
+      751 +  | Model | DEV-NOHIST top-1, baseline → N34 (only A / B, p) |
+          + vs N3 | vs N4 | No option |                                  
+      752 +  |---|---|---|---|---|                                       
+      753 +  | 1.7B | 16.4 → 16.1%, 48 / 46, p 0.92 | 16.5%, p 0.84 | 18.
+          +7%, **N4 better, p 0.034** | 225 → 167 |                      
+      754 +  | 0.6B | 1.1 → 0.9%, p 1.0 | 1.6%, p 0.18 | 0.4%, p 0.34 | 6
+          +63 → 690 |                                                    
+      755 +  | 4B | 34.0 → **42.9%**, 45 / 112, **p 9e-8** | 41.2%, p 0.2
+          +9 | 39.5%, **p 0.013** | 76 → 37 |                            
+      756 +                                                              
+      757 +  **Not adopted (D5):** no gain for the primary model; the 1.7
+          +B does better with N4 alone, so for                           
+      758 +  it the N3 prompt cancels what the verse gives. For the 4B it
+          + is the best no-history prompt                                
+      759 +  measured (+8.9 points). A candidate for the retrains only if
+          + no-history examples are trained                              
+      760 +  with this prompt; otherwise N4 stays the 1.7B's best (not ad
+          +opted either, p 0.097 vs baseline).                           
+      761  - **N6. Unrelated history treated like none.** When no history
+            line fits the verse
+      762    (`noRelatedWordInHistory` cases: today up to 5 unrelated lin
+           es are sent), send the no-history
+      763    form instead. Measure on the DEV cases with that tag
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; sed -i ''
+      's#prompt-N34-20261123/#prompt-N34-20261122/#'
+      plans/improve-single-prompt.md; grep -c "pro…)
+  ⎿  1
+  ⎿  Updated plans/improve-single-prompt.md +1 -1
+      743  of Step 5), so it stays a candidate. Next to try: N3 with N4's
+            GATEWAY VERSE line (both helped the
+      744  4B separately; the 1.7B gained most from the verse).
+      745 
+      746 -  **N3 + N4 measured 2026-11-23** (variant `N34`; logs in `llm
+          --eval-results/prompt-N34-20261123/`).                         
+      746 +  **N3 + N4 measured 2026-11-23** (variant `N34`; logs in `llm
+          +-eval-results/prompt-N34-20261122/`).                         
+      747    With no history: N3's prompt plus X3's GATEWAY VERSE field,
+           a GATEWAY VERSE in each of its three
+      748    examples (Example 3: "Jesus healed many of [the sick]"), and
+            N4's request text; X4b otherwise.
+      749    DEV is identical to X4b on every model (0 / 0 changed cases)
+           , as it should be.
+
+⏺ N3 + N4 together isn't adopted: the 1.7B, the model that decides, gains
+  nothing on the no-history set. The 4B gains the most of anything tried for no
+  history so far.
+
+  DEV gave exactly the same answers as X4b on all three models, as expected,
+  since its requests all have history. The no-history results:
+
+  ┌───────┬──────────────────┬───────────────────┬──────────────────────────┐
+  │ Model │ Baseline → N3 +  │    vs N3 alone    │       vs N4 alone        │
+  │       │        N4        │                   │                          │
+  ├───────┼──────────────────┼───────────────────┼──────────────────────────┤
+  │ 1.7B  │ 16.4 → 16.1% (p  │ 16.5% (no         │ 18.7%, N4 alone is       │
+  │       │ 0.92)            │ difference)       │ better (p 0.034)         │
+  ├───────┼──────────────────┼───────────────────┼──────────────────────────┤
+  │ 0.6B  │ 1.1 → 0.9%       │ 1.6%              │ 0.4%                     │
+  ├───────┼──────────────────┼───────────────────┼──────────────────────────┤
+  │ 4B    │ 34.0 → 42.9% (p  │ 41.2% (p 0.29)    │ 39.5% (p 0.013)          │
+  │       │ 9e-8)            │                   │                          │
+  └───────┴──────────────────┴───────────────────┴──────────────────────────┘
+
+  - 1.7B: the N3 prompt cancels what the gateway verse gives it. It gives an
+    answer more often (no answer 225 → 167 cases), but it isn't right more
+    often. N4 alone is still the best no-history variant for the 1.7B, though it
+    wasn't adopted either (p 0.097 against the baseline).
+  - 4B: best no-history result measured so far, with nearly twice as many gained
+    cases as lost (112 against 45). Its no-answer count halves (76 → 37).
+  - 0.6B: stays near zero without history whatever the prompt.
+
+  So for the no-history set, N4 suits the 1.7B and N3 + N4 suits the 4B. With
+  one prompt for every model, neither passes on the stock 1.7B. The combination
+  is mainly worth trying in a retrain, if the no-history training examples use
+  this prompt.
+
+  I recorded the results in the plan under N3, added the N34 variant with two
+  tests (all variant tests and lint pass), and committed nothing.
+
+✻ Baked for 48s · done Monday 4:47 AM
+
+※ recap: We're improving the single-request prompt for small models, and Steps 4 and 5 are now done with nothing adopted beyond the confidence cap. Next, you decide whether to run Step 6 (released fine-tunes) or start the S4 retrain.
+
+❯ what is step 6                                                                
+
+⏺ Step 6 measures what changing the app's prompt would cost people already using
+  the released fine-tuned models, before any retraining. Those models were
+  trained on the app's current prompt, so a new one might make them worse.
+
+  What it runs: the app's current prompt (baseline) and the final candidate (F).
+  Each runs on the two released fine-tunes:
+  - uw-tw-qwen3-1.7b-d3, GGUF Q5_K_M
+  - the 0.6B companion, GGUF Q6_K
+
+  Both are scored on TEST (the fine-tune's held-out files) and TEST-NOHIST (the
+  same cases with the history removed).
+
+  What it shows:
+  - How much F would cost users of the released models right away.
+  - How the fine-tunes do with no history at all. They were never trained on
+    that.
+
+  When it's done: four rows per fine-tune in the plan's results section (2
+  prompts × 2 sets).
+
+  What F would be today: the only prompt change that passed the adoption rule is
+  X4b, which adds the algorithm's possible answers to the request. Everything
+  in Steps 4 and 5 failed, so F = X4b. The no-history cap (N5) is a change in
+  the app's code, not the prompt, so it applies to both runs.
+
+  That makes Step 6 a baseline-vs-X4b comparison on the fine-tunes. That's about
+  4 runs, roughly 30–40 minutes with both models.
+
+✻ Brewed for 8s · done Monday 5:12 AM
+
+❯ summarize what options we have tried for the prompt and what were the results 
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+⏺ Of the 19 prompt variants measured, one was adopted: X4b, which adds the
+  algorithm's possible answers. One code change was also adopted, the N5
+  confidence cap. Everything was scored on stock Qwen3 GGUF models run through
+  llama-server.
+
+  - Primary model: the stock 1.7B.
+  - DEV: 1,500 cases the app sends to the AI.
+  - No-history set: 750 of those cases with the history removed.
+  - Adoption rule: the 1.7B must gain top-1 significantly (p < 0.05) on one set
+    without getting worse on the other. The 0.6B and 4B must not get
+    significantly worse.
+
+  The 1.7B scores 41.0% on DEV and 16.4% on the no-history set with the app's
+  current prompt.
+
+  Step 3: extra information in the request
+
+  Variant: X1
+  What it adds: Marks each previous translation as in the verse, another form
+    in the verse, or not in the verse
+  1.7B result: DEV 41.0 → 41.5% (ns); confident wrong answers 513 → 360
+  Decision: No: no top-1 gain on any model
+  ────────────────────────────────────────
+  Variant: X2
+  What it adds: Leave out history lines not in the verse
+  1.7B result: —
+  Decision: Dropped: the app already does this
+  ────────────────────────────────────────
+  Variant: X4
+  What it adds: The algorithm's candidates as POSSIBLE ANSWERS, in every
+    request
+  1.7B result: DEV 41.0 → 43.9% (p 0.002)
+  Decision: No: 4B worse on no-history (p 8e-5)
+  ────────────────────────────────────────
+  Variant: X4b
+  What it adds: X4, but only for requests where the algorithm has candidates
+  1.7B result: DEV 41.0 → 44.6% (p 8e-5); confident wrong 513 → 492
+  Decision: Adopted (current best)
+  ────────────────────────────────────────
+  Variant: X3
+  What it adds: The gateway-language verse with the phrase in [brackets]
+  1.7B result: DEV 43.7% (ns); no-history 18.7% (p 0.097); confident wrong
+    answers +142
+  Decision: No; 4B no-history +5.5 points (p 0.0007)
+  ────────────────────────────────────────
+  Variant: X5
+  What it adds: Which occurrence of a repeated word to choose
+  1.7B result: No change (0 cases differ)
+  Decision: No: the code places occurrences anyway
+  ────────────────────────────────────────
+  Variant: X6
+  What it adds: The translationWords term (e.g. church)
+  1.7B result: DEV 41.7% (ns); no-history 18.0% (ns)
+  Decision: No; 4B no-history +3.6 points (p 0.0004)
+
+  Step 4: wording and structure (each built on X4b)
+
+  ┌─────────┬──────────────────┬──────────────────────┬─────────────────────┐
+  │ Variant │      Change      │     1.7B DEV /       │      Decision       │
+  │         │                  │      no-history      │                     │
+  ├─────────┼──────────────────┼──────────────────────┼─────────────────────┤
+  │ S1      │ Short prompt,    │ 44.1% (ns) / 19.3%   │ No: 4B worse, and   │
+  │         │ one example      │ (p 0.02)             │ no faster           │
+  ├─────────┼──────────────────┼──────────────────────┼─────────────────────┤
+  │ S2      │ Rules as         │ 43.3% / 13.5%, both  │ No                  │
+  │         │ numbered steps   │ worse                │                     │
+  ├─────────┼──────────────────┼──────────────────────┼─────────────────────┤
+  │         │ No system        │ 41.2% / 13.2%, worse │                     │
+  │ S3      │ message: all in  │  on every model      │ No                  │
+  │         │ one user message │                      │                     │
+  ├─────────┼──────────────────┼──────────────────────┼─────────────────────┤
+  │         │ Examples sent as │ 45.1% (ns) / 23.2%   │ No: 4B worse on DEV │
+  │ S4      │  earlier chat    │ (p 2e-7); confident  │  (p 0.002). Best    │
+  │         │ turns            │ wrong 492 → 278      │ retrain candidate   │
+  ├─────────┼──────────────────┼──────────────────────┼─────────────────────┤
+  │ S5      │ A reminder line  │ 43.1% / 13.3%, both  │ No                  │
+  │         │ before Answer:   │ worse                │                     │
+  ├─────────┼──────────────────┼──────────────────────┼─────────────────────┤
+  │         │ Gateway phrase   │                      │ No: gives up twice  │
+  │ S6      │ first, then the  │ 44.5% / 9.9%         │ as often without    │
+  │         │ verse            │                      │ history             │
+  └─────────┴──────────────────┴──────────────────────┴─────────────────────┘
+
+  Step 5: requests with no history
+
+  ┌─────────┬───────────────────────┬───────────────────────┬───────────────┐
+  │ Variant │        Change         │    1.7B no-history    │   Decision    │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │         │ PREVIOUS              │ 16.4 → 0.8% (it       │               │
+  │ N1      │ TRANSLATIONS: none    │ answers "",0 almost   │ No            │
+  │         │                       │ every time)           │               │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │ N2      │ A third example with  │ 15.3% (ns); the 0.6B  │ No            │
+  │         │ no history (Swahili)  │ copies its words      │               │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │         │ A separate no-history │                       │ No; 4B +7.2   │
+  │ N3      │  prompt, confidence   │ 16.5% (ns)            │ points (p     │
+  │         │ capped at 70          │                       │ 3e-9)         │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │         │ X3's gateway verse,   │                       │ No (closest   │
+  │ N4      │ only when there's no  │ 18.7% (p 0.097)       │ for the 1.7B) │
+  │         │ history               │                       │               │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │         │                       │                       │ No; 4B +8.9   │
+  │ N3+N4   │ Both together         │ 16.1% (ns)            │ points (p     │
+  │         │                       │                       │ 9e-8), its    │
+  │         │                       │                       │ best          │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │         │ Treat history with    │                       │               │
+  │ N6      │ nothing matching the  │ DEV 44.8% (ns)        │ No            │
+  │         │ verse as no history   │                       │               │
+  ├─────────┼───────────────────────┼───────────────────────┼───────────────┤
+  │         │ Code change: cap AI   │ Answers unchanged;    │               │
+  │ N5      │ confidence at 70 when │ confident wrong       │ Adopted       │
+  │         │  there's no history   │ answers on no-history │               │
+  │         │                       │  → 0 for every model  │               │
+  └─────────┴───────────────────────┴───────────────────────┴───────────────┘
+
+  What the results show
+
+  - Only information the model can't work out itself helped the 1.7B, mainly the
+    algorithm's candidates (X4b). Rewording the rules (S1, S2, S5, S6) did
+    nothing or made it worse.
+  - Without history, the stock 1.7B stays near 16–19% whatever we try, except
+    S4's examples as chat turns (23%). The 4B gains from the gateway verse, the
+    translationWords term and the separate prompt. Those didn't pass because the
+    decision rests on the stock 1.7B.
+  - Confident wrong answers matter, since the app shows any suggestion that has 
+    a confidence. N5 removes them with no history, and S4 nearly halves them
+    with history.
+  - The 0.6B is near 1% without history whatever the prompt.
+  - Candidates for the retrains (Step 7): X4b, S4, and N4 or N3+N4 for
+    no-history examples. S1 would be included only to test whether a fine-tune
+    needs the long prompt. A fine-tune can learn to use these where the stock
+    models couldn't.
+
+  The full tables are in plans/improve-single-prompt.md.
+
+✻ Crunched for 26s · done Monday 5:14 AM
+
+❯ are there any changes to the prompt itself that may improve the results for   
+  a qwen3 model                                                                 
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Yes. A few changes look worth measuring, but none has been tested yet, so
+  treat these as ideas. Each one targets a failure we saw in the results.
+
+  1. Let the server limit answers to verse words. llama-server accepts a grammar
+  field with each request, and we can build one per request that only allows
+  quoted runs of TARGET VERSE words. The 1.7B's most common mistake is copying a
+  previous translation that isn't in the verse, and the rule against it isn't
+  followed: with X1, it still copied a rendering 223 times out of 422 when none
+  was in the verse. A grammar makes that impossible.
+  - plans/improve-llm-suggestions.md (D1) rejected grammars because answers
+    never failed to parse. This is a different use, about content rather than
+    format.
+  - Cost: per-request code (the fixed llmExtraParams can't carry it), and only
+    llama.cpp-based servers support it.
+  - Test: an X4b + grammar variant on DEV.
+
+  2. Base confidence on the model's token probabilities. The model's stated
+  confidence barely tells right answers from wrong ones. With X4b, the 1.7B's
+  mean confidence is 86 on right answers and 83 on wrong ones. That leaves 492
+  confident wrong answers, and the app shows any suggestion that has a
+  confidence.
+  - llama-server can return the probability of each output token (n_probs). The
+    probability of the answer's first token usually separates right from wrong
+    much better than a stated number.
+  - The prompt could then stop asking for a confidence at all. That would also
+    remove the examples' confidences, which S4 suggested the model copies.
+  - Test: rescore saved answers offline first. That would show whether it helps
+    before any new runs.
+
+  3. Have the model choose among the possible answers by letter. X4b already
+  lists the algorithm's candidates, and the 1.7B picks the first one about 92%
+  of the time. Labeling them A/B/C with a "D: other verse words" option is a
+  format small models handle well. It would also give a cleaner probability for
+  idea 2.
+  - Risk: it could tie the model even more closely to the algorithm.
+
+  4. Use Qwen3's recommended sampling settings. For non-thinking mode, Qwen
+  recommends temperature 0.7, top_p 0.8 and top_k 20. We use 0.1, the app's
+  default, and these other settings weren't tested here.
+  - Test: scripts/test-llm-temperatures.sh plus LLM_EVAL_EXTRA_PARAMS for top_p
+    and top_k. It's cheap.
+  - Caution: an earlier temperature sweep is why 0.1 is the default, so the gain
+    may be small.
+
+  5. Measure thinking mode on a small budget. Thinking is always off
+  (/no_think). For a 1.7B, thinking often helps on matching tasks like this one,
+  at a large cost in speed.
+  - Test: one run with a capped max_tokens would show whether a smaller thinking
+    model can beat the 4B. If not, it can be ruled out.
+
+  Not worth repeating: rewording the rules (S1, S2, S5, S6), extra examples
+  (N2), or merging the system prompt into the user message (S3). All made the
+  1.7B worse or no better.
+
+  The goal is a better fine-tune, and a fine-tune learns the format and rules
+  from its training data. Ideas 1 and 2 work outside the prompt, so they would
+  help the fine-tunes as well as the stock models. I'd test those two first,
+  starting with 2 because it needs no new model runs.
+
+✻ Baked for 26s · done Monday 5:16 AM
+
+❯ try 4 and 5                                                                   
+
+  Ran 5 shell commands (ctrl+o to expand)
+
+⏺ I'm setting up the two runs: Qwen's recommended sampling settings (test 4) and
+  thinking on with a token cap (test 5). The app always sends thinking off, so
+  test 5 needs a small option added first.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      import re…)
+  ⎿   __tests__/helpers/suggestionsHelpers.js |  3 +++
+      __tests__/runLlmTrainingData.test.js    |  3 +++
+      plans/improve-single-prompt.md          | 16 ++++++++++++++++
+     … +18 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/helpers/suggestionsHelpers.js +3
+      170   * @param {string} [settings.currentModel] - AI model name
+      171   * @param {number} [settings.llmTemperature] - AI temperature
+      172   * @param {object} [settings.llmExtraParams] - extra fields fo
+           r the AI request body
+      173 + * @param {boolean} [settings.llmEnableThinking] - let the AI 
+          +think (experiments only)                                      
+      174   * @param {string} [settings.apiToken] - bearer token for the
+           AI server
+      175   * @param {string} [settings.toolName='translationWords'] - us
+           ed in the cache `key`
+      176   * @returns {object} - options for `getBestSelections`; pass a
+           n array of them for a batched query
+     ...
+      184      currentModel,
+      185      llmTemperature,
+      186      llmExtraParams,
+      187 +    llmEnableThinking,                                        
+      188      apiToken,
+      189      toolName = 'translationWords',
+      190    } = settings;
+     ...
+      210      currentModel,
+      211      llmTemperature,
+      212      llmExtraParams,
+      213 +    llmEnableThinking,                                        
+      214      apiToken,
+      215    };
+      216  }
+  ⎿  Updated __tests__/runLlmTrainingData.test.js +3
+      23   *   LLM_TRAINING_TEMPERATURE   AI temperature (default: the ap
+          p's default)
+      24   *   LLM_TRAINING_TOKEN         bearer token for the AI server
+      25   *   LLM_TRAINING_EXTRA_PARAMS  JSON object of extra request bo
+          dy fields, e.g. '{"seed":42}'
+      26 + *   LLM_TRAINING_THINKING      set to 1 to let the AI think (n
+         +o `/no_think`); cap it with                                    
+      27 + *                              `max_tokens` in LLM_TRAINING_EX
+         +TRA_PARAMS                                                     
+      28   *   LLM_PROMPT_VARIANT         prompt variant for single AI re
+          quests, a key of `PROMPT_VARIANTS` in
+      29   *                              `helpers/promptVariants.js` (de
+          fault: the app's prompt, no override).
+      30   *                              The result files get `_prompt-<
+          variant>` after the model name.
+     ...
+      64    llmTemperature: env.LLM_TRAINING_TEMPERATURE ? Number(env.LLM
+          _TRAINING_TEMPERATURE) : undefined,
+      65    apiToken: env.LLM_TRAINING_TOKEN || undefined,
+      66    llmExtraParams: env.LLM_TRAINING_EXTRA_PARAMS ? JSON.parse(en
+          v.LLM_TRAINING_EXTRA_PARAMS) : undefined,
+      67 +  llmEnableThinking: env.LLM_TRAINING_THINKING === '1' || undef
+         +ined,                                                          
+      68  };
+      69  /** prompt variant of an AI run, '' for the app's prompt (plans
+          /improve-single-prompt.md) */
+      70  const PROMPT_VARIANT = env.LLM_TRAINING_URL ? getPromptVariantF
+          romEnv(env) : '';
+  ⎿  Updated src/utils/checkingSuggestionsUtils.js +4 -1
+      4556   * @param {number} [options.llmTemperature=0.1] - Sampling te
+            mperature for AI model (0.0-1.0); higher values increase
+      4557   *   randomness in suggestions, lower values make output more
+             repeatable; 0 is used as given; only applies in AI mode
+      4558   * @param {string} [options.apiToken] - Bearer token for LLM
+            API requests when required
+      4559 + * @param {boolean} [options.llmEnableThinking=false] - let t
+           +he AI think before answering (no `/no_think`,                
+      4560 + *   no default response cap); the app leaves it off; for exp
+           +eriments                                                     
+      4561   * @param {object} [options.llmExtraParams] - extra chat-comp
+            letion request body fields, e.g.
+      4562   *   `{ seed: 42, top_k: 20 }`; only applies in AI mode (see
+            {@link streamChatMessage})
+      4563   * @param {object} [options.contextId] - the check's context;
+             when `contextId.occurrence` is above 1,
+     ...
+      4667            gatewayLanguageCode,
+      4668            glVerseText,
+      4669            key,
+      4670 +          llmEnableThinking,                                 
+      4671            llmExtraParams,
+      4672            llmTemperature,
+      4673            selectionsData,
+     ...
+      4691            lmOptions: {
+      4692              apiToken,
+      4693              baseUrl: llmQueryUrl,
+      4691 -            enable_thinking: false,                          
+      4694 +            enable_thinking: !!llmEnableThinking,            
+      4695              extraParams: llmExtraParams,
+      4696              model: currentModel,
+      4697              // ?? so that a setting of 0 is used; 0.1 gave th
+            e same accuracy as 0.7 or better, with
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Now a test that thinking reaches the request, then a quick check against the
+  server.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Update(__tests__/checkingSuggestionsUtilsLlm.test.js)
+  ⎿  Added 18 lines
+      427      ]);
+      428    });
+      429 
+      430 +  test('sends thinking off unless llmEnableThinking is set', a
+          +sync () => {                                                  
+      431 +    const query = jest.fn().mockResolvedValue({ replyText: '"R
+          +oma",95', actualModel: 'test-model' });                       
+      432 +    window.AiAPIs = { query };                                
+      433 +    const job = {                                             
+      434 +      llmQueryUrl: 'http://localhost:1234', targetLanguageDeta
+          +ils: { id: 'es-419' }, gatewayLanguageCode: 'en',             
+      435 +      verseText: 'para la iglesia de Roma', alignedGLText: 'Ro
+          +me', selectionsData: { selections: {} },                      
+      436 +    };                                                        
+      437 +                                                              
+      438 +    await getBestSelections([job]);                           
+      439 +    await getBestSelections([{ ...job, llmEnableThinking: true
+          + }]);                                                         
+      440 +                                                              
+      441 +    expect(query.mock.calls[0][1].enable_thinking).toBe(false)
+          +;                                                             
+      442 +    expect(query.mock.calls[0][0]).toContain('/no_think');    
+      443 +    expect(query.mock.calls[1][1].enable_thinking).toBe(true);
+      444 +    expect(query.mock.calls[1][0]).not.toContain('/no_think');
+      445 +    expect(query.mock.calls[1][1].systemPrompt).not.toContain(
+          +'/no_think');                                                 
+      446 +  });                                                         
+      447 +                                                              
+      448    test('asks the AI for a confidence-100 job when algorithmCer
+           tainConfidence is above 100', async () => {
+      449      const query = jest.fn().mockResolvedValue({ replyText: '"i
+           glesia",90', actualModel: 'test-model' });
+      450      window.AiAPIs = { query };
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Test passes. Next, a quick probe of thinking on 30 DEV cases, to see how long
+  the 1.7B thinks before I size the full runs:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ About 7 seconds per request with thinking, against 0.17 s without. Checking
+  how many tokens it thinks for and how X4b did on the same 30 cases:
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+⏺ The 1.7B model reasons for 636 tokens at the median, and 17 of 30 correct
+  against 18 for X4b, which is too few cases to separate them. Next I'll run
+  Qwen's sampling settings on all three models (about 35 minutes), then thinking
+  on the 1.7B across both sets (about 4.5 hours), capping answers at 2,048
+  tokens. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Both tests are running in the background, about 5 hours in total: Qwen's
+  recommended settings first, then thinking. I'll report when they finish.
+
+  - Test 4, Qwen's settings (about 35 min): X4b with Qwen's recommended
+    non-thinking settings, temperature 0.7, top_p 0.8 and top_k 20. It runs on
+    all three models, DEV and no-history, so the adoption rule can be checked.
+  - Test 5, thinking (about 4.5 h): X4b with thinking on, using Qwen's thinking
+    settings (0.6, 0.95, 20) and answers capped at 2,048 tokens. It runs on the
+    1.7B only, on both sets. If it helps the 1.7B, I'll run the 0.6B and 4B
+    afterwards.
+
+  Results from a 30-case thinking trial:
+  - Speed: about 7 seconds per request, against about 0.17 s now, roughly 40
+    times slower.
+  - Length: the 1.7B thinks for 636 tokens at the median and over 1,700 for the
+    slowest tenth.
+  - Accuracy: 17 of 30 right, against 18 for X4b. That's too few cases to tell.
+
+  Even if thinking helps a lot, 7 seconds a check may be too slow for the app.
+  That's for you to judge once the numbers are in.
+
+  The app always sends thinking off, so test 5 needed a small change:
+  - getBestSelections: a new llmEnableThinking option, off by default. Nothing
+    in the app sets it.
+  - The runner: an LLM_TRAINING_THINKING=1 setting to turn it on.
+  - A test: checks that thinking is off unless the option is set, and that
+    /no_think is left out when it is on. It passes and lint is clean.
+
+  Nothing is committed.
+
+✻ Worked for 5m 40s · done Monday 5:32 AM
+❯ /recap                                                                        
+  ⎿  We're improving the single-request prompt for small Qwen3 models, and the Qwen sampling and thinking runs are still going in the background (about 5 hours in total). When they finish, I'll compare both with X4b and report the results.
+
+※ recap: We're improving the AI prompt for small Qwen3 models, and are now testing Qwen's recommended settings and thinking mode, about five hours of runs in the background. When they finish, I'll compare both against the current best prompt and report.
+
+❯ /recap                                                                        
+  ⎿  We're improving the single-request prompt for small Qwen3 models, and are testing Qwen's recommended sampling settings and thinking mode against X4b, the current best prompt. When the background runs finish, I'll compare them and report the results.
+
+❯ /recap                                                                        
+  ⎿  We're testing Qwen's recommended sampling settings and thinking mode against X4b, the best prompt so far for the small Qwen3 models. The runs are still going in the background, and I'll compare and report when they finish.
+
+⏺ Background command "Run Qwen sampling and thinking tests" completed (exit code
+  -1)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Both runs finished. The thinking run looks large (no-history 36%), so
+  comparing properly:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The sampling settings changed nothing, but thinking is the biggest gain yet.
+  Checking how often it ran out of tokens, and the time spread:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Writing both into the plan, before Step 6:
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 31 lines
+      766  **Done when:** each of N1-N6 has a row and the adopted ones ar
+           e combined into the final variant
+      767  `F`, which passes D5 against `baseline` on both DEV and DEV-NO
+           HIST.
+      768 
+      769 +### Step 5A. Qwen3 settings: sampling and thinking (LIVE, DEV;
+          + added 2026-11-23)                                            
+      770 +                                                              
+      771 +Not prompt text: the two Qwen3 settings the app fixes. Both on
+          + X4b, logs in                                                 
+      772 +`llm-eval-results/qwen-sampling-20261123/` and `qwen-thinking-
+          +20261123/`; result files carry                                
+      773 +`-qsamp` / `-think` after the model name. DEV against X4b, DEV
+          +-NOHIST against `baseline` (X4b                               
+      774 +sends it the app's prompt; wrong ≥ 80 there is 0 from the N5 c
+          +ap).                                                          
+      775 +                                                              
+      776 +**Q-SAMP. Qwen3's recommended non-thinking sampling:** tempera
+          +ture 0.7, top_p 0.8, top_k 20,                                
+      777 +min_p 0 (seed 42), thinking off. **No effect:** 1.7B DEV 44.6 
+          +→ 44.3% (7 / 3, p 0.34), NOHIST                               
+      778 +16.4 → 16.1%; 0.6B DEV 39.5 → 38.7% (p 0.17); 4B 51.7 → 51.9%,
+          + NOHIST 34.0 → 34.0%. Confident                               
+      779 +wrong answers and times unchanged. The 0.1 default stays.     
+      780 +                                                              
+      781 +**Q-THINK. Thinking on** (`llmEnableThinking`, a new eval-only
+          + option of `getBestSelections`, off                           
+      782 +in the app; `LLM_TRAINING_THINKING=1` in the runner): no `/no_
+          +think`, Qwen3's thinking sampling                             
+      783 +(temperature 0.6, top_p 0.95, top_k 20, min_p 0), `max_tokens`
+          + 2048. 1.7B only so far.                                      
+      784 +                                                              
+      785 +| Set | top-1 | paired (only A / only think, p) | wrong ≥ 80 |
+          + no option | median ms (p90) |                                
+      786 +|---|---|---|---|---|---|                                     
+      787 +| DEV, X4b → think | 44.6 → **50.3%** | 50 / 136, **p 2e-10** 
+          +| 492 → 474 | 176 → 210 | 165 → 6,073 (15,076) |              
+      788 +| DEV-NOHIST, baseline → think | 16.4 → **36.1%** | 36 / 184, 
+          +**p 4e-25** | (capped) | 225 → 197 | 123 → 9,436 (17,109) |   
+      789 +                                                              
+      790 +The largest gain measured in this plan, on both sets: the thin
+          +king 1.7B is level with the                                   
+      791 +non-thinking 4B on DEV (50.3 vs 51.7%, p 0.18) and above the 4
+          +B's best no-history prompt except                             
+      792 +N34 (36.1% vs 42.9%). Thinking takes 847 tokens at the median 
+          +(p90 2,022); 221 of 2,250 requests                            
+      793 +(10%) hit the 2,048 cap, which likely leaves no answer (counte
+          +d as the algorithm's fallback), so a                          
+      794 +higher cap may gain more, at more time. **Cost: about 40-75x s
+          +lower** (6-9 s median per check, up                           
+      795 +to 23 s), so it passes D5 on accuracy but is a product decisio
+          +n, not a prompt one: it suits a                               
+      796 +background queue that fills a group's suggestions ahead of the
+          + user, not a check the user is                                
+      797 +waiting on. Not yet run: 0.6B and 4B with thinking; a higher c
+          +ap; a fine-tune with thinking (the                            
+      798 +fine-tunes are trained without reasoning, so they would need r
+          +easoning traces to train on).                                 
+      799 +                                                              
+      800  ### Step 6. Cost to the released fine-tunes (LIVE, TEST)
+      801 
+      802  Run `baseline` and `F` on D3 1.7B Q5_K_M and the 0.6B Q6_K, on
+            TEST and TEST-NOHIST. This shows
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 2 lines, removed 2 lines
+      788  | DEV-NOHIST, baseline → think | 16.4 → **36.1%** | 36 / 184,
+           **p 4e-25** | (capped) | 225 → 197 | 123 → 9,436 (17,109) |
+      789 
+      790  The largest gain measured in this plan, on both sets: the thin
+           king 1.7B is level with the
+      791 -non-thinking 4B on DEV (50.3 vs 51.7%, p 0.18) and above the 4
+          -B's best no-history prompt except                             
+      792 -N34 (36.1% vs 42.9%). Thinking takes 847 tokens at the median 
+          -(p90 2,022); 221 of 2,250 requests                            
+      791 +non-thinking 4B on DEV (50.3 vs 51.7%, p 0.18); with no histor
+          +y it beats the 4B on the app's                                
+      792 +prompt (36.1 vs 34.0%) but not the 4B with N34 (42.9%, p 0.001
+          +). Thinking takes 847 tokens at the median (p90 2,022); 221 of
+          + 2,250 requests                                               
+      793  (10%) hit the 2,048 cap, which likely leaves no answer (counte
+           d as the algorithm's fallback), so a
+      794  higher cap may gain more, at more time. **Cost: about 40-75x s
+           lower** (6-9 s median per check, up
+      795  to 23 s), so it passes D5 on accuracy but is a product decisio
+           n, not a prompt one: it suits a
+
+⏺ Qwen's recommended sampling settings changed nothing, but thinking gave the
+  biggest gain of anything we've tried, on both sets. The catch is speed:
+  thinking takes about 6 seconds per check instead of 0.17 seconds.
+
+  Qwen's recommended sampling (0.7 / 0.8 / 20), all three models:
+
+  ┌───────┬───────────────────────┬──────────────────┐
+  │ Model │       DEV top-1       │ No-history top-1 │
+  ├───────┼───────────────────────┼──────────────────┤
+  │ 1.7B  │ 44.6 → 44.3% (p 0.34) │ 16.4 → 16.1%     │
+  ├───────┼───────────────────────┼──────────────────┤
+  │ 0.6B  │ 39.5 → 38.7% (p 0.17) │ 1.1 → 1.5%       │
+  ├───────┼───────────────────────┼──────────────────┤
+  │ 4B    │ 51.7 → 51.9%          │ 34.0 → 34.0%     │
+  └───────┴───────────────────────┴──────────────────┘
+
+  Confident wrong answers and times didn't change either. The app's temperature
+  of 0.1 stays.
+
+  Thinking on the 1.7B, compared with X4b:
+
+  ┌──────────┬─────────────────┬───────────────┬──────────────────────────┐
+  │          │      Top-1      │ Cases gained  │ Median time (slowest 10% │
+  │          │                 │    / lost     │        take over)        │
+  ├──────────┼─────────────────┼───────────────┼──────────────────────────┤
+  │ DEV      │ 44.6 → 50.3% (p │ 136 / 50      │ 165 ms → 6.1 s (15 s)    │
+  │          │  2e-10)         │               │                          │
+  ├──────────┼─────────────────┼───────────────┼──────────────────────────┤
+  │ No       │ 16.4 → 36.1% (p │ 184 / 36      │ 123 ms → 9.4 s (17 s)    │
+  │ history  │  4e-25)         │               │                          │
+  └──────────┴─────────────────┴───────────────┴──────────────────────────┘
+
+  - With thinking, the 1.7B is level with the 4B without thinking on DEV: 50.3%
+    against 51.7%, no significant difference.
+  - With no history it more than doubles, and beats the 4B on the app's prompt
+    (34.0%). It doesn't beat the 4B with N3 + N4 (42.9%).
+  - It thinks for 847 tokens at the median.
+  - 10% of requests (221) hit the 2,048-token cap. Those almost certainly ended
+    without an answer and fell back to the algorithm, so a higher cap might gain
+    more, but would be slower.
+
+  The decision for you is about speed, not the prompt. At 6–9 seconds a check,
+  thinking only makes sense if suggestions are filled in the background before
+  the translator reaches a check, not while they wait. The app's queue already
+  works through a whole group in the background, so it might fit there. The
+  fine-tunes were trained without thinking, so they would need training examples
+  that include it.
+
+  Possible next runs, none started:
+  - The 0.6B with thinking, about 2 hours. It would be the faster option if it
+    gains as much.
+  - The 4B with thinking, about 7 hours.
+  - The 1.7B with a 4,096-token cap, to see what the cut-off answers would have
+    given.
+
+  Recorded in the plan: both results, as a new Step 5A.
+
+  Code change: an experiment-only llmEnableThinking option in getBestSelections,
+  off in the app, plus LLM_TRAINING_THINKING in the runner. There's a test for
+  it, and lint is clean.
+
+  Nothing is committed.
+
+✻ Brewed for 51s · done Monday 11:08 AM
+
+❯ the time for thinking is too long even on a fast processor                    
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 4 lines, removed 2 lines
+      794  higher cap may gain more, at more time. **Cost: about 40-75x s
+           lower** (6-9 s median per check, up
+      795  to 23 s), so it passes D5 on accuracy but is a product decisio
+           n, not a prompt one: it suits a
+      796  background queue that fills a group's suggestions ahead of the
+            user, not a check the user is
+      797 -waiting on. Not yet run: 0.6B and 4B with thinking; a higher c
+          -ap; a fine-tune with thinking (the                            
+      798 -fine-tunes are trained without reasoning, so they would need r
+          -easoning traces to train on).                                 
+      797 +waiting on. **Decision (author, 2026-11-23): not used; thinkin
+          +g is too slow even on a fast                                  
+      798 +computer.** Not run for that reason: 0.6B and 4B with thinking
+          +, a higher cap, a fine-tune with                              
+      799 +thinking. What it does show: the 1.7B can reach 4B-level accur
+          +acy on this task when it works the                            
+      800 +answer out, so the gap is reasoning, not knowledge of the lang
+          +uages.                                                        
+      801 
+      802  ### Step 6. Cost to the released fine-tunes (LIVE, TEST)
+      803 
+
+⏺ I agree. At 6–9 seconds a check, and up to 20 seconds on the slowest, a whole
+  group would take too long even running in the background. I recorded the
+  decision in the plan's Step 5A, and I won't run the 0.6B or 4B with thinking.
+
+  The run still shows something useful: the same 1.7B reaches 4B-level accuracy
+  when it works the answer out. So what limits it is reasoning, not knowledge of
+  the languages. That points to two directions that don't cost time when the
+  app asks:
+
+  1. Teach the fine-tune what thinking found (no thinking in the app). The
+     fine-tune already learns from translators' real choices, so thinking can't
+     give it better answers to learn. It could add training examples, though.
+     Thinking can label the many history-less verses that have no translator
+     answer yet. Using those would mean also trusting answers that are wrong
+     about half the time, so it's a risk. I'd only try it with a confidence
+     filter, and I can't promise a gain.
+  2. Do the reasoning in code instead of the model. X4b's possible answers
+     already work this way: the algorithm does part of the matching, and the
+     1.7B gained 3.6 points. The no-history case is where thinking gained most
+     (16 → 36%). There the code could give the model what it would otherwise
+     reason out, for example the gateway verse. That helped the 4B, but not the
+     1.7B without a retrain.
+
+  I'd move on to Step 6, measuring baseline against X4b on the released
+  fine-tunes. Then Step 7: retraining with X4b, S4 and the no-history handling.
+
+  The experiment-only llmEnableThinking option is still in getBestSelections,
+  off by default. I'd keep it for later experiments, but it's a few lines to
+  remove if you'd rather not have an unused option in src. Nothing is committed.
+
+✻ Churned for 16s · done Monday 11:11 AM
+
+❯ go ahead with Step 6                                                          
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Using the release builds. Checking they match the GitHub release files:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The release builds match. Starting the 8 runs (2 fine-tunes × 2 prompts × TEST
+  and TEST-NOHIST), with the same settings as before:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 6 is running in the background and should take about 20–30 minutes. I'll
+  report when it finishes.
+
+  - Models: the released fine-tunes, uw-tw-qwen3-1.7b (Q5_K_M) and
+    uw-tw-qwen3-0.6b (Q6_K). They match the GitHub release files byte for byte.
+  - Prompts: the app's current prompt and X4b, the only prompt change adopted so
+    far.
+  - Sets: TEST (835 held-out cases) and the same 835 cases with the history
+    removed.
+  - Settings: temperature 0.1 and seed 42, as before. The new no-history
+    confidence cap applies to both prompts, since it's in the app's code.
+
+  The results will answer two questions:
+  1. What switching to X4b would cost people using the released models before a 
+     retrain. They were never trained with the possible-answers block, so it
+     could help or hurt.
+  2. How the fine-tunes do with no history at all. They were never trained on
+     that either.
+
+  The script and logs are in llm-eval-results/step6-20261123/.
+
+✻ Brewed for 26s · done Monday 11:14 AM
+
+❯ when Step 6 finishes, start Step 7                                            
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 7 changes the fine-tune exporter, so I'm reading that first. I'll leave
+  promptVariants.js alone until Step 6 is done, because each Step 6 run loads
+  it.
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+⏺ The exporter will use a prompt variant for Step 7, since X4b needs the full
+  option list and the gateway variants need glVerse. Next I'll run the parity
+  test, set the training config, and start the training commands. · summary
+
+  Searched for 1 pattern, ran 2 shell commands (ctrl+o to expand)
+
+⏺ Step 6 is on its first of four runs. Meanwhile I'll edit only files those runs
+  don't load. Checking which those are:
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The exporter files aren't loaded by the Step 6 runs, so I can edit them now.
+  Next, how the app calls a prompt variant, so the exporter can do exactly the
+  same:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Now the code. First, the GL-verse lookup moves into a shared helper, so the
+  exporter can add glVerse to the training cases:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      p='__tests__/helpers/promptEvalCases.js'…)
+  ⎿  30:import fs from 'fs';
+     31:import os from 'os';
+     32:import path from 'path';
+     … +10 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/buildPromptEvalCases.test.js +3 -40
+      32  import path from 'path';
+      33  import { execSync } from 'child_process';
+      34  import { ALGORITHM_CERTAIN_CONFIDENCE } from '../src/utils/chec
+          kingSuggestionsUtils';
+      35 -import { getBestVerseFromChapter } from '../src/helpers/verseHe
+         -lpers';                                                        
+      35  import { runTestCase } from './helpers/suggestionsHelpers';
+      36  import {
+      38 -  countBy, FINETUNE_TEST_FILES, projectOfFile, PROMPT_EVAL_DEFA
+         -ULTS, seededShuffle,                                           
+      37 +  addGlVerses, countBy, FINETUNE_TEST_FILES, projectOfFile, PRO
+         +MPT_EVAL_DEFAULTS, seededShuffle,                              
+      38    selectDevCases, toEvalCase, verseDataToText, withoutHistory,
+      39  } from './helpers/promptEvalCases';
+      40 
+     ...
+      47  const TC_HOME = env.LLM_PROMPT_EVAL_TC_HOME || path.join(os.hom
+          edir(), 'translationCore');
+      48  const SET_NAMES = ['dev', 'dev-nohist', 'test', 'test-nohist'];
+      49 
+      51 -/**                                                            
+      52 - * Adds `glVerse` to cases in place: the plain text of the case
+         -'s verse in the GL bible its GL                                
+      53 - * phrase came from (named at the end of `source`, e.g. `GL en 
+         -ult/v91_unfoldingWord`), read from                             
+      54 - * `<TC_HOME>/resources/<glLang>/bibles/<bible>/<book>/<chapter
+         ->.json`. For X3 of the plan.                                   
+      55 - * @param {Array<object>} cases                                
+      56 - * @returns {{added: number, missing: Array<string>}} - ids of 
+         -cases with no GL verse found                                   
+      57 - */                                                            
+      58 -function addGlVerses(cases) {                                  
+      59 -  const chapters = new Map();                                  
+      60 -  const missing = [];                                          
+      61 -  let added = 0;                                               
+      62 -                                                               
+      63 -  for (const evalCase of cases) {                              
+      64 -    const bible = (evalCase.source || '').split(' GL ')[1]?.spl
+         -it(' ')[1];                                                    
+      65 -    const {                                                    
+      66 -      bookId, chapter, verse,                                  
+      67 -    } = evalCase.contextId?.reference || {};                   
+      68 -    const file = bible && path.join(TC_HOME, 'resources', evalC
+         -ase.glLang, 'bibles', bible, bookId, `${chapter}.json`);       
+      69 -                                                               
+      70 -    if (file && !chapters.has(file)) {                         
+      71 -      chapters.set(file, fs.existsSync(file) ? JSON.parse(fs.re
+         -adFileSync(file, 'utf8')) : null);                             
+      72 -    }                                                          
+      73 -                                                               
+      74 -    const chapterData = file && chapters.get(file);            
+      75 -    const text = chapterData ? verseDataToText(getBestVerseFrom
+         -Chapter(chapterData, verse)) : '';                             
+      76 -                                                               
+     … +29 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/helpers/promptEvalCases.js +42
+      12   *
+      13   * This folder is in jest's `testPathIgnorePatterns`, so this f
+          ile is not run as a test.
+      14   */
+      15 +import fs from 'fs';                                           
+      16 +import path from 'path';                                       
+      17 +import { getBestVerseFromChapter } from '../../src/helpers/vers
+         +eHelpers';                                                     
+      18 
+      19  /**
+      20   * The fine-tune's held-out test files (`testFiles` in `llmTrai
+          ningData/finetune-d3/manifest.json`,
+     ...
+      214      .replace(/\s+/g, ' ')
+      215      .trim();
+      216  }
+      217 +                                                              
+      218 +/**                                                           
+      219 + * Adds `glVerse` to cases in place: the plain text of the cas
+          +e's verse in the GL bible its GL                              
+      220 + * phrase came from (named at the end of `source`, e.g. `GL en
+          + ult/v91_unfoldingWord`), read from                           
+      221 + * `<tcHome>/resources/<glLang>/bibles/<bible>/<book>/<chapter
+          +>.json`. For X3 of                                            
+      222 + * plans/improve-single-prompt.md, and for fine-tune data buil
+          +t with a variant that uses it.                                
+      223 + * Uses Node's `fs` (`fs-extra` is mocked globally in jest).  
+      224 + * @param {Array<object>} cases                               
+      225 + * @param {string} tcHome - translationCore folder with the GL
+          + bibles                                                       
+      226 + * @returns {{added: number, missing: Array<string>}} - ids of
+          + cases with no GL verse found                                 
+      227 + */                                                           
+      228 +export function addGlVerses(cases, tcHome) {                  
+      229 +  const chapters = new Map();                                 
+      230 +  const missing = [];                                         
+      231 +  let added = 0;                                              
+      232 +                                                              
+      233 +  for (const evalCase of cases) {                             
+      234 +    const bible = (evalCase.source || '').split(' GL ')[1]?.sp
+          +lit(' ')[1];                                                  
+      235 +    const {                                                   
+      236 +      bookId, chapter, verse,                                 
+      237 +    } = evalCase.contextId?.reference || {};                  
+      238 +    const file = bible && path.join(tcHome, 'resources', evalC
+          +ase.glLang, 'bibles', bible, bookId, `${chapter}.json`);      
+      239 +                                                              
+      240 +    if (file && !chapters.has(file)) {                        
+      241 +      chapters.set(file, fs.existsSync(file) ? JSON.parse(fs.r
+          +eadFileSync(file, 'utf8')) : null);                           
+      242 +    }                                                         
+      243 +                                                              
+      244 +    const chapterData = file && chapters.get(file);           
+     … +11 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; sed -i '' 's/
+      selectDevCases, toEvalCase, verseDataToText, withoutHistory,/
+      selectDevCases, toEvalC…)
+  ⎿  ok
+  ⎿  Updated __tests__/buildPromptEvalCases.test.js +1 -1
+      35  import { runTestCase } from './helpers/suggestionsHelpers';
+      36  import {
+      37    addGlVerses, countBy, FINETUNE_TEST_FILES, projectOfFile, PRO
+          MPT_EVAL_DEFAULTS, seededShuffle,
+      38 -  selectDevCases, toEvalCase, verseDataToText, withoutHistory, 
+      38 +  selectDevCases, toEvalCase, withoutHistory,                  
+      39  } from './helpers/promptEvalCases';
+      40 
+      41  const env = process.env;
+
+⏺ Next, the exporter itself. Reading the negative-example builder, since it also
+  builds prompts:
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+⏺ Now the exporter changes:
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      p='__tests__/helpers/fineTuneHelpers.js'…)
+  ⎿  done
+  ⎿  Updated __tests__/helpers/fineTuneHelpers.js +61 -7
+       8   * `applyThinkingDirective`), so it cannot drift from what `que
+          ryAiAPI` sends; the parity test in
+       9   * `buildFineTuneData.test.js` checks that.
+      10   *
+      11 + * With `promptVariant` (plans/improve-single-prompt.md, Step 7
+         +) the messages come from that variant's                        
+      12 + * builder in `promptVariants.js`, given the request `getBestSe
+         +lections` gives it (with the                                   
+      13 + * algorithm's options and the GL verse), then `applyThinkingDi
+         +rectiveToMessages`, as `queryAiAPI`                            
+      14 + * sends them; the parity test checks that too.                
+      15 + *                                                             
+      16   * Node's `fs` is used because `fs-extra` is mocked in the test
+          s.
+      17   */
+      18  import fs from 'fs';
+     ...
+      20  import {
+      21    ALGORITHM_CERTAIN_CONFIDENCE,
+      22    applyThinkingDirective,
+      23 +  applyThinkingDirectiveToMessages,                            
+      24    buildTranslationOptionsPrompt,
+      25    getWordList,
+      26    moveSelectionsToOccurrence,
+     ...
+      35    optionText,
+      36    testCaseToSelectionOptions,
+      37  } from './suggestionsHelpers';
+      38 +import { addGlVerses } from './promptEvalCases';               
+      39 +import { PROMPT_VARIANTS } from './promptVariants';            
+      40 
+      41  /** Step 2 confidence labels, following rule 5 of the system pr
+          ompt */
+      42  export const LABEL_CONFIDENCE = {
+     ...
+      76    negativeShare: 0.03,
+      77    /** drop `unusuallyLongAnswer` cases; off because about half 
+          of them look right on review */
+      78    dropLongAnswers: false,
+      79 +  /**                                                          
+      80 +   * prompt variant of `promptVariants.js` the examples are bui
+         +lt with; '' for the app's prompt                               
+      81 +   * (plans/improve-single-prompt.md, Step 7)                  
+      82 +   */                                                          
+      83 +  promptVariant: '',                                           
+      84 +  /**                                                          
+      85 +   * share of the kept train and valid examples also added with
+         + no history (`history: {}`), labelled                          
+      86 +   * as `LABEL_CONFIDENCE.noHistory` (plans/improve-single-prom
+         +pt.md, Q4); 0 for none                                         
+      87 +   */                                                          
+      88 +  noHistoryShare: 0,                                           
+      89 +  /** translationCore folder with the GL bibles, for the `glVer
+         +se` of a variant that uses it */                               
+     … +100 lines (ctrl+o to expand)
+
+⏺ Now the build function: GL verses, the variant, and the no-history copies.
+
+  Ran 2 shell commands · 1 failed (ctrl+o to expand)
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      p='__tests__/helpers/fineTuneHelpers.js'…)
+  ⎿  lint ok
+       let roundTripFailed = 0;
+     … +7 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/helpers/fineTuneHelpers.js +6 -3
+      315        occurrence: options.contextId.occurrence || 1,
+      316      };
+      317    }
+      318 -  const prompt = buildTranslationOptionsPrompt(               
+      318 +                                                              
+      319 +  const appPrompt = buildTranslationOptionsPrompt(            
+      320      wordList.join(' '),
+      321      options.targetLanguageDetails.id,
+      322      options.alignedGLText,
+      323      options.gatewayLanguageCode,
+      324      options.selectionsData?.selections,
+      325    );
+      325 -  const { systemPrompt, query } = applyThinkingDirective({ sys
+          -temPrompt: prompt.systemPrompt, query: prompt.input }, false);
+      326 +  const { systemPrompt, query } = applyThinkingDirective({ sys
+          +temPrompt: appPrompt.systemPrompt, query: appPrompt.input }, f
+          +alse);                                                        
+      327 
+      328    return {
+      329      messages: [
+     ...
+      552    let roundTripFailed = 0;
+      553 
+      554    for (const source of sources) {
+      554 -    const testCase = { ...source.testCase, id: `${source.testC
+          -ase.id}#nohist`, history: {} };                               
+      555 +    const testCase = {                                        
+      556 +      ...source.testCase, id: `${source.testCase.id}#nohist`, 
+          +history: {},                                                  
+      557 +    };                                                        
+      558      const example = buildSingleExample(testCase, { variant: pr
+           ompt.variant, algorithmBestSelections: [] });
+      559 
+      560      if (!example.roundTrip) {
+
+⏺ Now the build test: new settings, plus a parity test for each variant.
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      p='__tests__/buildFineTuneData.test.js'…)
+  ⎿  165:describe('fine-tune data parity with the app', () => {
+     166-  const originalFetch = global.fetch;
+     167-
+     … +2 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/buildFineTuneData.test.js +15 -2
+      27   *   LLM_FINETUNE_GROUP_CAP      examples per (project, group)
+          (default 40)
+      28   *   LLM_FINETUNE_NEGATIVES      negative examples as a share o
+          f train (default 0.03; 0 for none)
+      29   *   LLM_FINETUNE_DROP_LONG      set to 1 to drop `unusuallyLon
+          gAnswer` cases
+      30 + *   LLM_FINETUNE_PROMPT_VARIANT prompt variant of `helpers/pro
+         +mptVariants.js` to build the                                   
+      31 + *                               examples with (plans/improve-s
+         +ingle-prompt.md, Step 7); default:                             
+      32 + *                               the app's prompt              
+      33 + *   LLM_FINETUNE_NO_HISTORY_SHARE share of train and valid exa
+         +mples added again with no history                              
+      34 + *                               (default 0; Step 7 of that pla
+         +n uses 0.1)                                                    
+      35 + *   LLM_FINETUNE_TC_HOME        translationCore folder with th
+         +e GL bibles, for variants that send                            
+      36 + *                               the GL verse (default ~/transl
+         +ationCore)                                                     
+      37   *
+      38   * jest is used because it is the repo's only babel runner; Nod
+          e's `fs` is used because
+      39   * `fs-extra` is mocked globally.
+      40   */
+      41  import fs from 'fs';
+      42 +import os from 'os';                                           
+      43  import path from 'path';
+      44  import { getBestSelections } from '../src/utils/checkingSuggest
+          ionsUtils';
+      45  import {
+      38 -  buildFineTuneData, buildSingleExample, buildSingleRequestMess
+         -ages, capExamples, DEFAULT_BUILD_OPTIONS,                      
+      46 +  buildFineTuneData, buildNoHistoryExamples, buildSingleExample
+         +, buildSingleRequestMessages, capExamples, DEFAULT_BUILD_OPTION
+         +S,                                                             
+      47    decodeAnswer, getEvalCaseKeys, getSplit, getTargetProject, is
+          TestProject, labelConfidence, makeRandom,
+      48    stripOccurrences, verseHasNoCaseWords, verseGroupKey,
+      49  } from './helpers/fineTuneHelpers';
+      50 +import { installPromptVariant } from './helpers/promptVariants'
+         +;                                                              
+      51  import { testCaseToSelectionOptions } from './helpers/suggestio
+          nsHelpers';
+      52 
+      53  const env = process.env;
+     ...
+      221        groupCap: number('LLM_FINETUNE_GROUP_CAP', DEFAULT_BUILD
+           _OPTIONS.groupCap),
+      222        negativeShare: number('LLM_FINETUNE_NEGATIVES', DEFAULT_
+           BUILD_OPTIONS.negativeShare),
+      223        dropLongAnswers: env.LLM_FINETUNE_DROP_LONG === '1',
+      224 +      promptVariant: env.LLM_FINETUNE_PROMPT_VARIANT || '',   
+      225 +      noHistoryShare: number('LLM_FINETUNE_NO_HISTORY_SHARE', 
+          +DEFAULT_BUILD_OPTIONS.noHistoryShare),                        
+      226 +      tcHome: env.LLM_FINETUNE_TC_HOME || path.join(os.homedir
+          +(), 'translationCore'),                                       
+      227      };
+      228      const dataDir = path.resolve(REPO, env.LLM_FINETUNE_DATA_D
+           IR || 'llmTrainingData');
+      229      const outDir = path.resolve(REPO, env.LLM_FINETUNE_OUT_DIR
+            || 'llmTrainingData/finetune');
+     ...
+      241 
+      242      console.log([
+      243        `fine-tune data written to ${outDir}`,
+     … +6 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Update(__tests__/buildFineTuneData.test.js)
+  ⎿  Added 66 lines
+      203      }
+      204      expect(compared).toBeGreaterThanOrEqual(5);
+      205    });
+      206 +                                                              
+      207 +  // Step 7 of plans/improve-single-prompt.md: data built with
+          + a prompt variant, with and without history                   
+      208 +  test.each(['X4b', 'N34'])('with prompt variant %s, the expor
+          +ter messages equal what getBestSelections sends', async (varia
+          +nt) => {                                                      
+      209 +    const bodies = [];                                        
+      210 +                                                              
+      211 +    global.fetch = jest.fn((url, { body }) => {               
+      212 +      bodies.push(JSON.parse(body));                          
+      213 +      return Promise.resolve({                                
+      214 +        ok: false, status: 500, text: () => Promise.resolve('r
+          +ecorded'),                                                    
+      215 +      });                                                     
+      216 +    });                                                       
+      217 +                                                              
+      218 +    const spies = ['error', 'warn', 'log'].map(name => jest.sp
+          +yOn(console, name).mockImplementation(() => {}));             
+      219 +    const uninstall = installPromptVariant(variant);          
+      220 +    const compared = { history: 0, noHistory: 0 };            
+      221 +                                                              
+      222 +    try {                                                     
+      223 +      for (const realCase of realCases) {                     
+      224 +        for (const testCase of [                              
+      225 +          { ...realCase, glVerse: `a verse with ${realCase.glP
+          +hrase} in it` },                                              
+      226 +          {                                                   
+      227 +            ...realCase, id: `${realCase.id}#nohist`, history:
+          + {}, glVerse: `a verse with ${realCase.glPhrase} in it`,      
+      228 +          },                                                  
+      229 +        ]) {                                                  
+      230 +          // eslint-disable-next-line no-await-in-loop        
+      231 +          const algorithm = await getBestSelections(testCaseTo
+          +SelectionOptions(testCase));                                  
+      232 +          bodies.length = 0;                                  
+      233 +          // eslint-disable-next-line no-await-in-loop        
+      234 +          await getBestSelections(testCaseToSelectionOptions(t
+          +estCase, { llmQueryUrl: 'http://localhost:1234', currentModel:
+          + 'm' }));                                                     
+      235 +                                                              
+      236 +          if (bodies.length) {                                
+      237 +            const { messages } = buildSingleRequestMessages(te
+          +stCase, undefined, {                                          
+      238 +              variant, algorithmBestSelections: algorithm.best
+          +Selections,                                                   
+      239 +            });                                               
+      240 +            expect(bodies[0].messages).toEqual(messages);     
+      241 +            compared[Object.keys(testCase.history || {}).lengt
+          +h ? 'history' : 'noHistory']++;                               
+      242 +          }                                                   
+      243 +        }                                                     
+      244 +      }                                                       
+      245 +    } finally {                                               
+      246 +      uninstall();                                            
+      247 +      spies.forEach(spy => spy.mockRestore());                
+      248 +    }                                                         
+      249 +    expect(compared.history).toBeGreaterThanOrEqual(5);       
+      250 +    expect(compared.noHistory).toBeGreaterThanOrEqual(5);     
+      251 +  });                                                         
+      252  });
+      253 
+      254 +describe('no-history examples', () => {                       
+      255 +  test('buildNoHistoryExamples copies a share of the examples 
+          +with no history, labelled as a guess', () => {                
+      256 +    const kept = realCases.slice(0, 20).map(testCase => ({ tes
+          +tCase, meta: { id: testCase.id, kind: 'single', label: 95 } })
+          +);                                                            
+      257 +    const { examples, roundTripFailed } = buildNoHistoryExampl
+          +es(kept, 0.5, makeRandom(1), { variant: 'N34' });             
+      258 +                                                              
+      259 +    expect(examples.length + roundTripFailed).toBe(10);       
+      260 +    expect(examples.length).toBeGreaterThan(0);               
+      261 +                                                              
+      262 +    for (const example of examples) {                         
+      263 +      expect(example.testCase.history).toEqual({});           
+      264 +      expect(example.meta.id.endsWith('#nohist')).toBe(true); 
+      265 +      expect(example.meta.kind).toBe('single-nohist');        
+      266 +      expect(example.meta.label).toBe(labelConfidence('x', {},
+          + [], '').confidence);                                         
+      267 +      expect(example.messages.map(message => message.role)).to
+          +Equal(['system', 'user', 'assistant']);                       
+      268 +      expect(example.messages[1].content).not.toContain('PREVI
+          +OUS TRANSLATIONS');                                           
+      269 +    }                                                         
+      270 +    expect(buildNoHistoryExamples(kept, 0, makeRandom(1)).exam
+          +ples).toEqual([]);                                            
+      271 +  });                                                         
+      272 +});                                                           
+      273 +                                                              
+      274  const describeIfBuild = BUILD ? describe : describe.skip;
+      275 
+      276  describeIfBuild('build fine-tune data', () => {
+
+  Ran 1 shell command · 1 failed (ctrl+o to expand)
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; npx eslint
+      --fix __tests__/buildFineTuneData.test.js; npx jest
+      __tests__/buildFineTuneData.test.js -t…)
+  ⎿    ● fine-tune data parity with the app › with prompt variant X4b, the
+     exporter messages equal what getBestSelections sends
+     … +38 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/buildFineTuneData.test.js +6 -4
+      234            await getBestSelections(testCaseToSelectionOptions(t
+           estCase, { llmQueryUrl: 'http://localhost:1234', currentModel:
+            'm' }));
+      235 
+      236            if (bodies.length) {
+      237 -            const { messages } = buildSingleRequestMessages(te
+          -stCase, undefined, {                                          
+      238 -              variant, algorithmBestSelections: algorithm.best
+          -Selections,                                                   
+      239 -            });                                               
+      237 +            const { messages } = buildSingleRequestMessages(te
+          +stCase, undefined, { variant, algorithmBestSelections: algorit
+          +hm.bestSelections });                                         
+      238              expect(bodies[0].messages).toEqual(messages);
+      239              compared[Object.keys(testCase.history || {}).lengt
+           h ? 'history' : 'noHistory']++;
+      240            }
+     ...
+      251 
+      252  describe('no-history examples', () => {
+      253    test('buildNoHistoryExamples copies a share of the examples 
+           with no history, labelled as a guess', () => {
+      256 -    const kept = realCases.slice(0, 20).map(testCase => ({ tes
+          -tCase, meta: { id: testCase.id, kind: 'single', label: 95 } })
+          -);                                                            
+      254 +    const kept = realCases.slice(0, 20).map(testCase => ({    
+      255 +      testCase, meta: {                                       
+      256 +        id: testCase.id, kind: 'single', label: 95,           
+      257 +      },                                                      
+      258 +    }));                                                      
+      259      const { examples, roundTripFailed } = buildNoHistoryExampl
+           es(kept, 0.5, makeRandom(1), { variant: 'N34' });
+      260 
+      261      expect(examples.length + roundTripFailed).toBe(10);
+  ⎿  … +2 files changed
+     llmTrainingData/promptEval/results/test_uw-tw-qwen3-1.7b-q5_k_m_prompt
+     -X4b.results.json
+     llmTrainingData/promptEval/results/test_uw-tw-qwen3-1.7b-q5_k_m_prompt
+     -X4b.summary.json
+
+⏺ The test is wrong, not the exporter: getBestSelections returns a list, so the
+  algorithm options it passed were empty. Fixing:
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; sed -i '' 's/
+              const algorithm = await
+      getBestSelections(testCaseToSelectionOptions(testCase)…)
+  ⎿  Tests:       3 skipped, 79 passed, 82 total
+     lint ok
+  ⎿  Updated __tests__/buildFineTuneData.test.js +1 -1
+      228            },
+      229          ]) {
+      230            // eslint-disable-next-line no-await-in-loop
+      231 -          const algorithm = await getBestSelections(testCaseTo
+          -SelectionOptions(testCase));                                  
+      231 +          const [algorithm] = await getBestSelections(testCase
+          +ToSelectionOptions(testCase));                                
+      232            bodies.length = 0;
+      233            // eslint-disable-next-line no-await-in-loop
+      234            await getBestSelections(testCaseToSelectionOptions(t
+           estCase, { llmQueryUrl: 'http://localhost:1234', currentModel:
+            'm' }));
+
+⏺ Both variants match what the app sends, with and without history. Next, for R3
+  (S4's chat-turn examples): checking how the installed mlx-lm masks multi-turn
+  examples.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ mlx-lm 0.32.2 masks everything before the last message, so with S4 only the
+  final answer is trained on, as the plan requires. check_data.py will confirm
+  this on the built data. Checking Step 6:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The 1.7B fine-tune hits 67% on TEST with the app's prompt, close to the
+  released 68%. I'm building R0's training data next, using the same settings as
+  the released model. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ R0's data is built with 12,143 examples, which is more than D3's 10,265
+  because the confidences have been recalibrated, so the plan compares against
+  R0 instead. I'm running check_data.py on it next. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ R0's data passes the check. Checking Step 6:
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 6 is still running. Meanwhile I'm writing R0's training config, which is
+  D3's with R0's data, output folder and iteration count:
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      import re…)
+  ⎿  # Run R0 of plans/improve-single-prompt.md, Step 7: control: the app's
+      prompt + 10% no-history examples
+     # Same settings as lora-r16-d3.yaml (the released D3). Data:
+     … +29 lines (ctrl+o to expand)
+  ⎿  Created llmTraining/lora-r16-r0.yaml +34
+       1 +# Run R0 of plans/improve-single-prompt.md, Step 7: control: th
+         +e app's prompt + 10% no-history examples                       
+       2 +# Same settings as lora-r16-d3.yaml (the released D3). Data:   
+       3 +#   LLM_FINETUNE_INCLUDE=noRelatedWordInHistory LLM_FINETUNE_NO
+         +_HISTORY_SHARE=0.1 LLM_FINETUNE_OUT_DIR=llmTrainingData/finetun
+         +e-r0 \                                                         
+       4 +#     npm run build:finetune-data                              
+       5 +# Train from the repo folder:                                  
+       6 +#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora
+         +-r16-r0.yaml                                                   
+       7 +# iters = 12,143 train examples x 2 epochs / 8 = 3,036.        
+       8 +model: Qwen/Qwen3-1.7B                                         
+       9 +train: true                                                    
+      10 +data: llmTrainingData/finetune-r0      # train.jsonl, valid.jso
+         +nl, test.jsonl                                                 
+      11 +fine_tune_type: lora                                           
+      12 +num_layers: -1                        # LoRA on every layer    
+      13 +lora_parameters:                                               
+      14 +  rank: 16                                                     
+      15 +  scale: 1.0                          # = lora_alpha / rank (al
+         +pha 16, as in Appendix A); 20 with lr 2e-4 broke the model     
+      16 +  dropout: 0.0                                                 
+      17 +  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_p
+         +roj", "self_attn.o_proj",                                      
+      18 +         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]      
+      19 +mask_prompt: true                     # loss on the assistant a
+         +nswer only (checked by check_data.py)                          
+      20 +max_seq_length: 2048                                           
+      21 +batch_size: 8                                                  
+      22 +iters: 3036                                                    
+      23 +learning_rate: 2e-4                                            
+      24 +lr_schedule:                                                   
+      25 +  name: cosine_decay                                           
+      26 +  warmup: 100                                                  
+      27 +  arguments: [2e-4, 2936, 0]          # [initial lr, decay step
+         +s (iters - warmup), final lr]                                  
+      28 +grad_checkpoint: true                                          
+      29 +steps_per_report: 20                                           
+      30 +steps_per_eval: 200                                            
+      31 +val_batches: 50                                                
+      32 +save_every: 200                                                
+      33 +adapter_path: llmTraining/outputs/lora-r16-r0                  
+      34 +seed: 3407                                                     
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Now the script that runs one retrain end to end: train, fuse, convert to GGUF
+  Q5_K_M, then score on TEST and TEST-NOHIST with the run's prompt.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ While the 0.6B runs, reading the S1 and S4 builders. R2 and R3 combine them
+  with N34:
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ While the 0.6B finishes, building R1's data. R1 uses N34: X4b with history,
+  and N3's prompt plus the gateway verse without. N34 is already in
+  promptVariants.js, so nothing there needs changing yet.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Both example sets match now, and I'm spot-checking one case with possible
+  answers and one with no history before running the data check. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1's data looks right and passes the check. Writing its config, then checking
+  Step 6:
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      import re,json…)
+  ⎿  # Run R1 of plans/improve-single-prompt.md, Step 7: prompt N34 (X4b wi
+     th history; N3 + GATEWAY VERSE without)
+     # + 10% no-history examples
+     … +16 lines (ctrl+o to expand)
+  ⎿  Created llmTraining/lora-r16-r1.yaml +36
+       1 +# Run R1 of plans/improve-single-prompt.md, Step 7: prompt N34 
+         +(X4b with history; N3 + GATEWAY VERSE without)                 
+       2 +# + 10% no-history examples                                    
+       3 +# Same settings as lora-r16-d3.yaml (the released D3). Data:   
+       4 +#   LLM_FINETUNE_PROMPT_VARIANT=N34 LLM_FINETUNE_INCLUDE=noRela
+         +tedWordInHistory LLM_FINETUNE_NO_HISTORY_SHARE=0.1 \           
+       5 +#     LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-r1 \       
+       6 +#     npm run build:finetune-data                              
+       7 +# Train from the repo folder:                                  
+       8 +#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora
+         +-r16-r1.yaml                                                   
+       9 +# iters = 12,143 train examples x 2 epochs / 8 = 3,036.        
+      10 +model: Qwen/Qwen3-1.7B                                         
+      11 +train: true                                                    
+      12 +data: llmTrainingData/finetune-r1      # train.jsonl, valid.jso
+         +nl, test.jsonl                                                 
+      13 +fine_tune_type: lora                                           
+      14 +num_layers: -1                        # LoRA on every layer    
+      15 +lora_parameters:                                               
+      16 +  rank: 16                                                     
+      17 +  scale: 1.0                          # = lora_alpha / rank (al
+         +pha 16, as in Appendix A); 20 with lr 2e-4 broke the model     
+      18 +  dropout: 0.0                                                 
+      19 +  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_p
+         +roj", "self_attn.o_proj",                                      
+      20 +         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]      
+      21 +mask_prompt: true                     # loss on the assistant a
+         +nswer only (checked by check_data.py)                          
+      22 +max_seq_length: 2048                                           
+      23 +batch_size: 8                                                  
+      24 +iters: 3036                                                    
+      25 +learning_rate: 2e-4                                            
+      26 +lr_schedule:                                                   
+      27 +  name: cosine_decay                                           
+      28 +  warmup: 100                                                  
+      29 +  arguments: [2e-4, 2936, 0]          # [initial lr, decay step
+         +s (iters - warmup), final lr]                                  
+      30 +grad_checkpoint: true                                          
+      31 +steps_per_report: 20                                           
+      32 +steps_per_eval: 200                                            
+      33 +val_batches: 50                                                
+      34 +save_every: 200                                                
+      35 +adapter_path: llmTraining/outputs/lora-r16-r1                  
+      36 +seed: 3407                                                     
+
+⏺ I'm starting the chain now. It waits for Step 6 to finish, then trains R0 and
+  then R1, each end to end. R2 and R3 need two more prompt variants, which I'll
+  add after Step 6.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 7 is ready and queued: R0 starts training as soon as Step 6 finishes,
+  then R1. I'll add the R2 and R3 variants once Step 6 is done, and report Step
+  6's results then.
+
+  Exporter changes (no src changes):
+  - Training examples can be built with any prompt variant
+    (LLM_FINETUNE_PROMPT_VARIANT). For X4b they include the algorithm's full
+    option list.
+  - A share of examples can be added again with no history
+    (LLM_FINETUNE_NO_HISTORY_SHARE), labelled 55, the existing confidence for a
+    guess.
+  - glVerse is added to the training cases, for the gateway-verse variants. The
+    lookup moved into promptEvalCases.js so both builders share it.
+  - New tests:
+    - A parity test for X4b and N34, with and without history. It confirms the
+      exporter's messages match what the app sends.
+    - A unit test for the no-history copies.
+    - All exporter and variant tests pass, and lint is clean.
+
+  The runs:
+
+  ┌────────────┬──────────────────────────────────────┬─────────────────────┐
+  │    Run     │                Prompt                │       Status        │
+  ├────────────┼──────────────────────────────────────┼─────────────────────┤
+  │ R0         │                                      │ Data built and      │
+  │ (control)  │ App's prompt + 10% no-history copies │ checked; trains     │
+  │            │                                      │ first               │
+  ├────────────┼──────────────────────────────────────┼─────────────────────┤
+  │            │ N34 (X4b with history; N3's prompt + │ Data built and      │
+  │ R1         │  gateway verse without) + same       │ checked; trains     │
+  │            │ copies                               │ second              │
+  ├────────────┼──────────────────────────────────────┼─────────────────────┤
+  │ R2         │ R1 with S1's short instructions      │ Variant to add      │
+  │            │                                      │ after Step 6        │
+  ├────────────┼──────────────────────────────────────┼─────────────────────┤
+  │ R3         │ R1 with S4's examples as chat turns  │ Variant to add      │
+  │            │                                      │ after Step 6        │
+  └────────────┴──────────────────────────────────────┴─────────────────────┘
+
+  - Same examples: R0 and R1 have the same 12,143 examples, so only the prompt
+    differs.
+  - Training size: that's more than the released D3, because the algorithm has
+    been recalibrated since. That's why the comparisons are against R0.
+  - For R3: mlx-lm 0.32.2 only trains on the last answer.
+  - Time: each run takes about 3.5–4 hours to train, convert and score, so R0
+    and R1 together take about 8 hours.
+  - Changes from the plan:
+    - The no-history share defaults to 0 in the exporter, so older builds like
+      D3 rebuild unchanged. Step 7 passes 0.1 explicitly.
+    - R1 uses N34 because it's the strongest no-history variant overall, even
+      though it didn't help the stock 1.7B. A fine-tune may learn to use it
+      where the stock model didn't.
+
+  So far Step 6 shows the released 1.7B at 67% on TEST and 54% with no history,
+  the same with the app's prompt and X4b. The 0.6B is still running.
+
+  Scripts and logs are in llm-eval-results/step7/. Nothing is committed.
+
+✻ Baked for 6m 17s · done Monday 11:21 AM
+
+❯ stop before running step 7                                                    
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The chain is still waiting and hasn't started training. Stopping it; Step 6
+  keeps running:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Background command "Run R0 then R1 retrains after Step 6" failed with exit
+  code 144
+
+⏺ I stopped the Step 7 chain before it trained anything. It was still waiting
+  for Step 6, so no training ran and nothing was written to
+  llmTraining/outputs/. The "failed" notice that just came in is from that stop,
+  not an error.
+
+  Step 6 is still running (the 0.6B runs). When it finishes I'll report its
+  results and leave Step 7 alone until you say to start.
+
+  The Step 7 preparation stays in place, so it can start with one command:
+  - R0 and R1's data, built and passing the check, in
+    llmTrainingData/finetune-r0 and finetune-r1.
+  - Their training configs, llmTraining/lora-r16-r0.yaml and lora-r16-r1.yaml.
+  - The script that runs one retrain end to end,
+    llm-eval-results/step7/run-retrain.sh.
+
+✻ Churned for 12s · done Monday 11:21 AM
+
+⏺ Background command "Run Step 6 on the released fine-tunes" completed (exit
+  code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 6 is done. Recording it in the plan:
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 21 lines
+      807 
+      808  **Done when:** four rows per fine-tune are in section 7.
+      809 
+      810 +**Measured 2026-11-23** (`F` = X4b, the only adopted prompt ch
+          +ange; the N5 cap applies to both                              
+      811 +prompts; release GGUFs, checksums equal to the GitHub release;
+          + logs in                                                      
+      812 +`llm-eval-results/step6-20261123/`). TEST-NOHIST requests are 
+          +identical under both prompts (no                              
+      813 +history, so no algorithm options), so those runs match exactly
+          +.                                                             
+      814 +                                                              
+      815 +| Fine-tune | Set | top-1 baseline → X4b | only A / only B, p 
+          +| wrong ≥ 80 | median ms |                                    
+      816 +|---|---|---|---|---|---|                                     
+      817 +| 1.7B Q5_K_M | TEST | 67.4 → 66.7% | 32 / 26, p 0.51 | 99 → *
+          +*141** | 77 → 81 |                                            
+      818 +| 1.7B Q5_K_M | TEST-NOHIST | 54.3% (same) | 0 / 0 | 0 (cap) |
+          + 109 |                                                        
+      819 +| 0.6B Q6_K | TEST | 64.0 → 63.5% | 20 / 16, p 0.62 | 96 → **1
+          +54** | 50 |                                                   
+      820 +| 0.6B Q6_K | TEST-NOHIST | 36.2% (same) | 0 / 0 | 0 (cap) | 6
+          +7 |                                                           
+      821 +                                                              
+      822 +- **Switching the app to X4b before retraining costs the relea
+          +sed models nothing significant in                             
+      823 +  top-1, but raises confident wrong answers by 42% (1.7B) and 
+          +60% (0.6B):** the fine-tunes copy a                           
+      824 +  POSSIBLE ANSWER with high confidence when it is wrong. So X4
+          +b must not ship without a retrain.                            
+      825 +- **Without history the fine-tunes do far better than the stoc
+          +k models** (1.7B 54.3% vs the stock                           
+      826 +  1.7B's 16.4% on DEV-NOHIST; 0.6B 36.2% vs 1.1%; different se
+          +ts, so indicative), though they were                          
+      827 +  never trained on it: the training data's `noRelatedWordInHis
+          +tory` cases are close to no history.                          
+      828 +  With the N5 cap their confident wrong answers there are 0; m
+          +ean confidence is about 56-61, right                          
+      829 +  and wrong alike.                                            
+      830 +                                                              
+      831  ### Step 7. Retrain on the candidate prompts (OFFLINE build, M
+           LX training, LIVE GGUF scoring)
+      832 
+      833  This is the main step (Q1). Each retrain of the 1.7B takes abo
+           ut 2.8 hours on the Mac, so retrain
+
+⏺ Step 6 is done, and Step 7 hasn't started. In short, the released fine-tunes
+  shouldn't get X4b without a retrain.
+
+  ┌─────────────┬────────────┬───────────────────────┬───────────────────────┐
+  │  Fine-tune  │    Set     │  App's prompt → X4b   │ Confident wrong (≥80) │
+  ├─────────────┼────────────┼───────────────────────┼───────────────────────┤
+  │ 1.7B Q5_K_M │ TEST       │ 67.4 → 66.7% (p 0.51) │ 99 → 141              │
+  ├─────────────┼────────────┼───────────────────────┼───────────────────────┤
+  │ 1.7B Q5_K_M │ No history │ 54.3%, identical      │ 0 (capped)            │
+  ├─────────────┼────────────┼───────────────────────┼───────────────────────┤
+  │ 0.6B Q6_K   │ TEST       │ 64.0 → 63.5% (p 0.62) │ 96 → 154              │
+  ├─────────────┼────────────┼───────────────────────┼───────────────────────┤
+  │ 0.6B Q6_K   │ No history │ 36.2%, identical      │ 0 (capped)            │
+  └─────────────┴────────────┴───────────────────────┴───────────────────────┘
+
+  - Switching to X4b now would hurt users of the released models. Top-1 doesn't
+    change significantly, but confident wrong answers rise 42% on the 1.7B and
+    60% on the 0.6B. The fine-tunes were never trained on the possible-answers
+    list, and when one of those answers is wrong they copy it with high
+    confidence anyway.
+  - No-history runs match exactly under both prompts. Without history the
+    algorithm has no candidates, so X4b sends the same request as the app.
+  - The fine-tunes handle no history far better than the stock models. The 1.7B
+    gets 54.3% against the stock 1.7B's 16.4%, and the 0.6B gets 36.2% against
+    1.1%. These are different case sets, so the comparison is only indicative.
+    They were never trained on empty history, though their training data
+    includes cases with unrelated history, which is close. Their confidence
+    stays around 56–61 for right and wrong answers alike, close to the 55 they
+    were trained to give for a guess.
+
+  What this means for Step 7:
+  - The prompt change only makes sense together with a retrain, which is what R1
+    tests.
+  - The retrains will show whether training on no-history examples (R0) and the
+    possible answers (R1) improves on these numbers.
+
+  I recorded the results in the plan under Step 6. Step 7's data, configs and
+  script are ready, but nothing will start until you say so.
+
+✻ Churned for 23s · done Monday 11:23 AM
+
+※ recap: We're improving the AI prompt for the small Qwen3 models; Step 6 showed the released fine-tunes shouldn't get the new prompt without a retrain. Step 7's retrain data and configs are ready, waiting for your go-ahead to start training. (turn off recaps in /config)
+
+❯ what is x4b?  is that the only recommendation now                             
+
+⏺ X4b adds the algorithm's candidate answers to the request. Before asking the
+  AI, the app already runs its own matching algorithm. When that finds
+  candidates, X4b lists them in a POSSIBLE ANSWERS block, best first:
+
+  PREVIOUS TRANSLATIONS:
+  "vương quốc của Thiên Chúa" (chosen 16 times for "kingdom of God")
+  ...
+
+  POSSIBLE ANSWERS:
+  "vương quốc của Thiên Chúa"
+  "vương quốc"
+
+  GATEWAY PHRASE (en): kingdom of God
+
+  Those requests also get a slightly changed system prompt:
+  - it explains the block ("may be missing, and may be wrong");
+  - it adds one rule: "POSSIBLE ANSWERS are often right: check them first, but
+    answer with other verse words when none of them means GATEWAY PHRASE";
+  - the first example shows the block.
+
+  When the algorithm finds nothing (always the case with no history), the
+  request is exactly the app's current prompt. The "b" marks that difference
+  from X4, which used the changed system prompt for every request and hurt the
+  4B on no-history requests.
+
+  Is it the only recommendation? No, and it shouldn't ship now. Here's where
+  everything stands:
+
+  Change: N5: cap AI confidence at 70 when there's no history (code, not
+    prompt)
+  For stock models: Confident wrong answers with no history fall to 0
+  For the released fine-tunes: Hardly matters (they answer around 56–61 there)
+  Recommendation: Ship. It's in src, uncommitted
+  ────────────────────────────────────────
+  Change: X4b: possible answers in the request
+  For stock models: 1.7B top-1 41.0 → 44.6% (p 8e-5)
+  For the released fine-tunes: Top-1 unchanged, but confident wrong answers
+    +42% (1.7B) and +60% (0.6B)
+  Recommendation: Don't ship yet. Only with a fine-tune retrained on it (R1
+    tests that)
+  ────────────────────────────────────────
+  Change: N34, S4, S1
+  For stock models: Didn't pass the adoption rule on the stock 1.7B
+  For the released fine-tunes: Not tested
+  Recommendation: Retrain candidates only (R1–R3)
+  ────────────────────────────────────────
+  Change: Thinking
+  For stock models: Big gain (1.7B 50.3%)
+  For the released fine-tunes: —
+  Recommendation: Rejected: too slow
+
+  Most users will run the fine-tuned models, which are better than any
+  stock-model prompt: the 1.7B fine-tune is at 67% on TEST. So for now, the only
+  change worth shipping is the N5 confidence cap. Any prompt change depends on
+  Step 7 showing that a fine-tune retrained on it beats the R0 control.
+
+✻ Sautéed for 13s · done Monday 11:30 AM
+
+❯ start Step 7 with R0 and R1                                                   
+
+  Ran 1 shell command (ctrl+o to expand)
+⏺ The machine is free and there are no earlier R0/R1 outputs to overwrite.
+  Starting R0, then R1:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Checking that training actually started:
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+⏺ R0 is training: R0 from about now to 3.5 hours, then R1 until about 7 hours.
+  The training loss is falling normally, from 1.87 to 0.14 over the first 100 of
+  its 3,036 steps.
+
+  Each run trains, converts to GGUF Q5_K_M, and then scores on TEST and
+  TEST-NOHIST with its own prompt:
+  - R0: the app's prompt, plus 10% of examples copied with no history.
+  - R1: N34 (X4b with history; N3's prompt plus the gateway verse without), with
+    the same examples.
+
+  When both finish I'll compare them with each other and with the released D3
+  1.7B, using the adoption rule from Step 7:
+  - not significantly worse than D3 on TEST;
+  - better than D3 with no history;
+  - no more than 30% slower.
+
+  I'll also check confident wrong answers, since that's where X4b hurt the
+  released models.
+
+  Logs are in llm-eval-results/step7/r0/ and r1/. R2 and R3 aren't set up yet.
+
+✻ Cogitated for 7m 26s · done Monday 11:39 AM
+
+※ recap: We're improving AI suggestions for the small Qwen3 models, and the R0 and R1 retrains of Step 7 are running, about 7 hours in total. When they finish, I'll compare both with the released 1.7B fine-tune and report. (turn off recaps in /config)
+
+⏺ Background command "Train, convert and score R0 then R1" completed (exit code
+  0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Both retrains finished. Comparing R0 and R1 with the released D3 and with each
+  other:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1 gives no answer on 123 of the no-history cases, against 9 for R0. Checking
+  what it says there:
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ All 123 empty answers come from one project, en_ult_tit, where English is the
+  target and the gateway language is Arabic, Indonesian, Spanish, Persian or
+  Russian. I'm now comparing R0 and R1 for each project. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1 matches or beats R0 everywhere except English-target no-history cases
+  (en_ult_tit), where it drops from 42.6% to 29.9% (p 2e-5). I'm checking how
+  many such examples R1 trained on and whether the gateway phrase gets marked in
+  them. · summary
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1 answers "" for English verses because its training data has no
+  English-target examples, so it fails on combinations it never saw. Why the
+  gateway verse triggers this, and not in R0, is still my guess, and I'm
+  cleaning up the check file and recording results next. · summary
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 46 lines
+      859  worse), better than D3 on TEST-NOHIST, and not slower per requ
+           est than D3 by more than 30%. If
+      860  R0 wins over R1-R3, the prompt stays as it is and only the no-
+           history training data ships.
+      861 
+      862 +**R0 and R1 measured 2026-11-23.** Built with the exporter's n
+          +ew settings                                                   
+      863 +(`LLM_FINETUNE_PROMPT_VARIANT`, `LLM_FINETUNE_NO_HISTORY_SHARE
+          +=0.1`, GL verses from                                         
+      864 +`~/translationCore`); the no-history share defaults to 0 so ea
+          +rlier builds are unchanged. Both                              
+      865 +have the same 12,143 train examples (1,075 of them no-history 
+          +copies, labelled 55; 322                                      
+      866 +negatives), so only the prompt differs; that is more than D3's
+          + 10,265 because the algorithm was                             
+      867 +recalibrated after D3 was built, which changes which cases are
+          + sent to the AI. `check_data.py`                              
+      868 +passed on both. Config of D3 (`lora-r16-r0.yaml`, `lora-r16-r1
+          +.yaml`; 3,036 iters, about 3.2 h                              
+      869 +(R0) and 3.6 h (R1) on the Mac); final validation loss R0 0.05
+          +6, R1 0.052. Scored as GGUF                                   
+      870 +Q5_K_M with llama-server (D1, D2), each with the prompt it was
+          + trained on (R1: `N34`); logs in                              
+      871 +`llm-eval-results/step7/`. D3 is the released 1.7B Q5_K_M on t
+          +he app's prompt (Step 6).                                     
+      872 +                                                              
+      873 +| Run | Set | top-1 | vs D3 (only D3 / only run, p) | vs R0 | 
+          +wrong ≥ 80 | no option | median ms |                          
+      874 +|---|---|---|---|---|---|---|---|                             
+      875 +| D3 | TEST | 67.4% | | | 99 | 3 | 77 |                       
+      876 +| R0 | TEST | 69.1% | 28 / 42, p 0.12 | | **77** | 3 | 80 |   
+      877 +| R1 | TEST | 69.2% | 27 / 42, p 0.091 | 37 / 38, p 1.0 | 82 |
+          + 0 | 82 |                                                     
+      878 +| D3 | TEST-NOHIST | 54.3% | | | 0 (cap) | 34 | 109 |         
+      879 +| R0 | TEST-NOHIST | 56.0% | 36 / 51, p 0.13 | | 0 | 9 | 105 |
+      880 +| R1 | TEST-NOHIST | 52.7% | 89 / 76, p 0.35 | 88 / 60, **p 0.
+          +026 worse** | 0 | **123** | 117 |                             
+      881 +                                                              
+      882 +R1's 123 empty answers (`""`) are all in `en_ult_tit`, the one
+          + project whose target is English                              
+      883 +(GLs ar, id, es-419, fa, ru). Split by that project:          
+      884 +                                                              
+      885 +| Set | Cases | D3 | R0 | R1 | R0-only / R1-only, p |         
+      886 +|---|---|---|---|---|---|                                     
+      887 +| TEST, other projects | 544 | 70.6% | 72.8% | 71.3% | 26 / 18
+          +, p 0.29 |                                                    
+      888 +| TEST, `en_ult_tit` | 291 | 61.5% | 62.2% | 65.3% | 11 / 20, 
+          +p 0.15 |                                                      
+      889 +| TEST-NOHIST, other projects | 544 | 61.8% | 63.2% | 64.9% | 
+          +33 / 42, p 0.36 |                                             
+      890 +| TEST-NOHIST, `en_ult_tit` | 291 | 40.2% | 42.6% | **29.9%** 
+          +| 55 / 18, **p 2e-5** |                                       
+      891 +                                                              
+      892 +The training data has no English-target example at all (the on
+          +ly English-target project is held                             
+      893 +out), and the GL phrase is bracketed in every one of these GL 
+          +verses, so the marking did not fail.                          
+      894 +Why R1 gives up there and R0 does not is not proven; the likel
+          +y reason is that N34's no-history                             
+      895 +request (a GATEWAY VERSE in another language next to an Englis
+          +h verse) is a combination R1 never                            
+      896 +saw, while R0's no-history request is the plain layout it also
+          + sees with history.                                           
+      897 +                                                              
+      898 +- **R0: not adopted by the rule, but the best run.** Top-1 up 
+          +on both sets (+1.7 points each,                               
+      899 +  neither significant), confident wrong answers down 99 → 77 (
+          +-22%), empty answers with no                                  
+      900 +  history 34 → 9, same speed. The no-history examples help a l
+          +ittle and cost nothing.                                       
+      901 +- **R1: not adopted.** Level with R0 on TEST, and the POSSIBLE
+          + ANSWERS no longer raise confident                            
+      902 +  wrong answers (82, against 141 for the untrained D3 with X4b
+          +, Step 6): training fixes that.                               
+      903 +  But it is significantly worse than R0 with no history, all o
+          +f it on English targets.                                      
+      904 +- TEST chose between these runs (the risk named above).       
+      905 +- Next candidate (not run): **R1b = X4b only** (POSSIBLE ANSWE
+          +RS with history, the app's prompt with                        
+      906 +  none), which keeps what R1 does with history and R0's no-his
+          +tory request.                                                 
+      907 +                                                              
+      908  ### Step 8. Confirm (LIVE, TEST)
+      909 
+      910  On the stock 1.7B, 0.6B and 4B: `baseline` and `F` on TEST and
+            TEST-NOHIST, at the app's settings
+
+⏺ Neither retrain clearly beats the released model (D3), so neither passes the
+  adoption rule. R0 is the better of the two, and R1 has a specific weakness.
+
+  R0 (the app's prompt, plus 10% of examples copied with no history):
+  - TEST: 67.4 → 69.1% (p 0.12).
+  - No history: 54.3 → 56.0% (p 0.13).
+  - Confident wrong answers: 99 → 77 (−22%).
+  - Empty answers with no history: 34 → 9.
+  - Speed: the same.
+
+  Each gain is small and not significant on its own, but it's better everywhere
+  and costs nothing.
+
+  R1 (trained on N34, the prompt with possible answers and the no-history
+  gateway verse):
+  - TEST: level with R0 (69.2%).
+  - Possible answers: they no longer cause confident wrong answers (82, against
+    141 for the released model given X4b), so training fixes the problem Step 6
+    found.
+  - No history: it's significantly worse than R0 (52.7 vs 56.0%, p 0.026).
+
+  That drop all comes from one project, en_ult_tit, the only one with English as
+  the target language. R1 answered "" on 123 of its 291 no-history cases and
+  fell to 29.9%, against 42.6% for R0. On every other project, R1 equals or
+  beats R0.
+
+  The training data has no English-target examples at all, since that project is
+  held out for testing. I checked that the gateway phrase was marked correctly
+  in all of those verses. The likely explanation, which I haven't proved, is
+  that R1 never saw an English verse next to a gateway verse in another
+  language.
+
+  My recommendation:
+  1. R0's no-history training data is worth keeping. It's the one Step 7 change
+     with no downside.
+  2. The next run should be R1b, X4b only. That means possible answers with
+     history, and the app's plain prompt with none. It keeps what R1 does with
+     history and avoids the no-history problem. One more run, about 3.5 hours.
+  3. R2 and R3 (short prompt, chat-turn examples) are less useful now. Both
+     build on R1, so I'd decide on them after R1b.
+
+  Caveats:
+  - TEST is being used to choose between runs. With so few runs that risk is
+    small, and it's noted in the plan.
+  - English-target projects are probably rare among real users, but the R1
+    failure would hit them hard.
+
+  The results are recorded in the plan under Step 7. Nothing else is running,
+  and nothing is committed.
+
+✻ Cooked for 1m 22s · done Monday 6:27 PM
+
+❯ run R1b                                                                       
+
+⏺ Building R1b's data: X4b, the same no-history share, and otherwise R0's
+  settings.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1b's data checks out. Its 1,075 no-history examples are identical to R0's, so
+  the only difference is the possible answers, in 8,888 examples. Writing its
+  config and starting the run:
+
+⏺ Bash(cd /Users/blm0/Development/Electron/checking-tool-wrapper; python3 -
+      <<'EOF'
+      s=open('llmTraining/lora-r16-r1.yaml').read()…)
+  ⎿  # Run R1b of plans/improve-single-prompt.md, Step 7: prompt X4b (POSSI
+     BLE ANSWERS with history; the app's
+     #   LLM_FINETUNE_PROMPT_VARIANT=X4b LLM_FINETUNE_INCLUDE=noRelatedWord
+     … +6 lines (ctrl+o to expand)
+  ⎿  Created llmTraining/lora-r16-r1b.yaml +36
+       1 +# Run R1b of plans/improve-single-prompt.md, Step 7: prompt X4b
+         + (POSSIBLE ANSWERS with history; the app's                     
+       2 +# prompt without) + 10% no-history examples                    
+       3 +# Same settings as lora-r16-d3.yaml (the released D3). Data:   
+       4 +#   LLM_FINETUNE_PROMPT_VARIANT=X4b LLM_FINETUNE_INCLUDE=noRela
+         +tedWordInHistory LLM_FINETUNE_NO_HISTORY_SHARE=0.1 \           
+       5 +#     LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-r1b \      
+       6 +#     npm run build:finetune-data                              
+       7 +# Train from the repo folder:                                  
+       8 +#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora
+         +-r16-r1b.yaml                                                  
+       9 +# iters = 12,143 train examples x 2 epochs / 8 = 3,036.        
+      10 +model: Qwen/Qwen3-1.7B                                         
+      11 +train: true                                                    
+      12 +data: llmTrainingData/finetune-r1b      # train.jsonl, valid.js
+         +onl, test.jsonl                                                
+      13 +fine_tune_type: lora                                           
+      14 +num_layers: -1                        # LoRA on every layer    
+      15 +lora_parameters:                                               
+      16 +  rank: 16                                                     
+      17 +  scale: 1.0                          # = lora_alpha / rank (al
+         +pha 16, as in Appendix A); 20 with lr 2e-4 broke the model     
+      18 +  dropout: 0.0                                                 
+      19 +  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_p
+         +roj", "self_attn.o_proj",                                      
+      20 +         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]      
+      21 +mask_prompt: true                     # loss on the assistant a
+         +nswer only (checked by check_data.py)                          
+      22 +max_seq_length: 2048                                           
+      23 +batch_size: 8                                                  
+      24 +iters: 3036                                                    
+      25 +learning_rate: 2e-4                                            
+      26 +lr_schedule:                                                   
+      27 +  name: cosine_decay                                           
+      28 +  warmup: 100                                                  
+      29 +  arguments: [2e-4, 2936, 0]          # [initial lr, decay step
+         +s (iters - warmup), final lr]                                  
+      30 +grad_checkpoint: true                                          
+      31 +steps_per_report: 20                                           
+      32 +steps_per_eval: 200                                            
+      33 +val_batches: 50                                                
+      34 +save_every: 200                                                
+      35 +adapter_path: llmTraining/outputs/lora-r16-r1b                 
+      36 +seed: 3407                                                     
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1b is training now. With conversion and scoring it should take about 3.5
+  hours, and I'll report when it's done.
+
+  What R1b is:
+  - Prompt: X4b, so requests with history get the algorithm's possible answers,
+    and requests without history get the app's prompt unchanged.
+  - Data: the same 12,143 examples as R0 and R1. The 1,075 no-history examples
+    are identical to R0's, so the only difference from R0 is the possible
+    answers, which appear in 8,888 examples.
+  - Data check: passed (check_data.py).
+
+  When it finishes, I'll compare it with D3, R0 and R1 on both sets:
+  - whether it keeps R1's no-history results on every project except
+    English-target, without the English-target failure;
+  - confident wrong answers, since the possible answers raised them in the
+    released model.
+
+  The config is llmTraining/lora-r16-r1b.yaml and logs go to
+  llm-eval-results/step7/r1b/. Nothing is committed.
+
+✻ Sautéed for 52s · done Monday 6:46 PM
+
+※ recap: We're retraining the 1.7B fine-tune to test prompt changes, and R1b (possible answers only, same no-history examples as R0) is training now. When it finishes in about 3.5 hours, I'll compare it with D3, R0 and R1 and report. (turn off recaps in /config)
+
+⏺ Background command "Train, convert and score R1b" completed (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ R1b finished, and it is level with R0 on every comparison. Recording that in
+  the plan:
+
+⏺ Update(plans/improve-single-prompt.md)
+  ⎿  Added 22 lines, removed 1 line
+      902    wrong answers (82, against 141 for the untrained D3 with X4b
+           , Step 6): training fixes that.
+      903    But it is significantly worse than R0 with no history, all o
+           f it on English targets.
+      904  - TEST chose between these runs (the risk named above).
+      905 -- Next candidate (not run): **R1b = X4b only** (POSSIBLE ANSWE
+          -RS with history, the app's prompt with                        
+      905 +- Next candidate: **R1b = X4b only** (POSSIBLE ANSWERS with hi
+          +story, the app's prompt with                                  
+      906    none), which keeps what R1 does with history and R0's no-his
+           tory request.
+      907 
+      908 +**R1b measured 2026-11-23** (`lora-r16-r1b.yaml`, data built w
+          +ith `LLM_FINETUNE_PROMPT_VARIANT=X4b`;                        
+      909 +the same examples as R0, its 1,075 no-history examples byte-id
+          +entical to R0's, POSSIBLE ANSWERS in                          
+      910 +8,888 of 12,143; 3.5 h; final validation loss 0.049; scored wi
+          +th X4b).                                                      
+      911 +                                                              
+      912 +| Set | D3 → R1b (only D3 / only R1b, p) | R0 → R1b (only R0 /
+          + only R1b, p) | wrong ≥ 80 (D3 / R0 / R1b) | no option | media
+          +n ms |                                                        
+      913 +|---|---|---|---|---|---|                                     
+      914 +| TEST | 67.4 → 69.3%, 27 / 43, p 0.072 | 69.1 → 69.3%, 36 / 3
+          +8, p 0.91 | 99 / 77 / 84 | 3 / 3 / 2 | 77 / 80 / 83 |         
+      915 +| TEST-NOHIST | 54.3 → 56.3%, 43 / 60, p 0.11 | 56.0 → 56.3%, 
+          +48 / 50, p 0.92 | 0 (cap) | 34 / 9 / 5 | 109 / 105 / 105 |    
+      916 +                                                              
+      917 +By project, R1b is level with R0 everywhere, English targets i
+          +ncluded (TEST-NOHIST `en_ult_tit`:                            
+      918 +R0 42.6%, R1 29.9%, R1b 44.0%; other projects 63.2 / 64.9 / 62
+          +.9%). Its no-history answers differ                           
+      919 +from R0's although the requests are the same, since the model 
+          +was trained differently on the other                          
+      920 +examples.                                                     
+      921 +                                                              
+      922 +**Decision: R1b not adopted; R0 wins (D5's tie rule: a tie is 
+          +kept only if it shortens the prompt,                          
+      923 +and X4b lengthens it).** Once trained on them, the POSSIBLE AN
+          +SWERS neither help the fine-tune nor                          
+      924 +hurt it: it already matches the algorithm's candidates by itse
+          +lf. So **the prompt stays as it is,                           
+      925 +and what Step 7 found is the no-history training data (R0)**: 
+          +compared with D3, +1.7 points on TEST                         
+      926 +and on TEST-NOHIST (neither significant alone, p 0.12 and 0.13
+          +), confident wrong answers 99 → 77,                           
+      927 +empty no-history answers 34 → 9, same speed. R2 and R3 were bu
+          +ilt on R1 and are not run.                                    
+      928 +                                                              
+      929  ### Step 8. Confirm (LIVE, TEST)
+      930 
+      931  On the stock 1.7B, 0.6B and 4B: `baseline` and `F` on TEST and
+            TEST-NOHIST, at the app's settings
+
+⏺ R1b came out level with R0, so the possible answers add nothing for a
+  fine-tune once it's trained on them. The app's prompt stays as it is. What
+  Step 7 found is that R0's no-history training data helps.
+
+  ┌────────────────┬───────┬─────────┬─────────────┬─────────────┬────────┐
+  │                │       │   No    │ Confident   │   Empty     │ Median │
+  │                │ TEST  │ history │   wrong     │ answers (no │   ms   │
+  │                │       │         │   (TEST)    │   history)  │        │
+  ├────────────────┼───────┼─────────┼─────────────┼─────────────┼────────┤
+  │ D3 (released)  │ 67.4% │ 54.3%   │ 99          │ 34          │ 77     │
+  ├────────────────┼───────┼─────────┼─────────────┼─────────────┼────────┤
+  │ R0 (app's      │       │         │             │             │        │
+  │ prompt +       │ 69.1% │ 56.0%   │ 77          │ 9           │ 80     │
+  │ no-history     │       │         │             │             │        │
+  │ data)          │       │         │             │             │        │
+  ├────────────────┼───────┼─────────┼─────────────┼─────────────┼────────┤
+  │ R1 (N34)       │ 69.2% │ 52.7%   │ 82          │ 123         │ 82     │
+  ├────────────────┼───────┼─────────┼─────────────┼─────────────┼────────┤
+  │ R1b (X4b)      │ 69.3% │ 56.3%   │ 84          │ 5           │ 83     │
+  └────────────────┴───────┴─────────┴─────────────┴─────────────┴────────┘
+
+  - R1b against R0: no difference on either set (p 0.91 and 0.92). The
+    English-target failure is gone: 44.0% there, against R0's 42.6% and R1's
+    29.9%.
+  - The possible answers don't help a fine-tune. It finds the algorithm's
+    candidates by itself once trained, which is why the stock models gained from
+    them and the fine-tune doesn't. A tie doesn't justify a longer prompt, so
+    R0 wins.
+  - R0 against the released D3:
+    - +1.7 points on both sets, but neither gain is significant on its own (p
+      0.12 and 0.13).
+    - The measures beyond top-1 all point the same way: 22% fewer confident
+      wrong answers, empty no-history answers 34 → 9, and the same speed.
+  - R2 and R3 are dropped. Both were built on R1's prompt.
+
+  Next steps, if you want to take them:
+  1. Step 8: confirm R0 against D3 before replacing the release. R0 isn't a
+     significant gain on its own.
+  2. Train a 0.6B on R0's data. The released 0.6B is weaker without history
+     (36.2%), so it may gain more from the no-history examples. About 1.5–2
+     hours.
+  3. Ship the N5 cap in the app. It's still in src, uncommitted, and works with
+     any model.
+
+  The results are in the plan under Step 7. Nothing is running, and nothing is
+  committed.
+
+✻ Baked for 32s · done Monday 10:23 PM
+※ recap: We're improving AI suggestions for the small Qwen3 models, and the retrains are done: R0, the current prompt plus no-history training examples, came out best, while prompt changes added nothing. Next is your call whether to confirm R0 against the released model (Step 8).

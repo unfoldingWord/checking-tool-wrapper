@@ -12,6 +12,9 @@
  *
  * This folder is in jest's `testPathIgnorePatterns`, so this file is not run as a test.
  */
+import fs from 'fs';
+import path from 'path';
+import { getBestVerseFromChapter } from '../../src/helpers/verseHelpers';
 
 /**
  * The fine-tune's held-out test files (`testFiles` in `llmTrainingData/finetune-d3/manifest.json`,
@@ -210,4 +213,43 @@ export function verseDataToText(verseData) {
     .replace(/\\[a-z0-9-]+\*?/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/**
+ * Adds `glVerse` to cases in place: the plain text of the case's verse in the GL bible its GL
+ * phrase came from (named at the end of `source`, e.g. `GL en ult/v91_unfoldingWord`), read from
+ * `<tcHome>/resources/<glLang>/bibles/<bible>/<book>/<chapter>.json`. For X3 of
+ * plans/improve-single-prompt.md, and for fine-tune data built with a variant that uses it.
+ * Uses Node's `fs` (`fs-extra` is mocked globally in jest).
+ * @param {Array<object>} cases
+ * @param {string} tcHome - translationCore folder with the GL bibles
+ * @returns {{added: number, missing: Array<string>}} - ids of cases with no GL verse found
+ */
+export function addGlVerses(cases, tcHome) {
+  const chapters = new Map();
+  const missing = [];
+  let added = 0;
+
+  for (const evalCase of cases) {
+    const bible = (evalCase.source || '').split(' GL ')[1]?.split(' ')[1];
+    const {
+      bookId, chapter, verse,
+    } = evalCase.contextId?.reference || {};
+    const file = bible && path.join(tcHome, 'resources', evalCase.glLang, 'bibles', bible, bookId, `${chapter}.json`);
+
+    if (file && !chapters.has(file)) {
+      chapters.set(file, fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null);
+    }
+
+    const chapterData = file && chapters.get(file);
+    const text = chapterData ? verseDataToText(getBestVerseFromChapter(chapterData, verse)) : '';
+
+    if (text) {
+      evalCase.glVerse = text;
+      added++;
+    } else {
+      missing.push(evalCase.id);
+    }
+  }
+  return { added, missing };
 }

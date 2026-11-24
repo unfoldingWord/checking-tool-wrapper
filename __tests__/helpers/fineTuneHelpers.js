@@ -8,6 +8,11 @@
  * `applyThinkingDirective`), so it cannot drift from what `queryAiAPI` sends; the parity test in
  * `buildFineTuneData.test.js` checks that.
  *
+ * With `promptVariant` (plans/improve-single-prompt.md, Step 7) the messages come from that variant's
+ * builder in `promptVariants.js`, given the request `getBestSelections` gives it (with the
+ * algorithm's options and the GL verse), then `applyThinkingDirectiveToMessages`, as `queryAiAPI`
+ * sends them; the parity test checks that too.
+ *
  * Node's `fs` is used because `fs-extra` is mocked in the tests.
  */
 import fs from 'fs';
@@ -15,6 +20,7 @@ import path from 'path';
 import {
   ALGORITHM_CERTAIN_CONFIDENCE,
   applyThinkingDirective,
+  applyThinkingDirectiveToMessages,
   buildTranslationOptionsPrompt,
   getWordList,
   moveSelectionsToOccurrence,
@@ -29,6 +35,8 @@ import {
   optionText,
   testCaseToSelectionOptions,
 } from './suggestionsHelpers';
+import { addGlVerses } from './promptEvalCases';
+import { PROMPT_VARIANTS } from './promptVariants';
 
 /** Step 2 confidence labels, following rule 5 of the system prompt */
 export const LABEL_CONFIDENCE = {
@@ -68,6 +76,18 @@ export const DEFAULT_BUILD_OPTIONS = {
   negativeShare: 0.03,
   /** drop `unusuallyLongAnswer` cases; off because about half of them look right on review */
   dropLongAnswers: false,
+  /**
+   * prompt variant of `promptVariants.js` the examples are built with; '' for the app's prompt
+   * (plans/improve-single-prompt.md, Step 7)
+   */
+  promptVariant: '',
+  /**
+   * share of the kept train and valid examples also added with no history (`history: {}`), labelled
+   * as `LABEL_CONFIDENCE.noHistory` (plans/improve-single-prompt.md, Q4); 0 for none
+   */
+  noHistoryShare: 0,
+  /** translationCore folder with the GL bibles, for the `glVerse` of a variant that uses it */
+  tcHome: '',
 };
 
 /**
@@ -260,19 +280,50 @@ export function labelConfidence(answer, history, wordList, lang) {
  * with thinking off, as `getBestSelections` and `queryAiAPI` do.
  * @param {object} testCase - a training case
  * @param {string} [verseText] - use this cleaned verse instead of the case's (for negatives)
+ * @param {object} [prompt]
+ * @param {string} [prompt.variant] - a key of `PROMPT_VARIANTS`; leave out for the app's prompt
+ * @param {Array<object>} [prompt.algorithmBestSelections] - the algorithm's options for the case, which
+ *   `getBestSelections` gives the variant's builder
  * @returns {{messages: Array<{role: string, content: string}>, wordList: Array<string>, occurrence: number}}
  */
-export function buildSingleRequestMessages(testCase, verseText) {
+export function buildSingleRequestMessages(testCase, verseText, prompt = {}) {
   const options = testCaseToSelectionOptions(testCase);
   const wordList = getWordList(verseText ?? options.verseText);
-  const prompt = buildTranslationOptionsPrompt(
+
+  if (prompt.variant) {
+    const builder = PROMPT_VARIANTS[prompt.variant];
+
+    if (!builder) {
+      throw new Error(`unknown prompt variant "${prompt.variant}"`);
+    }
+
+    // the request `getBestSelections` gives `getBestTWordSelectionWithConfidenceFromLlm`
+    const { messages } = builder({
+      wordList,
+      targetLangCode: options.targetLanguageDetails.id,
+      glPhrase: options.alignedGLText,
+      glLangCode: options.gatewayLanguageCode,
+      previousTranslationData: options.selectionsData?.selections,
+      contextId: options.contextId,
+      algorithmBestSelections: prompt.algorithmBestSelections || [],
+      glVerseText: options.glVerseText,
+    });
+
+    return {
+      messages: applyThinkingDirectiveToMessages(messages, false),
+      wordList,
+      occurrence: options.contextId.occurrence || 1,
+    };
+  }
+
+  const appPrompt = buildTranslationOptionsPrompt(
     wordList.join(' '),
     options.targetLanguageDetails.id,
     options.alignedGLText,
     options.gatewayLanguageCode,
     options.selectionsData?.selections,
   );
-  const { systemPrompt, query } = applyThinkingDirective({ systemPrompt: prompt.systemPrompt, query: prompt.input }, false);
+  const { systemPrompt, query } = applyThinkingDirective({ systemPrompt: appPrompt.systemPrompt, query: appPrompt.input }, false);
 
   return {
     messages: [
@@ -320,14 +371,15 @@ export function decodeAnswer(answer, wordList, occurrence, lang) {
  * and the round-trip check (Step 2, item 5): the answer, decoded as the app decodes it, must give
  * `expected[0]` as `summarizeTestResults` scores it.
  * @param {object} testCase - a training case
+ * @param {object} [prompt] - see {@link buildSingleRequestMessages}
  * @returns {{messages: Array, answer: string, confidence: number, historyInVerseButDiffers: boolean,
  *   roundTrip: boolean, decoded: string}}
  */
-export function buildSingleExample(testCase) {
+export function buildSingleExample(testCase, prompt = {}) {
   const lang = testCase.targetLang || '';
   const {
     messages, wordList, occurrence,
-  } = buildSingleRequestMessages(testCase);
+  } = buildSingleRequestMessages(testCase, undefined, prompt);
   const words = stripOccurrences(testCase.expected?.[0]);
   const { confidence, historyInVerseButDiffers } = labelConfidence(words, testCase.history, wordList, lang);
   const answer = formatAnswerRow(words, confidence);
@@ -407,8 +459,8 @@ export function capExamples(examples, { projectCap, groupCap }, random) {
  * @param {string} dataDir - folder of the training data files
  * @param {string} fileName - training data file name
  * @param {Array<object>} testCases - the file's cases, to check the results match them
- * @returns {Map<string, {confidence: number, text: string}>|null} - null when there are no
- *   results or they do not match the cases (rerun the algorithm)
+ * @returns {Map<string, {confidence: number, text: string, bestSelections: Array<object>}>|null} - null
+ *   when there are no results or they do not match the cases (rerun the algorithm)
  */
 export function readAlgorithmTopOptions(dataDir, fileName, testCases) {
   const resultsPath = path.join(dataDir, 'results', `${path.basename(fileName, '.json')}_Algorithm.results.json`);
@@ -421,6 +473,7 @@ export function readAlgorithmTopOptions(dataDir, fileName, testCases) {
   const byId = new Map(results.map(({ id, result }) => [id, {
     confidence: result?.bestSelections?.[0]?.confidence || 0,
     text: optionText(result?.bestSelections?.[0]),
+    bestSelections: result?.bestSelections || [],
   }]));
 
   if (byId.size !== testCases.length || testCases.some(({ id }) => !byId.has(id))) {
@@ -438,9 +491,11 @@ export function readAlgorithmTopOptions(dataDir, fileName, testCases) {
  *   - candidate verses by file name
  * @param {number} count - number of negatives to make
  * @param {function(): number} random
+ * @param {object} [prompt] - see {@link buildSingleRequestMessages}; built with no algorithm options
+ *   (assumed: the verse has none of the case's history words, so the algorithm should find nothing)
  * @returns {Array<object>} - examples with `messages` and `meta`
  */
-export function buildNegativeExamples(sources, versesByFile, count, random) {
+export function buildNegativeExamples(sources, versesByFile, count, random, prompt = {}) {
   const negatives = [];
   const used = new Set();
   const MAX_TRIES = 30;
@@ -459,7 +514,7 @@ export function buildNegativeExamples(sources, versesByFile, count, random) {
       if (other.testCase.verse !== source.testCase.verse && !used.has(key) &&
         verseHasNoCaseWords(source.testCase, other.verseWords)) {
         used.add(key);
-        const { messages } = buildSingleRequestMessages(source.testCase, other.verseText);
+        const { messages } = buildSingleRequestMessages(source.testCase, other.verseText, { variant: prompt.variant });
 
         negatives.push({
           messages: [...messages, { role: 'assistant', content: formatAnswerRow('', 0) }],
@@ -477,6 +532,50 @@ export function buildNegativeExamples(sources, versesByFile, count, random) {
     }
   }
   return negatives;
+}
+
+/**
+ * Builds the no-history examples (plans/improve-single-prompt.md, Q4): a random `share` of the
+ * kept examples again with `history: {}`, so the model learns the request the app sends when a
+ * project has no earlier selections. With no history the algorithm has no options, so the request
+ * has none. Labelled by {@link labelConfidence} (`LABEL_CONFIDENCE.noHistory`); cases whose
+ * answer does not round-trip are skipped.
+ * @param {Array<object>} kept - kept examples, with `testCase` and `meta`
+ * @param {number} share - 0 to 1
+ * @param {function(): number} random
+ * @param {object} [prompt] - see {@link buildSingleRequestMessages}
+ * @returns {{examples: Array<object>, roundTripFailed: number}}
+ */
+export function buildNoHistoryExamples(kept, share, random, prompt = {}) {
+  const sources = shuffle(kept, random).slice(0, Math.round(kept.length * (share || 0)));
+  const examples = [];
+  let roundTripFailed = 0;
+
+  for (const source of sources) {
+    const testCase = {
+      ...source.testCase, id: `${source.testCase.id}#nohist`, history: {},
+    };
+    const example = buildSingleExample(testCase, { variant: prompt.variant, algorithmBestSelections: [] });
+
+    if (!example.roundTrip) {
+      roundTripFailed++;
+      continue;
+    }
+    examples.push({
+      messages: example.messages,
+      testCase,
+      meta: {
+        ...source.meta,
+        id: testCase.id,
+        kind: 'single-nohist',
+        label: example.confidence,
+        historyInVerseButDiffers: false,
+        algorithmConfidence: 0,
+        algorithmRight: false,
+      },
+    });
+  }
+  return { examples, roundTripFailed };
 }
 
 /**
@@ -527,6 +626,15 @@ export function buildFineTuneData({
     project: getTargetProject(fileName),
     testCases: JSON.parse(fs.readFileSync(path.join(dataDir, fileName), 'utf8')),
   }));
+  const prompt = { variant: options.promptVariant || '' };
+
+  if (prompt.variant && !PROMPT_VARIANTS[prompt.variant]) {
+    throw new Error(`unknown prompt variant "${prompt.variant}"; known: ${Object.keys(PROMPT_VARIANTS).join(', ')}`);
+  }
+
+  // the GL verse, for variants that send it (X3, N4, N34); the app's prompt does not use it
+  const glVerses = prompt.variant && options.tcHome ?
+    addGlVerses(files.flatMap(({ testCases }) => testCases), options.tcHome) : null;
   const answerLengthLimits = getAnswerLengthLimits(files.flatMap(({ testCases }) => testCases));
   const missingAlgorithmResults = [];
   const drops = {};
@@ -610,7 +718,7 @@ export function buildFineTuneData({
         }
       }
 
-      const example = buildSingleExample(testCase);
+      const example = buildSingleExample(testCase, { ...prompt, algorithmBestSelections: top.bestSelections });
 
       if (!example.roundTrip) {
         roundTripFailures.push({
@@ -661,10 +769,14 @@ export function buildFineTuneData({
   };
   const trainVerses = new Map([...versesByFile].map(([file, verses]) => [file, verses.filter(v => v.split === 'train')]));
   const negatives = buildNegativeExamples(capped.train.kept, trainVerses,
-    Math.round(capped.train.kept.length * options.negativeShare), random);
+    Math.round(capped.train.kept.length * options.negativeShare), random, prompt);
+  const noHistory = {
+    train: buildNoHistoryExamples(capped.train.kept, options.noHistoryShare, random, prompt),
+    valid: buildNoHistoryExamples(capped.valid.kept, options.noHistoryShare, random, prompt),
+  };
   const splits = {
-    train: shuffle([...capped.train.kept, ...negatives], random),
-    valid: capped.valid.kept,
+    train: shuffle([...capped.train.kept, ...negatives, ...noHistory.train.examples], random),
+    valid: [...capped.valid.kept, ...noHistory.valid.examples],
     test: candidates.test,
   };
 
@@ -693,6 +805,12 @@ export function buildFineTuneData({
     counts: Object.fromEntries(Object.entries(splits).map(([split, examples]) => [split, examples.length])),
     capDrops: { train: capped.train.dropped, valid: capped.valid.dropped },
     negatives: negatives.length,
+    noHistory: {
+      train: noHistory.train.examples.length,
+      valid: noHistory.valid.examples.length,
+      roundTripFailed: noHistory.train.roundTripFailed + noHistory.valid.roundTripFailed,
+    },
+    glVerses: glVerses && { added: glVerses.added, missing: glVerses.missing.length },
     drops,
     byProject: Object.fromEntries(Object.entries(splits).map(([split, examples]) =>
       [split, countBy(examples, ({ meta }) => meta.project)])),

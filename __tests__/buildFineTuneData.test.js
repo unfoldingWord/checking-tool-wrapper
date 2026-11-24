@@ -27,18 +27,27 @@
  *   LLM_FINETUNE_GROUP_CAP      examples per (project, group) (default 40)
  *   LLM_FINETUNE_NEGATIVES      negative examples as a share of train (default 0.03; 0 for none)
  *   LLM_FINETUNE_DROP_LONG      set to 1 to drop `unusuallyLongAnswer` cases
+ *   LLM_FINETUNE_PROMPT_VARIANT prompt variant of `helpers/promptVariants.js` to build the
+ *                               examples with (plans/improve-single-prompt.md, Step 7); default:
+ *                               the app's prompt
+ *   LLM_FINETUNE_NO_HISTORY_SHARE share of train and valid examples added again with no history
+ *                               (default 0; Step 7 of that plan uses 0.1)
+ *   LLM_FINETUNE_TC_HOME        translationCore folder with the GL bibles, for variants that send
+ *                               the GL verse (default ~/translationCore)
  *
  * jest is used because it is the repo's only babel runner; Node's `fs` is used because
  * `fs-extra` is mocked globally.
  */
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { getBestSelections } from '../src/utils/checkingSuggestionsUtils';
 import {
-  buildFineTuneData, buildSingleExample, buildSingleRequestMessages, capExamples, DEFAULT_BUILD_OPTIONS,
+  buildFineTuneData, buildNoHistoryExamples, buildSingleExample, buildSingleRequestMessages, capExamples, DEFAULT_BUILD_OPTIONS,
   decodeAnswer, getEvalCaseKeys, getSplit, getTargetProject, isTestProject, labelConfidence, makeRandom,
   stripOccurrences, verseHasNoCaseWords, verseGroupKey,
 } from './helpers/fineTuneHelpers';
+import { installPromptVariant } from './helpers/promptVariants';
 import { testCaseToSelectionOptions } from './helpers/suggestionsHelpers';
 
 const env = process.env;
@@ -194,6 +203,74 @@ describe('fine-tune data parity with the app', () => {
     }
     expect(compared).toBeGreaterThanOrEqual(5);
   });
+
+  // Step 7 of plans/improve-single-prompt.md: data built with a prompt variant, with and without history
+  test.each(['X4b', 'N34'])('with prompt variant %s, the exporter messages equal what getBestSelections sends', async (variant) => {
+    const bodies = [];
+
+    global.fetch = jest.fn((url, { body }) => {
+      bodies.push(JSON.parse(body));
+      return Promise.resolve({
+        ok: false, status: 500, text: () => Promise.resolve('recorded'),
+      });
+    });
+
+    const spies = ['error', 'warn', 'log'].map(name => jest.spyOn(console, name).mockImplementation(() => {}));
+    const uninstall = installPromptVariant(variant);
+    const compared = { history: 0, noHistory: 0 };
+
+    try {
+      for (const realCase of realCases) {
+        for (const testCase of [
+          { ...realCase, glVerse: `a verse with ${realCase.glPhrase} in it` },
+          {
+            ...realCase, id: `${realCase.id}#nohist`, history: {}, glVerse: `a verse with ${realCase.glPhrase} in it`,
+          },
+        ]) {
+          // eslint-disable-next-line no-await-in-loop
+          const [algorithm] = await getBestSelections(testCaseToSelectionOptions(testCase));
+          bodies.length = 0;
+          // eslint-disable-next-line no-await-in-loop
+          await getBestSelections(testCaseToSelectionOptions(testCase, { llmQueryUrl: 'http://localhost:1234', currentModel: 'm' }));
+
+          if (bodies.length) {
+            const { messages } = buildSingleRequestMessages(testCase, undefined, { variant, algorithmBestSelections: algorithm.bestSelections });
+            expect(bodies[0].messages).toEqual(messages);
+            compared[Object.keys(testCase.history || {}).length ? 'history' : 'noHistory']++;
+          }
+        }
+      }
+    } finally {
+      uninstall();
+      spies.forEach(spy => spy.mockRestore());
+    }
+    expect(compared.history).toBeGreaterThanOrEqual(5);
+    expect(compared.noHistory).toBeGreaterThanOrEqual(5);
+  });
+});
+
+describe('no-history examples', () => {
+  test('buildNoHistoryExamples copies a share of the examples with no history, labelled as a guess', () => {
+    const kept = realCases.slice(0, 20).map(testCase => ({
+      testCase, meta: {
+        id: testCase.id, kind: 'single', label: 95,
+      },
+    }));
+    const { examples, roundTripFailed } = buildNoHistoryExamples(kept, 0.5, makeRandom(1), { variant: 'N34' });
+
+    expect(examples.length + roundTripFailed).toBe(10);
+    expect(examples.length).toBeGreaterThan(0);
+
+    for (const example of examples) {
+      expect(example.testCase.history).toEqual({});
+      expect(example.meta.id.endsWith('#nohist')).toBe(true);
+      expect(example.meta.kind).toBe('single-nohist');
+      expect(example.meta.label).toBe(labelConfidence('x', {}, [], '').confidence);
+      expect(example.messages.map(message => message.role)).toEqual(['system', 'user', 'assistant']);
+      expect(example.messages[1].content).not.toContain('PREVIOUS TRANSLATIONS');
+    }
+    expect(buildNoHistoryExamples(kept, 0, makeRandom(1)).examples).toEqual([]);
+  });
 });
 
 const describeIfBuild = BUILD ? describe : describe.skip;
@@ -212,6 +289,9 @@ describeIfBuild('build fine-tune data', () => {
       groupCap: number('LLM_FINETUNE_GROUP_CAP', DEFAULT_BUILD_OPTIONS.groupCap),
       negativeShare: number('LLM_FINETUNE_NEGATIVES', DEFAULT_BUILD_OPTIONS.negativeShare),
       dropLongAnswers: env.LLM_FINETUNE_DROP_LONG === '1',
+      promptVariant: env.LLM_FINETUNE_PROMPT_VARIANT || '',
+      noHistoryShare: number('LLM_FINETUNE_NO_HISTORY_SHARE', DEFAULT_BUILD_OPTIONS.noHistoryShare),
+      tcHome: env.LLM_FINETUNE_TC_HOME || path.join(os.homedir(), 'translationCore'),
     };
     const dataDir = path.resolve(REPO, env.LLM_FINETUNE_DATA_DIR || 'llmTrainingData');
     const outDir = path.resolve(REPO, env.LLM_FINETUNE_OUT_DIR || 'llmTrainingData/finetune');
@@ -229,7 +309,8 @@ describeIfBuild('build fine-tune data', () => {
 
     console.log([
       `fine-tune data written to ${outDir}`,
-      `  counts: ${JSON.stringify(manifest.counts)} (negatives in train: ${manifest.negatives})`,
+      `  prompt: ${options.promptVariant || 'app'}; GL verses: ${JSON.stringify(manifest.glVerses)}`,
+      `  counts: ${JSON.stringify(manifest.counts)} (negatives in train: ${manifest.negatives}; no history: ${JSON.stringify(manifest.noHistory)})`,
       `  cap drops: ${JSON.stringify(manifest.capDrops)}`,
       `  drops: ${JSON.stringify(manifest.drops, null, 1)}`,
       `  train by category: ${JSON.stringify(manifest.byCategory.train)}`,

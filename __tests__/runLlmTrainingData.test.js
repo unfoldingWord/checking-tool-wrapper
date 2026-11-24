@@ -23,6 +23,8 @@
  *   LLM_TRAINING_TEMPERATURE   AI temperature (default: the app's default)
  *   LLM_TRAINING_TOKEN         bearer token for the AI server
  *   LLM_TRAINING_EXTRA_PARAMS  JSON object of extra request body fields, e.g. '{"seed":42}'
+ *   LLM_TRAINING_THINKING      set to 1 to let the AI think (no `/no_think`); cap it with
+ *                              `max_tokens` in LLM_TRAINING_EXTRA_PARAMS
  *   LLM_PROMPT_VARIANT         prompt variant for single AI requests, a key of `PROMPT_VARIANTS` in
  *                              `helpers/promptVariants.js` (default: the app's prompt, no override).
  *                              The result files get `_prompt-<variant>` after the model name.
@@ -62,6 +64,7 @@ const SETTINGS = {
   llmTemperature: env.LLM_TRAINING_TEMPERATURE ? Number(env.LLM_TRAINING_TEMPERATURE) : undefined,
   apiToken: env.LLM_TRAINING_TOKEN || undefined,
   llmExtraParams: env.LLM_TRAINING_EXTRA_PARAMS ? JSON.parse(env.LLM_TRAINING_EXTRA_PARAMS) : undefined,
+  llmEnableThinking: env.LLM_TRAINING_THINKING === '1' || undefined,
 };
 /** prompt variant of an AI run, '' for the app's prompt (plans/improve-single-prompt.md) */
 const PROMPT_VARIANT = env.LLM_TRAINING_URL ? getPromptVariantFromEnv(env) : '';
