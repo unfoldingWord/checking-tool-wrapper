@@ -742,6 +742,22 @@ history. **Not adopted for now (D5):** the 1.7B answers more often (no option 22
 not more often right. It is the best no-history prompt for the 4B (+7.2 points, the largest gain
 of Step 5), so it stays a candidate. Next to try: N3 with N4's GATEWAY VERSE line (both helped the
 4B separately; the 1.7B gained most from the verse).
+
+  **N3 + N4 measured 2026-11-23** (variant `N34`; logs in `llm-eval-results/prompt-N34-20261122/`).
+  With no history: N3's prompt plus X3's GATEWAY VERSE field, a GATEWAY VERSE in each of its three
+  examples (Example 3: "Jesus healed many of [the sick]"), and N4's request text; X4b otherwise.
+  DEV is identical to X4b on every model (0 / 0 changed cases), as it should be.
+
+  | Model | DEV-NOHIST top-1, baseline → N34 (only A / B, p) | vs N3 | vs N4 | No option |
+  |---|---|---|---|---|
+  | 1.7B | 16.4 → 16.1%, 48 / 46, p 0.92 | 16.5%, p 0.84 | 18.7%, **N4 better, p 0.034** | 225 → 167 |
+  | 0.6B | 1.1 → 0.9%, p 1.0 | 1.6%, p 0.18 | 0.4%, p 0.34 | 663 → 690 |
+  | 4B | 34.0 → **42.9%**, 45 / 112, **p 9e-8** | 41.2%, p 0.29 | 39.5%, **p 0.013** | 76 → 37 |
+
+  **Not adopted (D5):** no gain for the primary model; the 1.7B does better with N4 alone, so for
+  it the N3 prompt cancels what the verse gives. For the 4B it is the best no-history prompt
+  measured (+8.9 points). A candidate for the retrains only if no-history examples are trained
+  with this prompt; otherwise N4 stays the 1.7B's best (not adopted either, p 0.097 vs baseline).
 - **N6. Unrelated history treated like none.** When no history line fits the verse
   (`noRelatedWordInHistory` cases: today up to 5 unrelated lines are sent), send the no-history
   form instead. Measure on the DEV cases with that tag
@@ -750,6 +766,39 @@ of Step 5), so it stays a candidate. Next to try: N3 with N4's GATEWAY VERSE lin
 **Done when:** each of N1-N6 has a row and the adopted ones are combined into the final variant
 `F`, which passes D5 against `baseline` on both DEV and DEV-NOHIST.
 
+### Step 5A. Qwen3 settings: sampling and thinking (LIVE, DEV; added 2026-11-23)
+
+Not prompt text: the two Qwen3 settings the app fixes. Both on X4b, logs in
+`llm-eval-results/qwen-sampling-20261123/` and `qwen-thinking-20261123/`; result files carry
+`-qsamp` / `-think` after the model name. DEV against X4b, DEV-NOHIST against `baseline` (X4b
+sends it the app's prompt; wrong ≥ 80 there is 0 from the N5 cap).
+
+**Q-SAMP. Qwen3's recommended non-thinking sampling:** temperature 0.7, top_p 0.8, top_k 20,
+min_p 0 (seed 42), thinking off. **No effect:** 1.7B DEV 44.6 → 44.3% (7 / 3, p 0.34), NOHIST
+16.4 → 16.1%; 0.6B DEV 39.5 → 38.7% (p 0.17); 4B 51.7 → 51.9%, NOHIST 34.0 → 34.0%. Confident
+wrong answers and times unchanged. The 0.1 default stays.
+
+**Q-THINK. Thinking on** (`llmEnableThinking`, a new eval-only option of `getBestSelections`, off
+in the app; `LLM_TRAINING_THINKING=1` in the runner): no `/no_think`, Qwen3's thinking sampling
+(temperature 0.6, top_p 0.95, top_k 20, min_p 0), `max_tokens` 2048. 1.7B only so far.
+
+| Set | top-1 | paired (only A / only think, p) | wrong ≥ 80 | no option | median ms (p90) |
+|---|---|---|---|---|---|
+| DEV, X4b → think | 44.6 → **50.3%** | 50 / 136, **p 2e-10** | 492 → 474 | 176 → 210 | 165 → 6,073 (15,076) |
+| DEV-NOHIST, baseline → think | 16.4 → **36.1%** | 36 / 184, **p 4e-25** | (capped) | 225 → 197 | 123 → 9,436 (17,109) |
+
+The largest gain measured in this plan, on both sets: the thinking 1.7B is level with the
+non-thinking 4B on DEV (50.3 vs 51.7%, p 0.18); with no history it beats the 4B on the app's
+prompt (36.1 vs 34.0%) but not the 4B with N34 (42.9%, p 0.001). Thinking takes 847 tokens at the median (p90 2,022); 221 of 2,250 requests
+(10%) hit the 2,048 cap, which likely leaves no answer (counted as the algorithm's fallback), so a
+higher cap may gain more, at more time. **Cost: about 40-75x slower** (6-9 s median per check, up
+to 23 s), so it passes D5 on accuracy but is a product decision, not a prompt one: it suits a
+background queue that fills a group's suggestions ahead of the user, not a check the user is
+waiting on. **Decision (author, 2026-11-23): not used; thinking is too slow even on a fast
+computer.** Not run for that reason: 0.6B and 4B with thinking, a higher cap, a fine-tune with
+thinking. What it does show: the 1.7B can reach 4B-level accuracy on this task when it works the
+answer out, so the gap is reasoning, not knowledge of the languages.
+
 ### Step 6. Cost to the released fine-tunes (LIVE, TEST)
 
 Run `baseline` and `F` on D3 1.7B Q5_K_M and the 0.6B Q6_K, on TEST and TEST-NOHIST. This shows
@@ -757,6 +806,27 @@ what switching the app's prompt would cost users of the released models before r
 the fine-tunes do without history (never trained).
 
 **Done when:** four rows per fine-tune are in section 7.
+
+**Measured 2026-11-23** (`F` = X4b, the only adopted prompt change; the N5 cap applies to both
+prompts; release GGUFs, checksums equal to the GitHub release; logs in
+`llm-eval-results/step6-20261123/`). TEST-NOHIST requests are identical under both prompts (no
+history, so no algorithm options), so those runs match exactly.
+
+| Fine-tune | Set | top-1 baseline → X4b | only A / only B, p | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|
+| 1.7B Q5_K_M | TEST | 67.4 → 66.7% | 32 / 26, p 0.51 | 99 → **141** | 77 → 81 |
+| 1.7B Q5_K_M | TEST-NOHIST | 54.3% (same) | 0 / 0 | 0 (cap) | 109 |
+| 0.6B Q6_K | TEST | 64.0 → 63.5% | 20 / 16, p 0.62 | 96 → **154** | 50 |
+| 0.6B Q6_K | TEST-NOHIST | 36.2% (same) | 0 / 0 | 0 (cap) | 67 |
+
+- **Switching the app to X4b before retraining costs the released models nothing significant in
+  top-1, but raises confident wrong answers by 42% (1.7B) and 60% (0.6B):** the fine-tunes copy a
+  POSSIBLE ANSWER with high confidence when it is wrong. So X4b must not ship without a retrain.
+- **Without history the fine-tunes do far better than the stock models** (1.7B 54.3% vs the stock
+  1.7B's 16.4% on DEV-NOHIST; 0.6B 36.2% vs 1.1%; different sets, so indicative), though they were
+  never trained on it: the training data's `noRelatedWordInHistory` cases are close to no history.
+  With the N5 cap their confident wrong answers there are 0; mean confidence is about 56-61, right
+  and wrong alike.
 
 ### Step 7. Retrain on the candidate prompts (OFFLINE build, MLX training, LIVE GGUF scoring)
 
@@ -789,6 +859,73 @@ against D3 and against R0. A run is adopted when it is at or above D3 on TEST (n
 worse), better than D3 on TEST-NOHIST, and not slower per request than D3 by more than 30%. If
 R0 wins over R1-R3, the prompt stays as it is and only the no-history training data ships.
 
+**R0 and R1 measured 2026-11-23.** Built with the exporter's new settings
+(`LLM_FINETUNE_PROMPT_VARIANT`, `LLM_FINETUNE_NO_HISTORY_SHARE=0.1`, GL verses from
+`~/translationCore`); the no-history share defaults to 0 so earlier builds are unchanged. Both
+have the same 12,143 train examples (1,075 of them no-history copies, labelled 55; 322
+negatives), so only the prompt differs; that is more than D3's 10,265 because the algorithm was
+recalibrated after D3 was built, which changes which cases are sent to the AI. `check_data.py`
+passed on both. Config of D3 (`lora-r16-r0.yaml`, `lora-r16-r1.yaml`; 3,036 iters, about 3.2 h
+(R0) and 3.6 h (R1) on the Mac); final validation loss R0 0.056, R1 0.052. Scored as GGUF
+Q5_K_M with llama-server (D1, D2), each with the prompt it was trained on (R1: `N34`); logs in
+`llm-eval-results/step7/`. D3 is the released 1.7B Q5_K_M on the app's prompt (Step 6).
+
+| Run | Set | top-1 | vs D3 (only D3 / only run, p) | vs R0 | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|---|---|
+| D3 | TEST | 67.4% | | | 99 | 3 | 77 |
+| R0 | TEST | 69.1% | 28 / 42, p 0.12 | | **77** | 3 | 80 |
+| R1 | TEST | 69.2% | 27 / 42, p 0.091 | 37 / 38, p 1.0 | 82 | 0 | 82 |
+| D3 | TEST-NOHIST | 54.3% | | | 0 (cap) | 34 | 109 |
+| R0 | TEST-NOHIST | 56.0% | 36 / 51, p 0.13 | | 0 | 9 | 105 |
+| R1 | TEST-NOHIST | 52.7% | 89 / 76, p 0.35 | 88 / 60, **p 0.026 worse** | 0 | **123** | 117 |
+
+R1's 123 empty answers (`""`) are all in `en_ult_tit`, the one project whose target is English
+(GLs ar, id, es-419, fa, ru). Split by that project:
+
+| Set | Cases | D3 | R0 | R1 | R0-only / R1-only, p |
+|---|---|---|---|---|---|
+| TEST, other projects | 544 | 70.6% | 72.8% | 71.3% | 26 / 18, p 0.29 |
+| TEST, `en_ult_tit` | 291 | 61.5% | 62.2% | 65.3% | 11 / 20, p 0.15 |
+| TEST-NOHIST, other projects | 544 | 61.8% | 63.2% | 64.9% | 33 / 42, p 0.36 |
+| TEST-NOHIST, `en_ult_tit` | 291 | 40.2% | 42.6% | **29.9%** | 55 / 18, **p 2e-5** |
+
+The training data has no English-target example at all (the only English-target project is held
+out), and the GL phrase is bracketed in every one of these GL verses, so the marking did not fail.
+Why R1 gives up there and R0 does not is not proven; the likely reason is that N34's no-history
+request (a GATEWAY VERSE in another language next to an English verse) is a combination R1 never
+saw, while R0's no-history request is the plain layout it also sees with history.
+
+- **R0: not adopted by the rule, but the best run.** Top-1 up on both sets (+1.7 points each,
+  neither significant), confident wrong answers down 99 → 77 (-22%), empty answers with no
+  history 34 → 9, same speed. The no-history examples help a little and cost nothing.
+- **R1: not adopted.** Level with R0 on TEST, and the POSSIBLE ANSWERS no longer raise confident
+  wrong answers (82, against 141 for the untrained D3 with X4b, Step 6): training fixes that.
+  But it is significantly worse than R0 with no history, all of it on English targets.
+- TEST chose between these runs (the risk named above).
+- Next candidate: **R1b = X4b only** (POSSIBLE ANSWERS with history, the app's prompt with
+  none), which keeps what R1 does with history and R0's no-history request.
+
+**R1b measured 2026-11-23** (`lora-r16-r1b.yaml`, data built with `LLM_FINETUNE_PROMPT_VARIANT=X4b`;
+the same examples as R0, its 1,075 no-history examples byte-identical to R0's, POSSIBLE ANSWERS in
+8,888 of 12,143; 3.5 h; final validation loss 0.049; scored with X4b).
+
+| Set | D3 → R1b (only D3 / only R1b, p) | R0 → R1b (only R0 / only R1b, p) | wrong ≥ 80 (D3 / R0 / R1b) | no option | median ms |
+|---|---|---|---|---|---|
+| TEST | 67.4 → 69.3%, 27 / 43, p 0.072 | 69.1 → 69.3%, 36 / 38, p 0.91 | 99 / 77 / 84 | 3 / 3 / 2 | 77 / 80 / 83 |
+| TEST-NOHIST | 54.3 → 56.3%, 43 / 60, p 0.11 | 56.0 → 56.3%, 48 / 50, p 0.92 | 0 (cap) | 34 / 9 / 5 | 109 / 105 / 105 |
+
+By project, R1b is level with R0 everywhere, English targets included (TEST-NOHIST `en_ult_tit`:
+R0 42.6%, R1 29.9%, R1b 44.0%; other projects 63.2 / 64.9 / 62.9%). Its no-history answers differ
+from R0's although the requests are the same, since the model was trained differently on the other
+examples.
+
+**Decision: R1b not adopted; R0 wins (D5's tie rule: a tie is kept only if it shortens the prompt,
+and X4b lengthens it).** Once trained on them, the POSSIBLE ANSWERS neither help the fine-tune nor
+hurt it: it already matches the algorithm's candidates by itself. So **the prompt stays as it is,
+and what Step 7 found is the no-history training data (R0)**: compared with D3, +1.7 points on TEST
+and on TEST-NOHIST (neither significant alone, p 0.12 and 0.13), confident wrong answers 99 → 77,
+empty no-history answers 34 → 9, same speed. R2 and R3 were built on R1 and are not run.
+
 ### Step 8. Confirm (LIVE, TEST)
 
 On the stock 1.7B, 0.6B and 4B: `baseline` and `F` on TEST and TEST-NOHIST, at the app's settings
@@ -797,6 +934,42 @@ look at TEST.
 
 **Done when:** `F` is not worse than `baseline` on TEST for 1.7B (if it is, the DEV gain was
 tuning to DEV: report it and stop), and the rows are in section 7.
+
+**Run 2026-11-24 for R0 instead** (Step 7 kept the app's prompt, so there is no `F` to confirm on
+stock models; what needs confirming is R0 against the released D3). Both on the app's prompt,
+temperature 0.1, no seed, 2 runs each on TEST and TEST-NOHIST, then the suite
+(`scripts/test-llm.sh -r 3 -g 1`); logs in `llm-eval-results/step8/`.
+
+| Set | Run | D3 → R0 top-1 | only D3 / only R0, p | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|---|
+| TEST | seed 42 (Step 7) | 67.4 → 69.1% | 28 / 42, p 0.12 | 99 → 77 | 3 → 3 | 77 → 80 |
+| TEST | a | 67.4 → 68.6% | 31 / 41, p 0.29 | 99 → 80 | 3 → 3 | 98 → 80 |
+| TEST | b | 67.8 → 69.0% | 30 / 40, p 0.28 | 97 → 80 | 2 → 3 | 87 → 80 |
+| TEST-NOHIST | seed 42 (Step 7) | 54.3 → 56.0% | 36 / 51, p 0.13 | 0 (cap) | 34 → 9 | 109 → 105 |
+| TEST-NOHIST | a | 53.5 → 55.7% | 34 / 52, p 0.066 | 0 | 35 → 11 | 107 → 106 |
+| TEST-NOHIST | b | 53.8 → 55.9% | 33 / 51, p 0.063 | 0 | 33 → 10 | 104 → 105 |
+
+Suite (55 single cases x 3 runs): D3 top-1 62% (34, 34, 34 of 55; real projects 40%), R0 70%
+(39, 37, 39; real projects 51%); both fail the 70% bar by rounding (R0 69.7%); wrong at ≥ 80:
+D3 9%, R0 11%; median 94 → 86 ms.
+
+**Result:** R0 is ahead of D3 in every run, by 1.2-1.7 points on TEST and 2.1-2.2 on TEST-NOHIST,
+with about 20% fewer confident wrong answers on TEST and a third as many empty no-history answers,
+at the same speed. No single run is significant (TEST p 0.12-0.29, TEST-NOHIST p 0.06-0.13); the
+runs are not independent samples (same cases), so they cannot be pooled into one test, but the
+direction never changes. The suite agrees (+8 points). R0 passes Step 7's rule except for
+"better than D3 on TEST-NOHIST", which it misses on significance only.
+
+**R0's data on the 0.6B** (`lora-r16-r0-0.6b.yaml`: the released 0.6B's settings with R0's
+data, 3,036 iters, 1.6 h; GGUF Q6_K; seed 42, as Step 6), against the released 0.6B:
+
+| Set | released 0.6B → R0 0.6B | only released / only R0, p | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|
+| TEST | 64.0 → 62.9% | 42 / 33, p 0.36 | 96 → 89 | 4 → 6 | 50 → 46 |
+| TEST-NOHIST | 36.2 → **41.6%** | 46 / 91, **p 0.0002** | 0 (cap) | 104 → 17 | 67 → 64 |
+
+The 0.6B gains significantly with no history (+5.4 points; empty answers 104 → 17) and is not
+significantly worse with history (-1.1 points, p 0.36).
 
 ### Step 9. Put the result in the app (OFFLINE)
 

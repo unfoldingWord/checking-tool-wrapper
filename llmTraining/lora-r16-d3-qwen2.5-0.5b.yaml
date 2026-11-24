@@ -1,0 +1,33 @@
+# Qwen2.5-0.5B-Instruct as a low-memory candidate (plans/fine-tune-qwen3.md): D3's recipe and data
+# (lora-r16-d3.yaml) on Qwen2.5-0.5B-Instruct, to compare with the Qwen3-0.6B companion. Qwen2.5 has
+# no thinking mode: the trained part is the answer alone (check_data.py --model
+# Qwen/Qwen2.5-0.5B-Instruct passes on finetune-d3), and the app's /no_think is plain prompt text.
+# Train from the repo folder:
+#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r16-d3-qwen2.5-0.5b.yaml
+model: Qwen/Qwen2.5-0.5B-Instruct
+train: true
+data: llmTrainingData/finetune-d3      # train.jsonl, valid.jsonl, test.jsonl
+fine_tune_type: lora
+num_layers: -1                        # LoRA on every layer
+lora_parameters:
+  rank: 16
+  scale: 1.0                          # = lora_alpha / rank (alpha 16, as in Appendix A); 20 with lr 2e-4 broke the model
+  dropout: 0.0
+  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
+         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
+mask_prompt: true                     # loss on the assistant answer only (checked by check_data.py)
+max_seq_length: 2048
+batch_size: 8
+iters: 2566
+learning_rate: 2e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [2e-4, 2466, 0]          # [initial lr, decay steps (iters - warmup), final lr]
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 200
+val_batches: 50
+save_every: 200
+adapter_path: llmTraining/outputs/lora-r16-d3-qwen2.5-0.5b
+seed: 3407

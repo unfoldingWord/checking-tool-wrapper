@@ -170,6 +170,7 @@ export function getQuoteWords(contextId) {
  * @param {string} [settings.currentModel] - AI model name
  * @param {number} [settings.llmTemperature] - AI temperature
  * @param {object} [settings.llmExtraParams] - extra fields for the AI request body
+ * @param {boolean} [settings.llmEnableThinking] - let the AI think (experiments only)
  * @param {string} [settings.apiToken] - bearer token for the AI server
  * @param {string} [settings.toolName='translationWords'] - used in the cache `key`
  * @returns {object} - options for `getBestSelections`; pass an array of them for a batched query
@@ -183,6 +184,7 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
     currentModel,
     llmTemperature,
     llmExtraParams,
+    llmEnableThinking,
     apiToken,
     toolName = 'translationWords',
   } = settings;
@@ -208,6 +210,7 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
     currentModel,
     llmTemperature,
     llmExtraParams,
+    llmEnableThinking,
     apiToken,
   };
 }

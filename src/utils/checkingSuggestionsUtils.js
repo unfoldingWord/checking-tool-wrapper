@@ -4749,6 +4749,8 @@ async function getAlgorithmResultForJob(job) {
  * @param {number} [options.llmTemperature=0.1] - Sampling temperature for AI model (0.0-1.0); higher values increase
  *   randomness in suggestions, lower values make output more repeatable; 0 is used as given; only applies in AI mode
  * @param {string} [options.apiToken] - Bearer token for LLM API requests when required
+ * @param {boolean} [options.llmEnableThinking=false] - let the AI think before answering (no `/no_think`,
+ *   no default response cap); the app leaves it off; for experiments
  * @param {object} [options.llmExtraParams] - extra chat-completion request body fields, e.g.
  *   `{ seed: 42, top_k: 20 }`; only applies in AI mode (see {@link streamChatMessage})
  * @param {object} [options.contextId] - the check's context; when `contextId.occurrence` is above 1,

@@ -427,6 +427,24 @@ describe('getBestSelections with AI and a certain algorithm answer', () => {
     ]);
   });
 
+  test('sends thinking off unless llmEnableThinking is set', async () => {
+    const query = jest.fn().mockResolvedValue({ replyText: '"Roma",95', actualModel: 'test-model' });
+    window.AiAPIs = { query };
+    const job = {
+      llmQueryUrl: 'http://localhost:1234', targetLanguageDetails: { id: 'es-419' }, gatewayLanguageCode: 'en',
+      verseText: 'para la iglesia de Roma', alignedGLText: 'Rome', selectionsData: { selections: {} },
+    };
+
+    await getBestSelections([job]);
+    await getBestSelections([{ ...job, llmEnableThinking: true }]);
+
+    expect(query.mock.calls[0][1].enable_thinking).toBe(false);
+    expect(query.mock.calls[0][0]).toContain('/no_think');
+    expect(query.mock.calls[1][1].enable_thinking).toBe(true);
+    expect(query.mock.calls[1][0]).not.toContain('/no_think');
+    expect(query.mock.calls[1][1].systemPrompt).not.toContain('/no_think');
+  });
+
   test('asks the AI for a confidence-100 job when algorithmCertainConfidence is above 100', async () => {
     const query = jest.fn().mockResolvedValue({ replyText: '"iglesia",90', actualModel: 'test-model' });
     window.AiAPIs = { query };

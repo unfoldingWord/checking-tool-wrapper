@@ -32,11 +32,10 @@ import os from 'os';
 import path from 'path';
 import { execSync } from 'child_process';
 import { ALGORITHM_CERTAIN_CONFIDENCE } from '../src/utils/checkingSuggestionsUtils';
-import { getBestVerseFromChapter } from '../src/helpers/verseHelpers';
 import { runTestCase } from './helpers/suggestionsHelpers';
 import {
-  countBy, FINETUNE_TEST_FILES, projectOfFile, PROMPT_EVAL_DEFAULTS, seededShuffle,
-  selectDevCases, toEvalCase, verseDataToText, withoutHistory,
+  addGlVerses, countBy, FINETUNE_TEST_FILES, projectOfFile, PROMPT_EVAL_DEFAULTS, seededShuffle,
+  selectDevCases, toEvalCase, withoutHistory,
 } from './helpers/promptEvalCases';
 
 const env = process.env;
@@ -47,42 +46,6 @@ const OUT_DIR = path.resolve(ROOT, env.LLM_PROMPT_EVAL_OUT_DIR || 'llmTrainingDa
 const ADD_GL_VERSE = env.LLM_PROMPT_EVAL_ADD_GL_VERSE === '1';
 const TC_HOME = env.LLM_PROMPT_EVAL_TC_HOME || path.join(os.homedir(), 'translationCore');
 const SET_NAMES = ['dev', 'dev-nohist', 'test', 'test-nohist'];
-
-/**
- * Adds `glVerse` to cases in place: the plain text of the case's verse in the GL bible its GL
- * phrase came from (named at the end of `source`, e.g. `GL en ult/v91_unfoldingWord`), read from
- * `<TC_HOME>/resources/<glLang>/bibles/<bible>/<book>/<chapter>.json`. For X3 of the plan.
- * @param {Array<object>} cases
- * @returns {{added: number, missing: Array<string>}} - ids of cases with no GL verse found
- */
-function addGlVerses(cases) {
-  const chapters = new Map();
-  const missing = [];
-  let added = 0;
-
-  for (const evalCase of cases) {
-    const bible = (evalCase.source || '').split(' GL ')[1]?.split(' ')[1];
-    const {
-      bookId, chapter, verse,
-    } = evalCase.contextId?.reference || {};
-    const file = bible && path.join(TC_HOME, 'resources', evalCase.glLang, 'bibles', bible, bookId, `${chapter}.json`);
-
-    if (file && !chapters.has(file)) {
-      chapters.set(file, fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null);
-    }
-
-    const chapterData = file && chapters.get(file);
-    const text = chapterData ? verseDataToText(getBestVerseFromChapter(chapterData, verse)) : '';
-
-    if (text) {
-      evalCase.glVerse = text;
-      added++;
-    } else {
-      missing.push(evalCase.id);
-    }
-  }
-  return { added, missing };
-}
 
 /** the algorithm runs on a few thousand cases */
 const TIMEOUT_MS = 60 * 60 * 1000;
@@ -138,7 +101,7 @@ describeIfAddGlVerse('add the GL verse to the prompt evaluation sets', () => {
       const file = path.join(OUT_DIR, `${name}.json`);
       const cases = JSON.parse(fs.readFileSync(file, 'utf8'));
       const ids = cases.map(c => c.id);
-      const { added, missing } = addGlVerses(cases);
+      const { added, missing } = addGlVerses(cases, TC_HOME);
 
       expect(cases.map(c => c.id)).toEqual(ids);
       fs.writeFileSync(file, `${JSON.stringify(cases, null, 2)}\n`);
@@ -201,7 +164,7 @@ describeIfBuild('build the prompt evaluation sets', () => {
 
     fs.mkdirSync(OUT_DIR, { recursive: true });
 
-    const glVerses = addGlVerses(Object.values(sets).flat());
+    const glVerses = addGlVerses(Object.values(sets).flat(), TC_HOME);
 
     for (const [name, cases] of Object.entries(sets)) {
       fs.writeFileSync(path.join(OUT_DIR, `${name}.json`), `${JSON.stringify(cases, null, 2)}\n`);
