@@ -616,7 +616,8 @@ function Container({
       oldSelections,
       savedSelections,
       alignedGLText,
-      newSelections
+      newSelections,
+      manifest?.target_language?.id,
     );
 
     if (selectionsData.alignmentEntries) {

@@ -181,8 +181,9 @@ describe('alignment history', () => {
       check('tit', 1, 3, 'πίστιν'), // not aligned
     ], { 1: 'Por la fe vivimos.', 2: 'Tenemos fe.', 3: 'Sin nada.' },
     { 1: align('πίστιν', ['la', 'fe']), 2: align('πίστιν', ['fe']) });
+    // a capitalized verse word: entries are lowercased like the selection history ('su fe')
     writeProject('es-419_glt_phm_book', 'phm', [check('phm', 1, 5, 'πίστιν')],
-      { 5: 'Oímos de su fe.' }, { 5: align('πίστιν', ['su', 'fe']) });
+      { 5: 'Su fe crece.' }, { 5: align('πίστιν', ['Su', 'fe']) });
     // other testament: its saved selection is not in the selection history, so it is used here
     writeProject('es-419_glt_rut_book', 'rut', [check('rut', 1, 1, 'אֱמוּנָה', [{ text: 'fidelidad', occurrence: 1, occurrences: 1 }])],
       { 1: 'Con fidelidad.' }, {});

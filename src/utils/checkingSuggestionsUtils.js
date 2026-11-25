@@ -816,6 +816,22 @@ export function toLowerCaseForLang(text, langId) {
 }
 
 /**
+ * The target-language key a rendering is counted under in the selection history
+ * (`{ glPhrase: { key: count } }`): the selected text lowercased with {@link toLowerCaseForLang},
+ * so 'Đức tin' at the start of a verse and 'đức tin' are one rendering. Matching a rendering to
+ * the verse ignores case (`normalizeForCompare`), so the suggestion still selects the verse's own
+ * words.
+ * @param {string} text - selected target-language words, joined by spaces
+ * @param {string} [langId] - target language code
+ * @returns {string}
+ * @example
+ * getSelectionHistoryKey('Bởi đức tin', 'vi'); // 'bởi đức tin'
+ */
+export function getSelectionHistoryKey(text, langId) {
+  return toLowerCaseForLang(text || '', langId);
+}
+
+/**
  * Normalizes a word for loose comparison. `normalizer` leaves case alone, and matching a
  * rendering against a verse word has to survive that word being capitalized at the start
  * of the verse, so lowercasing is added. Accents stay significant: a rendering differing by
@@ -3913,13 +3929,16 @@ export function cleanGlQuote(glText) {
  *   found. Omit or pass null to skip.
  * @param {string} [origLangId=NT_ORIG_LANG] - original-language code used to lowercase the
  *   quote string: `NT_ORIG_LANG` for New Testament books, `OT_ORIG_LANG` for Old Testament
+ * @param {string} [targetLangId] - target language code; when given, each selected text is
+ *   counted under {@link getSelectionHistoryKey} (lowercased), as the app's history is. When
+ *   omitted, as by the training data builders, it is counted as selected
  * @returns {Object<string, Object<string, number>>} the same `selectionsForGlQuote` object, nested
  *   two levels:
  *   - **outer key** (`glQuote`): the check's aligned gateway-language text, with punctuation
  *     removed and passed through `normalizer` (e.g. 'faith', 'by faith')
  *   - **inner key** (`selectedText`): the `text` of each of the check's selections, joined by
- *     single spaces (e.g. 'fe', 'la fe'). It is not normalized. A check whose `selections` is an
- *     empty array is counted under the key `''`.
+ *     single spaces (e.g. 'fe', 'la fe'), lowercased when `targetLangId` is given and otherwise not
+ *     normalized. A check whose `selections` is an empty array is counted under the key `''`.
  *   - **value**: how many checks so far had that selection for that gateway-language text
  *     (always 1 or more), including counts already in `selectionsForGlQuote` when it was passed in
  * @example
@@ -3938,7 +3957,7 @@ export function cleanGlQuote(glText) {
  * // and selectionsForQuoteString is:
  * // { 'πίστεως': { 'fe': 1, 'la fe': 1 } }
  */
-export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForGlQuote, selectionsForQuoteString = null, origLangId = NT_ORIG_LANG) {
+export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, bible, selectionsForGlQuote, selectionsForQuoteString = null, origLangId = NT_ORIG_LANG, targetLangId = undefined) {
   if (checks?.length) {
     for (const check of checks) {
       const contextId = check?.contextId;
@@ -3960,9 +3979,10 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
 
         const quoteString = getQuoteStringKey(contextId, origLangId);
 
-        const selectedText = selectionsForCheck
+        const joinedText = selectionsForCheck
           ?.map(word => word?.text)
           ?.join(' ');
+        const selectedText = targetLangId === undefined ? joinedText : getSelectionHistoryKey(joinedText, targetLangId);
 
         if (glQuote) {
           incrementSelectionCount(selectionsForGlQuote, glQuote, selectedText);
@@ -4628,7 +4648,8 @@ export function fetchPreviousSelectionData(
         foundBible,
         selectionsForGlQuote,
         selectionsForQuoteString,
-        (isNt ? NT_ORIG_LANG : OT_ORIG_LANG)
+        (isNt ? NT_ORIG_LANG : OT_ORIG_LANG),
+        currentLanguageId, // history keys are lowercased (getSelectionHistoryKey)
       );
     }
   }
@@ -4667,6 +4688,8 @@ export function fetchPreviousSelectionData(
  *   phrase
  * @param {Array<{text: string, occurrence: number}>} newSelections - the new word selections
  *   being saved; same structure as `oldSelections`
+ * @param {string} [targetLangId] - target language code; both selections are counted under
+ *   {@link getSelectionHistoryKey} (lowercased), as {@link fetchPreviousSelectionData} counts them
  * @returns {void} - mutates `savedSelections` in place
  * @example
  * const savedSelections = { 'church': { 'iglesia': 5, 'la iglesia': 2 } };
@@ -4680,13 +4703,14 @@ export function updatedPreviousSelectionsData(
   oldSelections,
   savedSelections,
   alignedGLText,
-  newSelections
+  newSelections,
+  targetLangId,
 ) {
   if (oldSelections?.length) {
     let savedSelectionForGL = savedSelections?.[alignedGLText];
 
     if (savedSelectionForGL) {
-      const oldSelectionsStr = oldSelections.map(s => s.text).join(' ');
+      const oldSelectionsStr = getSelectionHistoryKey(oldSelections.map(s => s.text).join(' '), targetLangId);
       let savedSelectionForTarget = savedSelectionForGL[oldSelectionsStr];
 
       if (savedSelectionForTarget) {
@@ -4707,7 +4731,7 @@ export function updatedPreviousSelectionsData(
       savedSelections[alignedGLText] = savedSelectionForGL;
     }
 
-    const newSelectionsStr = newSelections.map(s => s.text).join(' ');
+    const newSelectionsStr = getSelectionHistoryKey(newSelections.map(s => s.text).join(' '), targetLangId);
     const translation = savedSelectionForGL[newSelectionsStr];
 
     if (!translation) {

@@ -26,6 +26,7 @@ import {
   cleanGlQuote,
   getFirstGlBibleId,
   getProjectInfo,
+  getSelectionHistoryKey,
   getWordList,
   loadGlBookForSuggestions,
   normalizeForCompare,
@@ -173,7 +174,8 @@ export function getQuoteWords(contextId) {
  * @property {number|string} verse
  * @property {string} glPhrase - the gateway-language text aligned to the check's quote, cleaned
  *   as the selection history keys are (`cleanGlQuote`)
- * @property {string} words - the target words, joined by spaces as a history rendering
+ * @property {string} words - the target words, joined by spaces and lowercased as a history
+ *   rendering (`getSelectionHistoryKey`)
  * @property {'alignment'|'selection'} source - `selection` for a saved selection in a project the
  *   selection history leaves out (another testament), else `alignment`
  * @property {boolean} hasSelection - the check has a saved selection that the selection history
@@ -250,6 +252,8 @@ export function getAlignmentEntriesForChecks(checks, {
       const {
         bookId, chapter, verse,
       } = contextId.reference;
+      // counted as the selection history counts renderings (lowercased)
+      words = getSelectionHistoryKey(words, languageId);
 
       entries.push({
         key: getAlignmentCheckKey(projectName, contextId),
