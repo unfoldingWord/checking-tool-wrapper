@@ -3070,6 +3070,11 @@ export async function getBestTWordSelectionWithConfidenceFromLlm(request) {
     ));
   }
 
+  // console.log('getBestTWordSelectionWithConfidenceFromLlm - prompt', {
+  //   systemPrompt,
+  //   input,
+  // });
+
   const options = buildLlmQueryOptions(lmOptions, systemPrompt, LLM_DEFAULT_MAX_TOKENS);
 
   if (messages) {

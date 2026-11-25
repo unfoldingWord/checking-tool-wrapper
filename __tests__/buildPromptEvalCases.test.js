@@ -29,7 +29,11 @@
  *   LLM_PROMPT_EVAL_DATA_DIR  training data folder (default llmTrainingData)
  *   LLM_PROMPT_EVAL_OUT_DIR   output folder (default llmTrainingData/promptEval)
  *   LLM_PROMPT_EVAL_SETS      which sets to build, comma-separated: `dev` and `test` (built
- *                             together, the default), `ftdev`, `newdev`
+ *                             together, the default), `ftdev`, `newdev`; or `testadd` alone, which
+ *                             brings test.json and test-nohist.json in line with
+ *                             `FINETUNE_TEST_FILES`: it appends the cases of files they do not have
+ *                             yet and drops those of files no longer listed (DEV and the other TEST
+ *                             cases are unchanged, so earlier results stay comparable on them)
  *   LLM_PROMPT_EVAL_FTDEV_META  D3's validation meta file (default
  *                             llmTrainingData/finetune-d3/valid.meta.jsonl)
  *
@@ -128,6 +132,43 @@ describe('promptEvalCases helpers', () => {
 const describeIfBuild = BUILD && (SETS.includes('dev') || SETS.includes('test')) ? describe : describe.skip;
 const describeIfBuildSpanSets = BUILD && (SETS.includes('ftdev') || SETS.includes('newdev')) ? describe : describe.skip;
 const describeIfAddGlVerse = ADD_GL_VERSE ? describe : describe.skip;
+const describeIfAddTestFiles = BUILD && SETS.includes('testadd') ? describe : describe.skip;
+
+describeIfAddTestFiles('add new test files to the prompt evaluation sets', () => {
+  test('appends the cases of new test files to test and test-nohist, and drops files no longer listed', () => {
+    const testFile = path.join(OUT_DIR, 'test.json');
+    const noHistoryFile = path.join(OUT_DIR, 'test-nohist.json');
+    const manifestFile = path.join(OUT_DIR, 'meta', 'manifest.json');
+    const listed = new Set(FINETUNE_TEST_FILES);
+    const before = JSON.parse(fs.readFileSync(testFile, 'utf8'));
+    const removedFiles = [...new Set(before.map(c => c.sourceFile))].filter(file => !listed.has(file));
+    const test_ = before.filter(c => listed.has(c.sourceFile));
+    const noHistory = JSON.parse(fs.readFileSync(noHistoryFile, 'utf8')).filter(c => listed.has(c.sourceFile));
+    const present = new Set(test_.map(c => c.sourceFile));
+    const newFiles = FINETUNE_TEST_FILES.filter(file => !present.has(file));
+    const added = newFiles.flatMap(file => JSON.parse(fs.readFileSync(path.join(DATA_DIR, `${file}.json`), 'utf8'))
+      .map(testCase => toEvalCase(testCase, file)));
+    const glVerses = addGlVerses(added, TC_HOME);
+
+    fs.writeFileSync(testFile, `${JSON.stringify([...test_, ...added], null, 2)}\n`);
+    fs.writeFileSync(noHistoryFile, `${JSON.stringify([...noHistory, ...added.map(withoutHistory)], null, 2)}\n`);
+
+    const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+    manifest.testFiles = FINETUNE_TEST_FILES;
+    manifest.counts = {
+      ...manifest.counts, 'test': test_.length + added.length, 'test-nohist': noHistory.length + added.length,
+    };
+    manifest.testByFile = countBy([...test_, ...added], c => c.sourceFile);
+    manifest.testAdded = [...(manifest.testAdded || []), {
+      addedAt: new Date().toISOString(), files: newFiles, cases: added.length, glVerseMissing: glVerses.missing.length,
+      removedFiles, removedCases: before.length - test_.length,
+    }];
+    fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`);
+    console.log(`test files added: ${newFiles.join(' ') || '(none)'}; ${added.length} cases; GL verse missing ${glVerses.missing.length}; ` +
+      `removed: ${removedFiles.join(' ') || '(none)'}, ${before.length - test_.length} cases`);
+    expect(new Set([...test_, ...added].map(c => c.id)).size).toBe(test_.length + added.length);
+  });
+});
 
 describeIfAddGlVerse('add the GL verse to the prompt evaluation sets', () => {
   test('adds glVerse to each case of dev, dev-nohist, test and test-nohist', () => {

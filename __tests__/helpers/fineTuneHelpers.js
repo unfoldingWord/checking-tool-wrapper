@@ -47,9 +47,21 @@ export const LABEL_CONFIDENCE = {
 
 /**
  * Target projects never trained on (Step 3, proposed in Q2): `ne` is a target language with no
- * other training data, and `en_ult_tit` is the English target with five GLs.
+ * other training data, and `en_ult_tit` is the English target with five GLs. `ar_avd_luk` (added
+ * 2026-11-25) is the first Arabic-target test project; it was never in the training data. Its
+ * words appear as GL phrases in the Arabic-GL Luke files (`vi_glt_luk_book_BSOJ_ar`,
+ * `ru_rlob_luk_book_BSOJ_ar`, from the same AVD text), though never as answers. Added 2026-11-25 so
+ * every main training language has a test project: `ru_rlob_gen`, `vi_glt_heb`, `fa_glt_1ti`,
+ * `id_glt_1ti`, then `te_glt_1co`, `bn_glt_2co`, `en_ult_gal` (moved out of training; models trained
+ * before then saw them; `te_glt_tit` was a test project for a few hours and is training again).
  */
-export const DEFAULT_TEST_PROJECTS = ['ne_glt_*', 'bn_glt_eph', 'es-419_est_rut', 'en_ult_tit'];
+export const DEFAULT_TEST_PROJECTS = [
+  'ne_glt_*', 'bn_glt_eph', 'es-419_est_rut', 'en_ult_tit', 'ar_avd_luk',
+  'ru_rlob_gen', 'vi_glt_heb', 'fa_glt_1ti', 'id_glt_1ti',
+  'gu_glt_1co', // Gujarati, added 2026-11-25 with gu_glt_luk for training
+  // rebalanced 2026-11-25: te_glt_1co replaces te_glt_tit (back in training); bn_glt_2co, en_ult_gal
+  'te_glt_1co', 'bn_glt_2co', 'en_ult_gal',
+];
 
 /**
  * History groups of `findUnhelpfulTrainingCases`, as a case's category. `passes` has none of
