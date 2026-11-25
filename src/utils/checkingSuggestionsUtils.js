@@ -4397,6 +4397,89 @@ export function getProjectInfo(projectSaveLocation) {
 }
 
 /**
+ * Clears `glBiblesCache` when the project's target language or resource id is not the one it was
+ * filled for.
+ * @param {{targetLangId: string|null, resourceId: string|null, glBibleId: string|null,
+ *   bibles: Object<string, object>}} glBiblesCache - changed in place
+ * @param {string} languageId - the current project's target language id
+ * @param {string} resourceId - the current project's resource id
+ * @returns {void}
+ */
+export function resetGlBiblesCacheForProject(glBiblesCache, languageId, resourceId) {
+  if (
+    glBiblesCache?.targetLangId !== languageId ||
+    glBiblesCache?.resourceId !== resourceId
+  ) {
+    // if targetLangId or resourceId has changed, clear cache
+    glBiblesCache.targetLangId = languageId;
+    glBiblesCache.resourceId = resourceId;
+    glBiblesCache.glBibleId = null;
+    glBiblesCache.bibles = {};
+  }
+}
+
+/**
+ * The gateway-language bible id the suggestion history uses: the first of `glBibles` in
+ * `bibleIdSort` order.
+ * @param {object} glBibles - available gateway-language bibles keyed by bible id
+ * @returns {string|undefined}
+ */
+export function getFirstGlBibleId(glBibles) {
+  return Object.keys(glBibles || {}).sort(gatewayLanguageHelpers.bibleIdSort)[0];
+}
+
+/**
+ * Loads one book of the gateway-language bible `glBibleId` (its newest version for `glOwnerStr`
+ * in the resources folder next to the projects folder), using and filling `glBiblesCache`.
+ * @param {string} projectsFolder - the translationCore projects folder
+ * @param {string} bookId - e.g. 'tit'
+ * @param {string} glBibleId - e.g. 'ult' (see {@link getFirstGlBibleId})
+ * @param {string} gatewayLanguageCode - e.g. 'en'
+ * @param {string} glOwnerStr - owner of the gateway-language bible, e.g. 'unfoldingWord'
+ * @param {object} glBiblesCache - see {@link fetchPreviousSelectionData}; changed in place
+ * @returns {object|null} - the book keyed by chapter then verse, or null when the bible has no
+ *   version for the owner or no such book
+ */
+export function loadGlBookForSuggestions(projectsFolder, bookId, glBibleId, gatewayLanguageCode, glOwnerStr, glBiblesCache) {
+  const resourcesFolder = path.join(
+    projectsFolder,
+    '../resources',
+    gatewayLanguageCode,
+    'bibles',
+    glBibleId
+  );
+  const mostRecent = getMostRecentVersionInFolderMajor(
+    resourcesFolder,
+    glOwnerStr
+  );
+
+  if (!mostRecent) {
+    return null;
+  }
+
+  let foundBible = null;
+
+  if ( glBiblesCache?.glBibleId === glBibleId) {
+    foundBible = glBiblesCache?.bibles[bookId];
+  }
+
+  if (!foundBible) {
+    const glBibleFolder = path.join(resourcesFolder, mostRecent, bookId);
+    foundBible = readHelpsFolder(glBibleFolder);
+
+    if (foundBible) {
+      if (glBiblesCache?.glBibleId !== glBibleId) { // if bibleId has changed, clear cache
+        glBiblesCache.glBibleId = glBibleId;
+        glBiblesCache.bibles = {};
+      }
+
+      glBiblesCache.bibles[bookId] = foundBible;
+    }
+  }
+  return foundBible || null;
+}
+
+/**
  * Scans sibling projects on disk for the same language/resource/testament combination and
  * aggregates their previous target-language selections for `groupId`, using and updating
  * `glBiblesCache` to avoid re-reading the gateway-language bible for each project.
@@ -4482,16 +4565,7 @@ export function fetchPreviousSelectionData(
 
   const projects = fs.readdirSync(projectsFolder);
 
-  if (
-    glBiblesCache?.targetLangId !== currentLanguageId ||
-    glBiblesCache?.resourceId !== currentResourceId
-  ) {
-    // if targetLangId or resourceId has changed, clear cache
-    glBiblesCache.targetLangId = currentLanguageId;
-    glBiblesCache.resourceId = currentResourceId;
-    glBiblesCache.glBibleId = null;
-    glBiblesCache.bibles = {};
-  }
+  resetGlBiblesCacheForProject(glBiblesCache, currentLanguageId, currentResourceId);
 
   // eslint-disable-next-line no-unused-vars
   let { bible: foundBible } = gatewayLanguageHelpers.getAlignedGLTextHelperMajor(
@@ -4501,9 +4575,7 @@ export function fetchPreviousSelectionData(
     currentLanguageId
   );
 
-  const bibleIds = Object.keys(glBibles);
-  const sortedBibleIds = bibleIds.sort(gatewayLanguageHelpers.bibleIdSort);
-  const glBibleId = sortedBibleIds[0];
+  const glBibleId = getFirstGlBibleId(glBibles);
 
   const usingNT = isNT(currentBookId);
   let selectionsForGlQuote = {};
@@ -4541,41 +4613,7 @@ export function fetchPreviousSelectionData(
     console.log('selectionsPath', selectionsPath);
 
     const checks = readJsonFile(selectionsPath);
-    const resourcesFolder = path.join(
-      projectsFolder,
-      '../resources',
-      gatewayLanguageCode,
-      'bibles',
-      glBibleId
-    );
-    const mostRecent = getMostRecentVersionInFolderMajor(
-      resourcesFolder,
-      glOwnerStr
-    );
-
-    if (!mostRecent) {
-      continue;
-    }
-
-    let foundBible = null;
-
-    if ( glBiblesCache?.glBibleId === glBibleId) {
-      foundBible = glBiblesCache?.bibles[bookId];
-    }
-
-    if (!foundBible) {
-      const glBibleFolder = path.join(resourcesFolder, mostRecent, bookId);
-      foundBible = readHelpsFolder(glBibleFolder);
-
-      if (foundBible) {
-        if (glBiblesCache?.glBibleId !== glBibleId) { // if bibleId has changed, clear cache
-          glBiblesCache.glBibleId = glBibleId;
-          glBiblesCache.bibles = {};
-        }
-
-        glBiblesCache.bibles[bookId] = foundBible;
-      }
-    }
+    const foundBible = loadGlBookForSuggestions(projectsFolder, bookId, glBibleId, gatewayLanguageCode, glOwnerStr, glBiblesCache);
 
     if (foundBible) {
       getSelectionsForBook(

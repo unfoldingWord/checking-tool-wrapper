@@ -130,6 +130,59 @@ groupId, gatewayLanguageCode, glOwnerStr, cache)` returns the same shape as sele
   alignment count, if it had one, so the check isn't counted twice. Keep the alignment tally per
   check (`checkKey → { glPhrase, targetText }`) so its count can be removed.
 
+**Done 2026-11-25.** All of it is in `src/utils/alignmentHistoryUtils.js` unless noted.
+
+- **`fetchAlignmentHistoryEntries`** returns one entry per check of the group:
+  `{ key, projectName, bookId, chapter, verse, glPhrase, words, source, hasSelection }`.
+  - Projects are matched as the selection history matches them. All testaments are included by
+    default; `allTestaments: false` keeps only the current one, for the Step 4 comparison.
+  - GL phrases come from the same GL bible book as the selection history. Its loading was moved
+    out of `fetchPreviousSelectionData` into `loadGlBookForSuggestions`, with
+    `getFirstGlBibleId` and `resetGlBiblesCacheForProject`, in `checkingSuggestionsUtils.js`.
+    The behavior is unchanged.
+  - Target verses are read from `<project>/<book>/<chapter>.json`.
+- **A check with a saved selection:**
+  - In a project the selection history counts (same testament), its entry keeps the alignment
+    with `hasSelection: true`, so it isn't added.
+  - In a project of the other testament, which the selection history doesn't read, its entry
+    uses the selection (`source: 'selection'`). A selection still wins over an alignment.
+- **`getSuggestionHistory(selections, entries, projectName, contextId)`** builds one check's
+  history. It returns a new object: the selection history plus one count per entry, leaving out
+  the check's own verse in the current project and entries with `hasSelection`. With no entries
+  it returns `selections` itself, so with the setting off the history is the same object as
+  before.
+- **`updateAlignmentEntrySelection`** sets `hasSelection` when the user saves or clears a
+  selection, so a check counts once and its alignment comes back if the selection is cleared.
+- **`Container.js`:**
+  - The entries are read once per group, into `selectionsData.alignmentEntries`, only when the
+    saved setting `llmUseAlignmentHistory` is on. The setting has no UI until Step 3, so this is
+    off by default.
+  - Each request gets `getSelectionsDataForCheck`, the merged history for its check, in both
+    places requests are built.
+  - `updateSelectionsData` calls `updateAlignmentEntrySelection`.
+  - The entries are cleared when the component mounts, since alignments can change in the
+    wordAlignment tool.
+  - They are left out of the debug file `translation_data.json`.
+- **Not cached:** a project's alignment and verse chapter files are read once per group fetch
+  and not kept.
+- **Unit tests:** 7 more in `__tests__/alignmentHistoryUtils.test.js`:
+  - matching projects (resource, language, testament);
+  - other-testament selections;
+  - a check with no GL phrase;
+  - leaving out the own verse, but not the same verse in another project;
+  - the unchanged history with no entries;
+  - saving and clearing a selection.
+- **On the real projects** (`vi_glt_1co_book` with `vi_glt_heb_book`, and `ar_avd_heb_book`),
+  eight common groups:
+  - each project's entries match the training data's answers for the same checks, 520 of 520;
+  - a group takes 1-50 ms to read with two projects;
+  - script and output: `llm-eval-results/alignment-history-20261125/`.
+- **`npm test`:** passes (428 passed, 29 skipped; the eval scripts in `llm-eval-results/` now run only when
+  their own variable is set).
+- **Seen in the data:** some alignments give odd word orders, e.g. `thế về Chúa Cứu` for
+  `of Christ`, since the words are put in verse order. Step 4 will show whether such entries
+  hurt.
+
 ### Step 3: the setting and the checkbox
 
 - **The setting:** `llmUseAlignmentHistory` (boolean, default from Decision 4), saved in

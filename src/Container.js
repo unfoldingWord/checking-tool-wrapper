@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { createTcuiTheme, TcuiThemeProvider } from 'tc-ui-toolkit';
 import { connect } from 'react-redux';
 import isEqual from 'deep-equal';
+import path from 'path-extra';
 // helpers
 import * as settingsHelper from './helpers/settingsHelper';
 import { getThelpsManifestRelation } from './helpers/resourcesHelpers';
@@ -49,6 +50,11 @@ import {
   usesAiServer,
 } from './utils/checkingSuggestionsUtils';
 import { LlmRequestQueue } from './utils/LlmRequestQueue';
+import {
+  fetchAlignmentHistoryEntries,
+  getSuggestionHistory,
+  updateAlignmentEntrySelection,
+} from './utils/alignmentHistoryUtils';
 import delay from './utils/delay';
 import { getVerseText } from './helpers/verseHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
@@ -81,6 +87,10 @@ const styles = {
 const selectionsData = {
   groupId: null,
   selections: {},
+  // alignment history of the group `alignmentGroupId` (plans/alignment-history.md), or null when
+  // the `llmUseAlignmentHistory` setting is off
+  alignmentEntries: null,
+  alignmentGroupId: null,
 };
 
 const glBiblesCache = {
@@ -92,6 +102,15 @@ const glBiblesCache = {
 
 const __suggestionsCache = {};
 const __previousSelectionsCache = {};
+
+/**
+ * The project folder name of a project path.
+ * @param {string} projectSaveLocation
+ * @returns {string}
+ */
+function getProjectName(projectSaveLocation) {
+  return projectSaveLocation ? path.parse(projectSaveLocation).base : '';
+}
 
 /** number of suggestion requests bundled into each AI query */
 const DEFAULT_SUGGESTION_REQUESTS_PER_CALL = 1;
@@ -368,11 +387,12 @@ function Container({
                 selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
                 selectionsData.groupId = groupId;
                 selectionsData.selections = selectionsForWord;
+                updateAlignmentHistory(projectSaveLocation, groupId, glOwnerStr);
 
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
 
-                saveAlignmentData(projectSaveLocation, __previousSelectionsCache, selectionsData);
+                saveAlignmentData(projectSaveLocation, __previousSelectionsCache, getSelectionsDataToSave());
 
                 // eslint-disable-next-line no-await-in-loop
                 await delay(1);
@@ -381,7 +401,8 @@ function Container({
 
                 const request = {
                   ...data,
-                  selectionsData: { ...selectionsData }, // copy - selectionsData is reused for each check
+                  // copy - selectionsData is reused for each check
+                  selectionsData: getSelectionsDataForCheck(projectSaveLocation, contextId),
                 };
 
                 // eslint-disable-next-line no-await-in-loop
@@ -427,6 +448,10 @@ function Container({
   // 2. Restart suggestion generation if settings were previously loaded
   // 3. Clean up by stopping suggestion generation and clearing pending requests on unmount
   useEffect(() => {
+    // alignments may have changed in another tool since the group's alignment history was read
+    selectionsData.alignmentGroupId = null;
+    selectionsData.alignmentEntries = null;
+
     settingsHelper.loadCorrectPaneSettings(
       setToolSettings,
       bibles,
@@ -517,6 +542,62 @@ function Container({
 
 
   /**
+   * Reads the alignment history of `groupId` into `selectionsData` when the
+   * `llmUseAlignmentHistory` setting is on and it was not read yet for that group; clears it when
+   * the setting is off (plans/alignment-history.md, Step 2).
+   * @param {string} projectSaveLocation - path to the current project folder
+   * @param {string} groupId_ - the group the history is for
+   * @param {string} glOwnerStr - owner of the gateway-language bible
+   */
+  function updateAlignmentHistory(projectSaveLocation, groupId_, glOwnerStr) {
+    if (!settingsForSuggestionsRef.current?.llmUseAlignmentHistory) {
+      selectionsData.alignmentEntries = null;
+      selectionsData.alignmentGroupId = null;
+      return;
+    }
+
+    if (selectionsData.alignmentGroupId !== groupId_) {
+      selectionsData.alignmentEntries = fetchAlignmentHistoryEntries(
+        projectSaveLocation,
+        glBibles,
+        toolName,
+        groupId_,
+        gatewayLanguageCode,
+        glOwnerStr,
+        glBiblesCache,
+      );
+      selectionsData.alignmentGroupId = groupId_;
+    }
+  }
+
+  /**
+   * `selectionsData` without the alignment history, for `saveAlignmentData` (the entries can be
+   * large and are read again from the projects).
+   * @returns {object}
+   */
+  function getSelectionsDataToSave() {
+    // eslint-disable-next-line no-unused-vars
+    const { alignmentEntries, ...rest } = selectionsData;
+    return rest;
+  }
+
+  /**
+   * The history data sent with a check's suggestion request: a copy of `selectionsData` whose
+   * `selections` also hold the group's alignment history, without the check's own verse.
+   * @param {string} projectSaveLocation - path to the current project folder
+   * @param {object} checkContextId - the check the request is for
+   * @returns {object}
+   */
+  function getSelectionsDataForCheck(projectSaveLocation, checkContextId) {
+    const { alignmentEntries, ...rest } = selectionsData;
+    return {
+      ...rest,
+      selections: getSuggestionHistory(selectionsData.selections, alignmentEntries,
+        getProjectName(projectSaveLocation), checkContextId),
+    };
+  }
+
+  /**
    * Updates the cached previous-selection history when a check's selections change.
    * @param {object} data
    * @param {object} data.contextId - context of the changed check
@@ -536,6 +617,12 @@ function Container({
       alignedGLText,
       newSelections
     );
+
+    if (selectionsData.alignmentEntries) {
+      // a saved selection wins over the check's alignment, which comes back if it is cleared
+      updateAlignmentEntrySelection(selectionsData.alignmentEntries, getProjectName(tc?.projectSaveLocation),
+        data?.contextId, newSelections);
+    }
 
     if (settingsForSuggestionsRef.current?.suggestionsEnabled) {
       // only regenerate right away if using llm suggestions - algorithm suggestions are cheap to
@@ -783,6 +870,7 @@ function Container({
       selectionsData.groupId = groupId;
       selectionsData.selections = selectionsForWord;
     }
+    updateAlignmentHistory(projectSaveLocation, groupId, glOwnerStr);
 
     const reference = contextId?.reference;
     const {
@@ -796,7 +884,7 @@ function Container({
 
     await delay(1);
 
-    saveAlignmentData(projectSaveLocation, __previousSelectionsCache, selectionsData);
+    saveAlignmentData(projectSaveLocation, __previousSelectionsCache, getSelectionsDataToSave());
 
     await delay(1);
 
@@ -814,7 +902,7 @@ function Container({
       llmQueryUrl: llmQueryUrl_,
       llmUseLocalServer: llmUseLocalServer_,
       llmTemperature,
-      selectionsData,
+      selectionsData: getSelectionsDataForCheck(projectSaveLocation, contextId),
       targetLanguageDetails,
       verseText,
     });
