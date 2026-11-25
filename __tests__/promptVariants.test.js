@@ -916,6 +916,7 @@ describe('span variants C0-C5 (plans/prompt-span-experiments.md, Step 3)', () =>
     APP_SINGLE_SYSTEM_PROMPT, C1_RULE_2, C2_EXAMPLE_3, C5_EXAMPLE_3, SPAN_SYSTEM_PROMPTS,
   } = require('./helpers/promptVariants');
   const APP_RULE_2 = '2. Choose the fewest words that carry the meaning of GATEWAY PHRASE, kept in verse order.';
+  const APP_RULE_3 = '3. If a previous translation is in TARGET VERSE word for word, it is usually the answer. Copy exactly those words: do not add or drop small words.';
   const MARK = / - for another phrase$/gm;
 
   const requestOf = testCase => {
@@ -937,6 +938,27 @@ describe('span variants C0-C5 (plans/prompt-span-experiments.md, Step 3)', () =>
     expect(prompt).toContain('\n7. Answer only as CSV rows');
     expect(prompt).not.toMatch(/^8\. /m);
     expect(prompt.replace(/^\d\. /gm, '')).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_2}\n`, '').replace(/^\d\. /gm, ''));
+  });
+
+  test('C6 deletes rule 3 and renumbers rules 4-8 as 3-7', () => {
+    const prompt = SPAN_SYSTEM_PROMPTS.C6;
+
+    expect(prompt).not.toContain('do not add or drop small words');
+    expect(prompt).toContain(`\n${APP_RULE_2}\n3. Give 1 to 3 options`);
+    expect(prompt).toContain('\n7. Answer only as CSV rows');
+    expect(prompt).not.toMatch(/^8\. /m);
+    expect(prompt.replace(/^\d\. /gm, '')).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_3}\n`, '').replace(/^\d\. /gm, ''));
+  });
+
+  test('C7 deletes rules 2 and 3 and renumbers rules 4-8 as 2-6', () => {
+    const prompt = SPAN_SYSTEM_PROMPTS.C7;
+
+    expect(prompt).not.toContain('fewest words');
+    expect(prompt).not.toContain('do not add or drop small words');
+    expect(prompt).toContain('spelled exactly as written there.\n2. Give 1 to 3 options');
+    expect(prompt).toContain('\n6. Answer only as CSV rows');
+    expect(prompt).not.toMatch(/^7\. /m);
+    expect(prompt.replace(/^\d\. /gm, '')).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_2}\n${APP_RULE_3}\n`, '').replace(/^\d\. /gm, ''));
   });
 
   test('C1 only replaces rule 2', () => {
@@ -993,7 +1015,7 @@ describe('span variants C0-C5 (plans/prompt-span-experiments.md, Step 3)', () =>
       const request = requestOf(testCase);
       const app = PROMPT_VARIANTS.baseline(request).messages[1].content;
 
-      for (const id of ['C0', 'C1', 'C2', 'C5']) {
+      for (const id of ['C0', 'C1', 'C2', 'C5', 'C6', 'C7']) {
         expect(PROMPT_VARIANTS[id](request).messages).toEqual([
           { role: 'system', content: SPAN_SYSTEM_PROMPTS[id] }, { role: 'user', content: app },
         ]);

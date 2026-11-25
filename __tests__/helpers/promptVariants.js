@@ -866,6 +866,22 @@ export const C0_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [
   ...[3, 4, 5, 6, 7, 8].map(n => [`\n${n}. `, `\n${n - 1}. `]),
 ]);
 
+/** rule 3 of the app's single-request prompt */
+const APP_RULE_3 = '3. If a previous translation is in TARGET VERSE word for word, it is usually the answer. ' +
+  'Copy exactly those words: do not add or drop small words.\n';
+
+/** C6 system prompt (added 2026-11-25): the app's without rule 3, the later rules renumbered */
+export const C6_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [
+  [APP_RULE_3, ''],
+  ...[4, 5, 6, 7, 8].map(n => [`\n${n}. `, `\n${n - 1}. `]),
+]);
+
+/** C7 system prompt (added 2026-11-25): the app's without rules 2 and 3, the later rules renumbered */
+export const C7_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [
+  [APP_RULE_2 + APP_RULE_3, ''],
+  ...[4, 5, 6, 7, 8].map(n => [`\n${n}. `, `\n${n - 2}. `]),
+]);
+
 /** C1 system prompt: the app's with C1's rule 2 */
 export const C1_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [[APP_RULE_2, C1_RULE_2]]);
 
@@ -927,6 +943,8 @@ export const SPAN_SYSTEM_PROMPTS = {
   C13: withOtherKeyMarks(C1_SYSTEM_PROMPT),
   C23: withOtherKeyMarks(C2_SYSTEM_PROMPT),
   C53: withOtherKeyMarks(C5_SYSTEM_PROMPT),
+  C6: C6_SYSTEM_PROMPT,
+  C7: C7_SYSTEM_PROMPT,
 };
 
 const SPAN_VARIANTS = Object.fromEntries(Object.entries(SPAN_SYSTEM_PROMPTS).map(([id, prompt]) =>

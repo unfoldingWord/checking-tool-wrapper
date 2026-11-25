@@ -394,6 +394,10 @@ verse words.` The example lines for another key are marked as the code marks the
 Also run the ablation **C0** (rule 2 deleted, the other rules renumbered) to separate "fewest
 words removed" from "new wording added". It is diagnostic only and is not adopted on its own.
 
+**Done 2026-11-24** at `1b2e72c`: C0, C1, C2, C3 and C5 on the four sets for all five models.
+**No variant passes D6, so C4 is not run, and Steps 4-5 have nothing to guard or confirm.** See
+section 8.
+
 **Done when:** every C variant has a row with D5's metrics and paired counts against `baseline`
 (C4 also against its parts), with each fine-tune beside its stock equivalent. For H4, report
 how many FT-DEV answers each variant changes, for each fine-tune and its stock equivalent.
@@ -687,3 +691,68 @@ DEV (1,500) and DEV-NOHIST (750), stock models:
 H2/C2 only on multi-word phrases; (c) add a variant aimed at this case first, e.g. an example
 where one GL word is rendered by several target words, such as "of angels". Whichever is chosen
 goes into decision D6 / Step 3 before any variant runs.
+
+### 2026-11-24: Step 3 (no variant adopted)
+
+25 runs (5 variants × 5 models, each on FT-DEV, FT-DEV-NOHIST, NEW-DEV and NEW-DEV-NOHIST), seed
+42, 17:36-21:46, all passed. Script, logs and the full tables (too short, too long, no answer,
+wrong ≥ 80, paired counts per GL phrase length): `llm-eval-results/span-step3-20261124/`
+(`run-variants.sh`, `compare.js`, `vs-baseline.txt`; run `node
+llm-eval-results/span-step3-20261124/compare.js C1 C5 C2 C3 C0`).
+
+Top-1 change against `baseline` (McNemar p in brackets; **bold** = p < 0.05):
+
+| model | variant | FT-DEV (539) | FT-DEV-NOHIST | NEW-DEV (1,000) | NEW-DEV-NOHIST |
+|---|---|---|---|---|---|
+| D3 1.7B | C1 | +1 (1.0) | +4 (0.29) | −6 (0.18) | +1 (1.0) |
+| D3 1.7B | C5 | −6 (0.15) | +4 (0.45) | **−16 (0.048)** | +7 (0.44) |
+| D3 1.7B | C2 | −3 (0.51) | +1 (1.0) | 0 (1.0) | +4 (0.69) |
+| D3 1.7B | C3 | −4 (0.39) | +4 (0.39) | −2 (0.85) | +3 (0.66) |
+| D3 1.7B | C0 | −1 (1.0) | +2 (0.73) | +6 (0.18) | +7 (0.25) |
+| D3 0.6B | C1 | +4 (0.13) | −2 (0.69) | 0 (1.0) | +3 (0.65) |
+| D3 0.6B | C5 | +4 (0.39) | +2 (0.79) | +2 (0.87) | **+17 (0.008)** |
+| D3 0.6B | C2 | +2 (0.73) | +1 (1.0) | +6 (0.35) | −3 (0.74) |
+| D3 0.6B | C3 | +2 (0.75) | +1 (1.0) | +1 (1.0) | +6 (0.31) |
+| D3 0.6B | C0 | 0 (1.0) | −1 (1.0) | 0 (1.0) | **+16 (0.007)** |
+| 4B | C1 | +3 (0.72) | −1 (1.0) | −4 (0.67) | **−25 (0.002)** |
+| 4B | C5 | +4 (0.62) | −9 (0.29) | −16 (0.089) | +2 (0.91) |
+| 4B | C2 | **−14 (0.029)** | **−22 (0.007)** | **−19 (0.045)** | **−27 (0.004)** |
+| 4B | C3 | +10 (0.13) | +2 (0.86) | −13 (0.19) | +1 (1.0) |
+| 4B | C0 | +4 (0.62) | −4 (0.66) | −14 (0.098) | **−27 (<0.001)** |
+| stock 1.7B | C1 / C5 / C2 / C3 / C0 | **−27 / −60 / −29 / −20 / −20** | **−23 / −24 / −24** / −3 / −7 | −3 / **−85** / −6 / −1 / **−13** | −6 / **+27** / −7 / **−11** / **+11** |
+| stock 0.6B | C1 / C5 / C2 / C3 / C0 | +4 / **+12** / +11 / −7 / +3 | −1 / −2 / +2 / +1 / 0 | −14 / **−32** / −15 / +8 / −5 | −10 / −12 / −8 / −5 / +2 |
+
+**D6 verdict:** no variant has a significant gain on FT-DEV or NEW-DEV for a shipped model. The
+only significant gains for a shipped model are D3 0.6B on NEW-DEV-NOHIST (C5 +17, C0 +16). Those
+are NOHIST sets, which D6 does not count for a gain, and each variant also fails elsewhere:
+- **C1:** no gain; 4B −25 on NEW-DEV-NOHIST.
+- **C2:** 4B worse on every set.
+- **C5:** D3 1.7B −16 on NEW-DEV.
+- **C3:** no significant change for any shipped model.
+- **C0:** 4B −27 on NEW-DEV-NOHIST.
+
+So C4 (C13/C23/C53) is not run. **The app's prompt stays as it is.**
+
+**Hypotheses:**
+- **H1/H2 (rule 2 makes spans too short) is not supported for the fine-tunes.** D3 1.7B's
+  too-short count hardly moves: FT-DEV 37 → 34-40, NEW-DEV 242 → 232-247, even with rule 2
+  deleted (C0) or rewritten (C1). For the 4B, C2 and C5 do cut too-short answers (NEW-DEV −37 and
+  −23) but add more too-long ones (+41, +39) and confident wrong ones (+49, +61).
+- **H3 (marking history for another key) is not supported:** C3 changes 15-45 answers for each
+  fine-tune with no significant effect, and its too-short counts do not fall (D3 1.7B NEW-DEV
+  +5).
+- **H4 (the fine-tunes follow their training more than the rules) is supported.** Answers changed
+  on FT-DEV (with history), by variant C1 / C5 / C2 / C3 / C0: D3 1.7B 10 / 18 / 15 / 15 / 5 of
+  539; D3 0.6B 8 / 16 / 12 / 20 / 9; stock 1.7B 152 / 263 / 176 / 144 / 126; stock 0.6B 90 / 136 /
+  80 / 65 / 65. Rule text barely reaches the fine-tunes; the stock models of the same size react
+  strongly and mostly for the worse.
+- **Copying (D8):** answers mentioning "king" or "царя" in a verse without either: C5 1 (D3 1.7B),
+  0 (D3 0.6B), 1 (4B), 6 (stock 1.7B), **326 (stock 0.6B)**; baseline 0 to 4. C2's "Gemeinde" /
+  "für die": 0 for every model except the stock 0.6B (21).
+
+**What this means:** prompt wording does not fix the fine-tunes' span errors; the span a
+fine-tune gives follows its training labels. NEW-DEV's main error (dropping the target words for
+a GL word's inflection, e.g. "of" in "of angels") would have to be taught in the training data,
+e.g. more cases with an English or other analytic target and an inflected GL. Retraining is out
+of scope for this plan (author, 2026-11-24), so it is left for a later plan. For the 4B (not
+fine-tuned) no variant is a safe gain either.
