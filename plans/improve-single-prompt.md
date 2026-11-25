@@ -1039,6 +1039,10 @@ is sharded, so `run-retrain.sh` now links every `*.safetensors`; GGUF Q5_K_M 2.9
 
 The 4B fine-tune is level with the 1.7B fine-tune with history (+1.4 points, not significant) and
 better with none (+4.2, p 0.006), at twice the time per suggestion and 2.4 times the file size.
+Its MLX 5-bit build (2.8 GB, `mlx_lm.server`) scores the same: 73.8% / 69.8%. It is the first
+model to pass the suite: 74% top-1 (41, 41, 40 of 55), 5% wrong at ≥ 80, median 171 ms. Released
+as the large option (`llmTraining/model-card-4b/`); its files are over GitHub's 2 GiB release-file
+limit, so `make_release.sh` leaves them out of `github-release/` (Hugging Face only).
 
 ### Step 9. Put the result in the app (OFFLINE)
 
