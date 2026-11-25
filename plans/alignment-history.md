@@ -206,6 +206,39 @@ groupId, gatewayLanguageCode, glOwnerStr, cache)` returns the same shape as sele
   translationWords locale files (English text; other languages fall back or get translated
   later).
 
+**Done 2026-11-25** in the three repos, on their `feature-mcleanb-add-suggestions-support`
+branches. Nothing is published.
+
+- **checking-tool-wrapper (`Container.js`):**
+  - The history reads the saved setting (`settingsForSuggestionsRef`), not a field passed with
+    each request. tc-ui-toolkit saves the dialog's settings before any later request, and an
+    older toolkit never sets the field, so it stays off there.
+  - When `saveSettingsForChecking` sees the setting change, it clears every cached suggestion of
+    this tool, GL and target language (new `generateLanguageKeyPrefix`).
+  - With AI on, it then remakes the current group, even though the dialog saves with
+    `noRestart`.
+  - Container has only snapshot tests, so this is not unit tested. The history behind the
+    setting is tested in Step 2.
+- **tc-ui-toolkit (`src/VerseCheck/CheckArea/index.js`):**
+  - adds the state `llmUseAlignmentHistory` and `draftLlmUseAlignmentHistory`, loaded with the
+    other settings (default off);
+  - adds the checkbox "Use word alignments" in the Configure AI dialog, after "enable thinking";
+  - saves it from `saveAiDialog` and in every other settings save.
+  - **New test** `src/VerseCheck/CheckArea/__tests__/CheckAreaAiSettings.test.js`. It mounts
+    `CheckArea` and checks two things:
+    - the checkbox is off when never saved, and saving the dialog saves it on;
+    - a saved setting shows in the dialog and is kept when another setting is saved.
+
+    Both tests fail if either save of the setting is removed.
+  - **Toolkit `npm test`:** passes (149 passed, 39 skipped). Its 3 lint warnings were there
+    before.
+  - **Not done yet:** a version bump and beta publish, then updating translationCore's
+    dependency.
+- **translationWords** (submodule of translationCore, `src/locale/*.json`): adds
+  `suggestions.use_alignment_history` ("Use word alignments") and its `_tooltip` to all 24 locale
+  files, in English, as for the other suggestion strings.
+- **Wrapper `npm test`:** passes (428 passed, 29 skipped).
+
 ### Step 4: measure before turning it on by default
 
 Alignments are this project's target answers, so the measurement has to be built with care.

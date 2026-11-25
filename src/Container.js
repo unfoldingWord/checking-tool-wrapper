@@ -665,11 +665,22 @@ function Container({
     saveSettingsForChecking_(projectSaveLocation, data);
 
     if (!isEqual(data, settingsForSuggestionsRef.current)) {
+      const historyChanged = !!data?.llmUseAlignmentHistory !==
+        !!settingsForSuggestionsRef.current?.llmUseAlignmentHistory;
       // save current settings
       settingsForSuggestionsRef.current = data;
 
-      // only regenerate if using llm suggestions
-      if (data.llmSuggestionsEnabled && !noRestart) {
+      const suggestionsRequestQueue = suggestionsRequestQueueRef.current;
+
+      if (historyChanged && suggestionsRequestQueue) {
+        // the cached AI suggestions were made from the other history (plans/alignment-history.md)
+        suggestionsRequestQueue.clearSuggestionsMemoryForKeyPrefix(
+          generateLanguageKeyPrefix(manifest?.target_language?.id));
+      }
+
+      // only regenerate if using llm suggestions; the configure AI dialog saves with noRestart,
+      // so a history change remakes the current group here
+      if (data.llmSuggestionsEnabled && (!noRestart || historyChanged)) {
         // force resuggest current group
         generateSuggestionsForGroups(true, true, true).then(() => {
           if (settingsForSuggestionsRef.current.llmMaximizeRequests) {
@@ -792,7 +803,17 @@ function Container({
    * @returns {string} - key prefix for the group
    */
   function generateGroupKeyPrefix(targetLanguageId, groupId) {
-    return `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_${groupId}_`;
+    return `${generateLanguageKeyPrefix(targetLanguageId)}${groupId}_`;
+  }
+
+  /**
+   * Generates the start shared by the suggestion cache keys of every check of this tool, gateway
+   * language and target language (see {@link generateKey}).
+   * @param {string} targetLanguageId - target language code
+   * @returns {string} - key prefix
+   */
+  function generateLanguageKeyPrefix(targetLanguageId) {
+    return `${toolName}_${gatewayLanguageCode}_${targetLanguageId}_`;
   }
 
   /**
