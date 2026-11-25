@@ -1,6 +1,6 @@
 # Plan: word alignments as suggestion history
 
-Started 2026-11-25. Status: plan only, nothing built.
+Started 2026-11-25. Status: Steps 1-4 done (alignment history built, behind the "Use word alignments" checkbox, off by default); Step 5 deferred.
 
 ## Goal
 
@@ -367,6 +367,8 @@ algorithm; A → B, lost/won, McNemar p). "D3" is the released fine-tune in the 
 - **Retraining.** Not needed for the format: the history lines keep the same format.
 
 ### Step 5: offer the current verse's alignment as a suggestion
+
+**Deferred (author, 2026-11-25).** Not started; the design below stands for when it is picked up.
 
 When the verse being checked is already aligned, the target words aligned to the check's quote
 are very likely the answer. Offer them directly, as the algorithm's certain answers are offered
