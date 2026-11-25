@@ -26,10 +26,11 @@ language:
 ---
 
 <!--
-DRAFT model card for uw-tw-qwen3-1.7b-d3. Before publishing:
+DRAFT model card for uw-tw-qwen3-1.7b, version r0v2 (2026-11-24; the first release was d3). Before publishing:
 - TODO: set the published repository names (MLX and GGUF) and the download links below.
 - TODO: fill in the owners and source links in the attribution tables (see "Training data").
-Figures are from plans/fine-tune-qwen3.md (Results) in the checking-tool-wrapper repository.
+Figures are from plans/improve-single-prompt.md (Step 8A) and plans/fine-tune-qwen3.md in the
+checking-tool-wrapper repository.
 -->
 
 # uw-tw-qwen3-1.7b (translationWords suggestions)
@@ -51,9 +52,9 @@ choice always stays with the checker.
 | MLX 5-bit | Mac (Apple silicon) | 1.1 GB | LM Studio (MLX engine) |
 | GGUF Q5_K_M | Windows, Linux | 1.2 GB | llama.cpp (`llama-server`) |
 
-Both builds are 5-bit. MLX 5-bit scores the same as MLX 8-bit on every test below, at two-thirds
-the size. In llama.cpp, GGUF Q5_K_M scores the same as Q8_0 and as the MLX build; Q4_K_M did too,
-but 5 bits keep a margin (the 0.6B model loses accuracy at 4 bits).
+Both builds are 5-bit, and they score the same (72.2% and 72.3% top-1 on the held-out checks
+below). For the first version, MLX 5-bit scored the same as MLX 8-bit, and GGUF Q5_K_M the same as
+Q8_0; Q4_K_M did too, but 5 bits keep a margin (the 0.6B model loses accuracy at 4 bits).
 
 **Engine note:** on a Mac, LM Studio's *llama.cpp* engine gave noticeably different and worse
 answers than llama.cpp itself (`llama-server`), for this model and for the stock Qwen3-1.7B alike.
@@ -78,8 +79,9 @@ up to three CSV rows, best first:
 Use it with that prompt. A different prompt may work, but it has not been measured.
 
 - **One request per call.** The model was trained on single requests. With several checks batched
-  in one call, it drops the `### REQUEST n` markers and most answers come back empty (36% top-1
-  with 4 checks per call, against 75% one at a time). In translationCore, keep `llmGrouping` at 1,
+  in one call, the first version dropped the `### REQUEST n` markers and most answers came back
+  empty (36% top-1 with 4 checks per call, against 75% one at a time); this version was not tested
+  batched and is expected to do the same. In translationCore, keep `llmGrouping` at 1,
   the default. Nothing warns you if it is raised: translationCore falls back to its matching
   algorithm when the model gives no answer, so suggestions quietly get worse instead of failing.
 - **Temperature 0.1** (translationCore's default). Answers are short (about 8 tokens).
@@ -93,54 +95,40 @@ Use it with that prompt. A different prompt may work, but it has not been measur
 translationCore shows it (the algorithm answers when it is certain, and is the fallback when the
 model gives nothing). "Wrong at ≥ 80" counts first suggestions that were wrong but shown with
 confidence 80 or more, the ones a checker is most likely to accept by mistake. All runs at
-temperature 0.1, one request per call.
+temperature 0.1 (seed 42), one request per call; GGUF builds with llama.cpp (`llama-server`), MLX
+builds with `mlx_lm.server`.
 
-### Held-out projects (6,076 checks)
+### Held-out projects (835 checks)
 
-A copy of the model was trained with ten projects held out, one or more in each main training
-language plus Nepali, which is in no training project, and scored on all of them. The released
-model trains on six of those projects too, so this copy is the clean measure for languages the
-model knows, on projects it has not seen.
+Scored on the four projects held out from training: Nepali (2 Corinthians, Titus; a language in no
+training project), Bengali (Ephesians), Spanish (Ruth) and English Titus under five GLs (Arabic,
+Indonesian, Spanish, Farsi, Russian). "With history" is the check as translationCore sends it, with
+the checker's earlier selections; "no history" is the same 835 checks with the history removed, as
+for a project's first checks.
 
-| Held-out project | Checks | Algorithm alone | This model | Qwen3-1.7B | Qwen3-4B-2507 |
+| Model | With history | Nepali only (362) | Wrong at ≥ 80 | No history | Median time |
 |---|---|---|---|---|---|
-| Russian, Luke (GL en and ar) | 2,569 | 64.1% | **82.2%** | 58.3% | 67.2% |
-| Telugu, Luke | 1,393 | 53.3% | **68.3%** | 54.1% | 59.9% |
-| Vietnamese, Hebrews | 727 | 46.8% | **67.3%** | 43.7% | 50.2% |
-| Arabic, Hebrews | 349 | 59.9% | **82.2%** | 58.5% | 65.6% |
-| Nepali, 2 Corinthians (unseen language) | 323 | 55.1% | **65.0%** | 53.9% | 63.5% |
-| English, Titus, under 5 GLs | 291 | 49.5% | **57.4%** | 46.4% | 50.9% |
-| Indonesian, 1 Timothy | 112 | 57.1% | **67.9%** | 47.3% | 57.1% |
-| Bengali, Ephesians | 98 | 67.3% | **85.7%** | 63.3% | 72.4% |
-| Farsi, James | 91 | 28.6% | **52.7%** | 27.5% | 36.3% |
-| Spanish (Latin America), Ruth | 84 | 44.0% | **71.4%** | 50.0% | 57.1% |
-| Nepali, Titus (unseen language) | 39 | 56.4% | **64.1%** | 51.3% | 61.5% |
-| **All** | **6,076** | 57.2% | **74.2%** | 54.1% | 61.7% |
-| Wrong at ≥ 80 | | 1,049 | **547** | 1,802 | 1,357 |
+| **This model, MLX 5-bit** | **72.2%** | **69.9%** | 81 | 63.8% | 102 ms |
+| **This model, GGUF Q5_K_M** | **72.3%** | 69.3% | 83 | **65.0%** | 80 ms |
+| First version (d3), MLX 5-bit | 68.1% | 67.4% | 94 | 53.9% | 97 ms |
+| First version (d3), GGUF Q5_K_M | 67.4% | 66.6% | 99 | 54.3% | 77 ms |
+| uw-tw-qwen3-0.6b, GGUF Q6_K | 67.7% | 62.7% | 89 | 49.7% | 48 ms |
+| Qwen3-4B-2507 (GGUF Q8_0) | 58.6% | 64.1% | 227 | 36.0% | 188 ms |
+| Qwen3-1.7B (GGUF Q8_0) | 52.9% | 55.5% | 196 | 15.0% | 102 ms |
+| Algorithm alone | 53.5% | 55.2% | 17 | 0% | |
 
-The Qwen models are the stock models given the same prompt (Qwen3-1.7B as an MLX 8-bit build). The
-model beats the algorithm and both stock models in every project, and gives about half the
-confident wrong answers of the algorithm alone.
+The Qwen models are the stock models given the same prompt. Compared with the first version, this
+version is 4.9 points better with history (paired: 65 checks right only for this version, 24 only
+for the first, p < 0.001) and 10.7 points better with no history (121 against 31, p < 0.001), with
+fewer confident wrong answers and at the same speed. Two runs without a fixed seed gave the same
+(72.5% and 71.9% with history, 65.0% and 64.7% with none). With no history, translationCore caps
+the AI's confidence at 70, so no answer there is shown at 80 or more.
 
-### The released model (835 checks)
-
-The released model trains on more projects, so it is scored on the four projects held out from it:
-Nepali (2 Corinthians, Titus), Bengali (Ephesians), Spanish (Ruth) and English Titus under five
-GLs.
-
-| Model | Top-1 | Nepali only (362) | Wrong at ≥ 80 |
-|---|---|---|---|
-| This model, MLX 5-bit | **68.3%** | 66.6% | **91** |
-| This model, MLX 8-bit | 68.1% | 66.9% | 92 |
-| This model, GGUF Q5_K_M (llama.cpp) | 68.1% | 66.9% | 94 |
-| This model, GGUF Q4_K_M (llama.cpp, not released) | 68.7% | 68.0% | 85 |
-| This model, GGUF Q8_0 (llama.cpp) | 68.7% | 66.9% | 91 |
-| Qwen3-4B-2507 | 59.3% | | 193 |
-| Qwen3-1.7B (MLX 8-bit) | 51.7% | | 257 |
-| Algorithm alone | 53.5% | 55.2% | 181 |
-
-Trained on more data, the released model is about 3 points better on these files than the
-held-out copy above (68.3% vs 65.4%).
+The largest gains are on English Titus, where the target is English and the GL is not (with no
+history, for example, 29% → 45% with the Arabic GL and 52% → 74% with the Russian GL). This version
+trains on English-target projects with Arabic and Russian GLs (other books), which the first had
+none of, so part of that gain comes from training on the same language pairs. The other held-out
+projects are level with the first version with history and level or better with none.
 
 ### Suitability suite
 
@@ -148,51 +136,65 @@ translationCore's model suitability suite (55 hand-written and real cases, asked
 
 | Build | Top-1 | Wrong at ≥ 80 | Median time per suggestion | Result |
 |---|---|---|---|---|
-| MLX 5-bit (LM Studio) | 75% | 11% | 126 ms | Pass |
-| GGUF Q5_K_M (llama.cpp) | 67% | 11% | 100 ms | Below the 70% top-1 bar |
+| This model, GGUF Q5_K_M (llama.cpp) | 64% | 10% | 93 ms | Below the 70% top-1 bar |
+| First version (d3), GGUF Q5_K_M (llama.cpp) | 62% | 9% | 94 ms | Below the 70% top-1 bar |
 
-Times on an M5 Pro Mac. Stock Qwen3-1.7B scored 62% with 24% wrong at ≥ 80, stock Qwen3-4B-2507
-68% with 22%. The GGUF build answers 6 of the 55 cases differently from MLX, mostly by giving fewer
-words; on the 835 checks above it matches MLX.
+Times on an M5 Pro Mac. The suite is small (each 1.8 points is one case), and its real cases come
+from projects that are also in the training data (their verses are left out), so the held-out
+projects above are the measure to rely on. An intermediate version trained on the first version's
+projects plus no-history examples scored 70% on the suite but 69.1% on the held-out projects. The
+MLX build was not run through the suite.
 
 ## Training
 
 - **Base model:** Qwen/Qwen3-1.7B.
 - **Method:** LoRA, rank 16 (scale 1.0, no dropout) on every layer's attention and MLP projections,
   with Apple MLX (`mlx-lm` 0.32.2, `mlx` 0.32.4) on a Mac. Loss on the answer only.
-- **Settings:** 2 epochs (2,566 steps), batch 8, learning rate 2e-4 with 100 warmup steps and
-  cosine decay, maximum length 2,048 tokens, seed 3407. About 2.8 hours.
+- **Settings:** 2 epochs (4,345 steps), batch 8, learning rate 2e-4 with 100 warmup steps and
+  cosine decay, maximum length 2,048 tokens, seed 3407. About 4.8 hours. The same settings as the
+  first version; only the training data changed.
 - **Then:** the adapter is merged into the base weights and quantized (MLX 5-bit; GGUF with
   llama.cpp, Q5_K_M).
-- **Compared and not chosen:** LoRA rank 64 and a full fine-tune scored 2-3 points lower; adding
-  the cases where the expected answer only partly matches the history raised that group but made
-  the model add extra words elsewhere.
+- **Compared and not chosen:** for the first version, LoRA rank 64 and a full fine-tune scored 2-3
+  points lower; adding the cases where the expected answer only partly matches the history raised
+  that group but made the model add extra words elsewhere. For this version, training on a prompt
+  that also lists the algorithm's candidates, or the GL verse for checks with no history, scored
+  no better than the current prompt.
 
-Scripts, configurations and the full results are in `llmTraining/` and
-`plans/fine-tune-qwen3.md` of the checking-tool-wrapper repository.
+Scripts, configurations and the full results are in `llmTraining/` (`lora-r16-r0v2.yaml`),
+`plans/fine-tune-qwen3.md` and `plans/improve-single-prompt.md` of the checking-tool-wrapper
+repository.
 
 ## Training data
 
-10,265 training and 629 validation examples, built from translationWords checks in aligned
+17,380 training and 1,077 validation examples, built from translationWords checks in aligned
 translationCore projects. Each example is the prompt translationCore sends and, as the answer, the
 words the translator aligned to the key term.
 
-- **Target languages:** Arabic, Russian, Vietnamese, Telugu, Farsi, Bengali, Indonesian and Spanish
-  (Latin America).
-- **Gateway languages:** English (most examples), Arabic, Russian and Spanish.
+- **Target languages:** Russian, Vietnamese, English, Arabic, Telugu, Farsi, Bengali, Spanish
+  (Latin America) and Indonesian.
+- **Gateway languages:** English (53% of training examples), Russian (34%), Arabic (12%) and
+  Spanish (1%).
 - **Confidence labels** follow a fixed rule, not a measurement: 95 when the answer is an earlier
   rendering found word for word in the verse, 75 when it is related to one, 55 when the history
-  has nothing related. 299 examples (3%) pair a check with another verse that contains none of
+  has nothing related. 461 examples (3%) pair a check with another verse that contains none of
   its words, answered with nothing at confidence 0, so the model learns to give no answer.
+- **No-history examples:** 1,538 examples (9%) repeat a training check with the history removed,
+  labelled 55, so the model learns the request translationCore sends for a project's first checks.
 - **Left out:** checks the algorithm already gets right with certainty (most of them), checks the
   algorithm is certain about but wrong, answers that could not be found in the verse, and checks
   from the held-out projects and the suitability suite.
+
+**Changes from the first version:** four new projects (English Galatians, Joshua and Luke; Spanish
+Esther), Russian or Arabic GLs added to five others, the no-history examples, and Arabic GL
+phrases from AVD: the first version's Arabic-GL examples took their GL phrases from ARST v4.9,
+which has English text in most books, so they were English.
 
 The training data is licensed under various open licenses. It comes
 from the work of the translation teams below, and of the gateway-language teams whose texts they
 aligned to.  See the LICENSE.md file of each project for details.
 
-Target-language projects in the training and validation data (21):
+Target-language projects in the training and validation data (25):
 
 Training data is on https://git.door43.org/
 
@@ -201,23 +203,27 @@ Training data is on https://git.door43.org/
 | `BSOJ/ar_avd/heb.usfm` | Arabic | Hebrews | English (ULT) |
 | `BSOJ/ar_avd/tit.usfm` | Arabic | Titus | English (ULT), Spanish (GLT) |
 | `BSOJ/ar_avt/psa.usfm` | Arabic | Psalms | English (ULT) |
-| `translationCore-Create-BCS/bn_glt/2co.usfm` | Bengali | 2 Corinthians | English (ULT) |
+| `translationCore-Create-BCS/bn_glt/2co.usfm` | Bengali | 2 Corinthians | English (ULT), Arabic (AVD) |
 | `translationCore-Create-BCS/bn_glt/tit.usfm` | Bengali | Titus | English (ULT), Spanish (GLT) |
+| `unfoldingWord/en_ult/gal.usfm` | English | Galatians | Arabic (AVD) |
+| `unfoldingWord/en_ult/jos.usfm` | English | Joshua | Russian (RLOB) |
+| `unfoldingWord/en_ult/luk.usfm` | English | Luke | Russian (RLOB) |
+| `es-419_gl/es-419_est/est.usfm` | Spanish (Latin America) | Esther | English (ULT) |
 | `es-419_gl/es-419_est/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) |
 | `es-419_gl/es-419_glt/jon.usfm` | Spanish (Latin America) | Jonah | English (ULT) |
-| `fa_gl/fa_glt/1ti.usfm` | Farsi | 1 Timothy | English (ULT) |
+| `fa_gl/fa_glt/1ti.usfm` | Farsi | 1 Timothy | English (ULT), Russian (RLOB) |
 | `fa_gl/fa_glt/jas.usfm` | Farsi | James | English (ULT) |
 | `fa_gl/fa_glt/mrk.usfm` | Farsi | Mark | English (ULT) |
 | `id_gl/id_glt/1ti.usfm` | Indonesian | 1 Timothy | English (ULT) |
 | `id_gl/id_glt/tit.usfm` | Indonesian | Titus | English (ULT), Spanish (GLT) |
 | `ru_gl/ru_rlob/gen.usfm` | Russian | Genesis | English (ULT) |
-| `ru_gl/ru_rlob/luk.usfm` | Russian | Luke | English (ULT), Arabic (ARST) |
+| `ru_gl/ru_rlob/luk.usfm` | Russian | Luke | English (ULT), Arabic (AVD) |
 | `ru_gl/ru_rlob/tit.usfm` | Russian | Titus | English (ULT), Spanish (GLT) |
-| `translationCore-Create-BCS/te_glt/luk.usfm` | Telugu | Luke | English (ULT) |
+| `translationCore-Create-BCS/te_glt/luk.usfm` | Telugu | Luke | English (ULT), Russian (RLOB) |
 | `translationCore-Create-BCS/te_glt/tit.usfm` | Telugu | Titus | English (ULT), Spanish (GLT) |
-| `vi_gl/vi_glt/1co.usfm` | Vietnamese | 1 Corinthians | English (ULT) |
+| `vi_gl/vi_glt/1co.usfm` | Vietnamese | 1 Corinthians | English (ULT), Russian (RLOB) |
 | `vi_gl/vi_glt/heb.usfm` | Vietnamese | Hebrews | English (ULT) |
-| `vi_gl/vi_glt/luk.usfm` | Vietnamese | Luke | English (ULT), Arabic (ARST), Russian (RLOB) |
+| `vi_gl/vi_glt/luk.usfm` | Vietnamese | Luke | English (ULT), Arabic (AVD), Russian (RLOB) |
 | `vi_gl/vi_glt/tit.usfm` | Vietnamese | Titus | English (ULT), Spanish (GLT) |
 
 Gateway-language texts the projects are aligned to (versions as in the training data; owners are
@@ -227,7 +233,7 @@ their Door43 organizations):
 |---|---|---|
 | English, unfoldingWord Literal Text (ULT) | v91 | unfoldingWord |
 | Spanish (Latin America), GLT | v42 | es-419_gl |
-| Arabic, ARST | v4.9 | BSOJ |
+| Arabic, Van Dyke (AVD) | v6.9 | BSOJ |
 | Russian, RLOB | v13.0 | ru_gl |
 
 
@@ -239,11 +245,11 @@ their Door43 organizations):
   aligned to a key term, which can include small words a checker would leave out.
 - **Confidences are a rule, not a probability.** They follow the labeling rule above and are not
   calibrated. How well they separate right from wrong answers has not been measured.
-- **Coverage.** Most training examples use an English GL. Nepali is the only language tested that
-  is in no training project, and the model was not tested with GLs beyond those listed.
-- **Small model.** When nothing in the history is related to the right answer, it is right about
-  half the time (48.9% of 133 such held-out checks), and it is trained to mark those answers with a
-  lower confidence (55).
+- **Coverage.** About half the training examples use an English GL. Nepali is the only language
+  tested that is in no training project, and the model was not tested with GLs beyond those listed.
+- **No history.** With no earlier selections it is right about two times in three on the held-out
+  projects (65.0%), against 72% with history, and it is trained to mark those answers with a lower
+  confidence (55).
 
 ## License
 

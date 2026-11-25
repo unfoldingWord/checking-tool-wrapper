@@ -1027,6 +1027,19 @@ by project, is the measure to trust; the drop from R0 is noted, not explained.
 The 0.6B on the new data is better than the released 0.6B on both sets, significantly, at the same
 speed; with history it now scores what the released 1.7B did (67.7% vs 67.4%).
 
+**R0v2's data on Qwen3-4B-Instruct-2507** (`lora-r16-r0v2-4b.yaml`: the 1.7B's settings; this model
+has no thinking mode, and `check_data.py --model Qwen/Qwen3-4B-Instruct-2507` shows the trained part
+is the answer alone; 4,345 iters, 10.6 h, about 8 GB; final validation loss 0.067; the fused model
+is sharded, so `run-retrain.sh` now links every `*.safetensors`; GGUF Q5_K_M 2.9 GB; seed 42):
+
+| Set | 4B fine-tune | vs R0v2 1.7B (only 1.7B / only 4B, p) | vs stock 4B-2507 Q8_0 (p) | wrong ≥ 80 | median ms |
+|---|---|---|---|---|---|
+| TEST | 73.7% (Nepali 70.7%) | 72.3%, 39 / 50, p 0.29 | 58.6%, 32 / 158, p 3e-21 | 77 (1.7B 83) | 157 (1.7B 80) |
+| TEST-NOHIST | 69.2% (Nepali 66.9%) | 65.0%, 60 / 95, **p 0.006** | 36.0%, 41 / 318, p 3e-54 | 0 (cap) | 215 (1.7B 108) |
+
+The 4B fine-tune is level with the 1.7B fine-tune with history (+1.4 points, not significant) and
+better with none (+4.2, p 0.006), at twice the time per suggestion and 2.4 times the file size.
+
 ### Step 9. Put the result in the app (OFFLINE)
 
 1. Move the adopted variant from `promptVariants.js` into `buildLlmSystemPrompt` /
