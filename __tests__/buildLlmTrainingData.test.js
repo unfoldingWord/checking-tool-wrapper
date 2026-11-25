@@ -14,7 +14,7 @@
  *    in the order of that file (the order of the group menu);
  *  - a check's correct answer is the target words the translator aligned to the check's
  *    original-language quote (from `.apps/translationCore/alignmentData/<book>/<chapter>.json`),
- *    in verse order, found by `getAlignedTargetWords` in `helpers/suggestionsHelpers.js`. Checks
+ *    in verse order, found by `getAlignedTargetWords` in `src/utils/alignmentHistoryUtils.js`. Checks
  *    whose quote is not aligned, or is aligned together with other original words, or whose
  *    answer is longer than `LLM_TRAINING_MAX_WORDS`, have no correct answer, so they are neither
  *    saved nor used as history. Selections saved in translationCore are not used;
@@ -63,7 +63,7 @@ import os from 'os';
 import path from 'path';
 import { bibleIdSort, getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
 import { cleanGlQuote, getSelectionsForBook } from '../src/utils/checkingSuggestionsUtils';
-import { getAlignedTargetWords } from './helpers/suggestionsHelpers';
+import { getAlignedTargetWords, getVerseAlignments } from '../src/utils/alignmentHistoryUtils';
 
 const env = process.env;
 const BUILD = env.LLM_TRAINING_BUILD === '1';
@@ -148,7 +148,7 @@ function buildProject(name) {
     total += groupChecks.length;
     const checks = groupChecks.map(({ contextId }) => {
       const verseText = getVerseText(projectPath, bookId, contextId.reference, chapters);
-      const alignments = getVerseAlignments(projectPath, bookId, contextId.reference, alignmentChapters);
+      const alignments = getVerseAlignments(projectPath, bookId, contextId.reference, alignmentChapters, readJsonIfExists);
       const answer = verseText && alignments ?
         getAlignedTargetWords(contextId, verseText, alignments, targetLang, MAX_WORDS) : null;
       return answer && {
@@ -257,22 +257,6 @@ function getVerseText(projectPath, bookId, { chapter, verse }, chapters) {
 
   const text = chapters[chapter][verse];
   return typeof text === 'string' ? text.trim() : '';
-}
-
-/**
- * Reads one verse's word alignments from the project, caching the chapter files.
- * @param {string} projectPath
- * @param {string} bookId
- * @param {{chapter: number|string, verse: number|string}} reference
- * @param {object} chapters - cache of alignment chapter files, changed in place
- * @returns {Array<{topWords: Array, bottomWords: Array}>|null}
- */
-function getVerseAlignments(projectPath, bookId, { chapter, verse }, chapters) {
-  if (!(chapter in chapters)) {
-    chapters[chapter] = readJsonIfExists(path.join(projectPath, '.apps', 'translationCore', 'alignmentData',
-      bookId, `${chapter}.json`)) || {};
-  }
-  return chapters[chapter][verse]?.alignments || null;
 }
 
 /**

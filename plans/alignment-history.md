@@ -82,6 +82,25 @@ directly as a suggestion (Step 5).
 - The test helpers re-export them, so the training-data builder keeps the same behavior. The
   training data's parity tests check this.
 
+**Done 2026-11-25.**
+- **The new module:** `src/utils/alignmentHistoryUtils.js` has `getQuoteWords`,
+  `getAlignedTargetWords` (both moved unchanged), `getVerseAlignments` and
+  `getAlignmentChapterPath`.
+  - `getVerseAlignments` reads with `readJsonFile` (`fs-extra`) by default, or with a reader
+    passed in.
+  - The training data builder passes its Node `fs` reader, since `fs-extra` is mocked under jest.
+- **Who uses it:**
+  - `__tests__/helpers/suggestionsHelpers.js` re-exports the two moved functions, so
+    `buildLlmEvalRealCases.test.js` is unchanged.
+  - `buildLlmTrainingData.test.js` imports from the new module and no longer has its own copy of
+    `getVerseAlignments`.
+- **Unit tests:** `__tests__/alignmentHistoryUtils.test.js` (14 tests).
+- **Checks:**
+  - **Parity:** the training data built for `ar_avd_heb_book`, `vi_glt_1co_book` and
+    `vi_glt_heb_book` is byte for byte the same before and after the move (461, 1,068 and 727
+    checks).
+  - **`npm test`:** passes (424 passed, 25 skipped).
+
 ### Step 2: build the alignment history
 
 `fetchAlignmentHistoryData(projectSaveLocation, contextId, glBibles, tsvRelation, toolName,
