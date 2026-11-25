@@ -268,6 +268,92 @@ Alignments are this project's target answers, so the measurement has to be built
 - **Adoption:** a significant top-1 gain for a shipped model, or for the algorithm, with no
   significant loss on the others, as in D6 of `plans/prompt-span-experiments.md`.
 
+**Done 2026-11-25** (the runs were stopped once and then finished at the author's request).
+
+**Method:**
+- The projects behind the eval sets are not on this computer (9 of about 40 are in
+  `~/translationCore/projects`). So history B is built from the training files in
+  `llmTrainingData/*.json`, which hold each check's aligned answer, GL phrase and reference: the
+  same words `fetchAlignmentHistoryEntries` gives (520 of 520 in Step 2).
+- **Builder:** `__tests__/buildAlignmentHistoryCases.test.js`, with `LLM_AH_BUILD=1`. It uses the
+  app's `getSuggestionHistory` and writes `<set>-ah.json` (all testaments) and `<set>-ahst.json`
+  (same testament) for FT-DEV, NEW-DEV and their no-history sets.
+  - Entries are the same group's checks in every training file with the same target language,
+    resource id and GL.
+  - The own verse in the own project is left out.
+  - In a set with history, the earlier checks of the case's own file are already its history,
+    so they count once.
+- **The gap:** the training files leave out the first check of each group and groups with few
+  aligned checks, so B is somewhat smaller than the app's history.
+- **History A** is each set as it is, scored with the app's prompt: `baseline` with history, N3
+  without.
+
+**Coverage** (`answer in history` = an expected answer is one of the history's renderings):
+
+| set | A: answer in history | B (all testaments) | B (same testament) | renderings A → B |
+|---|---|---|---|---|
+| FT-DEV (539) | 30.1% | 47.3% | 46.9% | 8.2 → 18.1 |
+| FT-DEV-NOHIST | 0% | 45.6% | 45.3% | 0 → 17.3 |
+| NEW-DEV (1,000) | 51.4% | 65.9% | 65.2% | 8.3 → 18.2 |
+| NEW-DEV-NOHIST | 0% | 63.5% | 62.7% | 0 → 17.5 |
+
+**The algorithm, top-1** (McNemar):
+
+| set | A | B, all testaments | lost/won | B, same testament |
+|---|---|---|---|---|
+| FT-DEV | 258 | 329 (+71) | 3/74, p<.001 | 328 (+70) |
+| NEW-DEV | 434 | 509 (+75) | 28/103, p<.001 | 512 (+78) |
+| FT-DEV-NOHIST | 0 | 323 | 0/323 | 322 |
+| NEW-DEV-NOHIST | 0 | 497 | 0/497 | 499 |
+
+- Same testament only is no better, so the default stays all testaments (Decision 2).
+- Wrong answers at 80 or more rose by only 3-9.
+
+**The algorithm's certain answers.** These sets hold only cases the app sends to the AI, so with
+A none reach 95. With B:
+- **FT-DEV:** 70 cases reach 95 or more and skip the AI. At 100, 26 of 26 are right; at 95-99,
+  41 of 44 (93%).
+- **NEW-DEV:** at 100, 23 of 25 (92%); at 95-99, 31 of 37 (84%).
+- The NEW-DEV 95-99 band is below the ~91% of `plans/algorithm-confidence.md`, on few cases.
+
+**Models** (app's prompt, seed 42, temperature 0.1; top-1 with the app's fallback to the
+algorithm; A → B, lost/won, McNemar p). "D3" is the released fine-tune in the eval folder; the
+4B is stock Qwen3-4B-Instruct-2507.
+
+| model | FT-DEV | FT-DEV-NOHIST | NEW-DEV | NEW-DEV-NOHIST |
+|---|---|---|---|---|
+| D3 1.7B | 425 → 439 (+14; 11/25, p 0.029) | 361 → 439 (+78; p<.001) | 549 → 574 (+25; 22/47, p 0.004) | 386 → 569 (+183; p<.001) |
+| D3 0.6B | 394 → 423 (+29; 8/37, p<.001) | 261 → 420 (+159; p<.001) | 510 → 525 (+15; 31/46, p 0.110) | 266 → 517 (+251; p<.001) |
+| stock 1.7B | 237 → 297 (+60; p<.001) | 122 → 293 (+171; p<.001) | 425 → 501 (+76; p<.001) | 29 → 494 (+465; p<.001) |
+| 4B | 320 → 358 (+38; 20/58, p<.001) | 259 → 356 (+97; p<.001) | 467 → 499 (+32; 57/89, p 0.010) | 301 → 495 (+194; p<.001) |
+
+- **Every model gains on every set.** The gains are significant on 15 of the 16 model and set
+  pairs; the D3 0.6B on NEW-DEV is +15, p 0.11.
+- **With alignment history, the models end up about level.** On FT-DEV, B gives 423-439 for the
+  fine-tunes. With no history the D3 1.7B goes from 361 to 439, the same as with history.
+- **Algorithm-first answers are better than the model's.** These are the cases B lifts to 95 or
+  more, which skip the AI (70 on FT-DEV, 62 on NEW-DEV). The algorithm is right on 67 and 54 of
+  them; with A, the D3 1.7B was right on 66 and 40, and the 4B on 55 and 31
+  (`algorithm-first.txt`).
+- **Answers that are too long** fell for almost every model and set.
+- **Confident wrong answers rose on NEW-DEV with history** (D3 1.7B 238 → 275, D3 0.6B
+  237 → 296), and all of the rise comes from AI answers, not the algorithm.
+  - Without history, A has none at 80 or more, because N5 caps those answers at 70. B has
+    history, so they are no longer capped: e.g. D3 1.7B NEW-DEV-NOHIST 0 → 264.
+  - FT-DEV's count fell or barely moved. NEW-DEV already had many confident wrong answers with
+    A, where its alignment labels often include small words.
+  - The UI applies any suggestion with a confidence. So this is the cost to weigh against the
+    top-1 gain.
+- **Logs:** `run.sh` logs per model; `compare-ah.txt` holds the tables.
+
+- **Files:** builder output in `llmTrainingData/promptEval/*-ah*.json`; results in its
+  `results/`; scripts and logs in `llm-eval-results/alignment-history-20261125/` (`run.sh`,
+  `compare.js`, `algorithm-confidence.txt`).
+- **Decision (author, 2026-11-25):** `llmUseAlignmentHistory` stays off by default (Decision 4);
+  users turn it on with the "Use word alignments" checkbox. The code already defaults to off (the
+  toolkit loads a missing setting as false, and Container reads only the saved setting), so
+  nothing changes in code.
+
 ## Risks
 
 - **Small words.** Alignments include small words a checker may leave out. With rule 3 of the
