@@ -1118,11 +1118,69 @@ const LLM_SINGLE_SYSTEM_PROMPT = buildLlmSystemPrompt(LLM_PREVIOUS_TRANSLATION_R
 const LLM_BATCH_BASE_SYSTEM_PROMPT = buildLlmSystemPrompt(LLM_PREVIOUS_TRANSLATION_RULE_BATCH);
 
 /**
+ * System prompt for one request per query when the request has no previous translations (variant N3
+ * of plans/improve-single-prompt.md, adopted 2026-11-25 in plans/prompt-span-experiments.md): nothing
+ * about previous translations, rule 3 a meaning match, confidence 0 to 70, examples without history.
+ * Without history it raised top-1 for Qwen3-4B on every set measured (TEST-NOHIST 314 -> 376 of 835),
+ * and no model, the fine-tunes included, was significantly worse. A second constant, so the server
+ * caches it too. Batched requests keep `LLM_BATCH_BASE_SYSTEM_PROMPT` (not measured).
+ */
+const LLM_SINGLE_NO_HISTORY_SYSTEM_PROMPT = `You find the words in a Bible verse that translate a phrase.
+
+You are given:
+TARGET VERSE - the words of the verse, in order.
+GATEWAY PHRASE - the phrase to find in the verse.
+
+Rules:
+1. Answer only with words copied from TARGET VERSE, spelled exactly as written there.
+2. Choose the fewest words that carry the meaning of GATEWAY PHRASE, kept in verse order.
+3. Find the verse words with the same meaning as GATEWAY PHRASE. They may be another form of the word, or a different word with that meaning.
+4. Give 1 to 3 options, best first, one per line, written as: "words",confidence
+5. confidence is a whole number from 0 to 70: 60 to 70 for a clear meaning match, below 60 for a guess.
+6. If no words in TARGET VERSE fit, answer: "",0
+7. Do not include reasoning in answer.
+8. Answer only as CSV rows: no header, no explanation, no markdown fences.
+
+Required output format:
+"word word",confidence
+
+Example 1:
+TARGET VERSE (es-419): para la iglesia de Éfeso
+
+GATEWAY PHRASE (en): church
+
+Answer:
+"iglesia",70
+"la iglesia",55
+
+Example 2:
+TARGET VERSE (de): alle Gläubigen waren zusammen
+
+GATEWAY PHRASE (en): believers
+
+Answer:
+"Gläubigen",65
+
+Example 3:
+TARGET VERSE (sw): Yesu aliwaponya wagonjwa wengi
+
+GATEWAY PHRASE (en): the sick
+
+Answer:
+"wagonjwa",65
+
+Wrong answer for Example 1:
+"church",70 - gateway words are not in TARGET VERSE
+"congregación",70 - word is not in TARGET VERSE
+iglesia,70 - missing the quotes`;
+
+/**
  * Builds the AI prompt for selecting the best target-language translation option(s)
  * for a gateway-language phrase, using only words found in the target-language verse.
  *
- * The system prompt holds no per-call data, so its text is identical on every call (one constant
- * for single requests, one for batches) and the server can reuse its cached prompt prefix.
+ * The system prompt holds no per-call data, so the server can reuse its cached prompt prefix: one
+ * constant for single requests with history lines, one for single requests without
+ * (`LLM_SINGLE_NO_HISTORY_SYSTEM_PROMPT`), and one for batches.
  *
  * @param {string} verseContent - the target-language verse text without punctuation
  * @param {string} targetLangCode - language code of the target words, e.g. 'es-419'
@@ -1141,9 +1199,10 @@ export function buildTranslationOptionsPrompt(
   previousTranslationData = {},
   forBatch = false,
 ) {
-  const systemPrompt = forBatch ? LLM_BATCH_BASE_SYSTEM_PROMPT : LLM_SINGLE_SYSTEM_PROMPT;
-
   const previousTranslations = formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode);
+  // a single request with no history lines gets the prompt written for that case
+  const singleSystemPrompt = previousTranslations ? LLM_SINGLE_SYSTEM_PROMPT : LLM_SINGLE_NO_HISTORY_SYSTEM_PROMPT;
+  const systemPrompt = forBatch ? LLM_BATCH_BASE_SYSTEM_PROMPT : singleSystemPrompt;
   // console.log(`previousTranslations string length= ${previousTranslations.length}`);
 
   // one labeled field per line, in the same order as the examples above

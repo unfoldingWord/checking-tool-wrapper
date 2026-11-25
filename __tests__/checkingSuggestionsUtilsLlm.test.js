@@ -287,9 +287,9 @@ describe('parseLlmSelectionOptions maps answer words to the verse', () => {
 });
 
 describe('AI system prompts', () => {
-  test('are the same for every request, with the inflected-form example only for single requests', () => {
+  test('are the same for every request of a kind, with the inflected-form example only for single requests', () => {
     const first = buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', { church: { iglesia: 2 } });
-    const second = buildTranslationOptionsPrompt('सब विश्वासी एक साथ थे', 'hi', 'faith', 'en', {});
+    const second = buildTranslationOptionsPrompt('सब विश्वासी एक साथ थे', 'hi', 'faith', 'en', { faith: { 'विश्वास': 3 } });
     const batch = buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', {}, true);
 
     expect(second.systemPrompt).toBe(first.systemPrompt);
@@ -298,6 +298,21 @@ describe('AI system prompts', () => {
     expect(batch.systemPrompt).not.toContain('Example 2:');
     expect(batch.systemPrompt).not.toContain('Copy exactly those words');
     expect(batch.input).toBe(buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', {}).input);
+  });
+
+  test('a single request with no history lines gets the fixed no-history prompt (N3); a batch does not', () => {
+    const withHistory = buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', { church: { iglesia: 2 } });
+    const empty = buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', {});
+    const otherEmpty = buildTranslationOptionsPrompt('सब विश्वासी एक साथ थे', 'hi', 'faith', 'en', { faith: {} });
+    const batch = buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', {}, true);
+    const batchWithHistory = buildTranslationOptionsPrompt('Pablo saludó a la iglesia', 'es-419', 'church', 'en', { church: { iglesia: 2 } }, true);
+
+    expect(empty.systemPrompt).not.toBe(withHistory.systemPrompt);
+    expect(otherEmpty.systemPrompt).toBe(empty.systemPrompt);
+    expect(empty.systemPrompt).not.toMatch(/PREVIOUS|previous|chosen/);
+    expect(empty.systemPrompt).toContain('confidence is a whole number from 0 to 70');
+    expect(empty.input).not.toContain('PREVIOUS TRANSLATIONS');
+    expect(batch.systemPrompt).toBe(batchWithHistory.systemPrompt);
   });
 });
 

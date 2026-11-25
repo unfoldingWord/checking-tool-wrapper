@@ -23,7 +23,11 @@ import {
 } from '../../src/utils/checkingSuggestionsUtils';
 
 /** the app's single-request system prompt, which the variants edit */
-export const APP_SINGLE_SYSTEM_PROMPT = buildTranslationOptionsPrompt('a', 'xx', 'a', 'en', {}).systemPrompt;
+// a request with history: since N3 was adopted (2026-11-25), one without gets the app's no-history prompt
+export const APP_SINGLE_SYSTEM_PROMPT = buildTranslationOptionsPrompt('a', 'xx', 'a', 'en', { a: { a: 1 } }).systemPrompt;
+
+/** the app's system prompt for a single request with no history lines (N3, adopted 2026-11-25) */
+export const APP_NO_HISTORY_SYSTEM_PROMPT = buildTranslationOptionsPrompt('a', 'xx', 'a', 'en', {}).systemPrompt;
 
 /**
  * Applies exact text replacements to a prompt, so a variant is written as its changes to the
@@ -76,6 +80,20 @@ function buildBaseline(request) {
     request.previousTranslationData,
   );
   return { messages: buildChatMessages(systemPrompt, input) };
+}
+
+/**
+ * The app's single-request prompt as it was before N3 (2026-11-25): the history prompt for every
+ * request, with or without history. The variants measured before then build on it, so they still
+ * send what they sent when measured; `baseline` is the app's prompt as it is now.
+ * @param {object} request
+ * @returns {{messages: Array<{role: string, content: string}>}}
+ */
+function buildBeforeN3(request) {
+  const { messages } = buildBaseline(request);
+  return messages[0].content === APP_NO_HISTORY_SYSTEM_PROMPT ?
+    { messages: buildChatMessages(APP_SINGLE_SYSTEM_PROMPT, messages[1].content) } :
+    { messages };
 }
 
 /**
@@ -223,7 +241,7 @@ function buildX6(request) {
  * @returns {{messages: Array<{role: string, content: string}>}}
  */
 function buildX4b(request) {
-  return formatPossibleAnswers(request.algorithmBestSelections) ? buildX4(request) : buildBaseline(request);
+  return formatPossibleAnswers(request.algorithmBestSelections) ? buildX4(request) : buildBeforeN3(request);
 }
 
 /**
@@ -316,7 +334,7 @@ export const X3_X4_SYSTEM_PROMPT = editPrompt(X4_SYSTEM_PROMPT, X3_EDITS);
  */
 function buildX3(request) {
   const withOptions = !!formatPossibleAnswers(request.algorithmBestSelections);
-  const { messages } = withOptions ? buildX4(request) : buildBaseline(request);
+  const { messages } = withOptions ? buildX4(request) : buildBeforeN3(request);
 
   if (!request.glVerseText) {
     return { messages };
@@ -389,7 +407,7 @@ function buildX5(request) {
   }
 
   const withOptions = !!formatPossibleAnswers(request.algorithmBestSelections);
-  const { messages } = withOptions ? buildX4(request) : buildBaseline(request);
+  const { messages } = withOptions ? buildX4(request) : buildBeforeN3(request);
   const user = messages[messages.length - 1];
   const content = editPrompt(user.content, [['\n\nAnswer:', `\nOCCURRENCE: ${occurrence}\n\nAnswer:`]]);
   return { messages: buildChatMessages(withOptions ? X5_X4_SYSTEM_PROMPT : X5_SYSTEM_PROMPT, content) };
@@ -951,7 +969,7 @@ const SPAN_VARIANTS = Object.fromEntries(Object.entries(SPAN_SYSTEM_PROMPTS).map
   [id, withSpanPrompt(prompt, ['C3', 'C13', 'C23', 'C53'].includes(id) ? { markOtherKey: true } : {})]));
 
 export const PROMPT_VARIANTS = {
-  baseline: buildBaseline, X1: buildX1, X3: buildX3, X4: buildX4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: buildN2, N3: buildN3, N4: buildN4, N34: buildN34, S1: withSystemPrompt('S1'), S2: withSystemPrompt('S2'), S3: buildS3, S4: buildS4, S5: buildS5, S6: buildS6, N6: buildN6, ...SPAN_VARIANTS,
+  baseline: buildBaseline, beforeN3: buildBeforeN3, X1: buildX1, X3: buildX3, X4: buildX4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: buildN2, N3: buildN3, N4: buildN4, N34: buildN34, S1: withSystemPrompt('S1'), S2: withSystemPrompt('S2'), S3: buildS3, S4: buildS4, S5: buildS5, S6: buildS6, N6: buildN6, ...SPAN_VARIANTS,
 };
 
 /**

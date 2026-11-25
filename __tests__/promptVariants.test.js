@@ -699,7 +699,7 @@ describe('variants N1 (explicit none) and N6 (unrelated history treated like non
     expect(PROMPT_VARIANTS.N1(request)).toEqual(PROMPT_VARIANTS.X4b(request));
 
     const noHistory = { ...request, previousTranslationData: {} };
-    const app = PROMPT_VARIANTS.baseline(noHistory).messages;
+    const app = PROMPT_VARIANTS.beforeN3(noHistory).messages;
     const n1 = PROMPT_VARIANTS.N1(noHistory).messages;
     expect(n1[0]).toEqual(app[0]);
     expect(n1[1].content).toContain('\n\nPREVIOUS TRANSLATIONS: none\n\nGATEWAY PHRASE (en): church');
@@ -772,6 +772,19 @@ describe('variant N3 (a separate no-history system prompt)', () => {
     const n3 = PROMPT_VARIANTS.N3(noHistory).messages;
     expect(n3[0].content).toBe(N3_SYSTEM_PROMPT);
     expect(n3[1]).toEqual(PROMPT_VARIANTS.baseline(noHistory).messages[1]);
+  });
+
+  test('is the app\'s prompt for single requests with no history (adopted 2026-11-25)', () => {
+    // eslint-disable-next-line global-require
+    const { APP_NO_HISTORY_SYSTEM_PROMPT } = require('./helpers/promptVariants');
+    const noHistory = { ...request, previousTranslationData: {} };
+
+    expect(APP_NO_HISTORY_SYSTEM_PROMPT).toBe(N3_SYSTEM_PROMPT);
+    expect(PROMPT_VARIANTS.baseline(noHistory)).toEqual(PROMPT_VARIANTS.N3(noHistory));
+    // beforeN3 reproduces the app's prompt as it was measured before
+    expect(PROMPT_VARIANTS.beforeN3(noHistory).messages[0].content).toBe(APP_SINGLE_SYSTEM_PROMPT);
+    expect(PROMPT_VARIANTS.beforeN3(noHistory).messages[1]).toEqual(PROMPT_VARIANTS.baseline(noHistory).messages[1]);
+    expect(PROMPT_VARIANTS.beforeN3(request)).toEqual(PROMPT_VARIANTS.baseline(request));
   });
 
   test('the prompt never mentions previous translations and keeps the app\'s output rules', () => {

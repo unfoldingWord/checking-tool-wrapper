@@ -876,3 +876,15 @@ FT-DEV-NOHIST only (+12) and level elsewhere, and never significantly worse for 
 it in the app means a second fixed system prompt for requests with no history, the fine-tune
 exporter's no-history examples built with it (the parity test), and the prompt in
 `plans/improve-single-prompt.md`'s N3 section moved into `src`.
+
+**Decision (author, 2026-11-25): N3 adopted** for single requests with no history lines. In the
+app as `LLM_SINGLE_NO_HISTORY_SYSTEM_PROMPT` (text identical to `N3_SYSTEM_PROMPT`, checked in
+`__tests__/promptVariants.test.js`); `buildTranslationOptionsPrompt` picks it when
+`formatPreviousTranslations` gives no lines (N3 as measured picked it when the history had no
+renderings; the two differ only for a history whose renderings all have count 0, which today got
+no PREVIOUS TRANSLATIONS block anyway). Batched requests are unchanged (not measured). The fine-tune
+exporter builds its prompts with the app's function, so its no-history examples now get N3; the
+released fine-tunes were not retrained and need not be (measured above). The `baseline` variant is
+now the app with N3; `beforeN3` is the app as before, and the variants measured before (X3, X4b and
+those built on it) use it, so they still send what they sent when measured. Results named
+`_prompt-baseline` on the NOHIST sets from before 2026-11-25 are the `beforeN3` prompt.
