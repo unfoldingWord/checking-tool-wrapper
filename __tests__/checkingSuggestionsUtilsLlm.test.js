@@ -5,6 +5,7 @@ import {
   capConfidenceWithoutHistory,
   getBestSelections,
   getBestTWordSelectionWithConfidenceFromLlm,
+  getAlgorithmCertainConfidenceSetting,
   getExtraParams,
   LLM_NO_HISTORY_MAX_CONFIDENCE,
   parseLlmSelectionOptions,
@@ -545,5 +546,21 @@ describe('AI confidence without history (N5)', () => {
     expect(capConfidenceWithoutHistory({ error: true, bestSelections: [] }, {})).toEqual({ error: true, bestSelections: [] });
     expect(capConfidenceWithoutHistory(result, { church: {} }).bestSelections[0].confidence).toBe(70);
     expect(result.bestSelections[0].confidence).toBe(90);
+  });
+});
+
+describe('getAlgorithmCertainConfidenceSetting', () => {
+  test('reads the name tc-ui-toolkit saves, then the older name', () => {
+    expect(getAlgorithmCertainConfidenceSetting({ algorithmCertainConfidence: 97 })).toBe(97);
+    expect(getAlgorithmCertainConfidenceSetting({ llmAlgorithmCertainConfidence: 90 })).toBe(90);
+    expect(getAlgorithmCertainConfidenceSetting({ algorithmCertainConfidence: 97, llmAlgorithmCertainConfidence: 90 })).toBe(97);
+    expect(getAlgorithmCertainConfidenceSetting({ algorithmCertainConfidence: 0 })).toBe(0);
+  });
+
+  test('gives undefined when neither is a number, so the default is used', () => {
+    expect(getAlgorithmCertainConfidenceSetting(null)).toBeUndefined();
+    expect(getAlgorithmCertainConfidenceSetting({})).toBeUndefined();
+    expect(getAlgorithmCertainConfidenceSetting({ algorithmCertainConfidence: '97' })).toBeUndefined();
+    expect(getAlgorithmCertainConfidenceSetting({ algorithmCertainConfidence: undefined, llmAlgorithmCertainConfidence: 92 })).toBe(92);
   });
 });

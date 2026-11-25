@@ -4734,9 +4734,26 @@ export function updatedPreviousSelectionsData(
  * fine-tuned model, so with 100 the app's first suggestion was right 0.5-1.3 points less often; with 95 it
  * is as before, and the answers given without the AI are right ~92.5% of the time, against 86% for the old
  * algorithm (plans/algorithm-confidence.md, Step 6). A job's `algorithmCertainConfidence` option, from
- * the `llmAlgorithmCertainConfidence` setting, overrides it.
+ * the checking settings (see {@link getAlgorithmCertainConfidenceSetting}), overrides it.
  */
 export const ALGORITHM_CERTAIN_CONFIDENCE = 95;
+
+/**
+ * The algorithm certain confidence saved in the checking settings: `algorithmCertainConfidence`,
+ * which tc-ui-toolkit's configure AI dialog saves, else the older `llmAlgorithmCertainConfidence`
+ * (set by hand before the dialog had the field).
+ * @param {object|null} settings - the saved checking settings
+ * @returns {number|undefined} - undefined when neither is a number, so `ALGORITHM_CERTAIN_CONFIDENCE`
+ *   is used
+ */
+export function getAlgorithmCertainConfidenceSetting(settings) {
+  for (const value of [settings?.algorithmCertainConfidence, settings?.llmAlgorithmCertainConfidence]) {
+    if (Number.isFinite(value)) {
+      return value;
+    }
+  }
+  return undefined;
+}
 
 /**
  * Highest confidence shown for an AI suggestion made with no selection history. Without history the

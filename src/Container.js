@@ -38,6 +38,7 @@ import {
   cleanQuote,
   compareUnicodeStrings,
   fetchPreviousSelectionData,
+  getAlgorithmCertainConfidenceSetting,
   getLocalAiServerStatus,
   normalizeForCompare,
   queryAiAPIModels,
@@ -353,7 +354,7 @@ function Container({
                 const llmUseLocalServer_ = !!(settingsForSuggestionsRef.current.llmSuggestionsEnabled &&
                   settingsForSuggestionsRef.current.llmUseLocalServer);
                 const data = {
-                  algorithmCertainConfidence: settingsForSuggestionsRef.current.llmAlgorithmCertainConfidence,
+                  algorithmCertainConfidence: getAlgorithmCertainConfidenceSetting(settingsForSuggestionsRef.current),
                   apiToken: settingsForSuggestionsRef.current.llmApiToken,
                   alignedGLText: gatewayLanguageQuote_,
                   contextId,
@@ -830,7 +831,7 @@ function Container({
    *   `llmExtraParams` from the saved settings is used
    * @param {number} [data.algorithmCertainConfidence] - with AI suggestions, the algorithm's answer is
    *   used without asking the AI when its top option has at least this confidence; when missing,
-   *   `llmAlgorithmCertainConfidence` from the saved settings is used, else `ALGORITHM_CERTAIN_CONFIDENCE`
+   *   the saved setting is used (`getAlgorithmCertainConfidenceSetting`), else `ALGORITHM_CERTAIN_CONFIDENCE`
    * @param {string} data.llmQueryUrl - URL for LLM query endpoint
    * @param {boolean} [data.llmEnableThinking] - true to have the AI reason before answering; when missing,
    *   `llmEnableThinking` from the saved settings is used
@@ -862,7 +863,7 @@ function Container({
     // the caller (tc-ui-toolkit) may not know about extra params, so fall back to the saved settings
     const llmExtraParams = data?.llmExtraParams ?? settingsForSuggestionsRef.current?.llmExtraParams;
     const algorithmCertainConfidence = data?.algorithmCertainConfidence ??
-      settingsForSuggestionsRef.current?.llmAlgorithmCertainConfidence;
+      getAlgorithmCertainConfidenceSetting(settingsForSuggestionsRef.current);
 
     const alignedGLText = cleanQuote(_alignedGLText);
     const groupId = contextId?.groupId || '';
