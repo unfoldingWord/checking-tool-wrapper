@@ -26,7 +26,10 @@ import { getBestVerseFromChapter } from '../../src/helpers/verseHelpers';
 
 /**
  * The fine-tune's held-out test files (`testFiles` in `llmTrainingData/finetune-d3/manifest.json`,
- * which is git-ignored, so they are written out here). Their projects are left out of DEV.
+ * which is git-ignored, so they are written out here), plus `ar_avd_luk_book_unfoldingWord_en` and
+ * `ar_avd_luk_book_ru_gl_ru` (added 2026-11-25, the first Arabic-target test files; add new ones to an existing TEST with
+ * `LLM_PROMPT_EVAL_SETS=testadd`). Their projects are left out of DEV and of fine-tune training
+ * (`DEFAULT_TEST_PROJECTS` in `fineTuneHelpers.js`).
  */
 export const FINETUNE_TEST_FILES = [
   'bn_glt_eph_book_unfoldingWord_en',
@@ -38,6 +41,23 @@ export const FINETUNE_TEST_FILES = [
   'es-419_est_rut_book_unfoldingWord_en',
   'ne_glt_2co_book_unfoldingWord_en',
   'ne_glt_tit_book_es-419_gl_es-419',
+  'ar_avd_luk_book_unfoldingWord_en',
+  'ar_avd_luk_book_ru_gl_ru',
+  // moved from training to test 2026-11-25, one project per main training language
+  'ru_rlob_gen_book_unfoldingWord_en',
+  'vi_glt_heb_book_unfoldingWord_en',
+  'fa_glt_1ti_book_unfoldingWord_en',
+  'fa_glt_1ti_book_ru_gl_ru',
+  'id_glt_1ti_book_unfoldingWord_en',
+  'ne_glt_eph_book_unfoldingWord_en', // added 2026-11-25 (Nepali, a language in no training project)
+  'gu_glt_1co_book_unfoldingWord_en', // added 2026-11-25 (Gujarati; gu_glt_luk is in training)
+  'gu_glt_1co_book_ru_gl_ru',
+  // rebalanced 2026-11-25: te_glt_1co replaces te_glt_tit (back in training); Bengali 2 Corinthians and
+  // English Galatians (also in NEW_DEV_FILES, which was built before; NEW-DEV overlaps TEST there)
+  'te_glt_1co_book_unfoldingWord_en',
+  'bn_glt_2co_book_unfoldingWord_en',
+  'bn_glt_2co_book_BSOJ_ar',
+  'en_ult_gal_book_BSOJ_ar',
 ];
 
 /** settings of the sets as built for the plan; change them only on purpose, and say so in the plan */

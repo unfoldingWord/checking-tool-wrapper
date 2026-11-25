@@ -1044,6 +1044,65 @@ model to pass the suite: 74% top-1 (41, 41, 40 of 55), 5% wrong at ≥ 80, media
 as the large option (`llmTraining/model-card-4b/`); its files are over GitHub's 2 GiB release-file
 limit, so `make_release.sh` leaves them out of `github-release/` (Hugging Face only).
 
+**The r0v2 models with the app's N3 prompt** (commit c074e87, 2026-11-25: a single request with no
+history lines gets `LLM_SINGLE_NO_HISTORY_SYSTEM_PROMPT`; the models were trained with the previous
+prompt for every request). GGUF, seed 42, results with `-appn3` after the model name, logs in
+`llm-eval-results/app-n3/`. TEST is unchanged for every model (0 / 0 changed cases: requests with
+history are byte-identical). TEST-NOHIST, previous prompt → N3 (only previous / only N3, p):
+
+| Model | TEST-NOHIST | p | no option |
+|---|---|---|---|
+| 1.7B | 65.0 → 65.0% (16 / 16) | 1.0 | 1 → 1 |
+| 0.6B | 49.7 → 50.2% (16 / 20) | 0.62 | 9 → 6 |
+| 4B | 69.2 → 68.7% (14 / 10) | 0.54 | 2 → 0 |
+
+No model changes significantly; the answers differ on 2-4% of the checks, in both directions. The
+fine-tunes learned the task, so the no-history prompt matters little to them, and the released
+r0v2 builds can be used with the app's current prompt without retraining. A future retrain should
+build its data with the current prompt (the exporter uses `buildTranslationOptionsPrompt`, so it
+does that by itself), so training and use match again.
+
+**TEST extended, 2026-11-25.** TEST had no Arabic, Russian, Vietnamese, Telugu, Farsi or Indonesian
+target (79% of the training examples). `ar_avd_luk_book_unfoldingWord_en` (Arabic Luke, GL English
+ULT; 1,331 checks from 168 groups, never in training) is now a test file: in `FINETUNE_TEST_FILES`
+and `DEFAULT_TEST_PROJECTS`, appended to `test.json` and `test-nohist.json` with
+`LLM_PROMPT_EVAL_SETS=testadd` (835 → 2,166 cases each; DEV and the earlier TEST cases unchanged,
+so earlier results stay comparable on them). Then `ar_avd_luk_book_ru_gl_ru` (Arabic Luke, GL
+Russian RLOB; 1,313 checks from 185 groups; the project's translationWords GL switched in
+translationCore): TEST and TEST-NOHIST are now 3,479 cases each. Caveat: the Arabic-GL Luke training files take their
+GL phrases from the same AVD text, so the models have seen these Arabic words for these key terms
+as input, never as answers; Arabic Luke will score above an unseen Arabic book. `ar_avd_jer` was
+not usable: no English bible here has Jeremiah aligned (ULT/UST v88-91 lack it), `avd`'s Jeremiah
+is the project's own text and `arst`'s is English.
+
+**Test split redrawn, 2026-11-25** (author's choices for Russian and Telugu). One project per main
+training language moved from training to test: `ru_rlob_gen` (4,900 checks; Genesis, whose RLOB
+text is no training file's GL), `vi_glt_heb` (727), `te_glt_tit` (74, both GLs; Telugu Luke stays
+in training), `fa_glt_1ti` (323, English and Russian GLs) and `id_glt_1ti` (112). They are in
+`DEFAULT_TEST_PROJECTS` and `FINETUNE_TEST_FILES` and were appended to TEST (`testadd`): TEST and
+TEST-NOHIST are now 9,615 checks each, with every training language but Indonesian above 300
+checks. Training (**R0v4**, `lora-r16-r0v4*.yaml`: R0v2's settings, the app's prompt after
+c074e87): 14,542 train examples (R0v2 17,380; Russian 4,152 → 2,044, Vietnamese 3,834 → 3,500,
+Telugu 2,340 → 2,261, Farsi 703 → 459, Indonesian 113 → 52), 868 valid, 3,636 iters.
+
+Comparisons: the models trained before this split (d3, r0, r0v2, r0v3 data) trained on the five
+moved projects, so they can be compared with R0v4 only on the earlier test files (the first 835
+TEST checks plus Arabic Luke). DEV holds 278 cases and FT-DEV 125 from the moved projects; those
+sets are for prompt experiments and were left as they are, so results on them stay comparable.
+
+**Added and rebalanced later on 2026-11-25** (author's choices). New training files:
+`es-419_glt_tit`, `es-419_glt_3jn`, `id_glt_3jn`, `te_glt_1co`, `bn_glt_luk`, `gu_glt_luk` (English
+and Russian GL); `te_glt_luk_book_unfoldingWord_en` rebuilt (1,393 → 1,670 cases). New test files:
+`ne_glt_eph`, `gu_glt_1co` (English and Russian GL). Rebalanced so every language has a fair test
+share: `te_glt_1co` to test in place of `te_glt_tit` (back in training; `testadd` now also drops
+files no longer listed), `bn_glt_2co` (English and Arabic GL) and `en_ult_gal` to test; training
+balance across languages kept as is (per-project and per-group caps only). TEST and TEST-NOHIST:
+12,907 checks each (by target: ru 4,900, ar 2,644, gu 1,476, te 771, vi 727, bn 726, en 589, ne 555,
+fa 323, id 112, es-419 84; by GL: en 9,720, ru 2,339, ar 639, es-419 105, id 52, fa 52). R0v4's
+training data: 16,280 examples (vi 3,525, en 2,784, ar 2,646, te 2,311, ru 2,035, gu 1,778, bn 499,
+fa 466, es-419 185, id 51), 4,070 iters. NEW-DEV holds 148 cases from `en_ult_gal`, DEV 28 and
+FT-DEV 3 from the newly moved projects; left as they are.
+
 ### Step 9. Put the result in the app (OFFLINE)
 
 1. Move the adopted variant from `promptVariants.js` into `buildLlmSystemPrompt` /

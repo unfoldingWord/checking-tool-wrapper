@@ -68,17 +68,17 @@ describe('fine-tune data helpers', () => {
     const patterns = DEFAULT_BUILD_OPTIONS.testProjects;
     expect(isTestProject('ne_glt_2co', patterns)).toBe(true);
     expect(isTestProject('en_ult_tit', patterns)).toBe(true);
-    expect(isTestProject('bn_glt_2co', patterns)).toBe(false);
+    expect(isTestProject('bn_glt_luk', patterns)).toBe(false);
     expect(isTestProject('xne_glt_2co', patterns)).toBe(false);
   });
 
   test('getSplit puts every group of a test project in test and is stable for the others', () => {
     expect(getSplit('ne_glt_2co', 'god', DEFAULT_BUILD_OPTIONS)).toBe('test');
-    const split = getSplit('vi_glt_heb', 'abraham', DEFAULT_BUILD_OPTIONS);
+    const split = getSplit('vi_glt_1co', 'abraham', DEFAULT_BUILD_OPTIONS);
     expect(['train', 'valid']).toContain(split);
-    expect(getSplit('vi_glt_heb', 'abraham', DEFAULT_BUILD_OPTIONS)).toBe(split);
-    expect(getSplit('vi_glt_heb', 'abraham', { ...DEFAULT_BUILD_OPTIONS, validPercent: 100 })).toBe('valid');
-    expect(getSplit('vi_glt_heb', 'abraham', { ...DEFAULT_BUILD_OPTIONS, validPercent: 0 })).toBe('train');
+    expect(getSplit('vi_glt_1co', 'abraham', DEFAULT_BUILD_OPTIONS)).toBe(split);
+    expect(getSplit('vi_glt_1co', 'abraham', { ...DEFAULT_BUILD_OPTIONS, validPercent: 100 })).toBe('valid');
+    expect(getSplit('vi_glt_1co', 'abraham', { ...DEFAULT_BUILD_OPTIONS, validPercent: 0 })).toBe('train');
   });
 
   test('getEvalCaseKeys reads the verse and group from each real case', () => {
