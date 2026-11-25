@@ -46,6 +46,10 @@
  *   LLM_TRAINING_TC_HOME    translationCore folder (default ~/translationCore)
  *   LLM_TRAINING_OUT_DIR    output folder (default <repo>/llmTrainingData)
  *   LLM_TRAINING_MAX_WORDS  longest answer kept, in words (default: no limit)
+ *   LLM_TRAINING_GL_BIBLE   GL bible id to use, e.g. avd (default: the first aligned one, see
+ *                           `loadGlBook`). For a GL bible whose book has the wrong text: Arabic
+ *                           `arst` v4.9_BSOJ has English (UST-like) text aligned in most books
+ *                           (Titus and 1 Timothy are Arabic), so use `avd` for those
  *   LLM_TRAINING_ALLOW_GL_MISMATCH  set to 1 to build for a GL other than the project's translationWords
  *                           GL in its manifest. Normally refused: the project's check index is
  *                           written by translationCore for the GL last selected there, and other
@@ -273,7 +277,12 @@ function getVerseAlignments(projectPath, bookId, { chapter, verse }, chapters) {
 
 /**
  * Loads the book of the GL bible: the first bible id of the gateway language, in `bibleIdSort`
- * order, with a version folder for `glOwner`; the newest such version.
+ * order, with a version folder for `glOwner` (the newest such version) whose book is aligned to
+ * the original language; if none is aligned, the first with the book. `LLM_TRAINING_GL_BIBLE` names
+ * the bible id instead. A GL bible can be aligned
+ * for some books only (e.g. Arabic `arst` v4.9 has Titus aligned but not Galatians, which `avd`
+ * has), and the app finds a check's GL phrase in the first bible that gives aligned text
+ * (`getAlignedGLTextHelperMajor`), so an unaligned book is skipped here too.
  * @param {string} glLang - e.g. 'en'
  * @param {string} glOwner - e.g. 'unfoldingWord'
  * @param {string} bookId
@@ -281,17 +290,41 @@ function getVerseAlignments(projectPath, bookId, { chapter, verse }, chapters) {
  */
 function loadGlBook(glLang, glOwner, bookId) {
   const biblesFolder = path.join(TC_HOME, 'resources', glLang, 'bibles');
-  const bibleIds = fs.existsSync(biblesFolder) ? fs.readdirSync(biblesFolder).sort(bibleIdSort) : [];
+  const allBibleIds = fs.existsSync(biblesFolder) ? fs.readdirSync(biblesFolder).sort(bibleIdSort) : [];
+  const bibleIds = env.LLM_TRAINING_GL_BIBLE ? [env.LLM_TRAINING_GL_BIBLE] : allBibleIds;
+  let firstWithBook = null;
 
   for (const bibleId of bibleIds) {
     const version = getNewestVersion(path.join(biblesFolder, bibleId), glOwner);
     const bookFolder = version && path.join(biblesFolder, bibleId, version, bookId);
 
     if (bookFolder && fs.existsSync(bookFolder)) {
-      return { glBook: readBook(bookFolder), glBibleName: `${bibleId}/${version}` };
+      const found = { glBook: readBook(bookFolder), glBibleName: `${bibleId}/${version}` };
+
+      if (isBookAligned(found.glBook)) {
+        return found;
+      }
+      firstWithBook = firstWithBook || found;
     }
   }
+
+  if (firstWithBook) {
+    return firstWithBook;
+  }
   throw new Error(`no ${glLang} bible from ${glOwner} with book ${bookId} in ${biblesFolder}`);
+}
+
+/**
+ * Whether any verse of a GL book is aligned to the original language (has a `zaln` milestone).
+ * @param {object} book - chapters by number, each verses by number
+ * @returns {boolean}
+ */
+function isBookAligned(book) {
+  const hasAlignment = objects => (objects || []).some(object =>
+    object?.tag === 'zaln' || hasAlignment(object?.children));
+
+  return Object.values(book).some(chapter => Object.values(chapter || {})
+    .some(verse => hasAlignment(verse?.verseObjects)));
 }
 
 /**
