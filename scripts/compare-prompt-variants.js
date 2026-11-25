@@ -19,6 +19,13 @@
  * Prints, for A and B: cases, top-1, top-3, wrong at confidence >= 80, AI answers with no option,
  * mean confidence of right and of wrong top answers, median time; then the paired counts (right
  * only in A, right only in B) with an exact two-sided McNemar p.
+ *
+ * Then the span breakdown of plans/prompt-span-experiments.md (Step 1): each wrong top answer is
+ * too short (its words are some of the expected words), too long (it has every expected word and
+ * more), the right words at the wrong occurrence, a partial overlap, other words, or no answer
+ * (the AI gave no option). Words are compared after `normalizePhrase`, without `:n` suffixes,
+ * counting repeated words. Last, top-1 split by the GL phrase's word count (one word, more than
+ * one), with the paired counts and McNemar p for each group.
  */
 const fs = require('fs');
 const path = require('path');
@@ -53,13 +60,90 @@ function optionText(option) {
     .join(' ');
 }
 
+/** the kinds of wrong top answer, in the order they are printed */
+const SPAN_CATEGORIES = ['tooShort', 'tooLong', 'wrongOccurrence', 'partial', 'other', 'noAnswer'];
+
+const SPAN_LABELS = {
+  tooShort: 'too short',
+  tooLong: 'too long',
+  wrongOccurrence: 'wrong occurrence',
+  partial: 'partial overlap',
+  other: 'other words',
+  noAnswer: 'no answer',
+};
+
+/**
+ * @param {string} [phrase] - may have `:n` occurrence suffixes
+ * @returns {Array<string>} its normalized words, without the suffixes
+ */
+function phraseWords(phrase) {
+  return normalizePhrase((phrase || '').replace(/:\d+(?=\s|$)/g, '')).split(/\s+/).filter(Boolean);
+}
+
+/**
+ * @param {Array<string>} part
+ * @param {Array<string>} whole
+ * @returns {number} how many words of `part` are in `whole`, each word of `whole` used once
+ */
+function sharedWordCount(part, whole) {
+  const left = new Map();
+
+  whole.forEach(word => left.set(word, (left.get(word) || 0) + 1));
+  return part.filter(word => {
+    if (!left.get(word)) {
+      return false;
+    }
+    left.set(word, left.get(word) - 1);
+    return true;
+  }).length;
+}
+
+/**
+ * Sorts a wrong top answer by how it differs from the expected answer. Each expected answer is
+ * tried, and the closest kind wins (in the order of {@link SPAN_CATEGORIES}).
+ * @param {object|undefined} option - the top answer shown, `{selections, confidence}`
+ * @param {Array<string>} expected - the case's expected answers
+ * @param {boolean} aiEmpty - the AI gave no option
+ * @returns {string} one of {@link SPAN_CATEGORIES}
+ */
+function classifySpan(option, expected, aiEmpty) {
+  if (aiEmpty || !option) {
+    return 'noAnswer';
+  }
+
+  const answer = (option.selections || []).flatMap(({ text }) => phraseWords(text));
+  const kinds = (expected || []).map(phrase => {
+    const want = phraseWords(phrase);
+    const shared = sharedWordCount(answer, want);
+
+    if (answer.join(' ') === want.join(' ')) {
+      return 'wrongOccurrence';
+    }
+
+    if (shared === want.length && answer.length > want.length) {
+      return 'tooLong';
+    }
+
+    if (shared === answer.length && want.length > answer.length) {
+      return 'tooShort';
+    }
+    return shared ? 'partial' : 'other';
+  });
+  const best = ['wrongOccurrence', 'tooShort', 'tooLong', 'partial']
+    .find(kind => kinds.includes(kind));
+
+  return best || 'other';
+}
+
 /**
  * Scores every case of a run as the app shows it.
  * @param {Array<object>} cases - the case file
  * @param {Array<object>} results - the run
  * @param {Map<string, object>} algorithmById - algorithm results by case id
  * @returns {Array<{id: string, right: boolean, top3: boolean, confidence: number|null,
- *   aiEmpty: boolean, ms: number}|null>} - one per case, null when the run has no result for it
+ *   aiEmpty: boolean, ms: number, span: string|null, glWords: number}|null>} - one per case, null
+ *   when the run has no result for it; `span` is the kind of wrong answer ({@link classifySpan}),
+ *   null when right, and `glWords` the GL phrase's word count
  */
 function scoreRun(cases, results, algorithmById) {
   const resultById = new Map(results.map(item => [item.id, item]));
@@ -79,13 +163,18 @@ function scoreRun(cases, results, algorithmById) {
     if (aiEmpty) { // the app falls back to the algorithm (`algorithmFallback`)
       options = algorithmById.get(testCase.id)?.bestSelections || [];
     }
+
+    const right = isRight(options[0]);
+
     return {
       id: testCase.id,
-      right: isRight(options[0]),
+      right,
       top3: options.slice(0, 3).some(isRight),
       confidence: options[0] ? options[0].confidence : null,
       aiEmpty,
       ms: item.elapsedMs || 0,
+      span: right ? null : classifySpan(options[0], testCase.expected, aiEmpty),
+      glWords: phraseWords(testCase.glPhrase).length,
     };
   });
 }
@@ -151,6 +240,46 @@ function summarize(scores) {
   };
 }
 
+/**
+ * @param {Array<object>} scores - from {@link scoreRun}, without nulls
+ * @returns {object} how many wrong top answers of each kind, by {@link SPAN_CATEGORIES}
+ */
+function spanBreakdown(scores) {
+  const counts = Object.fromEntries(SPAN_CATEGORIES.map(kind => [kind, 0]));
+
+  scores.forEach(({ span }) => {
+    if (span) {
+      counts[span]++;
+    }
+  });
+  return counts;
+}
+
+/**
+ * @param {Array<Array<object>>} rows - table rows, `[name, ...cells]`
+ * @returns {string} the rows, names left-aligned and cells right-aligned
+ */
+function formatTable(rows) {
+  const width = Math.max(...rows.map(([name]) => String(name).length));
+  const column = Math.max(12, ...rows.flatMap(([, ...cells]) => cells.map(cell => String(cell).length)));
+
+  return rows.map(([name, ...cells]) =>
+    [String(name).padEnd(width), ...cells.map(cell => String(cell).padStart(column))].join('  ')).join('\n');
+}
+
+/**
+ * @param {Array<Array<object>>} paired - `[score A, score B]` per case
+ * @returns {{onlyA: number, onlyB: number, p: number}} the paired counts and McNemar p
+ */
+function pairedCounts(paired) {
+  const onlyA = paired.filter(([x, y]) => x.right && !y.right).length;
+  const onlyB = paired.filter(([x, y]) => !x.right && y.right).length;
+
+  return {
+    onlyA, onlyB, p: mcnemarP(onlyA, onlyB),
+  };
+}
+
 function main() {
   const [casesFile, fileA, fileB] = process.argv.slice(2);
 
@@ -176,8 +305,9 @@ function main() {
   const missing = cases.length - paired.length;
   const a = summarize(paired.map(([x]) => x));
   const b = summarize(paired.map(([, y]) => y));
-  const onlyA = paired.filter(([x, y]) => x.right && !y.right).length;
-  const onlyB = paired.filter(([x, y]) => !x.right && y.right).length;
+  const {
+    onlyA, onlyB, p,
+  } = pairedCounts(paired);
   const pct = (value, total) => (total ? `${((100 * value) / total).toFixed(1)}%` : '-');
   const rows = [
     ['cases', a.cases, b.cases],
@@ -189,20 +319,32 @@ function main() {
     ['mean confidence, wrong', a.meanConfidenceWrong, b.meanConfidenceWrong],
     ['median ms', a.medianMs, b.medianMs],
   ];
-  const width = Math.max(...rows.map(([name]) => name.length));
-  const column = Math.max(12, ...rows.flatMap(([, x, y]) => [String(x).length, String(y).length]));
+  const spanA = spanBreakdown(paired.map(([x]) => x));
+  const spanB = spanBreakdown(paired.map(([, y]) => y));
+  const groups = [['GL phrase of 1 word', 1], ['GL phrase of 2+ words', 2]].map(([name, size]) => {
+    const inGroup = paired.filter(([x]) => (size === 1 ? x.glWords <= 1 : x.glWords > 1));
+    const right = side => inGroup.filter(pair => pair[side].right).length;
+
+    return {
+      name, total: inGroup.length, rightA: right(0), rightB: right(1), ...pairedCounts(inGroup),
+    };
+  });
 
   console.log(`A: ${fileA}\nB: ${fileB}`);
 
   if (missing) {
     console.log(`${missing} case(s) missing from A or B are left out`);
   }
-  console.log(['', 'A'.padStart(column), 'B'.padStart(column)].join('  ').replace(/^/, ' '.repeat(width)));
-
-  for (const [name, x, y] of rows) {
-    console.log([name.padEnd(width), String(x).padStart(column), String(y).padStart(column)].join('  '));
-  }
-  console.log(`paired: right only in A ${onlyA}, right only in B ${onlyB}, McNemar p ${mcnemarP(onlyA, onlyB).toPrecision(2)}`);
+  console.log(formatTable([['', 'A', 'B'], ...rows]));
+  console.log(`paired: right only in A ${onlyA}, right only in B ${onlyB}, McNemar p ${p.toPrecision(2)}`);
+  console.log('\nwrong top answers by kind');
+  console.log(formatTable([['', 'A', 'B'],
+    ...SPAN_CATEGORIES.map(kind => [SPAN_LABELS[kind], spanA[kind], spanB[kind]])]));
+  console.log('\ntop-1 by GL phrase length');
+  console.log(formatTable([['', 'cases', 'A', 'B', 'only A', 'only B', 'McNemar p'],
+    ...groups.map(group => [group.name, group.total,
+      `${group.rightA} (${pct(group.rightA, group.total)})`, `${group.rightB} (${pct(group.rightB, group.total)})`,
+      group.onlyA, group.onlyB, group.p.toPrecision(2)])]));
 }
 
 if (require.main === module) {
@@ -210,5 +352,6 @@ if (require.main === module) {
 }
 
 module.exports = {
-  mcnemarP, normalizePhrase, optionText, scoreRun, summarize,
+  classifySpan, mcnemarP, normalizePhrase, optionText, pairedCounts, phraseWords, scoreRun,
+  SPAN_CATEGORIES, spanBreakdown, summarize,
 };

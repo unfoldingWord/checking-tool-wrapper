@@ -8,6 +8,7 @@ import {
   applyThinkingDirectiveToMessages,
   buildChatMessages,
   chatMessagesToSystemAndQuery,
+  formatPreviousTranslations,
   getBestSelections,
   getValidChatMessages,
   getWordList,
@@ -274,6 +275,107 @@ describe('scripts/compare-prompt-variants.js', () => {
       meanConfidenceRight: '80.0',
       meanConfidenceWrong: '85.0',
       medianMs: 200,
+    });
+  });
+
+  describe('span breakdown (plans/prompt-span-experiments.md, Step 1)', () => {
+    // eslint-disable-next-line global-require
+    const {
+      classifySpan, pairedCounts, phraseWords, SPAN_CATEGORIES, spanBreakdown,
+    } = require('../scripts/compare-prompt-variants');
+    const words = (...pairs) => ({
+      selections: pairs.map(([text, occurrence = 1]) => ({ text, occurrence })),
+      confidence: 80,
+    });
+
+    test('phraseWords drops occurrence suffixes and normalizes', () => {
+      expect(phraseWords('La:2 Iglesia de:3 Roma')).toEqual(['la', 'iglesia', 'de', 'roma']);
+      expect(phraseWords('')).toEqual([]);
+      expect(phraseWords(undefined)).toEqual([]);
+    });
+
+    test('each kind of wrong answer', () => {
+      expect(classifySpan(words(['Gemeinde']), ['für die Gemeinde'], false)).toBe('tooShort');
+      expect(classifySpan(words(['wir']), ['für die Gemeinde'], false)).toBe('other');
+      expect(classifySpan(words(['für']), ['für die Gemeinde'], false)).toBe('tooShort');
+      expect(classifySpan(words(['für die Gemeinde in Rom']), ['für die Gemeinde'], false)).toBe('tooLong');
+      expect(classifySpan(words(['Gemeinde', 2]), ['Gemeinde'], false)).toBe('wrongOccurrence');
+      expect(classifySpan(words(['Gemeinde']), ['Gemeinde:2'], false)).toBe('wrongOccurrence');
+      expect(classifySpan(words(['die Gemeinde in']), ['für die Gemeinde'], false)).toBe('partial');
+      expect(classifySpan(words(['beten']), ['für die Gemeinde'], false)).toBe('other');
+      expect(classifySpan(words(['Gemeinde']), ['Gemeinde'], true)).toBe('noAnswer');
+      expect(classifySpan(undefined, ['Gemeinde'], false)).toBe('noAnswer');
+    });
+
+    test('compares case-insensitively, words split across selections', () => {
+      expect(classifySpan(words(['FÜR'], ['DIE']), ['für die Gemeinde'], false)).toBe('tooShort');
+    });
+
+    test('a repeated word counts once per time it appears', () => {
+      // "de Belén de Judá" has both expected words and more: too long, not a partial overlap
+      expect(classifySpan(words(['de Belén de Judá']), ['de Belén'], false)).toBe('tooLong');
+      // the expected "de" twice, the answer once: too short
+      expect(classifySpan(words(['de Belén']), ['de Belén de Judá'], false)).toBe('tooShort');
+      // "de de" is not inside "de Belén", which has one "de"
+      expect(classifySpan(words(['de de']), ['de Belén'], false)).toBe('partial');
+    });
+
+    test('the closest kind over every expected answer wins', () => {
+      expect(classifySpan(words(['Rom']), ['die Gemeinde', 'in Rom'], false)).toBe('tooShort');
+      expect(classifySpan(words(['Rom']), ['Gemeinde', 'Rom:2'], false)).toBe('wrongOccurrence');
+    });
+
+    test('scoreRun marks the kind and the GL phrase length; spanBreakdown counts the kinds', () => {
+      const cases = [
+        {
+          id: 'a', glPhrase: 'church', expected: ['Gemeinde'],
+        },
+        {
+          id: 'b', glPhrase: 'for the church', expected: ['für die Gemeinde'],
+        },
+        {
+          id: 'c', glPhrase: 'for the church', expected: ['für die Gemeinde'],
+        },
+        {
+          id: 'd', glPhrase: 'pray', expected: ['beten'],
+        },
+      ];
+      const results = [
+        { id: 'a', result: { bestSelections: [words(['Gemeinde'])] } },
+        { id: 'b', result: { bestSelections: [words(['Gemeinde'])] } },
+        { id: 'c', result: { bestSelections: [] } },
+        { id: 'd', result: { bestSelections: [words(['wir beten'])] } },
+      ];
+      const scores = scoreRun(cases, results, new Map());
+
+      expect(scores.map(s => [s.span, s.glWords])).toEqual([
+        [null, 1], ['tooShort', 3], ['noAnswer', 3], ['tooLong', 1],
+      ]);
+      expect(spanBreakdown(scores)).toEqual({
+        tooShort: 1, tooLong: 1, wrongOccurrence: 0, partial: 0, other: 0, noAnswer: 1,
+      });
+      expect(Object.keys(spanBreakdown([]))).toEqual(SPAN_CATEGORIES);
+    });
+
+    test('a wrong AI answer replaced by a right algorithm answer is not counted', () => {
+      const cases = [{
+        id: 'a', glPhrase: 'church', expected: ['Gemeinde'],
+      }];
+      const results = [{ id: 'a', result: { bestSelections: [] } }];
+      const scores = scoreRun(cases, results, new Map([['a', { bestSelections: [words(['Gemeinde'])] }]]));
+
+      expect(scores[0]).toMatchObject({
+        right: true, span: null, aiEmpty: true,
+      });
+    });
+
+    test('pairedCounts', () => {
+      const pair = (a, b) => [{ right: a }, { right: b }];
+
+      expect(pairedCounts([pair(true, false), pair(true, true), pair(false, true), pair(true, false)]))
+        .toEqual({
+          onlyA: 2, onlyB: 1, p: 1,
+        });
     });
   });
 });
@@ -805,5 +907,128 @@ describe('Step 4 variants S1-S6 (instruction length and structure, on X4b)', () 
     expect(s6[0].content).toContain('You are given:\nGATEWAY PHRASE - the phrase');
     expect(reorderRequestBlocks('\nTARGET VERSE (x): a\n\nGATEWAY PHRASE (en): b\n\nAnswer:'))
       .toBe('\nGATEWAY PHRASE (en): b\n\nTARGET VERSE (x): a\n\nAnswer:');
+  });
+});
+
+describe('span variants C0-C5 (plans/prompt-span-experiments.md, Step 3)', () => {
+  // eslint-disable-next-line global-require
+  const {
+    APP_SINGLE_SYSTEM_PROMPT, C1_RULE_2, C2_EXAMPLE_3, C5_EXAMPLE_3, SPAN_SYSTEM_PROMPTS,
+  } = require('./helpers/promptVariants');
+  const APP_RULE_2 = '2. Choose the fewest words that carry the meaning of GATEWAY PHRASE, kept in verse order.';
+  const APP_RULE_3 = '3. If a previous translation is in TARGET VERSE word for word, it is usually the answer. Copy exactly those words: do not add or drop small words.';
+  const MARK = / - for another phrase$/gm;
+
+  const requestOf = testCase => {
+    const options = testCaseToSelectionOptions(testCase);
+    return {
+      wordList: getWordList(options.verseText),
+      targetLangCode: testCase.targetLang,
+      glPhrase: testCase.glPhrase,
+      glLangCode: testCase.glLang,
+      previousTranslationData: testCase.history || {},
+    };
+  };
+
+  test('C0 deletes rule 2 and renumbers rules 3-8 as 2-7', () => {
+    const prompt = SPAN_SYSTEM_PROMPTS.C0;
+
+    expect(prompt).not.toContain('fewest words');
+    expect(prompt).toContain('\n2. If a previous translation is in TARGET VERSE word for word');
+    expect(prompt).toContain('\n7. Answer only as CSV rows');
+    expect(prompt).not.toMatch(/^8\. /m);
+    expect(prompt.replace(/^\d\. /gm, '')).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_2}\n`, '').replace(/^\d\. /gm, ''));
+  });
+
+  test('C6 deletes rule 3 and renumbers rules 4-8 as 3-7', () => {
+    const prompt = SPAN_SYSTEM_PROMPTS.C6;
+
+    expect(prompt).not.toContain('do not add or drop small words');
+    expect(prompt).toContain(`\n${APP_RULE_2}\n3. Give 1 to 3 options`);
+    expect(prompt).toContain('\n7. Answer only as CSV rows');
+    expect(prompt).not.toMatch(/^8\. /m);
+    expect(prompt.replace(/^\d\. /gm, '')).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_3}\n`, '').replace(/^\d\. /gm, ''));
+  });
+
+  test('C7 deletes rules 2 and 3 and renumbers rules 4-8 as 2-6', () => {
+    const prompt = SPAN_SYSTEM_PROMPTS.C7;
+
+    expect(prompt).not.toContain('fewest words');
+    expect(prompt).not.toContain('do not add or drop small words');
+    expect(prompt).toContain('spelled exactly as written there.\n2. Give 1 to 3 options');
+    expect(prompt).toContain('\n6. Answer only as CSV rows');
+    expect(prompt).not.toMatch(/^7\. /m);
+    expect(prompt.replace(/^\d\. /gm, '')).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_2}\n${APP_RULE_3}\n`, '').replace(/^\d\. /gm, ''));
+  });
+
+  test('C1 only replaces rule 2', () => {
+    expect(SPAN_SYSTEM_PROMPTS.C1).toBe(APP_SINGLE_SYSTEM_PROMPT.replace(`${APP_RULE_2}\n`, C1_RULE_2));
+    expect(SPAN_SYSTEM_PROMPTS.C1).toContain('2. Choose the verse words that translate all of GATEWAY PHRASE, including any small words in it, and no other words. Keep them in verse order.\n3. ');
+  });
+
+  test('C2 and C5 add their Example 3 after Example 2 and before the wrong answers', () => {
+    for (const [id, example] of [['C2', C2_EXAMPLE_3], ['C5', C5_EXAMPLE_3]]) {
+      const prompt = SPAN_SYSTEM_PROMPTS[id];
+
+      expect(prompt.replace(example, '')).toBe(SPAN_SYSTEM_PROMPTS.C1);
+      expect(prompt.indexOf('Example 2:')).toBeLessThan(prompt.indexOf('Example 3:'));
+      expect(prompt.indexOf('Example 3:')).toBeLessThan(prompt.indexOf('Wrong answer for Example 1:'));
+    }
+    expect(C2_EXAMPLE_3).toContain('GATEWAY PHRASE (en): for the church\n\nAnswer:\n"für die Gemeinde",80\n');
+    expect(C5_EXAMPLE_3).toContain('GATEWAY PHRASE (ru): царя\n\nAnswer:\n"of the king",80\n');
+  });
+
+  test('the examples\' history lines are what formatPreviousTranslations gives their input', () => {
+    expect(formatPreviousTranslations({ church: { Gemeinde: 6 } }, 'for the church', 'en',
+      'wir beten für die Gemeinde in Rom', 'de')).toBe('"Gemeinde" (chosen 6 times for "church")');
+    expect(formatPreviousTranslations({ 'царь': { king: 4 } }, 'царя', 'ru',
+      'they went into the house of the king', 'en')).toBe('"king" (chosen 4 times for "царь")');
+  });
+
+  test('C3 explains the mark and marks every example line for another GL key', () => {
+    const prompt = SPAN_SYSTEM_PROMPTS.C3;
+
+    expect(prompt).toContain('A line marked "for another phrase" was chosen for a different phrase than GATEWAY PHRASE');
+    expect(prompt).toContain('"iglesia" (chosen 7 times for "church")\n');
+    expect(prompt).toContain('"la iglesia" (chosen 3 times for "the church") - for another phrase\n');
+    expect(prompt).toContain('"las iglesias" (chosen 31 time for "the churches") - for another phrase\n');
+    expect(prompt).toContain('"Glaube" (chosen 5 times for "faith") - for another phrase\n');
+    expect(prompt.match(MARK).length).toBe(3);
+    expect(SPAN_SYSTEM_PROMPTS.C23).toContain('"Gemeinde" (chosen 6 times for "church") - for another phrase\n');
+    expect(SPAN_SYSTEM_PROMPTS.C53).toContain('"king" (chosen 4 times for "царь") - for another phrase\n');
+    expect(SPAN_SYSTEM_PROMPTS.C13.replace(MARK, '').replace(/ A line marked .*\n/, '\n')).toBe(SPAN_SYSTEM_PROMPTS.C1);
+  });
+
+  test('markOtherKey marks only lines whose GL key is not the exact phrase, and is off by default', () => {
+    const history = { 'church': { iglesia: 7 }, 'the church': { 'la iglesia': 3 } };
+    const verse = 'para la iglesia de Éfeso';
+
+    expect(formatPreviousTranslations(history, 'church', 'en', verse, 'es-419', { markOtherKey: true })).toBe(
+      '"iglesia" (chosen 7 times for "church")\n"la iglesia" (chosen 3 times for "the church") - for another phrase');
+    expect(formatPreviousTranslations(history, 'church', 'en', verse, 'es-419')).not.toContain('another phrase');
+  });
+
+  test('request text: C0-C2 and C5 send the app\'s; C3 and its combinations differ only by the marks', () => {
+    let marked = 0;
+
+    for (const testCase of realCases) {
+      const request = requestOf(testCase);
+      const app = PROMPT_VARIANTS.baseline(request).messages[1].content;
+
+      for (const id of ['C0', 'C1', 'C2', 'C5', 'C6', 'C7']) {
+        expect(PROMPT_VARIANTS[id](request).messages).toEqual([
+          { role: 'system', content: SPAN_SYSTEM_PROMPTS[id] }, { role: 'user', content: app },
+        ]);
+      }
+
+      for (const id of ['C3', 'C13', 'C23', 'C53']) {
+        const { messages } = PROMPT_VARIANTS[id](request);
+
+        expect(messages[0].content).toBe(SPAN_SYSTEM_PROMPTS[id]);
+        expect(messages[1].content.replace(MARK, '')).toBe(app);
+      }
+      marked += (PROMPT_VARIANTS.C3(request).messages[1].content.match(MARK) || []).length;
+    }
+    expect(marked).toBeGreaterThan(10);
   });
 });

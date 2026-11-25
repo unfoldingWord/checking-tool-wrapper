@@ -10,6 +10,14 @@
  *   `llmTrainingData/finetune-d3/manifest.json`), as Step 6 (b) of plans/fine-tune-qwen3.md scored
  *   them; TEST-NOHIST: the same with the history removed.
  *
+ * And for plans/prompt-span-experiments.md (D4):
+ * - FT-DEV: the cases of D3's validation split (`llmTrainingData/finetune-d3/valid.meta.jsonl`)
+ *   that the app sends to the AI, taken from the current data files; FT-DEV-NOHIST: the same with
+ *   no history.
+ * - NEW-DEV: a seeded random sample of the cases the app sends to the AI from the new projects
+ *   (`NEW_DEV_FILES`), with no file over a share of the sample; NEW-DEV-NOHIST: all of NEW-DEV
+ *   with no history.
+ *
  * This folder is in jest's `testPathIgnorePatterns`, so this file is not run as a test.
  */
 import fs from 'fs';
@@ -39,6 +47,33 @@ export const PROMPT_EVAL_DEFAULTS = {
   maxLanguageShare: 0.25,
   noHistoryShare: 0.5,
 };
+
+/** the new-project files of NEW-DEV (plans/prompt-span-experiments.md, D4), unseen by every model */
+export const NEW_DEV_FILES = [
+  'en_ult_gal_book_BSOJ_ar',
+  'en_ult_jos_book_ru_gl_ru',
+  'en_ult_luk_book_ru_gl_ru',
+  'es-419_est_est_book_unfoldingWord_en',
+];
+
+/** settings of NEW-DEV as built for the span plan; change them only on purpose, and say so in the plan */
+export const NEW_DEV_DEFAULTS = {
+  seed: 20261124,
+  size: 1000,
+  maxFileShare: 0.4,
+};
+
+/**
+ * The cases of a fine-tune split from its meta file (one JSON object per line, with `file` and
+ * `id`), in file order.
+ * @param {string} metaText - the contents of e.g. `valid.meta.jsonl`
+ * @returns {Array<{file: string, id: string}>}
+ */
+export function readSplitCaseIds(metaText) {
+  return metaText.split('\n').filter(line => line.trim())
+    .map(line => JSON.parse(line))
+    .map(({ file, id }) => ({ file, id }));
+}
 
 /**
  * The project a training data file is from: its name before `_book`, e.g. `vi_glt_luk` for
@@ -112,13 +147,15 @@ export function withoutHistory(evalCase) {
 /**
  * Chooses DEV: goes through the candidates in a seeded random order and keeps those the app sends
  * to the AI, until `size` are kept, with at most `maxLanguageShare` of `size` from one target
- * language. The language cap is checked first, so the algorithm runs only on cases that could be
- * kept.
+ * language (or from one group of `groupOf`, e.g. one file for NEW-DEV). The cap is checked first,
+ * so the algorithm runs only on cases that could be kept.
  * @param {Array<object>} candidates - eval cases (see {@link toEvalCase})
  * @param {object} options
  * @param {number} options.seed
  * @param {number} options.size
  * @param {number} options.maxLanguageShare - e.g. 0.25
+ * @param {function(object): string} [options.groupOf] - what the cap counts by (default the
+ *   target language)
  * @param {function(object): Promise<boolean>} options.isSentToAi - true when the app would ask the
  *   AI (the algorithm's top confidence is below `ALGORITHM_CERTAIN_CONFIDENCE`)
  * @returns {Promise<{cases: Array<object>, examined: number, certain: number}>} - the cases in
@@ -126,7 +163,7 @@ export function withoutHistory(evalCase) {
  *   certain about (left out)
  */
 export async function selectDevCases(candidates, {
-  seed, size, maxLanguageShare, isSentToAi,
+  seed, size, maxLanguageShare, isSentToAi, groupOf = candidate => candidate.targetLang,
 }) {
   const cap = Math.floor(size * maxLanguageShare);
   const perLanguage = new Map();
@@ -139,7 +176,8 @@ export async function selectDevCases(candidates, {
       break;
     }
 
-    const count = perLanguage.get(candidate.targetLang) || 0;
+    const group = groupOf(candidate);
+    const count = perLanguage.get(group) || 0;
 
     if (count >= cap) {
       continue;
@@ -152,7 +190,7 @@ export async function selectDevCases(candidates, {
       certain++;
       continue;
     }
-    perLanguage.set(candidate.targetLang, count + 1);
+    perLanguage.set(group, count + 1);
     cases.push(candidate);
   }
   return {

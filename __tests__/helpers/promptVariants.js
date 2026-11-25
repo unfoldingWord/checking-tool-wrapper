@@ -812,8 +812,146 @@ function buildS6(request) {
 }
 
 /** builders by variant id */
+/*
+ * Span variants of plans/prompt-span-experiments.md (Step 3): C0 (rule 2 deleted, diagnostic),
+ * C1 (rule 2 covers the whole phrase), C2 (C1 + a multi-word example), C5 (C1 + an example of one
+ * GL word rendered by several target words), C3 (history lines for another GL key marked), and
+ * C13/C23/C53 (C3 combined with C1, C2 or C5; Step 3 runs only the one of the best part).
+ */
+
+const APP_RULE_2 = '2. Choose the fewest words that carry the meaning of GATEWAY PHRASE, kept in verse order.\n';
+
+/** C1's rule 2: the verse words for all of the phrase, small words included, and no others */
+export const C1_RULE_2 = '2. Choose the verse words that translate all of GATEWAY PHRASE, including any small words in it, ' +
+  'and no other words. Keep them in verse order.\n';
+
+/** the end of Example 2 in the app's prompt, after which C2 and C5 put their Example 3 */
+const EXAMPLE_2_END = '"Gläubigen",75\n';
+
+/** C2's Example 3: a multi-word GL phrase whose history covers only part of it */
+export const C2_EXAMPLE_3 = `
+Example 3:
+TARGET VERSE (de): wir beten für die Gemeinde in Rom
+
+PREVIOUS TRANSLATIONS:
+"Gemeinde" (chosen 6 times for "church")
+
+GATEWAY PHRASE (en): for the church
+
+Answer:
+"für die Gemeinde",80
+`;
+
+/**
+ * C5's Example 3: one GL word (Russian genitive "of the king") that the target language says with
+ * several words. NEW-DEV's errors have this pattern (English targets, Russian or Arabic GL), but
+ * none of its words.
+ */
+export const C5_EXAMPLE_3 = `
+Example 3:
+TARGET VERSE (en): they went into the house of the king
+
+PREVIOUS TRANSLATIONS:
+"king" (chosen 4 times for "царь")
+
+GATEWAY PHRASE (ru): царя
+
+Answer:
+"of the king",80
+`;
+
+/** C0 system prompt: the app's without rule 2, the later rules renumbered */
+export const C0_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [
+  [APP_RULE_2, ''],
+  ...[3, 4, 5, 6, 7, 8].map(n => [`\n${n}. `, `\n${n - 1}. `]),
+]);
+
+/** rule 3 of the app's single-request prompt */
+const APP_RULE_3 = '3. If a previous translation is in TARGET VERSE word for word, it is usually the answer. ' +
+  'Copy exactly those words: do not add or drop small words.\n';
+
+/** C6 system prompt (added 2026-11-25): the app's without rule 3, the later rules renumbered */
+export const C6_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [
+  [APP_RULE_3, ''],
+  ...[4, 5, 6, 7, 8].map(n => [`\n${n}. `, `\n${n - 1}. `]),
+]);
+
+/** C7 system prompt (added 2026-11-25): the app's without rules 2 and 3, the later rules renumbered */
+export const C7_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [
+  [APP_RULE_2 + APP_RULE_3, ''],
+  ...[4, 5, 6, 7, 8].map(n => [`\n${n}. `, `\n${n - 2}. `]),
+]);
+
+/** C1 system prompt: the app's with C1's rule 2 */
+export const C1_SYSTEM_PROMPT = editPrompt(APP_SINGLE_SYSTEM_PROMPT, [[APP_RULE_2, C1_RULE_2]]);
+
+/** C2 system prompt: C1's with C2's Example 3 */
+export const C2_SYSTEM_PROMPT = editPrompt(C1_SYSTEM_PROMPT, [[EXAMPLE_2_END, EXAMPLE_2_END + C2_EXAMPLE_3]]);
+
+/** C5 system prompt: C1's with C5's Example 3 */
+export const C5_SYSTEM_PROMPT = editPrompt(C1_SYSTEM_PROMPT, [[EXAMPLE_2_END, EXAMPLE_2_END + C5_EXAMPLE_3]]);
+
+/** the mark C3 puts on a history line for another GL key (`markOtherKey` of `formatPreviousTranslations`) */
+const OTHER_KEY_MARK = ' - for another phrase';
+
+/**
+ * C3's edits of a system prompt: the PREVIOUS TRANSLATIONS line explains the mark, and every
+ * example history line for another GL key shows it, as the code marks it (`markOtherKey`).
+ * @param {string} prompt - the app's prompt, or C1's, C2's or C5's
+ * @returns {string}
+ */
+export function withOtherKeyMarks(prompt) {
+  const lines = [
+    '"la iglesia" (chosen 3 times for "the church")',
+    '"las iglesias" (chosen 31 time for "the churches")',
+    '"Glaube" (chosen 5 times for "faith")',
+    '"Gemeinde" (chosen 6 times for "church")',
+    '"king" (chosen 4 times for "царь")',
+  ].filter(line => prompt.includes(`${line}\n`));
+
+  return editPrompt(prompt, [
+    [
+      'PREVIOUS TRANSLATIONS - how the phrase was translated before, most used first (may be missing).',
+      'PREVIOUS TRANSLATIONS - how the phrase was translated before, most used first (may be missing). ' +
+        `A line marked "${OTHER_KEY_MARK.slice(3)}" was chosen for a different phrase than GATEWAY PHRASE, ` +
+        'so the answer may need more or fewer verse words.',
+    ],
+    ...lines.map(line => [`${line}\n`, `${line}${OTHER_KEY_MARK}\n`]),
+  ]);
+}
+
+/**
+ * A builder that sends the app's request text with the given system prompt.
+ * @param {string} systemPrompt
+ * @param {object} [historyOptions] - options for `formatPreviousTranslations`, e.g. `{ markOtherKey: true }`
+ * @returns {function(object): {messages: Array<{role: string, content: string}>}}
+ */
+function withSpanPrompt(systemPrompt, historyOptions = {}) {
+  return request => {
+    const history = formatPreviousTranslations(request.previousTranslationData, request.glPhrase,
+      request.glLangCode, request.wordList.join(' '), request.targetLangCode, historyOptions);
+    return { messages: buildChatMessages(systemPrompt, buildRequestText(request, history)) };
+  };
+}
+
+export const SPAN_SYSTEM_PROMPTS = {
+  C0: C0_SYSTEM_PROMPT,
+  C1: C1_SYSTEM_PROMPT,
+  C2: C2_SYSTEM_PROMPT,
+  C5: C5_SYSTEM_PROMPT,
+  C3: withOtherKeyMarks(APP_SINGLE_SYSTEM_PROMPT),
+  C13: withOtherKeyMarks(C1_SYSTEM_PROMPT),
+  C23: withOtherKeyMarks(C2_SYSTEM_PROMPT),
+  C53: withOtherKeyMarks(C5_SYSTEM_PROMPT),
+  C6: C6_SYSTEM_PROMPT,
+  C7: C7_SYSTEM_PROMPT,
+};
+
+const SPAN_VARIANTS = Object.fromEntries(Object.entries(SPAN_SYSTEM_PROMPTS).map(([id, prompt]) =>
+  [id, withSpanPrompt(prompt, ['C3', 'C13', 'C23', 'C53'].includes(id) ? { markOtherKey: true } : {})]));
+
 export const PROMPT_VARIANTS = {
-  baseline: buildBaseline, X1: buildX1, X3: buildX3, X4: buildX4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: buildN2, N3: buildN3, N4: buildN4, N34: buildN34, S1: withSystemPrompt('S1'), S2: withSystemPrompt('S2'), S3: buildS3, S4: buildS4, S5: buildS5, S6: buildS6, N6: buildN6,
+  baseline: buildBaseline, X1: buildX1, X3: buildX3, X4: buildX4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: buildN2, N3: buildN3, N4: buildN4, N34: buildN34, S1: withSystemPrompt('S1'), S2: withSystemPrompt('S2'), S3: buildS3, S4: buildS4, S5: buildS5, S6: buildS6, N6: buildN6, ...SPAN_VARIANTS,
 };
 
 /**

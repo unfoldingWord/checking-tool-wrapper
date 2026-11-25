@@ -8,6 +8,11 @@
  *   llmTrainingData/promptEval/test-nohist.json  TEST-NOHIST: TEST with no history
  *   llmTrainingData/promptEval/meta/manifest.json  settings, counts and the commit (in a subfolder,
  *                                                since the runner runs every `.json` in the folder)
+ * and, for plans/prompt-span-experiments.md (D4), with `LLM_PROMPT_EVAL_SETS=ftdev,newdev`:
+ *   ftdev.json, ftdev-nohist.json    FT-DEV: D3's validation cases the app sends to the AI
+ *   newdev.json, newdev-nohist.json  NEW-DEV: about 1,000 cases from the new projects
+ * Those are added to the folder (and under `spanPlan` in the manifest) without touching the
+ * other sets, which were built from the data files as they were on 2026-11-22.
  * The choice is seeded (`PROMPT_EVAL_DEFAULTS` in `helpers/promptEvalCases.js`), so a rebuild from
  * the same training data and algorithm gives the same sets.
  *
@@ -23,6 +28,10 @@
  *   LLM_PROMPT_EVAL_TC_HOME   translationCore folder with the GL bibles (default ~/translationCore)
  *   LLM_PROMPT_EVAL_DATA_DIR  training data folder (default llmTrainingData)
  *   LLM_PROMPT_EVAL_OUT_DIR   output folder (default llmTrainingData/promptEval)
+ *   LLM_PROMPT_EVAL_SETS      which sets to build, comma-separated: `dev` and `test` (built
+ *                             together, the default), `ftdev`, `newdev`
+ *   LLM_PROMPT_EVAL_FTDEV_META  D3's validation meta file (default
+ *                             llmTrainingData/finetune-d3/valid.meta.jsonl)
  *
  * jest is used because it is the repo's only babel runner; Node's `fs` is used because
  * `fs-extra` is mocked globally.
@@ -31,11 +40,12 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { execSync } from 'child_process';
+import crypto from 'crypto';
 import { ALGORITHM_CERTAIN_CONFIDENCE } from '../src/utils/checkingSuggestionsUtils';
 import { runTestCase } from './helpers/suggestionsHelpers';
 import {
-  addGlVerses, countBy, FINETUNE_TEST_FILES, projectOfFile, PROMPT_EVAL_DEFAULTS, seededShuffle,
-  selectDevCases, toEvalCase, withoutHistory,
+  addGlVerses, countBy, FINETUNE_TEST_FILES, NEW_DEV_DEFAULTS, NEW_DEV_FILES, projectOfFile,
+  PROMPT_EVAL_DEFAULTS, readSplitCaseIds, seededShuffle, selectDevCases, toEvalCase, withoutHistory,
 } from './helpers/promptEvalCases';
 
 const env = process.env;
@@ -46,6 +56,8 @@ const OUT_DIR = path.resolve(ROOT, env.LLM_PROMPT_EVAL_OUT_DIR || 'llmTrainingDa
 const ADD_GL_VERSE = env.LLM_PROMPT_EVAL_ADD_GL_VERSE === '1';
 const TC_HOME = env.LLM_PROMPT_EVAL_TC_HOME || path.join(os.homedir(), 'translationCore');
 const SET_NAMES = ['dev', 'dev-nohist', 'test', 'test-nohist'];
+const SETS = (env.LLM_PROMPT_EVAL_SETS || 'dev,test').split(',').map(name => name.trim()).filter(Boolean);
+const FTDEV_META = path.resolve(ROOT, env.LLM_PROMPT_EVAL_FTDEV_META || 'llmTrainingData/finetune-d3/valid.meta.jsonl');
 
 /** the algorithm runs on a few thousand cases */
 const TIMEOUT_MS = 60 * 60 * 1000;
@@ -90,9 +102,31 @@ describe('promptEvalCases helpers', () => {
     expect(first.examined).toBe(first.cases.length + first.certain);
     expect((await selectDevCases(candidates, options)).cases).toEqual(first.cases);
   });
+
+  test('selectDevCases can cap by another group, e.g. the file', async () => {
+    const candidates = Array.from({ length: 40 }, (_, i) => ({
+      id: `c${i}`, targetLang: 'en', sourceFile: i < 30 ? 'a' : 'b',
+    }));
+    const { cases } = await selectDevCases(candidates, {
+      seed: 3, size: 10, maxLanguageShare: 0.6, isSentToAi: () => Promise.resolve(true), groupOf: c => c.sourceFile,
+    });
+
+    const counts = countBy(cases, c => c.sourceFile);
+
+    expect(cases.length).toBe(10);
+    expect(Math.max(counts.a, counts.b)).toBeLessThanOrEqual(6); // 60% of 10, by file
+    expect(Object.keys(counts).sort()).toEqual(['a', 'b']);
+  });
+
+  test('readSplitCaseIds reads file and id per line, in order', () => {
+    const text = '{"id":"x1","file":"f1","label":95}\n\n{"id":"x2","file":"f2"}\n';
+
+    expect(readSplitCaseIds(text)).toEqual([{ file: 'f1', id: 'x1' }, { file: 'f2', id: 'x2' }]);
+  });
 });
 
-const describeIfBuild = BUILD ? describe : describe.skip;
+const describeIfBuild = BUILD && (SETS.includes('dev') || SETS.includes('test')) ? describe : describe.skip;
+const describeIfBuildSpanSets = BUILD && (SETS.includes('ftdev') || SETS.includes('newdev')) ? describe : describe.skip;
 const describeIfAddGlVerse = ADD_GL_VERSE ? describe : describe.skip;
 
 describeIfAddGlVerse('add the GL verse to the prompt evaluation sets', () => {
@@ -200,5 +234,141 @@ describeIfBuild('build the prompt evaluation sets', () => {
     console.log(`prompt evaluation sets written to ${OUT_DIR}`, manifest);
 
     expect(dev.cases.length).toBe(devSize);
+  }, TIMEOUT_MS);
+});
+
+/**
+ * @param {object} testCase - an eval case
+ * @returns {Promise<boolean>} true when the app would ask the AI (algorithm top confidence below
+ *   `ALGORITHM_CERTAIN_CONFIDENCE`)
+ */
+async function isSentToAi(testCase) {
+  const { result } = await runTestCase(testCase);
+  return !(result?.bestSelections?.[0]?.confidence >= ALGORITHM_CERTAIN_CONFIDENCE);
+}
+
+/**
+ * @param {string} file
+ * @returns {string} its sha256, hex
+ */
+function sha256OfFile(file) {
+  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
+
+describeIfBuildSpanSets('build the span plan evaluation sets', () => {
+  test('writes ftdev, ftdev-nohist, newdev and newdev-nohist', async () => {
+    const readCases = fileBase => JSON.parse(fs.readFileSync(path.join(DATA_DIR, `${fileBase}.json`), 'utf8'))
+      .map(testCase => toEvalCase(testCase, fileBase));
+    const sets = {};
+    const spanPlan = {};
+    const sourceFiles = new Set();
+    const quiet = ['log', 'warn'].map(name => jest.spyOn(console, name).mockImplementation(() => {}));
+
+    try {
+      if (SETS.includes('ftdev')) {
+        const ids = readSplitCaseIds(fs.readFileSync(FTDEV_META, 'utf8'));
+        const byFile = new Map();
+        const missing = [];
+        const ftdev = [];
+        let certain = 0;
+
+        for (const { file, id } of ids) {
+          if (!byFile.has(file)) {
+            byFile.set(file, new Map(readCases(file).map(c => [c.sourceId, c])));
+            sourceFiles.add(file);
+          }
+
+          const evalCase = byFile.get(file).get(id);
+
+          if (!evalCase) {
+            missing.push(`${file}/${id}`);
+          // eslint-disable-next-line no-await-in-loop
+          } else if (await isSentToAi(evalCase)) {
+            ftdev.push(evalCase);
+          } else {
+            certain++;
+          }
+        }
+        sets.ftdev = ftdev;
+        sets['ftdev-nohist'] = ftdev.map(withoutHistory);
+        spanPlan.ftdev = {
+          meta: path.relative(ROOT, FTDEV_META),
+          validCases: ids.length,
+          missingFromData: missing,
+          certainLeftOut: certain,
+          byFile: countBy(ftdev, c => c.sourceFile),
+          byLanguage: countBy(ftdev, c => c.targetLang),
+        };
+      }
+
+      if (SETS.includes('newdev')) {
+        const candidates = NEW_DEV_FILES.flatMap(file => {
+          sourceFiles.add(file);
+          return readCases(file);
+        });
+        const {
+          seed, size, maxFileShare,
+        } = NEW_DEV_DEFAULTS;
+        const newdev = await selectDevCases(candidates, {
+          seed, size, maxLanguageShare: maxFileShare, isSentToAi, groupOf: c => c.sourceFile,
+        });
+
+        sets.newdev = newdev.cases;
+        sets['newdev-nohist'] = newdev.cases.map(withoutHistory);
+        spanPlan.newdev = {
+          settings: NEW_DEV_DEFAULTS,
+          files: NEW_DEV_FILES,
+          candidates: candidates.length,
+          examined: newdev.examined,
+          certainLeftOut: newdev.certain,
+          byFile: countBy(newdev.cases, c => c.sourceFile),
+          byLanguage: countBy(newdev.cases, c => c.targetLang),
+        };
+      }
+    } finally {
+      quiet.forEach(spy => spy.mockRestore());
+    }
+
+    const glVerses = addGlVerses(Object.values(sets).flat(), TC_HOME);
+
+    fs.mkdirSync(path.join(OUT_DIR, 'meta'), { recursive: true });
+
+    for (const [name, cases] of Object.entries(sets)) {
+      fs.writeFileSync(path.join(OUT_DIR, `${name}.json`), `${JSON.stringify(cases, null, 2)}\n`);
+    }
+
+    let commit = '';
+
+    try {
+      commit = execSync('git rev-parse --short HEAD', { cwd: ROOT }).toString().trim();
+    } catch (e) {
+      commit = '(unknown)';
+    }
+
+    const manifestFile = path.join(OUT_DIR, 'meta', 'manifest.json');
+    const manifest = fs.existsSync(manifestFile) ? JSON.parse(fs.readFileSync(manifestFile, 'utf8')) : {};
+    const previous = manifest.spanPlan || {};
+
+    manifest.spanPlan = {
+      ...previous,
+      ...spanPlan,
+      createdAt: new Date().toISOString(),
+      commit,
+      algorithmCertainConfidence: ALGORITHM_CERTAIN_CONFIDENCE,
+      counts: {
+        ...previous.counts,
+        ...Object.fromEntries(Object.entries(sets).map(([name, cases]) => [name, cases.length])),
+      },
+      glVerseMissing: glVerses.missing.length,
+      dataFileSha256: {
+        ...previous.dataFileSha256,
+        ...Object.fromEntries([...sourceFiles].sort()
+          .map(file => [file, sha256OfFile(path.join(DATA_DIR, `${file}.json`))])),
+      },
+    };
+    fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`);
+    console.log(`span plan evaluation sets written to ${OUT_DIR}`, JSON.stringify(manifest.spanPlan, null, 2));
+
+    expect(Object.keys(sets).length).toBeGreaterThan(0);
   }, TIMEOUT_MS);
 });
