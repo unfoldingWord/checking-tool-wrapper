@@ -756,3 +756,123 @@ a GL word's inflection, e.g. "of" in "of angels") would have to be taught in the
 e.g. more cases with an English or other analytic target and an inflected GL. Retraining is out
 of scope for this plan (author, 2026-11-24), so it is left for a later plan. For the 4B (not
 fine-tuned) no variant is a safe gain either.
+
+### 2026-11-25: follow-up ideas after Step 3 (author's choices)
+
+After Step 3 the author asked for rule changes to test, and chose: a confidence cap (offline), rule
+3 deleted (C6), rules 2 and 3 deleted (C7), both on the stock 1.7B only, then a separate system
+prompt for requests with no history (N3 and N34 of plans/improve-single-prompt.md, Step 5). Seed
+42, temperature 0.1, the server and builds of Step 3. Logs and tables in
+`llm-eval-results/rule-removal-20261125/` and `llm-eval-results/cap-check-20261125/` (git-ignored).
+
+**Confidence cap, offline** (`llm-eval-results/cap-check-20261125/capCheck.test.js`, stock 1.7B's
+saved baseline answers; NOHIST sets left out, since N5 already caps them at 70). Three rules for
+which AI options get the cap: A, no history rendering is in the verse word for word (the
+`verseFit` of `formatPreviousTranslations`); A′, none even in another form; B, the option is not,
+word for word, a history rendering (rule 5 of the prompt, enforced in code). Any cap below 80 gives
+the same counts at ≥ 80; shown at 75.
+
+| Set | Rule | wrong ≥ 80 | right ≥ 80 | right share of ≥ 80 |
+|---|---|---|---|---|
+| FT-DEV (539) | none | 181 | 180 | 50% |
+| | A | 77 | 92 | 54% |
+| | A′ | 116 | 155 | 57% |
+| | B | **40** | 80 | **67%** |
+| NEW-DEV (1,000) | none | 91 | 38 | 29% |
+| | A | 58 | 32 | 36% |
+| | B | **33** | 27 | **45%** |
+| DEV (1,500) | none | 576 | 464 | 45% |
+| | A | 354 | 272 | 43% |
+| | B | **194** | 233 | **55%** |
+
+- B removes 66-78% of the wrong answers at ≥ 80 and about half the right ones; what stays at ≥ 80
+  is right more often on every set. A does not help (DEV 43% against 45%).
+- Top-1 of the AI's own answer does not change (B reorders options in 3 DEV cases). With the app's
+  merge with the algorithm's options (`mergeBestSelections`), B at a cap of 60 lets algorithm
+  options pass capped AI guesses: DEV 9 gained / 1 lost (p 0.021), FT-DEV 1 / 1, NEW-DEV 0 / 0.
+- Evidence for B: on FT-DEV the stock 1.7B's answers that are a history rendering are right 64%
+  (83 of 129), its other answers 42% (108 of 258), 141 of those wrong at ≥ 80.
+- Not checked yet on the shipped models; how many fewer answers at ≥ 80 costs translators depends
+  on the auto-apply threshold of the suggestions UI, not known here.
+
+**C6 (rule 3 deleted) and C7 (rules 2 and 3 deleted), stock 1.7B** (variants in
+`__tests__/helpers/promptVariants.js`, with unit tests). Change against baseline; C0 (rule 2
+deleted, Step 3) for comparison.
+
+| Set | | C6 | C7 | C0 |
+|---|---|---|---|---|
+| FT-DEV | top-1 (237) | −6 (p 0.36) | **−37** | **−20** |
+| | too long (53) / too short (37) | −10 / +4 | −1 / +6 | 0 / −2 |
+| | wrong ≥ 80 (181) | +12 | +13 | +7 |
+| FT-DEV-NOHIST | top-1 (90) | **+26** | +6 | −7 |
+| | too long (141) | −30 | −67 | −25 |
+| NEW-DEV | top-1 (425) | −4 (p 0.39) | **−34** | **−13** |
+| | too long (27) / too short (35) | −12 / +2 | −10 / +16 | −5 / +5 |
+| | wrong ≥ 80 (91) | −3 | **+71** | +22 |
+| NEW-DEV-NOHIST | top-1 (20) | **−6** | +10 (p 0.052) | **+11** |
+
+- C6 gives fewer too-long answers on every set (−10, −30, −12, −9) for at most 4 more too-short
+  ones, the trade the author wanted (extra words hurt the user more than missing small words);
+  top-1 is level with history, +26 on FT-DEV-NOHIST and −6 on NEW-DEV-NOHIST.
+- C7 is clearly worse with history: rule 2 ("fewest words") earns its place; rule 3 is the one
+  that costs.
+- Not run on the shipped models; not a candidate under D6 on the stock 1.7B alone. Rule 3 has two
+  parts ("a previous translation in the verse is usually the answer"; "do not add or drop small
+  words"); a variant keeping only the first would show which one does the harm.
+
+**N3 and N34 (separate no-history system prompt), stock 1.7B.** Builders from
+plans/improve-single-prompt.md, Step 5; only requests with no history change, so only the NOHIST
+sets were run.
+
+| Set | baseline | N3 | N34 | C6 |
+|---|---|---|---|---|
+| FT-DEV-NOHIST (539) | 90 | **122 (+32)** | **117 (+27)** | **116 (+26)** |
+| NEW-DEV-NOHIST (1,000) | 20 | **29 (+9)** | 12 (−8) | **14 (−6)** |
+
+N3 is the only one that gains on both; on NEW-DEV-NOHIST it beats N34 and C6 by 17 and 15 (p <
+0.001 each). The GL verse (N34) does not help the 1.7B, as before. The previous plan found no N3
+gain for the stock 1.7B on DEV-NOHIST (16.4 → 16.5%, Q8 build); whether the build or the cases make
+the difference is not known.
+
+**N3 on all five models, NOHIST sets:**
+
+| Model | FT-DEV-NOHIST (539) | NEW-DEV-NOHIST (1,000) | answers changed |
+|---|---|---|---|
+| D3 1.7B | 349 → 361, **+12** (p 0.036) | 387 → 386, −1 (p 1.0) | 38 / 76 |
+| D3 0.6B | 254 → 261, +7 (p 0.19) | 265 → 266, +1 (p 1.0) | 53 / 105 |
+| 4B | 218 → 259, **+41** (p < 0.001) | 254 → 301, **+47** (p < 0.001) | 117 / 272 |
+| stock 1.7B | 90 → 122, **+32** (p < 0.001) | 20 → 29, **+9** (p 0.012) | 252 / 139 |
+
+- No model is significantly worse; wrong ≥ 80 stays 0 (N5's cap; N3 asks for 70 or less anyway).
+- 4B: FT-DEV-NOHIST too long −30, no answer −23; NEW-DEV-NOHIST too long −81, too short +73, no
+  answer −42. Matches the previous plan's DEV-NOHIST gain (+7 points).
+- The fine-tunes were never trained on N3 and are not hurt; D3 1.7B gains on FT-DEV-NOHIST.
+- D6 counts gains on FT-DEV and NEW-DEV only, which have history, so a change to no-history
+  requests cannot pass it as written. N5 was adopted in the previous plan under a rule for
+  no-history changes; N3 needs the author's decision the same way. Confirmation on TEST-NOHIST
+  below.
+
+**N3 on TEST-NOHIST (835 cases, the fine-tune's held-out files), all five models** (baseline run
+here too, with these builds; `llm-eval-results/rule-removal-20261125/test-nohist-n3.txt`):
+
+| Model | top-1, baseline → N3 | p | too short | too long | no answer | answers changed |
+|---|---|---|---|---|---|---|
+| D3 1.7B | 452 → 446 (−6) | 0.38 | +6 | 0 | −5 | 68 |
+| D3 0.6B | 300 → 312 (+12) | 0.081 | +1 | −1 | −17 | 107 |
+| 4B | 314 → **376 (+62)** | < 0.001 | +36 | −59 | −43 | 221 |
+| stock 1.7B | 116 → 123 (+7) | 0.38 | +13 | −48 | −21 | 259 |
+| stock 0.6B | 38 → 43 (+5) | 0.49 | +1 | −4 | −103 | 213 |
+
+- **Confirmed for the 4B:** +7.4 points, on 8 of 9 projects (level on `ne_glt_tit`), English
+  targets included (`en_ult_tit` from ru +11, from id +8).
+- **No model significantly worse.** D3 1.7B's −6 is on the Nepali projects (`ne_glt_2co` 191 →
+  185, `ne_glt_tit` 15 → 13); its English targets are level (117 → 118 over the five `en_ult_tit`
+  files), so R1's English-target loss does not recur without retraining. D3 0.6B +12 (p 0.081).
+- Wrong ≥ 80 is 0 for every model with and without N3 (N5's cap).
+
+**Status: N3 is a candidate for the app's no-history requests, for the author to decide.** It is
+a significant gain for the 4B on all three NOHIST sets (+41, +47, +62), a gain for D3 1.7B on
+FT-DEV-NOHIST only (+12) and level elsewhere, and never significantly worse for any model. Putting
+it in the app means a second fixed system prompt for requests with no history, the fine-tune
+exporter's no-history examples built with it (the parity test), and the prompt in
+`plans/improve-single-prompt.md`'s N3 section moved into `src`.
