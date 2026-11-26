@@ -1103,6 +1103,76 @@ training data: 16,280 examples (vi 3,525, en 2,784, ar 2,646, te 2,311, ru 2,035
 fa 466, es-419 185, id 51), 4,070 iters. NEW-DEV holds 148 cases from `en_ult_gal`, DEV 28 and
 FT-DEV 3 from the newly moved projects; left as they are.
 
+**R0v4 measured 2026-11-25/26** (`lora-r16-r0v4.yaml` and `-0.6b.yaml`, 4,070 iters; 1.7B 4.7 h,
+final validation loss 0.066; 0.6B 2.4 h, 0.081; GGUF Q5_K_M and Q6_K; seed 42; logs in
+`llm-eval-results/step7/r0v4*/`). The 4B run (`lora-r16-r0v4-4b.yaml`) was stopped at step 2,600 of
+4,070 at the author's request; its step-2,600 adapter is in `llmTraining/outputs/lora-r16-r0v4-4b/`.
+
+Against R0v2 (with the app's N3 prompt) on the 835 checks both kept out of training:
+
+| Model | Set | R0v2 → R0v4 | only R0v2 / only R0v4, p |
+|---|---|---|---|
+| 1.7B | TEST | 72.3 → 70.2% | 45 / 27, **p 0.044** |
+| 1.7B | TEST-NOHIST | 65.0 → 65.5% | 57 / 61, p 0.78 |
+| 0.6B | TEST | 67.7 → 66.8% | 39 / 32, p 0.48 |
+| 0.6B | TEST-NOHIST | 50.2 → 44.4% | 118 / 70, **p 0.0006** |
+
+R0v4 is worse where the moved projects were close to a test file: the 1.7B loses most on Nepali 2
+Corinthians (70.0 → 65.3%, 24 / 9; Bengali 2 Corinthians, the same book in a related language, left
+training) and English Titus with the Arabic GL (65.5 → 56.4%; English Galatians, the only
+English-target project with an Arabic GL, left training). The 0.6B's no-history loss is spread over
+the files. This is a reading of the per-file counts, not tested. **Not adopted for release.**
+
+Full TEST by target (12,907 checks; top-1, with history / no history; the algorithm gives nothing
+without history):
+
+| Target | Checks | Algorithm | 1.7B | 0.6B | 1.7B no history | 0.6B no history |
+|---|---|---|---|---|---|---|
+| Arabic | 2,644 | 62.6% | 85.1% | 79.4% | 79.5% | 64.7% |
+| Spanish | 84 | 42.9% | 71.4% | 72.6% | 70.2% | 61.9% |
+| Indonesian | 112 | 57.1% | 70.5% | 68.8% | 66.1% | 51.8% |
+| Russian | 4,900 | 63.4% | 70.4% | 68.4% | 62.9% | 60.1% |
+| Nepali | 555 | 59.8% | 69.4% | 65.8% | 64.7% | 45.4% |
+| Vietnamese | 727 | 49.4% | 69.3% | 68.1% | 67.7% | 60.1% |
+| English | 589 | 53.7% | 68.8% | 65.7% | 58.4% | 41.8% |
+| Telugu | 771 | 48.2% | 64.9% | 59.1% | 58.2% | 44.1% |
+| Farsi | 323 | 46.1% | 64.1% | 57.3% | 52.6% | 38.1% |
+| Bengali | 726 | 54.0% | 62.8% | 63.2% | 59.1% | 39.8% |
+| Gujarati | 1,476 | 37.1% | 56.1% | 50.9% | 50.8% | 37.8% |
+| **All** | **12,907** | **56.8%** | **70.7%** | **67.3%** | **64.4%** | **54.3%** |
+
+The fine-tunes beat the algorithm in every language. Arabic is high partly because the models saw
+the same AVD Luke text as GL phrases in training. R0v4 is the first model with held-out results in
+every training language, so it is the baseline for judging future training data. For a release,
+the recipe is chosen on held-out data and the release model can then be trained on all of it (it
+cannot then be scored on those projects); R0v2's split with every other project in training is the
+proposed next run.
+
+**Lowercase history, 2026-11-26** (commit 183e65b). The app now counts selection history under
+lowercased GL phrases and renderings (`getSelectionHistoryKey`; commits c931389 and 0c3342a), and
+entries that differ only by case merge, with their counts added. The case files held the old keys:
+60% of all cases (27,238 of 45,237; TEST 7,793 of 12,907) had history the app would now send
+differently, and 7,504 had entries that merge. The files were converted in place
+(`LLM_TRAINING_LOWERCASE_HISTORY=1`, `toAppSelectionHistory`; ids kept; 36,824 of 76,379 cases
+changed in `llmTrainingData` and the evaluation sets, whose earlier copies are in
+`llm-eval-results/promptEval-backup-20261126/`), and the builder now passes the target language to
+`getSelectionsForBook`, so new files match. `getSelectionsForBook` lowercased GL keys whenever a GL
+code was given; it now does so only with the target language, as its docs and test say (the app
+always gives both, so the app is unchanged). The algorithm's results did not change (TEST 57%
+top-1). The R0v4 fine-tunes on TEST, previous history → lowercase (only previous / only lowercase,
+p), seed 42, logs in `llm-eval-results/lowercase-history/`:
+
+| Model | top-1 | paired | wrong ≥ 80 | no option | median ms |
+|---|---|---|---|---|---|
+| 1.7B | 70.7 → 70.7% | 70 / 64, p 0.67 | 1,813 → 1,721 | 96 → 97 | 92 → 99 |
+| 0.6B | 67.3 → 67.3% | 78 / 76, p 0.94 | 1,874 → 1,778 | 116 → 133 | 54 → 56 |
+
+TEST-NOHIST has no history and was not rerun. The models were trained on the old keys but are not
+affected: about 1% of answers change, in both directions, and confident wrong answers fall about 5%
+(not examined further). No retrain is needed for the change; fine-tune data built before it
+(`finetune-r0v2`, `-r0v3`, `-r0v4`) has the old keys, so rebuild it from the converted files
+before training again.
+
 ### Step 9. Put the result in the app (OFFLINE)
 
 1. Move the adopted variant from `promptVariants.js` into `buildLlmSystemPrompt` /
