@@ -30,8 +30,10 @@
  *
  * Each entry has the fields of the `llmEval` cases (`id`, `targetLang`, `glLang`, `verse`,
  * `glPhrase`, `occurrence`, `history`, `expected`, `tags`, `madeUp`, `source`) plus `glOwner`,
- * `groupId`, `contextId` and `selections` (the correct answer in the form translationCore saves a
- * selection, one per word). The `id` is unique within a file:
+ * `groupId`, `contextId`, `olWords` (the quote's original-language words with lemma, Strong's
+ * number and morphology, from the newest unfoldingWord `ugnt`/`uhb` in the resources; null when not
+ * found; see plans/original-language-history.md) and `selections` (the correct answer in the form
+ * translationCore saves a selection, one per word). The `id` is unique within a file:
  * `train-<targetLang>-<book>-<chapter>-<verse>-<groupId>-<checkId>[-<occurrence>]`.
  *
  * To rebuild every file already in the output folder, use `scripts/rebuild-llm-training-data.sh`.
@@ -70,6 +72,7 @@ import { bibleIdSort, getAlignedTextFromBible } from '../src/helpers/gatewayLang
 import { cleanGlQuote, getSelectionsForBook } from '../src/utils/checkingSuggestionsUtils';
 import { getAlignedTargetWords, getVerseAlignments } from '../src/utils/alignmentHistoryUtils';
 import { toAppSelectionHistory } from './helpers/suggestionsHelpers';
+import { getCaseOlWords, makeOlBibleLoader } from './helpers/olHistoryHelpers';
 
 const env = process.env;
 const BUILD = env.LLM_TRAINING_BUILD === '1';
@@ -191,6 +194,7 @@ function buildProject(name) {
   }
 
   const { glBook, glBibleName } = loadGlBook(glLang, glOwner, bookId);
+  const { getBook: getOlBook } = makeOlBibleLoader(TC_HOME);
   const indexFolder = path.join(projectPath, '.apps', 'translationCore', 'index', TOOL_NAME, bookId);
   const chapters = {};
   const alignmentChapters = {};
@@ -233,6 +237,7 @@ function buildProject(name) {
       }
       return toEntry(name, check, {
         targetLang, glLang, glOwner, glPhrase: cleanGlQuote(glText), history, glBibleName,
+        olWords: getCaseOlWords(check.contextId, getOlBook),
       });
     }).filter(Boolean);
 
@@ -261,7 +266,7 @@ function buildProject(name) {
  * @returns {object}
  */
 function toEntry(projectName, check, {
-  targetLang, glLang, glOwner, glPhrase, history, glBibleName,
+  targetLang, glLang, glOwner, glPhrase, history, glBibleName, olWords,
 }) {
   const {
     contextId, verseText, answer, selections,
@@ -293,6 +298,7 @@ function toEntry(projectName, check, {
       quoteString: contextId.quoteString,
       occurrence,
     },
+    olWords,
     tags: ['training', contextId.groupId],
     madeUp: false,
     source: `${projectName} ${chapter}:${verse}, tW ${contextId.groupId}, GL ${glLang} ${glBibleName}`,

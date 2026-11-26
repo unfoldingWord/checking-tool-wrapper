@@ -29,6 +29,8 @@
     "build:finetune-data": "cross-env LLM_FINETUNE_BUILD=1 jest __tests__/buildFineTuneData.test.js",
     "build:prompt-eval-cases": "cross-env LLM_PROMPT_EVAL_BUILD=1 jest __tests__/buildPromptEvalCases.test.js",
     "calibrate:algorithm": "cross-env LLM_ALGO_CALIBRATE=1 jest __tests__/calibrateAlgorithm.test.js",
+    "add:ol-words": "cross-env LLM_OL_ADD_WORDS=1 jest __tests__/olHistory.test.js",
+    "measure:ol-history": "cross-env LLM_OL_MEASURE=1 jest __tests__/olHistory.test.js",
     "fix": "eslint ./src --fix",
     "bump:beta": "npm version prerelease --preid=beta --no-git-tag-version",
     "prebuild": "node -e \"require('fs').rmSync('lib', { recursive: true, force: true })\"",

@@ -35,6 +35,15 @@
       "quoteString": "καιροῖς",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καιροῖς",
+        "occurrence": 1,
+        "lemma": "καιρός",
+        "strong": "G25400",
+        "morph": "Gr,N,,,,,DMP,"
+      }
+    ],
     "tags": [
       "training",
       "age"
@@ -81,6 +90,15 @@
       "quoteString": "αἰῶνι",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "αἰῶνι",
+        "occurrence": 1,
+        "lemma": "αἰών",
+        "strong": "G01650",
+        "morph": "Gr,N,,,,,DMS,"
+      }
+    ],
     "tags": [
       "training",
       "age"
@@ -124,6 +142,15 @@
       "quoteString": "Χριστοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Χριστοῦ",
+        "occurrence": 1,
+        "lemma": "χριστός",
+        "strong": "G55470",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "christ"
@@ -170,6 +197,15 @@
       "quoteString": "Χριστοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Χριστοῦ",
+        "occurrence": 1,
+        "lemma": "χριστός",
+        "strong": "G55470",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "christ"
@@ -219,6 +255,15 @@
       "quoteString": "Χριστοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Χριστοῦ",
+        "occurrence": 1,
+        "lemma": "χριστός",
+        "strong": "G55470",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "christ"
@@ -262,6 +307,15 @@
       "quoteString": "φαῦλον",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "φαῦλον",
+        "occurrence": 1,
+        "lemma": "φαῦλος",
+        "strong": "G53370",
+        "morph": "Gr,NS,,,,ANS,"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -308,6 +362,15 @@
       "quoteString": "κακίᾳ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "κακίᾳ",
+        "occurrence": 1,
+        "lemma": "κακία",
+        "strong": "G25490",
+        "morph": "Gr,N,,,,,DFS,"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -351,6 +414,15 @@
       "quoteString": "πίστιν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "πίστιν",
+        "occurrence": 1,
+        "lemma": "πίστις",
+        "strong": "G41020",
+        "morph": "Gr,N,,,,,AFS,"
+      }
+    ],
     "tags": [
       "training",
       "faith"
@@ -397,6 +469,15 @@
       "quoteString": "πίστιν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "πίστιν",
+        "occurrence": 1,
+        "lemma": "πίστις",
+        "strong": "G41020",
+        "morph": "Gr,N,,,,,AFS,"
+      }
+    ],
     "tags": [
       "training",
       "faith"
@@ -444,6 +525,15 @@
       "quoteString": "πίστει",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "πίστει",
+        "occurrence": 1,
+        "lemma": "πίστις",
+        "strong": "G41020",
+        "morph": "Gr,N,,,,,DFS,"
+      }
+    ],
     "tags": [
       "training",
       "faith"
@@ -488,6 +578,15 @@
       "quoteString": "Θεοῦ",
       "occurrence": 2
     },
+    "olWords": [
+      {
+        "word": "Θεοῦ",
+        "occurrence": 2,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -531,6 +630,15 @@
       "quoteString": "Θεὸς",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεὸς",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,NMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -577,6 +685,15 @@
       "quoteString": "Θεοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεοῦ",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -623,6 +740,15 @@
       "quoteString": "Θεοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεοῦ",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -670,6 +796,15 @@
       "quoteString": "Θεὸν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεὸν",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,AMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -720,6 +855,15 @@
       "quoteString": "Θεοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεοῦ",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -770,6 +914,15 @@
       "quoteString": "Θεοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεοῦ",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -821,6 +974,15 @@
       "quoteString": "Θεοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεοῦ",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -877,6 +1039,15 @@
       "quoteString": "Θεῷ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Θεῷ",
+        "occurrence": 1,
+        "lemma": "θεός",
+        "strong": "G23160",
+        "morph": "Gr,N,,,,,DMS,"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -920,6 +1091,15 @@
       "quoteString": "ἀγαθὸν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαθὸν",
+        "occurrence": 1,
+        "lemma": "ἀγαθός",
+        "strong": "G00180",
+        "morph": "Gr,AA,,,,ANS,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -966,6 +1146,15 @@
       "quoteString": "ἀγαθάς",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαθάς",
+        "occurrence": 1,
+        "lemma": "ἀγαθός",
+        "strong": "G00180",
+        "morph": "Gr,NS,,,,AFP,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1015,6 +1204,15 @@
       "quoteString": "καλῶν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καλῶν",
+        "occurrence": 1,
+        "lemma": "καλός",
+        "strong": "G25700",
+        "morph": "Gr,AA,,,,GNP,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1067,6 +1265,15 @@
       "quoteString": "ἀγαθήν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαθήν",
+        "occurrence": 1,
+        "lemma": "ἀγαθός",
+        "strong": "G00180",
+        "morph": "Gr,NS,,,,AFS,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1120,6 +1327,15 @@
       "quoteString": "καλῶν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καλῶν",
+        "occurrence": 1,
+        "lemma": "καλός",
+        "strong": "G25700",
+        "morph": "Gr,AA,,,,GNP,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1173,6 +1389,15 @@
       "quoteString": "ἀγαθὸν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαθὸν",
+        "occurrence": 1,
+        "lemma": "ἀγαθός",
+        "strong": "G00180",
+        "morph": "Gr,AA,,,,ANS,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1226,6 +1451,15 @@
       "quoteString": "καλῶν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καλῶν",
+        "occurrence": 1,
+        "lemma": "καλός",
+        "strong": "G25700",
+        "morph": "Gr,AA,,,,GNP,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1280,6 +1514,15 @@
       "quoteString": "καλὰ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καλὰ",
+        "occurrence": 1,
+        "lemma": "καλός",
+        "strong": "G25700",
+        "morph": "Gr,NP,,,,NNP,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1335,6 +1578,15 @@
       "quoteString": "καλῶν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καλῶν",
+        "occurrence": 1,
+        "lemma": "καλός",
+        "strong": "G25700",
+        "morph": "Gr,AA,,,,GNP,"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1378,6 +1630,15 @@
       "quoteString": "ἐλπίδα",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐλπίδα",
+        "occurrence": 1,
+        "lemma": "ἐλπίς",
+        "strong": "G16800",
+        "morph": "Gr,N,,,,,AFS,"
+      }
+    ],
     "tags": [
       "training",
       "hope"
@@ -1424,6 +1685,15 @@
       "quoteString": "ἐλπίδα",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐλπίδα",
+        "occurrence": 1,
+        "lemma": "ἐλπίς",
+        "strong": "G16800",
+        "morph": "Gr,N,,,,,AFS,"
+      }
+    ],
     "tags": [
       "training",
       "hope"
@@ -1467,6 +1737,15 @@
       "quoteString": "Ἰησοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Ἰησοῦ",
+        "occurrence": 1,
+        "lemma": "Ἰησοῦς",
+        "strong": "G24240",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "jesus"
@@ -1513,6 +1792,15 @@
       "quoteString": "Ἰησοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Ἰησοῦ",
+        "occurrence": 1,
+        "lemma": "Ἰησοῦς",
+        "strong": "G24240",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "jesus"
@@ -1562,6 +1850,15 @@
       "quoteString": "Ἰησοῦ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "Ἰησοῦ",
+        "occurrence": 1,
+        "lemma": "Ἰησοῦς",
+        "strong": "G24240",
+        "morph": "Gr,N,,,,,GMS,"
+      }
+    ],
     "tags": [
       "training",
       "jesus"
@@ -1605,6 +1902,15 @@
       "quoteString": "εἰδέναι",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "εἰδέναι",
+        "occurrence": 1,
+        "lemma": "εἴδω",
+        "strong": "G14920",
+        "morph": "Gr,V,NEA,,,,,"
+      }
+    ],
     "tags": [
       "training",
       "know"
@@ -1651,6 +1957,15 @@
       "quoteString": "εἰδὼς",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "εἰδὼς",
+        "occurrence": 1,
+        "lemma": "εἴδω",
+        "strong": "G14920",
+        "morph": "Gr,V,PEA,NMS,"
+      }
+    ],
     "tags": [
       "training",
       "know"
@@ -1694,6 +2009,15 @@
       "quoteString": "καθαρόν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καθαρόν",
+        "occurrence": 1,
+        "lemma": "καθαρός",
+        "strong": "G25130",
+        "morph": "Gr,NP,,,,NNS,"
+      }
+    ],
     "tags": [
       "training",
       "purify"
@@ -1740,6 +2064,15 @@
       "quoteString": "ἁγνάς",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἁγνάς",
+        "occurrence": 1,
+        "lemma": "ἁγνός",
+        "strong": "G00530",
+        "morph": "Gr,NS,,,,AFP,"
+      }
+    ],
     "tags": [
       "training",
       "purify"
@@ -1789,6 +2122,15 @@
       "quoteString": "καθαρίσῃ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "καθαρίσῃ",
+        "occurrence": 1,
+        "lemma": "καθαρίζω",
+        "strong": "G25110",
+        "morph": "Gr,V,SAA3,,S,"
+      }
+    ],
     "tags": [
       "training",
       "purify"
@@ -1832,6 +2174,15 @@
       "quoteString": "ἔλεγχε",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἔλεγχε",
+        "occurrence": 1,
+        "lemma": "ἐλέγχω",
+        "strong": "G16510",
+        "morph": "Gr,V,MPA2,,S,"
+      }
+    ],
     "tags": [
       "training",
       "rebuke"
@@ -1878,6 +2229,15 @@
       "quoteString": "ἔλεγχε",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἔλεγχε",
+        "occurrence": 1,
+        "lemma": "ἐλέγχω",
+        "strong": "G16510",
+        "morph": "Gr,V,MPA2,,S,"
+      }
+    ],
     "tags": [
       "training",
       "rebuke"
@@ -1921,6 +2281,15 @@
       "quoteString": "σώφρονας",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "σώφρονας",
+        "occurrence": 1,
+        "lemma": "σώφρων",
+        "strong": "G49980",
+        "morph": "Gr,NS,,,,AFP,"
+      }
+    ],
     "tags": [
       "training",
       "selfcontrol"
@@ -1972,6 +2341,15 @@
       "quoteString": "σωφρονεῖν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "σωφρονεῖν",
+        "occurrence": 1,
+        "lemma": "σωφρονέω",
+        "strong": "G49930",
+        "morph": "Gr,V,NPA,,,,,"
+      }
+    ],
     "tags": [
       "training",
       "selfcontrol"
@@ -2020,6 +2398,15 @@
       "quoteString": "βλασφημῆται",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "βλασφημῆται",
+        "occurrence": 1,
+        "lemma": "βλασφημέω",
+        "strong": "G09870",
+        "morph": "Gr,V,SPP3,,S,"
+      }
+    ],
     "tags": [
       "training",
       "slander"
@@ -2066,6 +2453,15 @@
       "quoteString": "βλασφημεῖν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "βλασφημεῖν",
+        "occurrence": 1,
+        "lemma": "βλασφημέω",
+        "strong": "G09870",
+        "morph": "Gr,V,NPA,,,,,"
+      }
+    ],
     "tags": [
       "training",
       "slander"
@@ -2109,6 +2505,15 @@
       "quoteString": "ὑποτάσσεσθαι",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ὑποτάσσεσθαι",
+        "occurrence": 1,
+        "lemma": "ὑποτάσσω",
+        "strong": "G52930",
+        "morph": "Gr,V,NPM,,,,,"
+      }
+    ],
     "tags": [
       "training",
       "subject"
@@ -2155,6 +2560,15 @@
       "quoteString": "ὑποτάσσεσθαι",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ὑποτάσσεσθαι",
+        "occurrence": 1,
+        "lemma": "ὑποτάσσω",
+        "strong": "G52930",
+        "morph": "Gr,V,NPM,,,,,"
+      }
+    ],
     "tags": [
       "training",
       "subject"
