@@ -7,6 +7,7 @@ import {
   getAlignmentCheckKey,
   getQuoteWords,
   getSuggestionHistory,
+  getSuggestionOlHistory,
   getVerseAlignments,
   updateAlignmentEntrySelection,
 } from '../src/utils/alignmentHistoryUtils';
@@ -250,5 +251,55 @@ describe('alignment history', () => {
     updateAlignmentEntrySelection(entries, current, check('tit', 1, 2, 'πίστιν').contextId, []);
     expect(history()).toEqual({ fe: 1, 'su fe': 1 });
     expect(updateAlignmentEntrySelection(entries, current, contextId, [{ text: 'nada' }])).toBe(false);
+  });
+
+  describe('with original-language keys (plans/original-language-history.md)', () => {
+    // a stand-in for getCheckOlKeys: the quote as both keys, none for the Hebrew book
+    const olKeysForCheck = jest.fn((contextId, bookId) => (bookId === 'rut' ? null :
+      { lemma: 'πίστις', form: contextId.quote === 'πίστιν' ? 'πιστιν' : 'other' }));
+    const noPhmBook = (folder, bookId) => (bookId === 'phm' ? null : glBooks[bookId]);
+
+    test('entries get OL keys, and a project without a GL book is read for them', () => {
+      const entries = fetchEntries({ loadGlBook: noPhmBook, olKeysForCheck });
+      const summary = entries.map(e => [`${e.bookId} ${e.chapter}:${e.verse}`, e.glPhrase, e.words, e.olKeys]);
+
+      expect(summary.sort()).toEqual([
+        ['phm 1:5', '', 'su fe', { lemma: 'πίστις', form: 'πιστιν' }], // kept for its OL keys
+        ['rut 1:1', 'faithfulness', 'fidelidad', null],
+        ['tit 1:1', 'faith', 'la fe', { lemma: 'πίστις', form: 'πιστιν' }],
+        ['tit 1:2', 'faith', 'fe', { lemma: 'πίστις', form: 'πιστιν' }],
+      ]);
+      expect(olKeysForCheck).toHaveBeenCalledWith(expect.objectContaining({ quote: 'πίστιν' }), 'phm', projectsFolder);
+      // the GL history leaves out the entry without a GL phrase
+      expect(getSuggestionHistory({}, entries, current, check('tit', 1, 3, 'πίστιν').contextId))
+        .toEqual({ faith: { 'la fe': 1 }, faithfulness: { fidelidad: 1 } });
+    });
+
+    test('without olKeysForCheck the entries have no OL keys and need a GL book, as before', () => {
+      const entries = fetchEntries({ loadGlBook: noPhmBook });
+      expect(entries.some(e => 'olKeys' in e)).toBe(false);
+      expect(entries.some(e => e.bookId === 'phm')).toBe(false);
+    });
+
+    test('the OL history adds the entries but not the check\'s own verse or counted selections', () => {
+      const entries = fetchEntries({ loadGlBook: noPhmBook, olKeysForCheck });
+      const olSelections = { lemma: { 'πίστις': { fe: 2 } }, form: { 'πιστιν': { fe: 2 } } };
+      const forVerse1 = getSuggestionOlHistory(olSelections, entries, current, check('tit', 1, 1, 'πίστιν').contextId);
+
+      expect(forVerse1).toEqual({
+        lemma: { 'πίστις': { 'fe': 2, 'su fe': 1 } },
+        form: { 'πιστιν': { 'fe': 2, 'su fe': 1 } },
+      });
+      expect(olSelections.lemma).toEqual({ 'πίστις': { fe: 2 } }); // not changed
+      expect(getSuggestionOlHistory(olSelections, entries, current, check('tit', 1, 3, 'πίστιν').contextId).lemma)
+        .toEqual({ 'πίστις': { 'fe': 2, 'la fe': 1, 'su fe': 1 } });
+    });
+
+    test('with no entry that has OL keys the OL selection history is used as it is', () => {
+      const olSelections = { lemma: {}, form: {} };
+      const contextId = check('tit', 1, 1, 'πίστιν').contextId;
+      expect(getSuggestionOlHistory(olSelections, fetchEntries(), current, contextId)).toBe(olSelections);
+      expect(getSuggestionOlHistory(null, null, current, contextId)).toBeNull();
+    });
   });
 });

@@ -54,6 +54,7 @@ import { LlmRequestQueue } from './utils/LlmRequestQueue';
 import {
   fetchAlignmentHistoryEntries,
   getSuggestionHistory,
+  getSuggestionOlHistory,
   updateAlignmentEntrySelection,
 } from './utils/alignmentHistoryUtils';
 import {
@@ -566,6 +567,10 @@ function Container({
         gatewayLanguageCode,
         glOwnerStr,
         glBiblesCache,
+        {
+          olKeysForCheck: (contextId, bookId, projectsFolder) => getCheckOlKeys(contextId,
+            loadOlBookForSuggestions(projectsFolder, bookId, olBooksCache)),
+        },
       );
       selectionsData.alignmentGroupId = groupId_;
     }
@@ -645,8 +650,9 @@ function Container({
       ...rest,
       selections: getSuggestionHistory(selectionsData.selections, alignmentEntries,
         getProjectName(projectSaveLocation), checkContextId),
-      olHistory: getOlHistoryForCheck(olSelections, checkContextId,
-        getOlBookForCheck(projectSaveLocation, checkContextId)),
+      olHistory: getOlHistoryForCheck(
+        getSuggestionOlHistory(olSelections, alignmentEntries, getProjectName(projectSaveLocation), checkContextId),
+        checkContextId, getOlBookForCheck(projectSaveLocation, checkContextId)),
     };
   }
 

@@ -4,8 +4,9 @@ Started 2026-11-26. Status: Steps 0-2 done (Step 2: a real gain on the tune proj
 direction but not significant on the held-out ones, p = 0.08). Step 4 measured 2026-11-26, before
 Step 3: OL history from the project's **other books** is a significant gain on the held-out
 projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where the GL bible lacks those books. The
-Step 3 wired into the app 2026-11-26 (uncommitted): the algorithm now gets OL history from every
-project the selection history reads. Calibration with it is no worse (fewer wrong answers at 95+).
+Step 3 wired into the app 2026-11-26 (committed, tried in translationCore by the author): the
+algorithm now gets OL history from every project the selection history reads, and from the word
+alignments when that setting is on. Calibration with it is no worse (fewer wrong answers at 95+).
 
 ## Goal
 
@@ -313,9 +314,14 @@ algorithm does now:
 - `updateSelectionsData` updates the OL tally when a selection is saved, with
   `updatedPreviousSelectionsData` on each key.
 - No setting: Step 4 showed a held-out gain, and calibration is no worse (below).
-- **Not done:** the alignment history (`llmUseAlignmentHistory`, off by default) still feeds only the
-  GL tally; its entries would need OL keys, and a project without a GL book would need to keep its
-  entries. A follow-up if the setting is used.
+- **Alignment history** (`llmUseAlignmentHistory`, off by default; added 2026-11-26 after the author
+  tried Step 3 in translationCore): `fetchAlignmentHistoryEntries` takes an `olKeysForCheck` option,
+  which `Container.js` passes (`getCheckOlKeys` with the check's OL book). Each entry gets `olKeys`,
+  and projects whose GL bible book is missing are read too, keeping the entries that have OL keys
+  (with `glPhrase` ''; the GL history skips them). `getSuggestionOlHistory` adds the entries to the
+  OL tally for one check, leaving out the same ones `getSuggestionHistory` leaves out (the check's own
+  verse, checks whose saved selection is already counted). **Not measured:** the training data has
+  no alignment-history cases with OL keys; it uses the same weights as the selection history.
 - **Time** (your projects folder, `vi_glt_heb_book` with `vi_glt_1co_book`, 8 groups): the first group
   took ~15 ms more (reading the Greek books), the rest under 1 ms more. Those projects have few saved
   selections (`faith` 5, `god` 0), so this is a lower bound; the per-check cost is a verse lookup.

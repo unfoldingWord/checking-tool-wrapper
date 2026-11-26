@@ -180,6 +180,9 @@ export function getQuoteWords(contextId) {
  *   selection history leaves out (another testament), else `alignment`
  * @property {boolean} hasSelection - the check has a saved selection that the selection history
  *   already counts, so this entry is not added (a saved selection wins over an alignment)
+ * @property {{lemma: string, form: string}|null} [olKeys] - the check's original-language keys, when
+ *   the entries were made with an `olKeysForCheck` function (plans/original-language-history.md);
+ *   an entry with OL keys is kept even without a GL phrase (`glPhrase` is then '')
  */
 
 /**
@@ -213,11 +216,15 @@ export function getAlignmentCheckKey(projectName, contextId) {
  * @param {boolean} options.selectionsCounted - the selection history already counts this
  *   project's saved selections (`fetchPreviousSelectionData` reads only projects of the same
  *   testament)
- * @returns {Array<AlignmentHistoryEntry>} - one entry per check with a GL phrase and either
- *   aligned target words or a saved selection the selection history leaves out
+ * @param {function(object): ({lemma: string, form: string}|null)} [options.olKeysForCheck] - gives a
+ *   check's original-language keys (e.g. `getCheckOlKeys` with the check's OL book); when given,
+ *   each entry gets `olKeys`, and a check without a GL phrase is kept when it has them
+ * @returns {Array<AlignmentHistoryEntry>} - one entry per check with a GL phrase (or OL keys) and
+ *   either aligned target words or a saved selection the selection history leaves out
  */
 export function getAlignmentEntriesForChecks(checks, {
   projectName, glBook, languageId, glLanguageId, readVerseText, readAlignments, selectionsCounted,
+  olKeysForCheck,
 }) {
   const entries = [];
 
@@ -228,11 +235,12 @@ export function getAlignmentEntriesForChecks(checks, {
       continue;
     }
 
-    const glText = getAlignedTextFromBible(contextId, glBook);
+    const glText = glBook && getAlignedTextFromBible(contextId, glBook);
     // keyed as the selection history is (lowercased)
     const glPhrase = glText ? getSelectionHistoryKey(cleanGlQuote(glText), glLanguageId) : '';
+    const olKeys = olKeysForCheck ? olKeysForCheck(contextId) || null : undefined;
 
-    if (!glPhrase) {
+    if (!glPhrase && !olKeys) {
       continue;
     }
 
@@ -267,6 +275,7 @@ export function getAlignmentEntriesForChecks(checks, {
         words,
         source,
         hasSelection: !!selected && selectionsCounted,
+        ...(olKeysForCheck ? { olKeys } : {}),
       });
     }
   }
@@ -291,6 +300,10 @@ export function getAlignmentEntriesForChecks(checks, {
  * @param {boolean} [options.allTestaments=true] - false keeps only projects of the current
  *   project's testament, as the selection history does
  * @param {function} [options.loadGlBook=loadGlBookForSuggestions] - loads a GL bible book
+ * @param {function(object, string, string): ({lemma: string, form: string}|null)} [options.olKeysForCheck] -
+ *   gives a check's original-language keys from `(contextId, bookId, projectsFolder)`; when given,
+ *   the entries get `olKeys`, and projects whose GL bible book is missing are read too, for the
+ *   entries with OL keys (plans/original-language-history.md)
  * @returns {Array<AlignmentHistoryEntry>}
  */
 export function fetchAlignmentHistoryEntries(
@@ -301,7 +314,9 @@ export function fetchAlignmentHistoryEntries(
   gatewayLanguageCode,
   glOwnerStr,
   glBiblesCache,
-  { allTestaments = true, loadGlBook = loadGlBookForSuggestions } = {},
+  {
+    allTestaments = true, loadGlBook = loadGlBookForSuggestions, olKeysForCheck,
+  } = {},
 ) {
   const {
     projectsFolder, currentBookId, currentLanguageId, currentResourceId,
@@ -339,7 +354,7 @@ export function fetchAlignmentHistoryEntries(
 
     const glBook = loadGlBook(projectsFolder, bookId, glBibleId, gatewayLanguageCode, glOwnerStr, glBiblesCache);
 
-    if (!glBook) {
+    if (!glBook && !olKeysForCheck) {
       continue;
     }
 
@@ -363,6 +378,7 @@ export function fetchAlignmentHistoryEntries(
       readVerseText,
       readAlignments: reference => getVerseAlignments(projectPath, bookId, reference, alignmentChapters),
       selectionsCounted: sameTestament,
+      olKeysForCheck: olKeysForCheck && (contextId => olKeysForCheck(contextId, bookId, projectsFolder)),
     }));
   }
   return entries;
@@ -387,9 +403,6 @@ export function getSuggestionHistory(selections, alignmentEntries, projectName, 
     return selections;
   }
 
-  const {
-    bookId, chapter, verse,
-  } = contextId?.reference || {};
   const merged = {};
 
   for (const [glPhrase, renderings] of Object.entries(selections || {})) {
@@ -397,10 +410,7 @@ export function getSuggestionHistory(selections, alignmentEntries, projectName, 
   }
 
   for (const entry of alignmentEntries) {
-    const ownVerse = entry.projectName === projectName && entry.bookId === bookId &&
-      String(entry.chapter) === String(chapter) && String(entry.verse) === String(verse);
-
-    if (entry.hasSelection || ownVerse || !entry.words || !entry.glPhrase) {
+    if (entry.hasSelection || isOwnVerse(entry, projectName, contextId) || !entry.words || !entry.glPhrase) {
       continue;
     }
 
@@ -408,6 +418,57 @@ export function getSuggestionHistory(selections, alignmentEntries, projectName, 
     renderings[entry.words] = (renderings[entry.words] || 0) + 1;
   }
   return merged;
+}
+
+/**
+ * The original-language history for one check: the OL-keyed selection history plus the alignment
+ * history entries that have OL keys, left out as {@link getSuggestionHistory} leaves them out (the
+ * check's own verse in the current project, checks whose saved selection is already counted).
+ * @param {{lemma: Object<string, Object<string, number>>, form: Object<string, Object<string, number>>}|null}
+ *   olSelections - from `countOlSelections`; not changed
+ * @param {Array<AlignmentHistoryEntry>|null} alignmentEntries - from
+ *   {@link fetchAlignmentHistoryEntries} with `olKeysForCheck`
+ * @param {string} projectName - the current project folder name
+ * @param {object} contextId - the check the history is for
+ * @returns {{lemma: object, form: object}|null} - `olSelections` itself when no entry has OL keys,
+ *   else a new object
+ */
+export function getSuggestionOlHistory(olSelections, alignmentEntries, projectName, contextId) {
+  const entries = (alignmentEntries || []).filter(entry => entry.olKeys && entry.words && !entry.hasSelection &&
+    !isOwnVerse(entry, projectName, contextId));
+
+  if (!entries.length) {
+    return olSelections;
+  }
+
+  const merged = { lemma: {}, form: {} };
+
+  for (const kind of ['lemma', 'form']) {
+    for (const [key, renderings] of Object.entries(olSelections?.[kind] || {})) {
+      merged[kind][key] = { ...renderings };
+    }
+
+    for (const entry of entries) {
+      const renderings = merged[kind][entry.olKeys[kind]] || (merged[kind][entry.olKeys[kind]] = {});
+      renderings[entry.words] = (renderings[entry.words] || 0) + 1;
+    }
+  }
+  return merged;
+}
+
+/**
+ * Whether an alignment history entry is of the check's own verse in the current project.
+ * @param {AlignmentHistoryEntry} entry
+ * @param {string} projectName - the current project folder name
+ * @param {object} contextId - the check
+ * @returns {boolean}
+ */
+function isOwnVerse(entry, projectName, contextId) {
+  const {
+    bookId, chapter, verse,
+  } = contextId?.reference || {};
+  return entry.projectName === projectName && entry.bookId === bookId &&
+    String(entry.chapter) === String(chapter) && String(entry.verse) === String(verse);
 }
 
 /**
