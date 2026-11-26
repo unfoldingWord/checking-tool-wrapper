@@ -1,8 +1,10 @@
 # Plan: original-language keys for the suggestion history
 
-Started 2026-11-26. Status: Steps 0-1 done; Step 2 measured 2026-11-26: a real gain on the tune
-projects, the same direction but not significant on the held-out ones (p = 0.08), so the adoption
-bar is not met yet. The app does not pass OL history, so nothing changed for users.
+Started 2026-11-26. Status: Steps 0-2 done (Step 2: a real gain on the tune projects, the same
+direction but not significant on the held-out ones, p = 0.08). Step 4 measured 2026-11-26, before
+Step 3: OL history from the project's **other books** is a significant gain on the held-out
+projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where the GL bible lacks those books. The
+app does not pass OL history yet, so nothing changed for users. Next: Step 3, if the author agrees.
 
 ## Goal
 
@@ -307,14 +309,59 @@ algorithm does now:
   it does the GL one.
 - Check the time it adds per group (lemma lookups for every project).
 
-### Step 4: measure history across GLs (H4)
+### Step 4: measure history across books and GLs (H4) — measured 2026-11-26, before Step 3
 
-- The training cases' history comes from earlier checks of the same project, so they can't
-  show H4. Build a set like the app's history instead: for each check, history from **other**
-  projects of the same target language, some checked with another GL (the training data has such
-  pairs, e.g. `ar_avd_luk_book_ru_gl_ru` and `ar_avd_luk_book_unfoldingWord_en`, but those are the
-  same project and can't be history for each other).
-- Compare GL keys only against GL + OL keys, as in Step 2.
+Done first, since Step 3 is the costly step and was only worth doing if this showed a gain.
+
+**H4's premise was partly wrong.** The app does not key another project's selections by the GL
+that project was checked with: `fetchPreviousSelectionData` and `fetchAlignmentHistoryEntries`
+re-key every project's checks with the **current** GL bible (`loadGlBookForSuggestions` +
+`getAlignedTextFromBible` on each check's `contextId`). So a project checked with a Russian GL
+already gets English keys when checking with English. History is lost only when the current GL
+bible has **no such book** (`if (foundBible)`) or no aligned text for the check's OL words, or when
+the GL bible's text is in another language (Arabic `arst` has English text in most books, see
+CLAUDE.md). OL keys work in all those cases.
+
+How much is lost, under each case's own GL bible (other books of the same target language and
+resource id, same testament, as the selection history; one training file per book as the source of
+its checks; `npm run measure:ol-cross-book`, `__tests__/olCrossBook.test.js`):
+
+| measure | cases |
+|---|---|
+| all cases | 45,097 |
+| with history from other books | 18,395 |
+| losing some of it / all of it | 2,052 / 1,446 |
+| answer only in the lost history (same OL form) | 759 (393) |
+
+The GL bibles in `~/translationCore/resources` that lose it: es-419 `glt` (6 books: 3jn est jon
+neh rut tit), id `glt` (10 NT books), fa `glt` (8), ru `rlob` (no heb, gal, ...). en `ult` and ar
+`avd` lose almost nothing.
+
+**Algorithm, top-1** on the cases with other-book history, each run with Step 2's `OL_KEY_SCORE`:
+- A: the GL history (the case's own, plus the other books' checks the GL bible keys), as the app has;
+- C: A + OL history from the same project (Step 2);
+- B: C + OL history from every other book, keyed or not.
+
+| split | cases | A | C | B | B vs C (won / lost, p) | B vs A |
+|---|---|---|---|---|---|---|
+| tune | 14,680 | 54.0% | 54.4% | 54.8% | 103 / 41, 2.4e-7 | 153 / 37, 5.9e-18 |
+| tune, with lost history | 3,271 | 56.5% | 56.9% | 58.6% | 68 / 12, 1.2e-10 | 82 / 13 |
+| **test** | 3,715 | 60.2% | 60.3% | 60.8% | **25 / 7, 0.002** | 29 / 8, 0.0008 |
+| test, with lost history | 227 | 63.0% | 63.0% | 69.2% | 15 / 1, 0.0005 | 15 / 1 |
+
+- **Held-out gain is significant**, and much larger where history was lost (+6.2 points on those
+  227 cases). Most wins are in files whose GL bible lacks books (`*_ru_gl_ru`, `*_es-419_gl_es-419`,
+  `en_ult_tit_book_bahtraku_id`, `en_ult_tit_book_fa_gl_fa`), as H4 predicts.
+- **Losses by language:** no file lost more than it won by over 3 cases; the worst were
+  `gu_glt_luk_book_unfoldingWord_en` (0 / 3) and `te_glt_luk_book_unfoldingWord_en` (1 / 2), both
+  English-GL files where nothing was lost, so the cross-book OL weight there only re-ranks.
+- **Not yet measured:** calibration (wrong answers at 80+, the 95-99 band) with cross-book OL
+  history; check it when Step 3 is wired, with `calibrate:algorithm`, before shipping.
+- Limits: the other books' checks are the training files' cases, not every check of those projects;
+  the case's own history is still only its earlier checks (the app uses every other check of the
+  project); and the other books are keyed with the case file's GL bible, while the app uses the first
+  GL bible in `bibleIdSort` order.
+- **Adoption:** met for going on to Step 3 (significant held-out gain, no language clearly worse).
 
 ### Step 5 (later, only if Steps 2-4 help): the AI path
 
