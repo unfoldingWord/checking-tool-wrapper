@@ -9,7 +9,7 @@
     "glPhrase": "مسیح",
     "history": {
       "مسیح": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -52,7 +52,7 @@
     "glPhrase": "مسیح را",
     "history": {
       "مسیح": {
-        "Christ": 2
+        "christ": 2
       }
     },
     "expected": [
@@ -95,10 +95,10 @@
     "glPhrase": "مسیح",
     "history": {
       "مسیح": {
-        "Christ": 2
+        "christ": 2
       },
       "مسیح را": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -510,7 +510,7 @@
     "occurrence": 2,
     "history": {
       "خدا": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -558,7 +558,7 @@
     "glPhrase": "خدایی",
     "history": {
       "خدا": {
-        "of God": 2
+        "of god": 2
       }
     },
     "expected": [
@@ -601,10 +601,10 @@
     "glPhrase": "خدا",
     "history": {
       "خدا": {
-        "of God": 2
+        "of god": 2
       },
       "خدایی": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -647,11 +647,11 @@
     "glPhrase": "خدا",
     "history": {
       "خدا": {
-        "of God": 2,
-        "God": 1
+        "of god": 2,
+        "god": 1
       },
       "خدایی": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -699,11 +699,11 @@
     "glPhrase": "خدا",
     "history": {
       "خدا": {
-        "of God": 3,
-        "God": 1
+        "of god": 3,
+        "god": 1
       },
       "خدایی": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -746,11 +746,11 @@
     "glPhrase": "خدا را",
     "history": {
       "خدا": {
-        "of God": 3,
-        "God": 2
+        "of god": 3,
+        "god": 2
       },
       "خدایی": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -793,14 +793,14 @@
     "glPhrase": "خدا",
     "history": {
       "خدا": {
-        "of God": 3,
-        "God": 2
+        "of god": 3,
+        "god": 2
       },
       "خدایی": {
-        "God": 1
+        "god": 1
       },
       "خدا را": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -843,14 +843,14 @@
     "glPhrase": "به خدا",
     "history": {
       "خدا": {
-        "of God": 3,
-        "God": 3
+        "of god": 3,
+        "god": 3
       },
       "خدایی": {
-        "God": 1
+        "god": 1
       },
       "خدا را": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -1432,7 +1432,7 @@
     "glPhrase": "عیسی خداوند باد",
     "history": {
       "عیسی": {
-        "of Jesus": 1
+        "of jesus": 1
       }
     },
     "expected": [
@@ -1475,10 +1475,10 @@
     "glPhrase": "عیسی",
     "history": {
       "عیسی": {
-        "of Jesus": 1
+        "of jesus": 1
       },
       "عیسی خداوند باد": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -1521,11 +1521,11 @@
     "glPhrase": "عیسی",
     "history": {
       "عیسی": {
-        "of Jesus": 1,
-        "Jesus": 1
+        "of jesus": 1,
+        "jesus": 1
       },
       "عیسی خداوند باد": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [

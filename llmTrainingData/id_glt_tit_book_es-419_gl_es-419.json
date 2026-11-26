@@ -8,8 +8,8 @@
     "verse": "Kepada Titus, anak yang sejati di dalam iman bersama. Anugerah dan damai sejahtera dari Allah Bapa dan Kristus Yesus Juruselamat kita. \n\\p",
     "glPhrase": "de Cristo",
     "history": {
-      "de Jesucristo": {
-        "Kristus": 1
+      "de jesucristo": {
+        "kristus": 1
       }
     },
     "expected": [
@@ -51,11 +51,11 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "Kristus": 1
+      "de jesucristo": {
+        "kristus": 1
       },
-      "de Cristo": {
-        "Kristus": 1
+      "de cristo": {
+        "kristus": 1
       }
     },
     "expected": [
@@ -97,14 +97,14 @@
     "verse": "yang mencurahkan dengan limpah kepada kita melalui Juruselamat kita Yesus Kristus, \n\\p",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "Kristus": 1
+      "de jesucristo": {
+        "kristus": 1
       },
-      "de Cristo": {
-        "Kristus": 1
+      "de cristo": {
+        "kristus": 1
       },
-      "Jesucristo": {
-        "Kristus": 1
+      "jesucristo": {
+        "kristus": 1
       }
     },
     "expected": [
@@ -432,8 +432,8 @@
     "glPhrase": "de Dios",
     "occurrence": 2,
     "history": {
-      "de Dios": {
-        "Allah": 1
+      "de dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -475,8 +475,8 @@
     "verse": "dengan pengharapan akan hidup kekal yang Allah, yang tidak berdusta, telah menjanjikan sebelum segala jaman. \n\\p",
     "glPhrase": "Dios",
     "history": {
-      "de Dios": {
-        "Allah": 2
+      "de dios": {
+        "allah": 2
       }
     },
     "expected": [
@@ -518,11 +518,11 @@
     "verse": "Namun pada saat yang tepat, Ia telah menyatakan firman-Nya dengan pemberitaan bahwa aku telah dipercaya oleh perintah Allah Juruselamat kita. \n\\p",
     "glPhrase": "de Dios",
     "history": {
-      "de Dios": {
-        "Allah": 2
+      "de dios": {
+        "allah": 2
       },
-      "Dios": {
-        "Allah": 1
+      "dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -564,11 +564,11 @@
     "verse": "Mereka mengaku mengenal Allah, tetapi mereka menyangkal dengan perbuatan-perbuatan dengan kenajisan, dan ketidak-taatan, dan kesia-siaan pada setiap perbuatan baik.",
     "glPhrase": "a Dios",
     "history": {
-      "de Dios": {
-        "Allah": 3
+      "de dios": {
+        "allah": 3
       },
-      "Dios": {
-        "Allah": 1
+      "dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -610,14 +610,14 @@
     "verse": "tidak mencuri, tetapi sebaliknya menunjukkan kesetiaan yang baik dan penuh, sehingga dalam segala hal mereka dapat memuji pengajaran tentang Allah Juruselamat kita. \n\\p",
     "glPhrase": "de Dios",
     "history": {
-      "de Dios": {
-        "Allah": 3
+      "de dios": {
+        "allah": 3
       },
-      "Dios": {
-        "Allah": 1
+      "dios": {
+        "allah": 1
       },
-      "a Dios": {
-        "Allah": 1
+      "a dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -659,14 +659,14 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "Dios",
     "history": {
-      "de Dios": {
-        "Allah": 4
+      "de dios": {
+        "allah": 4
       },
-      "Dios": {
-        "Allah": 1
+      "dios": {
+        "allah": 1
       },
-      "a Dios": {
-        "Allah": 1
+      "a dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -708,14 +708,14 @@
     "verse": "Tetapi ketika kebaikan hati dan kasih kepada umat manusia dari Allah Juruselamat kita telah dinyatakan, \n\\p",
     "glPhrase": "Dios",
     "history": {
-      "de Dios": {
-        "Allah": 4
+      "de dios": {
+        "allah": 4
       },
-      "Dios": {
-        "Allah": 2
+      "dios": {
+        "allah": 2
       },
-      "a Dios": {
-        "Allah": 1
+      "a dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -757,14 +757,14 @@
     "verse": "Berita ini dapat dipercaya, dan tentang hal itu. Aku ingin engkau menegaskannya, supaya mereka yang percaya kepada Allah berhati-hati dalam melakukan perbuatan-perbuatan yang baik. Semua ini adalah baik dan berguna bagi manusia.\n\\p",
     "glPhrase": "en Dios",
     "history": {
-      "de Dios": {
-        "Allah": 4
+      "de dios": {
+        "allah": 4
       },
-      "Dios": {
-        "Allah": 3
+      "dios": {
+        "allah": 3
       },
-      "a Dios": {
-        "Allah": 1
+      "a dios": {
+        "allah": 1
       }
     },
     "expected": [
@@ -1402,8 +1402,8 @@
     "verse": "Kepada Titus, anak yang sejati di dalam iman bersama. Anugerah dan damai sejahtera dari Allah Bapa dan Kristus Yesus Juruselamat kita. \n\\p",
     "glPhrase": "Jesús",
     "history": {
-      "de Jesucristo": {
-        "Yesus": 1
+      "de jesucristo": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -1445,11 +1445,11 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "Yesus": 1
+      "de jesucristo": {
+        "yesus": 1
       },
-      "Jesús": {
-        "Yesus": 1
+      "jesús": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -1491,14 +1491,14 @@
     "verse": "yang mencurahkan dengan limpah kepada kita melalui Juruselamat kita Yesus Kristus, \n\\p",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "Yesus": 1
+      "de jesucristo": {
+        "yesus": 1
       },
-      "Jesús": {
-        "Yesus": 1
+      "jesús": {
+        "yesus": 1
       },
-      "Jesucristo": {
-        "Yesus": 1
+      "jesucristo": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -1939,7 +1939,7 @@
     "glPhrase": "salvador",
     "history": {
       "salvador": {
-        "Juruselamat": 1
+        "juruselamat": 1
       }
     },
     "expected": [
@@ -1982,7 +1982,7 @@
     "glPhrase": "salvador",
     "history": {
       "salvador": {
-        "Juruselamat": 2
+        "juruselamat": 2
       }
     },
     "expected": [
@@ -2268,7 +2268,7 @@
       "sujetas": {
         "tunduk": 1
       },
-      "Que se sometan": {
+      "que se sometan": {
         "harus tunduk": 1
       }
     },

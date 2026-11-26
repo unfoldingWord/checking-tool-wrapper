@@ -322,7 +322,7 @@
     "glPhrase": "والمسيَّا المسيح",
     "history": {
       "المسيَّا أي المسيح": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -365,10 +365,10 @@
     "glPhrase": "المسيَّا",
     "history": {
       "المسيَّا أي المسيح": {
-        "Christ": 1
+        "christ": 1
       },
       "والمسيَّا المسيح": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -411,13 +411,13 @@
     "glPhrase": "المسيح",
     "history": {
       "المسيَّا أي المسيح": {
-        "Christ": 1
+        "christ": 1
       },
       "والمسيَّا المسيح": {
-        "Christ": 1
+        "christ": 1
       },
       "المسيَّا": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -904,7 +904,7 @@
     "occurrence": 2,
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -952,10 +952,10 @@
     "glPhrase": "الله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -998,13 +998,13 @@
     "glPhrase": "الله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       },
       "الله": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -1047,13 +1047,13 @@
     "glPhrase": "من أجل الله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       },
       "الله": {
-        "God": 2
+        "god": 2
       }
     },
     "expected": [
@@ -1101,16 +1101,16 @@
     "glPhrase": "الله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       },
       "الله": {
-        "God": 2
+        "god": 2
       },
       "من أجل الله": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -1153,16 +1153,16 @@
     "glPhrase": "عن الله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       },
       "الله": {
-        "God": 3
+        "god": 3
       },
       "من أجل الله": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -1205,19 +1205,19 @@
     "glPhrase": "الله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       },
       "الله": {
-        "God": 3
+        "god": 3
       },
       "من أجل الله": {
-        "of God": 1
+        "of god": 1
       },
       "عن الله": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -1260,19 +1260,19 @@
     "glPhrase": "بالله",
     "history": {
       "لله": {
-        "of God": 1
+        "of god": 1
       },
       "الله به": {
-        "of God": 1
+        "of god": 1
       },
       "الله": {
-        "God": 4
+        "god": 4
       },
       "من أجل الله": {
-        "of God": 1
+        "of god": 1
       },
       "عن الله": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -1904,7 +1904,7 @@
     "glPhrase": "يسوع",
     "history": {
       "ليسوع": {
-        "of Jesus": 1
+        "of jesus": 1
       }
     },
     "expected": [
@@ -1947,10 +1947,10 @@
     "glPhrase": "يسوع",
     "history": {
       "ليسوع": {
-        "of Jesus": 1
+        "of jesus": 1
       },
       "يسوع": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -1993,10 +1993,10 @@
     "glPhrase": "عندما خلَّصَنا يسوعُ",
     "history": {
       "ليسوع": {
-        "of Jesus": 1
+        "of jesus": 1
       },
       "يسوع": {
-        "Jesus": 2
+        "jesus": 2
       }
     },
     "expected": [

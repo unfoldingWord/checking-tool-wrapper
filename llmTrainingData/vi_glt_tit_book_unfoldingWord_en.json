@@ -107,8 +107,8 @@
     "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "của Chúa Cứu Thế": 1
+      "christ": {
+        "của chúa cứu thế": 1
       }
     },
     "expected": [
@@ -160,9 +160,9 @@
     "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "của Chúa Cứu Thế": 1,
-        "Chúa Cứu Thế": 1
+      "christ": {
+        "của chúa cứu thế": 1,
+        "chúa cứu thế": 1
       }
     },
     "expected": [
@@ -214,9 +214,9 @@
     "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "của Chúa Cứu Thế": 1,
-        "Chúa Cứu Thế": 2
+      "christ": {
+        "của chúa cứu thế": 1,
+        "chúa cứu thế": 2
       }
     },
     "expected": [
@@ -876,8 +876,8 @@
     "glPhrase": "of God",
     "occurrence": 2,
     "history": {
-      "of God": {
-        "của Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -924,9 +924,9 @@
     "verse": "với hy vọng chắc chắn về sự sống đời đời mà Thiên Chúa, Đấng không nói dối, đã hứa từ trước mọi thời đại.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -973,12 +973,12 @@
     "verse": "Nhưng vào đúng thời điểm, Ngài đã mạc khải lời Ngài qua việc công bố sứ điệp mà ta đã được giao phó theo mệnh lệnh của Thiên Chúa, Cứu Chúa của chúng ta.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1030,13 +1030,13 @@
     "verse": "Vì người chăn bầy bắt buộc phải không chỗ chê trách, như là người quản lý nhà của Thiên Chúa, không kiêu ngạo, không nhạy giận, không nghiện rượu, không gây gổ, và không tham lam,",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -1088,13 +1088,13 @@
     "verse": "Họ tuyên bố mình biết Thiên Chúa, tuy nhiên, trong việc làm của họ, họ chối bỏ Ngài, trở nên đáng ghê tởm, không vâng lời, và không xứng với bất kỳ việc thiện lành nào.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -1141,13 +1141,13 @@
     "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 2,
-        "của Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 2,
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -1194,13 +1194,13 @@
     "verse": "Vì ân điển của Thiên Chúa để cứu rỗi mọi người đã được bày tỏ,",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 3,
-        "của Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 3,
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -1261,13 +1261,13 @@
     "verse": "Nhưng khi sự tốt lành và lòng nhân ái của Thiên Chúa, Cứu Chúa chúng ta, được tỏ bày,",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 3,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 3,
-        "của Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 3,
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -1319,13 +1319,13 @@
     "verse": "Sứ điệp này là đáng tin cậy, và ta muốn con nhấn mạnh vào những điều ấy, sao cho những ai đã tin Thiên Chúa sẽ cẩn thận lưu ý để dấn thân vào việc thiện lành. Những việc đó là tốt lành và hữu ích cho nhiều người.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 1
+      "of god": {
+        "của thiên chúa": 3,
+        "thiên chúa": 1
       },
-      "God": {
-        "Thiên Chúa": 3,
-        "của Thiên Chúa": 2
+      "god": {
+        "thiên chúa": 3,
+        "của thiên chúa": 2
       }
     },
     "expected": [
@@ -1373,7 +1373,7 @@
     "glPhrase": "godlessness",
     "history": {
       "godliness": {
-        "lòng tin kính Chúa": 1
+        "lòng tin kính chúa": 1
       }
     },
     "expected": [
@@ -1435,7 +1435,7 @@
     "glPhrase": "godly way",
     "history": {
       "godliness": {
-        "lòng tin kính Chúa": 1
+        "lòng tin kính chúa": 1
       },
       "godlessness": {
         "sự bất kính": 1
@@ -1932,7 +1932,7 @@
     "verse": "Vì ân điển của Thiên Chúa để cứu rỗi mọi người đã được bày tỏ,",
     "glPhrase": "grace",
     "history": {
-      "Grace": {
+      "grace": {
         "ân điển": 1
       }
     },
@@ -1980,11 +1980,8 @@
     "verse": "Tất cả những người ở với ta gửi lời chào thăm con. Hãy chào thăm những người yêu mến chúng ta trong đức tin. Nguyện ân điển ở với tất cả anh chị em.",
     "glPhrase": "Grace",
     "history": {
-      "Grace": {
-        "ân điển": 1
-      },
       "grace": {
-        "ân điển": 1
+        "ân điển": 2
       }
     },
     "expected": [
@@ -2159,8 +2156,8 @@
     "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "of Jesus": {
-        "Giê xu": 1
+      "of jesus": {
+        "giê xu": 1
       }
     },
     "expected": [
@@ -2207,11 +2204,11 @@
     "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Jesus",
     "history": {
-      "of Jesus": {
-        "Giê xu": 1
+      "of jesus": {
+        "giê xu": 1
       },
-      "Jesus": {
-        "Giê xu": 1
+      "jesus": {
+        "giê xu": 1
       }
     },
     "expected": [
@@ -2258,11 +2255,11 @@
     "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Jesus",
     "history": {
-      "of Jesus": {
-        "Giê xu": 1
+      "of jesus": {
+        "giê xu": 1
       },
-      "Jesus": {
-        "Giê xu": 2
+      "jesus": {
+        "giê xu": 2
       }
     },
     "expected": [
@@ -3069,8 +3066,8 @@
     "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
-        "Cứu Chúa": 1
+      "of savior": {
+        "cứu chúa": 1
       }
     },
     "expected": [
@@ -3126,11 +3123,11 @@
     "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
-        "Cứu Chúa": 1
+      "of savior": {
+        "cứu chúa": 1
       },
-      "Savior": {
-        "Cứu Chúa": 1
+      "savior": {
+        "cứu chúa": 1
       }
     },
     "expected": [
@@ -3177,11 +3174,11 @@
     "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
-        "Cứu Chúa": 1
+      "of savior": {
+        "cứu chúa": 1
       },
-      "Savior": {
-        "Cứu Chúa": 2
+      "savior": {
+        "cứu chúa": 2
       }
     },
     "expected": [
@@ -3228,11 +3225,11 @@
     "verse": "Nhưng khi sự tốt lành và lòng nhân ái của Thiên Chúa, Cứu Chúa chúng ta, được tỏ bày,",
     "glPhrase": "of Savior",
     "history": {
-      "of Savior": {
-        "Cứu Chúa": 1
+      "of savior": {
+        "cứu chúa": 1
       },
-      "Savior": {
-        "Cứu Chúa": 3
+      "savior": {
+        "cứu chúa": 3
       }
     },
     "expected": [
@@ -3288,11 +3285,11 @@
     "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
-        "Cứu Chúa": 2
+      "of savior": {
+        "cứu chúa": 2
       },
-      "Savior": {
-        "Cứu Chúa": 3
+      "savior": {
+        "cứu chúa": 3
       }
     },
     "expected": [

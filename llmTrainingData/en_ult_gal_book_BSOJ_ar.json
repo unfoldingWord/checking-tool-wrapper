@@ -9,7 +9,7 @@
     "glPhrase": "إِبْرَاهِيمَ",
     "history": {
       "إِبْرَاهِيمُ": {
-        "Abraham": 1
+        "abraham": 1
       }
     },
     "expected": [
@@ -57,10 +57,10 @@
     "glPhrase": "إِبْرَاهِيمَ",
     "history": {
       "إِبْرَاهِيمُ": {
-        "Abraham": 1
+        "abraham": 1
       },
       "إِبْرَاهِيمَ": {
-        "of Abraham": 1
+        "of abraham": 1
       }
     },
     "expected": [
@@ -103,11 +103,11 @@
     "glPhrase": "لِإِبْرَاهِيمَ",
     "history": {
       "إِبْرَاهِيمُ": {
-        "Abraham": 1
+        "abraham": 1
       },
       "إِبْرَاهِيمَ": {
-        "of Abraham": 1,
-        "Abraham": 1
+        "of abraham": 1,
+        "abraham": 1
       }
     },
     "expected": [
@@ -338,7 +338,7 @@
     "glPhrase": "وَبَرْنَابَا",
     "history": {
       "بَرْنَابَا": {
-        "Barnabas": 1
+        "barnabas": 1
       }
     },
     "expected": [
@@ -386,10 +386,10 @@
     "glPhrase": "بَرْنَابَا",
     "history": {
       "بَرْنَابَا": {
-        "Barnabas": 1
+        "barnabas": 1
       },
       "وَبَرْنَابَا": {
-        "to Barnabas": 1
+        "to barnabas": 1
       }
     },
     "expected": [
@@ -478,7 +478,7 @@
         "will bear": 1
       },
       "اِحْمِلُوا": {
-        "Carry": 1
+        "carry": 1
       }
     },
     "expected": [
@@ -530,7 +530,7 @@
         "will carry": 1
       },
       "اِحْمِلُوا": {
-        "Carry": 1
+        "carry": 1
       }
     },
     "expected": [
@@ -1865,7 +1865,7 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -1908,7 +1908,7 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       }
     },
     "expected": [
@@ -1956,8 +1956,8 @@
     "glPhrase": "لِلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 2,
-        "of Christ": 1
+        "christ": 2,
+        "of christ": 1
       }
     },
     "expected": [
@@ -2005,11 +2005,11 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 2,
-        "of Christ": 1
+        "christ": 2,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       }
     },
     "expected": [
@@ -2052,11 +2052,11 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 3,
-        "of Christ": 1
+        "christ": 3,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       }
     },
     "expected": [
@@ -2099,11 +2099,11 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 4,
-        "of Christ": 1
+        "christ": 4,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       }
     },
     "expected": [
@@ -2146,11 +2146,11 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 5,
-        "of Christ": 1
+        "christ": 5,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       }
     },
     "expected": [
@@ -2193,11 +2193,11 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 6,
-        "of Christ": 1
+        "christ": 6,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       }
     },
     "expected": [
@@ -2241,11 +2241,11 @@
     "occurrence": 2,
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 7,
-        "of Christ": 1
+        "christ": 7,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       }
     },
     "expected": [
@@ -2293,14 +2293,14 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 7,
-        "of Christ": 1
+        "christ": 7,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       }
     },
     "expected": [
@@ -2343,14 +2343,14 @@
     "glPhrase": "أَفَٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 8,
-        "of Christ": 1
+        "christ": 8,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       }
     },
     "expected": [
@@ -2398,17 +2398,17 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 8,
-        "of Christ": 1
+        "christ": 8,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       }
     },
     "expected": [
@@ -2451,17 +2451,17 @@
     "glPhrase": "ٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 9,
-        "of Christ": 1
+        "christ": 9,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       }
     },
     "expected": [
@@ -2504,20 +2504,20 @@
     "glPhrase": "فَٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 9,
-        "of Christ": 1
+        "christ": 9,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2560,23 +2560,23 @@
     "glPhrase": "ٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 9,
-        "of Christ": 1
+        "christ": 9,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2619,23 +2619,23 @@
     "glPhrase": "اَلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 9,
-        "of Christ": 1
+        "christ": 9,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 2
+        "christ": 2
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2678,26 +2678,26 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 9,
-        "of Christ": 1
+        "christ": 9,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 2
+        "christ": 2
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2740,26 +2740,26 @@
     "glPhrase": "ٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 10,
-        "of Christ": 1
+        "christ": 10,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 2
+        "christ": 2
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2802,26 +2802,26 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 10,
-        "of Christ": 1
+        "christ": 10,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2864,26 +2864,26 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 11,
-        "of Christ": 1
+        "christ": 11,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2926,26 +2926,26 @@
     "glPhrase": "بِٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 12,
-        "of Christ": 1
+        "christ": 12,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -2988,29 +2988,29 @@
     "glPhrase": "بِٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 12,
-        "of Christ": 1
+        "christ": 12,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3054,29 +3054,29 @@
     "occurrence": 2,
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 12,
-        "of Christ": 1
+        "christ": 12,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       }
     },
     "expected": [
@@ -3119,32 +3119,32 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 12,
-        "of Christ": 1
+        "christ": 12,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3187,32 +3187,32 @@
     "glPhrase": "لِلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 13,
-        "of Christ": 1
+        "christ": 13,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 1
+        "of christ": 1
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3260,32 +3260,32 @@
     "glPhrase": "كَٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 13,
-        "of Christ": 1
+        "christ": 13,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3328,35 +3328,35 @@
     "glPhrase": "ٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 13,
-        "of Christ": 1
+        "christ": 13,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 3
+        "christ": 3
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3399,35 +3399,35 @@
     "glPhrase": "ٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 13,
-        "of Christ": 1
+        "christ": 13,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 4
+        "christ": 4
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3470,35 +3470,35 @@
     "glPhrase": "ٱلْمَسِيحُ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 13,
-        "of Christ": 1
+        "christ": 13,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 5
+        "christ": 5
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3541,35 +3541,35 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 13,
-        "of Christ": 1
+        "christ": 13,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 6
+        "christ": 6
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3612,35 +3612,35 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 14,
-        "of Christ": 1
+        "christ": 14,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 6
+        "christ": 6
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3683,35 +3683,35 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 15,
-        "of Christ": 1
+        "christ": 15,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 6
+        "christ": 6
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -3754,35 +3754,35 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "ٱلْمَسِيحِ": {
-        "Christ": 16,
-        "of Christ": 1
+        "christ": 16,
+        "of christ": 1
       },
       "لِلْمَسِيحِ": {
-        "of Christ": 2
+        "of christ": 2
       },
       "يَسُوعَ": {
-        "in Christ": 1
+        "in christ": 1
       },
       "أَفَٱلْمَسِيحُ": {
-        "is Christ": 1
+        "is christ": 1
       },
       "ٱلْمَسِيحُ": {
-        "Christ": 6
+        "christ": 6
       },
       "فَٱلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "اَلْمَسِيحُ": {
-        "Christ": 1
+        "christ": 1
       },
       "بِٱلْمَسِيحِ": {
-        "Christ": 2
+        "christ": 2
       },
       "ٱلْمَسِيحَ": {
-        "Christ": 1
+        "christ": 1
       },
       "كَٱلْمَسِيحِ": {
-        "Christ": 1
+        "christ": 1
       }
     },
     "expected": [
@@ -4575,7 +4575,7 @@
     "glPhrase": "بَيْنَكُمْ مَصْلُوبًا",
     "history": {
       "مَعَ صُلِبْتُ": {
-        "I have been crucified with": 1
+        "i have been crucified with": 1
       }
     },
     "expected": [
@@ -4623,7 +4623,7 @@
     "glPhrase": "قَدْ صَلَبُوا",
     "history": {
       "مَعَ صُلِبْتُ": {
-        "I have been crucified with": 1
+        "i have been crucified with": 1
       },
       "بَيْنَكُمْ مَصْلُوبًا": {
         "as crucified": 1
@@ -4674,7 +4674,7 @@
     "glPhrase": "قَدْ صُلِبَ",
     "history": {
       "مَعَ صُلِبْتُ": {
-        "I have been crucified with": 1
+        "i have been crucified with": 1
       },
       "بَيْنَكُمْ مَصْلُوبًا": {
         "as crucified": 1
@@ -4881,7 +4881,7 @@
         "a curse": 1
       },
       "مَلْعُونٌ": {
-        "Cursed is": 1
+        "cursed is": 1
       }
     },
     "expected": [
@@ -4930,7 +4930,7 @@
         "a curse": 1
       },
       "مَلْعُونٌ": {
-        "Cursed is": 1
+        "cursed is": 1
       },
       "لَعْنَةِ": {
         "curse": 1
@@ -4987,7 +4987,7 @@
         "a curse": 1
       },
       "مَلْعُونٌ": {
-        "Cursed is": 1
+        "cursed is": 1
       },
       "لَعْنَةِ": {
         "curse": 1
@@ -5500,7 +5500,7 @@
     "glPhrase": "ٱلْأُمَمِ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 1
+        "gentiles": 1
       }
     },
     "expected": [
@@ -5543,7 +5543,7 @@
     "glPhrase": "لِلْأُمَمِ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       }
     },
     "expected": [
@@ -5586,10 +5586,10 @@
     "glPhrase": "لِلْأُمَمِ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 1
+        "gentiles": 1
       }
     },
     "expected": [
@@ -5632,10 +5632,10 @@
     "glPhrase": "ٱلْأُمَمِ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       }
     },
     "expected": [
@@ -5678,10 +5678,10 @@
     "glPhrase": "أُمَمِيًّا",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 3
+        "gentiles": 3
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       }
     },
     "expected": [
@@ -5734,13 +5734,13 @@
     "glPhrase": "ٱلْأُمَمَ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 3
+        "gentiles": 3
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       },
       "أُمَمِيًّا": {
-        "like a Gentile": 1
+        "like a gentile": 1
       }
     },
     "expected": [
@@ -5783,16 +5783,16 @@
     "glPhrase": "ٱلْأُمَمِ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 3
+        "gentiles": 3
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       },
       "أُمَمِيًّا": {
-        "like a Gentile": 1
+        "like a gentile": 1
       },
       "ٱلْأُمَمَ": {
-        "Gentiles": 1
+        "gentiles": 1
       }
     },
     "expected": [
@@ -5840,17 +5840,17 @@
     "glPhrase": "ٱلْأُمَمَ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 3,
-        "the Gentiles": 1
+        "gentiles": 3,
+        "the gentiles": 1
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       },
       "أُمَمِيًّا": {
-        "like a Gentile": 1
+        "like a gentile": 1
       },
       "ٱلْأُمَمَ": {
-        "Gentiles": 1
+        "gentiles": 1
       }
     },
     "expected": [
@@ -5893,17 +5893,17 @@
     "glPhrase": "لِلْأُمَمِ",
     "history": {
       "ٱلْأُمَمِ": {
-        "Gentiles": 3,
-        "the Gentiles": 1
+        "gentiles": 3,
+        "the gentiles": 1
       },
       "لِلْأُمَمِ": {
-        "Gentiles": 2
+        "gentiles": 2
       },
       "أُمَمِيًّا": {
-        "like a Gentile": 1
+        "like a gentile": 1
       },
       "ٱلْأُمَمَ": {
-        "Gentiles": 2
+        "gentiles": 2
       }
     },
     "expected": [
@@ -5946,7 +5946,7 @@
     "glPhrase": "ٱللهِ",
     "history": {
       "لِلهِ": {
-        "to God": 1
+        "to god": 1
       }
     },
     "expected": [
@@ -5994,10 +5994,10 @@
     "glPhrase": "لِلهِ",
     "history": {
       "لِلهِ": {
-        "to God": 1
+        "to god": 1
       },
       "ٱللهِ": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -6040,11 +6040,11 @@
     "glPhrase": "ٱللهَ",
     "history": {
       "لِلهِ": {
-        "to God": 1,
-        "God": 1
+        "to god": 1,
+        "god": 1
       },
       "ٱللهِ": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -6087,14 +6087,14 @@
     "glPhrase": "ٱللهِ",
     "history": {
       "لِلهِ": {
-        "to God": 1,
-        "God": 1
+        "to god": 1,
+        "god": 1
       },
       "ٱللهِ": {
-        "of God": 1
+        "of god": 1
       },
       "ٱللهَ": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -6137,15 +6137,15 @@
     "glPhrase": "مِنَ ٱللهِ",
     "history": {
       "لِلهِ": {
-        "to God": 1,
-        "God": 1
+        "to god": 1,
+        "god": 1
       },
       "ٱللهِ": {
-        "of God": 1,
-        "God": 1
+        "of god": 1,
+        "god": 1
       },
       "ٱللهَ": {
-        "God": 1
+        "god": 1
       }
     },
     "expected": [
@@ -6193,18 +6193,18 @@
     "glPhrase": "ٱللهُ",
     "history": {
       "لِلهِ": {
-        "to God": 1,
-        "God": 1
+        "to god": 1,
+        "god": 1
       },
       "ٱللهِ": {
-        "of God": 1,
-        "God": 1
+        "of god": 1,
+        "god": 1
       },
       "ٱللهَ": {
-        "God": 1
+        "god": 1
       },
       "مِنَ ٱللهِ": {
-        "of God": 1
+        "of god": 1
       }
     },
     "expected": [
@@ -6722,7 +6722,7 @@
     "glPhrase": "بِنِعْمَةِ",
     "history": {
       "نِعْمَةٌ": {
-        "Grace": 1
+        "grace": 1
       }
     },
     "expected": [
@@ -6770,7 +6770,7 @@
     "glPhrase": "بِٱلنِّعْمَةِ",
     "history": {
       "نِعْمَةٌ": {
-        "Grace": 1
+        "grace": 1
       },
       "بِنِعْمَةِ": {
         "the grace": 1
@@ -6816,7 +6816,7 @@
     "glPhrase": "نِعْمَةَ",
     "history": {
       "نِعْمَةٌ": {
-        "Grace": 1
+        "grace": 1
       },
       "بِنِعْمَةِ": {
         "the grace": 1
@@ -6865,7 +6865,7 @@
     "glPhrase": "مِنَ ٱلنِّعْمَةِ",
     "history": {
       "نِعْمَةٌ": {
-        "Grace": 1
+        "grace": 1
       },
       "بِنِعْمَةِ": {
         "the grace": 1
@@ -6917,7 +6917,7 @@
     "glPhrase": "نِعْمَةُ",
     "history": {
       "نِعْمَةٌ": {
-        "Grace": 1
+        "grace": 1
       },
       "بِنِعْمَةِ": {
         "the grace": 1
@@ -7218,7 +7218,7 @@
     "glPhrase": "بِٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7266,10 +7266,10 @@
     "glPhrase": "ٱلرُّوحَ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1
+        "by spirit": 1
       }
     },
     "expected": [
@@ -7312,10 +7312,10 @@
     "glPhrase": "رُوحَ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1
+        "by spirit": 1
       }
     },
     "expected": [
@@ -7358,13 +7358,13 @@
     "glPhrase": "ٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1
+        "by spirit": 1
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7407,16 +7407,16 @@
     "glPhrase": "بِٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1
+        "by spirit": 1
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7459,17 +7459,17 @@
     "glPhrase": "بِٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1
+        "by spirit": 1,
+        "spirit": 1
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7522,18 +7522,18 @@
     "glPhrase": "ٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 1
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 1
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7576,18 +7576,18 @@
     "glPhrase": "وَٱلرُّوحُ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 1
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 1
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 2
+        "spirit": 2
       }
     },
     "expected": [
@@ -7630,21 +7630,21 @@
     "glPhrase": "بِٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 1
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 1
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "وَٱلرُّوحُ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7697,21 +7697,21 @@
     "glPhrase": "بِٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 2
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 2
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "وَٱلرُّوحُ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7765,21 +7765,21 @@
     "occurrence": 2,
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 3
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 3
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "وَٱلرُّوحُ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7832,24 +7832,24 @@
     "glPhrase": "لِلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 3
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 3
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "وَٱلرُّوحُ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "بِحَسَبِ ٱلرُّوحِ": {
-        "by the Spirit": 1
+        "by the spirit": 1
       }
     },
     "expected": [
@@ -7892,27 +7892,27 @@
     "glPhrase": "ٱلرُّوحِ",
     "history": {
       "ٱلرُّوحَ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "بِٱلرُّوحِ": {
-        "by Spirit": 1,
-        "Spirit": 1,
-        "by the Spirit": 3
+        "by spirit": 1,
+        "spirit": 1,
+        "by the spirit": 3
       },
       "رُوحَ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "ٱلرُّوحِ": {
-        "Spirit": 2
+        "spirit": 2
       },
       "وَٱلرُّوحُ": {
-        "Spirit": 1
+        "spirit": 1
       },
       "بِحَسَبِ ٱلرُّوحِ": {
-        "by the Spirit": 1
+        "by the spirit": 1
       },
       "لِلرُّوحِ": {
-        "Spirit": 1
+        "spirit": 1
       }
     },
     "expected": [
@@ -7955,7 +7955,7 @@
     "glPhrase": "فِي ٱلْمَسِيحِ",
     "history": {
       "فِي ٱلْمَسِيحِ": {
-        "in Christ": 1
+        "in christ": 1
       }
     },
     "expected": [
@@ -8021,8 +8021,8 @@
     "glPhrase": "بِيَسُوعَ ٱلْمَسِيحِ",
     "history": {
       "فِي ٱلْمَسِيحِ": {
-        "in Christ": 1,
-        "in Christ Jesus": 1
+        "in christ": 1,
+        "in christ jesus": 1
       }
     },
     "expected": [
@@ -8088,11 +8088,11 @@
     "glPhrase": "فِي ٱلْمَسِيحِ",
     "history": {
       "فِي ٱلْمَسِيحِ": {
-        "in Christ": 1,
-        "in Christ Jesus": 1
+        "in christ": 1,
+        "in christ jesus": 1
       },
       "بِيَسُوعَ ٱلْمَسِيحِ": {
-        "in Christ Jesus": 1
+        "in christ jesus": 1
       }
     },
     "expected": [
@@ -8149,11 +8149,11 @@
     "glPhrase": "بِٱلْمَسِيحِ يَسُوعَ",
     "history": {
       "فِي ٱلْمَسِيحِ": {
-        "in Christ": 2,
-        "in Christ Jesus": 1
+        "in christ": 2,
+        "in christ jesus": 1
       },
       "بِيَسُوعَ ٱلْمَسِيحِ": {
-        "in Christ Jesus": 1
+        "in christ jesus": 1
       }
     },
     "expected": [
@@ -8219,14 +8219,14 @@
     "glPhrase": "بِٱلْمَسِيحِ",
     "history": {
       "فِي ٱلْمَسِيحِ": {
-        "in Christ": 2,
-        "in Christ Jesus": 1
+        "in christ": 2,
+        "in christ jesus": 1
       },
       "بِيَسُوعَ ٱلْمَسِيحِ": {
-        "in Christ Jesus": 1
+        "in christ jesus": 1
       },
       "بِٱلْمَسِيحِ يَسُوعَ": {
-        "in Christ Jesus": 1
+        "in christ jesus": 1
       }
     },
     "expected": [
@@ -8283,17 +8283,17 @@
     "glPhrase": "فِي ٱلرَّبِّ",
     "history": {
       "فِي ٱلْمَسِيحِ": {
-        "in Christ": 2,
-        "in Christ Jesus": 1
+        "in christ": 2,
+        "in christ jesus": 1
       },
       "بِيَسُوعَ ٱلْمَسِيحِ": {
-        "in Christ Jesus": 1
+        "in christ jesus": 1
       },
       "بِٱلْمَسِيحِ يَسُوعَ": {
-        "in Christ Jesus": 1
+        "in christ jesus": 1
       },
       "بِٱلْمَسِيحِ": {
-        "into Christ": 1
+        "into christ": 1
       }
     },
     "expected": [
@@ -8454,7 +8454,7 @@
     "glPhrase": "يَعْقُوبُ",
     "history": {
       "يَعْقُوبَ": {
-        "James": 1
+        "james": 1
       }
     },
     "expected": [
@@ -8497,10 +8497,10 @@
     "glPhrase": "يَعْقُوبَ",
     "history": {
       "يَعْقُوبَ": {
-        "James": 1
+        "james": 1
       },
       "يَعْقُوبُ": {
-        "James": 1
+        "james": 1
       }
     },
     "expected": [
@@ -8543,7 +8543,7 @@
     "glPhrase": "أُورُشَلِيمَ",
     "history": {
       "أُورُشَلِيمَ": {
-        "Jerusalem": 1
+        "jerusalem": 1
       }
     },
     "expected": [
@@ -8586,7 +8586,7 @@
     "glPhrase": "أُورُشَلِيمَ",
     "history": {
       "أُورُشَلِيمَ": {
-        "Jerusalem": 2
+        "jerusalem": 2
       }
     },
     "expected": [
@@ -8629,7 +8629,7 @@
     "glPhrase": "أُورُشَلِيمَ",
     "history": {
       "أُورُشَلِيمَ": {
-        "Jerusalem": 3
+        "jerusalem": 3
       }
     },
     "expected": [
@@ -8672,7 +8672,7 @@
     "glPhrase": "أُورُشَلِيمُ",
     "history": {
       "أُورُشَلِيمَ": {
-        "Jerusalem": 4
+        "jerusalem": 4
       }
     },
     "expected": [
@@ -8715,7 +8715,7 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -8758,10 +8758,10 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعَ": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -8809,11 +8809,11 @@
     "glPhrase": "ٱلْمَسِيحِ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1
+        "jesus": 1,
+        "of jesus": 1
       }
     },
     "expected": [
@@ -8856,14 +8856,14 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1
+        "jesus": 1,
+        "of jesus": 1
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -8911,15 +8911,15 @@
     "glPhrase": "بِيَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1,
-        "in Jesus": 1
+        "jesus": 1,
+        "of jesus": 1,
+        "in jesus": 1
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -8962,15 +8962,15 @@
     "glPhrase": "يَسُوعُ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1,
-        "in Jesus": 1
+        "jesus": 1,
+        "of jesus": 1,
+        "in jesus": 1
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -9013,18 +9013,18 @@
     "glPhrase": "ٱلْمَسِيحِ يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1,
-        "in Jesus": 1
+        "jesus": 1,
+        "of jesus": 1,
+        "in jesus": 1
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       }
     },
     "expected": [
@@ -9081,21 +9081,21 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1,
-        "in Jesus": 1
+        "jesus": 1,
+        "of jesus": 1,
+        "in jesus": 1
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9143,21 +9143,21 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 1,
-        "of Jesus": 1,
-        "in Jesus": 2
+        "jesus": 1,
+        "of jesus": 1,
+        "in jesus": 2
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9200,21 +9200,21 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 2,
-        "of Jesus": 1,
-        "in Jesus": 2
+        "jesus": 2,
+        "of jesus": 1,
+        "in jesus": 2
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9257,21 +9257,21 @@
     "glPhrase": "كَٱلْمَسِيحِ يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 3,
-        "of Jesus": 1,
-        "in Jesus": 2
+        "jesus": 3,
+        "of jesus": 1,
+        "in jesus": 2
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9328,24 +9328,24 @@
     "glPhrase": "ٱلْمَسِيحِ يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 3,
-        "of Jesus": 1,
-        "in Jesus": 2
+        "jesus": 3,
+        "of jesus": 1,
+        "in jesus": 2
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       },
       "كَٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9402,24 +9402,24 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 3,
-        "of Jesus": 1,
-        "in Jesus": 2
+        "jesus": 3,
+        "of jesus": 1,
+        "in jesus": 2
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 2
+        "christ jesus": 2
       },
       "كَٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9462,24 +9462,24 @@
     "glPhrase": "يَسُوعَ",
     "history": {
       "بِيَسُوعَ": {
-        "Jesus": 2
+        "jesus": 2
       },
       "يَسُوعَ": {
-        "Jesus": 4,
-        "of Jesus": 1,
-        "in Jesus": 2
+        "jesus": 4,
+        "of jesus": 1,
+        "in jesus": 2
       },
       "ٱلْمَسِيحِ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "يَسُوعُ": {
-        "Jesus": 1
+        "jesus": 1
       },
       "ٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 2
+        "christ jesus": 2
       },
       "كَٱلْمَسِيحِ يَسُوعَ": {
-        "Christ Jesus": 1
+        "christ jesus": 1
       }
     },
     "expected": [
@@ -9522,7 +9522,7 @@
     "glPhrase": "يَهُودِيٌّ",
     "history": {
       "ٱلْيَهُودِ": {
-        "of the Jews": 1
+        "of the jews": 1
       }
     },
     "expected": [
@@ -9570,10 +9570,10 @@
     "glPhrase": "يَهُودِيًّا",
     "history": {
       "ٱلْيَهُودِ": {
-        "of the Jews": 1
+        "of the jews": 1
       },
       "يَهُودِيٌّ": {
-        "a Jew": 1
+        "a jew": 1
       }
     },
     "expected": [
@@ -9626,13 +9626,13 @@
     "glPhrase": "أَنْ يَتَهَوَّدُوا",
     "history": {
       "ٱلْيَهُودِ": {
-        "of the Jews": 1
+        "of the jews": 1
       },
       "يَهُودِيٌّ": {
-        "a Jew": 1
+        "a jew": 1
       },
       "يَهُودِيًّا": {
-        "a like Jew": 1
+        "a like jew": 1
       }
     },
     "expected": [
@@ -9690,16 +9690,16 @@
     "glPhrase": "يَهُودٌ",
     "history": {
       "ٱلْيَهُودِ": {
-        "of the Jews": 1
+        "of the jews": 1
       },
       "يَهُودِيٌّ": {
-        "a Jew": 1
+        "a jew": 1
       },
       "يَهُودِيًّا": {
-        "a like Jew": 1
+        "a like jew": 1
       },
       "أَنْ يَتَهَوَّدُوا": {
-        "to live like Jews": 1
+        "to live like jews": 1
       }
     },
     "expected": [
@@ -9747,19 +9747,19 @@
     "glPhrase": "يَهُودِيٌّ",
     "history": {
       "ٱلْيَهُودِ": {
-        "of the Jews": 1
+        "of the jews": 1
       },
       "يَهُودِيٌّ": {
-        "a Jew": 1
+        "a jew": 1
       },
       "يَهُودِيًّا": {
-        "a like Jew": 1
+        "a like jew": 1
       },
       "أَنْ يَتَهَوَّدُوا": {
-        "to live like Jews": 1
+        "to live like jews": 1
       },
       "يَهُودٌ": {
-        "are Jews": 1
+        "are jews": 1
       }
     },
     "expected": [
@@ -10205,7 +10205,7 @@
     "glPhrase": "غَيْرَ مَعْرُوفٍ",
     "history": {
       "وَأُعَرِّفُكُمْ": {
-        "I make known": 1
+        "i make known": 1
       }
     },
     "expected": [
@@ -10248,7 +10248,7 @@
     "glPhrase": "فَإِذْ عَلِمَ",
     "history": {
       "وَأُعَرِّفُكُمْ": {
-        "I make known": 1
+        "i make known": 1
       },
       "غَيْرَ مَعْرُوفٍ": {
         "unknown": 1
@@ -10299,7 +10299,7 @@
     "glPhrase": "إِذْ نَعْلَمُ",
     "history": {
       "وَأُعَرِّفُكُمْ": {
-        "I make known": 1
+        "i make known": 1
       },
       "غَيْرَ مَعْرُوفٍ": {
         "unknown": 1
@@ -10348,7 +10348,7 @@
     "glPhrase": "إِذْ كُنْتُمْ تَعْرِفُونَ",
     "history": {
       "وَأُعَرِّفُكُمْ": {
-        "I make known": 1
+        "i make known": 1
       },
       "غَيْرَ مَعْرُوفٍ": {
         "unknown": 1
@@ -10405,7 +10405,7 @@
     "glPhrase": "إِذْ عَرَفْتُمُ",
     "history": {
       "وَأُعَرِّفُكُمْ": {
-        "I make known": 1
+        "i make known": 1
       },
       "غَيْرَ مَعْرُوفٍ": {
         "unknown": 1
@@ -11919,7 +11919,7 @@
     "glPhrase": "كَمَا",
     "history": {
       "كَمَا": {
-        "As": 1
+        "as": 1
       }
     },
     "expected": [
@@ -11967,7 +11967,7 @@
     "glPhrase": "كَمَا",
     "history": {
       "كَمَا": {
-        "As": 1,
+        "as": 1,
         "just as": 1
       }
     },
@@ -12016,9 +12016,8 @@
     "glPhrase": "كَأَنَّهُ",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1
+        "as": 1,
+        "just as": 2
       }
     },
     "expected": [
@@ -12062,9 +12061,8 @@
     "occurrence": 2,
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1
+        "as": 1,
+        "just as": 2
       },
       "كَأَنَّهُ": {
         "as": 1
@@ -12110,9 +12108,8 @@
     "glPhrase": "كَمَا",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1
+        "as": 1,
+        "just as": 2
       },
       "كَأَنَّهُ": {
         "as": 2
@@ -12159,10 +12156,8 @@
     "occurrence": 2,
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1
+        "as": 2,
+        "just as": 2
       },
       "كَأَنَّهُ": {
         "as": 2
@@ -12213,10 +12208,8 @@
     "glPhrase": "كَمَلَاكٍ",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12264,10 +12257,8 @@
     "occurrence": 2,
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12317,10 +12308,8 @@
     "glPhrase": "كَمَا كَانَ",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12378,10 +12367,8 @@
     "glPhrase": "كَنَفْسِكَ",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12437,10 +12424,8 @@
     "glPhrase": "وَأَمْثَالُ",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12499,10 +12484,8 @@
     "glPhrase": "كَمَا أَيْضًا",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12569,10 +12552,8 @@
     "glPhrase": "حَسْبَمَا",
     "history": {
       "كَمَا": {
-        "As": 1,
-        "just as": 1,
-        "Just as": 1,
-        "as": 1,
+        "as": 2,
+        "just as": 2,
         "am as": 1
       },
       "كَأَنَّهُ": {
@@ -12637,7 +12618,7 @@
     "glPhrase": "صَاحِبَ",
     "history": {
       "رَبِّنَا": {
-        "Lord": 1
+        "lord": 1
       }
     },
     "expected": [
@@ -12680,7 +12661,7 @@
     "glPhrase": "ٱلرَّبِّ",
     "history": {
       "رَبِّنَا": {
-        "Lord": 1
+        "lord": 1
       },
       "صَاحِبَ": {
         "master": 1
@@ -12731,13 +12712,13 @@
     "glPhrase": "رَبِّنَا",
     "history": {
       "رَبِّنَا": {
-        "Lord": 1
+        "lord": 1
       },
       "صَاحِبَ": {
         "master": 1
       },
       "ٱلرَّبِّ": {
-        "the Lord": 1
+        "the lord": 1
       }
     },
     "expected": [
@@ -12875,7 +12856,7 @@
         "love": 1
       },
       "تُحِبُّ": {
-        "Love": 1
+        "love": 1
       }
     },
     "expected": [
@@ -13007,7 +12988,7 @@
     "glPhrase": "ٱلَّذِي كَانَ يَضْطَهِدُنَا",
     "history": {
       "كُنْتُ أَضْطَهِدُ": {
-        "I was persecuting": 1
+        "i was persecuting": 1
       }
     },
     "expected": [
@@ -13050,7 +13031,7 @@
     "glPhrase": "يَضْطَهِدُ",
     "history": {
       "كُنْتُ أَضْطَهِدُ": {
-        "I was persecuting": 1
+        "i was persecuting": 1
       },
       "ٱلَّذِي كَانَ يَضْطَهِدُنَا": {
         "persecuting": 1
@@ -13101,7 +13082,7 @@
     "glPhrase": "أُضْطَهَدُ",
     "history": {
       "كُنْتُ أَضْطَهِدُ": {
-        "I was persecuting": 1
+        "i was persecuting": 1
       },
       "ٱلَّذِي كَانَ يَضْطَهِدُنَا": {
         "persecuting": 1
@@ -13165,7 +13146,7 @@
     "glPhrase": "يُضْطَهَدُوا",
     "history": {
       "كُنْتُ أَضْطَهِدُ": {
-        "I was persecuting": 1
+        "i was persecuting": 1
       },
       "ٱلَّذِي كَانَ يَضْطَهِدُنَا": {
         "persecuting": 1
@@ -13174,7 +13155,7 @@
         "was persecuting": 1
       },
       "أُضْطَهَدُ": {
-        "am I being persecuted": 1
+        "am i being persecuted": 1
       }
     },
     "expected": [
@@ -13232,7 +13213,7 @@
     "glPhrase": "بُطْرُسُ",
     "history": {
       "بِبُطْرُسَ": {
-        "Cephas": 1
+        "cephas": 1
       }
     },
     "expected": [
@@ -13275,10 +13256,10 @@
     "glPhrase": "فِي بُطْرُسَ",
     "history": {
       "بِبُطْرُسَ": {
-        "Cephas": 1
+        "cephas": 1
       },
       "بُطْرُسُ": {
-        "Peter": 1
+        "peter": 1
       }
     },
     "expected": [
@@ -13326,13 +13307,13 @@
     "glPhrase": "وَصَفَا",
     "history": {
       "بِبُطْرُسَ": {
-        "Cephas": 1
+        "cephas": 1
       },
       "بُطْرُسُ": {
-        "Peter": 1
+        "peter": 1
       },
       "فِي بُطْرُسَ": {
-        "in Peter": 1
+        "in peter": 1
       }
     },
     "expected": [
@@ -13375,16 +13356,16 @@
     "glPhrase": "بُطْرُسُ",
     "history": {
       "بِبُطْرُسَ": {
-        "Cephas": 1
+        "cephas": 1
       },
       "بُطْرُسُ": {
-        "Peter": 1
+        "peter": 1
       },
       "فِي بُطْرُسَ": {
-        "in Peter": 1
+        "in peter": 1
       },
       "وَصَفَا": {
-        "Cephas": 1
+        "cephas": 1
       }
     },
     "expected": [
@@ -14190,7 +14171,7 @@
         "does accept": 1
       },
       "أَخَذْتُمُ": {
-        "Did you receive": 1
+        "did you receive": 1
       }
     },
     "expected": [
@@ -14252,7 +14233,7 @@
         "does accept": 1
       },
       "أَخَذْتُمُ": {
-        "Did you receive": 1
+        "did you receive": 1
       },
       "لِنَنَالَ": {
         "we might receive": 1
@@ -14317,7 +14298,7 @@
         "does accept": 1
       },
       "أَخَذْتُمُ": {
-        "Did you receive": 1
+        "did you receive": 1
       },
       "لِنَنَالَ": {
         "we might receive": 2
@@ -14368,7 +14349,7 @@
     "glPhrase": "يُبْطِلُ",
     "history": {
       "أُبْطِلُ": {
-        "I do set aside": 1
+        "i do set aside": 1
       }
     },
     "expected": [
@@ -14416,7 +14397,7 @@
     "glPhrase": "كَرِهْتُمُوهَا",
     "history": {
       "أُبْطِلُ": {
-        "I do set aside": 1
+        "i do set aside": 1
       },
       "يُبْطِلُ": {
         "sets aside": 1
@@ -15358,7 +15339,7 @@
     "glPhrase": "أَبْنَاءٌ",
     "history": {
       "أَبْنَاءُ ٱللهِ": {
-        "sons of God": 1
+        "sons of god": 1
       }
     },
     "expected": [
@@ -15401,7 +15382,7 @@
     "glPhrase": "ٱبْنًا",
     "history": {
       "أَبْنَاءُ ٱللهِ": {
-        "sons of God": 1
+        "sons of god": 1
       },
       "أَبْنَاءٌ": {
         "sons": 1
@@ -15453,7 +15434,7 @@
     "occurrence": 2,
     "history": {
       "أَبْنَاءُ ٱللهِ": {
-        "sons of God": 1
+        "sons of god": 1
       },
       "أَبْنَاءٌ": {
         "sons": 1
@@ -16193,7 +16174,7 @@
         "zealous": 1
       },
       "يَغَارُونَ": {
-        "They are zealous": 1
+        "they are zealous": 1
       }
     },
     "expected": [
@@ -16254,7 +16235,7 @@
         "zealous": 1
       },
       "يَغَارُونَ": {
-        "They are zealous": 1
+        "they are zealous": 1
       },
       "تَغَارُوا": {
         "you would be zealous": 1

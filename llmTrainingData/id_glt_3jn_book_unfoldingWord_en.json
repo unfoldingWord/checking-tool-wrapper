@@ -62,10 +62,8 @@
     "glPhrase": "Beloved",
     "history": {
       "beloved": {
-        "terkasih": 1
-      },
-      "Beloved": {
-        "Saudaraku yang terkasih": 1
+        "terkasih": 1,
+        "saudaraku yang terkasih": 1
       }
     },
     "expected": [
@@ -118,10 +116,8 @@
     "glPhrase": "Beloved",
     "history": {
       "beloved": {
-        "terkasih": 1
-      },
-      "Beloved": {
-        "Saudaraku yang terkasih": 2
+        "terkasih": 1,
+        "saudaraku yang terkasih": 2
       }
     },
     "expected": [
@@ -386,8 +382,8 @@
     "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Allah": 1
+      "god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -438,8 +434,8 @@
     "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Allah": 2
+      "god": {
+        "allah": 2
       }
     },
     "expected": [

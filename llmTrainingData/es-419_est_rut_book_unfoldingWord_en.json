@@ -61,8 +61,8 @@
     "verse": "Y el nombre del hombre era Elimelec y el nombre de su esposa era Noemí y los nombres de sus dos hijos eran Mahlón y Quelión, efrateos de Belén de Judá. Entonces ellos llegaron a la región de Moab y vivieron allí. \n\\p",
     "glPhrase": "from Bethlehem of",
     "history": {
-      "from Bethlehem of": {
-        "de Belén": 1
+      "from bethlehem of": {
+        "de belén": 1
       }
     },
     "expected": [
@@ -118,8 +118,8 @@
     "verse": "Así que las dos viajaron hasta que llegaron a Belén. Y sucedió que, tan pronto como llegaron a Belén, el pueblo entero estaba muy conmocionado por causa de ellas. Y ellas dijeron: \"¿Es esta Noemí?\" \n\\p",
     "glPhrase": "Bethlehem",
     "history": {
-      "from Bethlehem of": {
-        "de Belén": 2
+      "from bethlehem of": {
+        "de belén": 2
       }
     },
     "expected": [
@@ -175,11 +175,11 @@
     "verse": "Así que Noemí regresó con Rut la Moabita, su nuera, quien regresó con ella desde los campos de Moab. Y ellas llegaron a Belén al inicio de la cosecha de cebada.",
     "glPhrase": "Bethlehem",
     "history": {
-      "from Bethlehem of": {
-        "de Belén": 2
+      "from bethlehem of": {
+        "de belén": 2
       },
-      "Bethlehem": {
-        "a Belén": 1
+      "bethlehem": {
+        "a belén": 1
       }
     },
     "expected": [
@@ -235,11 +235,11 @@
     "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
     "glPhrase": "from Bethlehem",
     "history": {
-      "from Bethlehem of": {
-        "de Belén": 2
+      "from bethlehem of": {
+        "de belén": 2
       },
-      "Bethlehem": {
-        "a Belén": 2
+      "bethlehem": {
+        "a belén": 2
       }
     },
     "expected": [
@@ -295,14 +295,14 @@
     "verse": "Y toda la gente que estaba en la puerta y los ancianos dijieron: \"Somos testigos. ¡Que Jehová haga a esta mujer quien está entrando a tu casa como a Raquel y a Lea, las dos que construyeron la casa de Israel, y alcanza honor en Efrata y sé renombrado en Belén!",
     "glPhrase": "in Bethlehem",
     "history": {
-      "from Bethlehem of": {
-        "de Belén": 2
+      "from bethlehem of": {
+        "de belén": 2
       },
-      "Bethlehem": {
-        "a Belén": 2
+      "bethlehem": {
+        "a belén": 2
       },
-      "from Bethlehem": {
-        "de Belén": 1
+      "from bethlehem": {
+        "de belén": 1
       }
     },
     "expected": [
@@ -358,8 +358,8 @@
     "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
     "glPhrase": "Boaz",
     "history": {
-      "belonging to Boaz": {
-        "perteneciente a Booz": 1
+      "belonging to boaz": {
+        "perteneciente a booz": 1
       }
     },
     "expected": [
@@ -401,11 +401,11 @@
     "verse": "Entonces, a la hora de la comida, Booz le dijo a ella: \"Ven aquí, y come del pan, y sumerge tu pedazo en el vinagre\". Entonces ella se sentó al lado de los segadores, y él le ofreció grano tostado. Y ella comió, y estuvo satisfecha y le quedaron sobras.",
     "glPhrase": "Boaz",
     "history": {
-      "belonging to Boaz": {
-        "perteneciente a Booz": 1
+      "belonging to boaz": {
+        "perteneciente a booz": 1
       },
-      "Boaz": {
-        "Booz": 1
+      "boaz": {
+        "booz": 1
       }
     },
     "expected": [
@@ -447,11 +447,11 @@
     "verse": "¿Ahora, no es Booz nuestro pariente, con cuyas jóvenes trabajadoras tú has estado? Mira, él estará aventando la cebada en el patio de trillar esta noche.",
     "glPhrase": "Boaz",
     "history": {
-      "belonging to Boaz": {
-        "perteneciente a Booz": 1
+      "belonging to boaz": {
+        "perteneciente a booz": 1
       },
-      "Boaz": {
-        "Booz": 2
+      "boaz": {
+        "booz": 2
       }
     },
     "expected": [
@@ -498,12 +498,12 @@
     "verse": "Ahora Booz había subido a la puerta y se sentó ahí. Y he aquí, que el pariente redentor estaba pasando por ahí, aquel de quien Booz había hablado anteriormente. Y él dijo: \"Desvíate y siéntate aquí, fulano\". Así que se desvió y se sentó.",
     "glPhrase": "Now Boaz",
     "history": {
-      "belonging to Boaz": {
-        "perteneciente a Booz": 1
+      "belonging to boaz": {
+        "perteneciente a booz": 1
       },
-      "Boaz": {
-        "Booz": 2,
-        "es Booz": 1
+      "boaz": {
+        "booz": 2,
+        "es booz": 1
       }
     },
     "expected": [
@@ -550,15 +550,15 @@
     "verse": "Así que el pariente redentor dijo a Booz: \"Cómpralo para ti mismo\", y se quitó su sandalia. \n\\p",
     "glPhrase": "to Boaz",
     "history": {
-      "belonging to Boaz": {
-        "perteneciente a Booz": 1
+      "belonging to boaz": {
+        "perteneciente a booz": 1
       },
-      "Boaz": {
-        "Booz": 2,
-        "es Booz": 1
+      "boaz": {
+        "booz": 2,
+        "es booz": 1
       },
-      "Now Boaz": {
-        "Ahora Booz": 1
+      "now boaz": {
+        "ahora booz": 1
       }
     },
     "expected": [
@@ -605,18 +605,18 @@
     "verse": "Y Salmón engendró a Booz, y Booz engendró a Obed;",
     "glPhrase": "and Boaz",
     "history": {
-      "belonging to Boaz": {
-        "perteneciente a Booz": 1
+      "belonging to boaz": {
+        "perteneciente a booz": 1
       },
-      "Boaz": {
-        "Booz": 2,
-        "es Booz": 1
+      "boaz": {
+        "booz": 2,
+        "es booz": 1
       },
-      "Now Boaz": {
-        "Ahora Booz": 1
+      "now boaz": {
+        "ahora booz": 1
       },
-      "to Boaz": {
-        "a Booz": 1
+      "to boaz": {
+        "a booz": 1
       }
     },
     "expected": [
@@ -845,8 +845,8 @@
     "verse": "Pero Rut dijo: \"No me presiones a abandonarte o que deje de seguirte. Ya que iré al lugar donde tú vayas y me quedaré en el lugar donde tú te quedes, tu pueblo será mi pueblo y tu Dios será mi Dios.",
     "glPhrase": "is my God",
     "history": {
-      "and your God": {
-        "y tu Dios": 1
+      "and your god": {
+        "y tu dios": 1
       }
     },
     "expected": [
@@ -898,11 +898,11 @@
     "verse": "Que Jehová recompense tu trabajo, y que tus salarios completos vengan de Jehová, el Dios de Israel, bajo cuyas alas tú has venido por refugio\". \n\\p",
     "glPhrase": "the God of",
     "history": {
-      "and your God": {
-        "y tu Dios": 1
+      "and your god": {
+        "y tu dios": 1
       },
-      "is my God": {
-        "será mi Dios": 1
+      "is my god": {
+        "será mi dios": 1
       }
     },
     "expected": [
@@ -954,8 +954,8 @@
     "verse": "Entonces Noemí, su suegra, le dijo: \"Hija mía, ¿No debería yo buscar un lugar de descanso para ti, que sea bueno para ti?",
     "glPhrase": "will be good",
     "history": {
-      "It is good": {
-        "Es bueno": 1
+      "it is good": {
+        "es bueno": 1
       }
     },
     "expected": [
@@ -1002,8 +1002,8 @@
     "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
     "glPhrase": "good",
     "history": {
-      "It is good": {
-        "Es bueno": 1
+      "it is good": {
+        "es bueno": 1
       },
       "will be good": {
         "sea bueno": 1
@@ -1048,8 +1048,8 @@
     "verse": "Ahora, él será para ti un restaurador de vida y un sustentador de tu vejez, porque tu nuera que te ama, ella que es mejor para ti que siete hijos, lo ha parido\".\n\\p",
     "glPhrase": "is better",
     "history": {
-      "It is good": {
-        "Es bueno": 1
+      "it is good": {
+        "es bueno": 1
       },
       "will be good": {
         "sea bueno": 1
@@ -1664,8 +1664,8 @@
     "verse": "Y el nombre del hombre era Elimelec y el nombre de su esposa era Noemí y los nombres de sus dos hijos eran Mahlón y Quelión, efrateos de Belén de Judá. Entonces ellos llegaron a la región de Moab y vivieron allí. \n\\p",
     "glPhrase": "Judah",
     "history": {
-      "Judah": {
-        "de Judá": 1
+      "judah": {
+        "de judá": 1
       }
     },
     "expected": [
@@ -1712,8 +1712,8 @@
     "verse": "Así que salió del lugar donde había estado  viviendo, y sus dos nueras estaban con ella. Y viajaron por el camino para volver a la tierra de Judá. \n\\p",
     "glPhrase": "Judah",
     "history": {
-      "Judah": {
-        "de Judá": 2
+      "judah": {
+        "de judá": 2
       }
     },
     "expected": [
@@ -1861,8 +1861,8 @@
     "verse": "Y el nombre del hombre era Elimelec y el nombre de su esposa era Noemí y los nombres de sus dos hijos eran Mahlón y Quelión, efrateos de Belén de Judá. Entonces ellos llegaron a la región de Moab y vivieron allí. \n\\p",
     "glPhrase": "Moab",
     "history": {
-      "Moab": {
-        "de Moab": 1
+      "moab": {
+        "de moab": 1
       }
     },
     "expected": [
@@ -1904,9 +1904,9 @@
     "verse": "Y ellos tomaron esposas moabitas para sí mismos; el nombre de la primera era Orfa y el nombre de la segunda era Rut. Y vivieron allí por alrededor de diez años.",
     "glPhrase": "from the women of Moab",
     "history": {
-      "Moab": {
-        "de Moab": 1,
-        "Moab": 1
+      "moab": {
+        "de moab": 1,
+        "moab": 1
       }
     },
     "expected": [
@@ -1948,11 +1948,11 @@
     "verse": "Entonces ella y sus nueras se levantaron para volver de los campos de Moab, ya que había oído en un campo de Moab que Jehová había atendido a su pueblo al darles pan.",
     "glPhrase": "Moab",
     "history": {
-      "Moab": {
-        "de Moab": 1,
-        "Moab": 1
+      "moab": {
+        "de moab": 1,
+        "moab": 1
       },
-      "from the women of Moab": {
+      "from the women of moab": {
         "moabitas": 1
       }
     },
@@ -2000,11 +2000,11 @@
     "verse": "Entonces ella y sus nueras se levantaron para volver de los campos de Moab, ya que había oído en un campo de Moab que Jehová había atendido a su pueblo al darles pan.",
     "glPhrase": "Moab",
     "history": {
-      "Moab": {
-        "de Moab": 2,
-        "Moab": 1
+      "moab": {
+        "de moab": 2,
+        "moab": 1
       },
-      "from the women of Moab": {
+      "from the women of moab": {
         "moabitas": 1
       }
     },
@@ -2052,11 +2052,11 @@
     "verse": "Así que Noemí regresó con Rut la Moabita, su nuera, quien regresó con ella desde los campos de Moab. Y ellas llegaron a Belén al inicio de la cosecha de cebada.",
     "glPhrase": "Moab",
     "history": {
-      "Moab": {
-        "de Moab": 3,
-        "Moab": 1
+      "moab": {
+        "de moab": 3,
+        "moab": 1
       },
-      "from the women of Moab": {
+      "from the women of moab": {
         "moabitas": 1
       }
     },
@@ -2104,11 +2104,11 @@
     "verse": "Entonces el sirviente, quien fue puesto sobre los segadores respondió y dijo: \"Ella es una joven moabita, la que regresó con Noemí de la tierra de Moab.",
     "glPhrase": "Moab",
     "history": {
-      "Moab": {
-        "de Moab": 4,
-        "Moab": 1
+      "moab": {
+        "de moab": 4,
+        "moab": 1
       },
-      "from the women of Moab": {
+      "from the women of moab": {
         "moabitas": 1
       }
     },
@@ -2151,11 +2151,11 @@
     "verse": "Entonces él dijo al pariente redentor: \"Noemí, la que ha regresado del campo de Moab, está vendiendo la porción del campo que pertenecía a nuestro hermano Elimelec.",
     "glPhrase": "Moab",
     "history": {
-      "Moab": {
-        "de Moab": 4,
-        "Moab": 2
+      "moab": {
+        "de moab": 4,
+        "moab": 2
       },
-      "from the women of Moab": {
+      "from the women of moab": {
         "moabitas": 1
       }
     },
@@ -2622,7 +2622,7 @@
       "to redeem it": {
         "para redimirla": 1
       },
-      "I will redeem it": {
+      "i will redeem it": {
         "la redimiré": 1
       }
     },
@@ -2684,7 +2684,7 @@
         "para redimirla": 1,
         "redimirlo": 1
       },
-      "I will redeem it": {
+      "i will redeem it": {
         "la redimiré": 1
       }
     },
@@ -2727,8 +2727,8 @@
     "verse": "Entonces alzaron sus voces y lloraron de nuevo. Luego Orfa besó a su suegra, pero Rut se aferró a ella. \n\\p",
     "glPhrase": "but Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1
+      "ruth": {
+        "era rut": 1
       }
     },
     "expected": [
@@ -2775,11 +2775,11 @@
     "verse": "Pero Rut dijo: \"No me presiones a abandonarte o que deje de seguirte. Ya que iré al lugar donde tú vayas y me quedaré en el lugar donde tú te quedes, tu pueblo será mi pueblo y tu Dios será mi Dios.",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1
+      "ruth": {
+        "era rut": 1
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       }
     },
     "expected": [
@@ -2821,12 +2821,12 @@
     "verse": "Así que Noemí regresó con Rut la Moabita, su nuera, quien regresó con ella desde los campos de Moab. Y ellas llegaron a Belén al inicio de la cosecha de cebada.",
     "glPhrase": "with Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 1
+      "ruth": {
+        "era rut": 1,
+        "rut": 1
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       }
     },
     "expected": [
@@ -2873,15 +2873,15 @@
     "verse": "Y Rut, la moabita, le dijo a Noemí: \"Te ruego, permíteme ir al campo y recoger espigas de grano después de aquel en cuyos ojos encuentre gracia\".\n\\p\nY dijo a ella: \"Ve, hija mía\". \n\\p",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 1
+      "ruth": {
+        "era rut": 1,
+        "rut": 1
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       },
-      "with Ruth": {
-        "con Rut": 1
+      "with ruth": {
+        "con rut": 1
       }
     },
     "expected": [
@@ -2923,15 +2923,15 @@
     "verse": "Entonces Booz le dijo a Rut: \"¿No me escucharás, hija mía? No vayas a espigar en otro campo y ni siquiera te alejes de aquí. Más bien quédate cerca de mis sirvientas jóvenes.",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 2
+      "ruth": {
+        "era rut": 1,
+        "rut": 2
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       },
-      "with Ruth": {
-        "con Rut": 1
+      "with ruth": {
+        "con rut": 1
       }
     },
     "expected": [
@@ -2973,15 +2973,15 @@
     "verse": "Entonces Rut la Moabita dijo: \"Además, él me dijo: 'Deberías permanecer cerca de los sirvientes jóvenes que me pertenecen hasta el momento cuando ellos hayan terminado toda la cosecha que me pertenece'\". \n\\p",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 3
+      "ruth": {
+        "era rut": 1,
+        "rut": 3
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       },
-      "with Ruth": {
-        "con Rut": 1
+      "with ruth": {
+        "con rut": 1
       }
     },
     "expected": [
@@ -3023,15 +3023,15 @@
     "verse": "Entonces Noemí le dijo a Rut, su nuera: \"Es bueno, hija mía, que tú salgas con sus sirvientas jóvenes, para que no te maltraten en algún otro campo\". \n\\p",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 4
+      "ruth": {
+        "era rut": 1,
+        "rut": 4
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       },
-      "with Ruth": {
-        "con Rut": 1
+      "with ruth": {
+        "con rut": 1
       }
     },
     "expected": [
@@ -3073,15 +3073,15 @@
     "verse": "Y él dijo: \"¿Quién eres tú?\"\n\\p\nEntonces ella dijo: \"Soy Rut, tu sierva. Y tú puedes extender el borde de tu manto sobre tu sierva, ya que tú eres un pariente redentor\". \n\\p",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 5
+      "ruth": {
+        "era rut": 1,
+        "rut": 5
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       },
-      "with Ruth": {
-        "con Rut": 1
+      "with ruth": {
+        "con rut": 1
       }
     },
     "expected": [
@@ -3123,15 +3123,15 @@
     "verse": "Entonces Booz dijo: \"En el día que compres el campo de la mano de Noemí, también adquieres a Rut, la moabita, la esposa del hombre muerto, para levantar el nombre del muerto sobre su herencia\". \n\\p",
     "glPhrase": "Ruth",
     "history": {
-      "Ruth": {
-        "era Rut": 1,
-        "Rut": 6
+      "ruth": {
+        "era rut": 1,
+        "rut": 6
       },
-      "but Ruth": {
-        "pero Rut": 1
+      "but ruth": {
+        "pero rut": 1
       },
-      "with Ruth": {
-        "con Rut": 1
+      "with ruth": {
+        "con rut": 1
       }
     },
     "expected": [
@@ -3533,8 +3533,8 @@
     "verse": "Entonces, Noemí dijo a sus dos nueras: \"Vayan, regresen, cada mujer a la casa de su madre. Que Jehová actúe con ustedes con misericordia, así como ustedes han actuado con los muertos y conmigo.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 1
+      "yahweh": {
+        "jehová": 1
       }
     },
     "expected": [
@@ -3576,8 +3576,8 @@
     "verse": "Que Jehová les conceda que encuentren descanso, cada mujer en la casa de su esposo\". Luego las besó, y alzaron sus voces y lloraron. \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 2
+      "yahweh": {
+        "jehová": 2
       }
     },
     "expected": [
@@ -3619,8 +3619,8 @@
     "verse": "¿Esperarían entonces hasta el momento cuando ellos hayan crecido? ¿Por esta razón se abstendrían de pertenecer a un esposo? ¡No, mis hijas! Pues es excesivamente amargo para mí, más que para ustedes, porque la mano de Jehová ha salido contra mí\".\n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 3
+      "yahweh": {
+        "jehová": 3
       }
     },
     "expected": [
@@ -3662,8 +3662,8 @@
     "verse": "En donde tú mueras, yo moriré, y allí seré enterrada. Que Jehová haga así conmigo, y aún más, que solo la muerte separe entre tu y yo. \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 4
+      "yahweh": {
+        "jehová": 4
       }
     },
     "expected": [
@@ -3705,8 +3705,8 @@
     "verse": "Yo salí llena, pero Jehová me ha regresado vacía. ¿Por qué me llaman Noemí? Pues Jehová ha testificado contra mí, y el Todopoderoso me ha hecho mal\" \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 5
+      "yahweh": {
+        "jehová": 5
       }
     },
     "expected": [
@@ -3748,8 +3748,8 @@
     "verse": "Yo salí llena, pero Jehová me ha regresado vacía. ¿Por qué me llaman Noemí? Pues Jehová ha testificado contra mí, y el Todopoderoso me ha hecho mal\" \n\\p",
     "glPhrase": "But as for Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 6
+      "yahweh": {
+        "jehová": 6
       }
     },
     "expected": [
@@ -3796,11 +3796,11 @@
     "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 6
+      "yahweh": {
+        "jehová": 6
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       }
     },
     "expected": [
@@ -3842,11 +3842,11 @@
     "verse": "¡Y he aquí, Booz viniendo de Belén! Y dijo a los segadores: \"Jehová esté con ustedes\". Y le\n\\p\ndijeron: \"Jehová te bendiga\". \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 7
+      "yahweh": {
+        "jehová": 7
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       }
     },
     "expected": [
@@ -3888,11 +3888,11 @@
     "verse": "Que Jehová recompense tu trabajo, y que tus salarios completos vengan de Jehová, el Dios de Israel, bajo cuyas alas tú has venido por refugio\". \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 8
+      "yahweh": {
+        "jehová": 8
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       }
     },
     "expected": [
@@ -3934,11 +3934,11 @@
     "verse": "Que Jehová recompense tu trabajo, y que tus salarios completos vengan de Jehová, el Dios de Israel, bajo cuyas alas tú has venido por refugio\". \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 9
+      "yahweh": {
+        "jehová": 9
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       }
     },
     "expected": [
@@ -3980,11 +3980,11 @@
     "verse": "Entonces Noemí le dijo a su nuera: \"Que él sea bendecido por Jehová, quien no ha olvidado su fidelidad tanto con los vivos como con los muertos\". Noemí también le dijo: \"Ese hombre está cercanamente relacionado con nosotras. Él es uno de nuestros parientes redentores\". \n\\p",
     "glPhrase": "by Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 10
+      "yahweh": {
+        "jehová": 10
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       }
     },
     "expected": [
@@ -4031,14 +4031,14 @@
     "verse": "Entonces él dijo: \"¡Que seas bendecida por Jehová, hija mía! Has hecho tu fidelidad  mejor al final que al principio al no ir tras los hombres jóvenes, ni pobres ni ricos.",
     "glPhrase": "by Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 10
+      "yahweh": {
+        "jehová": 10
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       },
-      "by Yahweh": {
-        "por Jehová": 1
+      "by yahweh": {
+        "por jehová": 1
       }
     },
     "expected": [
@@ -4085,14 +4085,14 @@
     "verse": "Quédate aquí esta noche. Y cuando sea de mañana, si él te redimiere, bien, que te redima. Pero si él no te quiere redimir, entonces yo mismo te redimiré, tal como Jehová vive. Acuéstate hasta la mañana\".\n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 10
+      "yahweh": {
+        "jehová": 10
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       },
-      "by Yahweh": {
-        "por Jehová": 2
+      "by yahweh": {
+        "por jehová": 2
       }
     },
     "expected": [
@@ -4134,14 +4134,14 @@
     "verse": "Y toda la gente que estaba en la puerta y los ancianos dijieron: \"Somos testigos. ¡Que Jehová haga a esta mujer quien está entrando a tu casa como a Raquel y a Lea, las dos que construyeron la casa de Israel, y alcanza honor en Efrata y sé renombrado en Belén!",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 11
+      "yahweh": {
+        "jehová": 11
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       },
-      "by Yahweh": {
-        "por Jehová": 2
+      "by yahweh": {
+        "por jehová": 2
       }
     },
     "expected": [
@@ -4183,14 +4183,14 @@
     "verse": "Y que tu casa sea como la casa de Fares, a quien Tamar dió a luz para Judá, de la descendencia que Jehová te da de esta mujer joven\". \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 12
+      "yahweh": {
+        "jehová": 12
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       },
-      "by Yahweh": {
-        "por Jehová": 2
+      "by yahweh": {
+        "por jehová": 2
       }
     },
     "expected": [
@@ -4232,14 +4232,14 @@
     "verse": "Entonces Booz tomó a Rut, y ella se convirtió en su esposa y él se llegó a ella. Entonces Jehová le dio a ella concepción y parió un hijo. \n\\p",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 13
+      "yahweh": {
+        "jehová": 13
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       },
-      "by Yahweh": {
-        "por Jehová": 2
+      "by yahweh": {
+        "por jehová": 2
       }
     },
     "expected": [
@@ -4281,14 +4281,14 @@
     "verse": "Entonces, las mujeres dijeron a Noemí: \"Bendito sea Jehová, que no te ha dejado hoy sin un pariente redentor. ¡Que su nombre sea renombrado en Israel!",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 14
+      "yahweh": {
+        "jehová": 14
       },
-      "But as for Yahweh": {
-        "Pues Jehová": 1
+      "but as for yahweh": {
+        "pues jehová": 1
       },
-      "by Yahweh": {
-        "por Jehová": 2
+      "by yahweh": {
+        "por jehová": 2
       }
     },
     "expected": [

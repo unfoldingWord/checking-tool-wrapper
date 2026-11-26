@@ -8,8 +8,8 @@
     "verse": "Kepada Titus, anak yang sejati di dalam iman bersama. Anugerah dan damai sejahtera dari Allah Bapa dan Kristus Yesus Juruselamat kita. \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Kristus": 1
+      "christ": {
+        "kristus": 1
       }
     },
     "expected": [
@@ -51,8 +51,8 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Kristus": 2
+      "christ": {
+        "kristus": 2
       }
     },
     "expected": [
@@ -94,8 +94,8 @@
     "verse": "yang mencurahkan dengan limpah kepada kita melalui Juruselamat kita Yesus Kristus, \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Kristus": 3
+      "christ": {
+        "kristus": 3
       }
     },
     "expected": [
@@ -425,8 +425,8 @@
     "glPhrase": "of God",
     "occurrence": 2,
     "history": {
-      "of God": {
-        "Allah": 1
+      "of god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -468,8 +468,8 @@
     "verse": "dengan pengharapan akan hidup kekal yang Allah, yang tidak berdusta, telah menjanjikan sebelum segala jaman. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "Allah": 2
+      "of god": {
+        "allah": 2
       }
     },
     "expected": [
@@ -511,11 +511,11 @@
     "verse": "Namun pada saat yang tepat, Ia telah menyatakan firman-Nya dengan pemberitaan bahwa aku telah dipercaya oleh perintah Allah Juruselamat kita. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "Allah": 2
+      "of god": {
+        "allah": 2
       },
-      "God": {
-        "Allah": 1
+      "god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -557,11 +557,11 @@
     "verse": "Mereka mengaku mengenal Allah, tetapi mereka menyangkal dengan perbuatan-perbuatan dengan kenajisan, dan ketidak-taatan, dan kesia-siaan pada setiap perbuatan baik.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "Allah": 2
+      "of god": {
+        "allah": 2
       },
-      "God": {
-        "Allah": 2
+      "god": {
+        "allah": 2
       }
     },
     "expected": [
@@ -603,11 +603,11 @@
     "verse": "tidak mencuri, tetapi sebaliknya menunjukkan kesetiaan yang baik dan penuh, sehingga dalam segala hal mereka dapat memuji pengajaran tentang Allah Juruselamat kita. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "Allah": 2
+      "of god": {
+        "allah": 2
       },
-      "God": {
-        "Allah": 3
+      "god": {
+        "allah": 3
       }
     },
     "expected": [
@@ -649,11 +649,11 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "Allah": 2
+      "of god": {
+        "allah": 2
       },
-      "God": {
-        "Allah": 4
+      "god": {
+        "allah": 4
       }
     },
     "expected": [
@@ -695,11 +695,11 @@
     "verse": "Tetapi ketika kebaikan hati dan kasih kepada umat manusia dari Allah Juruselamat kita telah dinyatakan, \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "Allah": 3
+      "of god": {
+        "allah": 3
       },
-      "God": {
-        "Allah": 4
+      "god": {
+        "allah": 4
       }
     },
     "expected": [
@@ -741,11 +741,11 @@
     "verse": "Berita ini dapat dipercaya, dan tentang hal itu. Aku ingin engkau menegaskannya, supaya mereka yang percaya kepada Allah berhati-hati dalam melakukan perbuatan-perbuatan yang baik. Semua ini adalah baik dan berguna bagi manusia.\n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "Allah": 3
+      "of god": {
+        "allah": 3
       },
-      "God": {
-        "Allah": 5
+      "god": {
+        "allah": 5
       }
     },
     "expected": [
@@ -1350,8 +1350,8 @@
     "verse": "Kepada Titus, anak yang sejati di dalam iman bersama. Anugerah dan damai sejahtera dari Allah Bapa dan Kristus Yesus Juruselamat kita. \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "of Jesus": {
-        "Yesus": 1
+      "of jesus": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -1393,11 +1393,11 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "of Jesus": {
-        "Yesus": 1
+      "of jesus": {
+        "yesus": 1
       },
-      "Jesus": {
-        "Yesus": 1
+      "jesus": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -1439,11 +1439,11 @@
     "verse": "yang mencurahkan dengan limpah kepada kita melalui Juruselamat kita Yesus Kristus, \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "of Jesus": {
-        "Yesus": 1
+      "of jesus": {
+        "yesus": 1
       },
-      "Jesus": {
-        "Yesus": 2
+      "jesus": {
+        "yesus": 2
       }
     },
     "expected": [
@@ -1881,8 +1881,8 @@
     "verse": "melihat ke depan pengharapan yang memberkati dan penyataan kemuliaan Allah yang besar dan Juruselamat kita, Yesus Kristus.\n\\p",
     "glPhrase": "Savior",
     "history": {
-      "Savior": {
-        "Juruselamat": 1
+      "savior": {
+        "juruselamat": 1
       }
     },
     "expected": [
@@ -1924,8 +1924,8 @@
     "verse": "Tetapi ketika kebaikan hati dan kasih kepada umat manusia dari Allah Juruselamat kita telah dinyatakan, \n\\p",
     "glPhrase": "of Savior",
     "history": {
-      "Savior": {
-        "Juruselamat": 2
+      "savior": {
+        "juruselamat": 2
       }
     },
     "expected": [

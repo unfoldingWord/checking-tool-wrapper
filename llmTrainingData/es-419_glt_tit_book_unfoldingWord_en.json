@@ -654,8 +654,8 @@
     "glPhrase": "of God",
     "occurrence": 2,
     "history": {
-      "of God": {
-        "de Dios": 1
+      "of god": {
+        "de dios": 1
       }
     },
     "expected": [
@@ -702,8 +702,8 @@
     "verse": "sobre la esperanza de la vida eterna, la cual Dios, que no miente, prometió antes de los tiempos de los siglos,",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "de Dios": 2
+      "of god": {
+        "de dios": 2
       }
     },
     "expected": [
@@ -745,11 +745,11 @@
     "verse": "pero reveló en los tiempos apropiados su palabra por la predicación que me fue confiada conforme al mandato de Dios nuestro salvador,",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "de Dios": 2
+      "of god": {
+        "de dios": 2
       },
-      "God": {
-        "Dios": 1
+      "god": {
+        "dios": 1
       }
     },
     "expected": [
@@ -796,12 +796,12 @@
     "verse": "Porque es necesario que el obispo sea irreprensible, como administrador de Dios, no arrogante, no iracundo, no dado al vino, no belicoso, no codicioso de ganancias deshonestas,",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "de Dios": 2
+      "of god": {
+        "de dios": 2
       },
-      "God": {
-        "Dios": 1,
-        "de Dios": 1
+      "god": {
+        "dios": 1,
+        "de dios": 1
       }
     },
     "expected": [
@@ -848,12 +848,12 @@
     "verse": "Ellos profesan conocer a Dios, pero con sus acciones lo niegan, siendo tanto detestables y desobedientes como descalificados para toda buena obra.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "de Dios": 3
+      "of god": {
+        "de dios": 3
       },
-      "God": {
-        "Dios": 1,
-        "de Dios": 1
+      "god": {
+        "dios": 1,
+        "de dios": 1
       }
     },
     "expected": [
@@ -900,13 +900,13 @@
     "verse": "que no roben, sino que demuestren toda buena fe, para que adornen en todo la doctrina, la de Dios nuestro salvador.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "de Dios": 3
+      "of god": {
+        "de dios": 3
       },
-      "God": {
-        "Dios": 1,
-        "de Dios": 1,
-        "a Dios": 1
+      "god": {
+        "dios": 1,
+        "de dios": 1,
+        "a dios": 1
       }
     },
     "expected": [
@@ -953,13 +953,13 @@
     "verse": "Porque la gracia salvadora de Dios fue manifestada a todos los hombres,",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "de Dios": 3
+      "of god": {
+        "de dios": 3
       },
-      "God": {
-        "Dios": 1,
-        "de Dios": 2,
-        "a Dios": 1
+      "god": {
+        "dios": 1,
+        "de dios": 2,
+        "a dios": 1
       }
     },
     "expected": [
@@ -1015,13 +1015,13 @@
     "verse": "Pero, cuando fue manifestada la bondad y el amor por la humanidad, de parte de Dios nuestro salvador,",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "de Dios": 4
+      "of god": {
+        "de dios": 4
       },
-      "God": {
-        "Dios": 1,
-        "de Dios": 2,
-        "a Dios": 1
+      "god": {
+        "dios": 1,
+        "de dios": 2,
+        "a dios": 1
       }
     },
     "expected": [
@@ -1063,13 +1063,13 @@
     "verse": "Este mensaje es digno de confianza; también quiero que tú insistas acerca de estas cosas, para que los que han creído en Dios se preocupen en practicar buenas obras. Estas cosas son buenas y beneficiosas para los hombres.",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "de Dios": 4
+      "of god": {
+        "de dios": 4
       },
-      "God": {
-        "Dios": 2,
-        "de Dios": 2,
-        "a Dios": 1
+      "god": {
+        "dios": 2,
+        "de dios": 2,
+        "a dios": 1
       }
     },
     "expected": [
@@ -1658,8 +1658,8 @@
     "verse": "Porque la gracia salvadora de Dios fue manifestada a todos los hombres,",
     "glPhrase": "grace",
     "history": {
-      "Grace": {
-        "Gracia": 1
+      "grace": {
+        "gracia": 1
       }
     },
     "expected": [
@@ -1701,11 +1701,8 @@
     "verse": "Te saludan todos los que están conmigo. Saluda a los que nos aman en la fe. La gracia esté con todos ustedes.",
     "glPhrase": "Grace",
     "history": {
-      "Grace": {
-        "Gracia": 1
-      },
       "grace": {
-        "gracia": 1
+        "gracia": 2
       }
     },
     "expected": [
@@ -2492,7 +2489,7 @@
     "verse": "a Tito, verdadero hijo conforme a nuestra fe común. Gracia y paz de Dios Padre y de Cristo Jesús nuestro salvador.",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
+      "of savior": {
         "salvador": 1
       }
     },
@@ -2544,10 +2541,10 @@
     "verse": "mientras esperamos la esperanza bienaventurada y la manifestación de la gloria de nuestro gran Dios y salvador Jesucristo,",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
+      "of savior": {
         "salvador": 1
       },
-      "Savior": {
+      "savior": {
         "salvador": 1
       }
     },
@@ -2590,10 +2587,10 @@
     "verse": "Pero, cuando fue manifestada la bondad y el amor por la humanidad, de parte de Dios nuestro salvador,",
     "glPhrase": "of Savior",
     "history": {
-      "of Savior": {
+      "of savior": {
         "salvador": 1
       },
-      "Savior": {
+      "savior": {
         "salvador": 2
       }
     },
@@ -2660,11 +2657,11 @@
     "verse": "el cual derramó sobre nosotros ricamente por medio de Jesucristo nuestro Salvador,",
     "glPhrase": "Savior",
     "history": {
-      "of Savior": {
+      "of savior": {
         "salvador": 1,
         "de parte de salvador": 1
       },
-      "Savior": {
+      "savior": {
         "salvador": 2
       }
     },
@@ -2877,7 +2874,7 @@
         "sujetas": 1
       },
       "to be subject to": {
-        "Que se sometan": 1
+        "que se sometan": 1
       }
     },
     "expected": [

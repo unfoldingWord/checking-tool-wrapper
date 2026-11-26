@@ -107,8 +107,8 @@
     "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
     "glPhrase": "de Cristo",
     "history": {
-      "de Jesucristo": {
-        "của Chúa Cứu Thế": 1
+      "de jesucristo": {
+        "của chúa cứu thế": 1
       }
     },
     "expected": [
@@ -160,11 +160,11 @@
     "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "của Chúa Cứu Thế": 1
+      "de jesucristo": {
+        "của chúa cứu thế": 1
       },
-      "de Cristo": {
-        "Chúa Cứu Thế": 1
+      "de cristo": {
+        "chúa cứu thế": 1
       }
     },
     "expected": [
@@ -216,14 +216,14 @@
     "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "của Chúa Cứu Thế": 1
+      "de jesucristo": {
+        "của chúa cứu thế": 1
       },
-      "de Cristo": {
-        "Chúa Cứu Thế": 1
+      "de cristo": {
+        "chúa cứu thế": 1
       },
-      "Jesucristo": {
-        "Chúa Cứu Thế": 1
+      "jesucristo": {
+        "chúa cứu thế": 1
       }
     },
     "expected": [
@@ -876,8 +876,8 @@
     "glPhrase": "de Dios",
     "occurrence": 2,
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 1
+      "de dios": {
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -924,9 +924,9 @@
     "verse": "với hy vọng chắc chắn về sự sống đời đời mà Thiên Chúa, Đấng không nói dối, đã hứa từ trước mọi thời đại.",
     "glPhrase": "Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "de dios": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -973,12 +973,12 @@
     "verse": "Nhưng vào đúng thời điểm, Ngài đã mạc khải lời Ngài qua việc công bố sứ điệp mà ta đã được giao phó theo mệnh lệnh của Thiên Chúa, Cứu Chúa của chúng ta.",
     "glPhrase": "de Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "de dios": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "Dios": {
-        "Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1030,12 +1030,12 @@
     "verse": "Vì người chăn bầy bắt buộc phải không chỗ chê trách, như là người quản lý nhà của Thiên Chúa, không kiêu ngạo, không nhạy giận, không nghiện rượu, không gây gổ, và không tham lam,",
     "glPhrase": "de Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "de dios": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "Dios": {
-        "Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1087,12 +1087,12 @@
     "verse": "Họ tuyên bố mình biết Thiên Chúa, tuy nhiên, trong việc làm của họ, họ chối bỏ Ngài, trở nên đáng ghê tởm, không vâng lời, và không xứng với bất kỳ việc thiện lành nào.",
     "glPhrase": "a Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 1
+      "de dios": {
+        "của thiên chúa": 3,
+        "thiên chúa": 1
       },
-      "Dios": {
-        "Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1139,15 +1139,15 @@
     "verse": "không ăn cắp, mà thay vào đó phải chứng tỏ hoàn toàn đáng tín nhiệm, để trong mọi cách, họ có thể đem lại tiếng thơm cho việc dạy dỗ về Thiên Chúa, Cứu Chúa chúng ta.",
     "glPhrase": "de Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 1
+      "de dios": {
+        "của thiên chúa": 3,
+        "thiên chúa": 1
       },
-      "Dios": {
-        "Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1
       },
-      "a Dios": {
-        "Thiên Chúa": 1
+      "a dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1194,15 +1194,15 @@
     "verse": "Vì ân điển của Thiên Chúa để cứu rỗi mọi người đã được bày tỏ,",
     "glPhrase": "de Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 2
+      "de dios": {
+        "của thiên chúa": 3,
+        "thiên chúa": 2
       },
-      "Dios": {
-        "Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1
       },
-      "a Dios": {
-        "Thiên Chúa": 1
+      "a dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1263,15 +1263,15 @@
     "verse": "Nhưng khi sự tốt lành và lòng nhân ái của Thiên Chúa, Cứu Chúa chúng ta, được tỏ bày,",
     "glPhrase": "Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 4,
-        "Thiên Chúa": 2
+      "de dios": {
+        "của thiên chúa": 4,
+        "thiên chúa": 2
       },
-      "Dios": {
-        "Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1
       },
-      "a Dios": {
-        "Thiên Chúa": 1
+      "a dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1323,16 +1323,16 @@
     "verse": "Sứ điệp này là đáng tin cậy, và ta muốn con nhấn mạnh vào những điều ấy, sao cho những ai đã tin Thiên Chúa sẽ cẩn thận lưu ý để dấn thân vào việc thiện lành. Những việc đó là tốt lành và hữu ích cho nhiều người.",
     "glPhrase": "en Dios",
     "history": {
-      "de Dios": {
-        "của Thiên Chúa": 4,
-        "Thiên Chúa": 2
+      "de dios": {
+        "của thiên chúa": 4,
+        "thiên chúa": 2
       },
-      "Dios": {
-        "Thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "dios": {
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       },
-      "a Dios": {
-        "Thiên Chúa": 1
+      "a dios": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -1380,7 +1380,7 @@
     "glPhrase": "a la impiedad",
     "history": {
       "la piedad": {
-        "lòng tin kính Chúa": 1
+        "lòng tin kính chúa": 1
       }
     },
     "expected": [
@@ -1442,7 +1442,7 @@
     "glPhrase": "piadosa",
     "history": {
       "la piedad": {
-        "lòng tin kính Chúa": 1
+        "lòng tin kính chúa": 1
       },
       "a la impiedad": {
         "sự bất kính": 1
@@ -1968,7 +1968,7 @@
     "verse": "Vì ân điển của Thiên Chúa để cứu rỗi mọi người đã được bày tỏ,",
     "glPhrase": "gracia",
     "history": {
-      "Gracia": {
+      "gracia": {
         "ân điển": 1
       }
     },
@@ -2016,11 +2016,8 @@
     "verse": "Tất cả những người ở với ta gửi lời chào thăm con. Hãy chào thăm những người yêu mến chúng ta trong đức tin. Nguyện ân điển ở với tất cả anh chị em.",
     "glPhrase": "La gracia",
     "history": {
-      "Gracia": {
-        "ân điển": 1
-      },
       "gracia": {
-        "ân điển": 1
+        "ân điển": 2
       }
     },
     "expected": [
@@ -2195,8 +2192,8 @@
     "verse": "Gửi cho Tít, con thật của ta trong đức tin chung. Nguyện ân điển và sự bình an từ Thiên Chúa, là Cha, và Chúa Cứu Thế Giê-xu, Cứu Chúa của chúng ta, đến trên con.\n\\p",
     "glPhrase": "Jesús",
     "history": {
-      "de Jesucristo": {
-        "Giê xu": 1
+      "de jesucristo": {
+        "giê xu": 1
       }
     },
     "expected": [
@@ -2243,11 +2240,11 @@
     "verse": "đang khi trông đợi niềm hy vọng phước hạnh và sự hiện đến vinh quang của Thiên Chúa cao cả và Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "Giê xu": 1
+      "de jesucristo": {
+        "giê xu": 1
       },
-      "Jesús": {
-        "Giê xu": 1
+      "jesús": {
+        "giê xu": 1
       }
     },
     "expected": [
@@ -2294,14 +2291,14 @@
     "verse": "là Đấng mà Thiên Chúa đã tuôn đổ cách dư dật trên chúng ta qua Cứu Chúa chúng ta là Chúa Cứu Thế Giê-xu,",
     "glPhrase": "Jesucristo",
     "history": {
-      "de Jesucristo": {
-        "Giê xu": 1
+      "de jesucristo": {
+        "giê xu": 1
       },
-      "Jesús": {
-        "Giê xu": 1
+      "jesús": {
+        "giê xu": 1
       },
-      "Jesucristo": {
-        "Giê xu": 1
+      "jesucristo": {
+        "giê xu": 1
       }
     },
     "expected": [
@@ -3114,7 +3111,7 @@
     "glPhrase": "salvador",
     "history": {
       "salvador": {
-        "Cứu Chúa": 1
+        "cứu chúa": 1
       }
     },
     "expected": [
@@ -3171,7 +3168,7 @@
     "glPhrase": "salvador",
     "history": {
       "salvador": {
-        "Cứu Chúa": 2
+        "cứu chúa": 2
       }
     },
     "expected": [
@@ -3219,7 +3216,7 @@
     "glPhrase": "salvador",
     "history": {
       "salvador": {
-        "Cứu Chúa": 3
+        "cứu chúa": 3
       }
     },
     "expected": [
@@ -3267,7 +3264,7 @@
     "glPhrase": "de parte de salvador",
     "history": {
       "salvador": {
-        "Cứu Chúa": 4
+        "cứu chúa": 4
       }
     },
     "expected": [
@@ -3324,10 +3321,10 @@
     "glPhrase": "Salvador",
     "history": {
       "salvador": {
-        "Cứu Chúa": 4
+        "cứu chúa": 4
       },
       "de parte de salvador": {
-        "Cứu Chúa": 1
+        "cứu chúa": 1
       }
     },
     "expected": [
@@ -3543,7 +3540,7 @@
       "sujetas": {
         "và vâng phục": 1
       },
-      "Que se sometan": {
+      "que se sometan": {
         "phải vâng phục": 1
       }
     },

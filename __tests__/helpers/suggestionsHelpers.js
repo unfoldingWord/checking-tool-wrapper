@@ -23,7 +23,7 @@ import { normalizer } from 'string-punctuation-tokenizer';
 import usfmjs from 'usfm-js';
 import path from 'path-extra';
 import {
-  buildChatMessages, getBestSelections, getExtraParams, getValidChatMessages, getWordList,
+  buildChatMessages, getBestSelections, getExtraParams, getSelectionHistoryKey, getValidChatMessages, getWordList,
   normalizeForCompare, wordSimilarity,
 } from '../../src/utils/checkingSuggestionsUtils';
 import { normalizeString } from '../../src/helpers/stringHelpers';
@@ -33,6 +33,35 @@ export { getAlignedTargetWords, getQuoteWords } from '../../src/utils/alignmentH
 
 /** how many wrong answers `formatSummary` lists */
 export const MAX_MISSES_SHOWN = 10;
+
+/**
+ * A selection history `{ glPhrase: { rendering: count } }` counted as the app counts it since
+ * 2026-11-26 (`getSelectionsForBook` with the target language): GL phrases lowercased for the GL and
+ * renderings for the target language (`getSelectionHistoryKey`), with the counts of entries that
+ * become the same added together. Keys keep the order in which they first appear. Used to bring the
+ * case files built before that change in line with the app.
+ * @param {object} history
+ * @param {string} glLangCode
+ * @param {string} targetLangCode
+ * @returns {object} - a new history
+ * @example
+ * toAppSelectionHistory({ Church: { Iglesia: 2 }, church: { iglesia: 3 } }, 'en', 'es-419');
+ * // { church: { iglesia: 5 } }
+ */
+export function toAppSelectionHistory(history, glLangCode, targetLangCode) {
+  const result = {};
+
+  for (const [glPhrase, renderings] of Object.entries(history || {})) {
+    const glKey = getSelectionHistoryKey(glPhrase, glLangCode);
+    const counts = result[glKey] || (result[glKey] = {});
+
+    for (const [rendering, count] of Object.entries(renderings || {})) {
+      const key = getSelectionHistoryKey(rendering, targetLangCode);
+      counts[key] = (counts[key] || 0) + count;
+    }
+  }
+  return result;
+}
 
 /**
  * Builds the options (one job) that `getBestSelections` takes for a case, as `Container.js` builds

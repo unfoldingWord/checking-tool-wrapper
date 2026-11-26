@@ -50,6 +50,11 @@
  *                           `loadGlBook`). For a GL bible whose book has the wrong text: Arabic
  *                           `arst` v4.9_BSOJ has English (UST-like) text aligned in most books
  *                           (Titus and 1 Timothy are Arabic), so use `avd` for those
+ *   LLM_TRAINING_LOWERCASE_HISTORY  set to 1 to only convert the `history` of every case file already
+ *                           in `LLM_TRAINING_LOWERCASE_DIRS` (space-separated, default llmTrainingData
+ *                           and llmTrainingData/promptEval) to the app's lowercase keys
+ *                           (`toAppSelectionHistory`), for files built before 2026-11-26; ids and
+ *                           everything else are kept. Rerun the algorithm on them afterwards
  *   LLM_TRAINING_ALLOW_GL_MISMATCH  set to 1 to build for a GL other than the project's translationWords
  *                           GL in its manifest. Normally refused: the project's check index is
  *                           written by translationCore for the GL last selected there, and other
@@ -64,6 +69,7 @@ import path from 'path';
 import { bibleIdSort, getAlignedTextFromBible } from '../src/helpers/gatewayLanguageHelpers';
 import { cleanGlQuote, getSelectionsForBook } from '../src/utils/checkingSuggestionsUtils';
 import { getAlignedTargetWords, getVerseAlignments } from '../src/utils/alignmentHistoryUtils';
+import { toAppSelectionHistory } from './helpers/suggestionsHelpers';
 
 const env = process.env;
 const BUILD = env.LLM_TRAINING_BUILD === '1';
@@ -84,6 +90,56 @@ console.log('buildLlmTrainingData.test.js - environment data:', {
 });
 
 const describeIfBuild = BUILD ? describe : describe.skip;
+const LOWERCASE_HISTORY = env.LLM_TRAINING_LOWERCASE_HISTORY === '1';
+const describeIfLowercaseHistory = LOWERCASE_HISTORY ? describe : describe.skip;
+
+describeIfLowercaseHistory('convert case files to the app\'s lowercase history keys', () => {
+  test('rewrites the history of every case, keeping ids and the other fields', () => {
+    const repo = path.join(__dirname, '..');
+    const dirs = (env.LLM_TRAINING_LOWERCASE_DIRS || 'llmTrainingData llmTrainingData/promptEval').split(/\s+/).filter(Boolean);
+    let files = 0;
+    let cases = 0;
+    let changed = 0;
+
+    for (const dir of dirs) {
+      const folder = path.resolve(repo, dir);
+
+      for (const name of fs.readdirSync(folder).filter(file => file.endsWith('.json')).sort()) {
+        const file = path.join(folder, name);
+        const entries = JSON.parse(fs.readFileSync(file, 'utf8'));
+
+        if (!Array.isArray(entries)) {
+          continue;
+        }
+
+        let fileChanged = 0;
+        const converted = entries.map(entry => {
+          if (!entry || typeof entry !== 'object' || !('history' in entry)) {
+            return entry;
+          }
+
+          const history = toAppSelectionHistory(entry.history, entry.glLang, entry.targetLang);
+
+          if (JSON.stringify(history) === JSON.stringify(entry.history)) {
+            return entry;
+          }
+          fileChanged++;
+          return { ...entry, history };
+        });
+
+        files++;
+        cases += entries.length;
+        changed += fileChanged;
+
+        if (fileChanged) {
+          fs.writeFileSync(file, `${JSON.stringify(converted, null, 2)}\n`);
+        }
+        expect(converted.map(entry => entry?.id)).toEqual(entries.map(entry => entry?.id));
+      }
+    }
+    console.log(`lowercase history: ${changed} of ${cases} cases changed in ${files} files (${dirs.join(', ')})`);
+  });
+});
 
 describeIfBuild('build llm training data', () => {
   test('LLM_TRAINING_PROJECTS is set', () => {
@@ -168,8 +224,9 @@ function buildProject(name) {
         return null;
       }
 
-      // only the correct answers of the checks before this one in the group
-      const history = getSelectionsForBook(checks.slice(0, index), glLang, null, glBook, {});
+      // only the correct answers of the checks before this one in the group, counted as the app counts
+      // them: GL keys and renderings lowercased (`getSelectionHistoryKey`)
+      const history = getSelectionsForBook(checks.slice(0, index), glLang, null, glBook, {}, null, undefined, targetLang);
 
       if (!Object.keys(history).length) {
         return null;

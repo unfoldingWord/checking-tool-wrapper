@@ -182,8 +182,8 @@
     "glPhrase": "Christ",
     "occurrence": 2,
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       }
     },
     "expected": [
@@ -225,11 +225,11 @@
     "verse": "kepada Timotius, anakku yang sejati dalam iman: Anugerah, kemurahan, damai sejahtera dari Allah Bapa dan Kristus Yesus Tuhan kita.\n\\s5 \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 1
+      "christ": {
+        "kristus": 1
       }
     },
     "expected": [
@@ -271,11 +271,11 @@
     "verse": "Tetapi dengan alasan inilah aku telah ditunjukkan kemurahan, supaya dalam diriku, pertama, Yesus Kristus dapat menyatakan seluruh kesabaran sebagai contoh untuk mereka yang akan percaya kepada Dia untuk hidup kekal. \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 2
+      "christ": {
+        "kristus": 2
       }
     },
     "expected": [
@@ -317,11 +317,11 @@
     "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 3
+      "christ": {
+        "kristus": 3
       }
     },
     "expected": [
@@ -363,11 +363,11 @@
     "verse": "Untuk tujuan itulah, aku sendiri telah ditetapkan sebagai seorang pemberita dan seorang rasul. Aku memberitakan kebenaran di dalam Kristus. Aku tidak berdusta. Aku seorang pengajar bagi orang-orang bukan Yahudi dalam iman dan kebenaran.\n\\s5 \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 4
+      "christ": {
+        "kristus": 4
       }
     },
     "expected": [
@@ -409,11 +409,11 @@
     "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 5
+      "christ": {
+        "kristus": 5
       }
     },
     "expected": [
@@ -455,11 +455,11 @@
     "verse": "Tetapi tolaklah janda-janda yang lebih muda, karena ketika mereka menjadi tidak setia kepada Kristus, mereka ingin menikah, \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 6
+      "christ": {
+        "kristus": 6
       }
     },
     "expected": [
@@ -515,12 +515,12 @@
     "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 6,
-        "kepada Kristus": 1
+      "christ": {
+        "kristus": 6,
+        "kepada kristus": 1
       }
     },
     "expected": [
@@ -562,12 +562,12 @@
     "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
     "glPhrase": "Christ",
     "history": {
-      "of Christ": {
-        "Kristus": 1
+      "of christ": {
+        "kristus": 1
       },
-      "Christ": {
-        "Kristus": 7,
-        "kepada Kristus": 1
+      "christ": {
+        "kristus": 7,
+        "kepada kristus": 1
       }
     },
     "expected": [
@@ -1066,7 +1066,7 @@
     "verse": "Sampai aku datang, perhatikan pembacaan, nasehat, pengajaran.\n\\s5 \n\\p",
     "glPhrase": "to the exhortation",
     "history": {
-      "I urge": {
+      "i urge": {
         "aku menasehati": 1
       }
     },
@@ -1118,7 +1118,7 @@
     "verse": "Janganlah engkau marah kepada laki-laki yang tua. Sebaliknya, nasehatilah sebagai seorang bapa, laki-laki yang  muda sebagai saudara-saudara laki-laki. \n\\p",
     "glPhrase": "exhort him",
     "history": {
-      "I urge": {
+      "i urge": {
         "aku menasehati": 1
       },
       "to the exhortation": {
@@ -1164,7 +1164,7 @@
     "verse": "Tetapi, mereka yang memiliki tuan-tuan yang percaya, biarlah tidak memandang rendah,  karena mereka adalah saudara-saudara. Sebaliknya, hendaknya mereka melayani lebih sungguh, karena mereka yang menerima pelayanan yang baik adalah orang-orang percaya dan orang-orang yang dikasihi. Ajarkanlah dan nasehatkanlah hal-hal ini.\n\\s5 \n\\p",
     "glPhrase": "urge",
     "history": {
-      "I urge": {
+      "i urge": {
         "aku menasehati": 1
       },
       "to the exhortation": {
@@ -1515,8 +1515,8 @@
     "verse": "Jangan menghiraukan dongeng-dongeng dan silsilah-silsilah yang tiada putus-putusnya, yang menimbulkan perselisihan dan bukannya penatalayanan Allah, (yang adalah) dalam iman.\n\\s5\n\\p",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "dari Allah": 1
+      "of god": {
+        "dari allah": 1
       }
     },
     "expected": [
@@ -1558,9 +1558,9 @@
     "verse": "Dan kepada Raja segala zaman, kekal, tidak kelihatan, satu-satunya Allah, hormat dan kemuliaan kekal sampai selama-lamanya. Amin.\n\\s5",
     "glPhrase": "the God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 1
       }
     },
     "expected": [
@@ -1602,12 +1602,12 @@
     "verse": "Ini  {adalah} hal yang baik dan berkenan di hadapan Allah Juruselamat kita. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -1649,15 +1649,15 @@
     "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 1
+      "god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -1699,15 +1699,15 @@
     "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 2
+      "god": {
+        "allah": 2
       }
     },
     "expected": [
@@ -1754,16 +1754,16 @@
     "verse": "Tetapi apabila aku menunda, supaya engkau tahu bagaimana seseorang harus berperilaku di dalam rumah Allah yang adalah jemaat Allah yang hidup, sebagai pilar dan dasar dari kebenaran.\n\\s5\n\\p",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 1,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 1,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 2
+      "god": {
+        "allah": 2
       }
     },
     "expected": [
@@ -1806,16 +1806,16 @@
     "glPhrase": "of the God",
     "occurrence": 2,
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 2,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 2,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 2
+      "god": {
+        "allah": 2
       }
     },
     "expected": [
@@ -1857,19 +1857,19 @@
     "verse": "dengan melarang untuk menikah, untuk makan makanan-makanan yang Allah telah ciptakan untuk penerimaan dengan pengucapan syukur oleh orang-orang percaya dan yang telah mengenal kebenaran. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 2,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 2,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 2
+      "god": {
+        "allah": 2
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -1920,19 +1920,19 @@
     "verse": "Karena semua ciptaan Allah {adalah} baik, dan tidak sesuatupun yang diterima dengan ucapan syukur {adalah} najis, \n\\p",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 2,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 2,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 3
+      "god": {
+        "allah": 3
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -1974,19 +1974,19 @@
     "verse": "Tetapi jika seorang janda memiliki anak-anak atau cucu-cucu, biarlah mereka pertama-tama belajar untuk menghormati rumah tangga mereka sendiri dan membalas perbuatan baik orang tua dan nenek, karena hal ini adalah berkenan di hadapan Allah.\n\\s5 \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 3,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 3,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 3
+      "god": {
+        "allah": 3
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -2037,19 +2037,19 @@
     "verse": "Tetapi seorang yang sungguh-sungguh janda dan telah ditinggalkan sendirian, ia telah menaruh pengharapannya pada Allah, dan terus menerus dalam permohonan-permohonan dan doa-doa malam dan siang. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 3,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 3,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 4
+      "god": {
+        "allah": 4
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -2091,19 +2091,19 @@
     "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 3,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 3,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 5
+      "god": {
+        "allah": 5
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -2154,19 +2154,19 @@
     "verse": "Semua orang yang ada di bawah belenggu perbudakan, biarlah mereka menganggap tuan-tuan mereka sendiri layak menerima semua penghormatan, supaya nama Allah dan ajaran tidak dihujat orang. \n\\p",
     "glPhrase": "of God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 3,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 3,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 6
+      "god": {
+        "allah": 6
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -2217,19 +2217,19 @@
     "verse": "Perintahkan kepada orang-orang kaya di zaman ini agar tidak sombong, atau berharap kepada kekayaan, yang tidak pasti. tetapi kepada Allah yang menyediakan semua dengan kelimpahan bagi kita untuk kenikmatan. \n\\p",
     "glPhrase": "God",
     "history": {
-      "of God": {
-        "dari Allah": 1,
-        "Allah": 4,
-        "antara Allah": 1
+      "of god": {
+        "dari allah": 1,
+        "allah": 4,
+        "antara allah": 1
       },
-      "the God": {
-        "Allah": 1
+      "the god": {
+        "allah": 1
       },
-      "God": {
-        "Allah": 6
+      "god": {
+        "allah": 6
       },
-      "of the God": {
-        "Allah": 1
+      "of the god": {
+        "allah": 1
       }
     },
     "expected": [
@@ -2343,7 +2343,7 @@
         "untuk orang fasik": 1
       },
       "the unholy": {
-        "untuk mereka yang tidak percaya Tuhan": 1
+        "untuk mereka yang tidak percaya tuhan": 1
       }
     },
     "expected": [
@@ -2389,7 +2389,7 @@
         "untuk orang fasik": 1
       },
       "the unholy": {
-        "untuk mereka yang tidak percaya Tuhan": 1
+        "untuk mereka yang tidak percaya tuhan": 1
       },
       "godliness": {
         "kesalehan": 1
@@ -2447,7 +2447,7 @@
         "untuk orang fasik": 1
       },
       "the unholy": {
-        "untuk mereka yang tidak percaya Tuhan": 1
+        "untuk mereka yang tidak percaya tuhan": 1
       },
       "godliness": {
         "kesalehan": 1
@@ -2499,7 +2499,7 @@
         "untuk orang fasik": 1
       },
       "the unholy": {
-        "untuk mereka yang tidak percaya Tuhan": 1
+        "untuk mereka yang tidak percaya tuhan": 1
       },
       "godliness": {
         "kesalehan": 2
@@ -2560,7 +2560,7 @@
         "untuk orang fasik": 1
       },
       "the unholy": {
-        "untuk mereka yang tidak percaya Tuhan": 1
+        "untuk mereka yang tidak percaya tuhan": 1
       },
       "godliness": {
         "kesalehan": 3
@@ -3387,8 +3387,8 @@
     "verse": "Tetapi jika seorang janda memiliki anak-anak atau cucu-cucu, biarlah mereka pertama-tama belajar untuk menghormati rumah tangga mereka sendiri dan membalas perbuatan baik orang tua dan nenek, karena hal ini adalah berkenan di hadapan Allah.\n\\s5 \n\\p",
     "glPhrase": "to treat in a godly way",
     "history": {
-      "Honor": {
-        "Hormatilah": 1
+      "honor": {
+        "hormatilah": 1
       }
     },
     "expected": [
@@ -3435,8 +3435,8 @@
     "verse": "Semua orang yang ada di bawah belenggu perbudakan, biarlah mereka menganggap tuan-tuan mereka sendiri layak menerima semua penghormatan, supaya nama Allah dan ajaran tidak dihujat orang. \n\\p",
     "glPhrase": "of honor",
     "history": {
-      "Honor": {
-        "Hormatilah": 1
+      "honor": {
+        "hormatilah": 1
       },
       "to treat in a godly way": {
         "untuk menghormati": 1
@@ -3481,8 +3481,8 @@
     "verse": "Ia saja yang memiliki kekekalan, tinggal di dalam terang yang tidak dapat dihampiri yang tidak ada dari manusia-manusia telah melihat atau dapat melihat. Bagi Dialah hormat dan kuasa, kekal. Amin.\n\\s5 \n\\p",
     "glPhrase": "be honor",
     "history": {
-      "Honor": {
-        "Hormatilah": 1
+      "honor": {
+        "hormatilah": 1
       },
       "to treat in a godly way": {
         "untuk menghormati": 1
@@ -3793,8 +3793,8 @@
     "glPhrase": "Jesus",
     "occurrence": 2,
     "history": {
-      "Jesus": {
-        "Yesus": 1
+      "jesus": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -3836,8 +3836,8 @@
     "verse": "kepada Timotius, anakku yang sejati dalam iman: Anugerah, kemurahan, damai sejahtera dari Allah Bapa dan Kristus Yesus Tuhan kita.\n\\s5 \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 2
+      "jesus": {
+        "yesus": 2
       }
     },
     "expected": [
@@ -3879,8 +3879,8 @@
     "verse": "Tetapi dengan alasan inilah aku telah ditunjukkan kemurahan, supaya dalam diriku, pertama, Yesus Kristus dapat menyatakan seluruh kesabaran sebagai contoh untuk mereka yang akan percaya kepada Dia untuk hidup kekal. \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 3
+      "jesus": {
+        "yesus": 3
       }
     },
     "expected": [
@@ -3922,8 +3922,8 @@
     "verse": "Karena hanya ada satu Allah, dan satu perantara antara Allah dan manusia, yaitu manusia Kristus Yesus. \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 4
+      "jesus": {
+        "yesus": 4
       }
     },
     "expected": [
@@ -3965,8 +3965,8 @@
     "verse": "Karena mereka yang melayani dengan baik mereka akan memperoleh kedudukan yang baik bagi mereka sendiri dan keyakinan besar di dalam iman yang di dalam Yesus Kristus.\n\\s5 \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 5
+      "jesus": {
+        "yesus": 5
       }
     },
     "expected": [
@@ -4008,8 +4008,8 @@
     "verse": "Apabila engkau menanamkan hal-hal ini kepada saudara-saudara, engkau akan menjadi pelayan Yesus Kristus yang baik. Karena engkau sedang diberi makan dengan kata-kata iman dari ajaran yang baik yang telah engkau ikuti. \n\\p",
     "glPhrase": "of Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 6
+      "jesus": {
+        "yesus": 6
       }
     },
     "expected": [
@@ -4051,11 +4051,11 @@
     "verse": "Aku menghimbau di depan Allah, dan Kristus Yesus, dan malaikat-malaikat terpilih, agar engkau menjaga hal-hal ini tanpa prasangka, melakukan tidak satupun berdasarkan keberpihakkan. \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 6
+      "jesus": {
+        "yesus": 6
       },
-      "of Jesus": {
-        "Yesus": 1
+      "of jesus": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -4097,11 +4097,11 @@
     "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Yesus": 7
+      "jesus": {
+        "yesus": 7
       },
-      "of Jesus": {
-        "Yesus": 1
+      "of jesus": {
+        "yesus": 1
       }
     },
     "expected": [
@@ -4553,8 +4553,8 @@
     "verse": "kepada Timotius, anakku yang sejati dalam iman: Anugerah, kemurahan, damai sejahtera dari Allah Bapa dan Kristus Yesus Tuhan kita.\n\\s5 \n\\p",
     "glPhrase": "Lord",
     "history": {
-      "of the Lord": {
-        "Tuhan": 1
+      "of the lord": {
+        "tuhan": 1
       }
     },
     "expected": [
@@ -4605,11 +4605,11 @@
     "verse": "Semua orang yang ada di bawah belenggu perbudakan, biarlah mereka menganggap tuan-tuan mereka sendiri layak menerima semua penghormatan, supaya nama Allah dan ajaran tidak dihujat orang. \n\\p",
     "glPhrase": "masters",
     "history": {
-      "of the Lord": {
-        "Tuhan": 1
+      "of the lord": {
+        "tuhan": 1
       },
-      "Lord": {
-        "Tuhan": 1
+      "lord": {
+        "tuhan": 1
       }
     },
     "expected": [
@@ -4656,11 +4656,11 @@
     "verse": "Tetapi, mereka yang memiliki tuan-tuan yang percaya, biarlah tidak memandang rendah,  karena mereka adalah saudara-saudara. Sebaliknya, hendaknya mereka melayani lebih sungguh, karena mereka yang menerima pelayanan yang baik adalah orang-orang percaya dan orang-orang yang dikasihi. Ajarkanlah dan nasehatkanlah hal-hal ini.\n\\s5 \n\\p",
     "glPhrase": "masters",
     "history": {
-      "of the Lord": {
-        "Tuhan": 1
+      "of the lord": {
+        "tuhan": 1
       },
-      "Lord": {
-        "Tuhan": 1
+      "lord": {
+        "tuhan": 1
       },
       "masters": {
         "tuan tuan": 1
@@ -4710,11 +4710,11 @@
     "verse": "Jika seseorang mengajar ajaran yang lain dan tidak menerima perkataan-perkataan yang sehat, yaitu kata-kata Tuhan kita Yesus Kristus, dan ajaran yang sesuai dengan  kesalehan. \n\\p",
     "glPhrase": "of Lord",
     "history": {
-      "of the Lord": {
-        "Tuhan": 1
+      "of the lord": {
+        "tuhan": 1
       },
-      "Lord": {
-        "Tuhan": 1
+      "lord": {
+        "tuhan": 1
       },
       "masters": {
         "tuan tuan": 2
@@ -5306,8 +5306,8 @@
     "verse": "Ia bukan seorang petobat baru, agar ia tidak jatuh, dengan menjadi sombong, ke dalam penghakiman Iblis \n\\p",
     "glPhrase": "of the devil",
     "history": {
-      "to Satan": {
-        "kepada Setan": 1
+      "to satan": {
+        "kepada setan": 1
       }
     },
     "expected": [
@@ -5358,11 +5358,11 @@
     "verse": "Tetapi Ia juga harus memiliki nama baik dengan mereka di luar, sehingga ia tidak jatuh dalam hal yang memalukan dan perangkap Iblis.\n\\s5 \n\\p",
     "glPhrase": "of the devil",
     "history": {
-      "to Satan": {
-        "kepada Setan": 1
+      "to satan": {
+        "kepada setan": 1
       },
       "of the devil": {
-        "Iblis": 1
+        "iblis": 1
       }
     },
     "expected": [
@@ -5665,8 +5665,8 @@
     "verse": "Aku menempatkan perintah ini untukmu, hai anakku Timotius, sesuai dengan nubuat-nubuat yang telah mendahului mengenai engkau supaya dengan mereka engkau dapat bertarung pertarungan yang baik. \n\\p",
     "glPhrase": "Timothy",
     "history": {
-      "to Timothy": {
-        "kepada Timotius": 1
+      "to timothy": {
+        "kepada timotius": 1
       }
     },
     "expected": [
@@ -5708,11 +5708,11 @@
     "verse": "Hai Timotius, jagalah apa yang telah dipercayakan, menghindari pembicaraan-pembicaraan duniawi dan pertentangan-pertentangan yang keliru disebut sebagai pengetahuan. \n\\p",
     "glPhrase": "Timothy",
     "history": {
-      "to Timothy": {
-        "kepada Timotius": 1
+      "to timothy": {
+        "kepada timotius": 1
       },
-      "Timothy": {
-        "Timotius": 1
+      "timothy": {
+        "timotius": 1
       }
     },
     "expected": [

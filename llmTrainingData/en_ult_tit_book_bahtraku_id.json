@@ -8,8 +8,8 @@
     "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
     "glPhrase": "Kristus",
     "history": {
-      "Kristus": {
-        "Christ": 1
+      "kristus": {
+        "christ": 1
       }
     },
     "expected": [
@@ -51,8 +51,8 @@
     "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
     "glPhrase": "Kristus",
     "history": {
-      "Kristus": {
-        "Christ": 2
+      "kristus": {
+        "christ": 2
       }
     },
     "expected": [
@@ -94,8 +94,8 @@
     "verse": "whom he richly poured on us through our Savior Jesus Christ,",
     "glPhrase": "Kristus",
     "history": {
-      "Kristus": {
-        "Christ": 3
+      "kristus": {
+        "christ": 3
       }
     },
     "expected": [
@@ -512,8 +512,8 @@
     "glPhrase": "Allah",
     "occurrence": 2,
     "history": {
-      "Allah": {
-        "of God": 1
+      "allah": {
+        "of god": 1
       }
     },
     "expected": [
@@ -560,8 +560,8 @@
     "verse": "with the certain hope of eternal life that God, {who} does not lie, promised before all the ages of time.",
     "glPhrase": "Allah",
     "history": {
-      "Allah": {
-        "of God": 2
+      "allah": {
+        "of god": 2
       }
     },
     "expected": [
@@ -603,9 +603,9 @@
     "verse": "But at the right time, he revealed his word by the proclamation, the one I was entrusted with by the command of God our Savior.\n\n\\ts\\*",
     "glPhrase": "Allah",
     "history": {
-      "Allah": {
-        "of God": 2,
-        "God": 1
+      "allah": {
+        "of god": 2,
+        "god": 1
       }
     },
     "expected": [
@@ -647,9 +647,9 @@
     "verse": "For the overseer must be blameless, as a household manager of God, not arrogant, not easily angered, not addicted to wine, not a brawler, {and} not a greedy {man}.\n\n\\ts\\*",
     "glPhrase": "Allah",
     "history": {
-      "Allah": {
-        "of God": 2,
-        "God": 2
+      "allah": {
+        "of god": 2,
+        "god": 2
       }
     },
     "expected": [
@@ -696,9 +696,9 @@
     "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
     "glPhrase": "Allah",
     "history": {
-      "Allah": {
-        "of God": 3,
-        "God": 2
+      "allah": {
+        "of god": 3,
+        "god": 2
       }
     },
     "expected": [
@@ -740,9 +740,9 @@
     "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
     "glPhrase": "Allah",
     "history": {
-      "Allah": {
-        "of God": 3,
-        "God": 3
+      "allah": {
+        "of god": 3,
+        "god": 3
       }
     },
     "expected": [
@@ -784,9 +784,9 @@
     "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
     "glPhrase": "Allah",
     "history": {
-      "Allah": {
-        "of God": 3,
-        "God": 4
+      "allah": {
+        "of god": 3,
+        "god": 4
       }
     },
     "expected": [
@@ -828,9 +828,9 @@
     "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
     "glPhrase": "kepada Allah",
     "history": {
-      "Allah": {
-        "of God": 3,
-        "God": 5
+      "allah": {
+        "of god": 3,
+        "god": 5
       }
     },
     "expected": [
@@ -1429,8 +1429,8 @@
     "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
     "glPhrase": "Yesus",
     "history": {
-      "Yesus": {
-        "of Jesus": 1
+      "yesus": {
+        "of jesus": 1
       }
     },
     "expected": [
@@ -1472,9 +1472,9 @@
     "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
     "glPhrase": "Yesus",
     "history": {
-      "Yesus": {
-        "of Jesus": 1,
-        "Jesus": 1
+      "yesus": {
+        "of jesus": 1,
+        "jesus": 1
       }
     },
     "expected": [
@@ -1516,9 +1516,9 @@
     "verse": "whom he richly poured on us through our Savior Jesus Christ,",
     "glPhrase": "Yesus",
     "history": {
-      "Yesus": {
-        "of Jesus": 1,
-        "Jesus": 2
+      "yesus": {
+        "of jesus": 1,
+        "jesus": 2
       }
     },
     "expected": [
@@ -1654,7 +1654,7 @@
     "verse": "Older women likewise {are to be} reverent in behavior, not slanderers or enslaved to much wine, {but to be} teachers of what is good.",
     "glPhrase": "dengan cara yang sama",
     "history": {
-      "Allah": {
+      "allah": {
         "as": 1
       }
     },
@@ -1712,7 +1712,7 @@
     "verse": "In the same way, exhort the younger men to be sensible.",
     "glPhrase": "Dengan cara yang sama",
     "history": {
-      "Allah": {
+      "allah": {
         "as": 1
       },
       "dengan cara yang sama": {
@@ -2228,7 +2228,7 @@
     "verse": "to be sensible, pure, good housekeepers, {and} subject to their own husbands, so that the word of God may not be insulted.\n\n\\ts\\*",
     "glPhrase": "yang bijaksana",
     "history": {
-      "Ia harus bijaksana": {
+      "ia harus bijaksana": {
         "and self controlled": 1
       }
     },
@@ -2281,7 +2281,7 @@
     "verse": "In the same way, exhort the younger men to be sensible.",
     "glPhrase": "untuk menjadi bijaksana",
     "history": {
-      "Ia harus bijaksana": {
+      "ia harus bijaksana": {
         "and self controlled": 1
       },
       "yang bijaksana": {

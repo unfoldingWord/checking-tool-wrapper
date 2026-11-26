@@ -60,7 +60,7 @@
         "el adversario de": 1
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       }
     },
     "expected": [
@@ -116,7 +116,7 @@
         "el adversario de": 1
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -175,7 +175,7 @@
         "el adversario de": 2
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -229,7 +229,7 @@
         "el adversario de": 2
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -291,7 +291,7 @@
         "el adversario de": 2
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -351,7 +351,7 @@
         "el adversario de": 2
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -419,7 +419,7 @@
         "el adversario de": 3
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -482,7 +482,7 @@
         "el adversario de": 3
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -550,7 +550,7 @@
         "el adversario de": 3
       },
       "an adversary": {
-        "Un adversario": 1
+        "un adversario": 1
       },
       "and an enemy": {
         "un y enemigo": 1
@@ -1492,7 +1492,7 @@
       "and she was called": {
         "y fuera llamada": 1
       },
-      "I have been called": {
+      "i have been called": {
         "he sido llamada": 1
       }
     },
@@ -1548,7 +1548,7 @@
       "and she was called": {
         "y fuera llamada": 1
       },
-      "I have been called": {
+      "i have been called": {
         "he sido llamada": 1
       },
       "am called": {
@@ -1617,14 +1617,14 @@
       "and she was called": {
         "y fuera llamada": 1
       },
-      "I have been called": {
+      "i have been called": {
         "he sido llamada": 1
       },
       "am called": {
         "he sido invitado": 1
       },
       "being called out": {
-        "En siendo leídos voz alta": 1
+        "en siendo leídos voz alta": 1
       }
     },
     "expected": [
@@ -2492,8 +2492,8 @@
       "and fasting": {
         "y ayuno": 1
       },
-      "And fast": {
-        "Y ayunen": 1
+      "and fast": {
+        "y ayunen": 1
       }
     },
     "expected": [
@@ -2914,7 +2914,7 @@
         "es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       }
     },
     "expected": [
@@ -2968,7 +2968,7 @@
         "es bueno": 2
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       }
     },
     "expected": [
@@ -3022,7 +3022,7 @@
         "es bueno": 3
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       }
     },
     "expected": [
@@ -3082,7 +3082,7 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       }
     },
     "expected": [
@@ -3137,7 +3137,7 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       }
     },
     "expected": [
@@ -3187,7 +3187,7 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       },
       "good": {
         "bien": 1
@@ -3245,7 +3245,7 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       },
       "good": {
         "bien": 1
@@ -3317,12 +3317,12 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       },
       "good": {
         "bien": 1
       },
-      "and I am good": {
+      "and i am good": {
         "y soy buena": 1
       }
     },
@@ -3378,12 +3378,12 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       },
       "good": {
         "bien": 1
       },
-      "and I am good": {
+      "and i am good": {
         "y soy buena": 1
       }
     },
@@ -3434,13 +3434,13 @@
         "le es bueno": 1
       },
       "and pleasing of": {
-        "Y agradable de": 1
+        "y agradable de": 1
       },
       "good": {
         "bien": 1,
         "buena": 1
       },
-      "and I am good": {
+      "and i am good": {
         "y soy buena": 1
       }
     },
@@ -3489,7 +3489,7 @@
     "glPhrase": "to hang",
     "history": {
       "and let them hang": {
-        "y Que cuelguen": 1
+        "y que cuelguen": 1
       }
     },
     "expected": [
@@ -3537,7 +3537,7 @@
     "glPhrase": "hang",
     "history": {
       "and let them hang": {
-        "y Que cuelguen": 1
+        "y que cuelguen": 1
       },
       "to hang": {
         "que colgara": 1
@@ -3583,7 +3583,7 @@
     "glPhrase": "and let them hang",
     "history": {
       "and let them hang": {
-        "y Que cuelguen": 1
+        "y que cuelguen": 1
       },
       "to hang": {
         "que colgara": 1
@@ -3794,7 +3794,7 @@
         "y un caballo": 1
       },
       "and this horse": {
-        "Y este caballo": 1
+        "y este caballo": 1
       }
     },
     "expected": [
@@ -3845,7 +3845,7 @@
         "y un caballo": 1
       },
       "and this horse": {
-        "Y este caballo": 1
+        "y este caballo": 1
       },
       "the horse": {
         "el caballo": 1
@@ -3899,7 +3899,7 @@
         "y un caballo": 1
       },
       "and this horse": {
-        "Y este caballo": 1
+        "y este caballo": 1
       },
       "the horse": {
         "el caballo": 1
@@ -3952,7 +3952,7 @@
     "verse": "En cada provincia por provincia y en cada ciudad por ciudad, cualquier lugar donde la palabra del rey y su ley llegaron, había alegría y regocijo para los judíos, un banquete y un buen día. Y muchos de los pueblos de la tierra se convirtieron en judíos, porque pavor a causa de los judíos cayó sobre ellos.",
     "glPhrase": "became Jews",
     "history": {
-      "was a Jew": {
+      "was a jew": {
         "era un judío": 1
       }
     },
@@ -4660,7 +4660,7 @@
     "glPhrase": "and his law",
     "history": {
       "and his law": {
-        "Y su ley": 1
+        "y su ley": 1
       }
     },
     "expected": [
@@ -4713,7 +4713,7 @@
     "glPhrase": "and his law",
     "history": {
       "and his law": {
-        "Y su ley": 2
+        "y su ley": 2
       }
     },
     "expected": [
@@ -4766,8 +4766,7 @@
     "glPhrase": "and his law",
     "history": {
       "and his law": {
-        "Y su ley": 2,
-        "y su ley": 1
+        "y su ley": 3
       }
     },
     "expected": [
@@ -4819,8 +4818,8 @@
     "verse": "y los que estaban cerca de él eran Carsena, Setar, Admata, Tarsis, Meres, Marsena, Memucán, siete oficiales de Persia y Media que veían el rostro del rey, los que se sentaban de primeros en el reino):",
     "glPhrase": "and Media",
     "history": {
-      "and Media": {
-        "y Media": 1
+      "and media": {
+        "y media": 1
       }
     },
     "expected": [
@@ -4867,8 +4866,8 @@
     "verse": "Ahora, este día, las mujeres nobles de Persia y Media que hayan oído el asunto de la reina hablarán con todos los oficiales del rey. ¡Y habrá desprecio e ira suficiente!",
     "glPhrase": "and Media",
     "history": {
-      "and Media": {
-        "y Media": 2
+      "and media": {
+        "y media": 2
       }
     },
     "expected": [
@@ -4915,8 +4914,8 @@
     "verse": "Si es bueno al Rey, que un decreto de realeza salga de delante de su rostro, y que sea escrito en las leyes de Persia y Media (las cuales no pasan) que Vasti nunca venga ante el rostro del rey Asuero. Y que el rey le dé la realeza de ella a su compañera que sea mejor que ella.",
     "glPhrase": "and Media",
     "history": {
-      "and Media": {
-        "y Media": 3
+      "and media": {
+        "y media": 3
       }
     },
     "expected": [
@@ -4963,8 +4962,8 @@
     "verse": "Y todas las obras de su poder y su fuerza, con la cuenta completa de la grandeza de Mardoqueo, por la cual el rey lo había hecho grande, ¿no están escritas en el libro de los eventos de días para los reyes de Media y Persia?",
     "glPhrase": "Media",
     "history": {
-      "and Media": {
-        "y Media": 4
+      "and media": {
+        "y media": 4
       }
     },
     "expected": [
@@ -5006,8 +5005,8 @@
     "verse": "Y todas las obras de su poder y su fuerza, con la cuenta completa de la grandeza de Mardoqueo, por la cual el rey lo había hecho grande, ¿no están escritas en el libro de los eventos de días para los reyes de Media y Persia?",
     "glPhrase": "and Persia",
     "history": {
-      "Persia": {
-        "Persia": 1
+      "persia": {
+        "persia": 1
       }
     },
     "expected": [
@@ -6589,7 +6588,7 @@
       "royalty": {
         "la realeza": 2
       },
-      "And her royalty": {
+      "and her royalty": {
         "la realeza de ella": 1
       }
     },
@@ -6643,7 +6642,7 @@
       "royalty": {
         "la realeza": 2
       },
-      "And her royalty": {
+      "and her royalty": {
         "la realeza de ella": 1
       }
     },
@@ -6697,7 +6696,7 @@
       "royalty": {
         "la realeza": 3
       },
-      "And her royalty": {
+      "and her royalty": {
         "la realeza de ella": 1
       }
     },
@@ -6747,7 +6746,7 @@
         "la realeza": 3,
         "realeza": 1
       },
-      "And her royalty": {
+      "and her royalty": {
         "la realeza de ella": 1
       }
     },
@@ -6901,7 +6900,7 @@
     "verse": "En aquellos días, estando sentado Mardoqueo a la puerta del rey, Bigtán y Teres (dos eunucos del rey que eran guardias de la puerta) se molestaron; y buscaron extender una mano en contra del rey Asuero.",
     "glPhrase": "and they sought",
     "history": {
-      "Let them seek": {
+      "let them seek": {
         "que busquen": 1
       }
     },
@@ -6950,7 +6949,7 @@
     "glPhrase": "the servants of",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       }
     },
     "expected": [
@@ -7003,7 +7002,7 @@
     "glPhrase": "the servants of",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       },
       "the servants of": {
         "los sirvientes del": 1
@@ -7059,7 +7058,7 @@
     "glPhrase": "the young female attendants of",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       },
       "the servants of": {
         "los sirvientes del": 2
@@ -7120,7 +7119,7 @@
     "glPhrase": "the servants of",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       },
       "the servants of": {
         "los sirvientes del": 2
@@ -7179,7 +7178,7 @@
     "glPhrase": "and my young female attendants",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       },
       "the servants of": {
         "los sirvientes del": 3
@@ -7243,7 +7242,7 @@
     "glPhrase": "the young men of",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       },
       "the servants of": {
         "los sirvientes del": 3
@@ -7305,7 +7304,7 @@
     "glPhrase": "the young men of",
     "history": {
       "and his servants": {
-        "Y sus sirvientes": 1
+        "y sus sirvientes": 1
       },
       "the servants of": {
         "los sirvientes del": 3
@@ -7527,7 +7526,7 @@
         "masacrar": 1
       },
       "and slaughter": {
-        "Y matanza": 1
+        "y matanza": 1
       }
     },
     "expected": [
@@ -7579,7 +7578,7 @@
         "masacrar": 1
       },
       "and slaughter": {
-        "Y matanza": 1
+        "y matanza": 1
       },
       "slaughtered": {
         "mataron": 1
@@ -7639,7 +7638,7 @@
         "masacrar": 1
       },
       "and slaughter": {
-        "Y matanza": 1
+        "y matanza": 1
       },
       "slaughtered": {
         "mataron": 1
@@ -7702,7 +7701,7 @@
         "masacrar": 1
       },
       "and slaughter": {
-        "Y matanza": 1
+        "y matanza": 1
       },
       "slaughtered": {
         "mataron": 1

@@ -3978,7 +3978,7 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
           if (glText) {
             glQuote = cleanGlQuote(glText);
 
-            if (gatewayLanguageCode !== undefined) { // the app's history: GL keys lowercased too
+            if (targetLangId !== undefined) { // the app's history: GL keys lowercased too
               glQuote = getSelectionHistoryKey(glQuote, gatewayLanguageCode);
             }
           }

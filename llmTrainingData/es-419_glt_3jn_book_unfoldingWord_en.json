@@ -52,10 +52,7 @@
     "glPhrase": "Beloved",
     "history": {
       "beloved": {
-        "amado": 1
-      },
-      "Beloved": {
-        "Amado": 1
+        "amado": 2
       }
     },
     "expected": [
@@ -98,10 +95,7 @@
     "glPhrase": "Beloved",
     "history": {
       "beloved": {
-        "amado": 1
-      },
-      "Beloved": {
-        "Amado": 2
+        "amado": 3
       }
     },
     "expected": [

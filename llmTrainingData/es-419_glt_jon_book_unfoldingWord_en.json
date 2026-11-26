@@ -8,8 +8,8 @@
     "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
     "glPhrase": "Then appointed",
     "history": {
-      "Now appointed": {
-        "Pero dispuso": 1
+      "now appointed": {
+        "pero dispuso": 1
       }
     },
     "expected": [
@@ -56,11 +56,11 @@
     "verse": "Entonces Dios dispuso de un gusano al amanecer del día siguiente que atacó a la planta, y esta se marchitó.",
     "glPhrase": "Then appointed",
     "history": {
-      "Now appointed": {
-        "Pero dispuso": 1
+      "now appointed": {
+        "pero dispuso": 1
       },
-      "Then appointed": {
-        "Entonces dispuso": 1
+      "then appointed": {
+        "entonces dispuso": 1
       }
     },
     "expected": [
@@ -107,11 +107,11 @@
     "verse": "Y tan pronto como sucedió la salida del sol, entonces Dios dispuso de un viento caliente del este; y el sol cayó sobre la cabeza de Jonás, y él se desmayó. Luego le pidió a su espíritu que muriera y dijo: \"Mi muerte es mejor que mi vida\".",
     "glPhrase": "then appointed",
     "history": {
-      "Now appointed": {
-        "Pero dispuso": 1
+      "now appointed": {
+        "pero dispuso": 1
       },
-      "Then appointed": {
-        "Entonces dispuso": 2
+      "then appointed": {
+        "entonces dispuso": 2
       }
     },
     "expected": [
@@ -295,8 +295,8 @@
     "verse": "Y él dijo: Clamé a Jehová desde mi angustia y él me respondió; desde el vientre del Seol clamé, tú escuchaste mi voz.",
     "glPhrase": "I cried out",
     "history": {
-      "Cry out": {
-        "Clama": 1
+      "cry out": {
+        "clama": 1
       }
     },
     "expected": [
@@ -338,11 +338,11 @@
     "verse": "Pero toda persona y todo animal debe cubrirse con cilicio, y ellos deben clamar a Dios con fuerza; y cada hombre debe volverse de su mal camino y de la violencia que está en sus manos.",
     "glPhrase": "and they must cry out",
     "history": {
-      "Cry out": {
-        "Clama": 1
+      "cry out": {
+        "clama": 1
       },
-      "I cried out": {
-        "Clamé": 1
+      "i cried out": {
+        "clamé": 1
       }
     },
     "expected": [
@@ -1013,8 +1013,8 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       }
     },
     "expected": [
@@ -1067,11 +1067,11 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       }
     },
     "expected": [
@@ -1124,14 +1124,14 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       }
     },
     "expected": [
@@ -1184,17 +1184,17 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       }
     },
     "expected": [
@@ -1242,20 +1242,20 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 1
+      "god": {
+        "dios": 1
       }
     },
     "expected": [
@@ -1308,23 +1308,23 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 1
+      "god": {
+        "dios": 1
       },
-      "This god": {
-        "Este dios": 1
+      "this god": {
+        "este dios": 1
       }
     },
     "expected": [
@@ -1372,23 +1372,23 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 2
+      "god": {
+        "dios": 2
       },
-      "This god": {
-        "Este dios": 1
+      "this god": {
+        "este dios": 1
       }
     },
     "expected": [
@@ -1436,23 +1436,23 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 3
+      "god": {
+        "dios": 3
       },
-      "This god": {
-        "Este dios": 1
+      "this god": {
+        "este dios": 1
       }
     },
     "expected": [
@@ -1510,26 +1510,26 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 3
+      "god": {
+        "dios": 3
       },
-      "This god": {
-        "Este dios": 1
+      "this god": {
+        "este dios": 1
       },
-      "are a God": {
-        "eres un Dios": 1
+      "are a god": {
+        "eres un dios": 1
       }
     },
     "expected": [
@@ -1577,26 +1577,26 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 4
+      "god": {
+        "dios": 4
       },
-      "This god": {
-        "Este dios": 1
+      "this god": {
+        "este dios": 1
       },
-      "are a God": {
-        "eres un Dios": 1
+      "are a god": {
+        "eres un dios": 1
       }
     },
     "expected": [
@@ -1644,26 +1644,26 @@
       "that god": {
         "ese dios": 1
       },
-      "God of": {
-        "el Dios": 1
+      "god of": {
+        "el dios": 1
       },
-      "his God": {
-        "su Dios": 1
+      "his god": {
+        "su dios": 1
       },
-      "my God": {
-        "mi Dios": 1
+      "my god": {
+        "mi dios": 1
       },
-      "to God": {
-        "ante Dios": 1
+      "to god": {
+        "ante dios": 1
       },
-      "God": {
-        "Dios": 5
+      "god": {
+        "dios": 5
       },
-      "This god": {
-        "Este dios": 1
+      "this god": {
+        "este dios": 1
       },
-      "are a God": {
-        "eres un Dios": 1
+      "are a god": {
+        "eres un dios": 1
       }
     },
     "expected": [
@@ -1761,8 +1761,8 @@
       "is better": {
         "es mejor": 1
       },
-      "Is it right that": {
-        "Es correcto que": 1
+      "is it right that": {
+        "es correcto que": 1
       }
     },
     "expected": [
@@ -1812,8 +1812,8 @@
       "is better": {
         "es mejor": 2
       },
-      "Is it right that": {
-        "Es correcto que": 1
+      "is it right that": {
+        "es correcto que": 1
       }
     },
     "expected": [
@@ -1868,9 +1868,9 @@
       "is better": {
         "es mejor": 2
       },
-      "Is it right that": {
-        "Es correcto que": 1,
-        "Acaso es correcto": 1
+      "is it right that": {
+        "es correcto que": 1,
+        "acaso es correcto": 1
       }
     },
     "expected": [
@@ -1917,8 +1917,8 @@
     "verse": "Pero Jonás se levantó  para huir a Tarsis del rostro de Jehová. Y él bajó a Jope y encontró un barco que se dirigía a Tarsis. Así que pagó el pasaje y se embarcó en él para ir con ellos a Tarsis, del rostro de Jehová.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 1
+      "jonah": {
+        "jonás": 1
       }
     },
     "expected": [
@@ -1960,8 +1960,8 @@
     "verse": "Entonces los marineros estaban atemorizados y cada hombre invocaba a su propio dios. Y ellos arrojaron las cosas que estaban en el barco al mar para aligerarlo de la carga de ellos. Pero Jonás habia bajado al interior del barco, y se había acostado y estaba profundamente dormido.",
     "glPhrase": "But Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 2
+      "jonah": {
+        "jonás": 2
       }
     },
     "expected": [
@@ -2008,11 +2008,11 @@
     "verse": "Entonces cada hombre le dijo a su amigo: \"Vengan, y echemos suerte, para que sepamos a cuenta de quien esta desgracia nos está ocurriendo\". Entonces echaron suerte, y la suerte cayó sobre Jonás.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 2
+      "jonah": {
+        "jonás": 2
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2054,11 +2054,11 @@
     "verse": "Pero, Jehová dispuso de un gran pez para tragarse a Jonás, y Jonás estuvo en el abdomen del pez tres días y tres noches.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 3
+      "jonah": {
+        "jonás": 3
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2100,11 +2100,11 @@
     "verse": "Y Jonás oró a Jehová su Dios desde el abdomen del pez.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 4
+      "jonah": {
+        "jonás": 4
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2146,11 +2146,11 @@
     "verse": "Y la palabra de Jehová vino por segunda vez a Jonás, diciendo:",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 5
+      "jonah": {
+        "jonás": 5
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2192,11 +2192,11 @@
     "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 6
+      "jonah": {
+        "jonás": 6
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2238,11 +2238,11 @@
     "verse": "Así que Jonás comenzó a ir a la ciudad, un viaje de un día, y proclamó y dijo: \"Hasta cuarenta días, entonces Nínive será derrocada\".",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 7
+      "jonah": {
+        "jonás": 7
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2284,11 +2284,11 @@
     "verse": "Pero esto fue malo para Jonás, un gran mal, y le quemó.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 8
+      "jonah": {
+        "jonás": 8
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2330,11 +2330,11 @@
     "verse": "Entonces salió Jonás de la ciudad y se sentó frente a la ciudad desde el este. Y allí hizo una enramada para sí mismo, y se sentó debajo de ella a la sombra hasta que pudo ver lo que sucedería dentro de la ciudad.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 9
+      "jonah": {
+        "jonás": 9
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2376,11 +2376,11 @@
     "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 10
+      "jonah": {
+        "jonás": 10
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2422,11 +2422,11 @@
     "verse": "Entonces Jehová Dios dispuso de una planta y la hizo crecer sobre Jonás para que fuera una sombra sobre su cabeza para librarlo a él de su maldad. Y Jonás se alegró con gran regocijo a causa de la planta.",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 11
+      "jonah": {
+        "jonás": 11
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2468,11 +2468,11 @@
     "verse": "Y tan pronto como sucedió la salida del sol, entonces Dios dispuso de un viento caliente del este; y el sol cayó sobre la cabeza de Jonás, y él se desmayó. Luego le pidió a su espíritu que muriera y dijo: \"Mi muerte es mejor que mi vida\".",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 12
+      "jonah": {
+        "jonás": 12
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2519,12 +2519,12 @@
     "verse": "Entonces Dios dijo a Jonás: \"¿Acaso es correcto que te queme por la planta?\" Y él dijo: \"Es correcto que me queme, incluso hasta la muerte\".",
     "glPhrase": "Jonah",
     "history": {
-      "Jonah": {
-        "Jonás": 12,
-        "de Jonás": 1
+      "jonah": {
+        "jonás": 12,
+        "de jonás": 1
       },
-      "But Jonah": {
-        "Pero Jonás": 1
+      "but jonah": {
+        "pero jonás": 1
       }
     },
     "expected": [
@@ -2795,8 +2795,8 @@
     "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
     "glPhrase": "Nineveh",
     "history": {
-      "Nineveh": {
-        "Nínive": 1
+      "nineveh": {
+        "nínive": 1
       }
     },
     "expected": [
@@ -2838,8 +2838,8 @@
     "verse": "Así que\n Jonás se levantó y fue a Nínive, conforme a la palabra de Jehová. Ahora, Nínive era una gran ciudad ante Dios, un viaje de tres días.",
     "glPhrase": "Now Nineveh",
     "history": {
-      "Nineveh": {
-        "Nínive": 2
+      "nineveh": {
+        "nínive": 2
       }
     },
     "expected": [
@@ -2886,11 +2886,11 @@
     "verse": "Así que Jonás comenzó a ir a la ciudad, un viaje de un día, y proclamó y dijo: \"Hasta cuarenta días, entonces Nínive será derrocada\".",
     "glPhrase": "then Nineveh",
     "history": {
-      "Nineveh": {
-        "Nínive": 2
+      "nineveh": {
+        "nínive": 2
       },
-      "Now Nineveh": {
-        "Ahora Nínive": 1
+      "now nineveh": {
+        "ahora nínive": 1
       }
     },
     "expected": [
@@ -2937,14 +2937,14 @@
     "verse": "Y los hombres de Nínive le creyeron a Dios. Y ellos proclamaron un ayuno y se vistieron de cilicio, desde el más grande hasta el más pequeño de ellos.",
     "glPhrase": "Nineveh",
     "history": {
-      "Nineveh": {
-        "Nínive": 2
+      "nineveh": {
+        "nínive": 2
       },
-      "Now Nineveh": {
-        "Ahora Nínive": 1
+      "now nineveh": {
+        "ahora nínive": 1
       },
-      "then Nineveh": {
-        "entonces Nínive": 1
+      "then nineveh": {
+        "entonces nínive": 1
       }
     },
     "expected": [
@@ -2991,15 +2991,15 @@
     "verse": "Entonces la palabra llegó al rey de Nínive, y se levantó de su trono, y se quitó su capa que tenía puesta; y se cubrió con cilicio, y se sentó sobre la pila de cenizas.",
     "glPhrase": "Nineveh",
     "history": {
-      "Nineveh": {
-        "Nínive": 2,
-        "de Nínive": 1
+      "nineveh": {
+        "nínive": 2,
+        "de nínive": 1
       },
-      "Now Nineveh": {
-        "Ahora Nínive": 1
+      "now nineveh": {
+        "ahora nínive": 1
       },
-      "then Nineveh": {
-        "entonces Nínive": 1
+      "then nineveh": {
+        "entonces nínive": 1
       }
     },
     "expected": [
@@ -3046,15 +3046,15 @@
     "verse": "Pero, ¿Yo no me apiadaré de Nínive, la gran ciudad, en la cual hay en ella más de 120.000 personas que no pueden distinguir entre su mano derecha y su mano izquierda, y de muchos animales?\".",
     "glPhrase": "Nineveh",
     "history": {
-      "Nineveh": {
-        "Nínive": 2,
-        "de Nínive": 2
+      "nineveh": {
+        "nínive": 2,
+        "de nínive": 2
       },
-      "Now Nineveh": {
-        "Ahora Nínive": 1
+      "now nineveh": {
+        "ahora nínive": 1
       },
-      "then Nineveh": {
-        "entonces Nínive": 1
+      "then nineveh": {
+        "entonces nínive": 1
       }
     },
     "expected": [
@@ -3244,8 +3244,8 @@
     "verse": "Pero Jonás se levantó  para huir a Tarsis del rostro de Jehová. Y él bajó a Jope y encontró un barco que se dirigía a Tarsis. Así que pagó el pasaje y se embarcó en él para ir con ellos a Tarsis, del rostro de Jehová.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 1
+      "yahweh": {
+        "jehová": 1
       }
     },
     "expected": [
@@ -3287,8 +3287,8 @@
     "verse": "Pero Jehová arrojó un gran viento sobre el mar y hubo una gran tormenta en el mar, por eso el barco amenazó con ser destrozado.",
     "glPhrase": "But Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 2
+      "yahweh": {
+        "jehová": 2
       }
     },
     "expected": [
@@ -3335,11 +3335,11 @@
     "verse": "Entonces los hombres se asustaron con gran temor y le dijeron: \"¿Qué es esto que has hecho?\" Porque los hombres sabían que huía del rostro de Jehová, porque él se los había dicho a ellos.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 2
+      "yahweh": {
+        "jehová": 2
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       }
     },
     "expected": [
@@ -3381,11 +3381,11 @@
     "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 3
+      "yahweh": {
+        "jehová": 3
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       }
     },
     "expected": [
@@ -3427,11 +3427,11 @@
     "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 4
+      "yahweh": {
+        "jehová": 4
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       }
     },
     "expected": [
@@ -3473,11 +3473,11 @@
     "verse": "Por eso clamaron a Jehová y dijeron: \"¡Oh Jehová!, por favor no nos dejes perecer por la vida de este hombre, y no cargues sangre inocente sobre nosotros, porque tú, Jehová, como deseaste, hiciste\".",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 5
+      "yahweh": {
+        "jehová": 5
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       }
     },
     "expected": [
@@ -3519,11 +3519,11 @@
     "verse": "Entonces los hombres temieron a Jehová con gran temor, y ellos ofrecieron un sacrificio a Jehová e hicieron votos.",
     "glPhrase": "to Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 6
+      "yahweh": {
+        "jehová": 6
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       }
     },
     "expected": [
@@ -3570,14 +3570,14 @@
     "verse": "Pero, Jehová dispuso de un gran pez para tragarse a Jonás, y Jonás estuvo en el abdomen del pez tres días y tres noches.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 6
+      "yahweh": {
+        "jehová": 6
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       }
     },
     "expected": [
@@ -3619,14 +3619,14 @@
     "verse": "bajé hasta los cimientos de las montañas, la tierra con sus barrotes me rodeaban por siempre;  ¡pero tu levantaste mi vida del foso, Jehová, mi Dios!",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 7
+      "yahweh": {
+        "jehová": 7
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       }
     },
     "expected": [
@@ -3668,14 +3668,14 @@
     "verse": "Pero yo, con voz de agradecimiento haré sacrificios a ti; cumpliré lo que he prometido. ¡La salvación pertenece a Jehová!\"",
     "glPhrase": "belongs to Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 8
+      "yahweh": {
+        "jehová": 8
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       }
     },
     "expected": [
@@ -3727,17 +3727,17 @@
     "verse": "Y Jehová le habló al pez, y este vomitó a Jonás en la tierra firme.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 8
+      "yahweh": {
+        "jehová": 8
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       },
-      "belongs to Yahweh": {
-        "pertenece a Jehová": 1
+      "belongs to yahweh": {
+        "pertenece a jehová": 1
       }
     },
     "expected": [
@@ -3779,17 +3779,17 @@
     "verse": "Entonces él oró a Jehová y dijo: \"¡Oh! Jehová, ¿no fue esta mi palabra mientras estuve en mi tierra? Por esto, actué de antemano para huir a Tarsis, porque yo sabía que tú eres un Dios misericordioso y compasivo, largo de fosas nasales y abundante en fidelidad, y uno que se arrepiente ante el mal.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 9
+      "yahweh": {
+        "jehová": 9
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       },
-      "belongs to Yahweh": {
-        "pertenece a Jehová": 1
+      "belongs to yahweh": {
+        "pertenece a jehová": 1
       }
     },
     "expected": [
@@ -3831,17 +3831,17 @@
     "verse": "Entonces él oró a Jehová y dijo: \"¡Oh! Jehová, ¿no fue esta mi palabra mientras estuve en mi tierra? Por esto, actué de antemano para huir a Tarsis, porque yo sabía que tú eres un Dios misericordioso y compasivo, largo de fosas nasales y abundante en fidelidad, y uno que se arrepiente ante el mal.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 10
+      "yahweh": {
+        "jehová": 10
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       },
-      "belongs to Yahweh": {
-        "pertenece a Jehová": 1
+      "belongs to yahweh": {
+        "pertenece a jehová": 1
       }
     },
     "expected": [
@@ -3883,17 +3883,17 @@
     "verse": "Así que ahora, Jehová, te ruego, toma mi vida de mi, porque mi muerte es mejor que mi vida\".",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 11
+      "yahweh": {
+        "jehová": 11
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       },
-      "belongs to Yahweh": {
-        "pertenece a Jehová": 1
+      "belongs to yahweh": {
+        "pertenece a jehová": 1
       }
     },
     "expected": [
@@ -3935,17 +3935,17 @@
     "verse": "Y Jehová dijo: \"¿Es correcto que te queme?\"",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 12
+      "yahweh": {
+        "jehová": 12
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       },
-      "belongs to Yahweh": {
-        "pertenece a Jehová": 1
+      "belongs to yahweh": {
+        "pertenece a jehová": 1
       }
     },
     "expected": [
@@ -3987,17 +3987,17 @@
     "verse": "Entonces Jehová dijo: \"Tú te apiadaste de la planta, por la cual no trabajaste, y ni la hiciste crecer; vino como hijo de una noche, y pereció como hijo de una noche.",
     "glPhrase": "Yahweh",
     "history": {
-      "Yahweh": {
-        "Jehová": 13
+      "yahweh": {
+        "jehová": 13
       },
-      "But Yahweh": {
-        "Pero Jehová": 1
+      "but yahweh": {
+        "pero jehová": 1
       },
-      "to Yahweh": {
-        "a Jehová": 1
+      "to yahweh": {
+        "a jehová": 1
       },
-      "belongs to Yahweh": {
-        "pertenece a Jehová": 1
+      "belongs to yahweh": {
+        "pertenece a jehová": 1
       }
     },
     "expected": [

@@ -8,8 +8,8 @@
     "verse": "Vậy, nếu sự toàn hảo là nhờ chức tế lễ của người Lê-vi (vì trên căn bản đó, dân chúng đã được ban cho luật pháp), thì cần gì phải dấy lên thêm thầy tế lễ khác theo dòng Mên-chi-xê-đéc mà không được kể theo dòng A-rôn?",
     "glPhrase": "of Aaron",
     "history": {
-      "Aaron was": {
-        "A rôn": 1
+      "aaron was": {
+        "a rôn": 1
       }
     },
     "expected": [
@@ -56,11 +56,11 @@
     "verse": "có một bàn thờ xông hương bằng vàng, và hòm giao ước được bao bọc toàn bộ bằng vàng, bên trong đó là một bình bằng vàng chứa ma-na, cây gậy trổ hoa của A-rôn, và các bảng giao ước,",
     "glPhrase": "of Aaron",
     "history": {
-      "Aaron was": {
-        "A rôn": 1
+      "aaron was": {
+        "a rôn": 1
       },
-      "of Aaron": {
-        "A rôn": 1
+      "of aaron": {
+        "a rôn": 1
       }
     },
     "expected": [
@@ -112,8 +112,8 @@
     "verse": "Vì Mên-chi-xê-đéc này, tức là vua của Sa-lem, thầy tế lễ của Thiên Chúa Chí Cao, người đã gặp Áp-ra-ham đang khi trở về từ trận chiến đánh hạ các vua, và đã chúc phước cho ông,",
     "glPhrase": "Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1
       }
     },
     "expected": [
@@ -165,11 +165,11 @@
     "verse": "mà Áp-ra-ham cũng đã biệt riêng một phần mười từ tất cả chiến lợi phẩm dành cho vua ấy; trước hết, Mên-chi-xê-đéc được dịch là “vua công chính,” mà ngoài ra cũng là vua của Sa-lem, nghĩa là “vua bình an,”",
     "glPhrase": "Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 1
+      "abraham": {
+        "áp ra ham": 1
       }
     },
     "expected": [
@@ -221,11 +221,11 @@
     "verse": "Nhưng hãy chú ý xem vua ấy cao trọng thể nào, mà tổ phụ Áp-ra-ham đã dâng tặng phần mười từ trong các chiến lợi phẩm tốt nhất.",
     "glPhrase": "Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 2
+      "abraham": {
+        "áp ra ham": 2
       }
     },
     "expected": [
@@ -277,11 +277,11 @@
     "verse": "Còn những người từ dòng dõi Lê-vi, lúc đảm nhiệm chức tế lễ, thì có mạng lịnh để lấy đi phần mười từ dân chúng theo luật pháp, nghĩa là từ anh chị em mình, cho dù đều đã ra từ lòng Áp-ra-ham.",
     "glPhrase": "of Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 3
+      "abraham": {
+        "áp ra ham": 3
       }
     },
     "expected": [
@@ -333,12 +333,12 @@
     "verse": "Tuy nhiên, khi không được kể trong dòng tộc ra từ họ, vua này đã thu nhận phần mười nơi Áp-ra-ham, và đã chúc phước cho người có các lời hứa.",
     "glPhrase": "from Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1,
-        "Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1,
+        "áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 3
+      "abraham": {
+        "áp ra ham": 3
       }
     },
     "expected": [
@@ -395,15 +395,15 @@
     "verse": "Có thể nói một điều như vầy, Lê-vi, người thu các phần mười, cũng đã được thu phần mười thông qua Áp-ra-ham,",
     "glPhrase": "Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1,
-        "Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1,
+        "áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 3
+      "abraham": {
+        "áp ra ham": 3
       },
-      "from Abraham": {
-        "nơi Áp ra ham": 1
+      "from abraham": {
+        "nơi áp ra ham": 1
       }
     },
     "expected": [
@@ -455,15 +455,15 @@
     "verse": "Bởi đức tin, vì được kêu gọi, Áp-ra-ham đã vâng lời để ra đi đến nơi mà mình sẽ nhận làm cơ nghiệp, và ông đã ra đi khi không biết mình đang đi đâu.",
     "glPhrase": "Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1,
-        "Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1,
+        "áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 4
+      "abraham": {
+        "áp ra ham": 4
       },
-      "from Abraham": {
-        "nơi Áp ra ham": 1
+      "from abraham": {
+        "nơi áp ra ham": 1
       }
     },
     "expected": [
@@ -515,15 +515,15 @@
     "verse": "Bởi đức tin, Áp-ra-ham dâng Y-sác lúc chịu thử nghiệm, thậm chí sau khi nhận được những lời hứa, ông đã đem dâng con trai duy nhất của mình,",
     "glPhrase": "Abraham",
     "history": {
-      "of Abraham": {
-        "của Áp ra ham": 1,
-        "Áp ra ham": 1
+      "of abraham": {
+        "của áp ra ham": 1,
+        "áp ra ham": 1
       },
-      "Abraham": {
-        "Áp ra ham": 5
+      "abraham": {
+        "áp ra ham": 5
       },
-      "from Abraham": {
-        "nơi Áp ra ham": 1
+      "from abraham": {
+        "nơi áp ra ham": 1
       }
     },
     "expected": [
@@ -2363,7 +2363,7 @@
     "glPhrase": "having appointed",
     "history": {
       "he appointed": {
-        "Ngài đã lập làm": 1
+        "ngài đã lập làm": 1
       }
     },
     "expected": [
@@ -2416,7 +2416,7 @@
     "glPhrase": "he sets",
     "history": {
       "he appointed": {
-        "Ngài đã lập làm": 1
+        "ngài đã lập làm": 1
       },
       "having appointed": {
         "đã chỉ định": 1
@@ -2477,13 +2477,13 @@
     "glPhrase": "is appointed",
     "history": {
       "he appointed": {
-        "Ngài đã lập làm": 1
+        "ngài đã lập làm": 1
       },
       "having appointed": {
         "đã chỉ định": 1
       },
       "he sets": {
-        "Thiên Chúa định ra": 1
+        "thiên chúa định ra": 1
       }
     },
     "expected": [
@@ -2536,13 +2536,13 @@
     "glPhrase": "appoints",
     "history": {
       "he appointed": {
-        "Ngài đã lập làm": 1
+        "ngài đã lập làm": 1
       },
       "having appointed": {
         "đã chỉ định": 1
       },
       "he sets": {
-        "Thiên Chúa định ra": 1
+        "thiên chúa định ra": 1
       },
       "is appointed": {
         "được chỉ định": 1
@@ -2593,13 +2593,13 @@
     "glPhrase": "is appointed",
     "history": {
       "he appointed": {
-        "Ngài đã lập làm": 1
+        "ngài đã lập làm": 1
       },
       "having appointed": {
         "đã chỉ định": 1
       },
       "he sets": {
-        "Thiên Chúa định ra": 1
+        "thiên chúa định ra": 1
       },
       "is appointed": {
         "được chỉ định": 1
@@ -5157,8 +5157,8 @@
     "verse": "Vì chúng ta đã trở thành những người dự phần của Chúa Cứu Thế, miễn là chúng ta giữ chặt khởi điểm lòng tin xác quyết của mình cho đến cuối cùng,",
     "glPhrase": "of Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 1
+      "christ": {
+        "chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5224,11 +5224,11 @@
     "verse": "Tương tự, Chúa Cứu Thế cũng đã không tự tôn mình lên làm thầy tế lễ thượng phẩm. Thay vào đó là Đấng đã nói với Ngài:\n\\q1 “Con là Con Ta;\n\\q1 ngày nay Ta đã sinh ra Con.”\n\\m",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 1
+      "christ": {
+        "chúa cứu thế": 1
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5289,11 +5289,11 @@
     "verse": "Vậy nên, khi đã bỏ phía sau lẽ đạo sơ đẳng về Chúa Cứu Thế, chúng ta cần phải tiến đến mức trưởng thành, không đặt lại điều cơ sở về sự ăn năn rời khỏi các công việc chết, về đức tin nơi Thiên Chúa,",
     "glPhrase": "of Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 2
+      "christ": {
+        "chúa cứu thế": 2
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5359,12 +5359,12 @@
     "verse": "Nhưng Chúa Cứu Thế, khi xuất hiện trong vai trò thầy tế lễ thượng phẩm của những điều tốt đẹp vốn đã tồn tại, thông qua đền tạm vĩ đại hơn và hoàn hảo hơn không do tay loài người dựng nên, tức là không thuộc về thế giới thọ tạo này, \\f + \\ft Các phiên bản khác đọc, \\fqa Chúa Cứu Thể đã đến trong vai trò thầy tế lễ thượng phẩm của những điều tốt đẹp sắp đến.\\fqa*\\f*",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 2
+      "christ": {
+        "chúa cứu thế": 2
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 1,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 1,
+        "về chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5416,12 +5416,12 @@
     "verse": "thì huyết của Chúa Cứu Thế, là Đấng bởi Thánh Linh đời đời đã dâng chính mình làm tế lễ không tì không vết cho Thiên Chúa, sẽ càng tẩy sạch lương tâm của anh chị em\\f + \\ft Vài thủ bản cổ dùng \\fqa của chúng ta \\fqa* thay vì \\fq của anh chị em.\\fq*\\f*\nđến nhường nào khỏi các công việc chết để phục vụ Thiên Chúa hằng sống!",
     "glPhrase": "of Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 3
+      "christ": {
+        "chúa cứu thế": 3
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 1,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 1,
+        "về chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5487,12 +5487,12 @@
     "verse": "vì thật, Chúa Cứu Thế đã không vào trong các nơi thánh do tay con người làm ra — là những thứ mô phỏng của các vật thực sự — trái lại là vào trong chính thiên đàng, để giờ đây trình diện trước mặt của Thiên Chúa thay cho chúng ta,",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 3
+      "christ": {
+        "chúa cứu thế": 3
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 2,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 2,
+        "về chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5544,12 +5544,12 @@
     "verse": "thì cũng vậy, sau khi được dâng lên chỉ một lần để mang lấy tội lỗi nhiều người, Chúa Cứu Thế sẽ được trông thấy vào lần thứ hai, không để gánh tội, nhưng để sự cứu rỗi đến với những ai tha thiết trông đợi Ngài.",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 4
+      "christ": {
+        "chúa cứu thế": 4
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 2,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 2,
+        "về chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5610,12 +5610,12 @@
     "verse": "Bởi ý muốn ấy, chúng ta đây đã được thánh hóa nhờ sự dâng thân thể của Chúa Cứu Thế Giê-xu làm sinh tế một lần đủ cả.",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 5
+      "christ": {
+        "chúa cứu thế": 5
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 2,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 2,
+        "về chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5672,13 +5672,13 @@
     "verse": "Ông xét thấy sự sỉ nhục của người được xức dầu là sự giàu có vĩ đại hơn các kho báu của Ai Cập, vì ông nhìn cách tập trung hướng đến phần thưởng của mình.",
     "glPhrase": "of the Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 5,
-        "của Chúa Cứu Thế": 1
+      "christ": {
+        "chúa cứu thế": 5,
+        "của chúa cứu thế": 1
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 2,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 2,
+        "về chúa cứu thế": 1
       }
     },
     "expected": [
@@ -5749,15 +5749,15 @@
     "verse": "Chúa Cứu Thế Giê-xu hôm qua, ngày nay và cho đến đời đời thì vẫn y nguyên.",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 5,
-        "của Chúa Cứu Thế": 1
+      "christ": {
+        "chúa cứu thế": 5,
+        "của chúa cứu thế": 1
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 2,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 2,
+        "về chúa cứu thế": 1
       },
-      "of the Christ": {
+      "of the christ": {
         "của người được xức dầu": 1
       }
     },
@@ -5810,15 +5810,15 @@
     "verse": "nguyện Ngài trang bị anh chị em với mọi điều tốt lành để thực hiện ý muốn của Ngài, khi làm điều vừa ý trước mặt Ngài trong chúng ta, nhờ Chúa Cứu Thế Giê-xu, là Đấng mà vinh quang hướng về Ngài cho đến đời đời vô cùng. A-men.\n\\p",
     "glPhrase": "Christ",
     "history": {
-      "Christ": {
-        "Chúa Cứu Thế": 6,
-        "của Chúa Cứu Thế": 1
+      "christ": {
+        "chúa cứu thế": 6,
+        "của chúa cứu thế": 1
       },
-      "of Christ": {
-        "của Chúa Cứu Thế": 2,
-        "về Chúa Cứu Thế": 1
+      "of christ": {
+        "của chúa cứu thế": 2,
+        "về chúa cứu thế": 1
       },
-      "of the Christ": {
+      "of the christ": {
         "của người được xức dầu": 1
       }
     },
@@ -7500,7 +7500,7 @@
         "lúc đặt nền thế giới": 1
       },
       "of creation": {
-        "Thế thuộc về giới thọ tạo": 1
+        "thế thuộc về giới thọ tạo": 1
       }
     },
     "expected": [
@@ -7666,7 +7666,7 @@
     "glPhrase": "did you take pleasure in them",
     "history": {
       "were you well pleased with them": {
-        "Ngài ưa thích": 1
+        "ngài ưa thích": 1
       }
     },
     "expected": [
@@ -7734,10 +7734,10 @@
     "glPhrase": "is well pleased",
     "history": {
       "were you well pleased with them": {
-        "Ngài ưa thích": 1
+        "ngài ưa thích": 1
       },
       "did you take pleasure in them": {
-        "Ngài ưa thích những thứ ấy": 1
+        "ngài ưa thích những thứ ấy": 1
       }
     },
     "expected": [
@@ -8231,8 +8231,8 @@
     "verse": "không dựa theo giao ước\n\\q2 mà Ta đã lập với các tổ phụ của họ\n\\q1 trong ngày Ta cầm tay họ\n\\q2 để dắt họ ra khỏi đất Ai Cập,\n\\q1 vì họ đã không cứ ở trong giao ước của Ta,\n\\q2 Ta cũng đã bỏ mặc họ,\n\\q1 Chúa phán.\n\\q1",
     "glPhrase": "of Egypt",
     "history": {
-      "Egypt": {
-        "ai Cập": 1
+      "egypt": {
+        "ai cập": 1
       }
     },
     "expected": [
@@ -8279,11 +8279,11 @@
     "verse": "Ông xét thấy sự sỉ nhục của người được xức dầu là sự giàu có vĩ đại hơn các kho báu của Ai Cập, vì ông nhìn cách tập trung hướng đến phần thưởng của mình.",
     "glPhrase": "of Egypt",
     "history": {
-      "Egypt": {
-        "ai Cập": 1
+      "egypt": {
+        "ai cập": 1
       },
-      "of Egypt": {
-        "Ai Cập": 1
+      "of egypt": {
+        "ai cập": 1
       }
     },
     "expected": [
@@ -8335,12 +8335,12 @@
     "verse": "Bởi đức tin, ông rời bỏ Ai Cập, không sợ cơn giận của vua, vì ông kiên trì chịu đựng như thể đang nhìn thấy Đấng không thấy được.",
     "glPhrase": "Egypt",
     "history": {
-      "Egypt": {
-        "ai Cập": 1
+      "egypt": {
+        "ai cập": 1
       },
-      "of Egypt": {
-        "Ai Cập": 1,
-        "của Ai Cập": 1
+      "of egypt": {
+        "ai cập": 1,
+        "của ai cập": 1
       }
     },
     "expected": [
@@ -8387,13 +8387,12 @@
     "verse": "Bởi đức tin, dân sự đi băng qua Biển Đỏ như thể băng qua đất khô, là nơi mà người Ai Cập đã bị nuốt chửng sau khi ra sức nỗ lực.",
     "glPhrase": "Egyptians",
     "history": {
-      "Egypt": {
-        "ai Cập": 1,
-        "Ai Cập": 1
+      "egypt": {
+        "ai cập": 2
       },
-      "of Egypt": {
-        "Ai Cập": 1,
-        "của Ai Cập": 1
+      "of egypt": {
+        "ai cập": 1,
+        "của ai cập": 1
       }
     },
     "expected": [
@@ -9258,7 +9257,7 @@
       "exhortation": {
         "sự khuyên nhủ": 1
       },
-      "I encourage you": {
+      "i encourage you": {
         "tôi khích lệ anh chị em": 1
       }
     },
@@ -9314,10 +9313,10 @@
       "exhortation": {
         "sự khuyên nhủ": 1
       },
-      "I encourage you": {
+      "i encourage you": {
         "tôi khích lệ anh chị em": 1
       },
-      "I encourage": {
+      "i encourage": {
         "tôi nài khuyên": 1
       }
     },
@@ -9717,8 +9716,7 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 2,
-        "Đức tin": 1
+        "đức tin": 3
       }
     },
     "expected": [
@@ -9779,11 +9777,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 2,
-        "Đức tin": 1
+        "đức tin": 3
       },
-      "By faith": {
-        "Bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 1
       }
     },
     "expected": [
@@ -9844,11 +9841,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 2,
-        "Đức tin": 1
+        "đức tin": 3
       },
-      "By faith": {
-        "Bởi đức tin": 2
+      "by faith": {
+        "bởi đức tin": 2
       }
     },
     "expected": [
@@ -9909,11 +9905,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 2,
-        "Đức tin": 1
+        "đức tin": 3
       },
-      "By faith": {
-        "Bởi đức tin": 3
+      "by faith": {
+        "bởi đức tin": 3
       }
     },
     "expected": [
@@ -9969,11 +9964,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 3,
-        "Đức tin": 1
+        "đức tin": 4
       },
-      "By faith": {
-        "Bởi đức tin": 3
+      "by faith": {
+        "bởi đức tin": 3
       }
     },
     "expected": [
@@ -10034,11 +10028,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 3,
-        "Đức tin": 1
+        "đức tin": 4
       },
-      "By faith": {
-        "Bởi đức tin": 4
+      "by faith": {
+        "bởi đức tin": 4
       }
     },
     "expected": [
@@ -10094,11 +10087,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 4
+      "by faith": {
+        "bởi đức tin": 4
       }
     },
     "expected": [
@@ -10159,11 +10151,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 5
+      "by faith": {
+        "bởi đức tin": 5
       }
     },
     "expected": [
@@ -10224,11 +10215,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 6
+      "by faith": {
+        "bởi đức tin": 6
       }
     },
     "expected": [
@@ -10289,11 +10279,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 7
+      "by faith": {
+        "bởi đức tin": 7
       }
     },
     "expected": [
@@ -10349,11 +10338,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 7
+      "by faith": {
+        "bởi đức tin": 7
       },
       "their faith": {
         "đức tin": 1
@@ -10417,11 +10405,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 8
+      "by faith": {
+        "bởi đức tin": 8
       },
       "their faith": {
         "đức tin": 1
@@ -10485,12 +10472,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 8,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 9
       },
       "their faith": {
         "đức tin": 1
@@ -10554,12 +10539,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 9,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 10
       },
       "their faith": {
         "đức tin": 1
@@ -10623,12 +10606,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 10,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 11
       },
       "their faith": {
         "đức tin": 1
@@ -10692,12 +10673,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 11,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 12
       },
       "their faith": {
         "đức tin": 1
@@ -10761,12 +10740,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 12,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 13
       },
       "their faith": {
         "đức tin": 1
@@ -10830,12 +10807,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 13,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 14
       },
       "their faith": {
         "đức tin": 1
@@ -10899,12 +10874,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 14,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 15
       },
       "their faith": {
         "đức tin": 1
@@ -10968,12 +10941,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 15,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 16
       },
       "their faith": {
         "đức tin": 1
@@ -11037,12 +11008,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 16,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 17
       },
       "their faith": {
         "đức tin": 1
@@ -11106,12 +11075,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 4,
-        "Đức tin": 1
+        "đức tin": 5
       },
-      "By faith": {
-        "Bởi đức tin": 17,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 18
       },
       "their faith": {
         "đức tin": 1
@@ -11170,12 +11137,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 5,
-        "Đức tin": 1
+        "đức tin": 6
       },
-      "By faith": {
-        "Bởi đức tin": 17,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 18
       },
       "their faith": {
         "đức tin": 1
@@ -11243,12 +11208,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 5,
-        "Đức tin": 1
+        "đức tin": 6
       },
-      "By faith": {
-        "Bởi đức tin": 17,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 18
       },
       "their faith": {
         "đức tin": 1
@@ -11324,12 +11287,10 @@
         "trong đức tin": 1
       },
       "faith": {
-        "đức tin": 5,
-        "Đức tin": 1
+        "đức tin": 6
       },
-      "By faith": {
-        "Bởi đức tin": 17,
-        "bởi đức tin": 1
+      "by faith": {
+        "bởi đức tin": 18
       },
       "their faith": {
         "đức tin": 1
@@ -11741,7 +11702,7 @@
       "let us be afraid": {
         "chúng ta nên biết run sợ": 1
       },
-      "It is a fearful thing": {
+      "it is a fearful thing": {
         "là một điều kinh khiếp": 1
       }
     },
@@ -11795,7 +11756,7 @@
       "let us be afraid": {
         "chúng ta nên biết run sợ": 1
       },
-      "It is a fearful thing": {
+      "it is a fearful thing": {
         "là một điều kinh khiếp": 1
       },
       "they were afraid": {
@@ -11847,7 +11808,7 @@
       "let us be afraid": {
         "chúng ta nên biết run sợ": 1
       },
-      "It is a fearful thing": {
+      "it is a fearful thing": {
         "là một điều kinh khiếp": 1
       },
       "they were afraid": {
@@ -11907,7 +11868,7 @@
       "let us be afraid": {
         "chúng ta nên biết run sợ": 1
       },
-      "It is a fearful thing": {
+      "it is a fearful thing": {
         "là một điều kinh khiếp": 1
       },
       "they were afraid": {
@@ -11970,7 +11931,7 @@
       "let us be afraid": {
         "chúng ta nên biết run sợ": 1
       },
-      "It is a fearful thing": {
+      "it is a fearful thing": {
         "là một điều kinh khiếp": 1
       },
       "they were afraid": {
@@ -12041,7 +12002,7 @@
     "glPhrase": "of the firstborn",
     "history": {
       "firstborn": {
-        "Con Đầu Lòng": 1
+        "con đầu lòng": 1
       }
     },
     "expected": [
@@ -12108,7 +12069,7 @@
     "glPhrase": "of the firstborn ones",
     "history": {
       "firstborn": {
-        "Con Đầu Lòng": 1
+        "con đầu lòng": 1
       },
       "of the firstborn": {
         "các con đầu lòng": 1
@@ -12897,8 +12858,8 @@
     "verse": "Nhưng còn hơn thế, khi Ngài đem Con Đầu Lòng vào trần gian, Ngài phán: “Tất cả các thiên sứ của Thiên Chúa phải thờ phượng Con ấy.”",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -12950,11 +12911,11 @@
     "verse": "Còn đối với Con ấy, thì:\n\\q1 “Lạy Thiên Chúa, ngai Ngài còn đến đời đời mãi mãi,\n\\q1 và quyền trượng công lý là quyền trượng của vương quốc Người. \\f + \\ft Thay vì \\fq Người\\fq*, vài thủ bản cổ đọc \\fqa Ngài\\fqa*.\\f*\n\\q1",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1
+      "of god": {
+        "thiên của chúa": 1
       }
     },
     "expected": [
@@ -13015,12 +12976,12 @@
     "verse": "Ngài yêu sự công chính và ghét sự vô đạo.\n\\q1 Vì cớ đó, Thiên Chúa, tức Thiên Chúa của Người, đã xức cho Người\n\\q1 dầu vui mừng trổi hơn các bạn hữu Người.”\n\\q1",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 1,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 1,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1
+      "of god": {
+        "thiên của chúa": 1
       }
     },
     "expected": [
@@ -13077,12 +13038,12 @@
     "glPhrase": "God",
     "occurrence": 2,
     "history": {
-      "God": {
-        "Thiên Chúa": 2,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 2,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1
+      "of god": {
+        "thiên của chúa": 1
       }
     },
     "expected": [
@@ -13138,12 +13099,12 @@
     "verse": "vì Thiên Chúa cũng hiệp chung làm chứng với họ bằng những dấu kỳ, phép lạ, và nhiều việc quyền năng khác nhau, cùng sự ban phát của Chúa Thánh Linh theo ý muốn Ngài.\n\\p",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 3,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 3,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1
+      "of god": {
+        "thiên của chúa": 1
       }
     },
     "expected": [
@@ -13199,12 +13160,12 @@
     "verse": "nhưng chúng ta thấy Chúa Giê-xu, là Đấng được khiến cho kém hơn các thiên sứ trong một thời gian ngắn, đã được đội mão miện trong sự vinh quang và tôn trọng vì cớ sự thương khó nơi sự chết của Ngài, để bởi ân điển Thiên Chúa, Ngài có thể nếm trải sự chết thay cho mọi người.",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 4,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 4,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1
+      "of god": {
+        "thiên của chúa": 1
       }
     },
     "expected": [
@@ -13251,13 +13212,13 @@
     "verse": "Và một lần nữa:\n\\q1 “Tôi sẽ tin cậy nơi Thiên Chúa.”\n\\m Rồi lại tiếp:\n\\q1 “Nhìn này, tôi và các con trẻ mà Thiên Chúa đã ban cho tôi.”\n\\p",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 4,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 4,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13313,13 +13274,13 @@
     "verse": "do đó Ngài cần phải được khiến nên giống anh chị em mình về mọi phương diện, để Ngài có thể trở thành thầy tế lễ thượng phẩm hay thương xót và trung tín đối với những việc hướng về Thiên Chúa với mục đích bày tỏ ân điển trên tội lỗi của dân Ngài.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 5,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 5,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13375,13 +13336,13 @@
     "verse": "Bởi mỗi ngôi nhà thì được xây dựng bởi một ai đó, nhưng Thiên Chúa là Đấng dựng nên muôn vật.",
     "glPhrase": "God is",
     "history": {
-      "God": {
-        "Thiên Chúa": 6,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 6,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13428,16 +13389,16 @@
     "verse": "Thưa anh chị em, hãy cẩn thận, kẻo tấm lòng vô tín tà ác sẽ xuất hiện nơi một ai đó trong vòng anh chị em, tức là nơi kẻ lìa xa khỏi Thiên Chúa hằng sống.",
     "glPhrase": "the God",
     "history": {
-      "God": {
-        "Thiên Chúa": 6,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 6,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13484,19 +13445,19 @@
     "verse": "Vì có chỗ Ngài đã phán như thế này về ngày thứ bảy:\n\\q1 “Và Thiên Chúa ngưng nghỉ mọi công việc Ngài vào ngày thứ bảy.”\n\\m",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 6,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 6,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13552,19 +13513,19 @@
     "verse": "Cho nên, vẫn còn đó sự yên nghỉ Sa-bát dành cho dân sự của Thiên Chúa.",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 7,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 7,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13625,20 +13586,20 @@
     "verse": "Vì người nào đã vào trong sự yên nghỉ của Ngài, chính người ấy cũng ngưng nghỉ các công việc mình, giống như Thiên Chúa đối với các công việc của Ngài.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 7,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 7,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13694,20 +13655,20 @@
     "verse": "Vì mỗi thầy tế lễ thượng phẩm, khi được chọn ra từ giữa dân chúng, được chỉ định đại diện cho dân trong những chức việc liên quan đến Thiên Chúa, để có thể dâng lễ vật và sinh tế chuộc tội;",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 8,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 8,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13763,20 +13724,20 @@
     "verse": "Không một ai nhận lấy vinh dự này cho mình, mà chỉ được Thiên Chúa kêu gọi, cũng giống như A-rôn.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 9,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 9,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13832,20 +13793,20 @@
     "verse": "sau khi được Thiên Chúa chỉ định làm thầy tế lễ thượng phẩm theo dòng Mên-chi-xê-đéc,",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 10,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 10,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13901,20 +13862,20 @@
     "verse": "Vì thậm chí đến lúc này, đáng ra nên là những người thầy, anh chị em lại có nhu cầu tìm ai đó chỉ dạy mình các nguyên tắc sơ đẳng trong các sấm ngôn của Thiên Chúa, và anh chị em đã thành những kẻ có nhu cầu về sữa, chứ không phải đồ ăn đặc!",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 11,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 11,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -13975,20 +13936,20 @@
     "verse": "Vậy nên, khi đã bỏ phía sau lẽ đạo sơ đẳng về Chúa Cứu Thế, chúng ta cần phải tiến đến mức trưởng thành, không đặt lại điều cơ sở về sự ăn năn rời khỏi các công việc chết, về đức tin nơi Thiên Chúa,",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 11,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 11,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14035,20 +13996,20 @@
     "verse": "Chúng ta sẽ làm điều ấy nếu Thiên Chúa cho phép.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 12,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 12,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14104,20 +14065,20 @@
     "verse": "Vì một mảnh đất, khi đã thấm nhuần nước mưa thường xuyên sa xuống trên nó và sinh ra sản vật hữu ích cho người ta, tức là cho những ai canh tác nó, thì có phần trong ơn phước từ Thiên Chúa,",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 13,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 13,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14173,20 +14134,20 @@
     "verse": "Vì Thiên Chúa không bất công để rồi quên công việc của anh chị em, cùng tình yêu thương mà anh chị em đã minh chứng cho danh Ngài, khi từng phục vụ các thánh đồ và hiện vẫn còn phục vụ họ.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 14,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 14,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14242,20 +14203,20 @@
     "verse": "Vì Thiên Chúa, khi hứa với Áp-ra-ham, bởi lẽ Ngài chẳng có ai lớn hơn để dựa vào mà thề, thì đã thề dựa vào chính mình,",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 15,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 15,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14311,20 +14272,20 @@
     "verse": "bởi cách đó, khi muốn bày tỏ cách dư dật hơn nữa cho những người thừa kế lời hứa về đặc tính bất biến của ý định Ngài, thì Thiên Chúa đã can thiệp vào bằng một lời thề",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 16,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 16,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14380,20 +14341,20 @@
     "verse": "hầu cho nhờ hai điều bất biến ấy, về hai điều đó không cách nào để Thiên Chúa nói dối, chúng ta, là những người chạy đến chỗ ẩn náu, có thể có được sự khích lệ mạnh mẽ để nắm chặt lấy niềm hy vọng hiện đặt trước mặt mình;",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 17,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 17,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14449,20 +14410,20 @@
     "verse": "Vì Mên-chi-xê-đéc này, tức là vua của Sa-lem, thầy tế lễ của Thiên Chúa Chí Cao, người đã gặp Áp-ra-ham đang khi trở về từ trận chiến đánh hạ các vua, và đã chúc phước cho ông,",
     "glPhrase": "of the God",
     "history": {
-      "God": {
-        "Thiên Chúa": 18,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 18,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14523,23 +14484,23 @@
     "verse": "(ấy do luật pháp chẳng làm cho toàn hảo điều gì), và mặt khác là việc mang lại niềm hy vọng tốt đẹp hơn, mà nhờ đó chúng ta đến gần Thiên Chúa.",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 18,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 18,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       }
     },
     "expected": [
@@ -14595,26 +14556,26 @@
     "verse": "mà bởi cớ đó, Ngài cũng có năng quyền để giải cứu đến mức toàn vẹn những người đến gần Thiên Chúa qua Ngài, là Đấng hằng sống để cầu khẩn thay cho họ.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 18,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 18,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14670,26 +14631,26 @@
     "verse": "Vì đây là giao ước\n\\q2 mà Ta sẽ lập với nhà Y-sơ-ra-ên\n\\q1 sau những ngày đó,\n\\q2 Chúa phán,\n\\q1 khi đặt các luật pháp của Ta vào tâm trí họ,\n\\q1 Ta cũng sẽ viết chúng lên tấm lòng họ,\n\\q1 và Ta sẽ là Thiên Chúa đối với họ,\n\\q1 và họ sẽ là một dân dành cho Ta.\n\\q1",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 19,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 19,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14736,26 +14697,26 @@
     "verse": "thì huyết của Chúa Cứu Thế, là Đấng bởi Thánh Linh đời đời đã dâng chính mình làm tế lễ không tì không vết cho Thiên Chúa, sẽ càng tẩy sạch lương tâm của anh chị em\\f + \\ft Vài thủ bản cổ dùng \\fqa của chúng ta \\fqa* thay vì \\fq của anh chị em.\\fq*\\f*\nđến nhường nào khỏi các công việc chết để phục vụ Thiên Chúa hằng sống!",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 20,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 20,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1
       }
     },
     "expected": [
@@ -14817,27 +14778,27 @@
     "glPhrase": "the God",
     "occurrence": 2,
     "history": {
-      "God": {
-        "Thiên Chúa": 20,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 20,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 1
+      "the god": {
+        "thiên chúa": 1
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -14884,27 +14845,27 @@
     "verse": "nói rằng: “Đây là huyết giao ước mà Thiên Chúa đã truyền dạy cho anh chị em.”",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 20,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 20,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -14960,27 +14921,27 @@
     "verse": "vì thật, Chúa Cứu Thế đã không vào trong các nơi thánh do tay con người làm ra — là những thứ mô phỏng của các vật thực sự — trái lại là vào trong chính thiên đàng, để giờ đây trình diện trước mặt của Thiên Chúa thay cho chúng ta,",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 1,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 1,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15041,27 +15002,27 @@
     "verse": "Sau đó, tôi thưa: ‘Xin nhìn xem, Con đến —\n\\q2 theo như lời trong phần cuộn sách đã chép về con —\n\\q1 để thực hiện ý muốn của Ngài, thưa Thiên Chúa.’”\n\\p",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15122,28 +15083,28 @@
     "verse": "Nhưng Ngài, sau khi vì cớ tội lỗi dâng sinh tế duy nhất cho đến mãi mãi, thì đã ngồi ở bên phải Thiên Chúa,",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 1,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15199,29 +15160,28 @@
     "verse": "và một thầy tế lễ vĩ đại quản trị trên nhà của Thiên Chúa,",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 2
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15282,29 +15242,28 @@
     "verse": "Sa vào tay Thiên Chúa hằng sống là một điều kinh khiếp!\n\\p",
     "glPhrase": "of the God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 3
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15351,30 +15310,29 @@
     "verse": "Vì anh chị em có nhu cầu về tính kiên nhẫn chịu đựng, để sau khi thực hiện ý muốn của Thiên Chúa, anh chị em có thể đạt được lời hứa.\n\\q1",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 3,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 3
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15435,30 +15393,29 @@
     "verse": "Bởi đức tin chúng ta nhận biết cõi hoàn vũ này đã được hoàn thành bởi lời phán của Thiên Chúa — để điều thấy được đã không hình thành từ điều có thể nhìn thấy.",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 4,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 4
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15510,30 +15467,29 @@
     "verse": "Bởi đức tin A-bên đã dâng lên Thiên Chúa một sinh tế tốt hơn so với Ca-in, mà nhờ đó ông được chứng nhận là công chính, khi Thiên Chúa đưa ra sự công nhận trên các lễ vật của ông, và nhờ đức tin, A-bên vẫn còn nói dù đã chết.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 21,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 21,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15589,30 +15545,29 @@
     "verse": "Bởi đức tin A-bên đã dâng lên Thiên Chúa một sinh tế tốt hơn so với Ca-in, mà nhờ đó ông được chứng nhận là công chính, khi Thiên Chúa đưa ra sự công nhận trên các lễ vật của ông, và nhờ đức tin, A-bên vẫn còn nói dù đã chết.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 22,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 22,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15668,30 +15623,29 @@
     "verse": "Bởi đức tin Hê-nóc được cất đi, chẳng nếm trải sự chết, và “ông không được tìm thấy, do Thiên Chúa đã cất ông đi.” Vì trước sự cất đi của mình, ông đã được chứng nhận là làm hài lòng Thiên Chúa.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 23,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 23,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15747,30 +15701,29 @@
     "verse": "Bởi đức tin Hê-nóc được cất đi, chẳng nếm trải sự chết, và “ông không được tìm thấy, do Thiên Chúa đã cất ông đi.” Vì trước sự cất đi của mình, ông đã được chứng nhận là làm hài lòng Thiên Chúa.",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 24,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 24,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 1,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 1,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15826,30 +15779,29 @@
     "verse": "Thế nhưng, không có đức tin thì không thể làm hài lòng Thiên Chúa, vì điều bắt buộc đối với người đến cùng Thiên Chúa là phải tin rằng Ngài hiện hữu và Ngài là Đấng ban thưởng cho những ai tìm kiếm Ngài.",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 24,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 24,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1
       }
     },
     "expected": [
@@ -15910,31 +15862,30 @@
     "verse": "vì ông vẫn trông mong một thành có nền móng, mà Kiến Trúc Sư và Thợ Xây Cất của thành ấy là Thiên Chúa.",
     "glPhrase": "is God",
     "history": {
-      "God": {
-        "Thiên Chúa": 24,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 24,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       }
     },
     "expected": [
@@ -15995,34 +15946,33 @@
     "verse": "Nhưng bây giờ họ khao khát một nơi tốt đẹp hơn, ấy là quê hương trên trời. Do đó Thiên Chúa không hổ thẹn về họ, để được xưng là Thiên Chúa của họ, vì Ngài đã chuẩn bị một thành cho họ.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 24,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 24,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16079,34 +16029,33 @@
     "glPhrase": "God",
     "occurrence": 2,
     "history": {
-      "God": {
-        "Thiên Chúa": 25,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 25,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16153,34 +16102,33 @@
     "verse": "vì đã suy luận rằng Thiên Chúa có quyền làm cho sống lại, kể cả từ cõi chết, và trong nghĩa bóng, ông đã nhận lại con mình từ nơi đó.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 26,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 26,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16236,34 +16184,33 @@
     "verse": "Thay vào đó, ông chọn chịu khổ cùng với dân Chúa hơn là sở hữu lạc thú tạm bợ của tội lỗi.",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 27,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 27,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16314,35 +16261,34 @@
     "verse": "vì Thiên Chúa đã hoạch định điều tốt hơn liên hệ đến chúng ta, hầu cho không có chúng ta, họ không được làm cho trọn vẹn.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 27,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 27,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16398,35 +16344,34 @@
     "verse": "tập trung nhìn vào Chúa Giê-xu, Đấng Sáng Lập và Đấng Làm Toàn Hảo của đức tin, là Đấng vì niềm vui đặt trước mặt mình đã gánh chịu thập tự giá, coi khinh điều ô nhục, đồng thời Ngài đã ngồi ở bên phải ngai Thiên Chúa.",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 28,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 28,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 1,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 2,
+        "của thiên chúa": 5,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16482,35 +16427,34 @@
     "verse": "Anh chị em đang chịu đựng trong sự kỷ luật; tức là Thiên Chúa đang đối xử với anh chị em như con. Vì người con nào mà cha không sửa phạt?",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 28,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 28,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 5,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16566,35 +16510,34 @@
     "verse": "bằng cách cẩn thận trông nom, kẻo ai đó hụt khỏi ân điển của Thiên Chúa, e rằng rễ đắng nào đó mọc lên gây rối, và nhiều người có thể bị ô uế vì nó,",
     "glPhrase": "of God",
     "history": {
-      "God": {
-        "Thiên Chúa": 29,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 29,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 5,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 5,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16655,35 +16598,34 @@
     "verse": "Tuy nhiên, anh chị em đã đến với Núi Si-ôn và thành của Thiên Chúa hằng sống, với Giê-ru-sa-lem thiên thượng, với muôn vàn thiên sứ, với hội trọng thể,",
     "glPhrase": "of the God",
     "history": {
-      "God": {
-        "Thiên Chúa": 29,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 29,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 1,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 1,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16735,35 +16677,34 @@
     "verse": "với hội thánh của các con trưởng đã được ghi tên trên các tầng trời, với Thiên Chúa là Đấng Phán Xét của mọi người, với các linh của những người công chính đã được làm cho trọn vẹn,",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 29,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 29,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16815,36 +16756,35 @@
     "verse": "Do đó, chúng ta cần có lòng biết ơn khi nhận lãnh một vương quốc không rúng động, mà qua đó chúng ta có thể thờ phượng theo cách đẹp lòng Thiên Chúa, với thái độ tôn kính lẫn kinh sợ,",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 29,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 29,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 2,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1,
-        "với Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 2,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1,
+        "với thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16900,36 +16840,35 @@
     "verse": "vì Thiên Chúa của chúng ta là ngọn lửa thiêu đốt.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 29,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 29,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 3,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1,
-        "với Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 3,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1,
+        "với thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -16985,36 +16924,35 @@
     "verse": "Hôn nhân phải là điều trân quý giữa vòng mọi người, và giường hoa chúc thì phải không ô uế, vì Thiên Chúa sẽ phán xét những kẻ dâm dục và bọn ngoại tình.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 30,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 30,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 3,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1,
-        "với Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 3,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1,
+        "với thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -17070,36 +17008,35 @@
     "verse": "Nhờ Ngài, chúng ta có thể dâng sinh tế ngợi khen lên Thiên Chúa trong mọi sự, đó là bông trái của môi miệng xưng nhận danh Ngài.",
     "glPhrase": "to God",
     "history": {
-      "God": {
-        "Thiên Chúa": 31,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 31,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 3,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1,
-        "với Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 3,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1,
+        "với thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -17155,36 +17092,35 @@
     "verse": "Còn việc làm điều lành và sự chia sẻ giúp đỡ thì đừng bỏ quên vì Thiên Chúa được vui lòng về những sinh tế như vậy.",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 31,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 31,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 4,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1,
-        "với Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 4,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1,
+        "với thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -17240,36 +17176,35 @@
     "verse": "Thiên Chúa bình an, Đấng đã vực dậy Đấng Chăn Chiên Lớn, tức là Chúa Giê-xu chúng ta, từ cõi chết nhờ huyết giao ước đời đời,",
     "glPhrase": "God",
     "history": {
-      "God": {
-        "Thiên Chúa": 32,
-        "Lạy Thiên Chúa": 1,
-        "thưa Thiên Chúa": 1
+      "god": {
+        "thiên chúa": 32,
+        "lạy thiên chúa": 1,
+        "thưa thiên chúa": 1
       },
-      "of God": {
-        "thiên của Chúa": 2,
-        "thiên Chúa": 1,
-        "của Thiên Chúa": 6,
-        "Thiên Chúa": 2,
-        "Chúa": 1
+      "of god": {
+        "thiên của chúa": 2,
+        "thiên chúa": 3,
+        "của thiên chúa": 6,
+        "chúa": 1
       },
-      "God is": {
-        "Thiên Chúa": 1
+      "god is": {
+        "thiên chúa": 1
       },
-      "the God": {
-        "Thiên Chúa": 2
+      "the god": {
+        "thiên chúa": 2
       },
-      "of the God": {
-        "của Thiên Chúa": 2,
-        "Thiên Chúa": 1
+      "of the god": {
+        "của thiên chúa": 2,
+        "thiên chúa": 1
       },
-      "to God": {
-        "Thiên Chúa": 4,
-        "cho Thiên Chúa": 1,
-        "cùng Thiên Chúa": 1,
-        "với Thiên Chúa": 1
+      "to god": {
+        "thiên chúa": 4,
+        "cho thiên chúa": 1,
+        "cùng thiên chúa": 1,
+        "với thiên chúa": 1
       },
-      "is God": {
-        "là Thiên Chúa": 1
+      "is god": {
+        "là thiên chúa": 1
       }
     },
     "expected": [
@@ -19172,8 +19107,7 @@
         "trời": 1
       },
       "heavenly": {
-        "thiên thượng": 2,
-        "Thiên thượng": 1
+        "thiên thượng": 3
       },
       "of the heavenly things": {
         "của những điều trên trời": 1
@@ -19245,8 +19179,7 @@
         "trời": 1
       },
       "heavenly": {
-        "thiên thượng": 2,
-        "Thiên thượng": 1
+        "thiên thượng": 3
       },
       "of the heavenly things": {
         "của những điều trên trời": 1
@@ -19311,8 +19244,7 @@
         "trời": 1
       },
       "heavenly": {
-        "thiên thượng": 2,
-        "Thiên thượng": 1
+        "thiên thượng": 3
       },
       "of the heavenly things": {
         "của những điều trên trời": 1
@@ -19374,7 +19306,7 @@
     "glPhrase": "to the heirs",
     "history": {
       "heir": {
-        "Người Thừa Kế": 1
+        "người thừa kế": 1
       }
     },
     "expected": [
@@ -19446,7 +19378,7 @@
     "glPhrase": "an heir",
     "history": {
       "heir": {
-        "Người Thừa Kế": 1
+        "người thừa kế": 1
       },
       "to the heirs": {
         "cho những người thừa kế": 1
@@ -19568,7 +19500,7 @@
         "thầy tế lễ thượng phẩm": 1
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1
+        "thượng thầy tế lễ phẩm": 1
       }
     },
     "expected": [
@@ -19640,7 +19572,7 @@
         "một thầy tế lễ thượng phẩm": 1
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1
+        "thượng thầy tế lễ phẩm": 1
       }
     },
     "expected": [
@@ -19712,7 +19644,7 @@
         "một thầy tế lễ thượng phẩm": 2
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1
+        "thượng thầy tế lễ phẩm": 1
       }
     },
     "expected": [
@@ -19779,7 +19711,7 @@
         "một thầy tế lễ thượng phẩm": 2
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       }
     },
@@ -19847,7 +19779,7 @@
         "một thầy tế lễ thượng phẩm": 2
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       }
     },
@@ -19920,7 +19852,7 @@
         "một thầy tế lễ thượng phẩm": 2
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       },
       "as high priest": {
@@ -19991,7 +19923,7 @@
         "một thầy tế lễ thượng phẩm": 2
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       },
       "as high priest": {
@@ -20067,7 +19999,7 @@
         "một thầy tế lễ thượng phẩm": 3
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       },
       "as high priest": {
@@ -20133,7 +20065,7 @@
         "một thầy tế lễ thượng phẩm": 3
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       },
       "as high priest": {
@@ -20212,7 +20144,7 @@
         "một thầy tế lễ thượng phẩm": 3
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       },
       "as high priest": {
@@ -20294,7 +20226,7 @@
         "một thầy tế lễ thượng phẩm": 4
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 1
       },
       "as high priest": {
@@ -20371,7 +20303,7 @@
         "một thầy tế lễ thượng phẩm": 4
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 2
       },
       "as high priest": {
@@ -20448,7 +20380,7 @@
         "một thầy tế lễ thượng phẩm": 4
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 3
       },
       "as high priest": {
@@ -20525,7 +20457,7 @@
         "một thầy tế lễ thượng phẩm": 4
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 3
       },
       "as high priest": {
@@ -20602,7 +20534,7 @@
         "một thầy tế lễ thượng phẩm": 4
       },
       "high priest": {
-        "thượng Thầy Tế Lễ Phẩm": 1,
+        "thượng thầy tế lễ phẩm": 1,
         "thầy tế lễ thượng phẩm": 4
       },
       "as high priest": {
@@ -20895,16 +20827,14 @@
     "glPhrase": "of the holy places",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
       },
       "holy place": {
         "một nơi thánh": 1
-      },
-      "Holy": {
-        "nơi Thánh": 1
       }
     },
     "expected": [
@@ -20966,7 +20896,8 @@
     "glPhrase": "holy places",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -20974,11 +20905,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       }
     },
     "expected": [
@@ -21031,7 +20959,8 @@
     "glPhrase": "holy places",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -21039,11 +20968,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       },
       "holy places": {
         "các nơi thánh": 1
@@ -21099,7 +21025,8 @@
     "glPhrase": "holy places",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -21107,11 +21034,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       },
       "holy places": {
         "các nơi thánh": 2
@@ -21167,7 +21091,8 @@
     "glPhrase": "holy places",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -21175,11 +21100,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       },
       "holy places": {
         "các nơi thánh": 3
@@ -21235,7 +21157,8 @@
     "glPhrase": "holiness",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -21243,11 +21166,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       },
       "holy places": {
         "các nơi thánh": 4
@@ -21312,7 +21232,8 @@
     "glPhrase": "sanctification",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -21320,11 +21241,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       },
       "holy places": {
         "các nơi thánh": 4
@@ -21383,7 +21301,8 @@
     "glPhrase": "holy places",
     "history": {
       "holy": {
-        "thánh khiết": 2
+        "thánh khiết": 2,
+        "nơi thánh": 1
       },
       "of the holy place": {
         "của nơi thánh": 1
@@ -21391,11 +21310,8 @@
       "holy place": {
         "một nơi thánh": 1
       },
-      "Holy": {
-        "nơi Thánh": 1
-      },
       "of the holy places": {
-        "Thánh các nơi": 1
+        "thánh các nơi": 1
       },
       "holy places": {
         "các nơi thánh": 4
@@ -21456,8 +21372,8 @@
     "verse": "Do đó, đúng như Chúa Thánh Linh phán:\n\\q1 “Ngày nay, nếu các con nghe tiếng Ngài,\n\\q1",
     "glPhrase": "Holy Spirit",
     "history": {
-      "of the Holy Spirit": {
-        "của Chúa Thánh Linh": 1
+      "of the holy spirit": {
+        "của chúa thánh linh": 1
       }
     },
     "expected": [
@@ -21522,11 +21438,11 @@
     "verse": "Vì đó là chuyện bất khả thi — đối với những kẻ đã từng được khai sáng, đồng thời trải nghiệm ơn lành thiên thượng, trở nên người dự phần về Chúa Thánh Linh",
     "glPhrase": "of the Holy Spirit",
     "history": {
-      "of the Holy Spirit": {
-        "của Chúa Thánh Linh": 1
+      "of the holy spirit": {
+        "của chúa thánh linh": 1
       },
-      "Holy Spirit": {
-        "Chúa Thánh Linh": 1
+      "holy spirit": {
+        "chúa thánh linh": 1
       }
     },
     "expected": [
@@ -21592,12 +21508,12 @@
     "verse": "Chúa Thánh Linh qua việc ấy cho thấy rõ rằng đường vào các nơi thánh vẫn chưa được lộ ra, khi đền tạm thứ nhất vẫn còn chỗ đứng,",
     "glPhrase": "Holy Spirit",
     "history": {
-      "of the Holy Spirit": {
-        "của Chúa Thánh Linh": 1,
-        "về Chúa Thánh Linh": 1
+      "of the holy spirit": {
+        "của chúa thánh linh": 1,
+        "về chúa thánh linh": 1
       },
-      "Holy Spirit": {
-        "Chúa Thánh Linh": 1
+      "holy spirit": {
+        "chúa thánh linh": 1
       }
     },
     "expected": [
@@ -21662,12 +21578,12 @@
     "verse": "thì huyết của Chúa Cứu Thế, là Đấng bởi Thánh Linh đời đời đã dâng chính mình làm tế lễ không tì không vết cho Thiên Chúa, sẽ càng tẩy sạch lương tâm của anh chị em\\f + \\ft Vài thủ bản cổ dùng \\fqa của chúng ta \\fqa* thay vì \\fq của anh chị em.\\fq*\\f*\nđến nhường nào khỏi các công việc chết để phục vụ Thiên Chúa hằng sống!",
     "glPhrase": "the Spirit",
     "history": {
-      "of the Holy Spirit": {
-        "của Chúa Thánh Linh": 1,
-        "về Chúa Thánh Linh": 1
+      "of the holy spirit": {
+        "của chúa thánh linh": 1,
+        "về chúa thánh linh": 1
       },
-      "Holy Spirit": {
-        "Chúa Thánh Linh": 2
+      "holy spirit": {
+        "chúa thánh linh": 2
       }
     },
     "expected": [
@@ -21714,15 +21630,15 @@
     "verse": "Còn Chúa Thánh Linh cũng làm chứng cho chúng ta, vì sau đó đã phán:\n\\q1",
     "glPhrase": "Holy Spirit",
     "history": {
-      "of the Holy Spirit": {
-        "của Chúa Thánh Linh": 1,
-        "về Chúa Thánh Linh": 1
+      "of the holy spirit": {
+        "của chúa thánh linh": 1,
+        "về chúa thánh linh": 1
       },
-      "Holy Spirit": {
-        "Chúa Thánh Linh": 2
+      "holy spirit": {
+        "chúa thánh linh": 2
       },
-      "the Spirit": {
-        "Thánh Linh": 1
+      "the spirit": {
+        "thánh linh": 1
       }
     },
     "expected": [
@@ -21787,15 +21703,15 @@
     "verse": "Anh chị em nghĩ kẻ giày đạp Con Thiên Chúa, và coi huyết giao ước là tầm thường ô uế — mà bởi huyết đó, mình được thánh hóa — và xúc phạm Thánh Linh của ân điển, hắn sẽ đáng bị hình phạt nặng hơn nhiều bao nhiêu?",
     "glPhrase": "Spirit",
     "history": {
-      "of the Holy Spirit": {
-        "của Chúa Thánh Linh": 1,
-        "về Chúa Thánh Linh": 1
+      "of the holy spirit": {
+        "của chúa thánh linh": 1,
+        "về chúa thánh linh": 1
       },
-      "Holy Spirit": {
-        "Chúa Thánh Linh": 3
+      "holy spirit": {
+        "chúa thánh linh": 3
       },
-      "the Spirit": {
-        "Thánh Linh": 1
+      "the spirit": {
+        "thánh linh": 1
       }
     },
     "expected": [
@@ -22864,7 +22780,7 @@
     "glPhrase": "to inherit",
     "history": {
       "he has inherited": {
-        "Con đã thừa hưởng": 1
+        "con đã thừa hưởng": 1
       }
     },
     "expected": [
@@ -22907,7 +22823,7 @@
     "glPhrase": "inheriting",
     "history": {
       "he has inherited": {
-        "Con đã thừa hưởng": 1
+        "con đã thừa hưởng": 1
       },
       "to inherit": {
         "hưởng": 1
@@ -22958,7 +22874,7 @@
     "glPhrase": "an inheritance",
     "history": {
       "he has inherited": {
-        "Con đã thừa hưởng": 1
+        "con đã thừa hưởng": 1
       },
       "to inherit": {
         "hưởng": 1
@@ -23012,7 +22928,7 @@
     "glPhrase": "to inherit",
     "history": {
       "he has inherited": {
-        "Con đã thừa hưởng": 1
+        "con đã thừa hưởng": 1
       },
       "to inherit": {
         "hưởng": 1
@@ -23063,8 +22979,8 @@
     "verse": "Bởi đức tin, Áp-ra-ham dâng Y-sác lúc chịu thử nghiệm, thậm chí sau khi nhận được những lời hứa, ông đã đem dâng con trai duy nhất của mình,",
     "glPhrase": "Isaac",
     "history": {
-      "Isaac": {
-        "Y sác": 1
+      "isaac": {
+        "y sác": 1
       }
     },
     "expected": [
@@ -23120,8 +23036,8 @@
     "verse": "mà về con ấy, có lời phán rằng: “Qua Y-sác, dòng dõi của con sẽ được đặt tên,”",
     "glPhrase": "Isaac",
     "history": {
-      "Isaac": {
-        "Y sác": 2
+      "isaac": {
+        "y sác": 2
       }
     },
     "expected": [
@@ -23168,8 +23084,8 @@
     "verse": "Cũng bởi đức tin, Y-sác chúc phước cho Gia-cốp và Ê-sau về những việc sẽ xảy đến.",
     "glPhrase": "Isaac",
     "history": {
-      "Isaac": {
-        "Y sác": 3
+      "isaac": {
+        "y sác": 3
       }
     },
     "expected": [
@@ -23216,8 +23132,8 @@
     "verse": "Vì đây là giao ước\n\\q2 mà Ta sẽ lập với nhà Y-sơ-ra-ên\n\\q1 sau những ngày đó,\n\\q2 Chúa phán,\n\\q1 khi đặt các luật pháp của Ta vào tâm trí họ,\n\\q1 Ta cũng sẽ viết chúng lên tấm lòng họ,\n\\q1 và Ta sẽ là Thiên Chúa đối với họ,\n\\q1 và họ sẽ là một dân dành cho Ta.\n\\q1",
     "glPhrase": "of Israel",
     "history": {
-      "of Israel": {
-        "Y sơ ra ên": 1
+      "of israel": {
+        "y sơ ra ên": 1
       }
     },
     "expected": [
@@ -23274,8 +23190,8 @@
     "verse": "Bởi đức tin, khi đến cuối đời, Giô-sép nhắc nhớ về cuộc xuất hành của con cái Y-sơ-ra-ên và căn dặn họ về hài cốt của mình.",
     "glPhrase": "of Israel",
     "history": {
-      "of Israel": {
-        "Y sơ ra ên": 2
+      "of israel": {
+        "y sơ ra ên": 2
       }
     },
     "expected": [
@@ -23332,8 +23248,8 @@
     "verse": "Cũng bởi đức tin, Y-sác chúc phước cho Gia-cốp và Ê-sau về những việc sẽ xảy đến.",
     "glPhrase": "Jacob",
     "history": {
-      "Jacob": {
-        "Gia cốp": 1
+      "jacob": {
+        "gia cốp": 1
       }
     },
     "expected": [
@@ -23389,8 +23305,8 @@
     "verse": "Bởi đức tin, lúc gần qua đời, Gia-cốp chúc phước cho từng con trai của Giô-sép, và tựa vào đầu gậy mình, ông quỳ gối thờ phượng.",
     "glPhrase": "Jacob",
     "history": {
-      "Jacob": {
-        "Gia cốp": 2
+      "jacob": {
+        "gia cốp": 2
       }
     },
     "expected": [
@@ -23437,8 +23353,8 @@
     "verse": "Vì vậy, thưa anh chị em thánh khiết, là những người dự phần trong sự kêu gọi thiên thượng, hãy chú tâm vào Vị Sứ Giả và Thầy Tế Lễ Thượng Phẩm của lời tuyên xưng chúng ta, tức là Chúa Giê-xu,",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 1
+      "jesus": {
+        "chúa giê xu": 1
       }
     },
     "expected": [
@@ -23490,8 +23406,8 @@
     "verse": "Như vậy, đang khi có một thầy tế lễ thượng phẩm vĩ đại đã vượt qua các tầng trời, tức là Chúa Giê-xu Con Thiên Chúa, thì chúng ta cần giữ vững lời tuyên xưng của mình.",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 2
+      "jesus": {
+        "chúa giê xu": 2
       }
     },
     "expected": [
@@ -23543,8 +23459,8 @@
     "verse": "nơi mà Chúa Giê-xu đã đi vào như một Đấng đi trước thay cho chúng ta, sau khi trở thành thầy tế lễ thượng phẩm cho đến đời đời theo dòng Mên-chi-xê-đéc.",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 3
+      "jesus": {
+        "chúa giê xu": 3
       }
     },
     "expected": [
@@ -23596,8 +23512,8 @@
     "verse": "nên theo cách rất vượt trội đó, Chúa Giê-xu đã trở thành Đấng bảo đảm của một giao ước tốt hơn.",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 4
+      "jesus": {
+        "chúa giê xu": 4
       }
     },
     "expected": [
@@ -23649,8 +23565,8 @@
     "verse": "Bởi ý muốn ấy, chúng ta đây đã được thánh hóa nhờ sự dâng thân thể của Chúa Cứu Thế Giê-xu làm sinh tế một lần đủ cả.",
     "glPhrase": "of Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 5
+      "jesus": {
+        "chúa giê xu": 5
       }
     },
     "expected": [
@@ -23697,11 +23613,11 @@
     "verse": "Vậy nên, thưa anh chị em, vì có được lòng dạn dĩ cho việc bước vào các nơi thánh nhờ huyết của Chúa Giê-xu,",
     "glPhrase": "of Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 5
+      "jesus": {
+        "chúa giê xu": 5
       },
-      "of Jesus": {
-        "Giê xu": 1
+      "of jesus": {
+        "giê xu": 1
       }
     },
     "expected": [
@@ -23758,12 +23674,12 @@
     "verse": "tập trung nhìn vào Chúa Giê-xu, Đấng Sáng Lập và Đấng Làm Toàn Hảo của đức tin, là Đấng vì niềm vui đặt trước mặt mình đã gánh chịu thập tự giá, coi khinh điều ô nhục, đồng thời Ngài đã ngồi ở bên phải ngai Thiên Chúa.",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 5
+      "jesus": {
+        "chúa giê xu": 5
       },
-      "of Jesus": {
-        "Giê xu": 1,
-        "của Chúa Giê xu": 1
+      "of jesus": {
+        "giê xu": 1,
+        "của chúa giê xu": 1
       }
     },
     "expected": [
@@ -23815,12 +23731,12 @@
     "verse": "với Chúa Giê-xu, Đấng Trung Gian của giao ước mới, và với huyết của sự rảy ra có tiếng nói mạnh mẽ hơn so với A-bên.",
     "glPhrase": "to Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 6
+      "jesus": {
+        "chúa giê xu": 6
       },
-      "of Jesus": {
-        "Giê xu": 1,
-        "của Chúa Giê xu": 1
+      "of jesus": {
+        "giê xu": 1,
+        "của chúa giê xu": 1
       }
     },
     "expected": [
@@ -23877,15 +23793,15 @@
     "verse": "Chúa Cứu Thế Giê-xu hôm qua, ngày nay và cho đến đời đời thì vẫn y nguyên.",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 6
+      "jesus": {
+        "chúa giê xu": 6
       },
-      "of Jesus": {
-        "Giê xu": 1,
-        "của Chúa Giê xu": 1
+      "of jesus": {
+        "giê xu": 1,
+        "của chúa giê xu": 1
       },
-      "to Jesus": {
-        "với Chúa Giê xu": 1
+      "to jesus": {
+        "với chúa giê xu": 1
       }
     },
     "expected": [
@@ -23932,16 +23848,16 @@
     "verse": "Do đó, Chúa Giê-xu cũng đã chịu thương khó bên ngoài cổng thành, để Ngài có thể thánh hóa dân chúng qua huyết của chính mình.",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 6,
-        "Giê xu": 1
+      "jesus": {
+        "chúa giê xu": 6,
+        "giê xu": 1
       },
-      "of Jesus": {
-        "Giê xu": 1,
-        "của Chúa Giê xu": 1
+      "of jesus": {
+        "giê xu": 1,
+        "của chúa giê xu": 1
       },
-      "to Jesus": {
-        "với Chúa Giê xu": 1
+      "to jesus": {
+        "với chúa giê xu": 1
       }
     },
     "expected": [
@@ -23993,16 +23909,16 @@
     "verse": "Thiên Chúa bình an, Đấng đã vực dậy Đấng Chăn Chiên Lớn, tức là Chúa Giê-xu chúng ta, từ cõi chết nhờ huyết giao ước đời đời,",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 7,
-        "Giê xu": 1
+      "jesus": {
+        "chúa giê xu": 7,
+        "giê xu": 1
       },
-      "of Jesus": {
-        "Giê xu": 1,
-        "của Chúa Giê xu": 1
+      "of jesus": {
+        "giê xu": 1,
+        "của chúa giê xu": 1
       },
-      "to Jesus": {
-        "với Chúa Giê xu": 1
+      "to jesus": {
+        "với chúa giê xu": 1
       }
     },
     "expected": [
@@ -24049,16 +23965,16 @@
     "verse": "nguyện Ngài trang bị anh chị em với mọi điều tốt lành để thực hiện ý muốn của Ngài, khi làm điều vừa ý trước mặt Ngài trong chúng ta, nhờ Chúa Cứu Thế Giê-xu, là Đấng mà vinh quang hướng về Ngài cho đến đời đời vô cùng. A-men.\n\\p",
     "glPhrase": "Jesus",
     "history": {
-      "Jesus": {
-        "Chúa Giê xu": 7,
-        "Giê xu": 2
+      "jesus": {
+        "chúa giê xu": 7,
+        "giê xu": 2
       },
-      "of Jesus": {
-        "Giê xu": 1,
-        "của Chúa Giê xu": 1
+      "of jesus": {
+        "giê xu": 1,
+        "của chúa giê xu": 1
       },
-      "to Jesus": {
-        "với Chúa Giê xu": 1
+      "to jesus": {
+        "với chúa giê xu": 1
       }
     },
     "expected": [
@@ -24926,8 +24842,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       }
     },
     "expected": [
@@ -24985,8 +24901,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       },
       "they will know": {
         "họ sẽ biết": 1
@@ -25057,8 +24973,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       },
       "they will know": {
         "họ sẽ biết": 1
@@ -25122,8 +25038,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       },
       "they will know": {
         "họ sẽ biết": 1
@@ -25185,8 +25101,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       },
       "they will know": {
         "họ sẽ biết": 1
@@ -25251,8 +25167,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       },
       "they will know": {
         "họ sẽ biết": 1
@@ -25330,8 +25246,8 @@
       "being ignorant": {
         "ngu muội": 1
       },
-      "Know": {
-        "Hãy nhận biết": 1
+      "know": {
+        "hãy nhận biết": 1
       },
       "they will know": {
         "họ sẽ biết": 1
@@ -25841,8 +25757,8 @@
       "the law": {
         "luật pháp": 1
       },
-      "law by Moses": {
-        "luật pháp Môi se": 1
+      "law by moses": {
+        "luật pháp môi se": 1
       }
     },
     "expected": [
@@ -25895,8 +25811,8 @@
       "the law": {
         "luật pháp": 1
       },
-      "law by Moses": {
-        "luật pháp Môi se": 1
+      "law by moses": {
+        "luật pháp môi se": 1
       }
     },
     "expected": [
@@ -25949,8 +25865,8 @@
       "the law": {
         "luật pháp": 1
       },
-      "law by Moses": {
-        "luật pháp Môi se": 1
+      "law by moses": {
+        "luật pháp môi se": 1
       }
     },
     "expected": [
@@ -26003,8 +25919,8 @@
       "the law": {
         "luật pháp": 2
       },
-      "law by Moses": {
-        "luật pháp Môi se": 1
+      "law by moses": {
+        "luật pháp môi se": 1
       }
     },
     "expected": [
@@ -26070,8 +25986,8 @@
     "verse": "Có thể nói một điều như vầy, Lê-vi, người thu các phần mười, cũng đã được thu phần mười thông qua Áp-ra-ham,",
     "glPhrase": "Levi",
     "history": {
-      "of Levi": {
-        "Lê vi": 1
+      "of levi": {
+        "lê vi": 1
       }
     },
     "expected": [
@@ -26118,11 +26034,11 @@
     "verse": "Vậy, nếu sự toàn hảo là nhờ chức tế lễ của người Lê-vi (vì trên căn bản đó, dân chúng đã được ban cho luật pháp), thì cần gì phải dấy lên thêm thầy tế lễ khác theo dòng Mên-chi-xê-đéc mà không được kể theo dòng A-rôn?",
     "glPhrase": "Levitical",
     "history": {
-      "of Levi": {
-        "Lê vi": 1
+      "of levi": {
+        "lê vi": 1
       },
-      "Levi": {
-        "Lê vi": 1
+      "levi": {
+        "lê vi": 1
       }
     },
     "expected": [
@@ -26179,8 +26095,8 @@
     "verse": "thì làm sao chúng ta sẽ thoát được khi đã coi thường sự cứu rỗi lớn như vậy? Mà sự cứu rỗi ấy, sau khi khởi nhờ Chúa được rao báo trước nhất, thì được xác nhận cho chúng ta bởi những người đã nghe;",
     "glPhrase": "Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1
+      "lord": {
+        "lạy chúa": 1
       }
     },
     "expected": [
@@ -26222,9 +26138,9 @@
     "verse": "Vì rõ ràng rằng Chúa chúng ta xuất thân từ Giu-đa, mà đối với chi tộc ấy, Môi-se đã chẳng nói điều gì liên quan đến các thầy tế lễ.",
     "glPhrase": "Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 1
       }
     },
     "expected": [
@@ -26275,9 +26191,9 @@
     "verse": "nhưng Ngài thì gắn liền với một lời thề, nhờ Đấng phán với Ngài:\n\\q1 “Chúa đã thề và sẽ không đổi ý:\n\\q1 ‘Con là thầy tế lễ cho đến đời đời.’” —\n\\m",
     "glPhrase": "The Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 2
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 2
       }
     },
     "expected": [
@@ -26319,12 +26235,12 @@
     "verse": "một đầy tớ của nơi thánh và đền tạm chân thật mà chính Chúa đã dựng lên, không phải con người.",
     "glPhrase": "Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 2
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 2
       },
-      "The Lord": {
-        "Chúa": 1
+      "the lord": {
+        "chúa": 1
       }
     },
     "expected": [
@@ -26371,13 +26287,13 @@
     "verse": "Bởi khi khiển trách dân chúng, Thiên Chúa phán:\n\\q1 “Hãy nhìn xem, những ngày ấy đang đến, Chúa phán:\n\\q1 rồi Ta sẽ hoàn thành một giao ước mới\n\\q2 với nhà Y-sơ-ra-ên và với nhà Giu-đa;\n\\q1",
     "glPhrase": "the Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 2,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 2,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 1
+      "the lord": {
+        "chúa": 1
       }
     },
     "expected": [
@@ -26419,16 +26335,13 @@
     "verse": "không dựa theo giao ước\n\\q2 mà Ta đã lập với các tổ phụ của họ\n\\q1 trong ngày Ta cầm tay họ\n\\q2 để dắt họ ra khỏi đất Ai Cập,\n\\q1 vì họ đã không cứ ở trong giao ước của Ta,\n\\q2 Ta cũng đã bỏ mặc họ,\n\\q1 Chúa phán.\n\\q1",
     "glPhrase": "the Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 2,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 2,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 1
-      },
-      "the Lord": {
-        "Chúa": 1
+      "the lord": {
+        "chúa": 2
       }
     },
     "expected": [
@@ -26470,16 +26383,13 @@
     "verse": "Vì đây là giao ước\n\\q2 mà Ta sẽ lập với nhà Y-sơ-ra-ên\n\\q1 sau những ngày đó,\n\\q2 Chúa phán,\n\\q1 khi đặt các luật pháp của Ta vào tâm trí họ,\n\\q1 Ta cũng sẽ viết chúng lên tấm lòng họ,\n\\q1 và Ta sẽ là Thiên Chúa đối với họ,\n\\q1 và họ sẽ là một dân dành cho Ta.\n\\q1",
     "glPhrase": "the Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 2,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 2,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 1
-      },
-      "the Lord": {
-        "Chúa": 2
+      "the lord": {
+        "chúa": 3
       }
     },
     "expected": [
@@ -26521,16 +26431,13 @@
     "verse": "Chắc chắn họ sẽ chẳng dạy từng người láng giềng mình\n\\q1 cùng mỗi một anh em mình, rằng: ‘Hãy nhận biết Chúa,’\n\\q1 vì hết thảy họ sẽ biết Ta,\n\\q1 từ người nhỏ nhất trong họ cho đến người lớn nhất.\n\\q1",
     "glPhrase": "Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 2,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 2,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 1
-      },
-      "the Lord": {
-        "Chúa": 3
+      "the lord": {
+        "chúa": 4
       }
     },
     "expected": [
@@ -26572,16 +26479,13 @@
     "verse": "“Đây là giao ước mà Ta sẽ lập với họ\n\\q2 sau những ngày đó, Chúa phán,\n\\q1 khi đặt luật lệ Ta trong tấm lòng họ,\n\\q2 Ta cũng sẽ ghi chúng trên tâm trí họ.”\n\\m",
     "glPhrase": "the Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 3,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 3,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 1
-      },
-      "the Lord": {
-        "Chúa": 3
+      "the lord": {
+        "chúa": 4
       }
     },
     "expected": [
@@ -26623,16 +26527,13 @@
     "verse": "Vì chúng ta biết Đấng đã phán: “Sự báo thù là của Ta; Ta sẽ báo trả.” Và lại rằng: “Chúa sẽ phán xét dân Ngài.”",
     "glPhrase": "The Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 3,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 3,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 1
-      },
-      "the Lord": {
-        "Chúa": 4
+      "the lord": {
+        "chúa": 5
       }
     },
     "expected": [
@@ -26674,16 +26575,13 @@
     "verse": "mà anh chị em đã hoàn toàn quên mất sự khuyên nhủ, là lời chỉ bảo anh chị em như con, rằng:\n\\q1 “Con của ta ơi, đừng xem nhẹ sự sửa dạy của Chúa,\n\\q1 cũng đừng ngã lòng khi bị Ngài quở trách;\n\\q1",
     "glPhrase": "of the Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 3,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 3,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 2
-      },
-      "the Lord": {
-        "Chúa": 4
+      "the lord": {
+        "chúa": 6
       }
     },
     "expected": [
@@ -26730,19 +26628,16 @@
     "verse": "Vì người Chúa yêu, thì Ngài sửa phạt,\n\\q1 và Ngài đánh đòn mọi người con mà Ngài tiếp nhận.”\n\\p",
     "glPhrase": "the Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 3,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 3,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 2
+      "the lord": {
+        "chúa": 6
       },
-      "the Lord": {
-        "Chúa": 4
-      },
-      "of the Lord": {
-        "của Chúa": 1
+      "of the lord": {
+        "của chúa": 1
       }
     },
     "expected": [
@@ -26784,19 +26679,16 @@
     "verse": "Hãy theo đuổi hòa bình với mọi người, cùng sự nên thánh, mà không có điều này thì chẳng ai sẽ được nhìn thấy Chúa,",
     "glPhrase": "Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 3,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 3,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 2
+      "the lord": {
+        "chúa": 7
       },
-      "the Lord": {
-        "Chúa": 5
-      },
-      "of the Lord": {
-        "của Chúa": 1
+      "of the lord": {
+        "của chúa": 1
       }
     },
     "expected": [
@@ -26838,19 +26730,16 @@
     "verse": "cho đến nỗi, vì được lòng dạn dĩ, chúng ta nói:\n\\q1 “Chúa là Đấng Giúp Đỡ tôi và tôi sẽ chẳng sợ hãi.\n\\q1 Người ta sẽ làm gì tôi?”\n\\p",
     "glPhrase": "The Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 4,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 4,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 2
+      "the lord": {
+        "chúa": 7
       },
-      "the Lord": {
-        "Chúa": 5
-      },
-      "of the Lord": {
-        "của Chúa": 1
+      "of the lord": {
+        "của chúa": 1
       }
     },
     "expected": [
@@ -26892,19 +26781,16 @@
     "verse": "Thiên Chúa bình an, Đấng đã vực dậy Đấng Chăn Chiên Lớn, tức là Chúa Giê-xu chúng ta, từ cõi chết nhờ huyết giao ước đời đời,",
     "glPhrase": "Lord",
     "history": {
-      "Lord": {
-        "Lạy Chúa": 1,
-        "Chúa": 4,
-        "chính Chúa": 1
+      "lord": {
+        "lạy chúa": 1,
+        "chúa": 4,
+        "chính chúa": 1
       },
-      "The Lord": {
-        "Chúa": 3
+      "the lord": {
+        "chúa": 8
       },
-      "the Lord": {
-        "Chúa": 5
-      },
-      "of the Lord": {
-        "của Chúa": 1
+      "of the lord": {
+        "của chúa": 1
       }
     },
     "expected": [
@@ -26955,8 +26841,8 @@
     "verse": "Vì Thiên Chúa không bất công để rồi quên công việc của anh chị em, cùng tình yêu thương mà anh chị em đã minh chứng cho danh Ngài, khi từng phục vụ các thánh đồ và hiện vẫn còn phục vụ họ.",
     "glPhrase": "love",
     "history": {
-      "You loved": {
-        "Ngài yêu": 1
+      "you loved": {
+        "ngài yêu": 1
       }
     },
     "expected": [
@@ -27008,8 +26894,8 @@
     "verse": "Và chúng ta cần lưu tâm lẫn nhau để hướng tới việc thúc giục lòng yêu thương và các việc thiện lành,",
     "glPhrase": "love",
     "history": {
-      "You loved": {
-        "Ngài yêu": 1
+      "you loved": {
+        "ngài yêu": 1
       },
       "love": {
         "tình yêu thương": 1
@@ -27064,8 +26950,8 @@
     "verse": "Vì người Chúa yêu, thì Ngài sửa phạt,\n\\q1 và Ngài đánh đòn mọi người con mà Ngài tiếp nhận.”\n\\p",
     "glPhrase": "loves",
     "history": {
-      "You loved": {
-        "Ngài yêu": 1
+      "you loved": {
+        "ngài yêu": 1
       },
       "love": {
         "tình yêu thương": 1,
@@ -27111,8 +26997,8 @@
     "verse": "Tình yêu thương anh chị em phải cứ còn mãi.",
     "glPhrase": "brotherly love",
     "history": {
-      "You loved": {
-        "Ngài yêu": 1
+      "you loved": {
+        "ngài yêu": 1
       },
       "love": {
         "tình yêu thương": 1,
@@ -27196,7 +27082,7 @@
     "glPhrase": "a mediator",
     "history": {
       "the mediator": {
-        "Đấng Trung Gian": 1
+        "đấng trung gian": 1
       }
     },
     "expected": [
@@ -27249,10 +27135,10 @@
     "glPhrase": "the mediator",
     "history": {
       "the mediator": {
-        "Đấng Trung Gian": 1
+        "đấng trung gian": 1
       },
       "a mediator": {
-        "Đấng Trung Gian": 1
+        "đấng trung gian": 1
       }
     },
     "expected": [
@@ -27304,8 +27190,8 @@
     "verse": "sau khi được Thiên Chúa chỉ định làm thầy tế lễ thượng phẩm theo dòng Mên-chi-xê-đéc,",
     "glPhrase": "of Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 1
+      "of melchizedek": {
+        "mên chi xê đéc": 1
       }
     },
     "expected": [
@@ -27362,8 +27248,8 @@
     "verse": "nơi mà Chúa Giê-xu đã đi vào như một Đấng đi trước thay cho chúng ta, sau khi trở thành thầy tế lễ thượng phẩm cho đến đời đời theo dòng Mên-chi-xê-đéc.",
     "glPhrase": "of Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 2
+      "of melchizedek": {
+        "mên chi xê đéc": 2
       }
     },
     "expected": [
@@ -27420,8 +27306,8 @@
     "verse": "Vì Mên-chi-xê-đéc này, tức là vua của Sa-lem, thầy tế lễ của Thiên Chúa Chí Cao, người đã gặp Áp-ra-ham đang khi trở về từ trận chiến đánh hạ các vua, và đã chúc phước cho ông,",
     "glPhrase": "Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 3
+      "of melchizedek": {
+        "mên chi xê đéc": 3
       }
     },
     "expected": [
@@ -27487,11 +27373,11 @@
     "verse": "vì người vẫn còn ở trong lòng của tổ phụ mình lúc Mên-chi-xê-đéc gặp mặt Áp-ra-ham.\n\\p",
     "glPhrase": "Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 3
+      "of melchizedek": {
+        "mên chi xê đéc": 3
       },
-      "Melchizedek": {
-        "Mên chi xê đéc": 1
+      "melchizedek": {
+        "mên chi xê đéc": 1
       }
     },
     "expected": [
@@ -27548,11 +27434,11 @@
     "verse": "Vậy, nếu sự toàn hảo là nhờ chức tế lễ của người Lê-vi (vì trên căn bản đó, dân chúng đã được ban cho luật pháp), thì cần gì phải dấy lên thêm thầy tế lễ khác theo dòng Mên-chi-xê-đéc mà không được kể theo dòng A-rôn?",
     "glPhrase": "of Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 3
+      "of melchizedek": {
+        "mên chi xê đéc": 3
       },
-      "Melchizedek": {
-        "Mên chi xê đéc": 2
+      "melchizedek": {
+        "mên chi xê đéc": 2
       }
     },
     "expected": [
@@ -27609,11 +27495,11 @@
     "verse": "Điều này thậm chí càng rõ ràng hơn nữa nếu một thầy tế lễ khác dấy lên theo hình ảnh của Mên-chi-xê-đéc,",
     "glPhrase": "of Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 4
+      "of melchizedek": {
+        "mên chi xê đéc": 4
       },
-      "Melchizedek": {
-        "Mên chi xê đéc": 2
+      "melchizedek": {
+        "mên chi xê đéc": 2
       }
     },
     "expected": [
@@ -27675,12 +27561,12 @@
     "verse": "Vì Ngài được làm chứng rằng:\n\\q1 “Con là thầy tế lễ đời đời theo dòng Mên-chi-xê-đéc.”\n\\p",
     "glPhrase": "of Melchizedek",
     "history": {
-      "of Melchizedek": {
-        "Mên chi xê đéc": 4,
-        "của Mên chi xê đéc": 1
+      "of melchizedek": {
+        "mên chi xê đéc": 4,
+        "của mên chi xê đéc": 1
       },
-      "Melchizedek": {
-        "Mên chi xê đéc": 2
+      "melchizedek": {
+        "mên chi xê đéc": 2
       }
     },
     "expected": [
@@ -28440,8 +28326,8 @@
     "verse": "Vì Đấng này được công nhận là xứng đáng với vinh quang vĩ đại hơn Môi-se, cũng như người xây nhà được tôn trọng nhiều hơn biết bao so với ngôi nhà.",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 1
+      "moses": {
+        "môi se": 1
       }
     },
     "expected": [
@@ -28488,8 +28374,8 @@
     "verse": "Môi-se thì trung tín như một đầy tớ trong cả nhà của Thiên Chúa, để như một lời chứng của những điều sẽ được nói đến trong tương lai;",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 2
+      "moses": {
+        "môi se": 2
       }
     },
     "expected": [
@@ -28536,8 +28422,8 @@
     "verse": "Vì những kẻ nào chọc giận Ngài sau khi đã nghe? Không ai ngoại trừ hết thảy những người đã ra khỏi Ai Cập nhờ Môi-se ư?",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 3
+      "moses": {
+        "môi se": 3
       }
     },
     "expected": [
@@ -28584,8 +28470,8 @@
     "verse": "Vì rõ ràng rằng Chúa chúng ta xuất thân từ Giu-đa, mà đối với chi tộc ấy, Môi-se đã chẳng nói điều gì liên quan đến các thầy tế lễ.",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 4
+      "moses": {
+        "môi se": 4
       }
     },
     "expected": [
@@ -28632,8 +28518,8 @@
     "verse": "là những người phục vụ một dạng mô phỏng và hình bóng của những điều trên trời, như Môi-se từng được căn dặn khi sắp hoàn thiện đền tạm, vì Thiên Chúa phán: “Hãy cẩn thận, con sẽ phải làm mọi thứ theo khuôn mẫu đã được tỏ cho con trên núi.”",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 5
+      "moses": {
+        "môi se": 5
       }
     },
     "expected": [
@@ -28680,8 +28566,8 @@
     "verse": "Bởi đức tin, sau khi được sinh ra, Môi-se đã được cha mẹ mình đem giấu trong ba tháng vì họ thấy đứa bé kháu khỉnh, và họ không sợ sắc lệnh của vua.",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 6
+      "moses": {
+        "môi se": 6
       }
     },
     "expected": [
@@ -28728,8 +28614,8 @@
     "verse": "Bởi đức tin, lúc đã lớn, Môi-se từ chối được gọi là con trai của công chúa Pha-ra-ôn.",
     "glPhrase": "Moses",
     "history": {
-      "Moses": {
-        "Môi se": 7
+      "moses": {
+        "môi se": 7
       }
     },
     "expected": [
@@ -28776,8 +28662,8 @@
     "verse": "Và cảnh tượng được bày tỏ thì kinh khiếp đến nỗi Môi-se đã nói: “Tôi kinh hãi và run rẩy.”",
     "glPhrase": "that Moses",
     "history": {
-      "Moses": {
-        "Môi se": 8
+      "moses": {
+        "môi se": 8
       }
     },
     "expected": [
@@ -28824,8 +28710,8 @@
     "verse": "Rồi Ngài đã thề cùng những kẻ nào sẽ không được vào trong sự yên nghỉ của Ngài, nếu chẳng phải cùng những kẻ bất tuân?",
     "glPhrase": "did he swear that",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 1
       }
     },
     "expected": [
@@ -28877,11 +28763,11 @@
     "verse": "Đối với chúng ta, là những người đã tin, thì được vào trong sự yên nghỉ, theo cách mà Ngài đã phán:\n\\q1 “Như Ta đã thề trong cơn thịnh nộ của Ta,\n\\q1 ‘… chúng sẽ không bao giờ được vào trong sự yên nghỉ của Ta!’”\n\\m mặc dù các công việc Ngài đã hoàn tất từ lúc đặt nền thế giới.",
     "glPhrase": "I swore",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 1
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       }
     },
     "expected": [
@@ -28933,12 +28819,11 @@
     "verse": "Vì Thiên Chúa, khi hứa với Áp-ra-ham, bởi lẽ Ngài chẳng có ai lớn hơn để dựa vào mà thề, thì đã thề dựa vào chính mình,",
     "glPhrase": "to swear",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       }
     },
     "expected": [
@@ -28985,12 +28870,11 @@
     "verse": "Vì Thiên Chúa, khi hứa với Áp-ra-ham, bởi lẽ Ngài chẳng có ai lớn hơn để dựa vào mà thề, thì đã thề dựa vào chính mình,",
     "glPhrase": "swore",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29045,12 +28929,11 @@
     "verse": "Vì người ta thề bằng cách dựa vào một ai đó lớn hơn mình, và đối với họ, điểm kết thúc mọi phân tranh dẫn tới chỗ đồng thuận chính là lời thề,",
     "glPhrase": "swear",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29098,12 +28981,11 @@
     "verse": "Vì người ta thề bằng cách dựa vào một ai đó lớn hơn mình, và đối với họ, điểm kết thúc mọi phân tranh dẫn tới chỗ đồng thuận chính là lời thề,",
     "glPhrase": "oath",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29159,12 +29041,11 @@
     "verse": "bởi cách đó, khi muốn bày tỏ cách dư dật hơn nữa cho những người thừa kế lời hứa về đặc tính bất biến của ý định Ngài, thì Thiên Chúa đã can thiệp vào bằng một lời thề",
     "glPhrase": "with an oath",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29233,12 +29114,11 @@
     "verse": "Và chẳng phải được hết thảy những điều trên mà không có lời thề, — vì dẫu những người kia chẳng có lời thề thì đã trở thành các thầy tế lễ,",
     "glPhrase": "swearing an oath",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29301,12 +29181,11 @@
     "glPhrase": "swearing an oath",
     "occurrence": 2,
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29371,12 +29250,11 @@
     "verse": "nhưng Ngài thì gắn liền với một lời thề, nhờ Đấng phán với Ngài:\n\\q1 “Chúa đã thề và sẽ không đổi ý:\n\\q1 ‘Con là thầy tế lễ cho đến đời đời.’” —\n\\m",
     "glPhrase": "an oath taking",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29446,12 +29324,11 @@
     "verse": "nhưng Ngài thì gắn liền với một lời thề, nhờ Đấng phán với Ngài:\n\\q1 “Chúa đã thề và sẽ không đổi ý:\n\\q1 ‘Con là thầy tế lễ cho đến đời đời.’” —\n\\m",
     "glPhrase": "swore",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29519,12 +29396,11 @@
     "verse": "Bởi luật pháp bổ nhiệm những con người có sự yếu kém làm thầy tế lễ thượng phẩm, nhưng lời thề, là điều đến sau luật pháp, thì chỉ định Con, là Đấng đã được làm nên trọn vẹn cho đến đời đời.",
     "glPhrase": "of the swearing of an oath",
     "history": {
-      "I swore": {
-        "Ta đã thề": 1,
-        "ta đã thề": 1
+      "i swore": {
+        "ta đã thề": 2
       },
       "did he swear that": {
-        "Ngài đã thề": 1
+        "ngài đã thề": 1
       },
       "to swear": {
         "để thề": 1
@@ -29819,8 +29695,8 @@
     "verse": "Vì đây là giao ước\n\\q2 mà Ta sẽ lập với nhà Y-sơ-ra-ên\n\\q1 sau những ngày đó,\n\\q2 Chúa phán,\n\\q1 khi đặt các luật pháp của Ta vào tâm trí họ,\n\\q1 Ta cũng sẽ viết chúng lên tấm lòng họ,\n\\q1 và Ta sẽ là Thiên Chúa đối với họ,\n\\q1 và họ sẽ là một dân dành cho Ta.\n\\q1",
     "glPhrase": "to me as a people",
     "history": {
-      "for the people of God": {
-        "Cho dành dân sự của Thiên Chúa": 1
+      "for the people of god": {
+        "cho dành dân sự của thiên chúa": 1
       }
     },
     "expected": [
@@ -29895,11 +29771,11 @@
     "verse": "Vì chúng ta biết Đấng đã phán: “Sự báo thù là của Ta; Ta sẽ báo trả.” Và lại rằng: “Chúa sẽ phán xét dân Ngài.”",
     "glPhrase": "people",
     "history": {
-      "for the people of God": {
-        "Cho dành dân sự của Thiên Chúa": 1
+      "for the people of god": {
+        "cho dành dân sự của thiên chúa": 1
       },
       "to me as a people": {
-        "một dân dành cho Ta": 1
+        "một dân dành cho ta": 1
       }
     },
     "expected": [
@@ -29950,11 +29826,11 @@
     "verse": "Thay vào đó, ông chọn chịu khổ cùng với dân Chúa hơn là sở hữu lạc thú tạm bợ của tội lỗi.",
     "glPhrase": "with the people of God",
     "history": {
-      "for the people of God": {
-        "Cho dành dân sự của Thiên Chúa": 1
+      "for the people of god": {
+        "cho dành dân sự của thiên chúa": 1
       },
       "to me as a people": {
-        "một dân dành cho Ta": 1
+        "một dân dành cho ta": 1
       },
       "people": {
         "dân": 1
@@ -30458,7 +30334,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30533,7 +30409,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30603,7 +30479,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30676,7 +30552,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30772,7 +30648,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30793,7 +30669,7 @@
         "làm trọn vẹn": 1
       },
       "he has perfected": {
-        "Ngài đã khiến trở nên trọn vẹn": 1
+        "ngài đã khiến trở nên trọn vẹn": 1
       }
     },
     "expected": [
@@ -30866,7 +30742,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30887,7 +30763,7 @@
         "làm trọn vẹn": 1
       },
       "he has perfected": {
-        "Ngài đã khiến trở nên trọn vẹn": 1
+        "ngài đã khiến trở nên trọn vẹn": 1
       },
       "they would be made perfect": {
         "họ được làm cho trọn vẹn": 1
@@ -30953,7 +30829,7 @@
       },
       "having been made perfect": {
         "lúc đã được nên trọn vẹn": 1,
-        "là Đấng đã được làm nên trọn vẹn": 1
+        "là đấng đã được làm nên trọn vẹn": 1
       },
       "for the mature ones": {
         "dành cho những người trưởng thành": 1
@@ -30974,13 +30850,13 @@
         "làm trọn vẹn": 1
       },
       "he has perfected": {
-        "Ngài đã khiến trở nên trọn vẹn": 1
+        "ngài đã khiến trở nên trọn vẹn": 1
       },
       "they would be made perfect": {
         "họ được làm cho trọn vẹn": 1
       },
       "perfecter": {
-        "Đấng Làm Toàn Hảo": 1
+        "đấng làm toàn hảo": 1
       }
     },
     "expected": [
@@ -35110,7 +34986,7 @@
         "nhận lại cho mình": 1
       },
       "he welcomes": {
-        "Ngài tiếp nhận": 1
+        "ngài tiếp nhận": 1
       }
     },
     "expected": [
@@ -36553,9 +36429,7 @@
         "bằng các sinh tế": 1
       },
       "sacrifice": {
-        "sự hy sinh": 1
-      },
-      "Sacrifice": {
+        "sự hy sinh": 1,
         "sinh tế": 1
       }
     },
@@ -36612,9 +36486,7 @@
         "bằng các sinh tế": 1
       },
       "sacrifice": {
-        "sự hy sinh": 1
-      },
-      "Sacrifice": {
+        "sự hy sinh": 1,
         "sinh tế": 1
       },
       "offering": {
@@ -36666,7 +36538,7 @@
     "glPhrase": "offerings",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 1
       },
@@ -36674,16 +36546,11 @@
         "bằng các sinh tế": 1
       },
       "sacrifice": {
-        "sự hy sinh": 1
-      },
-      "Sacrifice": {
+        "sự hy sinh": 1,
         "sinh tế": 1
       },
       "offering": {
         "của lễ": 1
-      },
-      "Sacrifices": {
-        "sinh tế": 1
       }
     },
     "expected": [
@@ -36731,7 +36598,7 @@
     "glPhrase": "offering",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 1
       },
@@ -36739,16 +36606,11 @@
         "bằng các sinh tế": 1
       },
       "sacrifice": {
-        "sự hy sinh": 1
-      },
-      "Sacrifice": {
+        "sự hy sinh": 1,
         "sinh tế": 1
       },
       "offering": {
         "của lễ": 1
-      },
-      "Sacrifices": {
-        "sinh tế": 1
       },
       "offerings": {
         "của lễ": 1
@@ -36814,7 +36676,7 @@
     "glPhrase": "sacrifices",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 1
       },
@@ -36822,17 +36684,12 @@
         "bằng các sinh tế": 1
       },
       "sacrifice": {
-        "sự hy sinh": 1
-      },
-      "Sacrifice": {
+        "sự hy sinh": 1,
         "sinh tế": 1
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1
-      },
-      "Sacrifices": {
-        "sinh tế": 1
       },
       "offerings": {
         "của lễ": 1
@@ -36888,7 +36745,7 @@
     "glPhrase": "sacrifice",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -36896,17 +36753,12 @@
         "bằng các sinh tế": 1
       },
       "sacrifice": {
-        "sự hy sinh": 1
-      },
-      "Sacrifice": {
+        "sự hy sinh": 1,
         "sinh tế": 1
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1
-      },
-      "Sacrifices": {
-        "sinh tế": 1
       },
       "offerings": {
         "của lễ": 1
@@ -36957,7 +36809,7 @@
     "glPhrase": "offering",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -36966,17 +36818,11 @@
       },
       "sacrifice": {
         "sự hy sinh": 1,
-        "sinh tế": 1
-      },
-      "Sacrifice": {
-        "sinh tế": 1
+        "sinh tế": 2
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1
-      },
-      "Sacrifices": {
-        "sinh tế": 1
       },
       "offerings": {
         "của lễ": 1
@@ -37027,7 +36873,7 @@
     "glPhrase": "sacrifice",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -37036,17 +36882,11 @@
       },
       "sacrifice": {
         "sự hy sinh": 1,
-        "sinh tế": 1
-      },
-      "Sacrifice": {
-        "sinh tế": 1
+        "sinh tế": 2
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1,
-        "sinh tế": 1
-      },
-      "Sacrifices": {
         "sinh tế": 1
       },
       "offerings": {
@@ -37098,7 +36938,7 @@
     "glPhrase": "a sacrifice",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -37107,17 +36947,11 @@
       },
       "sacrifice": {
         "sự hy sinh": 1,
-        "sinh tế": 2
-      },
-      "Sacrifice": {
-        "sinh tế": 1
+        "sinh tế": 3
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1,
-        "sinh tế": 1
-      },
-      "Sacrifices": {
         "sinh tế": 1
       },
       "offerings": {
@@ -37169,7 +37003,7 @@
     "glPhrase": "a sacrifice",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -37178,17 +37012,11 @@
       },
       "sacrifice": {
         "sự hy sinh": 1,
-        "sinh tế": 2
-      },
-      "Sacrifice": {
-        "sinh tế": 1
+        "sinh tế": 3
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1,
-        "sinh tế": 1
-      },
-      "Sacrifices": {
         "sinh tế": 1
       },
       "offerings": {
@@ -37243,7 +37071,7 @@
     "glPhrase": "a sacrifice",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -37252,17 +37080,11 @@
       },
       "sacrifice": {
         "sự hy sinh": 1,
-        "sinh tế": 2
-      },
-      "Sacrifice": {
-        "sinh tế": 1
+        "sinh tế": 3
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1,
-        "sinh tế": 1
-      },
-      "Sacrifices": {
         "sinh tế": 1
       },
       "offerings": {
@@ -37318,7 +37140,7 @@
     "glPhrase": "sacrifices",
     "history": {
       "sacrifices": {
-        "sinh tế": 2,
+        "sinh tế": 3,
         "tế sinh": 1,
         "các sinh tế": 2
       },
@@ -37327,17 +37149,11 @@
       },
       "sacrifice": {
         "sự hy sinh": 1,
-        "sinh tế": 2
-      },
-      "Sacrifice": {
-        "sinh tế": 1
+        "sinh tế": 3
       },
       "offering": {
         "của lễ": 1,
         "sự dâng làm sinh tế": 1,
-        "sinh tế": 1
-      },
-      "Sacrifices": {
         "sinh tế": 1
       },
       "offerings": {
@@ -38232,7 +38048,7 @@
       "salvation": {
         "sự cứu rỗi": 1,
         "ơn cứu rỗi": 1,
-        "Cứu sự rỗi": 1
+        "cứu sự rỗi": 1
       },
       "a salvation": {
         "sự cứu rỗi": 1
@@ -38987,7 +38803,7 @@
     "glPhrase": "to reproach",
     "history": {
       "he is ashamed": {
-        "Ngài hổ thẹn": 1
+        "ngài hổ thẹn": 1
       }
     },
     "expected": [
@@ -39040,7 +38856,7 @@
     "glPhrase": "is ashamed of",
     "history": {
       "he is ashamed": {
-        "Ngài hổ thẹn": 1
+        "ngài hổ thẹn": 1
       },
       "to reproach": {
         "sự lăng mạ": 1
@@ -39096,7 +38912,7 @@
     "glPhrase": "reproach",
     "history": {
       "he is ashamed": {
-        "Ngài hổ thẹn": 1
+        "ngài hổ thẹn": 1
       },
       "to reproach": {
         "sự lăng mạ": 1
@@ -39155,7 +38971,7 @@
     "glPhrase": "its shame",
     "history": {
       "he is ashamed": {
-        "Ngài hổ thẹn": 1
+        "ngài hổ thẹn": 1
       },
       "to reproach": {
         "sự lăng mạ": 1
@@ -39217,7 +39033,7 @@
     "glPhrase": "reproach",
     "history": {
       "he is ashamed": {
-        "Ngài hổ thẹn": 1
+        "ngài hổ thẹn": 1
       },
       "to reproach": {
         "sự lăng mạ": 1
@@ -41213,8 +41029,8 @@
     "verse": "Còn đối với Con ấy, thì:\n\\q1 “Lạy Thiên Chúa, ngai Ngài còn đến đời đời mãi mãi,\n\\q1 và quyền trượng công lý là quyền trượng của vương quốc Người. \\f + \\ft Thay vì \\fq Người\\fq*, vài thủ bản cổ đọc \\fqa Ngài\\fqa*.\\f*\n\\q1",
     "glPhrase": "Son",
     "history": {
-      "a Son": {
-        "Con": 1
+      "a son": {
+        "con": 1
       }
     },
     "expected": [
@@ -41256,11 +41072,11 @@
     "verse": "nhưng Chúa Cứu Thế, như một Người Con đối với nhà của Thiên Chúa (chúng ta là nhà của Ngài nếu chúng ta giữ vững lòng tin quyết và cớ khoe ra về sự trông cậy của mình).",
     "glPhrase": "a Son",
     "history": {
-      "a Son": {
-        "Con": 1
+      "a son": {
+        "con": 1
       },
-      "Son": {
-        "Con": 1
+      "son": {
+        "con": 1
       }
     },
     "expected": [
@@ -41312,12 +41128,12 @@
     "verse": "Như vậy, đang khi có một thầy tế lễ thượng phẩm vĩ đại đã vượt qua các tầng trời, tức là Chúa Giê-xu Con Thiên Chúa, thì chúng ta cần giữ vững lời tuyên xưng của mình.",
     "glPhrase": "Son of God",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
+      "a son": {
+        "con": 1,
+        "một người con": 1
       },
-      "Son": {
-        "Con": 1
+      "son": {
+        "con": 1
       }
     },
     "expected": [
@@ -41382,15 +41198,15 @@
     "verse": "Tương tự, Chúa Cứu Thế cũng đã không tự tôn mình lên làm thầy tế lễ thượng phẩm. Thay vào đó là Đấng đã nói với Ngài:\n\\q1 “Con là Con Ta;\n\\q1 ngày nay Ta đã sinh ra Con.”\n\\m",
     "glPhrase": "Son",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
+      "a son": {
+        "con": 1,
+        "một người con": 1
       },
-      "Son": {
-        "Con": 1
+      "son": {
+        "con": 1
       },
-      "Son of God": {
-        "Con Thiên Chúa": 1
+      "son of god": {
+        "con thiên chúa": 1
       }
     },
     "expected": [
@@ -41432,15 +41248,15 @@
     "verse": "Dù là Con, nhưng Ngài đã học biết sự vâng phục từ những điều mà Ngài cam chịu.",
     "glPhrase": "a son",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
+      "a son": {
+        "con": 1,
+        "một người con": 1
       },
-      "Son": {
-        "Con": 2
+      "son": {
+        "con": 2
       },
-      "Son of God": {
-        "Con Thiên Chúa": 1
+      "son of god": {
+        "con thiên chúa": 1
       }
     },
     "expected": [
@@ -41482,18 +41298,15 @@
     "verse": "mà sa ngã — để lại phục hồi những kẻ ấy hướng đến sự ăn năn, khi đóng đinh Con Thiên Chúa cho mình một lần nữa, và công khai sỉ nhục Ngài.",
     "glPhrase": "Son of God",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
-      },
-      "Son": {
-        "Con": 2
-      },
-      "Son of God": {
-        "Con Thiên Chúa": 1
-      },
       "a son": {
-        "Con": 1
+        "con": 2,
+        "một người con": 1
+      },
+      "son": {
+        "con": 2
+      },
+      "son of god": {
+        "con thiên chúa": 1
       }
     },
     "expected": [
@@ -41558,18 +41371,15 @@
     "verse": "vua không cha, không mẹ, không gia phả, cũng không có những ngày khởi đầu hay điểm kết cuộc sống, nhưng được nên giống như Con Thiên Chúa, vua vẫn cứ là thầy tế lễ cho đến mãi mãi.\n\\p",
     "glPhrase": "Son of God",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
-      },
-      "Son": {
-        "Con": 2
-      },
-      "Son of God": {
-        "Con Thiên Chúa": 2
-      },
       "a son": {
-        "Con": 1
+        "con": 2,
+        "một người con": 1
+      },
+      "son": {
+        "con": 2
+      },
+      "son of god": {
+        "con thiên chúa": 2
       }
     },
     "expected": [
@@ -41634,18 +41444,15 @@
     "verse": "Bởi luật pháp bổ nhiệm những con người có sự yếu kém làm thầy tế lễ thượng phẩm, nhưng lời thề, là điều đến sau luật pháp, thì chỉ định Con, là Đấng đã được làm nên trọn vẹn cho đến đời đời.",
     "glPhrase": "appoints a Son",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
-      },
-      "Son": {
-        "Con": 2
-      },
-      "Son of God": {
-        "Con Thiên Chúa": 3
-      },
       "a son": {
-        "Con": 1
+        "con": 2,
+        "một người con": 1
+      },
+      "son": {
+        "con": 2
+      },
+      "son of god": {
+        "con thiên chúa": 3
       }
     },
     "expected": [
@@ -41702,20 +41509,17 @@
     "verse": "Anh chị em nghĩ kẻ giày đạp Con Thiên Chúa, và coi huyết giao ước là tầm thường ô uế — mà bởi huyết đó, mình được thánh hóa — và xúc phạm Thánh Linh của ân điển, hắn sẽ đáng bị hình phạt nặng hơn nhiều bao nhiêu?",
     "glPhrase": "Son of God",
     "history": {
-      "a Son": {
-        "Con": 1,
-        "một Người Con": 1
-      },
-      "Son": {
-        "Con": 2
-      },
-      "Son of God": {
-        "Con Thiên Chúa": 3
-      },
       "a son": {
-        "Con": 1
+        "con": 2,
+        "một người con": 1
       },
-      "appoints a Son": {
+      "son": {
+        "con": 2
+      },
+      "son of god": {
+        "con thiên chúa": 3
+      },
+      "appoints a son": {
         "con thì chỉ định": 1
       }
     },
@@ -42316,8 +42120,8 @@
     "verse": "Ngài đặt muôn vật dưới chân người.”\n\\p Vì trong khi bắt phục mọi vật, Ngài để chẳng một vật chi không thuận phục người. Nhưng hiện nay chúng ta vẫn chưa thấy mọi vật thuận phục người,",
     "glPhrase": "You subjected",
     "history": {
-      "that God subjected": {
-        "thiên mà Chúa bắt phục": 1
+      "that god subjected": {
+        "thiên mà chúa bắt phục": 1
       }
     },
     "expected": [
@@ -42364,11 +42168,11 @@
     "verse": "Ngài đặt muôn vật dưới chân người.”\n\\p Vì trong khi bắt phục mọi vật, Ngài để chẳng một vật chi không thuận phục người. Nhưng hiện nay chúng ta vẫn chưa thấy mọi vật thuận phục người,",
     "glPhrase": "subjected",
     "history": {
-      "that God subjected": {
-        "thiên mà Chúa bắt phục": 1
+      "that god subjected": {
+        "thiên mà chúa bắt phục": 1
       },
-      "You subjected": {
-        "Ngài đặt": 1
+      "you subjected": {
+        "ngài đặt": 1
       }
     },
     "expected": [
@@ -42536,7 +42340,7 @@
         "sự thương khó": 1
       },
       "he had suffered": {
-        "Ngài đã trải nghiệm": 1
+        "ngài đã trải nghiệm": 1
       }
     },
     "expected": [
@@ -42595,10 +42399,10 @@
         "sự thương khó": 1
       },
       "he had suffered": {
-        "Ngài đã trải nghiệm": 1
+        "ngài đã trải nghiệm": 1
       },
       "he suffered": {
-        "Ngài cam chịu": 1
+        "ngài cam chịu": 1
       }
     },
     "expected": [
@@ -42657,10 +42461,10 @@
         "sự thương khó": 1
       },
       "he had suffered": {
-        "Ngài đã trải nghiệm": 1
+        "ngài đã trải nghiệm": 1
       },
       "he suffered": {
-        "Ngài cam chịu": 1
+        "ngài cam chịu": 1
       },
       "to suffer": {
         "phải chịu khổ": 1
@@ -42732,10 +42536,10 @@
         "sự thương khó": 1
       },
       "he had suffered": {
-        "Ngài đã trải nghiệm": 1
+        "ngài đã trải nghiệm": 1
       },
       "he suffered": {
-        "Ngài cam chịu": 1
+        "ngài cam chịu": 1
       },
       "to suffer": {
         "phải chịu khổ": 1
@@ -42805,10 +42609,10 @@
         "sự thương khó": 1
       },
       "he had suffered": {
-        "Ngài đã trải nghiệm": 1
+        "ngài đã trải nghiệm": 1
       },
       "he suffered": {
-        "Ngài cam chịu": 1
+        "ngài cam chịu": 1
       },
       "to suffer": {
         "phải chịu khổ": 1
@@ -43419,7 +43223,7 @@
     "glPhrase": "being tempted",
     "history": {
       "having been tempted": {
-        "Sau khi chịu cám dỗ": 1
+        "sau khi chịu cám dỗ": 1
       }
     },
     "expected": [
@@ -43472,7 +43276,7 @@
     "glPhrase": "one having been tempted",
     "history": {
       "having been tempted": {
-        "Sau khi chịu cám dỗ": 1
+        "sau khi chịu cám dỗ": 1
       },
       "being tempted": {
         "bị cám dỗ": 1
@@ -43970,7 +43774,7 @@
         "thử nghiệm": 1
       },
       "tested me": {
-        "đã thử Ta": 1
+        "đã thử ta": 1
       }
     },
     "expected": [
@@ -44026,7 +43830,7 @@
         "thử nghiệm": 1
       },
       "tested me": {
-        "đã thử Ta": 1
+        "đã thử ta": 1
       },
       "examination": {
         "việc thách thức": 1
@@ -44344,7 +44148,7 @@
         "vua ấy được chứng thực": 1
       },
       "it is being testified": {
-        "Ngài được làm chứng": 1
+        "ngài được làm chứng": 1
       }
     },
     "expected": [
@@ -44404,7 +44208,7 @@
         "vua ấy được chứng thực": 1
       },
       "it is being testified": {
-        "Ngài được làm chứng": 1
+        "ngài được làm chứng": 1
       },
       "testifies": {
         "làm chứng": 1
@@ -44472,7 +44276,7 @@
         "vua ấy được chứng thực": 1
       },
       "it is being testified": {
-        "Ngài được làm chứng": 1
+        "ngài được làm chứng": 1
       },
       "testifies": {
         "làm chứng": 1
@@ -44548,7 +44352,7 @@
         "vua ấy được chứng thực": 1
       },
       "it is being testified": {
-        "Ngài được làm chứng": 1
+        "ngài được làm chứng": 1
       },
       "testifies": {
         "làm chứng": 1
@@ -44637,7 +44441,7 @@
         "vua ấy được chứng thực": 1
       },
       "it is being testified": {
-        "Ngài được làm chứng": 1
+        "ngài được làm chứng": 1
       },
       "testifies": {
         "làm chứng": 1
@@ -44724,7 +44528,7 @@
         "vua ấy được chứng thực": 1
       },
       "it is being testified": {
-        "Ngài được làm chứng": 1
+        "ngài được làm chứng": 1
       },
       "testifies": {
         "làm chứng": 1
@@ -44962,7 +44766,7 @@
     "glPhrase": "your will",
     "history": {
       "his will": {
-        "ý muốn Ngài": 1
+        "ý muốn ngài": 1
       }
     },
     "expected": [
@@ -45033,10 +44837,10 @@
     "glPhrase": "your will",
     "history": {
       "his will": {
-        "ý muốn Ngài": 1
+        "ý muốn ngài": 1
       },
       "your will": {
-        "ý muốn của Ngài": 1
+        "ý muốn của ngài": 1
       }
     },
     "expected": [
@@ -45107,10 +44911,10 @@
     "glPhrase": "will of God",
     "history": {
       "his will": {
-        "ý muốn Ngài": 1
+        "ý muốn ngài": 1
       },
       "your will": {
-        "ý muốn của Ngài": 2
+        "ý muốn của ngài": 2
       }
     },
     "expected": [
@@ -45186,13 +44990,13 @@
     "glPhrase": "his will",
     "history": {
       "his will": {
-        "ý muốn Ngài": 1
+        "ý muốn ngài": 1
       },
       "your will": {
-        "ý muốn của Ngài": 2
+        "ý muốn của ngài": 2
       },
-      "will of God": {
-        "ý muốn của Thiên Chúa": 1
+      "will of god": {
+        "ý muốn của thiên chúa": 1
       }
     },
     "expected": [
@@ -45262,8 +45066,8 @@
     "verse": "và nếm biết lời tốt lành của Thiên Chúa cùng những quyền phép của thời đại sắp đến",
     "glPhrase": "the word of God",
     "history": {
-      "word of God": {
-        "lời Thiên Chúa": 1
+      "word of god": {
+        "lời thiên chúa": 1
       }
     },
     "expected": [
@@ -45329,11 +45133,11 @@
     "verse": "Hãy nhớ đến những người dẫn dắt mình, là những người giảng Lời của Thiên Chúa cho anh chị em, khi chăm xem kết quả nếp sống của họ, hãy noi theo đức tin của họ.",
     "glPhrase": "Word of God",
     "history": {
-      "word of God": {
-        "lời Thiên Chúa": 1
+      "word of god": {
+        "lời thiên chúa": 1
       },
-      "the word of God": {
-        "lời của Thiên Chúa": 1
+      "the word of god": {
+        "lời của thiên chúa": 1
       }
     },
     "expected": [

@@ -90,3 +90,26 @@ describe('selection history keys are lowercase', () => {
     expect(saved).toEqual({ faith: { 'la fe': 1 }, Faith: { fe: 1 } });
   });
 });
+
+describe('toAppSelectionHistory (test helper for case files built before lowercase keys)', () => {
+  // eslint-disable-next-line global-require
+  const { toAppSelectionHistory } = require('./helpers/suggestionsHelpers');
+
+  test('lowercases GL phrases and renderings and adds the counts of entries that merge', () => {
+    expect(toAppSelectionHistory({
+      Church: { 'Iglesia': 2, 'la Iglesia': 1 },
+      church: { iglesia: 3 },
+      faith: { fe: 4 },
+    }, 'en', 'es-419')).toEqual({
+      church: { 'iglesia': 5, 'la iglesia': 1 },
+      faith: { fe: 4 },
+    });
+  });
+
+  test('lowercases by language, and leaves scripts without case and empty histories alone', () => {
+    expect(toAppSelectionHistory({ Iİ: { İstanbul: 1 } }, 'en', 'tr')).toEqual({ 'ii̇': { istanbul: 1 } });
+    expect(toAppSelectionHistory({ God: { 'ঈশ্বর': 2 } }, 'en', 'bn')).toEqual({ god: { 'ঈশ্বর': 2 } });
+    expect(toAppSelectionHistory({}, 'en', 'vi')).toEqual({});
+    expect(toAppSelectionHistory(undefined, 'en', 'vi')).toEqual({});
+  });
+});

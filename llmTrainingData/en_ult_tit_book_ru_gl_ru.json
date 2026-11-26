@@ -107,8 +107,8 @@
     "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
     "glPhrase": "Христа",
     "history": {
-      "Христа": {
-        "Christ": 1
+      "христа": {
+        "christ": 1
       }
     },
     "expected": [
@@ -150,8 +150,8 @@
     "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
     "glPhrase": "Христа",
     "history": {
-      "Христа": {
-        "Christ": 2
+      "христа": {
+        "christ": 2
       }
     },
     "expected": [
@@ -193,8 +193,8 @@
     "verse": "whom he richly poured on us through our Savior Jesus Christ,",
     "glPhrase": "Христа",
     "history": {
-      "Христа": {
-        "Christ": 3
+      "христа": {
+        "christ": 3
       }
     },
     "expected": [
@@ -759,8 +759,8 @@
     "glPhrase": "Бога",
     "occurrence": 2,
     "history": {
-      "Бога": {
-        "of God": 1
+      "бога": {
+        "of god": 1
       }
     },
     "expected": [
@@ -807,8 +807,8 @@
     "verse": "with the certain hope of eternal life that God, {who} does not lie, promised before all the ages of time.",
     "glPhrase": "Бог",
     "history": {
-      "Бога": {
-        "of God": 2
+      "бога": {
+        "of god": 2
       }
     },
     "expected": [
@@ -850,11 +850,11 @@
     "verse": "But at the right time, he revealed his word by the proclamation, the one I was entrusted with by the command of God our Savior.\n\n\\ts\\*",
     "glPhrase": "Бога",
     "history": {
-      "Бога": {
-        "of God": 2
+      "бога": {
+        "of god": 2
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       }
     },
     "expected": [
@@ -896,12 +896,12 @@
     "verse": "For the overseer must be blameless, as a household manager of God, not arrogant, not easily angered, not addicted to wine, not a brawler, {and} not a greedy {man}.\n\n\\ts\\*",
     "glPhrase": "Божий",
     "history": {
-      "Бога": {
-        "of God": 2,
-        "God": 1
+      "бога": {
+        "of god": 2,
+        "god": 1
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       }
     },
     "expected": [
@@ -948,15 +948,15 @@
     "verse": "They profess to know God, but they deny {him} by their actions, being detestable and disobedient and unfit for any good work.\n\n\\ts\\*",
     "glPhrase": "Бога",
     "history": {
-      "Бога": {
-        "of God": 2,
-        "God": 1
+      "бога": {
+        "of god": 2,
+        "god": 1
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       },
-      "Божий": {
-        "of God": 1
+      "божий": {
+        "of god": 1
       }
     },
     "expected": [
@@ -998,15 +998,15 @@
     "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
     "glPhrase": "Бога",
     "history": {
-      "Бога": {
-        "of God": 2,
-        "God": 2
+      "бога": {
+        "of god": 2,
+        "god": 2
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       },
-      "Божий": {
-        "of God": 1
+      "божий": {
+        "of god": 1
       }
     },
     "expected": [
@@ -1048,15 +1048,15 @@
     "verse": "For the grace of God has appeared {for} salvation to all men,",
     "glPhrase": "Бога",
     "history": {
-      "Бога": {
-        "of God": 2,
-        "God": 3
+      "бога": {
+        "of god": 2,
+        "god": 3
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       },
-      "Божий": {
-        "of God": 1
+      "божий": {
+        "of god": 1
       }
     },
     "expected": [
@@ -1112,15 +1112,15 @@
     "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
     "glPhrase": "Бога",
     "history": {
-      "Бога": {
-        "of God": 3,
-        "God": 3
+      "бога": {
+        "of god": 3,
+        "god": 3
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       },
-      "Божий": {
-        "of God": 1
+      "божий": {
+        "of god": 1
       }
     },
     "expected": [
@@ -1162,15 +1162,15 @@
     "verse": "This message {is} trustworthy, and I want you to insist on these things, so that the ones having believed God may be careful to engage themselves in good works. These things are good and useful for men.\n\n\\ts\\*",
     "glPhrase": "в Бога",
     "history": {
-      "Бога": {
-        "of God": 3,
-        "God": 4
+      "бога": {
+        "of god": 3,
+        "god": 4
       },
-      "Бог": {
-        "God": 1
+      "бог": {
+        "god": 1
       },
-      "Божий": {
-        "of God": 1
+      "божий": {
+        "of god": 1
       }
     },
     "expected": [
@@ -1784,7 +1784,7 @@
     "glPhrase": "благодать",
     "history": {
       "благодать": {
-        "Grace": 1
+        "grace": 1
       }
     },
     "expected": [
@@ -1827,8 +1827,7 @@
     "glPhrase": "Благодать",
     "history": {
       "благодать": {
-        "Grace": 1,
-        "grace": 1
+        "grace": 2
       }
     },
     "expected": [
@@ -1973,8 +1972,8 @@
     "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
     "glPhrase": "Иисуса",
     "history": {
-      "Иисуса": {
-        "of Jesus": 1
+      "иисуса": {
+        "of jesus": 1
       }
     },
     "expected": [
@@ -2016,9 +2015,9 @@
     "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
     "glPhrase": "Иисуса",
     "history": {
-      "Иисуса": {
-        "of Jesus": 1,
-        "Jesus": 1
+      "иисуса": {
+        "of jesus": 1,
+        "jesus": 1
       }
     },
     "expected": [
@@ -2060,9 +2059,9 @@
     "verse": "whom he richly poured on us through our Savior Jesus Christ,",
     "glPhrase": "Иисуса",
     "history": {
-      "Иисуса": {
-        "of Jesus": 1,
-        "Jesus": 2
+      "иисуса": {
+        "of jesus": 1,
+        "jesus": 2
       }
     },
     "expected": [
@@ -2829,8 +2828,8 @@
     "verse": "To Titus, a true son in a common faith. Grace and peace from God the Father and Christ Jesus our Savior.\n\\p",
     "glPhrase": "Спасителя",
     "history": {
-      "Спасителя": {
-        "of Savior": 1
+      "спасителя": {
+        "of savior": 1
       }
     },
     "expected": [
@@ -2881,9 +2880,9 @@
     "verse": "not to steal, but instead to demonstrate all good faith, so that in every way they may bring credit to the teaching {that is} about God our Savior.\n\n\\ts\\*",
     "glPhrase": "Спасителя",
     "history": {
-      "Спасителя": {
-        "of Savior": 1,
-        "Savior": 1
+      "спасителя": {
+        "of savior": 1,
+        "savior": 1
       }
     },
     "expected": [
@@ -2925,9 +2924,9 @@
     "verse": "while we look forward to receiving the blessed hope and appearing of the glory of our great God and Savior Jesus Christ.\n\n\\ts\\*",
     "glPhrase": "Спасителя",
     "history": {
-      "Спасителя": {
-        "of Savior": 1,
-        "Savior": 2
+      "спасителя": {
+        "of savior": 1,
+        "savior": 2
       }
     },
     "expected": [
@@ -2969,9 +2968,9 @@
     "verse": "But when the kindness and the love for mankind of God our Savior appeared,",
     "glPhrase": "Спасителя",
     "history": {
-      "Спасителя": {
-        "of Savior": 1,
-        "Savior": 3
+      "спасителя": {
+        "of savior": 1,
+        "savior": 3
       }
     },
     "expected": [
@@ -3027,9 +3026,9 @@
     "verse": "whom he richly poured on us through our Savior Jesus Christ,",
     "glPhrase": "Спасителя",
     "history": {
-      "Спасителя": {
-        "of Savior": 2,
-        "Savior": 3
+      "спасителя": {
+        "of savior": 2,
+        "savior": 3
       }
     },
     "expected": [
