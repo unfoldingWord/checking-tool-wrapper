@@ -882,6 +882,15 @@ export function normalizeForCompare(word, langId = '') {
  * @param {boolean} [options.markOtherKey=false] - **prompt experiments only** (variant C3 of
  *   plans/prompt-span-experiments.md; the app's prompt does not use it): end each line whose GL
  *   key is not the exact phrase (`isExact` false in {@link rankGlKeys}) with ` - for another phrase`
+ * @param {{keys: {lemma: string, form: string}, lemma: object, form: object}|null} [options.olHistory=null] -
+ *   **prompt experiments only** (variants O1 and O2 of plans/original-language-history.md, Step 5;
+ *   the app's prompt does not use it): the check's original-language history (`getOlHistoryForCheck`).
+ *   Renderings counted under the check's OL form key, then under its lemma key, move up: after the
+ *   verse fit, the order is OL form match, exact key, OL lemma match, relatedness, count (the order
+ *   Step 2 of that plan found for the algorithm). The line format does not change
+ * @param {boolean} [options.addOlRenderings=false] - **prompt experiments only** (variant O2): with
+ *   `olHistory`, renderings only the OL history has are added too, shown as chosen for `glPhrase`
+ *   with their OL count (the form key's count, else the lemma key's)
  * @returns {string} - the lines joined by `\n`, or '' when there is no history
  * @example
  * formatPreviousTranslations(
@@ -891,7 +900,9 @@ export function normalizeForCompare(word, langId = '') {
  * // '"các nơi thánh" (chosen 1 time for "of the holy places")\n"Nơi Thánh" (chosen 1 time for "Holy")'
  */
 export function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '', options = {}) {
-  const { markVerseFit = false, markOtherKey = false } = options;
+  const {
+    markVerseFit = false, markOtherKey = false, olHistory = null, addOlRenderings = false,
+  } = options;
   // renderings are split like the verse words (getWordList), which verseContent already holds
   const normalizeWords = text => splitIntoWords(text)
     .map(word => normalizeForCompare(word, targetLangCode));
@@ -930,6 +941,31 @@ export function formatPreviousTranslations(previousTranslationData, glPhrase, gl
     }
   }
 
+  // OL counts by normalized rendering, for the experiments only (`olHistory` option)
+  const olCounts = { form: new Map(), lemma: new Map() };
+
+  for (const { kind, counts } of getOlEntries(olHistory)) {
+    for (const [rendering, count] of Object.entries(counts)) {
+      const normalized = normalizeWords(rendering).join(' ');
+
+      if (normalized && count > 0) {
+        olCounts[kind].set(normalized, (olCounts[kind].get(normalized) || 0) + count);
+
+        if (addOlRenderings && !byRendering.has(normalized)) {
+          byRendering.set(normalized, {
+            rendering, phrase: glPhrase, count: 0, relatedness: 0, isExact: false, olOnly: true,
+          });
+        }
+      }
+    }
+  }
+
+  for (const [normalized, entry] of byRendering) {
+    if (entry.olOnly) {
+      entry.count = olCounts.form.get(normalized) || olCounts.lemma.get(normalized);
+    }
+  }
+
   const entries = [...byRendering.entries()].map(([normalized, entry]) => {
     const words = normalized.split(' ');
     let verseFit = 0;
@@ -939,11 +975,15 @@ export function formatPreviousTranslations(previousTranslationData, glPhrase, gl
     } else if (words.every(word => verseWordSet.has(word) || verseWords.some(verseWord => wordSimilarity(word, verseWord) > 0))) {
       verseFit = 1;
     }
-    return { ...entry, verseFit };
+    return {
+      ...entry, verseFit, olForm: olCounts.form.has(normalized), olLemma: olCounts.lemma.has(normalized),
+    };
   });
 
-  // Array.prototype.sort is stable, so ties keep the order of the history
-  entries.sort((a, b) => (b.verseFit - a.verseFit) || (Number(b.isExact) - Number(a.isExact)) ||
+  // Array.prototype.sort is stable, so ties keep the order of the history; without `olHistory`
+  // olForm and olLemma are false for every entry
+  entries.sort((a, b) => (b.verseFit - a.verseFit) || (Number(b.olForm) - Number(a.olForm)) ||
+    (Number(b.isExact) - Number(a.isExact)) || (Number(b.olLemma) - Number(a.olLemma)) ||
     (b.relatedness - a.relatedness) || (b.count - a.count));
 
   const fitting = entries.filter(entry => entry.verseFit > 0);
@@ -3046,7 +3086,7 @@ let singlePromptOverrideForEval = null;
  *
  * @param {function(object): {messages: Array<{role: string, content: string}>}|null} builder -
  *   called with the request given to {@link getBestTWordSelectionWithConfidenceFromLlm} (`wordList`,
- *   `targetLangCode`, `glPhrase`, `glLangCode`, `previousTranslationData`, `contextId`,
+ *   `targetLangCode`, `glPhrase`, `glLangCode`, `previousTranslationData`, `contextId`, `olHistory`,
  *   `algorithmBestSelections`, `glVerseText`, `lmOptions`); it returns the messages without `/no_think`, which
  *   `queryAiAPI` adds. `null` goes back to the app's prompt.
  * @returns {void}
@@ -5134,6 +5174,7 @@ export async function getBestSelections(options = {}) {
           // not sent to the AI by the app's prompt; for prompt experiments
           // (`setSinglePromptOverrideForEval`)
           contextId,
+          olHistory: selectionsData?.olHistory,
           algorithmBestSelections: algorithmResults[i]?.bestSelections || [],
           // the gateway-language verse, when the job has it (prompt experiments only, for now)
           glVerseText,

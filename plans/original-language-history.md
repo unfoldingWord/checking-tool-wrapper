@@ -7,6 +7,9 @@ projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where the GL bible lack
 Step 3 wired into the app 2026-11-26 (committed, tried in translationCore by the author): the
 algorithm now gets OL history from every project the selection history reads, and from the word
 alignments when that setting is on. Calibration with it is no worse (fewer wrong answers at 95+).
+Step 5 part 1 measured 2026-11-26: ordering the AI prompt's history lines by OL match (variant O1)
+gives no gain on the two shipped fine-tunes or stock Qwen3-1.7B (p ≥ 0.25 on DEV and TEST); not
+adopted.
 
 ## Goal
 
@@ -402,6 +405,51 @@ neh rut tit), id `glt` (10 NT books), fa `glt` (8), ru `rlob` (no heb, gal, ...)
   current order, so measure the shipped models with `scripts/test-llm.sh` and on `promptEval`.
 - Showing the OL key in the prompt is a new format: it needs new fine-tuning data and a
   retrain (`plans/fine-tune-qwen3.md`), and is a separate plan.
+
+**Part 1 started 2026-11-26 (variants and first runs).**
+
+- **Variants** (`__tests__/helpers/promptVariants.js`; the app's prompt is unchanged):
+  - `O1`: the app's system prompt and line format; after the verse fit the history lines are
+    ordered by OL form match, exact GL key, OL lemma match, relatedness, count (Step 2's order).
+    `formatPreviousTranslations` takes the experiment-only options `olHistory` and
+    `addOlRenderings`; `getBestSelections` puts `selectionsData.olHistory` on the AI request (as it
+    does `contextId`), which only an eval override reads.
+  - `O2`: O1 plus renderings only the OL history has, shown as chosen for the GL phrase.
+- **Data:** `LLM_TRAINING_OL_HISTORY=same` gives each case its same-project OL history (Step 2's
+  "C"): `buildRunOlHistories` rebuilds it from the case's `sourceFile` with `buildOlHistories`.
+  The `#nohist` cases get none (their history was removed on purpose; given the OL history, the
+  algorithm's top-1 on DEV-NOHIST went from 0 to 249), so O1 and O2 send the baseline prompt
+  there and those sets need no AI runs. The cross-book history of Step 4 also re-keys the GL
+  history, so it would change the baseline itself; it is left for later.
+- **Algorithm with OL history** (`_Algorithm_ol-same`, which also decides which cases skip the
+  AI): DEV top-1 620 → 626 of 1,500 (none at 95+, by construction); TEST 447 → 446 of 835, at
+  95+ 207 → 196, so 639 TEST cases go to the AI instead of 628.
+- **How many prompts change** (AI-bound cases): DEV 1,500, of which 1,092 have OL counts, O1
+  changes 248 prompts (the first line in 127); TEST 639, 346, 83 (60). O2 adds lines to only
+  11 DEV cases and no TEST case: same-project OL history rarely has a rendering the GL history
+  lacks, so O2 is not run until the cross-book history is wired in.
+- **Runs:** baseline and O1 on DEV and TEST, both with `LLM_TRAINING_OL_HISTORY=same`, on the
+  span plan's server (translationCore's bundled `llama-server`, build 12651, router over
+  `llmTraining/outputs/eval-models`, port 8080; temperature 0.1, seed 42): the shipped fine-tunes
+  `uw-tw-qwen3-1.7b-Q5_K_M` and `uw-tw-qwen3-0.6b-Q6_K` (hard links to `~/translationCore/models`),
+  and stock `qwen3-1.7b-stock-Q5_K_M`. Compare with
+  `scripts/compare-prompt-variants.js -a <set>_Algorithm_ol-same.results.json`.
+- **Results (2026-11-26)**, top-1 as the app shows it (algorithm fallback), baseline → O1, with
+  the paired counts (right only in baseline / only in O1) and exact McNemar p:
+
+  | model | DEV (1,500) | TEST (835) | wrong at ≥ 80, DEV / TEST |
+  |---|---|---|---|
+  | `uw-tw-qwen3-1.7b-Q5_K_M` | 77.2% → 76.9% (10 / 5, p 0.30) | 67.3% → 66.9% (3 / 0, p 0.25) | 184 → 188 / 99 → 101 |
+  | `uw-tw-qwen3-0.6b-Q6_K` | 73.3% → 73.3% (6 / 7, p 1.0) | 63.8% → 63.6% (2 / 0, p 0.50) | 195 → 197 / 95 → 95 |
+  | `qwen3-1.7b-stock-Q5_K_M` | 38.5% → 38.4% (10 / 8, p 0.81) | 52.1% → 52.2% (2 / 3, p 1.0) | 576 → 576 / 215 → 215 |
+
+  Each run took 4 to 11 minutes per model and variant; the median time did not change.
+- **Conclusion: not adopted.** O1 changes the answer on few cases (at most 18 of the 248 DEV
+  prompts it changes), with no gain for any model; the fine-tunes lean slightly to the baseline
+  order they were trained on. Within the verse-fit group the order of the lines barely matters to
+  these models. What is left for the AI path is history it does not get today: the cross-book OL
+  history (Step 4), for which O2's added lines are the way in (it needs the runner to build that
+  history, which also re-keys the GL history), or showing the OL key in the prompt (a retrain).
 
 ## Open questions
 

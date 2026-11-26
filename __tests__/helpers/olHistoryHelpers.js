@@ -212,6 +212,67 @@ export function buildOlHistories(entries) {
   return result;
 }
 
+/** the id suffix of the `promptEval` cases whose history was removed (`buildPromptEvalCases.test.js`) */
+const NO_HISTORY_ID_SUFFIX = '#nohist';
+
+/**
+ * The OL history to send with each case of a run (`selectionsData.olHistory`, as the app sends
+ * `getOlHistoryForCheck`), built from the earlier cases of its group with {@link buildOlHistories}:
+ * the same-project history of Step 2 of plans/original-language-history.md. A case with
+ * `sourceFile` and `sourceId` (the `promptEval` sets) gets the history of its case in that training
+ * file; any other case gets the history from `testCases`, taken as one file. Only the tallies under
+ * the case's own keys are kept, which is all the algorithm and the prompt read. Cases whose history
+ * was removed on purpose (ids ending `#nohist`, the `*-nohist` sets) get none: they stand for a check
+ * with no history at all.
+ * @param {Array<object>} testCases - the cases of one run
+ * @param {string} sourceDir - folder of the training files named by `sourceFile`
+ * @param {Map<string, Map>} [cache] - built histories by file name, shared between calls
+ * @returns {Map<string, {keys: {lemma: string, form: string}, lemma: object, form: object}>} - by
+ *   case id; cases without OL keys are left out
+ * @throws {Error} when a `sourceFile` is missing from `sourceDir`
+ */
+export function buildRunOlHistories(testCases, sourceDir, cache = new Map()) {
+  const historiesOf = file => {
+    if (!cache.has(file)) {
+      const filePath = path.join(sourceDir, `${file}.json`);
+
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`buildRunOlHistories: source file not found: ${filePath}`);
+      }
+      cache.set(file, buildOlHistories(JSON.parse(fs.readFileSync(filePath, 'utf8'))));
+    }
+    return cache.get(file);
+  };
+  let own = null;
+  const result = new Map();
+
+  for (const testCase of testCases || []) {
+    let built;
+
+    if (String(testCase.id).endsWith(NO_HISTORY_ID_SUFFIX)) {
+      continue;
+    }
+
+    if (testCase.sourceFile && testCase.sourceId) {
+      built = historiesOf(testCase.sourceFile).get(testCase.sourceId);
+    } else {
+      own = own || buildOlHistories(testCases);
+      built = own.get(testCase.id);
+    }
+
+    const keys = built?.keys;
+
+    if (keys) {
+      result.set(testCase.id, {
+        keys,
+        lemma: built.lemma[keys.lemma] ? { [keys.lemma]: built.lemma[keys.lemma] } : {},
+        form: built.form[keys.form] ? { [keys.form]: built.form[keys.form] } : {},
+      });
+    }
+  }
+  return result;
+}
+
 /**
  * The key of the `glForm` tally.
  * @param {string} glKey - lowercased GL phrase

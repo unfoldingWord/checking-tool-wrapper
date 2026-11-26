@@ -34,7 +34,8 @@ import {
   getBaseStrong, getLooseOlForm, getOlKeys, getOlVerseWords, getQuoteOlWords,
 } from '../src/utils/originalLanguageUtils';
 import {
-  addCounts, addOlWordsToCases, buildOlHistories, makeOlBibleLoader, measureOlHistory, OL_MEASURES,
+  addCounts, addOlWordsToCases, buildOlHistories, buildRunOlHistories, makeOlBibleLoader, measureOlHistory,
+  OL_MEASURES,
 } from './helpers/olHistoryHelpers';
 
 const env = process.env;
@@ -174,6 +175,42 @@ describe('olHistoryHelpers', () => {
     expect(histories.get('c').gl).toEqual({ 'god': { dios: 1 }, 'of god': { dios: 1 } });
     // a case without olWords adds nothing to the OL tallies, but its GL phrase still counts
     expect(histories.get('d').keys).toBeNull();
+  });
+
+  test('buildRunOlHistories keeps only the tallies under each case\'s own keys', () => {
+    const histories = buildRunOlHistories(cases, '/nowhere');
+
+    // a has no earlier cases: its keys, with empty tallies
+    expect(histories.get('a')).toEqual({
+      keys: { lemma: 'θεός', form: 'θεου' }, lemma: {}, form: {},
+    });
+    expect(histories.get('c')).toEqual({
+      keys: { lemma: 'θεός', form: 'θεος' }, lemma: { 'θεός': { dios: 2 } }, form: {},
+    });
+    // no OL keys: left out
+    expect(histories.has('d')).toBe(false);
+  });
+
+  test('buildRunOlHistories takes a case with sourceFile from that training file', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'ol-run-'));
+
+    try {
+      fs.writeFileSync(path.join(dir, 'src_file.json'), JSON.stringify(cases));
+      const evalCase = {
+        ...cases[2], id: 'src_file/c', sourceFile: 'src_file', sourceId: 'c',
+      };
+      const cache = new Map();
+      const histories = buildRunOlHistories([evalCase], dir, cache);
+
+      expect(histories.get('src_file/c').lemma).toEqual({ 'θεός': { dios: 2 } });
+      expect(cache.has('src_file')).toBe(true);
+      // a no-history case stays without history
+      expect(buildRunOlHistories([{ ...evalCase, id: 'src_file/c#nohist' }], dir, cache).size).toBe(0);
+      expect(() => buildRunOlHistories([{ ...evalCase, sourceFile: 'missing' }], dir))
+        .toThrow('source file not found');
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
   });
 
   test('measureOlHistory counts exact keys and answers under them', () => {

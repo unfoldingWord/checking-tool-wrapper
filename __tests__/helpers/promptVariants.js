@@ -968,8 +968,31 @@ export const SPAN_SYSTEM_PROMPTS = {
 const SPAN_VARIANTS = Object.fromEntries(Object.entries(SPAN_SYSTEM_PROMPTS).map(([id, prompt]) =>
   [id, withSpanPrompt(prompt, ['C3', 'C13', 'C23', 'C53'].includes(id) ? { markOtherKey: true } : {})]));
 
+/**
+ * A builder for the OL variants of plans/original-language-history.md, Step 5: the app's prompt,
+ * with the history lines chosen and ordered with the request's original-language history
+ * (`olHistory`, which `getBestSelections` puts on the request from `selectionsData.olHistory`). The
+ * system prompt is chosen as the app chooses it, by whether there are history lines. A request
+ * without `olHistory` gets exactly the app's prompt.
+ * - O1: ordering only (OL form match, exact key, OL lemma match, ...); the same lines as the app
+ *   whenever the app's lines all fit, so no retraining is needed.
+ * - O2: O1, plus renderings only the OL history has, shown as chosen for the GL phrase.
+ * @param {boolean} addOlRenderings - true for O2
+ * @returns {function(object): {messages: Array<{role: string, content: string}>}}
+ */
+function withOlHistoryOrder(addOlRenderings) {
+  return request => {
+    const history = formatPreviousTranslations(request.previousTranslationData, request.glPhrase,
+      request.glLangCode, request.wordList.join(' '), request.targetLangCode,
+      { olHistory: request.olHistory || null, addOlRenderings });
+    const systemPrompt = history ? APP_SINGLE_SYSTEM_PROMPT : APP_NO_HISTORY_SYSTEM_PROMPT;
+    return { messages: buildChatMessages(systemPrompt, buildRequestText(request, history)) };
+  };
+}
+
 export const PROMPT_VARIANTS = {
   baseline: buildBaseline, beforeN3: buildBeforeN3, X1: buildX1, X3: buildX3, X4: buildX4, X4b: buildX4b, X5: buildX5, X6: buildX6, N1: buildN1, N2: buildN2, N3: buildN3, N4: buildN4, N34: buildN34, S1: withSystemPrompt('S1'), S2: withSystemPrompt('S2'), S3: buildS3, S4: buildS4, S5: buildS5, S6: buildS6, N6: buildN6, ...SPAN_VARIANTS,
+  O1: withOlHistoryOrder(false), O2: withOlHistoryOrder(true),
 };
 
 /**
