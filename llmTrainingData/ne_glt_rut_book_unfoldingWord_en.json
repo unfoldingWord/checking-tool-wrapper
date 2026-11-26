@@ -1,0 +1,3230 @@
+[
+  {
+    "id": "train-ne-rut-4-15-bear-x3s9",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bear",
+    "verse": "अब तपाईको लागि जीवनको एक पुनर्स्थापक र तपाईको बुढेसकालमा पोषणकर्ता आएको छ। किनकि तिम्री बुहारीले, जसले तिमीलाई माया गर्छिन्, उसलाई जन्म दिएकी छिन्, जो तिम्रो लागि सात छोराहरूभन्दा असल छिन्।”",
+    "glPhrase": "has borne him",
+    "history": {
+      "bore": {
+        "जन्माएकी": 1
+      }
+    },
+    "expected": [
+      "जन्म दिएकी छिन्"
+    ],
+    "selections": [
+      {
+        "text": "जन्म",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "दिएकी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छिन्",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "bear",
+      "checkId": "x3s9",
+      "quote": "יְלָדַ֔תּ⁠וּ",
+      "quoteString": "יְלָדַ֔תּ⁠וּ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bear"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:15, tW bear, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-19-bethlehem-fsz7",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "त्यसैले उनीहरू दुवै बेथलेहेम पुग्दा सम्म हिडे । र यस्तो भयो कि, तिनीहरू बेथलेहेम पुग्ने वित्तिकै, पुरै शहर नै उत्तेजित भयो । र स्त्रीहरूले भने, \" के यो नाओमी हो ?\"",
+    "glPhrase": "Bethlehem",
+    "history": {
+      "from bethlehem of": {
+        "बेथहेलमबाट": 1
+      }
+    },
+    "expected": [
+      "बेथलेहेम"
+    ],
+    "selections": [
+      {
+        "text": "बेथलेहेम",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "fsz7",
+      "quote": [
+        {
+          "word": "בֵּ֣ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לָ֑חֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "בֵּ֣ית לָ֑חֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:19, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-4-bethlehem-a4j3",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "तब हेर, बोअज बेथलेहेमबाट आउनुभयो, अनि उहाँले कटनी गर्नेहरूलाई अभिवादन गर्नुहुदै भन्नुभयो, “परमप्रभु तपाईहरुसँग रहुन्।” अनि तिनीहरूले उहाँलाई भने, \"यहोवाले तपाईंलाई आशिष् दिऊन्।\"",
+    "glPhrase": "from Bethlehem",
+    "history": {
+      "from bethlehem of": {
+        "बेथहेलमबाट": 1
+      },
+      "bethlehem": {
+        "बेथलेहेम": 1
+      }
+    },
+    "expected": [
+      "बेथलेहेमबाट"
+    ],
+    "selections": [
+      {
+        "text": "बेथलेहेमबाट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "a4j3",
+      "quote": [
+        {
+          "word": "מִ⁠בֵּ֣ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לֶ֔חֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "מִ⁠בֵּ֣ית לֶ֔חֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:4, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-11-bethlehem-h4a3",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "bethlehem",
+    "verse": "अनि शहरकाे मुल ढोकामा भएका सबै मानिसहरू र प्रधानहरूले भने, “हामी साक्षी छाै। यी स्त्री जो तपाईको घरमा आउदैछिन् परमप्रभुले उनलाई राहेल र लेआजस्तै बनाउन्, ती दुई जसले इस्राएलको घरानाको निर्माण गरे। एफ्रातामा सम्मान प्राप्त गर्नुहोस्, र बेथलेहेममा प्रख्यात हुनुहोस् ।",
+    "glPhrase": "in Bethlehem",
+    "history": {
+      "from bethlehem of": {
+        "बेथहेलमबाट": 1
+      },
+      "bethlehem": {
+        "बेथलेहेम": 1
+      },
+      "from bethlehem": {
+        "बेथलेहेमबाट": 1
+      }
+    },
+    "expected": [
+      "बेथलेहेममा"
+    ],
+    "selections": [
+      {
+        "text": "बेथलेहेममा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "bethlehem",
+      "checkId": "h4a3",
+      "quote": [
+        {
+          "word": "בְּ⁠בֵ֥ית",
+          "occurrence": 1
+        },
+        {
+          "word": "לָֽחֶם",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "בְּ⁠בֵ֥ית לָֽחֶם",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bethlehem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:11, tW bethlehem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-4-boaz-sagn",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "तब हेर, बोअज बेथलेहेमबाट आउनुभयो, अनि उहाँले कटनी गर्नेहरूलाई अभिवादन गर्नुहुदै भन्नुभयो, “परमप्रभु तपाईहरुसँग रहुन्।” अनि तिनीहरूले उहाँलाई भने, \"यहोवाले तपाईंलाई आशिष् दिऊन्।\"",
+    "glPhrase": "Boaz",
+    "history": {
+      "belonging to boaz": {
+        "बोअजको": 1
+      }
+    },
+    "expected": [
+      "बोअज"
+    ],
+    "selections": [
+      {
+        "text": "बोअज",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "sagn",
+      "quote": "בֹ֗עַז",
+      "quoteString": "בֹ֗עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:4, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-14-boaz-ytxs",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "तब भोजनको समयमा, बोअजले तिनलाई भने, \"यहाँ आउनुहोस्, र रोटीबाट खानुहोस्, र आफ्नो टुक्रा सिरकामा डुबाउनुहोस्।\" त्यसैले तिनी कटनी गर्नेहरूको छेउमा बसिन्, र तिनलाई केही भुटेको अन्न दिए। अनि उनले खाइन्, र तृप्त भइन्, केहि उबारेर पनि राखिन्।",
+    "glPhrase": "Boaz",
+    "history": {
+      "belonging to boaz": {
+        "बोअजको": 1
+      },
+      "boaz": {
+        "बोअज": 1
+      }
+    },
+    "expected": [
+      "बोअजले"
+    ],
+    "selections": [
+      {
+        "text": "बोअजले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "ytxs",
+      "quote": "בֹ֜עַז",
+      "quoteString": "בֹ֜עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:14, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-2-boaz-h2my",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "अब, के बोअज हाम्रो आफ्नै नातेदार होइनन्, जसको ठिटी कामदारहरूसँग तिमीले काम गरिरह्यौ? हेर, उनले आफै आज राती खलामा जौ बताउनेछन्।",
+    "glPhrase": "Boaz",
+    "history": {
+      "belonging to boaz": {
+        "बोअजको": 1
+      },
+      "boaz": {
+        "बोअज": 1,
+        "बोअजले": 1
+      }
+    },
+    "expected": [
+      "बोअज"
+    ],
+    "selections": [
+      {
+        "text": "बोअज",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "h2my",
+      "quote": "בֹ֨עַז֙",
+      "quoteString": "בֹ֨עַז֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:2, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-1-boaz-mdws",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "अब बोअज शहरकाे मूलढोकामा गएका थिए र त्यहाँ बसेका थिए। अनि हेर, नजिकका छुट्कारा दिने त्यहाँबाट जाँदै थिए, उही मानिस जो बोअजले पहिले नै बताएका थिए। उनले भने, \" ए, निश्चित व्यक्ति, पछाडी फर्कनुहोस्,  यहाँ बस्नुहोस्।\" त्यसैले उनी फर्केरआए र बसे ।",
+    "glPhrase": "Now Boaz",
+    "history": {
+      "belonging to boaz": {
+        "बोअजको": 1
+      },
+      "boaz": {
+        "बोअज": 2,
+        "बोअजले": 1
+      }
+    },
+    "expected": [
+      "अब बोअज"
+    ],
+    "selections": [
+      {
+        "text": "अब",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "बोअज",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "mdws",
+      "quote": "וּ⁠בֹ֨עַז",
+      "quoteString": "וּ⁠בֹ֨עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:1, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-8-boaz-jadt",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "यसैले छुटाउने आफन्तले बोअजलाई भने, “त्यो आफ्नो लागि किन्नुहोस् ।” र तिनले आफ्नो जुत्ता फुकाले ।",
+    "glPhrase": "to Boaz",
+    "history": {
+      "belonging to boaz": {
+        "बोअजको": 1
+      },
+      "boaz": {
+        "बोअज": 2,
+        "बोअजले": 1
+      },
+      "now boaz": {
+        "अब बोअज": 1
+      }
+    },
+    "expected": [
+      "बोअजलाई"
+    ],
+    "selections": [
+      {
+        "text": "बोअजलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "jadt",
+      "quote": "לְ⁠בֹ֖עַז",
+      "quoteString": "לְ⁠בֹ֖עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:8, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-21-boaz-z6j5",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "boaz",
+    "verse": "र सल्माेन जसले बाेअजलाई जन्म दिए । र बाेअज जसले ओबेदलाई जन्म  दिए ।",
+    "glPhrase": "and Boaz",
+    "history": {
+      "belonging to boaz": {
+        "बोअजको": 1
+      },
+      "boaz": {
+        "बोअज": 2,
+        "बोअजले": 1
+      },
+      "now boaz": {
+        "अब बोअज": 1
+      },
+      "to boaz": {
+        "बोअजलाई": 1
+      }
+    },
+    "expected": [
+      "र:2 बाेअज"
+    ],
+    "selections": [
+      {
+        "text": "र",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "बाेअज",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "boaz",
+      "checkId": "z6j5",
+      "quote": "וּ⁠בֹ֖עַז",
+      "quoteString": "וּ⁠בֹ֖עַז",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "boaz"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:21, tW boaz, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-20-covenantfaith-kqmd",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "covenantfaith",
+    "verse": "तब नाओमीले आफ्नी बुहारीलाई भनिन्, \"उहाँलाई परमप्रभुले आशिस दिनुभएको होस्, जसले जीवित सित र मरेकाहरू सितको आफ्नो करारको विश्वासयोग्यतालाई त्याग्नुभएको छैन।\" नाओमीले उनलाई यसो पनि भनिन्, “त्यो मानिस हामीसँग नजिककाे, हाम्रो छुटाउने आफन्त मध्ये एक हुन। ”",
+    "glPhrase": "his covenant faithfulness",
+    "history": {
+      "in covenant faithfulness": {
+        "विश्वासयोग्यताको": 1
+      }
+    },
+    "expected": [
+      "आफ्नो करारको विश्वासयोग्यतालाई"
+    ],
+    "selections": [
+      {
+        "text": "आफ्नो",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "करारको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "विश्वासयोग्यतालाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "covenantfaith",
+      "checkId": "kqmd",
+      "quote": "חַסְדּ֔⁠וֹ",
+      "quoteString": "חַסְדּ֔⁠וֹ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "covenantfaith"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:20, tW covenantfaith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-10-favor-z87z",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "favor",
+    "verse": "तब तिनीले आफ्नो मुहार तलतिर झुकाइन र भुँईमा घोप्टो परिन् र उहाँलाई भनिन्, “ म परदेशी भएतापनि तपाईको नजरमा मैले किन निगाह पाएकी छु ताकि तपाईले मेरो ख्याल राख्नुहुन्छ ?”",
+    "glPhrase": "favor",
+    "history": {
+      "favor": {
+        "निगाह": 1
+      }
+    },
+    "expected": [
+      "निगाह"
+    ],
+    "selections": [
+      {
+        "text": "निगाह",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "favor",
+      "checkId": "z87z",
+      "quote": "חֵ֤ן",
+      "quoteString": "חֵ֤ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "favor"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:10, tW favor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-13-favor-m4s8",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "favor",
+    "verse": "तब तिनले भनिन्, “मेरा प्रभु, मैले तपाईको नजरमा निगाह पाउँ, किनकि तपाईले मलाई सान्तवना दिनुभएको छ र किनकि तपाईकी दासीकाे हृदयमा बोल्नुभएको छ । तर मेरो लागि, म तपाईको दासीहरू मध्य एक जस्तो पनि छैन ।”",
+    "glPhrase": "favor",
+    "history": {
+      "favor": {
+        "निगाह": 2
+      }
+    },
+    "expected": [
+      "निगाह"
+    ],
+    "selections": [
+      {
+        "text": "निगाह",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "favor",
+      "checkId": "m4s8",
+      "quote": "חֵ֨ן",
+      "quoteString": "חֵ֨ן",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "favor"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:13, tW favor, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-8-glean-nmj9",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "glean",
+    "verse": "तब बोअजले रूथलाई भने, “मेरी छोरी, के तिमी मेरो कुरा सुन्दैनौ ? यहाँबाट अरूको खेतमा बटुल्न नजानु, र यहाँ देखि टाढा पनि नजानु । तर मेरा ठिटीहरूसँग नजीकै रहनु।",
+    "glPhrase": "to glean",
+    "history": {
+      "let me glean": {
+        "शिलाबाला बटुल्न दिनुहोस्": 1
+      }
+    },
+    "expected": [
+      "बटुल्न"
+    ],
+    "selections": [
+      {
+        "text": "बटुल्न",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "glean",
+      "checkId": "nmj9",
+      "quote": "לִ⁠לְקֹט֙",
+      "quoteString": "לִ⁠לְקֹט֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "glean"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:8, tW glean, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-1-good-btw7",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "तब नाओमी, उनकी सासूले तिनलाई भनिन्, “मेरी छोरी, के मैले तिम्रो लागि आराम गर्ने ठाउँ खोज्नु हुँदैन, त्यो तिम्रो लागि राम्रो हुनेछ?",
+    "glPhrase": "will be good",
+    "history": {
+      "it is good": {
+        "यो राम्रो हो": 1
+      }
+    },
+    "expected": [
+      "राम्रो हुनेछ"
+    ],
+    "selections": [
+      {
+        "text": "राम्रो",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "हुनेछ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "btw7",
+      "quote": "יִֽיטַב",
+      "quoteString": "יִֽיטַב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-13-good-pkhc",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "आजकाे रात यहाँ बस। र जब बिहान हुन्छ, यदि उसले तिमीलाई छुटकारा दिन्छ भने, असल, उसले छुटकारा देओस् । तर यदि उसले तिमीलाई छुटकारा दिन चाहँदैन भने, म तिमीलाई छुटाउनेछु, जसरी परमप्रभु जीवित हुनुहुन्छ। बिहान सम्म ढल्कीराख।\"",
+    "glPhrase": "good",
+    "history": {
+      "it is good": {
+        "यो राम्रो हो": 1
+      },
+      "will be good": {
+        "राम्रो हुनेछ": 1
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "pkhc",
+      "quote": "טוֹב֙",
+      "quoteString": "טוֹב֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:13, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-15-good-nx5a",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "अब तपाईको लागि जीवनको एक पुनर्स्थापक र तपाईको बुढेसकालमा पोषणकर्ता आएको छ। किनकि तिम्री बुहारीले, जसले तिमीलाई माया गर्छिन्, उसलाई जन्म दिएकी छिन्, जो तिम्रो लागि सात छोराहरूभन्दा असल छिन्।”",
+    "glPhrase": "is better",
+    "history": {
+      "it is good": {
+        "यो राम्रो हो": 1
+      },
+      "will be good": {
+        "राम्रो हुनेछ": 1
+      },
+      "good": {
+        "असल": 1
+      }
+    },
+    "expected": [
+      "असल छिन्:2"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छिन्",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "nx5a",
+      "quote": "ט֣וֹבָה",
+      "quoteString": "ט֣וֹבָה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:15, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-14-grain-ednc",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grain",
+    "verse": "तब भोजनको समयमा, बोअजले तिनलाई भने, \"यहाँ आउनुहोस्, र रोटीबाट खानुहोस्, र आफ्नो टुक्रा सिरकामा डुबाउनुहोस्।\" त्यसैले तिनी कटनी गर्नेहरूको छेउमा बसिन्, र तिनलाई केही भुटेको अन्न दिए। अनि उनले खाइन्, र तृप्त भइन्, केहि उबारेर पनि राखिन्।",
+    "glPhrase": "some roasted grain",
+    "history": {
+      "among the bundles of grain": {
+        "बिटाहरूकाे बिचमा": 1
+      }
+    },
+    "expected": [
+      "भुटेको अन्न"
+    ],
+    "selections": [
+      {
+        "text": "भुटेको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "अन्न",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "grain",
+      "checkId": "ednc",
+      "quote": "קָלִ֔י",
+      "quoteString": "קָלִ֔י",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grain"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:14, tW grain, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-7-grain-cel0",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grain",
+    "verse": "र बाेअजले खाए र पिए, र उनको मन खुशी भयाे , र उनी अन्नको थुप्रोको छेउमा सुत्न गए। त्यसपछि तिनी चुपचासित आइन्, र उहाँको खुट्टाकाे ओढ्ने उठाइन् र सुतिन् ।",
+    "glPhrase": "the pile of grain",
+    "history": {
+      "among the bundles of grain": {
+        "बिटाहरूकाे बिचमा": 1
+      },
+      "some roasted grain": {
+        "भुटेको अन्न": 1
+      }
+    },
+    "expected": [
+      "अन्नको थुप्रोको"
+    ],
+    "selections": [
+      {
+        "text": "अन्नको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "थुप्रोको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "grain",
+      "checkId": "cel0",
+      "quote": "הָ⁠עֲרֵמָ֑ה",
+      "quoteString": "הָ⁠עֲרֵמָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grain"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:7, tW grain, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-5-harvest-aj63",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "तब बोअजले कटनी गर्नेहरू माथि खटाइएका सेवकलाई भने, “यो युवती कसको हो?”",
+    "glPhrase": "the reapers",
+    "history": {
+      "to the reapers": {
+        "कटनी गर्नेहरूलाई": 1
+      }
+    },
+    "expected": [
+      "कटनी गर्नेहरू"
+    ],
+    "selections": [
+      {
+        "text": "कटनी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्नेहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "aj63",
+      "quote": "הַ⁠קּֽוֹצְרִ֑ים",
+      "quoteString": "הַ⁠קּֽוֹצְרִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:5, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-7-harvest-cyyt",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "र तिनले मलाई अनुराेध गरेर भनिन्, ‘मलाई कटनी गर्नेहरूको पछि बिटाहरूकाे बिचमा शिलाबाला बटुल्न र  जम्मा गर्न दिनुहोस्।’ र उनी आइन् र बिहानको त्यस समयदेखि अहिले सम्म बटुलिरहेकी छिन्। घरमा यो उनको विश्राम थोरै छ ।",
+    "glPhrase": "the reapers",
+    "history": {
+      "to the reapers": {
+        "कटनी गर्नेहरूलाई": 1
+      },
+      "the reapers": {
+        "कटनी गर्नेहरू": 1
+      }
+    },
+    "expected": [
+      "मलाई:2 कटनी गर्नेहरूको"
+    ],
+    "selections": [
+      {
+        "text": "मलाई",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "कटनी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्नेहरूको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "cyyt",
+      "quote": "הַ⁠קּוֹצְרִ֑ים",
+      "quoteString": "הַ⁠קּוֹצְרִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:7, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-9-harvest-yefn",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "तिनीहरूले खेतको कहाँ कटनी गरिरहेको छन् हेर र तिनीहरूको पछि लाग । तिमीलाई केहि नगर्नु भनी के मैले आफ्ना जवान युवकहरूलाई आज्ञा दिएको छैन र ? अनि जब तिमीलाई तिर्खा लाग्छ, पानीको भाँडो लिउ र जवान युवकहरूले जुन निकालेका बाट  पिउ ।”",
+    "glPhrase": "they are reaping",
+    "history": {
+      "to the reapers": {
+        "कटनी गर्नेहरूलाई": 1
+      },
+      "the reapers": {
+        "कटनी गर्नेहरू": 1,
+        "मलाई कटनी गर्नेहरूको": 1
+      }
+    },
+    "expected": [
+      "तिनीहरूले कटनी गरिरहेको छन्"
+    ],
+    "selections": [
+      {
+        "text": "तिनीहरूले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "कटनी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गरिरहेको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छन्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "yefn",
+      "quote": "יִקְצֹרוּ⁠ן֙",
+      "quoteString": "יִקְצֹרוּ⁠ן֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:9, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-14-harvest-sf75",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "तब भोजनको समयमा, बोअजले तिनलाई भने, \"यहाँ आउनुहोस्, र रोटीबाट खानुहोस्, र आफ्नो टुक्रा सिरकामा डुबाउनुहोस्।\" त्यसैले तिनी कटनी गर्नेहरूको छेउमा बसिन्, र तिनलाई केही भुटेको अन्न दिए। अनि उनले खाइन्, र तृप्त भइन्, केहि उबारेर पनि राखिन्।",
+    "glPhrase": "the reapers",
+    "history": {
+      "to the reapers": {
+        "कटनी गर्नेहरूलाई": 1
+      },
+      "the reapers": {
+        "कटनी गर्नेहरू": 1,
+        "मलाई कटनी गर्नेहरूको": 1
+      },
+      "they are reaping": {
+        "तिनीहरूले कटनी गरिरहेको छन्": 1
+      }
+    },
+    "expected": [
+      "तिनी कटनी गर्नेहरूको"
+    ],
+    "selections": [
+      {
+        "text": "तिनी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "कटनी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्नेहरूको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "sf75",
+      "quote": "הַ⁠קּֽוֹצְרִ֔ים",
+      "quoteString": "הַ⁠קּֽוֹצְרִ֔ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:14, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-23-harvest-e9bm",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "त्यसैले जौको फसल र गहुँको फसल नसकुन्जेल तिनी बोअजका महिला कामदारहरूको नजिकै बटुल्दै रहिन्। अनि उनी सासुसँग बस्थिन् ।",
+    "glPhrase": "the harvest of",
+    "history": {
+      "to the reapers": {
+        "कटनी गर्नेहरूलाई": 1
+      },
+      "the reapers": {
+        "कटनी गर्नेहरू": 1,
+        "मलाई कटनी गर्नेहरूको": 1,
+        "तिनी कटनी गर्नेहरूको": 1
+      },
+      "they are reaping": {
+        "तिनीहरूले कटनी गरिरहेको छन्": 1
+      }
+    },
+    "expected": [
+      "फसल"
+    ],
+    "selections": [
+      {
+        "text": "फसल",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "e9bm",
+      "quote": "קְצִֽיר",
+      "quoteString": "קְצִֽיר",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:23, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-23-harvest-c3cr",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "harvest",
+    "verse": "त्यसैले जौको फसल र गहुँको फसल नसकुन्जेल तिनी बोअजका महिला कामदारहरूको नजिकै बटुल्दै रहिन्। अनि उनी सासुसँग बस्थिन् ।",
+    "glPhrase": "and the harvest of",
+    "history": {
+      "to the reapers": {
+        "कटनी गर्नेहरूलाई": 1
+      },
+      "the reapers": {
+        "कटनी गर्नेहरू": 1,
+        "मलाई कटनी गर्नेहरूको": 1,
+        "तिनी कटनी गर्नेहरूको": 1
+      },
+      "they are reaping": {
+        "तिनीहरूले कटनी गरिरहेको छन्": 1
+      },
+      "the harvest of": {
+        "फसल": 1
+      }
+    },
+    "expected": [
+      "र फसल:2"
+    ],
+    "selections": [
+      {
+        "text": "र",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "फसल",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "c3cr",
+      "quote": "וּ⁠קְצִ֣יר",
+      "quoteString": "וּ⁠קְצִ֣יר",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:23, tW harvest, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-2-judea-jdp4",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judea",
+    "verse": "र ती मानिसकाे नाँउ एलीमेलेक थियाे, तिनका पत्नीकाे नाँउ नाओमी थियाे र तिनका दुई भाइ छोराहरुको नाँउ महलाेन र किल्याेन थियाे । तिनीहरू सबै यहूदाको बेथलेहेमका एफ्रातीहरू थिए। त्यसैले तिनीहरू मोआबका भुमीमा गए र त्यहाँ बसाेबास गर्न थाले ।",
+    "glPhrase": "Judah",
+    "history": {
+      "judah": {
+        "यहुदाकाे": 1
+      }
+    },
+    "expected": [
+      "यहूदाको"
+    ],
+    "selections": [
+      {
+        "text": "यहूदाको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "judea",
+      "checkId": "jdp4",
+      "quote": "יְהוּדָ֑ה",
+      "quoteString": "יְהוּדָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judea"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:2, tW judea, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-7-judea-nfb5",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "judea",
+    "verse": "तब तिनले अाफ्ना दुर्इ बुहारीहरूका साथ अाफु बसेकाे ठाँउ छाेडिन । अनि तिनीहरू यहूदाकाे भुमिमा फर्कन हिडिन।",
+    "glPhrase": "Judah",
+    "history": {
+      "judah": {
+        "यहुदाकाे": 1,
+        "यहूदाको": 1
+      }
+    },
+    "expected": [
+      "यहूदाकाे"
+    ],
+    "selections": [
+      {
+        "text": "यहूदाकाे",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "judea",
+      "checkId": "nfb5",
+      "quote": "יְהוּדָֽה",
+      "quoteString": "יְהוּדָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "judea"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:7, tW judea, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-12-kin-x2hy",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "kin",
+    "verse": "र अब, यो साँच्चै हो कि म छुटकारा दिने हुँ, तर म भन्दा पनि नजिकको छुटकारा दिने हुनुहुन्छ ।",
+    "glPhrase": "a kinsman redeemer",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1
+      }
+    },
+    "expected": [
+      "छुटकारा दिने"
+    ],
+    "selections": [
+      {
+        "text": "छुटकारा",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "दिने",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "kin",
+      "checkId": "x2hy",
+      "quote": "גֹאֵ֖ל",
+      "quoteString": "גֹאֵ֖ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "kin"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:12, tW kin, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-4-know-uxw2",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "अब, यहाँ बसेकाहरूको अगाडि र मेरा प्रधान मानिसहरूको अगाडि मैले भने कि मैले ‘यसलाई किनुहाेस’ भन्दै तपाईको कान खुल्लागर्नुपर्छ। यदि तपाईले यसलाई छुटकारा गर्नुहुन्छ भने, छुटकारा गर्नुहोस्। तर यदि तपाईंले यसलाई छुटकारा गर्नुहुन्न भने, अगाडि बाटै मलाई थाहा दिनुहोस्, किनकि त्यहाँ तपाईं बाहेक छुटकारा गर्ने कोही छैन, र म तपाईं पछि छु।\" तब तिनले भने \"म आफै यसलाई छुटाउने छु । \"",
+    "glPhrase": "so that I may know",
+    "history": {
+      "knows": {
+        "थाहा भइसकेको छ": 1
+      }
+    },
+    "expected": [
+      "मलाई थाहा दिनुहोस्"
+    ],
+    "selections": [
+      {
+        "text": "मलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "थाहा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "दिनुहोस्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "uxw2",
+      "quote": "ו⁠אדע",
+      "quoteString": "ו⁠אדע",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:4, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-2-moab-vnfc",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "र ती मानिसकाे नाँउ एलीमेलेक थियाे, तिनका पत्नीकाे नाँउ नाओमी थियाे र तिनका दुई भाइ छोराहरुको नाँउ महलाेन र किल्याेन थियाे । तिनीहरू सबै यहूदाको बेथलेहेमका एफ्रातीहरू थिए। त्यसैले तिनीहरू मोआबका भुमीमा गए र त्यहाँ बसाेबास गर्न थाले ।",
+    "glPhrase": "Moab",
+    "history": {
+      "moab": {
+        "माेआबकाे": 1
+      }
+    },
+    "expected": [
+      "मोआबका"
+    ],
+    "selections": [
+      {
+        "text": "मोआबका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "vnfc",
+      "quote": "מוֹאָ֖ב",
+      "quoteString": "מוֹאָ֖ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:2, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-6-moab-bv6q",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "तब तिनी तिनी अाफ्ना दुर्इ बुहारीहरूका साथ मोआबको भूमीबाट फर्किनलार्इ उठीन्, किनभने तिनले मोआबको भुमीमा रहदानै परमप्रभुले आफ्ना मानिसहरूलाई भाेजन जुटाएर हेरचाह गर्नुभएकाे छ भनी उनले सुनेकी थिइन् ।",
+    "glPhrase": "Moab",
+    "history": {
+      "moab": {
+        "माेआबकाे": 1,
+        "मोआबका": 1
+      }
+    },
+    "expected": [
+      "मोआबको"
+    ],
+    "selections": [
+      {
+        "text": "मोआबको",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "bv6q",
+      "quote": "מוֹאָ֑ב",
+      "quoteString": "מוֹאָ֑ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:6, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-6-moab-u22t",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "तब तिनी तिनी अाफ्ना दुर्इ बुहारीहरूका साथ मोआबको भूमीबाट फर्किनलार्इ उठीन्, किनभने तिनले मोआबको भुमीमा रहदानै परमप्रभुले आफ्ना मानिसहरूलाई भाेजन जुटाएर हेरचाह गर्नुभएकाे छ भनी उनले सुनेकी थिइन् ।",
+    "glPhrase": "Moab",
+    "history": {
+      "moab": {
+        "माेआबकाे": 1,
+        "मोआबका": 1,
+        "मोआबको": 1
+      }
+    },
+    "expected": [
+      "मोआबको:2"
+    ],
+    "selections": [
+      {
+        "text": "मोआबको",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "u22t",
+      "quote": "מוֹאָ֔ב",
+      "quoteString": "מוֹאָ֔ב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:6, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-6-moab-cd5k",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "तब कटनीहरूमाथि खटाइएको सेवकले जवाफ दियो र भन्यो, “उनी मोआबी युवती, मोआब देशबाट नाओमीसँग फर्केर आएकी थिइन्।",
+    "glPhrase": "Moab",
+    "history": {
+      "moab": {
+        "माेआबकाे": 1,
+        "मोआबका": 1,
+        "मोआबको": 2
+      }
+    },
+    "expected": [
+      "मोआब"
+    ],
+    "selections": [
+      {
+        "text": "मोआब",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "cd5k",
+      "quote": "מוֹאָֽב",
+      "quoteString": "מוֹאָֽב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:6, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-3-moab-ze4f",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "moab",
+    "verse": "तब उनले नजीकका छुट्कारा दिनेलाई भने, “नाओमी, जो मोआबको भुमिबाट फर्केकी थिइन्,  हाम्रो भाइ एलीमेलेकको खेतको भाग बेचिरहेकी छिन्।",
+    "glPhrase": "Moab",
+    "history": {
+      "moab": {
+        "माेआबकाे": 1,
+        "मोआबका": 1,
+        "मोआबको": 2,
+        "मोआब": 1
+      }
+    },
+    "expected": [
+      "मोआबको"
+    ],
+    "selections": [
+      {
+        "text": "मोआबको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "moab",
+      "checkId": "ze4f",
+      "quote": "מוֹאָֽב",
+      "quoteString": "מוֹאָֽב",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "moab"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:3, tW moab, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-12-redeem-i3n6",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "र अब, यो साँच्चै हो कि म छुटकारा दिने हुँ, तर म भन्दा पनि नजिकको छुटकारा दिने हुनुहुन्छ ।",
+    "glPhrase": "a kinsman redeemer",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1
+      }
+    },
+    "expected": [
+      "छुटकारा दिने"
+    ],
+    "selections": [
+      {
+        "text": "छुटकारा",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "दिने",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "i3n6",
+      "quote": "גֹאֵ֖ל",
+      "quoteString": "גֹאֵ֖ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:12, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-13-redeem-db6v",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "आजकाे रात यहाँ बस। र जब बिहान हुन्छ, यदि उसले तिमीलाई छुटकारा दिन्छ भने, असल, उसले छुटकारा देओस् । तर यदि उसले तिमीलाई छुटकारा दिन चाहँदैन भने, म तिमीलाई छुटाउनेछु, जसरी परमप्रभु जीवित हुनुहुन्छ। बिहान सम्म ढल्कीराख।\"",
+    "glPhrase": "he will redeem you",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      }
+    },
+    "expected": [
+      "तिमीलाई छुटकारा दिन्छ"
+    ],
+    "selections": [
+      {
+        "text": "तिमीलाई",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "छुटकारा",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "दिन्छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "db6v",
+      "quote": "יִגְאָלֵ֥⁠ךְ",
+      "quoteString": "יִגְאָלֵ֥⁠ךְ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:13, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-13-redeem-ertv",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "आजकाे रात यहाँ बस। र जब बिहान हुन्छ, यदि उसले तिमीलाई छुटकारा दिन्छ भने, असल, उसले छुटकारा देओस् । तर यदि उसले तिमीलाई छुटकारा दिन चाहँदैन भने, म तिमीलाई छुटाउनेछु, जसरी परमप्रभु जीवित हुनुहुन्छ। बिहान सम्म ढल्कीराख।\"",
+    "glPhrase": "let him redeem",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      }
+    },
+    "expected": [
+      "उसले:2 छुटकारा:2 देओस्"
+    ],
+    "selections": [
+      {
+        "text": "उसले",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "छुटकारा",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "देओस्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "ertv",
+      "quote": "יִגְאָ֔ל",
+      "quoteString": "יִגְאָ֔ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:13, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-13-redeem-pq6h",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "आजकाे रात यहाँ बस। र जब बिहान हुन्छ, यदि उसले तिमीलाई छुटकारा दिन्छ भने, असल, उसले छुटकारा देओस् । तर यदि उसले तिमीलाई छुटकारा दिन चाहँदैन भने, म तिमीलाई छुटाउनेछु, जसरी परमप्रभु जीवित हुनुहुन्छ। बिहान सम्म ढल्कीराख।\"",
+    "glPhrase": "to redeem you",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      },
+      "let him redeem": {
+        "उसले छुटकारा देओस्": 1
+      }
+    },
+    "expected": [
+      "तिमीलाई:2 छुटकारा:3 दिन"
+    ],
+    "selections": [
+      {
+        "text": "तिमीलाई",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "छुटकारा",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "दिन",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "pq6h",
+      "quote": "לְ⁠גָֽאֳלֵ֛⁠ךְ",
+      "quoteString": "לְ⁠גָֽאֳלֵ֛⁠ךְ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:13, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-4-redeem-fxpd",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "अब, यहाँ बसेकाहरूको अगाडि र मेरा प्रधान मानिसहरूको अगाडि मैले भने कि मैले ‘यसलाई किनुहाेस’ भन्दै तपाईको कान खुल्लागर्नुपर्छ। यदि तपाईले यसलाई छुटकारा गर्नुहुन्छ भने, छुटकारा गर्नुहोस्। तर यदि तपाईंले यसलाई छुटकारा गर्नुहुन्न भने, अगाडि बाटै मलाई थाहा दिनुहोस्, किनकि त्यहाँ तपाईं बाहेक छुटकारा गर्ने कोही छैन, र म तपाईं पछि छु।\" तब तिनले भने \"म आफै यसलाई छुटाउने छु । \"",
+    "glPhrase": "you will redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      },
+      "let him redeem": {
+        "उसले छुटकारा देओस्": 1
+      },
+      "to redeem you": {
+        "तिमीलाई छुटकारा दिन": 1
+      }
+    },
+    "expected": [
+      "तपाईंले यसलाई:3 छुटकारा:3"
+    ],
+    "selections": [
+      {
+        "text": "तपाईंले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "यसलाई",
+        "occurrence": 3,
+        "occurrences": 4
+      },
+      {
+        "text": "छुटकारा",
+        "occurrence": 3,
+        "occurrences": 4
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "fxpd",
+      "quote": "יִגְאַ֜ל",
+      "quoteString": "יִגְאַ֜ל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:4, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-4-redeem-rzsy",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "अब, यहाँ बसेकाहरूको अगाडि र मेरा प्रधान मानिसहरूको अगाडि मैले भने कि मैले ‘यसलाई किनुहाेस’ भन्दै तपाईको कान खुल्लागर्नुपर्छ। यदि तपाईले यसलाई छुटकारा गर्नुहुन्छ भने, छुटकारा गर्नुहोस्। तर यदि तपाईंले यसलाई छुटकारा गर्नुहुन्न भने, अगाडि बाटै मलाई थाहा दिनुहोस्, किनकि त्यहाँ तपाईं बाहेक छुटकारा गर्ने कोही छैन, र म तपाईं पछि छु।\" तब तिनले भने \"म आफै यसलाई छुटाउने छु । \"",
+    "glPhrase": "to redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      },
+      "let him redeem": {
+        "उसले छुटकारा देओस्": 1
+      },
+      "to redeem you": {
+        "तिमीलाई छुटकारा दिन": 1
+      },
+      "you will redeem it": {
+        "तपाईंले यसलाई छुटकारा": 1
+      }
+    },
+    "expected": [
+      "छुटकारा:4 गर्ने"
+    ],
+    "selections": [
+      {
+        "text": "छुटकारा",
+        "occurrence": 4,
+        "occurrences": 4
+      },
+      {
+        "text": "गर्ने",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "rzsy",
+      "quote": "לִ⁠גְא֔וֹל",
+      "quoteString": "לִ⁠גְא֔וֹל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:4, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-4-redeem-du8a",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "अब, यहाँ बसेकाहरूको अगाडि र मेरा प्रधान मानिसहरूको अगाडि मैले भने कि मैले ‘यसलाई किनुहाेस’ भन्दै तपाईको कान खुल्लागर्नुपर्छ। यदि तपाईले यसलाई छुटकारा गर्नुहुन्छ भने, छुटकारा गर्नुहोस्। तर यदि तपाईंले यसलाई छुटकारा गर्नुहुन्न भने, अगाडि बाटै मलाई थाहा दिनुहोस्, किनकि त्यहाँ तपाईं बाहेक छुटकारा गर्ने कोही छैन, र म तपाईं पछि छु।\" तब तिनले भने \"म आफै यसलाई छुटाउने छु । \"",
+    "glPhrase": "I will redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      },
+      "let him redeem": {
+        "उसले छुटकारा देओस्": 1
+      },
+      "to redeem you": {
+        "तिमीलाई छुटकारा दिन": 1
+      },
+      "you will redeem it": {
+        "तपाईंले यसलाई छुटकारा": 1
+      },
+      "to redeem it": {
+        "छुटकारा गर्ने": 1
+      }
+    },
+    "expected": [
+      "यसलाई:4 छुटाउने छु:2"
+    ],
+    "selections": [
+      {
+        "text": "यसलाई",
+        "occurrence": 4,
+        "occurrences": 4
+      },
+      {
+        "text": "छुटाउने",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छु",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "du8a",
+      "quote": "אֶגְאָֽל",
+      "quoteString": "אֶגְאָֽל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:4, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-6-redeem-vc2s",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "तब नजिकका छुट्कारा दिनेले भने, \" मेरो आफ्नो उत्तराधिकार नोक्सान नगरी म आफ्नो निम्ति याे छुटाउन सक्षम छैन। मेरो छुट्कारा दिने अधिकार तपाईले आफ्नो निम्ति छुटाउनु होस्, किनकि म छुटाउनलाई सक्षम छैन।”",
+    "glPhrase": "to redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      },
+      "let him redeem": {
+        "उसले छुटकारा देओस्": 1
+      },
+      "to redeem you": {
+        "तिमीलाई छुटकारा दिन": 1
+      },
+      "you will redeem it": {
+        "तपाईंले यसलाई छुटकारा": 1
+      },
+      "to redeem it": {
+        "छुटकारा गर्ने": 1
+      },
+      "i will redeem it": {
+        "यसलाई छुटाउने छु": 1
+      }
+    },
+    "expected": [
+      "याे छुटाउन"
+    ],
+    "selections": [
+      {
+        "text": "याे",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छुटाउन",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "vc2s",
+      "quote": "ל⁠גאול",
+      "quoteString": "ל⁠גאול",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:6, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-6-redeem-mdys",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "redeem",
+    "verse": "तब नजिकका छुट्कारा दिनेले भने, \" मेरो आफ्नो उत्तराधिकार नोक्सान नगरी म आफ्नो निम्ति याे छुटाउन सक्षम छैन। मेरो छुट्कारा दिने अधिकार तपाईले आफ्नो निम्ति छुटाउनु होस्, किनकि म छुटाउनलाई सक्षम छैन।”",
+    "glPhrase": "to redeem it",
+    "history": {
+      "a kinsman redeemer": {
+        "नजिकका छुट्कारा दिने हुनुहुन्छ": 1,
+        "छुटकारा दिने": 1
+      },
+      "he will redeem you": {
+        "तिमीलाई छुटकारा दिन्छ": 1
+      },
+      "let him redeem": {
+        "उसले छुटकारा देओस्": 1
+      },
+      "to redeem you": {
+        "तिमीलाई छुटकारा दिन": 1
+      },
+      "you will redeem it": {
+        "तपाईंले यसलाई छुटकारा": 1
+      },
+      "to redeem it": {
+        "छुटकारा गर्ने": 1,
+        "याे छुटाउन": 1
+      },
+      "i will redeem it": {
+        "यसलाई छुटाउने छु": 1
+      }
+    },
+    "expected": [
+      "छुटाउनलाई"
+    ],
+    "selections": [
+      {
+        "text": "छुटाउनलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "redeem",
+      "checkId": "mdys",
+      "quote": "לִ⁠גְאֹֽל",
+      "quoteString": "לִ⁠גְאֹֽל",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "redeem"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:6, tW redeem, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-16-ruth-xerx",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "तर रूथले भनिन्, “मलाई तपार्इबाट फर्केर जान र तपार्इलार्इ छाेड्न कर नर्गनुहोस्। किनकि तपार्इ जहाँ जानुहुन्छ म त्यहीं जानेछु, र तपार्इ जहाँ बस्नु हुन्छ म त्यहि बस्नेछु । तपाईंका मानिसहरू मेरा मानिसहरू हुनेछन, र तपाईंका परमेश्वरनै मेरा परमेश्वर हुनुहुन्छ।",
+    "glPhrase": "Ruth",
+    "history": {
+      "but ruth": {
+        "तर रूथ": 1
+      }
+    },
+    "expected": [
+      "रूथले"
+    ],
+    "selections": [
+      {
+        "text": "रूथले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "xerx",
+      "quote": "רוּת֙",
+      "quoteString": "רוּת֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:16, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-2-ruth-avr7",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "र माेआबी स्त्री रूथले, नाओमीको अघि भनिन्, \"जसको नजरमा मैले निगाह पाउँछु, उहाँको पछि उहाँको खेतमा म जान चाहन्छु र अन्नका शिलाबालाहरू बटुल्छु।\" र तिनले उनलाई भनिन्, \"जाउ, मेरी छोरी।\"",
+    "glPhrase": "Ruth",
+    "history": {
+      "but ruth": {
+        "तर रूथ": 1
+      },
+      "ruth": {
+        "रूथले": 1
+      }
+    },
+    "expected": [
+      "रूथले"
+    ],
+    "selections": [
+      {
+        "text": "रूथले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "avr7",
+      "quote": "ר֨וּת",
+      "quoteString": "ר֨וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:2, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-21-ruth-usyk",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "तब मोआबी स्त्री रूथले भनिन्, \"साथै, उहाँले मलाई भन्नुभयो, 'मेरा जति सबै फसल कटनी जब सम्म सकिदैन तिमी मेरा जति कामदारहरूको नजिकै सगँसगैँ रहनु ।'\"",
+    "glPhrase": "Ruth",
+    "history": {
+      "but ruth": {
+        "तर रूथ": 1
+      },
+      "ruth": {
+        "रूथले": 2
+      }
+    },
+    "expected": [
+      "रूथले"
+    ],
+    "selections": [
+      {
+        "text": "रूथले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "usyk",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:21, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-22-ruth-qx7m",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "तब नाओमीले आफ्नी बुहारी रूथलाई भनिन्, “यो राम्रो हो, मेरी छोरी, कि तिमी उनकै कामगर्ने ठिटीहरूसँग जानु, ताकि अरूकाे खेतमा जस्ताे खतरा नहाेला।”",
+    "glPhrase": "Ruth",
+    "history": {
+      "but ruth": {
+        "तर रूथ": 1
+      },
+      "ruth": {
+        "रूथले": 3
+      }
+    },
+    "expected": [
+      "रूथलाई"
+    ],
+    "selections": [
+      {
+        "text": "रूथलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "qx7m",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:22, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-9-ruth-gym7",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "अनि उनले साेधे, \"तिमी को हौ?\" तब तिनले भनिन्, “म रुथ हुँ, तपाईंको दासी। र तपाईका आफ्‍नो लुगाको छेउ आफ्‍नो दासी माथि ओढाइदिनुहोस्, किनकि तपाई नजिकका छुट्कारा दिने हुनुहुन्छ।”",
+    "glPhrase": "Ruth",
+    "history": {
+      "but ruth": {
+        "तर रूथ": 1
+      },
+      "ruth": {
+        "रूथले": 3,
+        "रूथलाई": 1
+      }
+    },
+    "expected": [
+      "रुथ"
+    ],
+    "selections": [
+      {
+        "text": "रुथ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "gym7",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:9, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-5-ruth-u6pq",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "ruth",
+    "verse": "तब बोअजले भने, “तिमीले नाओमीको हातबाट त्यो खेत किन्‍ने दिनमा, मृतकको उसको उत्तराधिकार माथि नाउँलाई कायम राख्नका लागि, मरेको मानिसको पत्नी मोआबी स्त्री रूथलाई पनि प्राप्त गर्नुपर्छ।”",
+    "glPhrase": "Ruth",
+    "history": {
+      "but ruth": {
+        "तर रूथ": 1
+      },
+      "ruth": {
+        "रूथले": 3,
+        "रूथलाई": 1,
+        "रुथ": 1
+      }
+    },
+    "expected": [
+      "रूथलाई"
+    ],
+    "selections": [
+      {
+        "text": "रूथलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "ruth",
+      "checkId": "u6pq",
+      "quote": "ר֣וּת",
+      "quoteString": "ר֣וּת",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "ruth"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:5, tW ruth, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-2-servant-rys6",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "अब, के बोअज हाम्रो आफ्नै नातेदार होइनन्, जसको ठिटी कामदारहरूसँग तिमीले काम गरिरह्यौ? हेर, उनले आफै आज राती खलामा जौ बताउनेछन्।",
+    "glPhrase": "young female workers",
+    "history": {
+      "to his servant": {
+        "सेवकलाई": 1
+      }
+    },
+    "expected": [
+      "ठिटी कामदारहरूसँग"
+    ],
+    "selections": [
+      {
+        "text": "ठिटी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "कामदारहरूसँग",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "rys6",
+      "quote": "נַעֲרוֹתָ֑י⁠ו",
+      "quoteString": "נַעֲרוֹתָ֑י⁠ו",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:2, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-9-servant-sxek",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "अनि उनले साेधे, \"तिमी को हौ?\" तब तिनले भनिन्, “म रुथ हुँ, तपाईंको दासी। र तपाईका आफ्‍नो लुगाको छेउ आफ्‍नो दासी माथि ओढाइदिनुहोस्, किनकि तपाई नजिकका छुट्कारा दिने हुनुहुन्छ।”",
+    "glPhrase": "your female servant",
+    "history": {
+      "to his servant": {
+        "सेवकलाई": 1
+      },
+      "young female workers": {
+        "ठिटी कामदारहरूसँग": 1
+      }
+    },
+    "expected": [
+      "तपाईंको दासी"
+    ],
+    "selections": [
+      {
+        "text": "तपाईंको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "दासी",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "sxek",
+      "quote": "אֲמָתֶ֔⁠ךָ",
+      "quoteString": "אֲמָתֶ֔⁠ךָ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:9, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-9-servant-b3nm",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "servant",
+    "verse": "अनि उनले साेधे, \"तिमी को हौ?\" तब तिनले भनिन्, “म रुथ हुँ, तपाईंको दासी। र तपाईका आफ्‍नो लुगाको छेउ आफ्‍नो दासी माथि ओढाइदिनुहोस्, किनकि तपाई नजिकका छुट्कारा दिने हुनुहुन्छ।”",
+    "glPhrase": "your female servant",
+    "history": {
+      "to his servant": {
+        "सेवकलाई": 1
+      },
+      "young female workers": {
+        "ठिटी कामदारहरूसँग": 1
+      },
+      "your female servant": {
+        "तपाईंको दासी": 1
+      }
+    },
+    "expected": [
+      "आफ्‍नो:2 दासी:2"
+    ],
+    "selections": [
+      {
+        "text": "आफ्‍नो",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "दासी",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "b3nm",
+      "quote": "אֲמָ֣תְ⁠ךָ֔",
+      "quoteString": "אֲמָ֣תְ⁠ךָ֔",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:9, tW servant, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-10-testimony-avyj",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "र रूथ, जो मोआबी स्‍त्री, महलोनकी विधवालाई, म मेरी पत्नीको रूपमा पनि प्राप्त गर्दैछु, ताकि मरेको मानिसको नाउँ उसको उत्तराधिकार कायम रहोस्, यसरी  म‍रेको मानिसको नाउँ उनको दाजुभाइ र शहरको मुलढोका बाट नमेटिओस्।आजकाे दिन तपाईहरु साक्षी हुनुहुन्छ ।\"",
+    "glPhrase": "witnesses",
+    "history": {
+      "witnesses": {
+        "साक्षी हुनुहुन्छ": 1
+      }
+    },
+    "expected": [
+      "साक्षी हुनुहुन्छ"
+    ],
+    "selections": [
+      {
+        "text": "साक्षी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "हुनुहुन्छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "avyj",
+      "quote": "עֵדִ֥ים",
+      "quoteString": "עֵדִ֥ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:10, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-11-testimony-x26r",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "अनि शहरकाे मुल ढोकामा भएका सबै मानिसहरू र प्रधानहरूले भने, “हामी साक्षी छाै। यी स्त्री जो तपाईको घरमा आउदैछिन् परमप्रभुले उनलाई राहेल र लेआजस्तै बनाउन्, ती दुई जसले इस्राएलको घरानाको निर्माण गरे। एफ्रातामा सम्मान प्राप्त गर्नुहोस्, र बेथलेहेममा प्रख्यात हुनुहोस् ।",
+    "glPhrase": "We are witnesses",
+    "history": {
+      "witnesses": {
+        "साक्षी हुनुहुन्छ": 2
+      }
+    },
+    "expected": [
+      "हामी साक्षी छाै"
+    ],
+    "selections": [
+      {
+        "text": "हामी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "साक्षी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छाै",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "x26r",
+      "quote": "עֵדִ֑ים",
+      "quoteString": "עֵדִ֑ים",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:11, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-1-13-yahweh-fuwd",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "त्यसैले के तिमीहरू तिनीहरू हुर्किने समय सम्म पर्खन सक्छौ? के तिमीहरू यस कारणले कुनै मानिससँग विवाह नगरी रहनसक्छाै? होइन, मेरा छोरीहरू ! निश्चय नै परमप्रभुको हात मेरो विरुद्धमा भएकाले, यो मेरो निम्‍ति तिमीहरूको भन्दा निश्चय नै धेरै तितो छ।”",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभुको"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभुको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "fuwd",
+      "quote": "יְהוָֽה",
+      "quoteString": "יְהוָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 1:13, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-4-yahweh-ywky",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "तब हेर, बोअज बेथलेहेमबाट आउनुभयो, अनि उहाँले कटनी गर्नेहरूलाई अभिवादन गर्नुहुदै भन्नुभयो, “परमप्रभु तपाईहरुसँग रहुन्।” अनि तिनीहरूले उहाँलाई भने, \"यहोवाले तपाईंलाई आशिष् दिऊन्।\"",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 1,
+        "परमप्रभुको": 1
+      }
+    },
+    "expected": [
+      "परमप्रभु"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभु",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "ywky",
+      "quote": "יְהוָ֣ה",
+      "quoteString": "יְהוָ֣ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:4, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-4-yahweh-t8rz",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "तब हेर, बोअज बेथलेहेमबाट आउनुभयो, अनि उहाँले कटनी गर्नेहरूलाई अभिवादन गर्नुहुदै भन्नुभयो, “परमप्रभु तपाईहरुसँग रहुन्।” अनि तिनीहरूले उहाँलाई भने, \"यहोवाले तपाईंलाई आशिष् दिऊन्।\"",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 1,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 1
+      }
+    },
+    "expected": [
+      "यहोवाले"
+    ],
+    "selections": [
+      {
+        "text": "यहोवाले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "t8rz",
+      "quote": "יְהוָֽה",
+      "quoteString": "יְהוָֽה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:4, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-12-yahweh-whzy",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "परमप्रभुले तिम्रो कामको इनाम दिऊन् र तिम्रो पूरा ज्याला परमप्रभु इस्राएलका परमेश्‍वर बाट आओस्, जसको छत्रछाया मुनि तिमी शरण लिन आएका छौ।”",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 1,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 1,
+        "यहोवाले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभुले"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभुले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "whzy",
+      "quote": "יְהוָ֖ה",
+      "quoteString": "יְהוָ֖ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:12, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-12-yahweh-t3xg",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "परमप्रभुले तिम्रो कामको इनाम दिऊन् र तिम्रो पूरा ज्याला परमप्रभु इस्राएलका परमेश्‍वर बाट आओस्, जसको छत्रछाया मुनि तिमी शरण लिन आएका छौ।”",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 2,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 1,
+        "यहोवाले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभु"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभु",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "t3xg",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:12, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-2-20-yahweh-e3nn",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "तब नाओमीले आफ्नी बुहारीलाई भनिन्, \"उहाँलाई परमप्रभुले आशिस दिनुभएको होस्, जसले जीवित सित र मरेकाहरू सितको आफ्नो करारको विश्वासयोग्यतालाई त्याग्नुभएको छैन।\" नाओमीले उनलाई यसो पनि भनिन्, “त्यो मानिस हामीसँग नजिककाे, हाम्रो छुटाउने आफन्त मध्ये एक हुन। ”",
+    "glPhrase": "by Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 2,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 2,
+        "यहोवाले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभुले"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभुले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "e3nn",
+      "quote": "לַ⁠יהוָ֔ה",
+      "quoteString": "לַ⁠יהוָ֔ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 2:20, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-3-13-yahweh-w4fy",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "आजकाे रात यहाँ बस। र जब बिहान हुन्छ, यदि उसले तिमीलाई छुटकारा दिन्छ भने, असल, उसले छुटकारा देओस् । तर यदि उसले तिमीलाई छुटकारा दिन चाहँदैन भने, म तिमीलाई छुटाउनेछु, जसरी परमप्रभु जीवित हुनुहुन्छ। बिहान सम्म ढल्कीराख।\"",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 2,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 2,
+        "यहोवाले": 1
+      },
+      "by yahweh": {
+        "परमप्रभुले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभु"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभु",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "w4fy",
+      "quote": "יְהוָ֑ה",
+      "quoteString": "יְהוָ֑ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 3:13, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-11-yahweh-unk3",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "अनि शहरकाे मुल ढोकामा भएका सबै मानिसहरू र प्रधानहरूले भने, “हामी साक्षी छाै। यी स्त्री जो तपाईको घरमा आउदैछिन् परमप्रभुले उनलाई राहेल र लेआजस्तै बनाउन्, ती दुई जसले इस्राएलको घरानाको निर्माण गरे। एफ्रातामा सम्मान प्राप्त गर्नुहोस्, र बेथलेहेममा प्रख्यात हुनुहोस् ।",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 2,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 3,
+        "यहोवाले": 1
+      },
+      "by yahweh": {
+        "परमप्रभुले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभुले"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभुले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "unk3",
+      "quote": "יְהוָ֨ה",
+      "quoteString": "יְהוָ֨ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:11, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-12-yahweh-ccvt",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "अनि त्यस सन्तान द्वारा, जुन परमप्रभुले तपाईलाई यस स्त्री बाट दिनु भएको छ, जो तपाईको घराना तामारले यहूदामा जन्माएकी फारेसको घरनाजस्तै होस् ।",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 3,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 3,
+        "यहोवाले": 1
+      },
+      "by yahweh": {
+        "परमप्रभुले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभुले"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभुले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "ccvt",
+      "quote": "יְהוָה֙",
+      "quoteString": "יְהוָה֙",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:12, tW yahweh, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-ne-rut-4-13-yahweh-tdtg",
+    "targetLang": "ne",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "yahweh",
+    "verse": "त्यसैले बोअजले रूथलाई आफुसँग लगे, र उनी तिनकी पत्नी भइन्, र तिनी उनीकहाँ गए। तब परमप्रभुले तिनको गर्भ भर्नुभयो र तिनले एउटा छोरो जन्‍माइन्।",
+    "glPhrase": "Yahweh",
+    "history": {
+      "yahweh": {
+        "परमप्रभुले": 4,
+        "परमप्रभुको": 1,
+        "परमप्रभु": 3,
+        "यहोवाले": 1
+      },
+      "by yahweh": {
+        "परमप्रभुले": 1
+      }
+    },
+    "expected": [
+      "परमप्रभुले"
+    ],
+    "selections": [
+      {
+        "text": "परमप्रभुले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "rut",
+        "chapter": 4,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "yahweh",
+      "checkId": "tdtg",
+      "quote": "יְהוָ֥ה",
+      "quoteString": "יְהוָ֥ה",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "yahweh"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_rut_book 4:13, tW yahweh, GL en ult/v91_unfoldingWord"
+  }
+]

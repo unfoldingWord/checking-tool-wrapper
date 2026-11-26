@@ -1,0 +1,7338 @@
+[
+  {
+    "id": "train-ne-gal-3-7-abraham-sz6v",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "abraham",
+    "verse": "त्‍यसो भए, यो बुझ, कि विश्‍वास गर्नेहरू, तिनीहरू अब्राहामका सन्‍तानहरु हुन् ।",
+    "glPhrase": "إِبْرَاهِيمَ",
+    "history": {
+      "إِبْرَاهِيمُ": {
+        "अब्राहामले": 1
+      }
+    },
+    "expected": [
+      "अब्राहामका"
+    ],
+    "selections": [
+      {
+        "text": "अब्राहामका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "abraham",
+      "checkId": "sz6v",
+      "quote": "Ἀβραὰμ",
+      "quoteString": "Ἀβραὰμ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "abraham"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:7, tW abraham, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-22-abraham-jpbn",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "abraham",
+    "verse": "किनभने लेखिएको छ कि अब्राहामका दुई छोरा थिए, एउटा दासीबाट र अर्को स्वतन्त्र स्त्रीबाट।",
+    "glPhrase": "لِإِبْرَاهِيمَ",
+    "history": {
+      "إِبْرَاهِيمُ": {
+        "अब्राहामले": 1
+      },
+      "إِبْرَاهِيمَ": {
+        "अब्राहामका": 1
+      }
+    },
+    "expected": [
+      "अब्राहामका"
+    ],
+    "selections": [
+      {
+        "text": "अब्राहामका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "abraham",
+      "checkId": "jpbn",
+      "quote": "Ἀβραὰμ",
+      "quoteString": "Ἀβραὰμ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "abraham"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:22, tW abraham, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-5-bear-w75d",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "bear",
+    "verse": "किनकि हरेकले आफ्नो भार आफै उठाउनेछ।",
+    "glPhrase": "سَيَحْمِلُ",
+    "history": {
+      "اِحْمِلُوا": {
+        "उठाओ": 1
+      }
+    },
+    "expected": [
+      "आफै उठाउनेछ"
+    ],
+    "selections": [
+      {
+        "text": "आफै",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "उठाउनेछ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "bear",
+      "checkId": "w75d",
+      "quote": "βαστάσει",
+      "quoteString": "βαστάσει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bear"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:5, tW bear, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-17-bear-e8he",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "bear",
+    "verse": "अब उप्रान्‍त मलाई कसैले दुःख नदेओस्, किनकि म आफ्नो शरीरमा येशूका चिन्हहरू धारण गर्दछु ।",
+    "glPhrase": "حَامِلٌ",
+    "history": {
+      "اِحْمِلُوا": {
+        "उठाओ": 1
+      },
+      "سَيَحْمِلُ": {
+        "आफै उठाउनेछ": 1
+      }
+    },
+    "expected": [
+      "धारण गर्दछु"
+    ],
+    "selections": [
+      {
+        "text": "धारण",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्दछु",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "bear",
+      "checkId": "e8he",
+      "quote": "βαστάζω",
+      "quoteString": "βαστάζω",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "bear"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:17, tW bear, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-believe-bbgf",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "believe",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "آمَنَّا",
+    "history": {
+      "بِإِيمَانِ": {
+        "विश्वास": 1
+      }
+    },
+    "expected": [
+      "हामीले विश्वास:2 गर्‍यौं"
+    ],
+    "selections": [
+      {
+        "text": "हामीले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "विश्वास",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "गर्‍यौं",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "bbgf",
+      "quote": "ἐπιστεύσαμεν",
+      "quoteString": "ἐπιστεύσαμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW believe, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-2-believe-d3sk",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "believe",
+    "verse": "म तिमीहरूबाट यो मात्र बुझ्‍न चाहन्‍छु: तिमीहरूले पवित्र आत्मा व्यवस्था अनुसारका कामहरू गरेर वा सुनेका कुरामा विश्‍वास गरेर पाएका हौ ?",
+    "glPhrase": "ٱلْإِيمَانِ",
+    "history": {
+      "بِإِيمَانِ": {
+        "विश्वास": 1
+      },
+      "آمَنَّا": {
+        "हामीले विश्वास गर्‍यौं": 1
+      }
+    },
+    "expected": [
+      "विश्‍वास"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वास",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "d3sk",
+      "quote": "πίστεως",
+      "quoteString": "πίστεως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:2, tW believe, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-6-believe-m32z",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "believe",
+    "verse": "जसरी अब्राहामले “परमेश्‍वरलाई विश्‍वास गरे अनि यो उनको निम्ति धार्मिकता गनियो ।”",
+    "glPhrase": "آمَنَ",
+    "history": {
+      "بِإِيمَانِ": {
+        "विश्वास": 1
+      },
+      "آمَنَّا": {
+        "हामीले विश्वास गर्‍यौं": 1
+      },
+      "ٱلْإِيمَانِ": {
+        "विश्‍वास": 1
+      }
+    },
+    "expected": [
+      "विश्‍वास गरे"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वास",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गरे",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "m32z",
+      "quote": "ἐπίστευσεν",
+      "quoteString": "ἐπίστευσεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:6, tW believe, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-23-believe-fmte-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "believe",
+    "verse": "अब विश्‍वास आउनु अघि, हामी व्यवस्थामुनि बन्दी बनाइयौ, विश्‍वासको प्रकाश नआउन्जेलसम्म कैदमा थियौँ।",
+    "glPhrase": "ٱلْإِيمَانِ",
+    "occurrence": 2,
+    "history": {
+      "بِإِيمَانِ": {
+        "विश्वास": 1
+      },
+      "آمَنَّا": {
+        "हामीले विश्वास गर्‍यौं": 1
+      },
+      "ٱلْإِيمَانِ": {
+        "विश्‍वास": 1
+      },
+      "آمَنَ": {
+        "विश्‍वास गरे": 1
+      }
+    },
+    "expected": [
+      "विश्‍वासको"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वासको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "fmte",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:23, tW believe, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-6-believe-mw8w",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "believe",
+    "verse": "किनकि ख्रीष्‍ट येशूमा न त खतना न बेखतना, तर प्रेमद्वारा काम गर्ने विश्‍वासको मात्र मूल्यको हुन्‍छ।",
+    "glPhrase": "ٱلْإِيمَانُ",
+    "history": {
+      "بِإِيمَانِ": {
+        "विश्वास": 1
+      },
+      "آمَنَّا": {
+        "हामीले विश्वास गर्‍यौं": 1
+      },
+      "ٱلْإِيمَانِ": {
+        "विश्‍वास": 1,
+        "विश्‍वासको": 1
+      },
+      "آمَنَ": {
+        "विश्‍वास गरे": 1
+      }
+    },
+    "expected": [
+      "विश्‍वासको"
+    ],
+    "selections": [
+      {
+        "text": "विश्‍वासको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "believe",
+      "checkId": "mw8w",
+      "quote": "πίστις",
+      "quoteString": "πίστις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "believe"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:6, tW believe, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-7-christ-wrjj",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "जुन अर्को होइन, यो बाहेक त्यहाँ केहि व्यक्तिहरू छन् जसले तपाईहरूलाई समस्यामा पार्दछन र ख्रीष्टको सुसमाचारलाई बिगार्न चाहन्छन ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टको"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "wrjj",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:7, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-10-christ-km5z",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "किनकि म अब मानिसहरूलाई मनाउन खोज्दै छु, वा परमेश्‍वर? वा के मैले मानिसहरूलाई खुसी पार्न खोजिरहेको छु र ? यदि म अझै पनि मानिसहरूलाई खुशी पार्ने भए, म ख्रीष्‍टको दास हुनेथिइनँ।",
+    "glPhrase": "لِلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 1,
+        "ख्रीष्टको": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍टको"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍टको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "km5z",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:10, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-12-christ-rec6",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "किनकि न त मैले यो मानिसबाट प्राप्त गरेको हो, न त मलाई यो सिकाइएको हो, तर येशू ख्रीष्टको प्रकाशद्वारा दिइएको थियो ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 1,
+        "ख्रीष्टको": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टको"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "rec6",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:12, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-christ-xxjt",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 1,
+        "ख्रीष्टको": 2
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टमा"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टमा",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "xxjt",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-christ-k59r",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 1,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "k59r",
+      "quote": "Χριστὸν",
+      "quoteString": "Χριστὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-christ-mz5d-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "يَسُوعَ",
+    "occurrence": 2,
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टमा:2"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टमा",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "mz5d",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-17-christ-wm4p",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "तर यदि, ख्रीष्टमा धर्मी ठहरिन खोज्दा, हामी आफैं पनि पापी ठहरियौं भने, के ख्रीष्ट पापको सेवक हुनुहुन्छ? यो कहिल्यै नहोस्!",
+    "glPhrase": "أَفَٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "wm4p",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:17, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-20-christ-jaza",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "र अब उप्रान्त जिउने म होइनँ, तर ख्रीष्‍ट ममा जिउनुहुन्‍छ । जुन जीवन म अहिले शरीरमा जिउँछु, म परमेश्‍वरका पुत्रमा विश्‍वास गरेर जिउँछु, जसले मलाई प्रेम गर्नुभयो र आफैलाई मेरो निम्ति दिनुभयो ।",
+    "glPhrase": "ٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 20
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "jaza",
+      "quote": "Χριστός",
+      "quoteString": "Χριστός",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:20, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-21-christ-burd",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "म परमेश्‍वरको अनुग्रहलाई इन्कार गर्दिन, किनकि यदि धार्मिकता व्यवस्थाद्वारा आउँदछ भने, ख्रीष्ट व्यर्थमा मर्नुभयो!”",
+    "glPhrase": "فَٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "burd",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:21, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-1-christ-ev6x",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "हे मूर्ख गलातीहरू ! कसले तिमीहरूलाई दुष्ट नजर लगायो, जसको आँखाको सामु येशू ख्रीष्‍ट क्रुसमा टाँगिनुभएको कुरा दर्शाइएको थियो?",
+    "glPhrase": "ٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 1
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "ev6x",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:1, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-13-christ-qk6j",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "हाम्रो निम्ति श्रापित हुनु भएर ख्रीष्टले हामीलाई व्यवस्थाको श्रापबाट छुटकारा दिनुभयो, किनकि यस्तो लेखिएको छ, “काठमा झुण्डिने हरेक श्रापित हुन्‍छ ।”",
+    "glPhrase": "اَلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 2
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टले"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "qk6j",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:13, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-16-christ-uzxk",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "अब यी प्रतिज्ञाहरू अब्राहाम र उनको सन्‍तानलाई दिइएको थियो । उहाँले धेरै मानिसहरूलाई झै गरी “र सन्‍तानहरूलाई” भन्‍नुहुदैन, तर  एक जनालाई झै “र तिम्रो सन्‍तानलाई” भन्नुहुन्छ, जो ख्रीष्‍ट हुनुहुन्‍छ ।",
+    "glPhrase": "ٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 2
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "uzxk",
+      "quote": "Χριστός",
+      "quoteString": "Χριστός",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:16, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-22-christ-n4p3",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "तर पापको अधीनमा रहेका सबै कुरालाई धर्मशास्‍त्रले कैदमा राख्यो ताकि येशू ख्रीष्‍टमा विश्‍वासद्वारा प्रतिज्ञा विश्‍वास गर्नेहरूलाई दिन सकियोस् ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 3
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍टमा"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍टमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "n4p3",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:22, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-24-christ-me7t",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "त्‍यसकारण ख्रीष्‍ट नआउन्जेलसम्मको लागि व्यवस्था हाम्रो संरक्षक बन्‍यो ताकि हामी विश्‍वासद्वारा धर्मी ठहरिन सकौँ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 3
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "me7t",
+      "quote": "Χριστόν",
+      "quoteString": "Χριστόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:24, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-29-christ-fx3m",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "अब यदि तिमीहरू ख्रीष्टका हौ भने, तिमीहरू अब्राहामका सन्तान, प्रतिज्ञा अनुसार उत्तराधिकारी हौ।",
+    "glPhrase": "لِلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 3
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टका"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 29
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "fx3m",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:29, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-14-christ-h8r4",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "र मेरो शरिरमा तिमीहरूले आफ्नो परीक्षाको उपेक्षा गरेनौ वा मलाई इन्कार गर्यौ, तर तिमीहरूले मलाई परमेश्‍वरका स्वर्गदूतझै, ख्रीष्‍ट येशू झैँ स्वीकार गर्‍यौ ।",
+    "glPhrase": "كَٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 3
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "h8r4",
+      "quote": "Χριστὸν",
+      "quoteString": "Χριστὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:14, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-19-christ-ej6s",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "मेरा बालकहरू हो, तिमीहरूभित्र ख्रीष्‍ट नबनिनुभएसम्म मैले फेरि कससँग प्रसव वेदना भोग्छु ।",
+    "glPhrase": "ٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 3
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      },
+      "كَٱلْمَسِيحِ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "ej6s",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:19, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-1-christ-p85s",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "स्वतन्‍त्रताको निम्ति ख्रीष्‍टले हामीलाई स्वतन्त्र पार्नुभयो। । यसैकारण, स्थिर होओ र फेरि दासत्वको जुवामुनि नपर ।",
+    "glPhrase": "ٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 4
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      },
+      "كَٱلْمَسِيحِ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍टले"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍टले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "p85s",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:1, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-2-christ-ad26",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "हेर ! म पावल तिमीहरूलाई भन्‍दछु, कि तिमीहरूको खतना भए तापनि ख्रीष्‍टमा तिमीहरूलाई केही फाइदा हुनेछैन ।",
+    "glPhrase": "ٱلْمَسِيحُ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 4,
+        "ख्रीष्‍टले": 1
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      },
+      "كَٱلْمَسِيحِ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍टमा"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍टमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "ad26",
+      "quote": "Χριστὸς",
+      "quoteString": "Χριστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:2, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-6-christ-p5z9",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "किनकि ख्रीष्‍ट येशूमा न त खतना न बेखतना, तर प्रेमद्वारा काम गर्ने विश्‍वासको मात्र मूल्यको हुन्‍छ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 4,
+        "ख्रीष्‍टले": 1,
+        "ख्रीष्‍टमा": 1
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      },
+      "كَٱلْمَسِيحِ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "p5z9",
+      "quote": "Χριστῷ",
+      "quoteString": "Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:6, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-14-christ-nenx",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "हाम्रा प्रभु येशू ख्रीष्‍टको क्रुसबाहेक मैले अरू कुनै कुरामा कहिल्यै गर्व गर्न नपरोस् । उहाँद्वारा नै म संसारको लागि र संसार मेरो लागि क्रुसमा टाँगिएको छ ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 2
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 4,
+        "ख्रीष्‍टले": 1,
+        "ख्रीष्‍टमा": 1
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      },
+      "كَٱلْمَسِيحِ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍टको"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍टको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "nenx",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:14, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-18-christ-dekk",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "christ",
+    "verse": "भाइहरू हो, तिमीहरूका आत्मामा हाम्रा प्रभु येशू ख्रीष्‍टको अनुग्रह रहोस् । आमेन ।",
+    "glPhrase": "ٱلْمَسِيحِ",
+    "history": {
+      "ٱلْمَسِيحِ": {
+        "ख्रीष्ट": 2,
+        "ख्रीष्टको": 2,
+        "ख्रीष्टमा": 1,
+        "ख्रीष्‍टमा": 1,
+        "ख्रीष्‍ट": 2,
+        "ख्रीष्‍टको": 1
+      },
+      "لِلْمَسِيحِ": {
+        "ख्रीष्‍टको": 1,
+        "ख्रीष्टका": 1
+      },
+      "يَسُوعَ": {
+        "ख्रीष्टमा": 1
+      },
+      "أَفَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "ٱلْمَسِيحُ": {
+        "ख्रीष्‍ट": 4,
+        "ख्रीष्‍टले": 1,
+        "ख्रीष्‍टमा": 1
+      },
+      "فَٱلْمَسِيحُ": {
+        "ख्रीष्ट": 1
+      },
+      "اَلْمَسِيحُ": {
+        "ख्रीष्टले": 1
+      },
+      "كَٱلْمَسِيحِ": {
+        "ख्रीष्‍ट": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍टको"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍टको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "christ",
+      "checkId": "dekk",
+      "quote": "Χριστοῦ",
+      "quoteString": "Χριστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "christ"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:18, tW christ, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-2-circumcise-nws6",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "हेर ! म पावल तिमीहरूलाई भन्‍दछु, कि तिमीहरूको खतना भए तापनि ख्रीष्‍टमा तिमीहरूलाई केही फाइदा हुनेछैन ।",
+    "glPhrase": "ٱخْتَتَنْتُمْ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      }
+    },
+    "expected": [
+      "तिमीहरूको खतना भए"
+    ],
+    "selections": [
+      {
+        "text": "तिमीहरूको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "खतना",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "भए",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "nws6",
+      "quote": "περιτέμνησθε",
+      "quoteString": "περιτέμνησθε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:2, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-3-circumcise-r66s",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "फेरि, खतना गरिएका सबै मानिसलाई म यो गवाही दिन्‍छु, कि सबै व्यवस्था पालन गर्न त्‍यो बाध्‍य हुन्‍छ ।",
+    "glPhrase": "مُخْتَتِنٍ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      }
+    },
+    "expected": [
+      "खतना गरिएका"
+    ],
+    "selections": [
+      {
+        "text": "खतना",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गरिएका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "r66s",
+      "quote": "περιτεμνομένῳ",
+      "quoteString": "περιτεμνομένῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:3, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-6-circumcise-prc3",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "किनकि ख्रीष्‍ट येशूमा न त खतना न बेखतना, तर प्रेमद्वारा काम गर्ने विश्‍वासको मात्र मूल्यको हुन्‍छ।",
+    "glPhrase": "ٱلْخِتَانُ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      }
+    },
+    "expected": [
+      "खतना"
+    ],
+    "selections": [
+      {
+        "text": "खतना",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "prc3",
+      "quote": "περιτομή",
+      "quoteString": "περιτομή",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:6, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-6-circumcise-vg63",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "किनकि ख्रीष्‍ट येशूमा न त खतना न बेखतना, तर प्रेमद्वारा काम गर्ने विश्‍वासको मात्र मूल्यको हुन्‍छ।",
+    "glPhrase": "ٱلْغُرْلَةُ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      },
+      "ٱلْخِتَانُ": {
+        "खतना": 1
+      }
+    },
+    "expected": [
+      "बेखतना"
+    ],
+    "selections": [
+      {
+        "text": "बेखतना",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "vg63",
+      "quote": "ἀκροβυστία",
+      "quoteString": "ἀκροβυστία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:6, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-11-circumcise-ybbh",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "तर भाइ हो, यदि म अझै पनि खतनाको प्रचार गर्दछु भने, अझै पनि म किन सताइएको छु ? त्‍यसो हो भनेता क्रुसको बाधा नष्‍ट हुने थियो ।",
+    "glPhrase": "بِٱلْخِتَانِ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      },
+      "ٱلْخِتَانُ": {
+        "खतना": 1
+      },
+      "ٱلْغُرْلَةُ": {
+        "बेखतना": 1
+      }
+    },
+    "expected": [
+      "खतनाको"
+    ],
+    "selections": [
+      {
+        "text": "खतनाको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "ybbh",
+      "quote": "περιτομὴν",
+      "quoteString": "περιτομὴν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:11, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-12-circumcise-e9hv",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "जतिले शरीरमा प्रभाव पार्न चाहन्छन्, तिनीहरूले तिमीहरूलाई खतना गर्न बाध्‍य गराउँछन्,  त्यसपछि मात्र ख्रीष्‍ट येशूको क्रुसको खातिर सतावट भोग्‍न नपरोस्।",
+    "glPhrase": "أَنْ تَخْتَتِنُوا",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      },
+      "ٱلْخِتَانُ": {
+        "खतना": 1
+      },
+      "ٱلْغُرْلَةُ": {
+        "बेखतना": 1
+      },
+      "بِٱلْخِتَانِ": {
+        "खतनाको": 1
+      }
+    },
+    "expected": [
+      "खतना गर्न"
+    ],
+    "selections": [
+      {
+        "text": "खतना",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्न",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "e9hv",
+      "quote": "περιτέμνεσθαι",
+      "quoteString": "περιτέμνεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:12, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-13-circumcise-hkdj",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "किनकि खतना भएकाहरू आफैले पनि व्यवस्थाको पालन गर्दैनन्, तर तिनीहरू तिमीहरूको खतना भएको चाहन्‍छन् ताकि तिनीहरू तिमीहरूका शरीरमा घमण्ड गर्न सकून्।",
+    "glPhrase": "أَنْ تَخْتَتِنُوا",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      },
+      "ٱلْخِتَانُ": {
+        "खतना": 1
+      },
+      "ٱلْغُرْلَةُ": {
+        "बेखतना": 1
+      },
+      "بِٱلْخِتَانِ": {
+        "खतनाको": 1
+      },
+      "أَنْ تَخْتَتِنُوا": {
+        "खतना गर्न": 1
+      }
+    },
+    "expected": [
+      "खतना:2 भएको"
+    ],
+    "selections": [
+      {
+        "text": "खतना",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "भएको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "hkdj",
+      "quote": "περιτέμνεσθαι",
+      "quoteString": "περιτέμνεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:13, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-15-circumcise-ecau",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "किनकि न त खतना न बेखतना, तर नयाँ सृष्‍टि केही हो।",
+    "glPhrase": "ٱلْخِتَانُ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      },
+      "ٱلْخِتَانُ": {
+        "खतना": 1
+      },
+      "ٱلْغُرْلَةُ": {
+        "बेखतना": 1
+      },
+      "بِٱلْخِتَانِ": {
+        "खतनाको": 1
+      },
+      "أَنْ تَخْتَتِنُوا": {
+        "खतना गर्न": 1,
+        "खतना भएको": 1
+      }
+    },
+    "expected": [
+      "खतना"
+    ],
+    "selections": [
+      {
+        "text": "खतना",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "ecau",
+      "quote": "περιτομή",
+      "quoteString": "περιτομή",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:15, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-15-circumcise-gj98",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "circumcise",
+    "verse": "किनकि न त खतना न बेखतना, तर नयाँ सृष्‍टि केही हो।",
+    "glPhrase": "ٱلْغُرْلَةُ",
+    "history": {
+      "أَنْ يَخْتَتِنَ": {
+        "खतना गर्न": 1
+      },
+      "ٱخْتَتَنْتُمْ": {
+        "तिमीहरूको खतना भए": 1
+      },
+      "مُخْتَتِنٍ": {
+        "खतना गरिएका": 1
+      },
+      "ٱلْخِتَانُ": {
+        "खतना": 2
+      },
+      "ٱلْغُرْلَةُ": {
+        "बेखतना": 1
+      },
+      "بِٱلْخِتَانِ": {
+        "खतनाको": 1
+      },
+      "أَنْ تَخْتَتِنُوا": {
+        "खतना गर्न": 1,
+        "खतना भएको": 1
+      }
+    },
+    "expected": [
+      "बेखतना"
+    ],
+    "selections": [
+      {
+        "text": "बेखतना",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "circumcise",
+      "checkId": "gj98",
+      "quote": "ἀκροβυστία",
+      "quoteString": "ἀκροβυστία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "circumcise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:15, tW circumcise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-17-covenant-ezr2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "covenant",
+    "verse": "अब म यो भन्‍दछु, प्रतिज्ञा रद्द गर्न परमेश्‍वरले पहिले नै स्थापना गर्नुभएको करारलाई ४३० वर्षपछि आएको व्यवस्थाले रद्द गर्दैन ।",
+    "glPhrase": "عَهْدًا",
+    "history": {
+      "عَهْدًا": {
+        "करार": 1
+      }
+    },
+    "expected": [
+      "करारलाई"
+    ],
+    "selections": [
+      {
+        "text": "करारलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "covenant",
+      "checkId": "ezr2",
+      "quote": "διαθήκην",
+      "quoteString": "διαθήκην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "covenant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:17, tW covenant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-24-covenant-ynhr",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "covenant",
+    "verse": "यी कुराहरूलाई एउटा रूपक दृष्‍टान्‍त झै वर्णन गरिन्छ, किनकि तिनीहरू  दुई वटा करारहरू हुन् । एक चाहिँ सीनै पर्वतबाट, दासत्वलाई  जन्‍मदिदै; तिनी हागार हुन् ।",
+    "glPhrase": "ٱلْعَهْدَانِ",
+    "history": {
+      "عَهْدًا": {
+        "करार": 1,
+        "करारलाई": 1
+      }
+    },
+    "expected": [
+      "करारहरू"
+    ],
+    "selections": [
+      {
+        "text": "करारहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "covenant",
+      "checkId": "ynhr",
+      "quote": "διαθῆκαι",
+      "quoteString": "διαθῆκαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "covenant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:24, tW covenant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-24-crucify-ywz2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "crucify",
+    "verse": "तर ख्रीष्‍ट येशूका व्यक्तिहरूले शरीरलाई लालसा र दुष्‍ट अभिलाषाहरूसहित क्रुसमा टाँगेका छन् ।",
+    "glPhrase": "قَدْ صَلَبُوا",
+    "history": {
+      "بَيْنَكُمْ مَصْلُوبًا": {
+        "क्रुसमा टाँगिनुभएको कुरा": 1
+      }
+    },
+    "expected": [
+      "क्रुसमा टाँगेका छन्"
+    ],
+    "selections": [
+      {
+        "text": "क्रुसमा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "टाँगेका",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छन्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "crucify",
+      "checkId": "ywz2",
+      "quote": "ἐσταύρωσαν",
+      "quoteString": "ἐσταύρωσαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "crucify"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:24, tW crucify, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-14-crucify-h2jf",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "crucify",
+    "verse": "हाम्रा प्रभु येशू ख्रीष्‍टको क्रुसबाहेक मैले अरू कुनै कुरामा कहिल्यै गर्व गर्न नपरोस् । उहाँद्वारा नै म संसारको लागि र संसार मेरो लागि क्रुसमा टाँगिएको छ ।",
+    "glPhrase": "قَدْ صُلِبَ",
+    "history": {
+      "بَيْنَكُمْ مَصْلُوبًا": {
+        "क्रुसमा टाँगिनुभएको कुरा": 1
+      },
+      "قَدْ صَلَبُوا": {
+        "क्रुसमा टाँगेका छन्": 1
+      }
+    },
+    "expected": [
+      "क्रुसमा टाँगिएको छ"
+    ],
+    "selections": [
+      {
+        "text": "क्रुसमा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "टाँगिएको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "crucify",
+      "checkId": "h2jf",
+      "quote": "ἐσταύρωται",
+      "quoteString": "ἐσταύρωται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "crucify"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:14, tW crucify, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-9-curse-ens7",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "curse",
+    "verse": "हामीले पहिले भनेझैं, र अब म फेरि भन्‍दछु, \"यदि कसैले तिमीहरूले प्राप्त गरेको बाहेक अरू कुनै सुसमाचार घोषणा गर्छ भने, त्‍यो श्रापित होस् ।”",
+    "glPhrase": "أَنَاثِيمَا",
+    "history": {
+      "أَنَاثِيمَا": {
+        "श्रापित": 1
+      }
+    },
+    "expected": [
+      "श्रापित"
+    ],
+    "selections": [
+      {
+        "text": "श्रापित",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "curse",
+      "checkId": "ens7",
+      "quote": "ἀνάθεμα",
+      "quoteString": "ἀνάθεμα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "curse"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:9, tW curse, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-13-curse-e4r3",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "curse",
+    "verse": "हाम्रो निम्ति श्रापित हुनु भएर ख्रीष्टले हामीलाई व्यवस्थाको श्रापबाट छुटकारा दिनुभयो, किनकि यस्तो लेखिएको छ, “काठमा झुण्डिने हरेक श्रापित हुन्‍छ ।”",
+    "glPhrase": "لَعْنَةً",
+    "history": {
+      "أَنَاثِيمَا": {
+        "श्रापित": 2
+      }
+    },
+    "expected": [
+      "श्रापबाट"
+    ],
+    "selections": [
+      {
+        "text": "श्रापबाट",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "curse",
+      "checkId": "e4r3",
+      "quote": "κατάρα",
+      "quoteString": "κατάρα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "curse"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:13, tW curse, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-13-curse-vwux",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "curse",
+    "verse": "हाम्रो निम्ति श्रापित हुनु भएर ख्रीष्टले हामीलाई व्यवस्थाको श्रापबाट छुटकारा दिनुभयो, किनकि यस्तो लेखिएको छ, “काठमा झुण्डिने हरेक श्रापित हुन्‍छ ।”",
+    "glPhrase": "مَلْعُونٌ",
+    "history": {
+      "أَنَاثِيمَا": {
+        "श्रापित": 2
+      },
+      "لَعْنَةً": {
+        "श्रापबाट": 1
+      }
+    },
+    "expected": [
+      "श्रापित:2 हुन्‍छ"
+    ],
+    "selections": [
+      {
+        "text": "श्रापित",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "हुन्‍छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "curse",
+      "checkId": "vwux",
+      "quote": "ἐπικατάρατος",
+      "quoteString": "ἐπικατάρατος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "curse"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:13, tW curse, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-3-enslave-d3nf",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "enslave",
+    "verse": "त्यसैगरी, हामीहरू पनि जब बालक थियौँ, यस जगत्‌का आधारभूत सिद्धान्‍तहरूको बन्धनमा थियौँ ।",
+    "glPhrase": "مُسْتَعْبَدِينَ",
+    "history": {
+      "يَسْتَعْبِدُونَا": {
+        "तिनीहरूले दास बनाउनेछन्": 1
+      }
+    },
+    "expected": [
+      "बन्धनमा"
+    ],
+    "selections": [
+      {
+        "text": "बन्धनमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "enslave",
+      "checkId": "d3nf",
+      "quote": "δεδουλωμένοι",
+      "quoteString": "δεδουλωμένοι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "enslave"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:3, tW enslave, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-25-enslave-sjfq",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "enslave",
+    "verse": "अब हागारचाहिँ अरबमा सीनै पर्वत हुन्  र वर्तमान यरूशलेमको सङ्केत गर्छिन्, किनकि तिनी तिनका छोराछोरीहरूसँगै दासत्वमा छिन् ।",
+    "glPhrase": "مُسْتَعْبَدَةٌ",
+    "history": {
+      "يَسْتَعْبِدُونَا": {
+        "तिनीहरूले दास बनाउनेछन्": 1
+      },
+      "مُسْتَعْبَدِينَ": {
+        "बन्धनमा": 1
+      }
+    },
+    "expected": [
+      "दासत्वमा छिन्"
+    ],
+    "selections": [
+      {
+        "text": "दासत्वमा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छिन्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 25
+      },
+      "tool": "translationWords",
+      "groupId": "enslave",
+      "checkId": "sjfq",
+      "quote": "δουλεύει",
+      "quoteString": "δουλεύει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "enslave"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:25, tW enslave, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-26-free-t3gx",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "free",
+    "verse": "तर माथिको यरूशलेम स्वतन्त्र छ, जो हाम्रो आमा हो।",
+    "glPhrase": "حُرَّةٌ",
+    "history": {
+      "حُرٌّ": {
+        "फुक्‍का": 1
+      }
+    },
+    "expected": [
+      "स्वतन्त्र"
+    ],
+    "selections": [
+      {
+        "text": "स्वतन्त्र",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 26
+      },
+      "tool": "translationWords",
+      "groupId": "free",
+      "checkId": "t3gx",
+      "quote": "ἐλευθέρα",
+      "quoteString": "ἐλευθέρα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "free"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:26, tW free, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-1-free-ap4k",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "free",
+    "verse": "स्वतन्‍त्रताको निम्ति ख्रीष्‍टले हामीलाई स्वतन्त्र पार्नुभयो। । यसैकारण, स्थिर होओ र फेरि दासत्वको जुवामुनि नपर ।",
+    "glPhrase": "ٱلَّتِي قَدْ حَرَّرَنَا بِهَا",
+    "history": {
+      "حُرٌّ": {
+        "फुक्‍का": 1
+      },
+      "حُرَّةٌ": {
+        "स्वतन्त्र": 1
+      }
+    },
+    "expected": [
+      "स्वतन्त्र पार्नुभयो"
+    ],
+    "selections": [
+      {
+        "text": "स्वतन्त्र",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "पार्नुभयो",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "free",
+      "checkId": "ap4k",
+      "quote": "ἠλευθέρωσεν",
+      "quoteString": "ἠλευθέρωσεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "free"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:1, tW free, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-9-god-zc8z",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "god",
+    "verse": "तर अहिले तिमीहरूले परमेश्‍वरलाई चिन्‍दछौ वा निश्‍चय नै तिमीहरू परमेश्‍वरद्वारा चिनिएका छौ भने, किन तिमीहरू फेरि कमजोर र मूल्यहीन आधारभूत सिद्धान्‍तहरूतर्फ फर्किरहेका छौ ? के तिमीहरू फेरि दास हुने चाहना गर्दछौ ?",
+    "glPhrase": "ٱللهَ",
+    "history": {
+      "ٱللهَ": {
+        "परमेश्‍वरलाई": 1
+      }
+    },
+    "expected": [
+      "परमेश्‍वरलाई"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरलाई",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "zc8z",
+      "quote": "Θεόν",
+      "quoteString": "Θεόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:9, tW god, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-7-god-dbeq",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "god",
+    "verse": "धोकामा नपर । परमेश्‍वरको ठट्टा गरिएको छैन, किनकि यदि मानिसले जे रोप्दछ, त्‍यसले त्‍यही नै कटनी गर्नेछ ।",
+    "glPhrase": "ٱللهُ",
+    "history": {
+      "ٱللهَ": {
+        "परमेश्‍वरलाई": 2
+      }
+    },
+    "expected": [
+      "परमेश्‍वरको"
+    ],
+    "selections": [
+      {
+        "text": "परमेश्‍वरको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "dbeq",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:7, tW god, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-18-good-baru",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "good",
+    "verse": "तर सधैँ नै असल अभिप्रायको निम्ति डाही हुनु असल हुन्‍छ र म तिमीहरूको उपस्थितिमा हुँदा मात्र होइन ।",
+    "glPhrase": "حَسَنَةٌ هِيَ",
+    "history": {
+      "حَسَنًا": {
+        "उचित रूपमा": 1
+      }
+    },
+    "expected": [
+      "असल:2 हुन्‍छ"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "हुन्‍छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "baru",
+      "quote": "καλὸν",
+      "quoteString": "καλὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:18, tW good, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-22-good-kyj2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "good",
+    "verse": "तर पवित्र आत्माका फलचाहिँ प्रेम, आनन्‍द, शान्‍ति, धैर्य, दया, भलाइ, विश्‍वासयोग्यता,",
+    "glPhrase": "صَلَاحٌ",
+    "history": {
+      "حَسَنًا": {
+        "उचित रूपमा": 1
+      },
+      "حَسَنَةٌ هِيَ": {
+        "असल हुन्‍छ": 1
+      }
+    },
+    "expected": [
+      "भलाइ"
+    ],
+    "selections": [
+      {
+        "text": "भलाइ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "kyj2",
+      "quote": "ἀγαθωσύνη",
+      "quoteString": "ἀγαθωσύνη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:22, tW good, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-6-good-ggr9",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "good",
+    "verse": "तर सबै असल कुराहरूमा वचन सिकाइएको व्यक्तिले एकै शिक्षाद्धारा बाँडोस् ।",
+    "glPhrase": "ٱلْخَيْرَاتِ",
+    "history": {
+      "حَسَنًا": {
+        "उचित रूपमा": 1
+      },
+      "حَسَنَةٌ هِيَ": {
+        "असल हुन्‍छ": 1
+      },
+      "صَلَاحٌ": {
+        "भलाइ": 1
+      }
+    },
+    "expected": [
+      "असल"
+    ],
+    "selections": [
+      {
+        "text": "असल",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ggr9",
+      "quote": "ἀγαθοῖς",
+      "quoteString": "ἀγαθοῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:6, tW good, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-8-goodnews-g7zq",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "goodnews",
+    "verse": "तर यदि हामी वा स्वर्गको स्वर्गदूतले, हामीले तिमीहरूलाई घोषणा गरेको सुसमाचार बाहेक तिमीहरूलाई अरू कुनै सुसमाचार सुनाउदछ भने पनि उ श्रापित होस्।",
+    "glPhrase": "بَشَّرْنَاكُمْ",
+    "history": {
+      "إِنْجِيلٍ": {
+        "सुसमाचारमा": 1
+      }
+    },
+    "expected": [
+      "हामीले घोषणा गरेको सुसमाचार"
+    ],
+    "selections": [
+      {
+        "text": "हामीले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "घोषणा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गरेको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "सुसमाचार",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "goodnews",
+      "checkId": "g7zq",
+      "quote": "εὐαγγελίζηται",
+      "quoteString": "εὐαγγελίζηται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "goodnews"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:8, tW goodnews, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-9-goodnews-f2hg",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "goodnews",
+    "verse": "हामीले पहिले भनेझैं, र अब म फेरि भन्‍दछु, \"यदि कसैले तिमीहरूले प्राप्त गरेको बाहेक अरू कुनै सुसमाचार घोषणा गर्छ भने, त्‍यो श्रापित होस् ।”",
+    "glPhrase": "يُبَشِّرُكُمْ",
+    "history": {
+      "إِنْجِيلٍ": {
+        "सुसमाचारमा": 1
+      },
+      "بَشَّرْنَاكُمْ": {
+        "हामीले घोषणा गरेको सुसमाचार": 1
+      }
+    },
+    "expected": [
+      "सुसमाचार घोषणा गर्छ"
+    ],
+    "selections": [
+      {
+        "text": "सुसमाचार",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "घोषणा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "goodnews",
+      "checkId": "f2hg",
+      "quote": "εὐαγγελίζεται",
+      "quoteString": "εὐαγγελίζεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "goodnews"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:9, tW goodnews, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-13-goodnews-ptq8",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "goodnews",
+    "verse": "तर तिमीहरू जान्‍दछौ कि मेरो शारीरिक कमजोरीको कारण मैले तिमीहरूलाई पहिले नै सुसमाचार प्रचार गरेँ।",
+    "glPhrase": "بَشَّرْتُكُمْ",
+    "history": {
+      "إِنْجِيلٍ": {
+        "सुसमाचारमा": 1
+      },
+      "بَشَّرْنَاكُمْ": {
+        "हामीले घोषणा गरेको सुसमाचार": 1
+      },
+      "يُبَشِّرُكُمْ": {
+        "सुसमाचार घोषणा गर्छ": 1
+      }
+    },
+    "expected": [
+      "मैले सुसमाचार प्रचार गरेँ"
+    ],
+    "selections": [
+      {
+        "text": "मैले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "सुसमाचार",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "प्रचार",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गरेँ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "goodnews",
+      "checkId": "ptq8",
+      "quote": "εὐηγγελισάμην",
+      "quoteString": "εὐηγγελισάμην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "goodnews"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:13, tW goodnews, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-8-harvest-cfvw-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "harvest",
+    "verse": "किनकि जसले आफ्नै शरीरको लागि छर्छ, उसले शरीरबाट विनाशको कटनी गर्नेछ। तर जसले आत्मामा छर्छ, उसले आत्माबाट अनन्त जीवनको कटनी गर्नेछ।",
+    "glPhrase": "يَحْصُدُ",
+    "occurrence": 2,
+    "history": {
+      "يَحْصُدُ": {
+        "त्‍यसले कटनी गर्नेछ": 1
+      }
+    },
+    "expected": [
+      "कटनी:2 गर्नेछ:2"
+    ],
+    "selections": [
+      {
+        "text": "कटनी",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "गर्नेछ",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "cfvw",
+      "quote": "θερίσει",
+      "quoteString": "θερίσει",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:8, tW harvest, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-9-harvest-r3vk",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "harvest",
+    "verse": "तर हामी असल काम गर्न निरुत्साहित बन्नु पर्दैन, किनकि ठिक समयमा, हरेस खाएनौँ भने,  हामीले फसलको कटनी गर्नेछौँ ।",
+    "glPhrase": "سَنَحْصُدُ",
+    "history": {
+      "يَحْصُدُ": {
+        "त्‍यसले कटनी गर्नेछ": 1,
+        "कटनी गर्नेछ": 1
+      }
+    },
+    "expected": [
+      "हामीले कटनी गर्नेछौँ"
+    ],
+    "selections": [
+      {
+        "text": "हामीले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "कटनी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्नेछौँ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "harvest",
+      "checkId": "r3vk",
+      "quote": "θερίσομεν",
+      "quoteString": "θερίσομεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "harvest"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:9, tW harvest, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-inchrist-cq7h",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "inchrist",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "بِيَسُوعَ ٱلْمَسِيحِ",
+    "history": {
+      "فِي ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्ट येशूमा"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्ट",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "येशूमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "cq7h",
+      "quote": [
+        {
+          "word": "εἰς",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστὸν",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "εἰς Χριστὸν Ἰησοῦν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW inchrist, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-17-inchrist-y8es",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "inchrist",
+    "verse": "तर यदि, ख्रीष्टमा धर्मी ठहरिन खोज्दा, हामी आफैं पनि पापी ठहरियौं भने, के ख्रीष्ट पापको सेवक हुनुहुन्छ? यो कहिल्यै नहोस्!",
+    "glPhrase": "فِي ٱلْمَسِيحِ",
+    "history": {
+      "فِي ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1
+      },
+      "بِيَسُوعَ ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्टमा"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्टमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "y8es",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:17, tW inchrist, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-26-inchrist-m6cq",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "inchrist",
+    "verse": "किनकि ख्रीष्‍ट येशूमा विश्‍वासद्वारा तिमीहरू सबै परमेश्‍वरका पुत्रहरू हौ।",
+    "glPhrase": "بِٱلْمَسِيحِ يَسُوعَ",
+    "history": {
+      "فِي ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1,
+        "ख्रीष्टमा": 1
+      },
+      "بِيَسُوعَ ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट येशूमा"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "येशूमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 26
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "m6cq",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Χριστῷ",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Χριστῷ Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:26, tW inchrist, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-10-inchrist-fes5",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "inchrist",
+    "verse": "प्रभुमा म तिमीहरूमा भरोसा गर्दछु, कि तिमीहरूले अर्को तरिकाले विचार गर्दैनौ । तिमीहरूलाई अलमलमा पार्ने जोसुकै भए तापनि त्‍यसले आफ्नो न्याय पाउनेछ ।",
+    "glPhrase": "فِي ٱلرَّبِّ",
+    "history": {
+      "فِي ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1,
+        "ख्रीष्टमा": 1
+      },
+      "بِيَسُوعَ ٱلْمَسِيحِ": {
+        "ख्रीष्ट येशूमा": 1
+      },
+      "بِٱلْمَسِيحِ يَسُوعَ": {
+        "ख्रीष्‍ट येशूमा": 1
+      }
+    },
+    "expected": [
+      "प्रभुमा"
+    ],
+    "selections": [
+      {
+        "text": "प्रभुमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "inchrist",
+      "checkId": "fes5",
+      "quote": [
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "Κυρίῳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἐν Κυρίῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "inchrist"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:10, tW inchrist, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-3-jesus-hwas",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "परमेश्‍वर हाम्रा पिता र प्रभु येशू ख्रीष्‍टबाट तिमीहरूलाई अनुग्रह र शान्‍ति,",
+    "glPhrase": "يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "hwas",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:3, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-12-jesus-taag",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "किनकि न त मैले यो मानिसबाट प्राप्त गरेको हो, न त मलाई यो सिकाइएको हो, तर येशू ख्रीष्टको प्रकाशद्वारा दिइएको थियो ।",
+    "glPhrase": "يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "taag",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:12, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-jesus-s96d",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 2
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "s96d",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-1-jesus-w8mh",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "हे मूर्ख गलातीहरू ! कसले तिमीहरूलाई दुष्ट नजर लगायो, जसको आँखाको सामु येशू ख्रीष्‍ट क्रुसमा टाँगिनुभएको कुरा दर्शाइएको थियो?",
+    "glPhrase": "يَسُوعُ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 3
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "w8mh",
+      "quote": "Ἰησοῦς",
+      "quoteString": "Ἰησοῦς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:1, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-22-jesus-nmzw",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "तर पापको अधीनमा रहेका सबै कुरालाई धर्मशास्‍त्रले कैदमा राख्यो ताकि येशू ख्रीष्‍टमा विश्‍वासद्वारा प्रतिज्ञा विश्‍वास गर्नेहरूलाई दिन सकियोस् ।",
+    "glPhrase": "يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 3
+      },
+      "يَسُوعُ": {
+        "येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "nmzw",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:22, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-14-jesus-axk8",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "र मेरो शरिरमा तिमीहरूले आफ्नो परीक्षाको उपेक्षा गरेनौ वा मलाई इन्कार गर्यौ, तर तिमीहरूले मलाई परमेश्‍वरका स्वर्गदूतझै, ख्रीष्‍ट येशू झैँ स्वीकार गर्‍यौ ।",
+    "glPhrase": "كَٱلْمَسِيحِ يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 4
+      },
+      "يَسُوعُ": {
+        "येशू": 1
+      }
+    },
+    "expected": [
+      "ख्रीष्‍ट येशू"
+    ],
+    "selections": [
+      {
+        "text": "ख्रीष्‍ट",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "axk8",
+      "quote": [
+        {
+          "word": "Χριστὸν",
+          "occurrence": 1
+        },
+        {
+          "word": "Ἰησοῦν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "Χριστὸν Ἰησοῦν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:14, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-14-jesus-uzjr",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "हाम्रा प्रभु येशू ख्रीष्‍टको क्रुसबाहेक मैले अरू कुनै कुरामा कहिल्यै गर्व गर्न नपरोस् । उहाँद्वारा नै म संसारको लागि र संसार मेरो लागि क्रुसमा टाँगिएको छ ।",
+    "glPhrase": "يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 4
+      },
+      "يَسُوعُ": {
+        "येशू": 1
+      },
+      "كَٱلْمَسِيحِ يَسُوعَ": {
+        "ख्रीष्‍ट येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "uzjr",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:14, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-18-jesus-ysuw",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jesus",
+    "verse": "भाइहरू हो, तिमीहरूका आत्मामा हाम्रा प्रभु येशू ख्रीष्‍टको अनुग्रह रहोस् । आमेन ।",
+    "glPhrase": "يَسُوعَ",
+    "history": {
+      "بِيَسُوعَ": {
+        "येशू": 1
+      },
+      "يَسُوعَ": {
+        "येशू": 5
+      },
+      "يَسُوعُ": {
+        "येशू": 1
+      },
+      "كَٱلْمَسِيحِ يَسُوعَ": {
+        "ख्रीष्‍ट येशू": 1
+      }
+    },
+    "expected": [
+      "येशू"
+    ],
+    "selections": [
+      {
+        "text": "येशू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "jesus",
+      "checkId": "ysuw",
+      "quote": "Ἰησοῦ",
+      "quoteString": "Ἰησοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jesus"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:18, tW jesus, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-14-jew-kd8m",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jew",
+    "verse": "तर जब मैले तिनीहरू सुसमाचारको सत्यता अनुसार ठीकसँग हिँडिरहेका थिएनन् भन्ने देखे, तब मैले केफासलाई तिनीहरू सबैको अगाडि भनें, “यदि तपाईं यहूदी भएर यहूदीजस्तो होइन, अन्यजातिहरू जस्तै जीवन बिताउनुहुन्छ भने, कसरी तपाईं अन्यजातिहरूलाई यहूदीहरू जस्तै जीवन बिताउन बाध्य पार्नुहुन्छ ?",
+    "glPhrase": "يَهُودِيًّا",
+    "history": {
+      "يَهُودِيٌّ": {
+        "यहूदी": 1
+      }
+    },
+    "expected": [
+      "यहूदीजस्तो"
+    ],
+    "selections": [
+      {
+        "text": "यहूदीजस्तो",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "jew",
+      "checkId": "kd8m",
+      "quote": "Ἰουδαϊκῶς",
+      "quoteString": "Ἰουδαϊκῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jew"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:14, tW jew, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-14-jew-kdbt",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jew",
+    "verse": "तर जब मैले तिनीहरू सुसमाचारको सत्यता अनुसार ठीकसँग हिँडिरहेका थिएनन् भन्ने देखे, तब मैले केफासलाई तिनीहरू सबैको अगाडि भनें, “यदि तपाईं यहूदी भएर यहूदीजस्तो होइन, अन्यजातिहरू जस्तै जीवन बिताउनुहुन्छ भने, कसरी तपाईं अन्यजातिहरूलाई यहूदीहरू जस्तै जीवन बिताउन बाध्य पार्नुहुन्छ ?",
+    "glPhrase": "أَنْ يَتَهَوَّدُوا",
+    "history": {
+      "يَهُودِيٌّ": {
+        "यहूदी": 1
+      },
+      "يَهُودِيًّا": {
+        "यहूदीजस्तो": 1
+      }
+    },
+    "expected": [
+      "यहूदीहरू जस्तै:2"
+    ],
+    "selections": [
+      {
+        "text": "यहूदीहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "जस्तै",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "jew",
+      "checkId": "kdbt",
+      "quote": "Ἰουδαΐζειν",
+      "quoteString": "Ἰουδαΐζειν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jew"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:14, tW jew, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-15-jew-vqdx",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jew",
+    "verse": "हामी जन्मजात यहूदीहरू हौं, र अन्यजातिहरू देखि नै पापीहरू होइनौं।",
+    "glPhrase": "يَهُودٌ",
+    "history": {
+      "يَهُودِيٌّ": {
+        "यहूदी": 1
+      },
+      "يَهُودِيًّا": {
+        "यहूदीजस्तो": 1
+      },
+      "أَنْ يَتَهَوَّدُوا": {
+        "यहूदीहरू जस्तै": 1
+      }
+    },
+    "expected": [
+      "यहूदीहरू हौं"
+    ],
+    "selections": [
+      {
+        "text": "यहूदीहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "हौं",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "jew",
+      "checkId": "vqdx",
+      "quote": "Ἰουδαῖοι",
+      "quoteString": "Ἰουδαῖοι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jew"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:15, tW jew, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-28-jew-e2uz",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "jew",
+    "verse": "अब न त यहूदी छ, न ग्रीक, अब न कमारा छ न फुक्‍का, अब न पुरुष छ न स्‍त्री, किनभने ख्रीष्‍ट येशूमा तिमीहरू सबै एक हौ ।",
+    "glPhrase": "يَهُودِيٌّ",
+    "history": {
+      "يَهُودِيٌّ": {
+        "यहूदी": 1
+      },
+      "يَهُودِيًّا": {
+        "यहूदीजस्तो": 1
+      },
+      "أَنْ يَتَهَوَّدُوا": {
+        "यहूदीहरू जस्तै": 1
+      },
+      "يَهُودٌ": {
+        "यहूदीहरू हौं": 1
+      }
+    },
+    "expected": [
+      "यहूदी"
+    ],
+    "selections": [
+      {
+        "text": "यहूदी",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 28
+      },
+      "tool": "translationWords",
+      "groupId": "jew",
+      "checkId": "e2uz",
+      "quote": "Ἰουδαῖος",
+      "quoteString": "Ἰουδαῖος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "jew"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:28, tW jew, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-17-justice-fj3f",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "justice",
+    "verse": "तर यदि, ख्रीष्टमा धर्मी ठहरिन खोज्दा, हामी आफैं पनि पापी ठहरियौं भने, के ख्रीष्ट पापको सेवक हुनुहुन्छ? यो कहिल्यै नहोस्!",
+    "glPhrase": "أَنْ نَتَبَرَّرَ",
+    "history": {
+      "لِنَتَبَرَّرَ": {
+        "धर्मी ठहरिन सकौं": 1
+      }
+    },
+    "expected": [
+      "धर्मी ठहरिन"
+    ],
+    "selections": [
+      {
+        "text": "धर्मी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ठहरिन",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "justice",
+      "checkId": "fj3f",
+      "quote": "δικαιωθῆναι",
+      "quoteString": "δικαιωθῆναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "justice"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:17, tW justice, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-8-justice-uvzu",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "justice",
+    "verse": "धर्मशास्‍त्रले, पहिल्यै जानेर कि परमेश्‍वरले अन्‍यजातिहरूलाई विश्‍वासद्वारा धर्मी ठहराउनुहुनेछ, कि अब्राहामलाई अगाडि नै सुसमाचार प्रचार गरियो, “तँबाट सबै जातिहरू आशिषित हुनेछन् ।”",
+    "glPhrase": "يُبَرِّرُ",
+    "history": {
+      "لِنَتَبَرَّرَ": {
+        "धर्मी ठहरिन सकौं": 1
+      },
+      "أَنْ نَتَبَرَّرَ": {
+        "धर्मी ठहरिन": 1
+      }
+    },
+    "expected": [
+      "धर्मी ठहराउनुहुनेछ"
+    ],
+    "selections": [
+      {
+        "text": "धर्मी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ठहराउनुहुनेछ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "justice",
+      "checkId": "uvzu",
+      "quote": "δικαιοῖ",
+      "quoteString": "δικαιοῖ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "justice"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:8, tW justice, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-24-justice-jjxc",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "justice",
+    "verse": "त्‍यसकारण ख्रीष्‍ट नआउन्जेलसम्मको लागि व्यवस्था हाम्रो संरक्षक बन्‍यो ताकि हामी विश्‍वासद्वारा धर्मी ठहरिन सकौँ।",
+    "glPhrase": "نَتَبَرَّرَ",
+    "history": {
+      "لِنَتَبَرَّرَ": {
+        "धर्मी ठहरिन सकौं": 1
+      },
+      "أَنْ نَتَبَرَّرَ": {
+        "धर्मी ठहरिन": 1
+      },
+      "يُبَرِّرُ": {
+        "धर्मी ठहराउनुहुनेछ": 1
+      }
+    },
+    "expected": [
+      "हामी धर्मी ठहरिन सकौँ"
+    ],
+    "selections": [
+      {
+        "text": "हामी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "धर्मी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ठहरिन",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "सकौँ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 24
+      },
+      "tool": "translationWords",
+      "groupId": "justice",
+      "checkId": "jjxc",
+      "quote": "δικαιωθῶμεν",
+      "quoteString": "δικαιωθῶμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "justice"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:24, tW justice, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-4-justice-a6w9",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "justice",
+    "verse": "जो व्यवस्थाबाट धर्मी ठहराइएका छौ, तिमीहरू ख्रीष्‍टबाट अलग गरिएका छौ । तिमीहरू अनुग्रहबाट टाढा गएका छौ ।",
+    "glPhrase": "تَتَبَرَّرُونَ",
+    "history": {
+      "لِنَتَبَرَّرَ": {
+        "धर्मी ठहरिन सकौं": 1
+      },
+      "أَنْ نَتَبَرَّرَ": {
+        "धर्मी ठहरिन": 1
+      },
+      "يُبَرِّرُ": {
+        "धर्मी ठहराउनुहुनेछ": 1
+      },
+      "نَتَبَرَّرَ": {
+        "हामी धर्मी ठहरिन सकौँ": 1
+      }
+    },
+    "expected": [
+      "धर्मी ठहराइएका छौ"
+    ],
+    "selections": [
+      {
+        "text": "धर्मी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ठहराइएका",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छौ",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "justice",
+      "checkId": "a6w9",
+      "quote": "δικαιοῦσθε",
+      "quoteString": "δικαιοῦσθε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "justice"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:4, tW justice, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-22-know-bzyd",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "know",
+    "verse": "अब म ख्रीष्टमा भएका यहूदियाका मण्डलीहरू सामु अनजान थिएँ।",
+    "glPhrase": "غَيْرَ مَعْرُوفٍ",
+    "history": {
+      "وَأُعَرِّفُكُمْ": {
+        "म थाहा दिन्छु": 1
+      }
+    },
+    "expected": [
+      "अनजान थिएँ"
+    ],
+    "selections": [
+      {
+        "text": "अनजान",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "थिएँ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "bzyd",
+      "quote": "ἀγνοούμενος",
+      "quoteString": "ἀγνοούμενος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:22, tW know, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-9-know-vsc6",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "know",
+    "verse": "र मलाई दिइएको अनुग्रह बुझेर, याकूब र केफास र यूहन्ना, जो खाम्बाहरू झै थिए, तिनीहरूले बारनाबास र मलाई सङ्गतिको अधिकार दिए । ताकि हामी अन्यजातिहरूलाई र उनीहरू खतना भएकाहरूका माझमा जान सकून् ।",
+    "glPhrase": "فَإِذْ عَلِمَ",
+    "history": {
+      "وَأُعَرِّفُكُمْ": {
+        "म थाहा दिन्छु": 1
+      },
+      "غَيْرَ مَعْرُوفٍ": {
+        "अनजान थिएँ": 1
+      }
+    },
+    "expected": [
+      "बुझेर"
+    ],
+    "selections": [
+      {
+        "text": "बुझेर",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "vsc6",
+      "quote": "γνόντες",
+      "quoteString": "γνόντες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:9, tW know, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-know-sbmh",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "know",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "إِذْ نَعْلَمُ",
+    "history": {
+      "وَأُعَرِّفُكُمْ": {
+        "म थाहा दिन्छु": 1
+      },
+      "غَيْرَ مَعْرُوفٍ": {
+        "अनजान थिएँ": 1
+      },
+      "فَإِذْ عَلِمَ": {
+        "बुझेर": 1
+      }
+    },
+    "expected": [
+      "जानेर"
+    ],
+    "selections": [
+      {
+        "text": "जानेर",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "sbmh",
+      "quote": "εἰδότες",
+      "quoteString": "εἰδότες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW know, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-9-know-qeug",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "know",
+    "verse": "तर अहिले तिमीहरूले परमेश्‍वरलाई चिन्‍दछौ वा निश्‍चय नै तिमीहरू परमेश्‍वरद्वारा चिनिएका छौ भने, किन तिमीहरू फेरि कमजोर र मूल्यहीन आधारभूत सिद्धान्‍तहरूतर्फ फर्किरहेका छौ ? के तिमीहरू फेरि दास हुने चाहना गर्दछौ ?",
+    "glPhrase": "إِذْ عَرَفْتُمُ",
+    "history": {
+      "وَأُعَرِّفُكُمْ": {
+        "म थाहा दिन्छु": 1
+      },
+      "غَيْرَ مَعْرُوفٍ": {
+        "अनजान थिएँ": 1
+      },
+      "فَإِذْ عَلِمَ": {
+        "बुझेर": 1
+      },
+      "إِذْ نَعْلَمُ": {
+        "जानेर": 1
+      }
+    },
+    "expected": [
+      "तिमीहरूले चिन्‍दछौ"
+    ],
+    "selections": [
+      {
+        "text": "तिमीहरूले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "चिन्‍दछौ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "qeug",
+      "quote": "γνόντες",
+      "quoteString": "γνόντες",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:9, tW know, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-13-know-pfb9",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "know",
+    "verse": "तर तिमीहरू जान्‍दछौ कि मेरो शारीरिक कमजोरीको कारण मैले तिमीहरूलाई पहिले नै सुसमाचार प्रचार गरेँ।",
+    "glPhrase": "تَعْلَمُونَ",
+    "history": {
+      "وَأُعَرِّفُكُمْ": {
+        "म थाहा दिन्छु": 1
+      },
+      "غَيْرَ مَعْرُوفٍ": {
+        "अनजान थिएँ": 1
+      },
+      "فَإِذْ عَلِمَ": {
+        "बुझेर": 1
+      },
+      "إِذْ نَعْلَمُ": {
+        "जानेर": 1
+      },
+      "إِذْ عَرَفْتُمُ": {
+        "तिमीहरूले चिन्‍दछौ": 1
+      }
+    },
+    "expected": [
+      "तिमीहरू जान्‍दछौ"
+    ],
+    "selections": [
+      {
+        "text": "तिमीहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "जान्‍दछौ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "pfb9",
+      "quote": "οἴδατε",
+      "quoteString": "οἴδατε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:13, tW know, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-lawofmoses-xq6u-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "ٱلنَّامُوسِ",
+    "occurrence": 2,
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 1
+      }
+    },
+    "expected": [
+      "व्यवस्थाका:2"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्थाका",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "xq6u",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-16-lawofmoses-seq7-3",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "तर जानेर कि येशू ख्रीष्टमा विश्वास बाहेक कोही मानिस पनि व्यवस्थाका कामहरूद्वारा धर्मी ठहरिँदैन, हामीले पनि ख्रीष्ट येशूमा विश्वास गर्‍यौं ताकि हामी ख्रीष्टमा विश्वासद्वारा धर्मी ठहरिन सकौं तर व्यवस्थाका कामहरूद्वारा होइन। किनकि व्यवस्थाका कामहरूद्वारा कुनै पनि शरीर धर्मी ठहरिनेछैन।",
+    "glPhrase": "ٱلنَّامُوسِ",
+    "occurrence": 3,
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 2
+      }
+    },
+    "expected": [
+      "व्यवस्थाका:3"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्थाका",
+        "occurrence": 3,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "seq7",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 3
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:16, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-2-lawofmoses-he3z",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "म तिमीहरूबाट यो मात्र बुझ्‍न चाहन्‍छु: तिमीहरूले पवित्र आत्मा व्यवस्था अनुसारका कामहरू गरेर वा सुनेका कुरामा विश्‍वास गरेर पाएका हौ ?",
+    "glPhrase": "ٱلنَّامُوسِ",
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 3
+      }
+    },
+    "expected": [
+      "व्यवस्था"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्था",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "he3z",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:2, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-10-lawofmoses-mktd",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "किनकि जति व्यवस्था अनुसारका कामहरू श्रापित हुन्‍छन्; किनभने यसरी लेखिएको छ “व्यवस्थाका पुस्तकमा लेखिएका सबै कुराहरू जो गर्न पालन नगर्ने सबै श्रापित हुन्‍छन् ।”",
+    "glPhrase": "ٱلنَّامُوسِ",
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 3,
+        "व्यवस्था": 1
+      }
+    },
+    "expected": [
+      "व्यवस्था"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्था",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "mktd",
+      "quote": "νόμου",
+      "quoteString": "νόμου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:10, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-17-lawofmoses-k49h",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "अब म यो भन्‍दछु, प्रतिज्ञा रद्द गर्न परमेश्‍वरले पहिले नै स्थापना गर्नुभएको करारलाई ४३० वर्षपछि आएको व्यवस्थाले रद्द गर्दैन ।",
+    "glPhrase": "إِنَّ ٱلنَّامُوسَ",
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 3,
+        "व्यवस्था": 2
+      }
+    },
+    "expected": [
+      "व्यवस्थाले"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्थाले",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "k49h",
+      "quote": "νόμος",
+      "quoteString": "νόμος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:17, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-18-lawofmoses-jcgj",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "तर यदि आत्माले तिमीहरूलाई अगुवाइ गर्नुहुन्‍छ भने तिमीहरू व्यवस्थाको अधीनमा हुँदैनौ ।",
+    "glPhrase": "ٱلنَّامُوسِ",
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 3,
+        "व्यवस्था": 2
+      },
+      "إِنَّ ٱلنَّامُوسَ": {
+        "व्यवस्थाले": 1
+      }
+    },
+    "expected": [
+      "व्यवस्थाको"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्थाको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "jcgj",
+      "quote": "νόμον",
+      "quoteString": "νόμον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:18, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-13-lawofmoses-v9ww",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "lawofmoses",
+    "verse": "किनकि खतना भएकाहरू आफैले पनि व्यवस्थाको पालन गर्दैनन्, तर तिनीहरू तिमीहरूको खतना भएको चाहन्‍छन् ताकि तिनीहरू तिमीहरूका शरीरमा घमण्ड गर्न सकून्।",
+    "glPhrase": "ٱلنَّامُوسَ",
+    "history": {
+      "ٱلنَّامُوسِ": {
+        "व्यवस्थाका": 3,
+        "व्यवस्था": 2,
+        "व्यवस्थाको": 1
+      },
+      "إِنَّ ٱلنَّامُوسَ": {
+        "व्यवस्थाले": 1
+      }
+    },
+    "expected": [
+      "व्यवस्थाको"
+    ],
+    "selections": [
+      {
+        "text": "व्यवस्थाको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "lawofmoses",
+      "checkId": "v9ww",
+      "quote": "νόμον",
+      "quoteString": "νόμον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "lawofmoses"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:13, tW lawofmoses, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-6-like-ktbe",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "जसरी अब्राहामले “परमेश्‍वरलाई विश्‍वास गरे अनि यो उनको निम्ति धार्मिकता गनियो ।”",
+    "glPhrase": "كَمَا",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1
+      }
+    },
+    "expected": [
+      "जसरी"
+    ],
+    "selections": [
+      {
+        "text": "जसरी",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "ktbe",
+      "quote": "καθὼς",
+      "quoteString": "καθὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:6, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-16-like-c4pc",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "अब यी प्रतिज्ञाहरू अब्राहाम र उनको सन्‍तानलाई दिइएको थियो । उहाँले धेरै मानिसहरूलाई झै गरी “र सन्‍तानहरूलाई” भन्‍नुहुदैन, तर  एक जनालाई झै “र तिम्रो सन्‍तानलाई” भन्नुहुन्छ, जो ख्रीष्‍ट हुनुहुन्‍छ ।",
+    "glPhrase": "كَأَنَّهُ",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1
+      }
+    },
+    "expected": [
+      "झै"
+    ],
+    "selections": [
+      {
+        "text": "झै",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "c4pc",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:16, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-16-like-xz9n-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "अब यी प्रतिज्ञाहरू अब्राहाम र उनको सन्‍तानलाई दिइएको थियो । उहाँले धेरै मानिसहरूलाई झै गरी “र सन्‍तानहरूलाई” भन्‍नुहुदैन, तर  एक जनालाई झै “र तिम्रो सन्‍तानलाई” भन्नुहुन्छ, जो ख्रीष्‍ट हुनुहुन्‍छ ।",
+    "glPhrase": "كَأَنَّهُ",
+    "occurrence": 2,
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1
+      },
+      "كَأَنَّهُ": {
+        "झै": 1
+      }
+    },
+    "expected": [
+      "झै:2"
+    ],
+    "selections": [
+      {
+        "text": "झै",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "xz9n",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:16, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-12-like-c4yz",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "भाइहरू हो, म तिमीहरूलाई बिन्‍ती गर्दछु, म जस्‍तै होओ, किनकि म पनि तिमीहरू जस्‍तै भएको छु। तिमीहरूले मलाई कुनै हानि गरेनौ।",
+    "glPhrase": "كَمَا",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      }
+    },
+    "expected": [
+      "जस्‍तै"
+    ],
+    "selections": [
+      {
+        "text": "जस्‍तै",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "c4yz",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:12, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-12-like-d2at-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "भाइहरू हो, म तिमीहरूलाई बिन्‍ती गर्दछु, म जस्‍तै होओ, किनकि म पनि तिमीहरू जस्‍तै भएको छु। तिमीहरूले मलाई कुनै हानि गरेनौ।",
+    "glPhrase": "كَمَا",
+    "occurrence": 2,
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1,
+        "जस्‍तै": 1
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      }
+    },
+    "expected": [
+      "जस्‍तै:2"
+    ],
+    "selections": [
+      {
+        "text": "जस्‍तै",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "d2at",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:12, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-14-like-mu7s-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "र मेरो शरिरमा तिमीहरूले आफ्नो परीक्षाको उपेक्षा गरेनौ वा मलाई इन्कार गर्यौ, तर तिमीहरूले मलाई परमेश्‍वरका स्वर्गदूतझै, ख्रीष्‍ट येशू झैँ स्वीकार गर्‍यौ ।",
+    "glPhrase": "كَٱلْمَسِيحِ",
+    "occurrence": 2,
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1,
+        "जस्‍तै": 2
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      }
+    },
+    "expected": [
+      "झैँ"
+    ],
+    "selections": [
+      {
+        "text": "झैँ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "mu7s",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:14, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-29-like-quec",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "तर जसरी त्यतिबेला, शरीरअनुसार जन्‍मिएको व्यक्तिले आत्माअनुसारको व्यक्तिलाई सताइरह्यो, अहिले पनि यस्तै नै छ ।",
+    "glPhrase": "كَمَا كَانَ",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1,
+        "जस्‍तै": 2
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      },
+      "كَٱلْمَسِيحِ": {
+        "झैँ": 1
+      }
+    },
+    "expected": [
+      "जसरी"
+    ],
+    "selections": [
+      {
+        "text": "जसरी",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 29
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "quec",
+      "quote": "ὥσπερ",
+      "quoteString": "ὥσπερ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:29, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-14-like-d8fg",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "किनकि सारा व्यवस्था एउटै आज्ञामा पुरा भएको छ, “तिमीहरूले आफ्नो छिमेकीलाई आफैलाई जस्‍तै प्रेम गर्नेछौ।”",
+    "glPhrase": "كَنَفْسِكَ",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1,
+        "जस्‍तै": 2
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      },
+      "كَٱلْمَسِيحِ": {
+        "झैँ": 1
+      },
+      "كَمَا كَانَ": {
+        "जसरी": 1
+      }
+    },
+    "expected": [
+      "जस्‍तै"
+    ],
+    "selections": [
+      {
+        "text": "जस्‍तै",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "d8fg",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:14, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-21-like-kbrz",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "डाह, पियक्‍कडपन, मोजमज्‍जा र यस्तै जस्तै कुराहरू, जसको बारेमा मैले तिमीहरूलाई पहिले पनि चेतावनी दिएझैँ , म चेतावनी दिन्छु, कि जसले यी कुराहरू गर्छन्, तिनीहरू परमेश्‍वरको राज्‍यका हकदार हुनेछैनन् ।",
+    "glPhrase": "وَأَمْثَالُ",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1,
+        "जस्‍तै": 2
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      },
+      "كَٱلْمَسِيحِ": {
+        "झैँ": 1
+      },
+      "كَمَا كَانَ": {
+        "जसरी": 1
+      },
+      "كَنَفْسِكَ": {
+        "जस्‍तै": 1
+      }
+    },
+    "expected": [
+      "जस्तै"
+    ],
+    "selections": [
+      {
+        "text": "जस्तै",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 21
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "kbrz",
+      "quote": "ὅμοια",
+      "quoteString": "ὅμοια",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:21, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-10-like-cjvq",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "like",
+    "verse": "त्‍यसकारण, हामीले मौका पाउन साथ, सबैको निम्ति भलाइ गर्नुपर्छ तर विशेष गरी विश्वासको घरानाको निम्ति।",
+    "glPhrase": "حَسْبَمَا",
+    "history": {
+      "كَمَا": {
+        "जस्तो": 1,
+        "जसरी": 1,
+        "जस्‍तै": 2
+      },
+      "كَأَنَّهُ": {
+        "झै": 2
+      },
+      "كَٱلْمَسِيحِ": {
+        "झैँ": 1
+      },
+      "كَمَا كَانَ": {
+        "जसरी": 1
+      },
+      "كَنَفْسِكَ": {
+        "जस्‍तै": 1
+      },
+      "وَأَمْثَالُ": {
+        "जस्तै": 1
+      }
+    },
+    "expected": [
+      "साथ"
+    ],
+    "selections": [
+      {
+        "text": "साथ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "like",
+      "checkId": "cjvq",
+      "quote": "ὡς",
+      "quoteString": "ὡς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "like"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:10, tW like, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-22-peace-p6s2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "peace",
+    "verse": "तर पवित्र आत्माका फलचाहिँ प्रेम, आनन्‍द, शान्‍ति, धैर्य, दया, भलाइ, विश्‍वासयोग्यता,",
+    "glPhrase": "سَلَامٌ",
+    "history": {
+      "وَسَلَامٌ": {
+        "शान्‍ति": 1
+      }
+    },
+    "expected": [
+      "शान्‍ति"
+    ],
+    "selections": [
+      {
+        "text": "शान्‍ति",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 22
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "p6s2",
+      "quote": "εἰρήνη",
+      "quoteString": "εἰρήνη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:22, tW peace, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-16-peace-eytj",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "peace",
+    "verse": "र जतिले यही स्तरमा जिउँछन्, तिनीहरूमा र परमेश्‍वरको इस्राएलमा शान्‍ति र कृपा रहन्छ।",
+    "glPhrase": "سَلَامٌ",
+    "history": {
+      "وَسَلَامٌ": {
+        "शान्‍ति": 1
+      },
+      "سَلَامٌ": {
+        "शान्‍ति": 1
+      }
+    },
+    "expected": [
+      "शान्‍ति"
+    ],
+    "selections": [
+      {
+        "text": "शान्‍ति",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "peace",
+      "checkId": "eytj",
+      "quote": "εἰρήνη",
+      "quoteString": "εἰρήνη",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peace"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:16, tW peace, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-1-23-persecute-g9vz",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "persecute",
+    "verse": "तर तिनीहरूले सुनिरहेका मात्र थिए कि जसले पहिले हामीलाई सताउने गर्थे, उसैले पहिले नै नष्ट गरिरहेको विश्वासको अहिले घोषणा गर्दैछन्।",
+    "glPhrase": "ٱلَّذِي كَانَ يَضْطَهِدُنَا",
+    "history": {
+      "كُنْتُ أَضْطَهِدُ": {
+        "मैले सताइरहेको थिएँ": 1
+      }
+    },
+    "expected": [
+      "सताउने गर्थे"
+    ],
+    "selections": [
+      {
+        "text": "सताउने",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्थे",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 1,
+        "verse": 23
+      },
+      "tool": "translationWords",
+      "groupId": "persecute",
+      "checkId": "g9vz",
+      "quote": "διώκων",
+      "quoteString": "διώκων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "persecute"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 1:23, tW persecute, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-29-persecute-h3yy",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "persecute",
+    "verse": "तर जसरी त्यतिबेला, शरीरअनुसार जन्‍मिएको व्यक्तिले आत्माअनुसारको व्यक्तिलाई सताइरह्यो, अहिले पनि यस्तै नै छ ।",
+    "glPhrase": "يَضْطَهِدُ",
+    "history": {
+      "كُنْتُ أَضْطَهِدُ": {
+        "मैले सताइरहेको थिएँ": 1
+      },
+      "ٱلَّذِي كَانَ يَضْطَهِدُنَا": {
+        "सताउने गर्थे": 1
+      }
+    },
+    "expected": [
+      "सताइरह्यो"
+    ],
+    "selections": [
+      {
+        "text": "सताइरह्यो",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 29
+      },
+      "tool": "translationWords",
+      "groupId": "persecute",
+      "checkId": "h3yy",
+      "quote": "ἐδίωκε",
+      "quoteString": "ἐδίωκε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "persecute"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:29, tW persecute, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-11-persecute-ae9e",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "persecute",
+    "verse": "तर भाइ हो, यदि म अझै पनि खतनाको प्रचार गर्दछु भने, अझै पनि म किन सताइएको छु ? त्‍यसो हो भनेता क्रुसको बाधा नष्‍ट हुने थियो ।",
+    "glPhrase": "أُضْطَهَدُ",
+    "history": {
+      "كُنْتُ أَضْطَهِدُ": {
+        "मैले सताइरहेको थिएँ": 1
+      },
+      "ٱلَّذِي كَانَ يَضْطَهِدُنَا": {
+        "सताउने गर्थे": 1
+      },
+      "يَضْطَهِدُ": {
+        "सताइरह्यो": 1
+      }
+    },
+    "expected": [
+      "म:2 सताइएको छु"
+    ],
+    "selections": [
+      {
+        "text": "म",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "सताइएको",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "छु",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "persecute",
+      "checkId": "ae9e",
+      "quote": "διώκομαι",
+      "quoteString": "διώκομαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "persecute"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:11, tW persecute, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-8-peter-hg4k",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "peter",
+    "verse": "(किनकि खतनाको लागि प्रेरितको रूपमा पत्रुसमा काम गर्नुहुनेले ममा अन्यजातिहरूका निम्ति पनि काम गर्नुभयो।)",
+    "glPhrase": "فِي بُطْرُسَ",
+    "history": {
+      "بُطْرُسُ": {
+        "पत्रुसलाई थियो": 1
+      }
+    },
+    "expected": [
+      "पत्रुसमा"
+    ],
+    "selections": [
+      {
+        "text": "पत्रुसमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "peter",
+      "checkId": "hg4k",
+      "quote": "Πέτρῳ",
+      "quoteString": "Πέτρῳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peter"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:8, tW peter, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-9-peter-q9d2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "peter",
+    "verse": "र मलाई दिइएको अनुग्रह बुझेर, याकूब र केफास र यूहन्ना, जो खाम्बाहरू झै थिए, तिनीहरूले बारनाबास र मलाई सङ्गतिको अधिकार दिए । ताकि हामी अन्यजातिहरूलाई र उनीहरू खतना भएकाहरूका माझमा जान सकून् ।",
+    "glPhrase": "وَصَفَا",
+    "history": {
+      "بُطْرُسُ": {
+        "पत्रुसलाई थियो": 1
+      },
+      "فِي بُطْرُسَ": {
+        "पत्रुसमा": 1
+      }
+    },
+    "expected": [
+      "केफास"
+    ],
+    "selections": [
+      {
+        "text": "केफास",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "peter",
+      "checkId": "q9d2",
+      "quote": "Κηφᾶς",
+      "quoteString": "Κηφᾶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peter"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:9, tW peter, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-2-11-peter-tq4k",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "peter",
+    "verse": "तर जब केफास एन्टिओखियामा आए, मैले उनलाई आमने-सामने विरोध गरेँ किनकि उनी दोषी ठहरिए ।",
+    "glPhrase": "بُطْرُسُ",
+    "history": {
+      "بُطْرُسُ": {
+        "पत्रुसलाई थियो": 1
+      },
+      "فِي بُطْرُسَ": {
+        "पत्रुसमा": 1
+      },
+      "وَصَفَا": {
+        "केफास": 1
+      }
+    },
+    "expected": [
+      "केफास"
+    ],
+    "selections": [
+      {
+        "text": "केफास",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "peter",
+      "checkId": "tq4k",
+      "quote": "Κηφᾶς",
+      "quoteString": "Κηφᾶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "peter"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 2:11, tW peter, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-19-promise-syfe",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "promise",
+    "verse": "त्‍यसो भए व्यवस्था किन ? यो अपराधको कारणले थपिएको थियो, ती प्रतिज्ञा गरिएकाहरूकहाँ सन्‍तान नआउन्जेलसम्म एक मध्‍यस्तकर्ताको हातद्वारा स्वर्गदूतहरू मार्फत लागु गरिएको थियो",
+    "glPhrase": "قَدْ وُعِدَ",
+    "history": {
+      "بِمَوْعِدٍ": {
+        "प्रतिज्ञाद्वारा": 1
+      }
+    },
+    "expected": [
+      "प्रतिज्ञा गरिएकाहरूकहाँ"
+    ],
+    "selections": [
+      {
+        "text": "प्रतिज्ञा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गरिएकाहरूकहाँ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 19
+      },
+      "tool": "translationWords",
+      "groupId": "promise",
+      "checkId": "syfe",
+      "quote": "ἐπήγγελται",
+      "quoteString": "ἐπήγγελται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "promise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:19, tW promise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-29-promise-g59p",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "promise",
+    "verse": "अब यदि तिमीहरू ख्रीष्टका हौ भने, तिमीहरू अब्राहामका सन्तान, प्रतिज्ञा अनुसार उत्तराधिकारी हौ।",
+    "glPhrase": "ٱلْمَوْعِدِ",
+    "history": {
+      "بِمَوْعِدٍ": {
+        "प्रतिज्ञाद्वारा": 1
+      },
+      "قَدْ وُعِدَ": {
+        "प्रतिज्ञा गरिएकाहरूकहाँ": 1
+      }
+    },
+    "expected": [
+      "प्रतिज्ञा"
+    ],
+    "selections": [
+      {
+        "text": "प्रतिज्ञा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 29
+      },
+      "tool": "translationWords",
+      "groupId": "promise",
+      "checkId": "g59p",
+      "quote": "ἐπαγγελίαν",
+      "quoteString": "ἐπαγγελίαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "promise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:29, tW promise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-28-promise-a577",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "promise",
+    "verse": "भाइहरू हो, अब तिमीहरू पनि इसहाक जस्‍तै प्रतिज्ञाका छोराछोरीहरू हौ ।",
+    "glPhrase": "ٱلْمَوْعِدِ",
+    "history": {
+      "بِمَوْعِدٍ": {
+        "प्रतिज्ञाद्वारा": 1
+      },
+      "قَدْ وُعِدَ": {
+        "प्रतिज्ञा गरिएकाहरूकहाँ": 1
+      },
+      "ٱلْمَوْعِدِ": {
+        "प्रतिज्ञा": 1
+      }
+    },
+    "expected": [
+      "प्रतिज्ञाका"
+    ],
+    "selections": [
+      {
+        "text": "प्रतिज्ञाका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 28
+      },
+      "tool": "translationWords",
+      "groupId": "promise",
+      "checkId": "a577",
+      "quote": "ἐπαγγελίας",
+      "quoteString": "ἐπαγγελίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "promise"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:28, tW promise, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-2-receive-ufps",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "receive",
+    "verse": "म तिमीहरूबाट यो मात्र बुझ्‍न चाहन्‍छु: तिमीहरूले पवित्र आत्मा व्यवस्था अनुसारका कामहरू गरेर वा सुनेका कुरामा विश्‍वास गरेर पाएका हौ ?",
+    "glPhrase": "أَخَذْتُمُ",
+    "history": {
+      "أَقْبَلْهُ": {
+        "प्राप्त गरेको हो": 1
+      }
+    },
+    "expected": [
+      "तिमीहरूले पाएका हौ"
+    ],
+    "selections": [
+      {
+        "text": "तिमीहरूले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "पाएका",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "हौ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "ufps",
+      "quote": "ἐλάβετε",
+      "quoteString": "ἐλάβετε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:2, tW receive, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-14-receive-e5az",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "receive",
+    "verse": "ताकि अब्राहामको आशिष् ख्रीष्ट येशूमा अन्यजातिहरूमा आओस्, ताकि विश्वासद्वारा हामीले पवित्र आत्माको प्रतिज्ञा प्राप्त गर्न सकौं।",
+    "glPhrase": "لِنَنَالَ",
+    "history": {
+      "أَقْبَلْهُ": {
+        "प्राप्त गरेको हो": 1
+      },
+      "أَخَذْتُمُ": {
+        "तिमीहरूले पाएका हौ": 1
+      }
+    },
+    "expected": [
+      "हामीले प्राप्त गर्न सकौं"
+    ],
+    "selections": [
+      {
+        "text": "हामीले",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "प्राप्त",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्न",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "सकौं",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "e5az",
+      "quote": "λάβωμεν",
+      "quoteString": "λάβωμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:14, tW receive, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-14-receive-cjy3",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "receive",
+    "verse": "र मेरो शरिरमा तिमीहरूले आफ्नो परीक्षाको उपेक्षा गरेनौ वा मलाई इन्कार गर्यौ, तर तिमीहरूले मलाई परमेश्‍वरका स्वर्गदूतझै, ख्रीष्‍ट येशू झैँ स्वीकार गर्‍यौ ।",
+    "glPhrase": "قَبِلْتُمُونِي",
+    "history": {
+      "أَقْبَلْهُ": {
+        "प्राप्त गरेको हो": 1
+      },
+      "أَخَذْتُمُ": {
+        "तिमीहरूले पाएका हौ": 1
+      },
+      "لِنَنَالَ": {
+        "हामीले प्राप्त गर्न सकौं": 1
+      }
+    },
+    "expected": [
+      "तिमीहरूले:2 स्वीकार गर्‍यौ"
+    ],
+    "selections": [
+      {
+        "text": "तिमीहरूले",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "स्वीकार",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्‍यौ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "cjy3",
+      "quote": "ἐδέξασθέ",
+      "quoteString": "ἐδέξασθέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:14, tW receive, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-15-reject-u434",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "reject",
+    "verse": "भाइहरू हो, म मानवीय शब्दहरूमा बोल्दछु । एक पटक पक्‍का भइसकेको मानिसले स्थापना गरेको करार न त कसैले रद्द गर्छ न  त्‍यसमा केही थपिन्‍छ ।",
+    "glPhrase": "يُبْطِلُ",
+    "history": {
+      "أُبْطِلُ": {
+        "म इन्कार": 1
+      }
+    },
+    "expected": [
+      "रद्द गर्छ"
+    ],
+    "selections": [
+      {
+        "text": "रद्द",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्छ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "u434",
+      "quote": "ἀθετεῖ",
+      "quoteString": "ἀθετεῖ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:15, tW reject, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-14-reject-ht6e",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "reject",
+    "verse": "र मेरो शरिरमा तिमीहरूले आफ्नो परीक्षाको उपेक्षा गरेनौ वा मलाई इन्कार गर्यौ, तर तिमीहरूले मलाई परमेश्‍वरका स्वर्गदूतझै, ख्रीष्‍ट येशू झैँ स्वीकार गर्‍यौ ।",
+    "glPhrase": "كَرِهْتُمُوهَا",
+    "history": {
+      "أُبْطِلُ": {
+        "म इन्कार": 1
+      },
+      "يُبْطِلُ": {
+        "रद्द गर्छ": 1
+      }
+    },
+    "expected": [
+      "मलाई इन्कार गर्यौ"
+    ],
+    "selections": [
+      {
+        "text": "मलाई",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "इन्कार",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर्यौ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "reject",
+      "checkId": "ht6e",
+      "quote": "ἐξεπτύσατε",
+      "quoteString": "ἐξεπτύσατε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "reject"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:14, tW reject, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-6-righteous-h5w9",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "righteous",
+    "verse": "जसरी अब्राहामले “परमेश्‍वरलाई विश्‍वास गरे अनि यो उनको निम्ति धार्मिकता गनियो ।”",
+    "glPhrase": "بِرًّا",
+    "history": {
+      "بِرٌّ": {
+        "धार्मिकता आउँदछ": 1
+      }
+    },
+    "expected": [
+      "धार्मिकता"
+    ],
+    "selections": [
+      {
+        "text": "धार्मिकता",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "h5w9",
+      "quote": "δικαιοσύνην",
+      "quoteString": "δικαιοσύνην",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:6, tW righteous, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-5-righteous-zvhc",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "righteous",
+    "verse": "किनकि आत्माद्वारा, विश्वासद्वारा, हामी धार्मिकताको आशाको लागि उत्सुकतासाथ पर्खिरहेका छौं।",
+    "glPhrase": "بِرٍّ",
+    "history": {
+      "بِرٌّ": {
+        "धार्मिकता आउँदछ": 1
+      },
+      "بِرًّا": {
+        "धार्मिकता": 1
+      }
+    },
+    "expected": [
+      "धार्मिकताको"
+    ],
+    "selections": [
+      {
+        "text": "धार्मिकताको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "zvhc",
+      "quote": "δικαιοσύνης",
+      "quoteString": "δικαιοσύνης",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:5, tW righteous, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-28-servant-kx7d",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "अब न त यहूदी छ, न ग्रीक, अब न कमारा छ न फुक्‍का, अब न पुरुष छ न स्‍त्री, किनभने ख्रीष्‍ट येशूमा तिमीहरू सबै एक हौ ।",
+    "glPhrase": "عَبْدٌ",
+    "history": {
+      "عَبْدًا": {
+        "दास": 1
+      }
+    },
+    "expected": [
+      "कमारा"
+    ],
+    "selections": [
+      {
+        "text": "कमारा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 28
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "kx7d",
+      "quote": "δοῦλος",
+      "quoteString": "δοῦλος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:28, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-1-servant-m3gy",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "अब म भन्दछु, उत्तराधिकारी बालक जति समयसम्म हुन्छ, सारा सम्पत्तिको मालिक भए तापनि ऊ कमारो भन्दा फरक हुँदैन।",
+    "glPhrase": "عَنِ ٱلْعَبْدِ",
+    "history": {
+      "عَبْدًا": {
+        "दास": 1
+      },
+      "عَبْدٌ": {
+        "कमारा": 1
+      }
+    },
+    "expected": [
+      "कमारो"
+    ],
+    "selections": [
+      {
+        "text": "कमारो",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "m3gy",
+      "quote": "δούλου",
+      "quoteString": "δούλου",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:1, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-7-servant-wxbz",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "यसैकारणले गर्दा, अब तिमी दास होइनौ, तर पुत्र हौ । यदि तिमी पुत्र हौ भने, तिमी परमेश्‍वरको एक उत्तराधिकारी पनि हौ ।",
+    "glPhrase": "عَبْدًا",
+    "history": {
+      "عَبْدًا": {
+        "दास": 1
+      },
+      "عَبْدٌ": {
+        "कमारा": 1
+      },
+      "عَنِ ٱلْعَبْدِ": {
+        "कमारो": 1
+      }
+    },
+    "expected": [
+      "दास"
+    ],
+    "selections": [
+      {
+        "text": "दास",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "wxbz",
+      "quote": "δοῦλος",
+      "quoteString": "δοῦλος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:7, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-8-servant-d8p9",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "तर पहिले जब तिमीहरूले परमेश्‍वरलाई चिन्‍दैन थियौ, तिमीहरू तिनीहरूका दास थियौ जो स्वभावैले ईश्‍वरहरू होइनन् ।",
+    "glPhrase": "ٱسْتُعْبِدْتُمْ",
+    "history": {
+      "عَبْدًا": {
+        "दास": 2
+      },
+      "عَبْدٌ": {
+        "कमारा": 1
+      },
+      "عَنِ ٱلْعَبْدِ": {
+        "कमारो": 1
+      }
+    },
+    "expected": [
+      "तिनीहरूका दास थियौ:2"
+    ],
+    "selections": [
+      {
+        "text": "तिनीहरूका",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "दास",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "थियौ",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "d8p9",
+      "quote": "ἐδουλεύσατε",
+      "quoteString": "ἐδουλεύσατε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:8, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-31-servant-chum",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "त्‍यसकारण, भाइहरू हो, हामी दासी स्‍त्रीका छोराछोरीहरू होइनौँ, तर स्वतन्‍त्र स्‍त्रीका हौँ ।",
+    "glPhrase": "جَارِيَةٍ",
+    "history": {
+      "عَبْدًا": {
+        "दास": 2
+      },
+      "عَبْدٌ": {
+        "कमारा": 1
+      },
+      "عَنِ ٱلْعَبْدِ": {
+        "कमारो": 1
+      },
+      "ٱسْتُعْبِدْتُمْ": {
+        "तिनीहरूका दास थियौ": 1
+      }
+    },
+    "expected": [
+      "दासी स्‍त्रीका"
+    ],
+    "selections": [
+      {
+        "text": "दासी",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "स्‍त्रीका",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 31
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "chum",
+      "quote": "παιδίσκης",
+      "quoteString": "παιδίσκης",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:31, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-1-servant-pks7",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "स्वतन्‍त्रताको निम्ति ख्रीष्‍टले हामीलाई स्वतन्त्र पार्नुभयो। । यसैकारण, स्थिर होओ र फेरि दासत्वको जुवामुनि नपर ।",
+    "glPhrase": "عُبُودِيَّةٍ",
+    "history": {
+      "عَبْدًا": {
+        "दास": 2
+      },
+      "عَبْدٌ": {
+        "कमारा": 1
+      },
+      "عَنِ ٱلْعَبْدِ": {
+        "कमारो": 1
+      },
+      "ٱسْتُعْبِدْتُمْ": {
+        "तिनीहरूका दास थियौ": 1
+      },
+      "جَارِيَةٍ": {
+        "दासी स्‍त्रीका": 1
+      }
+    },
+    "expected": [
+      "दासत्वको"
+    ],
+    "selections": [
+      {
+        "text": "दासत्वको",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "pks7",
+      "quote": "δουλείας",
+      "quoteString": "δουλείας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:1, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-5-13-servant-ucdh",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "servant",
+    "verse": "किनकि भाइहरू हो, तिमीहरू स्वतन्‍त्रताको निम्ति बोलाइएका छौ,  शरीरको निम्ति अवसरको रूपमा मात्र स्वतन्त्र होइन; बरु, प्रेमद्वारा एक अर्काको सेवा गर ।",
+    "glPhrase": "ٱخْدِمُوا",
+    "history": {
+      "عَبْدًا": {
+        "दास": 2
+      },
+      "عَبْدٌ": {
+        "कमारा": 1
+      },
+      "عَنِ ٱلْعَبْدِ": {
+        "कमारो": 1
+      },
+      "ٱسْتُعْبِدْتُمْ": {
+        "तिनीहरूका दास थियौ": 1
+      },
+      "جَارِيَةٍ": {
+        "दासी स्‍त्रीका": 1
+      },
+      "عُبُودِيَّةٍ": {
+        "दासत्वको": 1
+      }
+    },
+    "expected": [
+      "सेवा गर"
+    ],
+    "selections": [
+      {
+        "text": "सेवा",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "गर",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 5,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "servant",
+      "checkId": "ucdh",
+      "quote": "δουλεύετε",
+      "quoteString": "δουλεύετε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "servant"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 5:13, tW servant, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-6-sonsofgod-e4tx",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "sonsofgod",
+    "verse": "र तिमीहरू पुत्रहरू भएका कारण, “अब्बा, पिता” पुकार्दै, परमेश्‍वरले उहाँका पुत्रको आत्मालाई हाम्रा हृदयहरूमा पठाउनुभयो।",
+    "glPhrase": "أَبْنَاءٌ",
+    "history": {
+      "أَبْنَاءُ ٱللهِ": {
+        "परमेश्‍वरका पुत्रहरू": 1
+      }
+    },
+    "expected": [
+      "पुत्रहरू"
+    ],
+    "selections": [
+      {
+        "text": "पुत्रहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "sonsofgod",
+      "checkId": "e4tx",
+      "quote": "υἱοί",
+      "quoteString": "υἱοί",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sonsofgod"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:6, tW sonsofgod, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-7-sonsofgod-bazf",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "sonsofgod",
+    "verse": "यसैकारणले गर्दा, अब तिमी दास होइनौ, तर पुत्र हौ । यदि तिमी पुत्र हौ भने, तिमी परमेश्‍वरको एक उत्तराधिकारी पनि हौ ।",
+    "glPhrase": "ٱبْنًا",
+    "history": {
+      "أَبْنَاءُ ٱللهِ": {
+        "परमेश्‍वरका पुत्रहरू": 1
+      },
+      "أَبْنَاءٌ": {
+        "पुत्रहरू": 1
+      }
+    },
+    "expected": [
+      "पुत्र"
+    ],
+    "selections": [
+      {
+        "text": "पुत्र",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "sonsofgod",
+      "checkId": "bazf",
+      "quote": "υἱός",
+      "quoteString": "υἱός",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sonsofgod"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:7, tW sonsofgod, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-7-sonsofgod-yy99-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "sonsofgod",
+    "verse": "यसैकारणले गर्दा, अब तिमी दास होइनौ, तर पुत्र हौ । यदि तिमी पुत्र हौ भने, तिमी परमेश्‍वरको एक उत्तराधिकारी पनि हौ ।",
+    "glPhrase": "ٱبْنًا",
+    "occurrence": 2,
+    "history": {
+      "أَبْنَاءُ ٱللهِ": {
+        "परमेश्‍वरका पुत्रहरू": 1
+      },
+      "أَبْنَاءٌ": {
+        "पुत्रहरू": 1
+      },
+      "ٱبْنًا": {
+        "पुत्र": 1
+      }
+    },
+    "expected": [
+      "तिमी:2 पुत्र:2 हौ:2"
+    ],
+    "selections": [
+      {
+        "text": "तिमी",
+        "occurrence": 2,
+        "occurrences": 3
+      },
+      {
+        "text": "पुत्र",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "हौ",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "sonsofgod",
+      "checkId": "yy99",
+      "quote": "υἱός",
+      "quoteString": "υἱός",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "sonsofgod"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:7, tW sonsofgod, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-8-sow-xbfj",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "sow",
+    "verse": "किनकि जसले आफ्नै शरीरको लागि छर्छ, उसले शरीरबाट विनाशको कटनी गर्नेछ। तर जसले आत्मामा छर्छ, उसले आत्माबाट अनन्त जीवनको कटनी गर्नेछ।",
+    "glPhrase": "مَنْ يَزْرَعُ",
+    "history": {
+      "يَزْرَعُهُ": {
+        "रोप्दछ": 1
+      }
+    },
+    "expected": [
+      "छर्छ"
+    ],
+    "selections": [
+      {
+        "text": "छर्छ",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "sow",
+      "checkId": "xbfj",
+      "quote": "σπείρων",
+      "quoteString": "σπείρων",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "sow"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:8, tW sow, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-8-sow-xvkk-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "sow",
+    "verse": "किनकि जसले आफ्नै शरीरको लागि छर्छ, उसले शरीरबाट विनाशको कटनी गर्नेछ। तर जसले आत्मामा छर्छ, उसले आत्माबाट अनन्त जीवनको कटनी गर्नेछ।",
+    "glPhrase": "وَمَنْ يَزْرَعُ",
+    "occurrence": 2,
+    "history": {
+      "يَزْرَعُهُ": {
+        "रोप्दछ": 1
+      },
+      "مَنْ يَزْرَعُ": {
+        "छर्छ": 1
+      }
+    },
+    "expected": [
+      "छर्छ:2"
+    ],
+    "selections": [
+      {
+        "text": "छर्छ",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "sow",
+      "checkId": "xvkk",
+      "quote": "σπείρων",
+      "quoteString": "σπείρων",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "sow"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:8, tW sow, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-10-time-pxvm",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "time",
+    "verse": "तिमीहरूले विशेष दिनहरू, र महिनाहरू र ऋतुहरू र वर्षहरू मान्‍दछौ ।",
+    "glPhrase": "وَأَوْقَاتًا",
+    "history": {
+      "حِينَئِذٍ": {
+        "पहिले": 1
+      }
+    },
+    "expected": [
+      "ऋतुहरू"
+    ],
+    "selections": [
+      {
+        "text": "ऋतुहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "time",
+      "checkId": "pxvm",
+      "quote": "καιροὺς",
+      "quoteString": "καιροὺς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "time"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:10, tW time, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-9-time-hnvk",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "time",
+    "verse": "तर हामी असल काम गर्न निरुत्साहित बन्नु पर्दैन, किनकि ठिक समयमा, हरेस खाएनौँ भने,  हामीले फसलको कटनी गर्नेछौँ ।",
+    "glPhrase": "فِي وَقْتِهِ",
+    "history": {
+      "حِينَئِذٍ": {
+        "पहिले": 1
+      },
+      "وَأَوْقَاتًا": {
+        "ऋतुहरू": 1
+      }
+    },
+    "expected": [
+      "ठिक समयमा"
+    ],
+    "selections": [
+      {
+        "text": "ठिक",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "समयमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "time",
+      "checkId": "hnvk",
+      "quote": "καιρῷ",
+      "quoteString": "καιρῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "time"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:9, tW time, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-6-10-time-fmwm",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "time",
+    "verse": "त्‍यसकारण, हामीले मौका पाउन साथ, सबैको निम्ति भलाइ गर्नुपर्छ तर विशेष गरी विश्वासको घरानाको निम्ति।",
+    "glPhrase": "فُرْصَةٌ",
+    "history": {
+      "حِينَئِذٍ": {
+        "पहिले": 1
+      },
+      "وَأَوْقَاتًا": {
+        "ऋतुहरू": 1
+      },
+      "فِي وَقْتِهِ": {
+        "ठिक समयमा": 1
+      }
+    },
+    "expected": [
+      "मौका"
+    ],
+    "selections": [
+      {
+        "text": "मौका",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 6,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "time",
+      "checkId": "fmwm",
+      "quote": "καιρὸν",
+      "quoteString": "καιρὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "time"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 6:10, tW time, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-3-4-vain-y4ar-2",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "vain",
+    "verse": "यदि त्‍यो साँच्‍चै व्यर्थ थियो भने के तिमीहरूले व्यर्थमा यति धेरै कुराहरूको अनुभव गर्‍यौ?",
+    "glPhrase": "عَبَثًا",
+    "occurrence": 2,
+    "history": {
+      "عَبَثًا": {
+        "व्यर्थमा": 1
+      }
+    },
+    "expected": [
+      "त्‍यो व्यर्थ थियो"
+    ],
+    "selections": [
+      {
+        "text": "त्‍यो",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "व्यर्थ",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "थियो",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "vain",
+      "checkId": "y4ar",
+      "quote": "εἰκῇ",
+      "quoteString": "εἰκῇ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "vain"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 3:4, tW vain, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-11-vain-ed77",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "vain",
+    "verse": "म तिमीहरूका लागि डराउँछु नत्र मैले तिमीहरूका बीचमा व्यर्थमा परिश्रम गरेको छु।",
+    "glPhrase": "عَبَثًا",
+    "history": {
+      "عَبَثًا": {
+        "व्यर्थमा": 1,
+        "त्‍यो व्यर्थ थियो": 1
+      }
+    },
+    "expected": [
+      "व्यर्थमा"
+    ],
+    "selections": [
+      {
+        "text": "व्यर्थमा",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "vain",
+      "checkId": "ed77",
+      "quote": "εἰκῇ",
+      "quoteString": "εἰκῇ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "vain"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:11, tW vain, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-17-zealous-gdpy",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "zealous",
+    "verse": "तिनीहरू तिमीहरूको लागी डाही छन्, उचित रूपमा होइन, तर  तिनीहरूले तिमीहरूलाई अलग गर्न चाहन्‍छन् ताकि तिमीहरू तिनीहरूको लागी डाही हुन्छौ।",
+    "glPhrase": "يَغَارُونَ",
+    "history": {
+      "غَيْرَةً": {
+        "जोशीलो": 1
+      }
+    },
+    "expected": [
+      "तिनीहरू डाही छन्"
+    ],
+    "selections": [
+      {
+        "text": "तिनीहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "डाही",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "छन्",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "zealous",
+      "checkId": "gdpy",
+      "quote": "ζηλοῦσιν",
+      "quoteString": "ζηλοῦσιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "zealous"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:17, tW zealous, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-17-zealous-swee",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "zealous",
+    "verse": "तिनीहरू तिमीहरूको लागी डाही छन्, उचित रूपमा होइन, तर  तिनीहरूले तिमीहरूलाई अलग गर्न चाहन्‍छन् ताकि तिमीहरू तिनीहरूको लागी डाही हुन्छौ।",
+    "glPhrase": "تَغَارُوا",
+    "history": {
+      "غَيْرَةً": {
+        "जोशीलो": 1
+      },
+      "يَغَارُونَ": {
+        "तिनीहरू डाही छन्": 1
+      }
+    },
+    "expected": [
+      "तिमीहरू डाही:2 हुन्छौ"
+    ],
+    "selections": [
+      {
+        "text": "तिमीहरू",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "डाही",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "हुन्छौ",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 17
+      },
+      "tool": "translationWords",
+      "groupId": "zealous",
+      "checkId": "swee",
+      "quote": "ζηλοῦτε",
+      "quoteString": "ζηλοῦτε",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "zealous"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:17, tW zealous, GL ar avd/v6.9_BSOJ"
+  },
+  {
+    "id": "train-ne-gal-4-18-zealous-v6qr",
+    "targetLang": "ne",
+    "glLang": "ar",
+    "glOwner": "BSOJ",
+    "groupId": "zealous",
+    "verse": "तर सधैँ नै असल अभिप्रायको निम्ति डाही हुनु असल हुन्‍छ र म तिमीहरूको उपस्थितिमा हुँदा मात्र होइन ।",
+    "glPhrase": "ٱلْغَيْرَةُ",
+    "history": {
+      "غَيْرَةً": {
+        "जोशीलो": 1
+      },
+      "يَغَارُونَ": {
+        "तिनीहरू डाही छन्": 1
+      },
+      "تَغَارُوا": {
+        "तिमीहरू डाही हुन्छौ": 1
+      }
+    },
+    "expected": [
+      "डाही हुनु"
+    ],
+    "selections": [
+      {
+        "text": "डाही",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "हुनु",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "gal",
+        "chapter": 4,
+        "verse": 18
+      },
+      "tool": "translationWords",
+      "groupId": "zealous",
+      "checkId": "v6qr",
+      "quote": "ζηλοῦσθαι",
+      "quoteString": "ζηλοῦσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "zealous"
+    ],
+    "madeUp": false,
+    "source": "ne_glt_gal_book 4:18, tW zealous, GL ar avd/v6.9_BSOJ"
+  }
+]
