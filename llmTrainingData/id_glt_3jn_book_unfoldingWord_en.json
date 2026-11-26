@@ -1,0 +1,817 @@
+[
+  {
+    "id": "train-id-3jn-1-2-beloved-tgfz",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Saudaraku yang terkasih, aku berdoa supaya engkau menjadi baik-baik saja dalam segala hal dan sehat, sebagaimana jiwa mu dalam keadaan baik. \n\\p",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "terkasih": 1
+      }
+    },
+    "expected": [
+      "Saudaraku yang terkasih"
+    ],
+    "selections": [
+      {
+        "text": "Saudaraku",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "terkasih",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "tgfz",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:2, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-5-beloved-y8zm",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Saudaraku yang terkasih, engkau berlaku setia, setiap kali engkau bekerja untuk saudara-saudara dan untuk orang-orang asing ini, \n\\p",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "terkasih": 1
+      },
+      "Beloved": {
+        "Saudaraku yang terkasih": 1
+      }
+    },
+    "expected": [
+      "Saudaraku yang terkasih"
+    ],
+    "selections": [
+      {
+        "text": "Saudaraku",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "terkasih",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "y8zm",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:5, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-beloved-s6zg",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "terkasih": 1
+      },
+      "Beloved": {
+        "Saudaraku yang terkasih": 2
+      }
+    },
+    "expected": [
+      "Saudara yang terkasih"
+    ],
+    "selections": [
+      {
+        "text": "Saudara",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "yang",
+        "occurrence": 1,
+        "occurrences": 5
+      },
+      {
+        "text": "terkasih",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "s6zg",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-9-church-ftt3",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "church",
+    "verse": "Aku telah menulis sesuatu kepada jemaat, tetapi Diotrefes, yang suka menganggap dirinya sebagai yang utama diantara mereka, tidak menerima kami. \n\\p",
+    "glPhrase": "to the church",
+    "history": {
+      "the church": {
+        "jemaat": 1
+      }
+    },
+    "expected": [
+      "kepada jemaat"
+    ],
+    "selections": [
+      {
+        "text": "kepada",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "jemaat",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "church",
+      "checkId": "ftt3",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐκκλησίᾳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ ἐκκλησίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "church"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:9, tW church, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-10-church-tk66",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "church",
+    "verse": "Dengan demikian, jika aku datang, aku akan ingat perbuatan-perbuatan nya yang dia lakukan, bagaimana ia menuduh kami dengan kata-kata yang jahat. Dan tidak puas dengan perbuatan-perbuatan ini, ia sendiri tidak mau menerima saudara-saudara, dan melarang mereka yang mempunyai kerinduan serta mengucilkan {mereka} dari jemaat. \n\\p",
+    "glPhrase": "of the church",
+    "history": {
+      "the church": {
+        "jemaat": 1
+      },
+      "to the church": {
+        "kepada jemaat": 1
+      }
+    },
+    "expected": [
+      "jemaat"
+    ],
+    "selections": [
+      {
+        "text": "jemaat",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "church",
+      "checkId": "tk66",
+      "quote": [
+        {
+          "word": "τῆς",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐκκλησίας",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῆς ἐκκλησίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "church"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:10, tW church, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-evil-j9m5",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "evil",
+    "history": {
+      "evil": {
+        "yang jahat": 1
+      }
+    },
+    "expected": [
+      "yang:2 jahat"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 2,
+        "occurrences": 5
+      },
+      {
+        "text": "jahat",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "j9m5",
+      "quote": "κακὸν",
+      "quoteString": "κακὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-evil-p5mu",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "one doing evil",
+    "history": {
+      "evil": {
+        "yang jahat": 2
+      }
+    },
+    "expected": [
+      "yang:5 berbuat jahat:2"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 5,
+        "occurrences": 5
+      },
+      {
+        "text": "berbuat",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "jahat",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "p5mu",
+      "quote": "κακοποιῶν",
+      "quoteString": "κακοποιῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-god-fsmd",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "God": {
+        "Allah": 1
+      }
+    },
+    "expected": [
+      "Allah"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "fsmd",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-god-srww",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "God",
+    "history": {
+      "God": {
+        "Allah": 2
+      }
+    },
+    "expected": [
+      "Allah:2"
+    ],
+    "selections": [
+      {
+        "text": "Allah",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "srww",
+      "quote": [
+        {
+          "word": "τὸν",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεόν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὸν Θεόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-good-rqay",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "good",
+    "history": {
+      "well": {
+        "baik": 1
+      }
+    },
+    "expected": [
+      "yang:3 baik"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 3,
+        "occurrences": 5
+      },
+      {
+        "text": "baik",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "rqay",
+      "quote": "ἀγαθόν",
+      "quoteString": "ἀγαθόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-11-good-rfxm",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Saudara-saudara yang terkasih, janganlah meniru apa yang jahat tetapi apa yang baik. Siapa yang melakukan kebaikan adalah  berasal dari Allah; dia yang berbuat jahat tidak melihat Allah. \n\\p",
+    "glPhrase": "one doing good",
+    "history": {
+      "well": {
+        "baik": 1
+      },
+      "good": {
+        "yang baik": 1
+      }
+    },
+    "expected": [
+      "yang:4 melakukan kebaikan"
+    ],
+    "selections": [
+      {
+        "text": "yang",
+        "occurrence": 4,
+        "occurrences": 5
+      },
+      {
+        "text": "melakukan",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "kebaikan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "rfxm",
+      "quote": "ἀγαθοποιῶν",
+      "quoteString": "ἀγαθοποιῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:11, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-6-testimony-f4qk",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "yang mereka telah bersaksi tentang kasih mu di hadapan jemaat. Engkau akan berbuat baik dengan mengutus mereka {dalam perjalanan mereka} dengan cara yang berkenan kepada Allah, \n\\p",
+    "glPhrase": "have attested",
+    "history": {
+      "attested": {
+        "memberi kesaksian": 1
+      }
+    },
+    "expected": [
+      "mereka telah bersaksi"
+    ],
+    "selections": [
+      {
+        "text": "mereka",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "telah",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "bersaksi",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "f4qk",
+      "quote": "ἐμαρτύρησάν",
+      "quoteString": "ἐμαρτύρησάν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:6, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-12-testimony-chhe",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Demetrius telah diberi kesaksian oleh semua orang dan oleh kebenaran itu sendiri. Dan kami juga memberi kesaksian, dan engkau tahu bahwa kesaksian kami itu adalah benar. \n\\p",
+    "glPhrase": "has been attested to",
+    "history": {
+      "attested": {
+        "memberi kesaksian": 1
+      },
+      "have attested": {
+        "mereka telah bersaksi": 1
+      }
+    },
+    "expected": [
+      "telah diberi kesaksian"
+    ],
+    "selections": [
+      {
+        "text": "telah",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "diberi",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "kesaksian",
+        "occurrence": 1,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "chhe",
+      "quote": "μεμαρτύρηται",
+      "quoteString": "μεμαρτύρηται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-12-testimony-ebes",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Demetrius telah diberi kesaksian oleh semua orang dan oleh kebenaran itu sendiri. Dan kami juga memberi kesaksian, dan engkau tahu bahwa kesaksian kami itu adalah benar. \n\\p",
+    "glPhrase": "we attest",
+    "history": {
+      "attested": {
+        "memberi kesaksian": 1
+      },
+      "have attested": {
+        "mereka telah bersaksi": 1
+      },
+      "has been attested to": {
+        "telah diberi kesaksian": 1
+      }
+    },
+    "expected": [
+      "memberi kesaksian:2"
+    ],
+    "selections": [
+      {
+        "text": "memberi",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "kesaksian",
+        "occurrence": 2,
+        "occurrences": 3
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "ebes",
+      "quote": "μαρτυροῦμεν",
+      "quoteString": "μαρτυροῦμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-id-3jn-1-12-testimony-crtt",
+    "targetLang": "id",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Demetrius telah diberi kesaksian oleh semua orang dan oleh kebenaran itu sendiri. Dan kami juga memberi kesaksian, dan engkau tahu bahwa kesaksian kami itu adalah benar. \n\\p",
+    "glPhrase": "testimony",
+    "history": {
+      "attested": {
+        "memberi kesaksian": 1
+      },
+      "have attested": {
+        "mereka telah bersaksi": 1
+      },
+      "has been attested to": {
+        "telah diberi kesaksian": 1
+      },
+      "we attest": {
+        "memberi kesaksian": 1
+      }
+    },
+    "expected": [
+      "kesaksian:3 itu:2"
+    ],
+    "selections": [
+      {
+        "text": "kesaksian",
+        "occurrence": 3,
+        "occurrences": 3
+      },
+      {
+        "text": "itu",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "crtt",
+      "quote": [
+        {
+          "word": "ἡ",
+          "occurrence": 1
+        },
+        {
+          "word": "μαρτυρία",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἡ μαρτυρία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "id_glt_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  }
+]

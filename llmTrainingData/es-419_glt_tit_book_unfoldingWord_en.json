@@ -1,0 +1,2923 @@
+[
+  {
+    "id": "train-es-419-tit-1-3-age-dhdb",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "pero reveló en los tiempos apropiados su palabra por la predicación que me fue confiada conforme al mandato de Dios nuestro salvador,",
+    "glPhrase": "at the time",
+    "history": {
+      "of time": {
+        "de los tiempos": 1
+      }
+    },
+    "expected": [
+      "en los tiempos"
+    ],
+    "selections": [
+      {
+        "text": "en",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "los",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "tiempos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "dhdb",
+      "quote": "καιροῖς",
+      "quoteString": "καιροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:3, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-12-age-e5gn",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "age",
+    "verse": "instruyéndonos, para que, después de haber renunciado a la impiedad y a los deseos mundanos, vivamos en el tiempo presente de una forma autocontrolada, tanto justa como piadosa,",
+    "glPhrase": "age",
+    "history": {
+      "of time": {
+        "de los tiempos": 1
+      },
+      "at the time": {
+        "en los tiempos": 1
+      }
+    },
+    "expected": [
+      "tiempo"
+    ],
+    "selections": [
+      {
+        "text": "tiempo",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "age",
+      "checkId": "e5gn",
+      "quote": "αἰῶνι",
+      "quoteString": "αἰῶνι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "age"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:12, tW age, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-7-doctrine-p6a7",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "doctrine",
+    "verse": "presentándote a ti mismo en todo como ejemplo de buenas obras, en la doctrina, como pureza, como dignidad,",
+    "glPhrase": "teaching",
+    "history": {
+      "teaching": {
+        "enseñanza": 1
+      }
+    },
+    "expected": [
+      "doctrina"
+    ],
+    "selections": [
+      {
+        "text": "doctrina",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "p6a7",
+      "quote": "διδασκαλίᾳ",
+      "quoteString": "διδασκαλίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:7, tW doctrine, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-10-doctrine-pex6",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "doctrine",
+    "verse": "que no roben, sino que demuestren toda buena fe, para que adornen en todo la doctrina, la de Dios nuestro salvador.",
+    "glPhrase": "teaching",
+    "history": {
+      "teaching": {
+        "enseñanza": 1,
+        "doctrina": 1
+      }
+    },
+    "expected": [
+      "doctrina"
+    ],
+    "selections": [
+      {
+        "text": "doctrina",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "doctrine",
+      "checkId": "pex6",
+      "quote": "διδασκαλίαν",
+      "quoteString": "διδασκαλίαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "doctrine"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:10, tW doctrine, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-8-evil-zdzc",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "como palabra sana e irreprochable, para que de parte del adversario se avergüence, no teniendo nada malo que decir acerca de nosotros.",
+    "glPhrase": "bad",
+    "history": {
+      "evil": {
+        "malas": 1
+      }
+    },
+    "expected": [
+      "malo"
+    ],
+    "selections": [
+      {
+        "text": "malo",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "zdzc",
+      "quote": "φαῦλον",
+      "quoteString": "φαῦλον",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:8, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-3-evil-strs",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "evil",
+    "verse": "Porque nosotros también en otro tiempo eramos necios, desobedientes, extraviados, siendo esclavos de diversos placeres y pasiones, viviendo en malicia y envidia, aborrecibles, odiándonos unos a otros.",
+    "glPhrase": "evil",
+    "history": {
+      "evil": {
+        "malas": 1
+      },
+      "bad": {
+        "malo": 1
+      }
+    },
+    "expected": [
+      "malicia"
+    ],
+    "selections": [
+      {
+        "text": "malicia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "evil",
+      "checkId": "strs",
+      "quote": "κακίᾳ",
+      "quoteString": "κακίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "evil"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:3, tW evil, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-4-faith-c2fm",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "a Tito, verdadero hijo conforme a nuestra fe común. Gracia y paz de Dios Padre y de Cristo Jesús nuestro salvador.",
+    "glPhrase": "a faith",
+    "history": {
+      "the faith": {
+        "a la fe": 1
+      }
+    },
+    "expected": [
+      "fe"
+    ],
+    "selections": [
+      {
+        "text": "fe",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "c2fm",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:4, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-13-faith-s5qd",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Este testimonio es confiable. Por esta razón, repréndelos severamente, para que sean sanos en la fe,",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "a la fe": 1
+      },
+      "a faith": {
+        "fe": 1
+      }
+    },
+    "expected": [
+      "fe"
+    ],
+    "selections": [
+      {
+        "text": "fe",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "s5qd",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:13, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-2-faith-skyq",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "que los hombres mayores sean sobrios, dignos de respeto, prudentes, sanos en la fe, en el amor, en la paciencia.",
+    "glPhrase": "in faith",
+    "history": {
+      "the faith": {
+        "a la fe": 1
+      },
+      "a faith": {
+        "fe": 1
+      },
+      "faith": {
+        "fe": 1
+      }
+    },
+    "expected": [
+      "en la fe"
+    ],
+    "selections": [
+      {
+        "text": "en",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "fe",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "skyq",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "πίστει",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:2, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-10-faith-bn72",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "que no roben, sino que demuestren toda buena fe, para que adornen en todo la doctrina, la de Dios nuestro salvador.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "a la fe": 1
+      },
+      "a faith": {
+        "fe": 1
+      },
+      "faith": {
+        "fe": 1
+      },
+      "in faith": {
+        "en la fe": 1
+      }
+    },
+    "expected": [
+      "fe"
+    ],
+    "selections": [
+      {
+        "text": "fe",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "bn72",
+      "quote": "πίστιν",
+      "quoteString": "πίστιν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:10, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-15-faith-b3pn",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faith",
+    "verse": "Te saludan todos los que están conmigo. Saluda a los que nos aman en la fe. La gracia esté con todos ustedes.",
+    "glPhrase": "faith",
+    "history": {
+      "the faith": {
+        "a la fe": 1
+      },
+      "a faith": {
+        "fe": 1
+      },
+      "faith": {
+        "fe": 2
+      },
+      "in faith": {
+        "en la fe": 1
+      }
+    },
+    "expected": [
+      "la fe"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "fe",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "faith",
+      "checkId": "b3pn",
+      "quote": "πίστει",
+      "quoteString": "πίστει",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faith"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:15, tW faith, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-9-faithful-x67x",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faithful",
+    "verse": "retenedor de la palabra fiel, conforme a la doctrina, para que sea capaz también de exhortar con sana enseñanza, y reprender a los que se oponen.",
+    "glPhrase": "trustworthy",
+    "history": {
+      "faithful": {
+        "fieles": 1
+      }
+    },
+    "expected": [
+      "fiel"
+    ],
+    "selections": [
+      {
+        "text": "fiel",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "x67x",
+      "quote": "πιστοῦ",
+      "quoteString": "πιστοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:9, tW faithful, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-8-faithful-dxb8",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "faithful",
+    "verse": "Este mensaje es digno de confianza; también quiero que tú insistas acerca de estas cosas, para que los que han creído en Dios se preocupen en practicar buenas obras. Estas cosas son buenas y beneficiosas para los hombres.",
+    "glPhrase": "is trustworthy",
+    "history": {
+      "faithful": {
+        "fieles": 1
+      },
+      "trustworthy": {
+        "fiel": 1
+      }
+    },
+    "expected": [
+      "es digno de confianza"
+    ],
+    "selections": [
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "digno",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "confianza",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "faithful",
+      "checkId": "dxb8",
+      "quote": "πιστὸς",
+      "quoteString": "πιστὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "faithful"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:8, tW faithful, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-1-god-f44k-2",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Pablo, siervo de Dios y apóstol de Jesucristo, conforme a la fe de los elegidos de Dios y al conocimiento de la verdad que es de acuerdo con la piedad,",
+    "glPhrase": "of God",
+    "occurrence": 2,
+    "history": {
+      "of God": {
+        "de Dios": 1
+      }
+    },
+    "expected": [
+      "de:4 Dios:2"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 4,
+        "occurrences": 6
+      },
+      {
+        "text": "Dios",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "f44k",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 2
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:1, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-2-god-hmks",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "sobre la esperanza de la vida eterna, la cual Dios, que no miente, prometió antes de los tiempos de los siglos,",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "de Dios": 2
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "hmks",
+      "quote": "Θεὸς",
+      "quoteString": "Θεὸς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:2, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-3-god-uj2x",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "pero reveló en los tiempos apropiados su palabra por la predicación que me fue confiada conforme al mandato de Dios nuestro salvador,",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "de Dios": 2
+      },
+      "God": {
+        "Dios": 1
+      }
+    },
+    "expected": [
+      "de Dios"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 3
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "uj2x",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:3, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-7-god-mm9y",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Porque es necesario que el obispo sea irreprensible, como administrador de Dios, no arrogante, no iracundo, no dado al vino, no belicoso, no codicioso de ganancias deshonestas,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "de Dios": 2
+      },
+      "God": {
+        "Dios": 1,
+        "de Dios": 1
+      }
+    },
+    "expected": [
+      "de Dios"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "mm9y",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:7, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-16-god-rjjt",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Ellos profesan conocer a Dios, pero con sus acciones lo niegan, siendo tanto detestables y desobedientes como descalificados para toda buena obra.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "de Dios": 3
+      },
+      "God": {
+        "Dios": 1,
+        "de Dios": 1
+      }
+    },
+    "expected": [
+      "a Dios"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "rjjt",
+      "quote": "Θεὸν",
+      "quoteString": "Θεὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:16, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-10-god-pynk",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "que no roben, sino que demuestren toda buena fe, para que adornen en todo la doctrina, la de Dios nuestro salvador.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "de Dios": 3
+      },
+      "God": {
+        "Dios": 1,
+        "de Dios": 1,
+        "a Dios": 1
+      }
+    },
+    "expected": [
+      "de Dios"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "pynk",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:10, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-11-god-xef2",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Porque la gracia salvadora de Dios fue manifestada a todos los hombres,",
+    "glPhrase": "of God",
+    "history": {
+      "of God": {
+        "de Dios": 3
+      },
+      "God": {
+        "Dios": 1,
+        "de Dios": 2,
+        "a Dios": 1
+      }
+    },
+    "expected": [
+      "de Dios"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "xef2",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Θεοῦ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:11, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-4-god-g4b9",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Pero, cuando fue manifestada la bondad y el amor por la humanidad, de parte de Dios nuestro salvador,",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "de Dios": 4
+      },
+      "God": {
+        "Dios": 1,
+        "de Dios": 2,
+        "a Dios": 1
+      }
+    },
+    "expected": [
+      "Dios"
+    ],
+    "selections": [
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "g4b9",
+      "quote": "Θεοῦ",
+      "quoteString": "Θεοῦ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:4, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-8-god-gbdk",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "god",
+    "verse": "Este mensaje es digno de confianza; también quiero que tú insistas acerca de estas cosas, para que los que han creído en Dios se preocupen en practicar buenas obras. Estas cosas son buenas y beneficiosas para los hombres.",
+    "glPhrase": "God",
+    "history": {
+      "of God": {
+        "de Dios": 4
+      },
+      "God": {
+        "Dios": 2,
+        "de Dios": 2,
+        "a Dios": 1
+      }
+    },
+    "expected": [
+      "en Dios"
+    ],
+    "selections": [
+      {
+        "text": "en",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "Dios",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "god",
+      "checkId": "gbdk",
+      "quote": "Θεῷ",
+      "quoteString": "Θεῷ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "god"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:8, tW god, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-12-godly-trje",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "instruyéndonos, para que, después de haber renunciado a la impiedad y a los deseos mundanos, vivamos en el tiempo presente de una forma autocontrolada, tanto justa como piadosa,",
+    "glPhrase": "godlessness",
+    "history": {
+      "godliness": {
+        "la piedad": 1
+      }
+    },
+    "expected": [
+      "a la impiedad"
+    ],
+    "selections": [
+      {
+        "text": "a",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "impiedad",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "trje",
+      "quote": [
+        {
+          "word": "τὴν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἀσέβειαν",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τὴν ἀσέβειαν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:12, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-12-godly-wyfa",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "godly",
+    "verse": "instruyéndonos, para que, después de haber renunciado a la impiedad y a los deseos mundanos, vivamos en el tiempo presente de una forma autocontrolada, tanto justa como piadosa,",
+    "glPhrase": "godly way",
+    "history": {
+      "godliness": {
+        "la piedad": 1
+      },
+      "godlessness": {
+        "a la impiedad": 1
+      }
+    },
+    "expected": [
+      "piadosa"
+    ],
+    "selections": [
+      {
+        "text": "piadosa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "godly",
+      "checkId": "wyfa",
+      "quote": "εὐσεβῶς",
+      "quoteString": "εὐσεβῶς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "godly"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:12, tW godly, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-16-good-yxnn",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Ellos profesan conocer a Dios, pero con sus acciones lo niegan, siendo tanto detestables y desobedientes como descalificados para toda buena obra.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      }
+    },
+    "expected": [
+      "buena"
+    ],
+    "selections": [
+      {
+        "text": "buena",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "yxnn",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:16, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-5-good-mguz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "que sean prudentes, puras, cuidadoras de su casa, buenas, sujetas a sus propios maridos, para que la Palabra de Dios no sea difamada.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 1
+      }
+    },
+    "expected": [
+      "buenas"
+    ],
+    "selections": [
+      {
+        "text": "buenas",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "mguz",
+      "quote": "ἀγαθάς",
+      "quoteString": "ἀγαθάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:5, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-7-good-ncv7",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "presentándote a ti mismo en todo como ejemplo de buenas obras, en la doctrina, como pureza, como dignidad,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 1,
+        "buenas": 1
+      }
+    },
+    "expected": [
+      "de buenas"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "buenas",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "ncv7",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:7, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-10-good-d9wq",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "que no roben, sino que demuestren toda buena fe, para que adornen en todo la doctrina, la de Dios nuestro salvador.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 1,
+        "buenas": 1,
+        "de buenas": 1
+      }
+    },
+    "expected": [
+      "buena"
+    ],
+    "selections": [
+      {
+        "text": "buena",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "d9wq",
+      "quote": "ἀγαθήν",
+      "quoteString": "ἀγαθήν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:10, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-14-good-jy6c",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "quien se dio a sí mismo por nosotros, para que Él nos redimiese de toda iniquidad y nos purifique para sí mismo como un pueblo elegido, celoso de buenas obras.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 2,
+        "buenas": 1,
+        "de buenas": 1
+      }
+    },
+    "expected": [
+      "de:2 buenas"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "buenas",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "jy6c",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:14, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-1-good-w9yp",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Recuérdales que se sometan a los gobernantes y a las autoridades, que obedezcan, que estén dispuestos para toda buena obra,",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 2,
+        "buenas": 1,
+        "de buenas": 2
+      }
+    },
+    "expected": [
+      "buena"
+    ],
+    "selections": [
+      {
+        "text": "buena",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "w9yp",
+      "quote": "ἀγαθὸν",
+      "quoteString": "ἀγαθὸν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:1, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-8-good-cmmp",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Este mensaje es digno de confianza; también quiero que tú insistas acerca de estas cosas, para que los que han creído en Dios se preocupen en practicar buenas obras. Estas cosas son buenas y beneficiosas para los hombres.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 3,
+        "buenas": 1,
+        "de buenas": 2
+      }
+    },
+    "expected": [
+      "buenas"
+    ],
+    "selections": [
+      {
+        "text": "buenas",
+        "occurrence": 1,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "cmmp",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-8-good-sbrv",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Este mensaje es digno de confianza; también quiero que tú insistas acerca de estas cosas, para que los que han creído en Dios se preocupen en practicar buenas obras. Estas cosas son buenas y beneficiosas para los hombres.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 3,
+        "buenas": 2,
+        "de buenas": 2
+      }
+    },
+    "expected": [
+      "buenas:2"
+    ],
+    "selections": [
+      {
+        "text": "buenas",
+        "occurrence": 2,
+        "occurrences": 2
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "sbrv",
+      "quote": "καλὰ",
+      "quoteString": "καλὰ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:8, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-14-good-m7z9",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "good",
+    "verse": "Y que aprendan también los nuestros a practicar las buenas obras para las necesidades urgentes, para que no estén sin frutos.",
+    "glPhrase": "good",
+    "history": {
+      "a friend of what is good": {
+        "amante del bien": 1
+      },
+      "good": {
+        "buena": 3,
+        "buenas": 3,
+        "de buenas": 2
+      }
+    },
+    "expected": [
+      "buenas"
+    ],
+    "selections": [
+      {
+        "text": "buenas",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "good",
+      "checkId": "m7z9",
+      "quote": "καλῶν",
+      "quoteString": "καλῶν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "good"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:14, tW good, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-11-grace-rxzp",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "Porque la gracia salvadora de Dios fue manifestada a todos los hombres,",
+    "glPhrase": "grace",
+    "history": {
+      "Grace": {
+        "Gracia": 1
+      }
+    },
+    "expected": [
+      "gracia"
+    ],
+    "selections": [
+      {
+        "text": "gracia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "rxzp",
+      "quote": "χάρις",
+      "quoteString": "χάρις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:11, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-15-grace-stmk",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "grace",
+    "verse": "Te saludan todos los que están conmigo. Saluda a los que nos aman en la fe. La gracia esté con todos ustedes.",
+    "glPhrase": "Grace",
+    "history": {
+      "Grace": {
+        "Gracia": 1
+      },
+      "grace": {
+        "gracia": 1
+      }
+    },
+    "expected": [
+      "la gracia"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "gracia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "grace",
+      "checkId": "stmk",
+      "quote": [
+        {
+          "word": "ἡ",
+          "occurrence": 1
+        },
+        {
+          "word": "χάρις",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἡ χάρις",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "grace"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:15, tW grace, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-13-hope-pqwf",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "mientras esperamos la esperanza bienaventurada y la manifestación de la gloria de nuestro gran Dios y salvador Jesucristo,",
+    "glPhrase": "hope",
+    "history": {
+      "the certain hope": {
+        "la esperanza": 1
+      }
+    },
+    "expected": [
+      "esperanza"
+    ],
+    "selections": [
+      {
+        "text": "esperanza",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "pqwf",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:13, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-7-hope-yut8",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "hope",
+    "verse": "para que, habiendo sido justificados por aquella su gracia, lleguemos a ser herederos conforme a la esperanza de la vida eterna.",
+    "glPhrase": "certain hope",
+    "history": {
+      "the certain hope": {
+        "la esperanza": 1
+      },
+      "hope": {
+        "esperanza": 1
+      }
+    },
+    "expected": [
+      "la esperanza"
+    ],
+    "selections": [
+      {
+        "text": "la",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "esperanza",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 7
+      },
+      "tool": "translationWords",
+      "groupId": "hope",
+      "checkId": "yut8",
+      "quote": "ἐλπίδα",
+      "quoteString": "ἐλπίδα",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "hope"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:7, tW hope, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-16-know-napb",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "Ellos profesan conocer a Dios, pero con sus acciones lo niegan, siendo tanto detestables y desobedientes como descalificados para toda buena obra.",
+    "glPhrase": "to know",
+    "history": {
+      "knowledge": {
+        "al conocimiento": 1
+      }
+    },
+    "expected": [
+      "conocer"
+    ],
+    "selections": [
+      {
+        "text": "conocer",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 16
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "napb",
+      "quote": "εἰδέναι",
+      "quoteString": "εἰδέναι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:16, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-11-know-syjf",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "know",
+    "verse": "puesto que sabes que el tal se ha pervertido, y peca, de modo que se condena a sí mismo.",
+    "glPhrase": "knowing",
+    "history": {
+      "knowledge": {
+        "al conocimiento": 1
+      },
+      "to know": {
+        "conocer": 1
+      }
+    },
+    "expected": [
+      "sabes"
+    ],
+    "selections": [
+      {
+        "text": "sabes",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "know",
+      "checkId": "syjf",
+      "quote": "εἰδὼς",
+      "quoteString": "εἰδὼς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "know"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:11, tW know, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-4-love-q8p8",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "para que enseñen a las jóvenes a que sean amadoras de sus esposos y amadoras de sus hijos,",
+    "glPhrase": "lovers of their husbands",
+    "history": {
+      "in love": {
+        "en el amor": 1
+      }
+    },
+    "expected": [
+      "amadoras de sus esposos"
+    ],
+    "selections": [
+      {
+        "text": "amadoras",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "sus",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "esposos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "q8p8",
+      "quote": "φιλάνδρους",
+      "quoteString": "φιλάνδρους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-4-love-m7kb",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "para que enseñen a las jóvenes a que sean amadoras de sus esposos y amadoras de sus hijos,",
+    "glPhrase": "lovers of their children",
+    "history": {
+      "in love": {
+        "en el amor": 1
+      },
+      "lovers of their husbands": {
+        "amadoras de sus esposos": 1
+      }
+    },
+    "expected": [
+      "y amadoras:2 de:2 sus:2 hijos"
+    ],
+    "selections": [
+      {
+        "text": "y",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "amadoras",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "sus",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "hijos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "m7kb",
+      "quote": "φιλοτέκνους",
+      "quoteString": "φιλοτέκνους",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-4-love-nwn9",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "Pero, cuando fue manifestada la bondad y el amor por la humanidad, de parte de Dios nuestro salvador,",
+    "glPhrase": "love for mankind",
+    "history": {
+      "in love": {
+        "en el amor": 1
+      },
+      "lovers of their husbands": {
+        "amadoras de sus esposos": 1
+      },
+      "lovers of their children": {
+        "y amadoras de sus hijos": 1
+      }
+    },
+    "expected": [
+      "amor por la:2 humanidad"
+    ],
+    "selections": [
+      {
+        "text": "amor",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "por",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "la",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "humanidad",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "nwn9",
+      "quote": "φιλανθρωπία",
+      "quoteString": "φιλανθρωπία",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:4, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-15-love-xuej",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "love",
+    "verse": "Te saludan todos los que están conmigo. Saluda a los que nos aman en la fe. La gracia esté con todos ustedes.",
+    "glPhrase": "loving",
+    "history": {
+      "in love": {
+        "en el amor": 1
+      },
+      "lovers of their husbands": {
+        "amadoras de sus esposos": 1
+      },
+      "lovers of their children": {
+        "y amadoras de sus hijos": 1
+      },
+      "love for mankind": {
+        "amor por la humanidad": 1
+      }
+    },
+    "expected": [
+      "aman"
+    ],
+    "selections": [
+      {
+        "text": "aman",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "love",
+      "checkId": "xuej",
+      "quote": "φιλοῦντας",
+      "quoteString": "φιλοῦντας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "love"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:15, tW love, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-15-purify-hr5s",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Todas las cosas son puras para aquellos que son puros, pero para los corruptos e incrédulos nada es puro; por el contrario, tanto sus mentes como sus conciencias han sido corrompidas.",
+    "glPhrase": "pure",
+    "history": {
+      "are pure": {
+        "son puras": 1
+      }
+    },
+    "expected": [
+      "que son:2 puros"
+    ],
+    "selections": [
+      {
+        "text": "que",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "son",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "puros",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "hr5s",
+      "quote": "καθαροῖς",
+      "quoteString": "καθαροῖς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-15-purify-vg9y",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "Todas las cosas son puras para aquellos que son puros, pero para los corruptos e incrédulos nada es puro; por el contrario, tanto sus mentes como sus conciencias han sido corrompidas.",
+    "glPhrase": "is pure",
+    "history": {
+      "are pure": {
+        "son puras": 1
+      },
+      "pure": {
+        "que son puros": 1
+      }
+    },
+    "expected": [
+      "es puro"
+    ],
+    "selections": [
+      {
+        "text": "es",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "puro",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 15
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "vg9y",
+      "quote": "καθαρόν",
+      "quoteString": "καθαρόν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:15, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-5-purify-j8nj",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "que sean prudentes, puras, cuidadoras de su casa, buenas, sujetas a sus propios maridos, para que la Palabra de Dios no sea difamada.",
+    "glPhrase": "pure",
+    "history": {
+      "are pure": {
+        "son puras": 1
+      },
+      "pure": {
+        "que son puros": 1
+      },
+      "is pure": {
+        "es puro": 1
+      }
+    },
+    "expected": [
+      "puras"
+    ],
+    "selections": [
+      {
+        "text": "puras",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "j8nj",
+      "quote": "ἁγνάς",
+      "quoteString": "ἁγνάς",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:5, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-14-purify-bxw8",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "purify",
+    "verse": "quien se dio a sí mismo por nosotros, para que Él nos redimiese de toda iniquidad y nos purifique para sí mismo como un pueblo elegido, celoso de buenas obras.",
+    "glPhrase": "to purify",
+    "history": {
+      "are pure": {
+        "son puras": 1
+      },
+      "pure": {
+        "que son puros": 1,
+        "puras": 1
+      },
+      "is pure": {
+        "es puro": 1
+      }
+    },
+    "expected": [
+      "purifique"
+    ],
+    "selections": [
+      {
+        "text": "purifique",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 14
+      },
+      "tool": "translationWords",
+      "groupId": "purify",
+      "checkId": "bxw8",
+      "quote": "καθαρίσῃ",
+      "quoteString": "καθαρίσῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "purify"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:14, tW purify, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-12-righteous-dr9j",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "instruyéndonos, para que, después de haber renunciado a la impiedad y a los deseos mundanos, vivamos en el tiempo presente de una forma autocontrolada, tanto justa como piadosa,",
+    "glPhrase": "righteous",
+    "history": {
+      "righteous": {
+        "justo": 1
+      }
+    },
+    "expected": [
+      "justa"
+    ],
+    "selections": [
+      {
+        "text": "justa",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "dr9j",
+      "quote": "δικαίως",
+      "quoteString": "δικαίως",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:12, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-5-righteous-sqsf",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "righteous",
+    "verse": "nos salvó, no por obras de justicia que hubiéramos hecho, sino por su misericordia, por medio del lavamiento de la regeneración y la renovación del Espíritu Santo,",
+    "glPhrase": "of righteousness",
+    "history": {
+      "righteous": {
+        "justo": 1,
+        "justa": 1
+      }
+    },
+    "expected": [
+      "de justicia"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "justicia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "righteous",
+      "checkId": "sqsf",
+      "quote": [
+        {
+          "word": "τῶν",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐν",
+          "occurrence": 1
+        },
+        {
+          "word": "δικαιοσύνῃ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῶν ἐν δικαιοσύνῃ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "righteous"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:5, tW righteous, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-1-4-savior-mvwu",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "a Tito, verdadero hijo conforme a nuestra fe común. Gracia y paz de Dios Padre y de Cristo Jesús nuestro salvador.",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "salvador": 1
+      }
+    },
+    "expected": [
+      "salvador"
+    ],
+    "selections": [
+      {
+        "text": "salvador",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 1,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "mvwu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 1:4, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-13-savior-bpbw",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "mientras esperamos la esperanza bienaventurada y la manifestación de la gloria de nuestro gran Dios y salvador Jesucristo,",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "salvador": 1
+      },
+      "Savior": {
+        "salvador": 1
+      }
+    },
+    "expected": [
+      "salvador"
+    ],
+    "selections": [
+      {
+        "text": "salvador",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 13
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "bpbw",
+      "quote": "Σωτῆρος",
+      "quoteString": "Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:13, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-4-savior-x4gg",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "Pero, cuando fue manifestada la bondad y el amor por la humanidad, de parte de Dios nuestro salvador,",
+    "glPhrase": "of Savior",
+    "history": {
+      "of Savior": {
+        "salvador": 1
+      },
+      "Savior": {
+        "salvador": 2
+      }
+    },
+    "expected": [
+      "de parte de:2 salvador"
+    ],
+    "selections": [
+      {
+        "text": "de",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "parte",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "de",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "salvador",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 4
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "x4gg",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:4, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-6-savior-h9fu",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "savior",
+    "verse": "el cual derramó sobre nosotros ricamente por medio de Jesucristo nuestro Salvador,",
+    "glPhrase": "Savior",
+    "history": {
+      "of Savior": {
+        "salvador": 1,
+        "de parte de salvador": 1
+      },
+      "Savior": {
+        "salvador": 2
+      }
+    },
+    "expected": [
+      "Salvador"
+    ],
+    "selections": [
+      {
+        "text": "Salvador",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "savior",
+      "checkId": "h9fu",
+      "quote": [
+        {
+          "word": "τοῦ",
+          "occurrence": 1
+        },
+        {
+          "word": "Σωτῆρος",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τοῦ Σωτῆρος",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "savior"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:6, tW savior, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-5-slander-rhfd",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "que sean prudentes, puras, cuidadoras de su casa, buenas, sujetas a sus propios maridos, para que la Palabra de Dios no sea difamada.",
+    "glPhrase": "may be insulted",
+    "history": {
+      "slanderers": {
+        "calumniadoras": 1
+      }
+    },
+    "expected": [
+      "sea difamada"
+    ],
+    "selections": [
+      {
+        "text": "sea",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "difamada",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "rhfd",
+      "quote": "βλασφημῆται",
+      "quoteString": "βλασφημῆται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:5, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-2-slander-sq5t",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "slander",
+    "verse": "que no hablen mal de nadie, que sean pacíficos, amables, mostrando toda consideración para con todos los hombres.",
+    "glPhrase": "to revile",
+    "history": {
+      "slanderers": {
+        "calumniadoras": 1
+      },
+      "may be insulted": {
+        "sea difamada": 1
+      }
+    },
+    "expected": [
+      "que hablen mal"
+    ],
+    "selections": [
+      {
+        "text": "que",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "hablen",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "mal",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "slander",
+      "checkId": "sq5t",
+      "quote": "βλασφημεῖν",
+      "quoteString": "βλασφημεῖν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "slander"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:2, tW slander, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-2-9-subject-hhgu",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "Que los siervos se sometan a sus amos en todo, que sean agradables, no contradiciendo,",
+    "glPhrase": "to be subject to",
+    "history": {
+      "and subject": {
+        "sujetas": 1
+      }
+    },
+    "expected": [
+      "Que se sometan"
+    ],
+    "selections": [
+      {
+        "text": "Que",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "se",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sometan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 2,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "hhgu",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 2:9, tW subject, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-tit-3-1-subject-s4xn",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "subject",
+    "verse": "Recuérdales que se sometan a los gobernantes y a las autoridades, que obedezcan, que estén dispuestos para toda buena obra,",
+    "glPhrase": "to submit",
+    "history": {
+      "and subject": {
+        "sujetas": 1
+      },
+      "to be subject to": {
+        "Que se sometan": 1
+      }
+    },
+    "expected": [
+      "que se sometan"
+    ],
+    "selections": [
+      {
+        "text": "que",
+        "occurrence": 1,
+        "occurrences": 3
+      },
+      {
+        "text": "se",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sometan",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "tit",
+        "chapter": 3,
+        "verse": 1
+      },
+      "tool": "translationWords",
+      "groupId": "subject",
+      "checkId": "s4xn",
+      "quote": "ὑποτάσσεσθαι",
+      "quoteString": "ὑποτάσσεσθαι",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "subject"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_tit_book 3:1, tW subject, GL en ult/v91_unfoldingWord"
+  }
+]

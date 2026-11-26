@@ -1,0 +1,517 @@
+[
+  {
+    "id": "train-es-419-3jn-1-2-beloved-tgfz",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Amado, oro para que prosperes en todo y que estés saludable, así como prospera tu alma.",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "amado": 1
+      }
+    },
+    "expected": [
+      "Amado"
+    ],
+    "selections": [
+      {
+        "text": "Amado",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 2
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "tgfz",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:2, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-5-beloved-y8zm",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Amado, estás haciendo fielmente en todo lo que obras por los hermanos y esto a extranjeros;",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "amado": 1
+      },
+      "Beloved": {
+        "Amado": 1
+      }
+    },
+    "expected": [
+      "Amado"
+    ],
+    "selections": [
+      {
+        "text": "Amado",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "y8zm",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:5, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-11-beloved-s6zg",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Amado, no imites lo malo, sino lo bueno. Aquel que hace lo bueno viene de Dios, aquel que hace maldad no ha visto a Dios.\n\\p",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "amado": 1
+      },
+      "Beloved": {
+        "Amado": 2
+      }
+    },
+    "expected": [
+      "Amado"
+    ],
+    "selections": [
+      {
+        "text": "Amado",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "s6zg",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:11, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-9-church-ftt3",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "church",
+    "verse": "Escribí algo a la iglesia, pero Diótefres, que ama ser el primero entre ellos, no nos acepta.",
+    "glPhrase": "to the church",
+    "history": {
+      "the church": {
+        "de la iglesia": 1
+      }
+    },
+    "expected": [
+      "iglesia"
+    ],
+    "selections": [
+      {
+        "text": "iglesia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "church",
+      "checkId": "ftt3",
+      "quote": "ἐκκλησίᾳ",
+      "quoteString": "ἐκκλησίᾳ",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "church"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:9, tW church, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-10-church-tk66",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "church",
+    "verse": "Por eso, si voy, le recordaré las obras que está haciendo, hablando palabras malvadas y sin sentido contra nosotros. Incluso no satisfecho con eso, él ni siquiera recibe a los hermanos y detiene a aquellos que están dispuestos y los expulsa de la iglesia.\n\\p",
+    "glPhrase": "of the church",
+    "history": {
+      "the church": {
+        "de la iglesia": 1
+      },
+      "to the church": {
+        "iglesia": 1
+      }
+    },
+    "expected": [
+      "iglesia"
+    ],
+    "selections": [
+      {
+        "text": "iglesia",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "church",
+      "checkId": "tk66",
+      "quote": "ἐκκλησίας",
+      "quoteString": "ἐκκλησίας",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "church"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:10, tW church, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-8-receive-d9rx",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "Por lo tanto, nosotros debemos recibir a los tales, para que lleguemos a ser colaboradores de la verdad.\n\\p",
+    "glPhrase": "to support",
+    "history": {
+      "receiving": {
+        "recibir": 1
+      }
+    },
+    "expected": [
+      "recibir"
+    ],
+    "selections": [
+      {
+        "text": "recibir",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 8
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "d9rx",
+      "quote": "ὑπολαμβάνειν",
+      "quoteString": "ὑπολαμβάνειν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:8, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-9-receive-gavv",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "Escribí algo a la iglesia, pero Diótefres, que ama ser el primero entre ellos, no nos acepta.",
+    "glPhrase": "does receive",
+    "history": {
+      "receiving": {
+        "recibir": 1
+      },
+      "to support": {
+        "recibir": 1
+      }
+    },
+    "expected": [
+      "acepta"
+    ],
+    "selections": [
+      {
+        "text": "acepta",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "gavv",
+      "quote": "ἐπιδέχεται",
+      "quoteString": "ἐπιδέχεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:9, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-10-receive-hs3w",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "receive",
+    "verse": "Por eso, si voy, le recordaré las obras que está haciendo, hablando palabras malvadas y sin sentido contra nosotros. Incluso no satisfecho con eso, él ni siquiera recibe a los hermanos y detiene a aquellos que están dispuestos y los expulsa de la iglesia.\n\\p",
+    "glPhrase": "does receive",
+    "history": {
+      "receiving": {
+        "recibir": 1
+      },
+      "to support": {
+        "recibir": 1
+      },
+      "does receive": {
+        "acepta": 1
+      }
+    },
+    "expected": [
+      "recibe"
+    ],
+    "selections": [
+      {
+        "text": "recibe",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "receive",
+      "checkId": "hs3w",
+      "quote": "ἐπιδέχεται",
+      "quoteString": "ἐπιδέχεται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "receive"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:10, tW receive, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-6-testimony-f4qk",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "quienes dieron testimonio acerca de tí, en relación al amor, delante de la iglesia, a los cuales harás bien al encaminarlos en una manera digna de Dios;",
+    "glPhrase": "have attested",
+    "history": {
+      "attested": {
+        "dieron testimonio": 1
+      }
+    },
+    "expected": [
+      "dieron testimonio"
+    ],
+    "selections": [
+      {
+        "text": "dieron",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "testimonio",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 6
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "f4qk",
+      "quote": "ἐμαρτύρησάν",
+      "quoteString": "ἐμαρτύρησάν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:6, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-12-testimony-chhe",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Demetrio ha sido atestiguado por todos, incluso por la misma verdad. Y también nosotros testificamos, y sabes que nuestro testimonio es verdadero.\n\\p",
+    "glPhrase": "has been attested to",
+    "history": {
+      "attested": {
+        "dieron testimonio": 1
+      },
+      "have attested": {
+        "dieron testimonio": 1
+      }
+    },
+    "expected": [
+      "ha sido atestiguado"
+    ],
+    "selections": [
+      {
+        "text": "ha",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "sido",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "atestiguado",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "chhe",
+      "quote": "μεμαρτύρηται",
+      "quoteString": "μεμαρτύρηται",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-es-419-3jn-1-12-testimony-ebes",
+    "targetLang": "es-419",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Demetrio ha sido atestiguado por todos, incluso por la misma verdad. Y también nosotros testificamos, y sabes que nuestro testimonio es verdadero.\n\\p",
+    "glPhrase": "we attest",
+    "history": {
+      "attested": {
+        "dieron testimonio": 1
+      },
+      "have attested": {
+        "dieron testimonio": 1
+      },
+      "has been attested to": {
+        "ha sido atestiguado": 1
+      }
+    },
+    "expected": [
+      "testificamos"
+    ],
+    "selections": [
+      {
+        "text": "testificamos",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "ebes",
+      "quote": "μαρτυροῦμεν",
+      "quoteString": "μαρτυροῦμεν",
+      "occurrence": 1
+    },
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "es-419_glt_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  }
+]
