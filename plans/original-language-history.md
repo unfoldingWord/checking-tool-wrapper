@@ -7,6 +7,9 @@ projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where the GL bible lack
 Step 3 wired into the app 2026-11-26 (committed, tried in translationCore by the author): the
 algorithm now gets OL history from every project the selection history reads, and from the word
 alignments when that setting is on. Calibration with it is no worse (fewer wrong answers at 95+).
+Step 5 part 1 measured 2026-11-26: ordering the AI prompt's history lines by OL match (variant O1)
+gives no gain on the two shipped fine-tunes or stock Qwen3-1.7B (p ≥ 0.25 on DEV and TEST); not
+adopted.
 
 ## Goal
 
@@ -431,6 +434,22 @@ neh rut tit), id `glt` (10 NT books), fa `glt` (8), ru `rlob` (no heb, gal, ...)
   `uw-tw-qwen3-1.7b-Q5_K_M` and `uw-tw-qwen3-0.6b-Q6_K` (hard links to `~/translationCore/models`),
   and stock `qwen3-1.7b-stock-Q5_K_M`. Compare with
   `scripts/compare-prompt-variants.js -a <set>_Algorithm_ol-same.results.json`.
+- **Results (2026-11-26)**, top-1 as the app shows it (algorithm fallback), baseline → O1, with
+  the paired counts (right only in baseline / only in O1) and exact McNemar p:
+
+  | model | DEV (1,500) | TEST (835) | wrong at ≥ 80, DEV / TEST |
+  |---|---|---|---|
+  | `uw-tw-qwen3-1.7b-Q5_K_M` | 77.2% → 76.9% (10 / 5, p 0.30) | 67.3% → 66.9% (3 / 0, p 0.25) | 184 → 188 / 99 → 101 |
+  | `uw-tw-qwen3-0.6b-Q6_K` | 73.3% → 73.3% (6 / 7, p 1.0) | 63.8% → 63.6% (2 / 0, p 0.50) | 195 → 197 / 95 → 95 |
+  | `qwen3-1.7b-stock-Q5_K_M` | 38.5% → 38.4% (10 / 8, p 0.81) | 52.1% → 52.2% (2 / 3, p 1.0) | 576 → 576 / 215 → 215 |
+
+  Each run took 4 to 11 minutes per model and variant; the median time did not change.
+- **Conclusion: not adopted.** O1 changes the answer on few cases (at most 18 of the 248 DEV
+  prompts it changes), with no gain for any model; the fine-tunes lean slightly to the baseline
+  order they were trained on. Within the verse-fit group the order of the lines barely matters to
+  these models. What is left for the AI path is history it does not get today: the cross-book OL
+  history (Step 4), for which O2's added lines are the way in (it needs the runner to build that
+  history, which also re-keys the GL history), or showing the OL key in the prompt (a retrain).
 
 ## Open questions
 
