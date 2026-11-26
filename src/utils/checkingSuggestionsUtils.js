@@ -4623,6 +4623,11 @@ export function loadGlBookForSuggestions(projectsFolder, bookId, glBibleId, gate
  *   be an object (not null). `bibles` maps book id to a loaded gateway-language book. The cache
  *   is cleared when `targetLangId`, `resourceId` or `glBibleId` no longer match the current
  *   project.
+ * @param {object} [options]
+ * @param {function(Array<object>, string, string): void} [options.onBookChecks] - called with
+ *   `(checks, bookId, projectsFolder)` for each included project that has checks for `groupId`,
+ *   whether or not its gateway-language bible was found; the app counts the original-language
+ *   history with it (`countOlSelections`, plans/original-language-history.md, Step 3)
  * @returns {{selectionsForGlQuote: Object<string, Object<string, number>>,
  *   selectionsForQuoteString: Object<string, Object<string, number>>}} previous selections,
  *   tallied two ways (see {@link getSelectionsForBook}):
@@ -4665,6 +4670,7 @@ export function fetchPreviousSelectionData(
   glOwnerStr,
   data,
   glBiblesCache,
+  { onBookChecks } = {},
 ) {
   const {
     parsed,
@@ -4725,6 +4731,10 @@ export function fetchPreviousSelectionData(
 
     const checks = readJsonFile(selectionsPath);
     const foundBible = loadGlBookForSuggestions(projectsFolder, bookId, glBibleId, gatewayLanguageCode, glOwnerStr, glBiblesCache);
+
+    if (onBookChecks && checks?.length) {
+      onBookChecks(checks, bookId, projectsFolder);
+    }
 
     if (foundBible) {
       getSelectionsForBook(
@@ -4927,8 +4937,11 @@ async function getAlgorithmResultForJob(job) {
       alignedGLText,
       gatewayLanguageCode,
       selectionsData?.selections,
+      // the original-language history the app sends (plans/original-language-history.md, Step 3);
       // for measuring the confidences: `explain`, and any other options of the algorithm
-      { ...job.algorithmOptions, explain: !!job.explainAlgorithm },
+      {
+        olHistory: selectionsData?.olHistory, ...job.algorithmOptions, explain: !!job.explainAlgorithm,
+      },
     );
 
     return {
@@ -4984,6 +4997,8 @@ async function getAlgorithmResultForJob(job) {
  * @param {object} options.selectionsData - Historical translation data from previous user selections
  * @param {object} options.selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
+ * @param {object} [options.selectionsData.olHistory] - the check's original-language history, passed to the
+ *   algorithm as its `olHistory` option (`getOlHistoryForCheck`); the AI prompt does not use it
  * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
  * @param {number} [options.llmTemperature=0.1] - Sampling temperature for AI model (0.0-1.0); higher values increase

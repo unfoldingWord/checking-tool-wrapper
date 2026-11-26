@@ -4,7 +4,8 @@ Started 2026-11-26. Status: Steps 0-2 done (Step 2: a real gain on the tune proj
 direction but not significant on the held-out ones, p = 0.08). Step 4 measured 2026-11-26, before
 Step 3: OL history from the project's **other books** is a significant gain on the held-out
 projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where the GL bible lacks those books. The
-app does not pass OL history yet, so nothing changed for users. Next: Step 3, if the author agrees.
+Step 3 wired into the app 2026-11-26 (uncommitted): the algorithm now gets OL history from every
+project the selection history reads. Calibration with it is no worse (fewer wrong answers at 95+).
 
 ## Goal
 
@@ -297,17 +298,42 @@ algorithm does now:
   `algorithmCalibration.ol.options.report.txt` (chosen setting), with their `.jsonl` rows. The sweep's
   reports were kept in the session's scratch folder only.
 
-### Step 3: OL history in the app
+### Step 3: OL history in the app — done 2026-11-26 (after Step 4)
 
-- `fetchPreviousSelectionData`: return the OL tally alongside the GL one, and count it even when
-  the GL bible book is missing (H4). Look up lemmas as in Decision 2, with a cache per project
-  and book, as the GL bibles have (`loadGlBookForSuggestions`).
-- `fetchAlignmentHistoryEntries` / `getSuggestionHistory` (`alignmentHistoryUtils.js`): give
-  each alignment entry its OL key from its `topWords`, so alignment history feeds both tallies.
-- `Container.js`: pass the current check's OL key (from the `tc` OL bible) and the OL tally with
-  each request; `updateSelectionsData` updates the OL tally when the user saves a selection, as
-  it does the GL one.
-- Check the time it adds per group (lemma lookups for every project).
+- `fetchPreviousSelectionData` takes an `onBookChecks(checks, bookId, projectsFolder)` hook, called for
+  every included project with checks for the group, **whether or not its GL bible book was found**
+  (H4). `Container.js` (`loadSelectionHistory`, used by both places that read the history) counts
+  the OL tally with it: `countOlSelections` in `originalLanguageUtils.js` looks up each check's quote in
+  the newest unfoldingWord `ugnt`/`uhb` of the resources folder (`loadOlBookForSuggestions`, cached per
+  book for the session) and counts its rendering under the lemma key and the form key. The hook keeps
+  `checkingSuggestionsUtils.js` from importing `originalLanguageUtils.js`, which imports it.
+- Each request's `selectionsData.olHistory` is `getOlHistoryForCheck` (the tallies and the check's
+  keys); `getBestSelections` passes it to the algorithm as `olHistory`. The AI prompt does not use it.
+  `olSelections` is left out of `translation_data.json` (`getSelectionsDataToSave`).
+- `updateSelectionsData` updates the OL tally when a selection is saved, with
+  `updatedPreviousSelectionsData` on each key.
+- No setting: Step 4 showed a held-out gain, and calibration is no worse (below).
+- **Not done:** the alignment history (`llmUseAlignmentHistory`, off by default) still feeds only the
+  GL tally; its entries would need OL keys, and a project without a GL book would need to keep its
+  entries. A follow-up if the setting is used.
+- **Time** (your projects folder, `vi_glt_heb_book` with `vi_glt_1co_book`, 8 groups): the first group
+  took ~15 ms more (reading the Greek books), the rest under 1 ms more. Those projects have few saved
+  selections (`faith` 5, `god` 0), so this is a lower bound; the per-check cost is a verse lookup.
+- **Calibration** with OL history from other books (`LLM_OL_CROSS_ALGO=1 npm run measure:ol-cross-book`;
+  the top answer at each confidence, accuracy and wrong count; A, C, B as in Step 4):
+
+  | split | | at 100 | 95-99 | 80-94 |
+  |---|---|---|---|---|
+  | tune | A | 2,286 at 92.3% (176 wrong) | 1,194 at 84.0% (191) | 243 at 79.8% (49) |
+  | tune | B | 2,364 at 92.4% (179) | 945 at 84.3% (148) | 338 at 81.1% (64) |
+  | test | A | 613 at 92.7% (45) | 479 at 87.5% (60) | 178 at 84.3% (28) |
+  | test | B | 635 at 92.9% (45) | 393 at 87.8% (48) | 188 at 86.7% (25) |
+
+  Wrong answers at 95 or more (which skip the AI): tune 367 → 327, test 105 → 93. More answers reach
+  100 (an OL count can lift a rendering's count to `CERTAIN_MIN_HISTORY_COUNT`), and those are right
+  as often as before.
+- Unit tests: `__tests__/originalLanguageHistory.test.js` (tally, keys, loader, the hook with a
+  missing GL book) and a `getBestSelections` test in `checkingSuggestionsUtils.test.js`.
 
 ### Step 4: measure history across books and GLs (H4) — measured 2026-11-26, before Step 3
 

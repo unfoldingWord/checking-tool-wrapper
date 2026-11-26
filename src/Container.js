@@ -56,6 +56,13 @@ import {
   getSuggestionHistory,
   updateAlignmentEntrySelection,
 } from './utils/alignmentHistoryUtils';
+import {
+  countOlSelections,
+  getCheckOlKeys,
+  getOlHistoryForCheck,
+  loadOlBookForSuggestions,
+  newOlSelections,
+} from './utils/originalLanguageUtils';
 import delay from './utils/delay';
 import { getVerseText } from './helpers/verseHelpers';
 import { getQuoteAsString } from './helpers/checkAreaHelpers';
@@ -92,7 +99,14 @@ const selectionsData = {
   // the `llmUseAlignmentHistory` setting is off
   alignmentEntries: null,
   alignmentGroupId: null,
+  // the group's history keyed by the original-language quote, `{ lemma: {}, form: {} }`
+  // (plans/original-language-history.md, Step 3); not saved, and sent to the algorithm only as
+  // each check's `olHistory`
+  olSelections: null,
 };
+
+/** books of the original-language bibles read for the history, by book id */
+const olBooksCache = {};
 
 const glBiblesCache = {
   glBibleId: null,
@@ -372,22 +386,7 @@ function Container({
                   verseText,
                 };
 
-                const selectionsForWord = fetchPreviousSelectionData(
-                  projectSaveLocation,
-                  contextId,
-                  glBibles,
-                  tsvRelation,
-                  toolName,
-                  groupId,
-                  gatewayLanguageCode,
-                  glOwnerStr,
-                  data,
-                  glBiblesCache
-                );
-
-                selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
-                selectionsData.groupId = groupId;
-                selectionsData.selections = selectionsForWord;
+                loadSelectionHistory(projectSaveLocation, contextId, groupId, glOwnerStr, data);
                 updateAlignmentHistory(projectSaveLocation, groupId, glOwnerStr);
 
                 // eslint-disable-next-line no-await-in-loop
@@ -495,6 +494,7 @@ function Container({
         generateSuggestionsRestartRef.current = true;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triggerGenerateSuggestionsStart]);
 
   // Effect hook that clears verse edit mode when the check context changes.
@@ -572,13 +572,61 @@ function Container({
   }
 
   /**
-   * `selectionsData` without the alignment history, for `saveAlignmentData` (the entries can be
-   * large and are read again from the projects).
+   * Reads the selection history of `groupId` from the projects into `selectionsData`: keyed by GL
+   * phrase (`selections`) and by the original-language quote (`olSelections`, counted in the same
+   * scan, also in books whose GL bible is missing).
+   * @param {string} projectSaveLocation - path to the current project folder
+   * @param {object} contextId - the check the history is read for
+   * @param {string} groupId - the group the history is for
+   * @param {string} glOwnerStr - owner of the gateway-language bible
+   * @param {object} data - for logging
+   */
+  function loadSelectionHistory(projectSaveLocation, contextId, groupId, glOwnerStr, data) {
+    const olSelections = newOlSelections();
+    const targetLanguageId = manifest?.target_language?.id;
+
+    selectionsData.selections = fetchPreviousSelectionData(
+      projectSaveLocation,
+      contextId,
+      glBibles,
+      tsvRelation,
+      toolName,
+      groupId,
+      gatewayLanguageCode,
+      glOwnerStr,
+      data,
+      glBiblesCache,
+      {
+        onBookChecks: (checks, bookId, projectsFolder) => countOlSelections(checks,
+          loadOlBookForSuggestions(projectsFolder, bookId, olBooksCache), olSelections, targetLanguageId),
+      },
+    );
+    selectionsData.olSelections = olSelections;
+    selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
+    selectionsData.groupId = groupId;
+  }
+
+  /**
+   * The book of the original-language bible a check of the current project is in.
+   * @param {string} projectSaveLocation - path to the current project folder
+   * @param {object} checkContextId - the check
+   * @returns {object|null} - keyed by chapter then verse; null when not found
+   */
+  function getOlBookForCheck(projectSaveLocation, checkContextId) {
+    const bookId = checkContextId?.reference?.bookId;
+    return projectSaveLocation && bookId ?
+      loadOlBookForSuggestions(path.dirname(projectSaveLocation), bookId, olBooksCache) : null;
+  }
+
+  /**
+   * `selectionsData` without the alignment and original-language histories, for
+   * `saveAlignmentData` (they can be large and are read again from the projects).
    * @returns {object}
    */
   function getSelectionsDataToSave() {
-    // eslint-disable-next-line no-unused-vars
-    const { alignmentEntries, ...rest } = selectionsData;
+    const {
+      alignmentEntries, olSelections, ...rest // eslint-disable-line no-unused-vars
+    } = selectionsData;
     return rest;
   }
 
@@ -590,11 +638,15 @@ function Container({
    * @returns {object}
    */
   function getSelectionsDataForCheck(projectSaveLocation, checkContextId) {
-    const { alignmentEntries, ...rest } = selectionsData;
+    const {
+      alignmentEntries, olSelections, ...rest
+    } = selectionsData;
     return {
       ...rest,
       selections: getSuggestionHistory(selectionsData.selections, alignmentEntries,
         getProjectName(projectSaveLocation), checkContextId),
+      olHistory: getOlHistoryForCheck(olSelections, checkContextId,
+        getOlBookForCheck(projectSaveLocation, checkContextId)),
     };
   }
 
@@ -620,6 +672,16 @@ function Container({
       manifest?.target_language?.id,
       gatewayLanguageCode,
     );
+
+    const olKeys = selectionsData.olSelections &&
+      getCheckOlKeys(data?.contextId, getOlBookForCheck(tc?.projectSaveLocation, data?.contextId));
+
+    if (olKeys) { // the keys are already lowercased, so no GL code
+      updatedPreviousSelectionsData(oldSelections, selectionsData.olSelections.lemma, olKeys.lemma,
+        newSelections, manifest?.target_language?.id);
+      updatedPreviousSelectionsData(oldSelections, selectionsData.olSelections.form, olKeys.form,
+        newSelections, manifest?.target_language?.id);
+    }
 
     if (selectionsData.alignmentEntries) {
       // a saved selection wins over the check's alignment, which comes back if it is cleared
@@ -877,22 +939,7 @@ function Container({
       (data?.llmUseLocalServer ?? settingsForSuggestionsRef.current?.llmUseLocalServer));
 
     if (selectionsData?.groupId !== groupId) {
-      const selectionsForWord = fetchPreviousSelectionData(
-        projectSaveLocation,
-        contextId,
-        glBibles,
-        tsvRelation,
-        toolName,
-        groupId,
-        gatewayLanguageCode,
-        glOwnerStr,
-        data,
-        glBiblesCache
-      );
-
-      selectionsData.quoteString = contextId?.quoteString || getQuoteAsString(contextId?.quote);
-      selectionsData.groupId = groupId;
-      selectionsData.selections = selectionsForWord;
+      loadSelectionHistory(projectSaveLocation, contextId, groupId, glOwnerStr, data);
     }
     updateAlignmentHistory(projectSaveLocation, groupId, glOwnerStr);
 

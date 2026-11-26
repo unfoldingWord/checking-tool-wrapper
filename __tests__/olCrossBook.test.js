@@ -240,7 +240,7 @@ function readBook(folder) {
             algorithmOptions: olHistory?.keys ? { olHistory } : undefined,
           });
           const top = r?.bestSelections?.[0];
-          return !!top && expected.includes(normalizePhrase(optionText(top)));
+          return { right: !!top && expected.includes(normalizePhrase(optionText(top))), confidence: top?.confidence || 0 };
         };
 
         // eslint-disable-next-line no-await-in-loop
@@ -251,7 +251,10 @@ function readBook(folder) {
         const b = await run(cross);
 
         res[split].push({
-          a, c: cc, b, lost: items.some(i => !i.kept), file: m.name,
+          a: a.right, c: cc.right, b: b.right, conf: {
+            a: a.confidence, c: cc.confidence, b: b.confidence,
+          },
+          lost: items.some(i => !i.kept), file: m.name,
         });
       }
     }
@@ -271,6 +274,16 @@ function readBook(folder) {
 
         lines.push(`${split} ${label}: ${n} cases; top-1 A ${top('a')}, C ${top('c')}, B ${top('b')}; `
           + `${cmp(rows, 'b', 'c')}; ${cmp(rows, 'c', 'a')}; ${cmp(rows, 'b', 'a')}`);
+      }
+
+      // the top answers by confidence: 95 or more skips the AI, 80 or more is shown as likely
+      for (const k of ['a', 'c', 'b']) {
+        const band = (min, max = 101) => {
+          const inBand = res[split].filter(r => r.conf[k] >= min && r.conf[k] < max);
+          const right = inBand.filter(r => r[k]).length;
+          return `${inBand.length} at ${(100 * right / (inBand.length || 1)).toFixed(1)}% (wrong ${inBand.length - right})`;
+        };
+        lines.push(`  ${split} ${k.toUpperCase()}: top at 100 ${band(100)}; 95-99 ${band(95, 100)}; 80-94 ${band(80, 95)}`);
       }
     }
 

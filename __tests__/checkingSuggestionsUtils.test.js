@@ -441,4 +441,18 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm with an original-language
     const results = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', {}, { olHistory });
     expect(results[0]).toEqual({ selections: [{ text: 'fe', occurrence: 1 }], confidence: 70 }); // the form weight
   });
+
+  test('getBestSelections passes the request\'s selectionsData.olHistory to the algorithm', async () => {
+    const job = {
+      verseText: 'Por la fe Abraham obedeció y creyó',
+      targetLanguageDetails: { id: 'es' },
+      alignedGLText: 'faith',
+      gatewayLanguageCode: 'en',
+      contextId: { occurrence: 1 },
+    };
+    const [plain] = await getBestSelections({ ...job, selectionsData: { selections: {} } });
+    const [result] = await getBestSelections({ ...job, selectionsData: { selections: {}, olHistory } });
+    expect(plain.bestSelections).toEqual([]);
+    expect(result.bestSelections[0]).toEqual({ selections: [{ text: 'fe', occurrence: 1 }], confidence: 70 });
+  });
 });
