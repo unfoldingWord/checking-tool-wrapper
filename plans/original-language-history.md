@@ -403,6 +403,35 @@ neh rut tit), id `glt` (10 NT books), fa `glt` (8), ru `rlob` (no heb, gal, ...)
 - Showing the OL key in the prompt is a new format: it needs new fine-tuning data and a
   retrain (`plans/fine-tune-qwen3.md`), and is a separate plan.
 
+**Part 1 started 2026-11-26 (variants and first runs).**
+
+- **Variants** (`__tests__/helpers/promptVariants.js`; the app's prompt is unchanged):
+  - `O1`: the app's system prompt and line format; after the verse fit the history lines are
+    ordered by OL form match, exact GL key, OL lemma match, relatedness, count (Step 2's order).
+    `formatPreviousTranslations` takes the experiment-only options `olHistory` and
+    `addOlRenderings`; `getBestSelections` puts `selectionsData.olHistory` on the AI request (as it
+    does `contextId`), which only an eval override reads.
+  - `O2`: O1 plus renderings only the OL history has, shown as chosen for the GL phrase.
+- **Data:** `LLM_TRAINING_OL_HISTORY=same` gives each case its same-project OL history (Step 2's
+  "C"): `buildRunOlHistories` rebuilds it from the case's `sourceFile` with `buildOlHistories`.
+  The `#nohist` cases get none (their history was removed on purpose; given the OL history, the
+  algorithm's top-1 on DEV-NOHIST went from 0 to 249), so O1 and O2 send the baseline prompt
+  there and those sets need no AI runs. The cross-book history of Step 4 also re-keys the GL
+  history, so it would change the baseline itself; it is left for later.
+- **Algorithm with OL history** (`_Algorithm_ol-same`, which also decides which cases skip the
+  AI): DEV top-1 620 → 626 of 1,500 (none at 95+, by construction); TEST 447 → 446 of 835, at
+  95+ 207 → 196, so 639 TEST cases go to the AI instead of 628.
+- **How many prompts change** (AI-bound cases): DEV 1,500, of which 1,092 have OL counts, O1
+  changes 248 prompts (the first line in 127); TEST 639, 346, 83 (60). O2 adds lines to only
+  11 DEV cases and no TEST case: same-project OL history rarely has a rendering the GL history
+  lacks, so O2 is not run until the cross-book history is wired in.
+- **Runs:** baseline and O1 on DEV and TEST, both with `LLM_TRAINING_OL_HISTORY=same`, on the
+  span plan's server (translationCore's bundled `llama-server`, build 12651, router over
+  `llmTraining/outputs/eval-models`, port 8080; temperature 0.1, seed 42): the shipped fine-tunes
+  `uw-tw-qwen3-1.7b-Q5_K_M` and `uw-tw-qwen3-0.6b-Q6_K` (hard links to `~/translationCore/models`),
+  and stock `qwen3-1.7b-stock-Q5_K_M`. Compare with
+  `scripts/compare-prompt-variants.js -a <set>_Algorithm_ol-same.results.json`.
+
 ## Open questions
 
 - Do older projects record an OL version that matches the resource used for lemma lookup? Not
