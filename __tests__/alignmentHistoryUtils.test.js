@@ -147,7 +147,7 @@ describe('alignment history', () => {
   });
   const glBooks = {
     tit: { 1: { 1: glVerse('πίστιν', 'faith'), 2: glVerse('πίστιν', 'faith'), 3: glVerse('πίστιν', 'faith') } },
-    phm: { 1: { 5: glVerse('πίστιν', 'faith') } },
+    phm: { 1: { 5: glVerse('πίστιν', 'Faith') } },
     rut: { 1: { 1: glVerse('אֱמוּנָה', 'faithfulness') } },
   };
   const loadGlBook = jest.fn((folder, bookId) => glBooks[bookId] || null);

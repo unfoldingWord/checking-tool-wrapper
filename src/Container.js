@@ -618,6 +618,7 @@ function Container({
       alignedGLText,
       newSelections,
       manifest?.target_language?.id,
+      gatewayLanguageCode,
     );
 
     if (selectionsData.alignmentEntries) {

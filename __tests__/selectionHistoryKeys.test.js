@@ -16,7 +16,18 @@ const glVerse = {
     endTag: 'zaln-e\\*',
   }],
 };
-const glBook = { 1: { 1: glVerse, 2: glVerse, 3: glVerse } };
+// verse 4 aligns 'Faith', as at the start of a sentence
+const glVerseCapital = {
+  verseObjects: [{
+    ...glVerse.verseObjects[0],
+    children: [{ ...glVerse.verseObjects[0].children[0], text: 'Faith' }],
+  }],
+};
+const glBook = {
+  1: {
+    1: glVerse, 2: glVerse, 3: glVerse, 4: glVerseCapital,
+  },
+};
 const check = (verse, words) => ({
   contextId: {
     reference: {
@@ -41,13 +52,18 @@ describe('selection history keys are lowercase', () => {
     const byQuote = {};
 
     expect(getSelectionsForBook(checks, 'en', null, glBook, {}, byQuote, NT_ORIG_LANG, 'es-419'))
-      .toEqual({ faith: { fe: 2, 'la fe': 1 } });
-    expect(byQuote).toEqual({ 'πίστιν': { fe: 2, 'la fe': 1 } });
+      .toEqual({ faith: { 'fe': 2, 'la fe': 1 } });
+    expect(byQuote).toEqual({ 'πίστιν': { 'fe': 2, 'la fe': 1 } });
+  });
+
+  test('getSelectionsForBook lowercases the GL phrase when given the target language', () => {
+    expect(getSelectionsForBook([check(1, ['fe']), check(4, ['Fe'])], 'en', null, glBook, {}, null, NT_ORIG_LANG, 'es-419'))
+      .toEqual({ faith: { fe: 2 } });
   });
 
   test('getSelectionsForBook keeps the case without a target language (training data builders)', () => {
-    expect(getSelectionsForBook([check(1, ['Fe']), check(2, ['fe'])], 'en', null, glBook, {}))
-      .toEqual({ faith: { Fe: 1, fe: 1 } });
+    expect(getSelectionsForBook([check(1, ['Fe']), check(2, ['fe']), check(4, ['fe'])], 'en', null, glBook, {}))
+      .toEqual({ faith: { Fe: 1, fe: 1 }, Faith: { fe: 1 } });
   });
 
   test('updatedPreviousSelectionsData moves a count between lowercase keys', () => {
@@ -55,10 +71,22 @@ describe('selection history keys are lowercase', () => {
 
     updatedPreviousSelectionsData([{ text: 'Iglesia', occurrence: 1 }], saved, 'church',
       [{ text: 'La', occurrence: 1 }, { text: 'Iglesia', occurrence: 1 }], 'es-419');
-    expect(saved).toEqual({ church: { iglesia: 1, 'la iglesia': 1 } });
+    expect(saved).toEqual({ church: { 'iglesia': 1, 'la iglesia': 1 } });
 
     updatedPreviousSelectionsData([{ text: 'la', occurrence: 1 }, { text: 'iglesia', occurrence: 1 }], saved, 'church',
       [{ text: 'IGLESIA', occurrence: 1 }], 'es-419');
     expect(saved).toEqual({ church: { iglesia: 2 } });
+  });
+
+  test('updatedPreviousSelectionsData lowercases the GL phrase when given the GL language', () => {
+    const saved = { faith: { fe: 1 } };
+
+    updatedPreviousSelectionsData([{ text: 'fe', occurrence: 1 }], saved, 'Faith',
+      [{ text: 'la', occurrence: 1 }, { text: 'fe', occurrence: 1 }], 'es-419', 'en');
+    expect(saved).toEqual({ faith: { 'la fe': 1 } });
+
+    // without it the key is used as given
+    updatedPreviousSelectionsData(null, saved, 'Faith', [{ text: 'fe', occurrence: 1 }], 'es-419');
+    expect(saved).toEqual({ faith: { 'la fe': 1 }, Faith: { fe: 1 } });
   });
 });

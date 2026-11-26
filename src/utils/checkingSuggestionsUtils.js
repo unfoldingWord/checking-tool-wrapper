@@ -3916,7 +3916,8 @@ export function cleanGlQuote(glText) {
  * @param {Array<{contextId: ContextId, selections: Array<{text: string, occurrence: number}>}>} checks
  *   - checking-tool check records, e.g. the contents of
  *   `.apps/translationCore/index/{toolName}/{bookId}/{groupId}.json`; may be null or empty
- * @param {string} gatewayLanguageCode - gateway language code (currently unused)
+ * @param {string} gatewayLanguageCode - gateway language code, for lowercasing the GL keys when
+ *   `targetLangId` is given
  * @param {object} tsvRelation - TSV relation data (currently unused)
  * @param {object} bible - gateway-language book used to find the aligned text for each check
  * @param {Object<string, Object<string, number>>} selectionsForGlQuote - accumulator in the same
@@ -3930,12 +3931,14 @@ export function cleanGlQuote(glText) {
  * @param {string} [origLangId=NT_ORIG_LANG] - original-language code used to lowercase the
  *   quote string: `NT_ORIG_LANG` for New Testament books, `OT_ORIG_LANG` for Old Testament
  * @param {string} [targetLangId] - target language code; when given, each selected text is
- *   counted under {@link getSelectionHistoryKey} (lowercased), as the app's history is. When
- *   omitted, as by the training data builders, it is counted as selected
+ *   counted under {@link getSelectionHistoryKey} (lowercased), and so is each GL quote (with
+ *   `gatewayLanguageCode`), as the app's history is. When omitted, as by the training data
+ *   builders, both are counted as they are
  * @returns {Object<string, Object<string, number>>} the same `selectionsForGlQuote` object, nested
  *   two levels:
  *   - **outer key** (`glQuote`): the check's aligned gateway-language text, with punctuation
- *     removed and passed through `normalizer` (e.g. 'faith', 'by faith')
+ *     removed and passed through `normalizer` (e.g. 'faith', 'by faith'), lowercased when
+ *     `targetLangId` is given
  *   - **inner key** (`selectedText`): the `text` of each of the check's selections, joined by
  *     single spaces (e.g. 'fe', 'la fe'), lowercased when `targetLangId` is given and otherwise not
  *     normalized. A check whose `selections` is an empty array is counted under the key `''`.
@@ -3974,6 +3977,10 @@ export function getSelectionsForBook(checks, gatewayLanguageCode, tsvRelation, b
 
           if (glText) {
             glQuote = cleanGlQuote(glText);
+
+            if (gatewayLanguageCode !== undefined) { // the app's history: GL keys lowercased too
+              glQuote = getSelectionHistoryKey(glQuote, gatewayLanguageCode);
+            }
           }
         }
 
@@ -4685,11 +4692,13 @@ export function fetchPreviousSelectionData(
  * @param {object} savedSelections - the nested selection-count object being updated in place;
  *   structure: `{glPhrase: {targetRendering: count}}`
  * @param {string} alignedGLText - the outer key these selections are for: the gateway-language
- *   phrase
+ *   phrase; lowercased with {@link getSelectionHistoryKey} when `glLangId` is given
  * @param {Array<{text: string, occurrence: number}>} newSelections - the new word selections
  *   being saved; same structure as `oldSelections`
  * @param {string} [targetLangId] - target language code; both selections are counted under
  *   {@link getSelectionHistoryKey} (lowercased), as {@link fetchPreviousSelectionData} counts them
+ * @param {string} [glLangId] - gateway language code; when given, `alignedGLText` is lowercased
+ *   with {@link getSelectionHistoryKey}, as {@link fetchPreviousSelectionData} keys the history
  * @returns {void} - mutates `savedSelections` in place
  * @example
  * const savedSelections = { 'church': { 'iglesia': 5, 'la iglesia': 2 } };
@@ -4705,7 +4714,12 @@ export function updatedPreviousSelectionsData(
   alignedGLText,
   newSelections,
   targetLangId,
+  glLangId,
 ) {
+  if (glLangId !== undefined) {
+    alignedGLText = getSelectionHistoryKey(alignedGLText, glLangId);
+  }
+
   if (oldSelections?.length) {
     let savedSelectionForGL = savedSelections?.[alignedGLText];
 

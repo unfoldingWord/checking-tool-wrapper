@@ -173,7 +173,7 @@ export function getQuoteWords(contextId) {
  * @property {number|string} chapter
  * @property {number|string} verse
  * @property {string} glPhrase - the gateway-language text aligned to the check's quote, cleaned
- *   as the selection history keys are (`cleanGlQuote`)
+ *   and lowercased as the selection history keys are (`cleanGlQuote`, `getSelectionHistoryKey`)
  * @property {string} words - the target words, joined by spaces and lowercased as a history
  *   rendering (`getSelectionHistoryKey`)
  * @property {'alignment'|'selection'} source - `selection` for a saved selection in a project the
@@ -205,6 +205,7 @@ export function getAlignmentCheckKey(projectName, contextId) {
  * @param {string} options.projectName - project folder name
  * @param {object} options.glBook - the gateway-language bible book, for each check's GL phrase
  * @param {string} options.languageId - target language id
+ * @param {string} [options.glLanguageId] - gateway language id, for lowercasing the GL phrase
  * @param {function(object): string} options.readVerseText - gives the target verse text for a
  *   reference
  * @param {function(object): (Array|null)} options.readAlignments - gives the verse's alignments
@@ -216,7 +217,7 @@ export function getAlignmentCheckKey(projectName, contextId) {
  *   aligned target words or a saved selection the selection history leaves out
  */
 export function getAlignmentEntriesForChecks(checks, {
-  projectName, glBook, languageId, readVerseText, readAlignments, selectionsCounted,
+  projectName, glBook, languageId, glLanguageId, readVerseText, readAlignments, selectionsCounted,
 }) {
   const entries = [];
 
@@ -228,7 +229,8 @@ export function getAlignmentEntriesForChecks(checks, {
     }
 
     const glText = getAlignedTextFromBible(contextId, glBook);
-    const glPhrase = glText ? cleanGlQuote(glText) : '';
+    // keyed as the selection history is (lowercased)
+    const glPhrase = glText ? getSelectionHistoryKey(cleanGlQuote(glText), glLanguageId) : '';
 
     if (!glPhrase) {
       continue;
@@ -357,6 +359,7 @@ export function fetchAlignmentHistoryEntries(
       projectName,
       glBook,
       languageId,
+      glLanguageId: gatewayLanguageCode,
       readVerseText,
       readAlignments: reference => getVerseAlignments(projectPath, bookId, reference, alignmentChapters),
       selectionsCounted: sameTestament,
