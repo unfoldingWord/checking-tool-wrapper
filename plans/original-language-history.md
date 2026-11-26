@@ -9,7 +9,7 @@ algorithm now gets OL history from every project the selection history reads, an
 alignments when that setting is on. Calibration with it is no worse (fewer wrong answers at 95+).
 Step 5 part 1 measured 2026-11-26: ordering the AI prompt's history lines by OL match (variant O1)
 gives no gain on the two shipped fine-tunes or stock Qwen3-1.7B (p ≥ 0.25 on DEV and TEST); not
-adopted.
+adopted. The rest of the AI path is in `plans/original-language-history-ai.md`.
 
 ## Goal
 
@@ -398,15 +398,13 @@ neh rut tit), id `glt` (10 NT books), fa `glt` (8), ru `rlob` (no heb, gal, ...)
   GL bible in `bibleIdSort` order.
 - **Adoption:** met for going on to Step 3 (significant held-out gain, no language clearly worse).
 
-### Step 5 (later, only if Steps 2-4 help): the AI path
+### Step 5: the AI path — part 1 done 2026-11-26; the rest moved to `plans/original-language-history-ai.md`
 
-- Try ordering the history lines in `formatPreviousTranslations` by OL-key match as well. Same
-  format, so no retraining is needed for that alone, but the fine-tuned models were trained on the
-  current order, so measure the shipped models with `scripts/test-llm.sh` and on `promptEval`.
-- Showing the OL key in the prompt is a new format: it needs new fine-tuning data and a
-  retrain (`plans/fine-tune-qwen3.md`), and is a separate plan.
+Part 1 tried ordering the history lines in `formatPreviousTranslations` by OL-key match (same
+format, no retraining). What is left (OL-only renderings from other books, variant `O2`; showing
+the OL key in the prompt, a retrain) is in `plans/original-language-history-ai.md`.
 
-**Part 1 started 2026-11-26 (variants and first runs).**
+**Part 1 (variants and runs).**
 
 - **Variants** (`__tests__/helpers/promptVariants.js`; the app's prompt is unchanged):
   - `O1`: the app's system prompt and line format; after the verse fit the history lines are
@@ -447,9 +445,8 @@ neh rut tit), id `glt` (10 NT books), fa `glt` (8), ru `rlob` (no heb, gal, ...)
 - **Conclusion: not adopted.** O1 changes the answer on few cases (at most 18 of the 248 DEV
   prompts it changes), with no gain for any model; the fine-tunes lean slightly to the baseline
   order they were trained on. Within the verse-fit group the order of the lines barely matters to
-  these models. What is left for the AI path is history it does not get today: the cross-book OL
-  history (Step 4), for which O2's added lines are the way in (it needs the runner to build that
-  history, which also re-keys the GL history), or showing the OL key in the prompt (a retrain).
+  these models. What is left for the AI path is history it does not get today:
+  `plans/original-language-history-ai.md`.
 
 ## Open questions
 
