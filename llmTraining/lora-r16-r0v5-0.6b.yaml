@@ -1,0 +1,38 @@
+# R0v5 of plans/improve-single-prompt.md: R0v2's settings with the app's prompt after c074e87, the
+# lowercase history keys (2026-11-26), the Hindi, Odia and Nepali training projects, and the
+# test split of 2026-11-25 (DEFAULT_TEST_PROJECTS in __tests__/helpers/fineTuneHelpers.js).
+# R0v2's data on Qwen3-0.6B (plans/improve-single-prompt.md, Step 8A): the app's prompt + 10% no-history
+# examples on the training data of 2026-11-24, with the settings of lora-r16-d3-0.6b.yaml (the released
+# 0.6B). Data, as for R0v2:
+#   LLM_FINETUNE_INCLUDE=noRelatedWordInHistory LLM_FINETUNE_NO_HISTORY_SHARE=0.1 LLM_FINETUNE_OUT_DIR=llmTrainingData/finetune-r0v5 \
+#     npm run build:finetune-data
+# Train from the repo folder:
+#   llmTraining/.venv/bin/mlx_lm.lora --config llmTraining/lora-r16-r0v5-0.6b.yaml
+# iters = 19,793 train examples x 2 epochs / 8 = 4,948.
+model: Qwen/Qwen3-0.6B
+train: true
+data: llmTrainingData/finetune-r0v5      # train.jsonl, valid.jsonl, test.jsonl
+fine_tune_type: lora
+num_layers: -1                        # LoRA on every layer
+lora_parameters:
+  rank: 16
+  scale: 1.0                          # = lora_alpha / rank (alpha 16, as in Appendix A); 20 with lr 2e-4 broke the model
+  dropout: 0.0
+  keys: ["self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj",
+         "mlp.gate_proj", "mlp.up_proj", "mlp.down_proj"]
+mask_prompt: true                     # loss on the assistant answer only (checked by check_data.py)
+max_seq_length: 2048
+batch_size: 8
+iters: 4948
+learning_rate: 2e-4
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [2e-4, 4848, 0]          # [initial lr, decay steps (iters - warmup), final lr]
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 200
+val_batches: 50
+save_every: 200
+adapter_path: llmTraining/outputs/lora-r16-r0v5-0.6b
+seed: 3407
