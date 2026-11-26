@@ -1,7 +1,8 @@
 # Plan: original-language keys for the suggestion history
 
-Started 2026-11-26. Status: Step 0 decided (the recommendations below); Step 1 done 2026-11-26.
-Its results change Decision 1 for Step 2: see Step 1.
+Started 2026-11-26. Status: Steps 0-1 done; Step 2 measured 2026-11-26: a real gain on the tune
+projects, the same direction but not significant on the held-out ones (p = 0.08), so the adoption
+bar is not met yet. The app does not pass OL history, so nothing changed for users.
 
 ## Goal
 
@@ -243,6 +244,56 @@ algorithm does now:
   accuracy at 95-100, by language and by GL phrase length; McNemar against today.
 - **Adoption:** a significant top-1 gain on TEST with no significant loss for any language,
   and accuracy at 95+ no lower than today's ~95%.
+
+**Done 2026-11-26 (code and measurement); adoption bar not met.**
+
+- **Code** (`src/utils/checkingSuggestionsUtils.js`):
+  - `getBestTWordSelectionWithConfidenceAlgorithm` takes `olHistory` (`{ keys, lemma, form }`, the
+    shape `buildOlHistories` gives) and `olKeyWeights` (for measuring).
+  - `poolRenderings` marks each rendering counted under the check's form key (`olKey: 'form'`) or
+    only its lemma key (`'lemma'`). A rendering only the OL history has joins the pool. A rendering
+    in both keeps the larger count, not the sum, since both histories count the same checks.
+  - `scoreSuggestionFromHistory`: key weight = max(GL-key weight, OL-key weight), times
+    `exactWithoutForm` for an exact-GL-key rendering not chosen for the check's form when the check
+    has a form history. The weights are `OL_KEY_SCORE`. The certain-100 gate and the match-score
+    cap are unchanged.
+  - `explain` adds `olKey` and `olFormInHistory` to the features, only when there is an OL
+    history. Without one the options and confidences are as before (unit test).
+  - `calibrate:algorithm` takes `LLM_ALGO_OL=1` and passes each case's OL history built with
+    `buildOlHistories`.
+- **Sweep** (`calibrate:algorithm`, tune and held-out test projects as in
+  `plans/algorithm-confidence.md`; 16 settings: form 0.6-0.9, lemma 0.4-0.5, exactWithoutForm 1 or
+  0.85; also the first guess form 1, lemma 0.6):
+
+  | setting | tune top-1 | test top-1 | 95-99 band, tune / test | wrong at >= 80, tune / test | ECE top, tune / test |
+  |---|---|---|---|---|---|
+  | baseline (no OL) | 20,241 (55.3%) | 4,713 (55.7%) | 4,866 at 88.2% / 1,555 at 89.8% | 942 / 255 | 5.8 / 10.9 |
+  | form 1, lemma 0.6, exact 1 | 20,295 | 4,721 | 6,661 at 84.7% / 2,037 at 86.2% | 1,374 / 375 | 6.9 / 9.8 |
+  | form 0.6, lemma 0.5, exact 0.85 | 20,337 | 4,725 | 4,535 at 88.6% / 1,447 at 90.3% | 923 / 243 | 6.1 / 9.4 |
+  | **form 0.7, lemma 0.5, exact 0.85** | **20,343** | **4,724** | 4,535 at 88.6% / 1,447 at 90.3% | 923 / 243 | 5.5 / 8.3 |
+  | form 0.8, lemma 0.5, exact 0.85 | 20,340 | 4,724 | same | 1,364 / 366 | 5.5 / 8.6 |
+  | form 0.9, lemma 0.4, exact 0.85 | 20,360 | 4,720 | same | 1,377 / 368 | 5.9 / 9.9 |
+
+  - Form 0.8 or more puts form-only matches at 80+: wrong answers shown there rise by about half.
+  - exactWithoutForm 0.85 beats 1 everywhere (about +35 tune top-1). It takes about 330 tune
+    answers out of 95-99, and those left are right more often.
+  - Lemma 0.4 or 0.5 makes almost no difference.
+  - Chosen, now `OL_KEY_SCORE`: form 0.7, lemma 0.5, exactWithoutForm 0.85. It is 17 below the best
+    tune top-1 (form 0.9), but that setting fails the wrong-at-80 check.
+- **McNemar, top-1, chosen setting against the baseline** (cases with no suggestion count as wrong):
+  - tune: 189 won, 87 lost, p < 0.0001;
+  - test: 22 won, 11 lost, p = 0.08.
+  - By project, most of the gain is in `en_ult_jos` (+27), `vi_glt_luk` (+22), `ru_rlob_gen` (+17),
+    `ar_avt_psa` (+12) and, held out, `te_glt_luk` (+11). `vi_glt_1co` lost 2.
+- **Size of the effect:** +0.3 points on tune, +0.1 on test. That matches Step 1's proxy, which
+  expected a small gain: on this data the GL phrase already carries most of what the OL key adds.
+- **Adoption:** not met. The bar was a significant held-out gain with no loss for any language.
+  The direction agrees on both splits, and calibration improves (fewer, more accurate 95-99
+  answers), but p = 0.08. Decision needed (author): stop here, or go on to Steps 3-4, whose main
+  hope is history across GLs (H4), which this data cannot measure.
+- Files: the reports are `llmTrainingData/results/algorithmCalibration.report.txt` (baseline) and
+  `algorithmCalibration.ol.options.report.txt` (chosen setting), with their `.jsonl` rows. The sweep's
+  reports were kept in the session's scratch folder only.
 
 ### Step 3: OL history in the app
 

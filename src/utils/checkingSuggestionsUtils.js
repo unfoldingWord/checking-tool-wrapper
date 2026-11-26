@@ -1370,7 +1370,7 @@ function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
  * @param {Array<{counts: object, relatedness: number, isExact: boolean}>} rankedKeys - from `rankGlKeys`
  * @returns {Array<{rendering: string, count: number, relatedness: number, isExact: boolean}>} - most used first
  */
-function poolRenderings(rankedKeys) {
+function poolRenderings(rankedKeys, olEntries = []) {
   const pool = new Map();
 
   for (const {
@@ -1392,7 +1392,50 @@ function poolRenderings(rankedKeys) {
     }
   }
 
+  // OL evidence (plans/original-language-history.md): mark the renderings chosen for the check's OL
+  // form or lemma. A rendering only the OL history has joins the pool with no GL relatedness. Both
+  // histories count the same checks, so a rendering's count is the larger of its counts, not their sum.
+  for (const { kind, counts } of olEntries) {
+    for (const [rendering, count] of Object.entries(counts || {})) {
+      const normalizedRendering = splitIntoWords(rendering)
+        .map(word => normalizeForCompare(word)).join(' ');
+
+      if (normalizedRendering && count > 0) {
+        let entry = pool.get(normalizedRendering);
+
+        if (!entry) {
+          entry = {
+            rendering: normalizedRendering, count: 0, relatedness: 0, isExact: false,
+          };
+          pool.set(normalizedRendering, entry);
+        }
+
+        entry.count = Math.max(entry.count, count);
+        entry.olKey = entry.olKey === 'form' ? 'form' : kind;
+      }
+    }
+  }
+
   return [...pool.values()].sort((a, b) => b.count - a.count);
+}
+
+/**
+ * The OL entries for {@link poolRenderings}: the renderings counted under the check's OL form key and
+ * under its lemma key.
+ * @param {{keys: {lemma: string, form: string}, lemma: object, form: object}|null} olHistory - the
+ *   check's OL keys (`getOlKeys` in `originalLanguageUtils.js`) and the history tallied under such keys
+ * @returns {Array<{kind: string, counts: object}>} - form first
+ */
+function getOlEntries(olHistory) {
+  const keys = olHistory?.keys;
+
+  if (!keys) {
+    return [];
+  }
+  return [
+    { kind: 'form', counts: olHistory.form?.[keys.form] },
+    { kind: 'lemma', counts: olHistory.lemma?.[keys.lemma] },
+  ].filter(({ counts }) => counts && Object.keys(counts).length);
 }
 
 /**
@@ -1807,6 +1850,20 @@ const HISTORY_SCORE = {
 };
 
 /**
+ * Key weights from the original-language (OL) history (plans/original-language-history.md, Step 2), used
+ * only when the job has an OL history. A rendering chosen before for the check's OL form gets `form`,
+ * one chosen for its lemma only gets `lemma`; the GL-key weight is used when it is higher. With an OL
+ * history, an exact-GL-key rendering never chosen for the check's OL form is multiplied by
+ * `exactWithoutForm`. Fitted on the training data's tune projects (Step 2 sweep): a form weight of 0.8
+ * or more put form-only matches at 80+ and raised the wrong answers shown there by about half.
+ */
+const OL_KEY_SCORE = {
+  form: 0.7,
+  lemma: 0.5,
+  exactWithoutForm: 0.85,
+};
+
+/**
  * Times a rendering must have been chosen before for a match to be certain (confidence 100), with the
  * other conditions of {@link scoreSuggestionFromHistory}. With 5, certain answers were right 95.0% of
  * the time on the held-out projects and 95.2% on tune (3: 94.2% and 94.2%; 4: 94.5% and 95.0%),
@@ -1836,7 +1893,8 @@ const FUZZY_PASS_BELOW_CONFIDENCE = 50;
  *   key); each gap word multiplies by `gapFactor`.
  *   Word similarity of a fuzzy match is not used: on the training data it did not predict whether the
  *   match was right.
- * - GL-key weight: 1 for the exact GL key, else 0.36-0.6 by relatedness.
+ * - GL-key weight: 1 for the exact GL key, else 0.36-0.6 by relatedness. With an OL history, the
+ *   larger of that and the OL-key weight ({@link OL_KEY_SCORE}).
  * - verse checks: `repeatedInVerse`, `historyNeighbour`, `competingRendering`.
  *
  * How often the rendering was chosen is not a factor: on the training data it did not predict the right
@@ -1847,13 +1905,17 @@ const FUZZY_PASS_BELOW_CONFIDENCE = 50;
  *
  * @param {object} features - how the suggestion was found, as `explain` reports them in
  *   {@link getBestTWordSelectionWithConfidenceAlgorithm}: `path`, `exactKey`, `relatedness`, `count`,
- *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInExactKeyHistory`, `verbatimRenderings`
+ *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInExactKeyHistory`, `verbatimRenderings`,
+ *   and with an OL history `olKey` ('form', 'lemma' or '') and `olFormInHistory`
+ * @param {object} [weights] - for measuring: `extraWordFactor`, and `olKeyWeights` overriding
+ *   {@link OL_KEY_SCORE}
  * @returns {number} - 100 when certain, else 1-99
  */
-function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.extraWord } = {}) {
+function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.extraWord, olKeyWeights } = {}) {
   const {
     path, exactKey, relatedness = 0, count = 0, renderingWords = 1, matchedWords = 1, gap = 0,
     runsInVerse = 1, neighbourInExactKeyHistory = 0, verbatimRenderings = 1, extraWords = 0,
+    olKey = '', olFormInHistory = false,
   } = features;
   const repeated = runsInVerse > 1;
   const neighbour = neighbourInExactKeyHistory > 0;
@@ -1874,8 +1936,12 @@ function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.
     slice: HISTORY_SCORE.partial * coverage,
     fuzzy: (exactKey ? HISTORY_SCORE.fuzzyExactKey : 1) * coverage * gapWeight,
   }[path] ?? HISTORY_SCORE.partial * coverage;
-  const keyWeight = exactKey ? 1 :
+  const glKeyWeight = exactKey ? 1 :
     HISTORY_SCORE.relatedKeyMax * (HISTORY_SCORE.relatedKeyBase + (1 - HISTORY_SCORE.relatedKeyBase) * relatedness);
+  const olWeights = { ...OL_KEY_SCORE, ...olKeyWeights };
+  const olKeyWeight = { form: olWeights.form, lemma: olWeights.lemma }[olKey] || 0;
+  const keyWeight = Math.max(glKeyWeight, olKeyWeight)
+    * (exactKey && olFormInHistory && olKey !== 'form' ? olWeights.exactWithoutForm : 1);
   const verseWeight = (repeated ? HISTORY_SCORE.repeatedInVerse : 1)
     * (neighbour ? HISTORY_SCORE.historyNeighbour : 1)
     * (competing ? HISTORY_SCORE.competingRendering : 1);
@@ -2229,6 +2295,12 @@ function levenshteinDistance(a, b) {
  *   same either way.
  * @param {number} [options.fuzzyPassBelow=FUZZY_PASS_BELOW_CONFIDENCE] - run the fuzzy pass when no
  *   candidate's confidence reaches this; for measuring (plans/algorithm-confidence.md, Step 5)
+ * @param {{keys: {lemma: string, form: string}, lemma: object, form: object}|null} [options.olHistory] -
+ *   the original-language history (plans/original-language-history.md): the check's OL keys and
+ *   `{ key: { rendering: count } }` tallies under lemma keys and form keys. Renderings counted under
+ *   the check's keys join the pool and get an OL-key weight ({@link OL_KEY_SCORE}). Without it the
+ *   results are as before.
+ * @param {object} [options.olKeyWeights] - overrides {@link OL_KEY_SCORE}, for measuring
  * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number, features?: object}>>} -
  *   up to 3 options, best first; empty when this phrase has no history or nothing in it fits the verse.
  *   With `explain`, each option's `features` are:
@@ -2272,15 +2344,21 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   glPhrase,
   glLangCode,
   previousTranslationData,
-  { explain = false, fuzzyPassBelow = FUZZY_PASS_BELOW_CONFIDENCE } = {},
+  {
+    explain = false, fuzzyPassBelow = FUZZY_PASS_BELOW_CONFIDENCE, olHistory = null, olKeyWeights,
+  } = {},
 ) {
   // Initialize wordList, defaulting to empty array if null/undefined
   const words = wordList || [];
+  const olEntries = getOlEntries(olHistory);
+  const olFormInHistory = olEntries.some(({ kind }) => kind === 'form');
+  const scoreWeights = { olKeyWeights };
   // Score every history key against the GL phrase and pool their renderings, most used first, so the
   // strongest evidence claims its words before weaker renderings. Each rendering remembers how closely
   // its GL key matched, which caps its confidence.
   const countEntries = poolRenderings(
-    rankGlKeys(previousTranslationData, glPhrase, glLangCode)
+    rankGlKeys(previousTranslationData, glPhrase, glLangCode),
+    olEntries,
   );
 
   // Early exit if no previous translations exist or verse has no words
@@ -2359,6 +2437,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         && matchedWords.some(matched => set.has(matched)))).length,
       pointScore: score,
       cap: capForRendering(entry),
+      ...(olEntries.length ? { olKey: entry.olKey || '', olFormInHistory } : {}),
     };
   }
 
@@ -2478,7 +2557,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
   const haveConfidentCandidate = [...candidates.values()].some(candidate => scoreSuggestionFromHistory({
     ...candidate.features, verbatimRenderings, candidates: candidates.size,
-  }) >= fuzzyPassBelow);
+  }, scoreWeights) >= fuzzyPassBelow);
 
   if (!haveConfidentCandidate) {
     // Fuzzy pass: match each rendering word to similar verse words (inflected, compound or accent-variant
@@ -2543,7 +2622,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       ...candidate,
       confidence: scoreSuggestionFromHistory({
         ...candidate.features, verbatimRenderings, candidates: candidates.size,
-      }),
+      }, scoreWeights),
     }))
     .sort((a, b) => (
       b.confidence - a.confidence
