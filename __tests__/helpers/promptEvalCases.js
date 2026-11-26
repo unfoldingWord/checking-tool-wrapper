@@ -58,6 +58,11 @@ export const FINETUNE_TEST_FILES = [
   'bn_glt_2co_book_unfoldingWord_en',
   'bn_glt_2co_book_BSOJ_ar',
   'en_ult_gal_book_BSOJ_ar',
+  // rebalanced 2026-11-26: 1 Corinthians in Hindi, Odia and Vietnamese
+  'hi_glt_1co_book_unfoldingWord_en',
+  'or_glt_1co_book_ru_gl_ru',
+  'vi_glt_1co_book_unfoldingWord_en',
+  'vi_glt_1co_book_ru_gl_ru',
 ];
 
 /** settings of the sets as built for the plan; change them only on purpose, and say so in the plan */
@@ -73,7 +78,9 @@ export const NEW_DEV_FILES = [
   'en_ult_gal_book_BSOJ_ar',
   'en_ult_jos_book_ru_gl_ru',
   'en_ult_luk_book_ru_gl_ru',
-  'es-419_est_est_book_unfoldingWord_en',
+  // es-419_est_est_book_unfoldingWord_en when NEW-DEV was built (its cases keep that name); the
+  // project was renamed es-419_glt_est_book, whose file has the same 140 cases
+  'es-419_glt_est_book_unfoldingWord_en',
 ];
 
 /** settings of NEW-DEV as built for the span plan; change them only on purpose, and say so in the plan */

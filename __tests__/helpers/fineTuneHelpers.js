@@ -56,11 +56,16 @@ export const LABEL_CONFIDENCE = {
  * before then saw them; `te_glt_tit` was a test project for a few hours and is training again).
  */
 export const DEFAULT_TEST_PROJECTS = [
-  'ne_glt_*', 'bn_glt_eph', 'es-419_est_rut', 'en_ult_tit', 'ar_avd_luk',
+  // Nepali was in no training project until 2026-11-26 (ne_glt_*); then ne_glt_gal, ne_glt_1jn and
+  // ne_glt_rut went into training, so these three are listed by name and Nepali is no longer unseen
+  'ne_glt_2co', 'ne_glt_tit', 'ne_glt_eph',
+  'bn_glt_eph', 'es-419_est_rut', 'en_ult_tit', 'ar_avd_luk',
   'ru_rlob_gen', 'vi_glt_heb', 'fa_glt_1ti', 'id_glt_1ti',
   'gu_glt_1co', // Gujarati, added 2026-11-25 with gu_glt_luk for training
   // rebalanced 2026-11-25: te_glt_1co replaces te_glt_tit (back in training); bn_glt_2co, en_ult_gal
   'te_glt_1co', 'bn_glt_2co', 'en_ult_gal',
+  // rebalanced 2026-11-26: Hindi and Odia (new; their other projects train) and Vietnamese
+  'hi_glt_1co', 'or_glt_1co', 'vi_glt_1co',
 ];
 
 /**
