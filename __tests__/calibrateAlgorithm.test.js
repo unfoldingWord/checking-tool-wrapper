@@ -27,6 +27,11 @@
  *   LLM_ALGO_OPTIONS          JSON object of extra algorithm options, passed as the job's
  *                             `algorithmOptions`, e.g. '{"fuzzyPassBelow":90}'; the rows and report
  *                             then go to files named with an `.options` suffix
+ *   LLM_ALGO_OL               set to 1 to give each case its original-language history
+ *                             (plans/original-language-history.md, Step 2), built from the earlier
+ *                             cases of its group with `buildOlHistories` (the files need `olWords`,
+ *                             `npm run add:ol-words`); the rows and report then go to files named with
+ *                             an `.ol` suffix. `LLM_ALGO_OPTIONS` can then hold `olKeyWeights`
  *
  * jest is used because it is the repo's only babel runner; Node's `fs` is used because `fs-extra` is
  * mocked globally.
@@ -41,13 +46,15 @@ import {
   DEFAULT_CALIBRATION_TEST_PROJECTS, accuracyByBand, areaUnderCurve, brierScore, calibrationBand, calibrationByProject,
   expectedCalibrationError, matchesProject, projectOfFile, summarizeCalibration, wrongKind,
 } from './helpers/algorithmCalibrationHelpers';
+import { buildOlHistories } from './helpers/olHistoryHelpers';
 
 const env = process.env;
 const RUN = env.LLM_ALGO_CALIBRATE === '1';
 const DATA_DIR = path.resolve(__dirname, '..', env.LLM_ALGO_DATA_DIR || 'llmTrainingData');
 const TEST_PROJECTS = (env.LLM_ALGO_TEST_PROJECTS || '').split(/\s+/).filter(Boolean);
 const ALGO_OPTIONS = env.LLM_ALGO_OPTIONS ? JSON.parse(env.LLM_ALGO_OPTIONS) : undefined;
-const OUTPUT_NAME = ALGO_OPTIONS ? 'algorithmCalibration.options' : 'algorithmCalibration';
+const USE_OL = env.LLM_ALGO_OL === '1';
+const OUTPUT_NAME = `algorithmCalibration${USE_OL ? '.ol' : ''}${ALGO_OPTIONS ? '.options' : ''}`;
 
 /** words of an option or expected answer, normalized, without `:2` occurrence suffixes */
 const plainWords = text => normalizePhrase(text).split(/\s+/).map(word => word.replace(/:\d+$/, '')).join(' ');
@@ -198,11 +205,14 @@ describe('algorithm calibration helpers', () => {
       const savedPath = path.join(resultsDir, `${base}_Algorithm.results.json`);
       const saved = fs.existsSync(savedPath) ? JSON.parse(fs.readFileSync(savedPath, 'utf8')) : null;
       const savedById = new Map((saved || []).map(item => [item.id, item.result?.bestSelections]));
+      const olHistories = USE_OL ? buildOlHistories(testCases) : null;
 
       for (const testCase of testCases) {
+        const olHistory = olHistories?.get(testCase.id);
+        const algorithmOptions = olHistory ? { ...ALGO_OPTIONS, olHistory } : ALGO_OPTIONS;
         // eslint-disable-next-line no-await-in-loop
         const [result] = await getBestSelections({
-          ...testCaseToSelectionOptions(testCase), explainAlgorithm: true, algorithmOptions: ALGO_OPTIONS,
+          ...testCaseToSelectionOptions(testCase), explainAlgorithm: true, algorithmOptions,
         });
         const options = result?.bestSelections || [];
 
@@ -243,7 +253,8 @@ describe('algorithm calibration helpers', () => {
 
     const lines = [
       `${files.length} files; test projects: ${testProjects.join(' ')}`
-        + (ALGO_OPTIONS ? `; algorithm options ${JSON.stringify(ALGO_OPTIONS)}` : ''),
+        + (ALGO_OPTIONS ? `; algorithm options ${JSON.stringify(ALGO_OPTIONS)}` : '')
+        + (USE_OL ? '; with original-language history' : ''),
       `answers differing from the saved algorithm results: ${differsFromSaved} of ${comparedWithSaved}`
         + ` (options or their order: ${optionsDifferFromSaved}; the rest differ only in confidence)`,
     ];

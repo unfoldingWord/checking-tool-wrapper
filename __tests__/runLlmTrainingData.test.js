@@ -28,6 +28,14 @@
  *   LLM_PROMPT_VARIANT         prompt variant for single AI requests, a key of `PROMPT_VARIANTS` in
  *                              `helpers/promptVariants.js` (default: the app's prompt, no override).
  *                              The result files get `_prompt-<variant>` after the model name.
+ *   LLM_TRAINING_OL_HISTORY    `same` gives each case its original-language history from the earlier
+ *                              cases of its group in the same project (`buildRunOlHistories`; Step 2
+ *                              of plans/original-language-history.md), as `selectionsData.olHistory`:
+ *                              the algorithm uses it, as the app does, and so do the OL prompt
+ *                              variants (O1, O2). The result files get `_ol-same` after the model name,
+ *                              for the algorithm too; run the algorithm with it before the AI.
+ *   LLM_TRAINING_OL_SOURCE_DIR folder of the training files that `promptEval` cases name in
+ *                              `sourceFile` (default llmTrainingData)
  *
  * For an AI run, a file whose algorithm results are already saved (`<file>_Algorithm.results.json`,
  * from a run without `LLM_TRAINING_URL`) also gets `byAlgorithmConfidence` in its summary: the AI
@@ -48,7 +56,7 @@
 import fs from 'fs';
 import path from 'path';
 import {
-  ALGORITHM_CONFIDENCE_BANDS, installNodeAiApis, runTestCasesFromJsonAndSaveResults,
+  ALGORITHM_CONFIDENCE_BANDS, getRunDataLabel, installNodeAiApis, runTestCasesFromJsonAndSaveResults,
   summarizeByAlgorithmConfidence, topOneByThreshold,
 } from './helpers/suggestionsHelpers';
 import { getPromptVariantFromEnv, installPromptVariant } from './helpers/promptVariants';
@@ -66,6 +74,16 @@ const SETTINGS = {
   llmExtraParams: env.LLM_TRAINING_EXTRA_PARAMS ? JSON.parse(env.LLM_TRAINING_EXTRA_PARAMS) : undefined,
   llmEnableThinking: env.LLM_TRAINING_THINKING === '1' || undefined,
 };
+const OL_HISTORY_MODE = (env.LLM_TRAINING_OL_HISTORY || '').trim();
+
+if (OL_HISTORY_MODE) {
+  if (OL_HISTORY_MODE !== 'same') {
+    throw new Error(`unknown LLM_TRAINING_OL_HISTORY "${OL_HISTORY_MODE}"; known: same`);
+  }
+  SETTINGS.olHistoryMode = OL_HISTORY_MODE;
+  SETTINGS.olSourceDir = path.resolve(__dirname, '..', env.LLM_TRAINING_OL_SOURCE_DIR || 'llmTrainingData');
+  SETTINGS.olHistoryCache = new Map();
+}
 /** prompt variant of an AI run, '' for the app's prompt (plans/improve-single-prompt.md) */
 const PROMPT_VARIANT = env.LLM_TRAINING_URL ? getPromptVariantFromEnv(env) : '';
 
@@ -332,5 +350,6 @@ function formatBandTable({
  */
 function modelFileName() {
   const name = String(SETTINGS.currentModel).replace(/[^\w.-]+/g, '-');
-  return SETTINGS.runLabel ? `${name}_${SETTINGS.runLabel}` : name;
+  const withData = `${name}${getRunDataLabel(SETTINGS)}`;
+  return SETTINGS.runLabel ? `${withData}_${SETTINGS.runLabel}` : withData;
 }

@@ -1049,3 +1049,95 @@ describe('span variants C0-C5 (plans/prompt-span-experiments.md, Step 3)', () =>
     expect(marked).toBeGreaterThan(10);
   });
 });
+
+describe('OL history order (plans/original-language-history.md, Step 5)', () => {
+  const verse = 'el Dios de la paz y el Señor Dios';
+  // 'Dios' fits the verse and is for the exact key; 'Señor' fits but is for another key
+  const history = { god: { Dios: 3 }, lord: { 'Señor': 5 } };
+  const olHistory = (form, lemma = {}) => ({
+    keys: { lemma: 'θεός', form: 'θεου' }, form: { 'θεου': form }, lemma: { 'θεός': lemma },
+  });
+
+  test('without olHistory the order is the app\'s', () => {
+    expect(formatPreviousTranslations(history, 'God', 'en', verse, 'es')).toBe(
+      '"Dios" (chosen 3 times for "god")\n"Señor" (chosen 5 times for "lord")');
+    expect(formatPreviousTranslations(history, 'God', 'en', verse, 'es', { olHistory: null }))
+      .toBe(formatPreviousTranslations(history, 'God', 'en', verse, 'es'));
+  });
+
+  test('a rendering under the OL form key comes before the exact GL key', () => {
+    expect(formatPreviousTranslations(history, 'God', 'en', verse, 'es', { olHistory: olHistory({ 'señor': 2 }) })).toBe(
+      '"Señor" (chosen 5 times for "lord")\n"Dios" (chosen 3 times for "god")');
+  });
+
+  test('a rendering under the lemma key only breaks ties after the exact key', () => {
+    expect(formatPreviousTranslations(history, 'God', 'en', verse, 'es', { olHistory: olHistory({}, { 'señor': 2 }) })).toBe(
+      '"Dios" (chosen 3 times for "god")\n"Señor" (chosen 5 times for "lord")');
+    const twoOther = { lord: { 'Señor': 5 }, deity: { paz: 1 } };
+    expect(formatPreviousTranslations(twoOther, 'God', 'en', verse, 'es', { olHistory: olHistory({}, { paz: 1 }) })
+      .split('\n')[0]).toBe('"paz" (chosen 1 time for "deity")');
+  });
+
+  test('the verse fit still comes first', () => {
+    const notInVerse = { god: { Dios: 3 }, lord: { Jehová: 5 } };
+    expect(formatPreviousTranslations(notInVerse, 'God', 'en', verse, 'es', { olHistory: olHistory({ 'jehová': 2 }) }))
+      .toBe('"Dios" (chosen 3 times for "god")');
+  });
+
+  test('addOlRenderings adds renderings only the OL history has, as chosen for the GL phrase', () => {
+    const options = { olHistory: olHistory({ paz: 2 }, { paz: 4, 'señor': 1 }), addOlRenderings: true };
+    expect(formatPreviousTranslations({ god: { Dios: 3 } }, 'God', 'en', verse, 'es', options)).toBe(
+      '"paz" (chosen 2 times for "God")\n"Dios" (chosen 3 times for "god")\n"señor" (chosen 1 time for "God")');
+    // and with no GL history at all
+    expect(formatPreviousTranslations({}, 'God', 'en', verse, 'es', options).split('\n')).toHaveLength(2);
+    expect(formatPreviousTranslations({}, 'God', 'en', verse, 'es', { olHistory: options.olHistory })).toBe('');
+  });
+
+  const request = extra => ({
+    wordList: getWordList(verse),
+    targetLangCode: 'es',
+    glPhrase: 'God',
+    glLangCode: 'en',
+    previousTranslationData: history,
+    ...extra,
+  });
+
+  test('O1 and O2 send the app\'s prompt for a request without olHistory', () => {
+    expect(PROMPT_VARIANTS.O1(request())).toEqual(PROMPT_VARIANTS.baseline(request()));
+    expect(PROMPT_VARIANTS.O2(request())).toEqual(PROMPT_VARIANTS.baseline(request()));
+  });
+
+  test('O1 reorders the history lines; O2 with only OL history uses the history prompt', () => {
+    const o1 = PROMPT_VARIANTS.O1(request({ olHistory: olHistory({ 'señor': 2 }) }));
+    const baseline = PROMPT_VARIANTS.baseline(request());
+    expect(o1.messages[0]).toEqual(baseline.messages[0]);
+    expect(o1.messages[1].content).toContain('"Señor" (chosen 5 times for "lord")\n"Dios"');
+
+    const noGl = request({ previousTranslationData: {}, olHistory: olHistory({ paz: 2 }) });
+    expect(PROMPT_VARIANTS.O1(noGl)).toEqual(PROMPT_VARIANTS.baseline(noGl));
+    expect(PROMPT_VARIANTS.O2(noGl).messages[0].content).toBe(baseline.messages[0].content);
+    expect(PROMPT_VARIANTS.O2(noGl).messages[1].content).toContain('"paz" (chosen 2 times for "God")');
+  });
+
+  test('getBestSelections puts the case\'s olHistory on the AI request', async () => {
+    const originalFetch = global.fetch;
+    global.fetch = jest.fn(() => Promise.resolve({
+      ok: false, status: 500, text: () => Promise.resolve('recorded'),
+    }));
+    const builder = jest.fn(req => PROMPT_VARIANTS.baseline(req));
+    setSinglePromptOverrideForEval(builder);
+    const testCase = { ...realCases[0], history: {} };
+    const ol = olHistory({ paz: 1 });
+
+    try {
+      await quietly(() => getBestSelections(testCaseToSelectionOptions(testCase, {
+        llmQueryUrl: 'http://localhost:1234', currentModel: 'm', olHistories: new Map([[testCase.id, ol]]),
+      })));
+    } finally {
+      global.fetch = originalFetch;
+      setSinglePromptOverrideForEval(null);
+    }
+    expect(builder.mock.calls[0][0].olHistory).toEqual(ol);
+    expect(testCaseToSelectionOptions(testCase).selectionsData).toEqual({ selections: {} });
+  });
+});

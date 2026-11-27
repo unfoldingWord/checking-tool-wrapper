@@ -399,3 +399,60 @@ describe('getBestTWordSelectionWithConfidenceAlgorithm explain', () => {
   });
 });
 
+
+describe('getBestTWordSelectionWithConfidenceAlgorithm with an original-language history', () => {
+  const words = getWordList('Por la fe Abraham obedeció y creyó');
+  // 'by faith' is related to 'faith' but not the exact key
+  const history = { 'by faith': { fe: 2, creyó: 3 } };
+  const olHistory = {
+    keys: { lemma: 'πίστις', form: 'πιστει' },
+    lemma: { 'πίστις': { fe: 2 } },
+    form: { 'πιστει': { fe: 2 } },
+  };
+
+  test('gives the same options without an OL history', async () => {
+    const plain = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', history, { explain: true });
+    const withNull = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', history, { explain: true, olHistory: null });
+    expect(withNull).toEqual(plain);
+    expect(plain[0].features).not.toHaveProperty('olKey');
+  });
+
+  test('a rendering chosen for the OL form gets the form weight', async () => {
+    const plain = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', history, { explain: true });
+    const results = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', history, { explain: true, olHistory });
+    const fe = results.find(option => option.selections[0].text === 'fe');
+    const plainFe = plain.find(option => option.selections[0].text === 'fe');
+    expect(fe.features).toMatchObject({ olKey: 'form', olFormInHistory: true });
+    expect(fe.confidence).toBeGreaterThan(plainFe.confidence);
+    expect(results[0].selections).toEqual([{ text: 'fe', occurrence: 1 }]);
+  });
+
+  test('the lemma weight is used when only the lemma matches, and weights can be overridden', async () => {
+    const lemmaOnly = { ...olHistory, form: {} };
+    const results = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', history, {
+      explain: true, olHistory: lemmaOnly, olKeyWeights: { lemma: 0.9 },
+    });
+    const fe = results.find(option => option.selections[0].text === 'fe');
+    expect(fe.features).toMatchObject({ olKey: 'lemma', olFormInHistory: false });
+    expect(fe.confidence).toBe(63); // 100 x 0.9 x 0.7 (creyó, another rendering, is in the verse too)
+  });
+
+  test('a rendering only the OL history has joins the pool', async () => {
+    const results = await getBestTWordSelectionWithConfidenceAlgorithm(words, 'es', 'faith', 'en', {}, { olHistory });
+    expect(results[0]).toEqual({ selections: [{ text: 'fe', occurrence: 1 }], confidence: 70 }); // the form weight
+  });
+
+  test('getBestSelections passes the request\'s selectionsData.olHistory to the algorithm', async () => {
+    const job = {
+      verseText: 'Por la fe Abraham obedeció y creyó',
+      targetLanguageDetails: { id: 'es' },
+      alignedGLText: 'faith',
+      gatewayLanguageCode: 'en',
+      contextId: { occurrence: 1 },
+    };
+    const [plain] = await getBestSelections({ ...job, selectionsData: { selections: {} } });
+    const [result] = await getBestSelections({ ...job, selectionsData: { selections: {}, olHistory } });
+    expect(plain.bestSelections).toEqual([]);
+    expect(result.bestSelections[0]).toEqual({ selections: [{ text: 'fe', occurrence: 1 }], confidence: 70 });
+  });
+});

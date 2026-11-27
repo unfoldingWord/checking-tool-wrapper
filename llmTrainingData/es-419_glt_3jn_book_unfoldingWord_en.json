@@ -35,6 +35,15 @@
       "quoteString": "ἀγαπητέ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
     "tags": [
       "training",
       "beloved"
@@ -78,6 +87,15 @@
       "quoteString": "ἀγαπητέ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
     "tags": [
       "training",
       "beloved"
@@ -121,6 +139,15 @@
       "quoteString": "ἀγαπητέ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
     "tags": [
       "training",
       "beloved"
@@ -164,6 +191,15 @@
       "quoteString": "ἐκκλησίᾳ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐκκλησίᾳ",
+        "occurrence": 1,
+        "lemma": "ἐκκλησία",
+        "strong": "G15770",
+        "morph": "Gr,N,,,,,DFS,"
+      }
+    ],
     "tags": [
       "training",
       "church"
@@ -210,6 +246,15 @@
       "quoteString": "ἐκκλησίας",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐκκλησίας",
+        "occurrence": 1,
+        "lemma": "ἐκκλησία",
+        "strong": "G15770",
+        "morph": "Gr,N,,,,,GFS,"
+      }
+    ],
     "tags": [
       "training",
       "church"
@@ -253,6 +298,15 @@
       "quoteString": "ὑπολαμβάνειν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ὑπολαμβάνειν",
+        "occurrence": 1,
+        "lemma": "ὑπολαμβάνω",
+        "strong": "G52740",
+        "morph": "Gr,V,NPA,,,,,"
+      }
+    ],
     "tags": [
       "training",
       "receive"
@@ -299,6 +353,15 @@
       "quoteString": "ἐπιδέχεται",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐπιδέχεται",
+        "occurrence": 1,
+        "lemma": "ἐπιδέχομαι",
+        "strong": "G19260",
+        "morph": "Gr,V,IPM3,,S,"
+      }
+    ],
     "tags": [
       "training",
       "receive"
@@ -348,6 +411,15 @@
       "quoteString": "ἐπιδέχεται",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐπιδέχεται",
+        "occurrence": 1,
+        "lemma": "ἐπιδέχομαι",
+        "strong": "G19260",
+        "morph": "Gr,V,IPM3,,S,"
+      }
+    ],
     "tags": [
       "training",
       "receive"
@@ -396,6 +468,15 @@
       "quoteString": "ἐμαρτύρησάν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ἐμαρτύρησάν",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IAA3,,P,"
+      }
+    ],
     "tags": [
       "training",
       "testimony"
@@ -452,6 +533,15 @@
       "quoteString": "μεμαρτύρηται",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "μεμαρτύρηται",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IEP3,,S,"
+      }
+    ],
     "tags": [
       "training",
       "testimony"
@@ -501,6 +591,15 @@
       "quoteString": "μαρτυροῦμεν",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "μαρτυροῦμεν",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IPA1,,P,"
+      }
+    ],
     "tags": [
       "training",
       "testimony"

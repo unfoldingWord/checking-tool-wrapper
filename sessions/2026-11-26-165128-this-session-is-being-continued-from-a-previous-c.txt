@@ -1,0 +1,1638 @@
+ ▐▛███▛█   Claude Code v2.1.332
+▝▜██████▀  Opus 5.5 · Claude Team
+ ▝▝   ▝▝   ~/Development/Electron/checking-tool-wrapper
+
+
+⏺ Step 2's code and measurement are done. The result is a small gain that
+  doesn't meet the bar we set for adopting it. Nothing is committed yet.
+
+  What changed
+  - The algorithm accepts an optional OL history. A rendering chosen before for
+    the check's Greek or Hebrew form, or only its lemma, gets a key weight. The
+    weight is used only when it's higher than the GL-key weight.
+  - An exact-GL-key rendering that was never chosen for the check's form is
+    weighted down a little.
+  - Without OL history the results are the same as before (unit test). The app
+    doesn't pass OL history yet, so nothing changes for users.
+  - calibrate:algorithm has a new LLM_ALGO_OL=1 option.
+  - npm test passes: 454 passed, 37 skipped.
+
+  What the sweep showed (16 weight settings)
+  - The form weight has to stay below 0.8. At 0.8 or more, form-only matches
+    reach confidence 80+, and wrong answers shown there rise by about half.
+  - Chosen weights: form 0.7, lemma 0.5, and 0.85 for exact-GL renderings not
+    chosen for the check's form. These are now the defaults in OL_KEY_SCORE.
+  - Top-1: tune 55.3% → 55.5% (+102 cases), held-out test 55.7% → 55.8% (+11).
+  - McNemar: tune 189 won, 87 lost (p < 0.0001); test 22 won, 11 lost (p =
+    0.08).
+  - Calibration improves. Fewer answers land at 95-99 and those are right more
+    often (test 89.8% → 90.3%). Calibration error drops from 10.9 to 8.3 on
+    test.
+
+  Why it falls short: the bar was a significant gain on the held-out projects.
+  The direction matches on both splits, but p = 0.08 isn't significant. The
+  small effect fits what Step 1 found: on this data the GL phrase already
+  carries most of what the original-language key adds.
+
+  Decision for you: whether to continue to Steps 3-4.
+  - Stop here: commit what we have and leave OL history out of the app. The code
+    stays available for later measuring.
+  - Continue (my recommendation, if the effort is acceptable): the bigger
+    hoped-for gain is pooling history from projects checked with other GLs.
+    Russian or Spanish GL phrases don't match English ones, but Greek and Hebrew
+    words do. The training data can't test that, so Step 4 would need a new
+    evaluation set built from other projects.
+
+  The plan has the full tables. Shall I commit Step 2 as it stands?
+
+✻ Baked for 2m 9s · done 10:34 AM
+
+❯ /recap                                                                        
+  ⎿  We're testing whether original-language word history improves algorithm suggestions; Step 2 is done, with a small gain that isn't significant on the held-out projects. Next, you decide whether to commit Step 2 and whether to continue to the cross-GL steps.
+  ⎿  Referenced file __tests__/olHistory.test.js
+  ⎿  Referenced file __tests__/helpers/olHistoryHelpers.js
+  ⎿  Read src/utils/originalLanguageUtils.js (149 lines)
+  ⎿  Referenced file plans/original-language-history.md
+
+⏺ Compacted while idle, before the prompt cache expired · turn off with 
+  "idleCompaction": false in settings.json
+
+❯ what is the next step                                                         
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Next you need to decide whether Step 2 gets committed and whether the work
+  continues. The code and measurements are done but uncommitted, and the app
+  doesn't use any of it yet.
+
+  If we continue, I recommend doing Step 4 before Step 3. The plan lists them
+  the other way round.
+
+  - Step 3 (wire OL history into the app) is the expensive one:
+    - fetchPreviousSelectionData and the alignment history would need lemma
+      lookups for every project.
+    - Container.js would pass the check's OL key and the OL tally with each
+      request.
+    - Saving a selection would update the OL tally.
+    - Each group would take longer to load.
+
+    On Step 2's evidence, that cost isn't justified yet. The held-out gain was
+    22 cases won against 11 lost (p = 0.08), so it isn't significant.
+  - Step 4 (measure history across GLs) tests the remaining hope. Greek and
+    Hebrew words match between projects checked with different GLs (e.g. Russian
+    and English), while the GL phrases don't. That could matter much more than
+    the within-project effect we measured. The training data can't show it,
+    because each case's history comes from earlier checks in the same project.
+    Step 4 needs a new evaluation set where each check's history comes from
+    other projects in the same target language, some of them checked with
+    another GL. Then GL-only keys get compared with GL + OL keys, as in Step 2.
+
+  Suggested order:
+  1. Commit Step 2 as it stands. It doesn't change app behavior.
+  2. Build the Step 4 evaluation set and measure.
+  3. Do Step 3 only if Step 4 shows a significant gain. Otherwise, write up the
+     results in the plan and stop.
+
+  Shall I commit Step 2 and start building the Step 4 set?
+
+✻ Churned for 10s · done 3:04 PM
+
+❯ commit this and start Step 4                                                  
+
+  Searched for 1 pattern, ran 4 shell commands (ctrl+o to expand)
+
+⏺ Step 2 is committed as 2f3d9b3, and the code shows Step 4's premise is mostly
+  wrong: the history functions re-key selections with the current GL bible, so
+  history is lost only where that bible lacks the book or the aligned text. I'm
+  now measuring how much history that actually affects in your projects folder. 
+  · summary
+
+  Listed 2 directories, ran 4 shell commands · 1 failed (ctrl+o to expand)
+
+⏺ The es-419 GL bible has only six books and the fa and id ones about ten each,
+  so a Spanish-GL check in vi_glt_tit gets no history from the Vietnamese
+  projects. I'm now counting how much history that costs across the training
+  projects. · summary
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Now the coverage script: for each case it counts the other-book history the
+  app keeps and the history it loses under the case's own GL bible.
+
+⏺ Write(__tests__/olCrossGlTmp.test.js)
+  ⎿  Wrote 143 lines to __tests__/olCrossGlTmp.test.js
+       1 /* Throwaway Step 4 coverage count (plans/original-language-hist
+         ory.md). Deleted after use. */
+       2 import fs from 'fs';
+       3 import path from 'path';
+       4 import os from 'os';
+       5 import { isNT } from '../src/common/booksOfTheBible';
+       6 import { getAlignedTextFromBible } from '../src/helpers/gatewayL
+         anguageHelpers';
+       7 import { getOlKeys } from '../src/utils/originalLanguageUtils';
+       8 import { getCaseRendering } from './helpers/olHistoryHelpers';
+     … +135 lines (ctrl+o to expand)
+
+  Read 1 file, ran 1 shell command · 1 failed (ctrl+o to expand)
+
+⏺ Of 45,097 cases, 759 (1.7%) have the right answer only in history lost to
+  missing GL books, which sets the ceiling for H4 here. I'm now running the
+  algorithm on these histories to see how much of that ceiling it turns into
+  correct answers. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='__tests__/olCrossGlTmp.test.js'…)
+  ⎿  112:export function testCaseToSelectionOptions(testCase, settings = {}
+     ) {
+     113-  const {
+     … +12 lines (ctrl+o to expand)
+  ⎿  Updated __tests__/olCrossGlTmp.test.js +102 -2
+       5  import { isNT } from '../src/common/booksOfTheBible';
+       6  import { getAlignedTextFromBible } from '../src/helpers/gateway
+          LanguageHelpers';
+       7  import { getOlKeys } from '../src/utils/originalLanguageUtils';
+       8 -import { getCaseRendering } from './helpers/olHistoryHelpers'; 
+       8 +import { buildOlHistories, getCaseRendering } from './helpers/o
+         +lHistoryHelpers';                                              
+       9 +import { cleanGlQuote, getBestSelections, getSelectionHistoryKe
+         +y } from '../src/utils/checkingSuggestionsUtils';              
+      10 +import { normalizePhrase, optionText, testCaseToSelectionOption
+         +s } from './helpers/suggestionsHelpers';                       
+      11 +import { DEFAULT_CALIBRATION_TEST_PROJECTS, matchesProject } fr
+         +om './helpers/algorithmCalibrationHelpers';                    
+      12 +                                                               
+      13 +const RUN_ALGO = process.env.LLM_OL_CROSS_ALGO === '1';        
+      14 +const addTo = (tally, key, rendering) => {                     
+      15 +  if (key) {                                                   
+      16 +    tally[key] = tally[key] || {};                             
+      17 +    tally[key][rendering] = (tally[key][rendering] || 0) + 1;  
+      18 +  }                                                            
+      19 +};                                                             
+      20 +const clone = t => JSON.parse(JSON.stringify(t || {}));        
+      21 +const binomP = (w, l) => { // exact two-sided McNemar          
+      22 +  const n = w + l; const k = Math.min(w, l);                   
+      23 +  let p = 0; let c = 1;                                        
+      24 +  for (let i = 0; i <= k; i++) { p += c; c = c * (n - i) / (i +
+         + 1); }                                                         
+      25 +  return Math.min(1, 2 * p / 2 ** n);                          
+      26 +};                                                             
+      27 
+      28  const RUN = process.env.LLM_OL_CROSS === '1';
+      29  const DATA = path.join(__dirname, '../llmTrainingData');
+     ...
+       97 
+       98          for (const c of s.cases) {
+       99            const glText = glBook && getAlignedTextFromBible(c.c
+           ontextId, glBook);
+      100 +          const keys = getOlKeys(c.olWords, s.book);          
+      101            (byGroup[c.groupId] = byGroup[c.groupId] || []).push
+           ({
+      102              rendering: getCaseRendering(c),
+      103              kept: !!glText,
+       85 -            form: getOlKeys(c.olWords, s.book)?.form,         
+      104 +            glKey: glText ? getSelectionHistoryKey(cleanGlQuot
+          +e(glText), m.glLang) : null,                                  
+      105 +            form: keys?.form,                                 
+      106 +            lemma: keys?.lemma,                               
+      107            });
+      108          }
+      109        }
+     … +90 lines (ctrl+o to expand)
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ The algorithm comparison is running in the background. It tries three
+  histories on the 18,395 cases that have other-book history:
+
+  - A: GL keys only, from the same project plus the other books the GL bible can
+    key. This is what the app has today.
+  - C: A plus OL history from the same project. This is Step 2.
+  - B: C plus OL history from every other book, including the ones the GL bible
+    can't key.
+
+  B against C isolates H4. I'll report when it finishes.
+
+✻ Brewed for 2m 46s · done 3:09 PM
+
+⏺ Background command "Run algorithm comparison across books in background"
+  failed with exit code 1
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Bash(sed -i '' "s/  test('counts', () => {/  test('counts', async () => {/"
+      __tests__/olCrossGlTmp.test.js && grep -n "test('counts'"
+      __tests__/olCrossGlTmp.test.js)
+  ⎿  46:  test('counts', async () => {
+  ⎿  Updated __tests__/olCrossGlTmp.test.js +1 -1
+      43  }
+      44 
+      45  (RUN ? describe : describe.skip)('cross-GL coverage', () => {
+      46 -  test('counts', () => {                                       
+      46 +  test('counts', async () => {                                 
+      47      const files = fs.readdirSync(DATA).filter(n => n.endsWith('
+          .json'));
+      48      const meta = files.map(name => {
+      49        const cases = JSON.parse(fs.readFileSync(path.join(DATA,
+          name), 'utf8'));
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The first run failed straight away with a syntax error in the measuring
+  script: await was used outside an async function. That's fixed, and the
+  comparison is running again in the background. I'll report the results when it
+  finishes.
+
+✻ Cooked for 10s · done 3:09 PM
+⏺ Background command "Rerun algorithm comparison in background" completed (exit
+  code 0)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Strong result. Let me record it in the plan.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='plans/original-language-history.md'…)
+  ⎿  4:direction but not significant on the held-out ones, p = 0.08). Step
+     4 measured 2026-11-26, before
+     229:  would come from history the GL keys can't use (H4, Step 4), whic
+     … +3 lines (ctrl+o to expand)
+  ⎿  Updated plans/original-language-history.md +57 -10
+       1  # Plan: original-language keys for the suggestion history
+       2 
+       3 -Started 2026-11-26. Status: Steps 0-1 done; Step 2 measured 202
+         -6-11-26: a real gain on the tune                               
+       4 -projects, the same direction but not significant on the held-ou
+         -t ones (p = 0.08), so the adoption                             
+       5 -bar is not met yet. The app does not pass OL history, so nothin
+         -g changed for users.                                           
+       3 +Started 2026-11-26. Status: Steps 0-2 done (Step 2: a real gain
+         + on the tune projects, the same                                
+       4 +direction but not significant on the held-out ones, p = 0.08). 
+         +Step 4 measured 2026-11-26, before                             
+       5 +Step 3: OL history from the project's **other books** is a sign
+         +ificant gain on the held-out                                   
+       6 +projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where 
+         +the GL bible lacks those books. The                            
+       7 +app does not pass OL history yet, so nothing changed for users.
+         + Next: Step 3, if the author agrees.                           
+       8 
+       9  ## Goal
+      10 
+     ...
+      309    it does the GL one.
+      310  - Check the time it adds per group (lemma lookups for every pr
+           oject).
+      311 
+      310 -### Step 4: measure history across GLs (H4)                   
+      312 +### Step 4: measure history across books and GLs (H4) — measur
+          +ed 2026-11-26, before Step 3                                  
+      313 
+      312 -- The training cases' history comes from earlier checks of the
+          - same project, so they can't                                  
+      313 -  show H4. Build a set like the app's history instead: for eac
+          -h check, history from **other**                               
+      314 -  projects of the same target language, some checked with anot
+          -her GL (the training data has such                            
+      315 -  pairs, e.g. `ar_avd_luk_book_ru_gl_ru` and `ar_avd_luk_book_
+          -unfoldingWord_en`, but those are the                          
+      316 -  same project and can't be history for each other).          
+      317 -- Compare GL keys only against GL + OL keys, as in Step 2.    
+      314 +Done first, since Step 3 is the costly step and was only worth
+          + doing if this showed a gain.                                 
+      315 +                                                              
+      316 +**H4's premise was partly wrong.** The app does not key anothe
+          +r project's selections by the GL                              
+      317 +that project was checked with: `fetchPreviousSelectionData` an
+          +d `fetchAlignmentHistoryEntries`                              
+      318 +re-key every project's checks with the **current** GL bible (`
+          +loadGlBookForSuggestions` +                                   
+      319 +`getAlignedTextFromBible` on each check's `contextId`). So a p
+          +roject checked with a Russian GL                              
+      320 +already gets English keys when checking with English. History 
+          +is lost only when the current GL                              
+      321 +bible has **no such book** (`if (foundBible)`) or no aligned t
+          +ext for the check's OL words, or when                         
+      322 +the GL bible's text is in another language (Arabic `arst` has 
+          +English text in most books, see                               
+      323 +CLAUDE.md). OL keys work in all those cases.                  
+      324 +                                                              
+      325 +How much is lost, under each case's own GL bible (other books 
+          +of the same target language and                               
+      326 +resource id, same testament, as the selection history; one tra
+          +ining file per book as the source of                          
+      327 +its checks; a throwaway count, not committed):                
+      328 +                                                              
+     … +39 lines (ctrl+o to expand)
+
+⏺ Step 4 is measured, and unlike Step 2 it clears the adoption bar on the
+  held-out projects.
+
+  First, a correction to the plan's premise for H4. The app doesn't key another
+  project's history by the GL that project was checked with. It re-keys every
+  project with the GL you're checking with now. So history is lost only when
+  that GL's bible doesn't have the other book, or can't align the check's words.
+  The es-419 GL bible has only 6 books; the id and fa ones have about 10 and 8;
+  ru lacks heb and gal. en ult and ar avd lose almost nothing.
+
+  Coverage: of 45,097 cases, 18,395 have history from other books of the same
+  target language. That history is partly lost for 2,052 cases and entirely lost
+  for 1,446. In 759 cases the right answer is only in the lost history.
+
+  Algorithm top-1 on the cases with other-book history, using Step 2's weights:
+  - A: GL keys only, from the same project plus the other books the GL bible can
+    key. This is what the app has today.
+  - C: A plus OL history from the same project (Step 2).
+  - B: C plus OL history from every other book.
+
+  ┌───────────────────────┬────────┬───────┬───────┬───────┬────────────────┐
+  │         split         │ cases  │   A   │   C   │   B   │ B vs C (won /  │
+  │                       │        │       │       │       │     lost)      │
+  ├───────────────────────┼────────┼───────┼───────┼───────┼────────────────┤
+  │ tune                  │ 14,680 │ 54.0% │ 54.4% │ 54.8% │ 103 / 41, p =  │
+  │                       │        │       │       │       │ 2e-7           │
+  ├───────────────────────┼────────┼───────┼───────┼───────┼────────────────┤
+  │ held-out test         │ 3,715  │ 60.2% │ 60.3% │ 60.8% │ 25 / 7, p =    │
+  │                       │        │       │       │       │ 0.002          │
+  ├───────────────────────┼────────┼───────┼───────┼───────┼────────────────┤
+  │ test, cases with lost │ 227    │ 63.0% │ 63.0% │ 69.2% │ 15 / 1         │
+  │  history              │        │       │       │       │                │
+  └───────────────────────┴────────┴───────┴───────┴───────┴────────────────┘
+
+  - The gain lands where H4 predicted. Most wins are in the files checked with
+    ru, es-419, id or fa GLs.
+  - No language came out clearly worse. The worst file was an English-GL
+    Gujarati file at 0 won, 3 lost.
+  - Calibration isn't measured yet. I haven't checked wrong answers at
+    confidence 80+ or the 95-99 band with cross-book history. That should be
+    done with calibrate:algorithm once Step 3 is wired, before shipping.
+  - Limits of this test:
+    - The other books' checks come from the training files, not from every check
+      in those projects.
+    - The check's own history is still only its earlier checks.
+    - Other books are keyed with the case's GL bible, which may not be the bible
+      the app would pick.
+
+  The results and these caveats are in Step 4 of
+  plans/original-language-history.md. Nothing is committed. The plan edit and
+  the throwaway script __tests__/olCrossGlTmp.test.js are both uncommitted.
+  Detailed output is in
+  /private/tmp/claude-509/-Users-blm0-Development-Electron-checking-tool-wrapper
+  /ee0b65ae-9dbe-47bf-b36a-7c90d347f23e/scratchpad/olCrossGlAlgo.txt.
+
+  Next is Step 3: wiring OL history into the app.
+  - fetchPreviousSelectionData and the alignment history would also build lemma
+    and form tallies, including from books the GL bible lacks.
+  - Container.js would pass the check's OL keys with each request.
+  - Saving a selection would update the OL tallies too.
+
+  Shall I commit the plan, keep the script as a proper measure: command or
+  delete it, and start Step 3?
+
+✻ Baked for 39s · done 3:10 PM
+
+❯ commit this and start Step 3                                                  
+
+⏺ Bash(git mv -f __tests__/olCrossGlTmp.test.js __tests__/olCrossBook.test.js
+      2>/dev/null || mv __tests__/olCrossGlTmp.test.js
+      __tests__/olCrossBook.test.js; python3 -…)
+  ⎿  package.json:34:    "measure:ol-cross-book": "cross-env LLM_OL_CROSS=1
+      jest __tests__/olCrossBook.test.js --testTimeout=
+     CLAUDE.md:24:- `npm run add:ol-words` / `npm run measure:ol-history` —
+     … +5 lines (ctrl+o to expand)
+  ⎿  Updated CLAUDE.md +1 -1
+      21  - `npm run check:llm-training-data` — finds the cases in `llmTr
+          ainingData/*.json` that may not help train the AI (e.g. no expe
+          cted word in the history, exactly or as another form by `wordSi
+          milarity`, or an answer unusually long for its language: over t
+          hat language's 99th percentile from `getAnswerLengthLimits` and
+           over the longest history rendering + 2 words; languages space
+          words differently, so there is no fixed word limit) and saves t
+          hem, grouped by file, in `llmTrainingData/results/unhelpfulTrai
+          ningCases.json`. The reasons are `UNHELPFUL_REASONS` in `__test
+          s__/helpers/suggestionsHelpers.js`; the unit tests in `__tests_
+          _/findUnhelpfulTrainingCases.test.js` run in `npm test`, the sc
+          an does not.
+      22  - `scripts/rebuild-llm-training-data.sh [-n] [-c] [-a] [-f]` —
+          rebuilds every file in `llmTrainingData` from the translationCo
+          re projects with `__tests__/buildLlmTrainingData.test.js` (`-n`
+           dry run, `-c`/`-a` refresh the unhelpful-case and algorithm re
+          sults). A project's translationWords checks are for the GL last
+           selected in translationCore, so files for another GL are skipp
+          ed unless `-f`; the builder refuses them too unless `LLM_TRAINI
+          NG_ALLOW_GL_MISMATCH=1`. To build a file for another GL, open t
+          he project in translationCore with that GL selected for transla
+          tionWords first. The GL phrases come from the first GL bible (i
+          n `bibleIdSort` order) whose book is aligned, as the app does f
+          or a check's GL phrase; `LLM_TRAINING_GL_BIBLE` names one inste
+          ad. Check new files' GL phrases are in the GL's language: Arabi
+          c `arst` v4.9_BSOJ has English text aligned in most books (Arab
+          ic only in a few, e.g. Titus, 1 Timothy), so the Arabic-GL file
+          s use `avd`. The history in the case files is counted as the ap
+          p counts it: GL phrases and renderings lowercased with `getSele
+          ctionHistoryKey` (the builder passes the target language to `ge
+          tSelectionsForBook`); files built before 2026-11-26 were conver
+          ted in place with `LLM_TRAINING_LOWERCASE_HISTORY=1` (`toAppSel
+          ectionHistory`), which also converts the evaluation sets in `ll
+          mTrainingData/promptEval`. `plans/fine-tune-qwen3.md` holds the
+           fine-tuning plan that uses this data.
+      23  - `npm run calibrate:algorithm` — measures the algorithm's conf
+          idences against the training data (`plans/algorithm-confidence.
+          md`): runs every case in `llmTrainingData/*.json` through `getB
+          estSelections` with `explainAlgorithm`, splits the projects int
+          o tune and held-out test, and prints top-1, calibration error,
+          Brier score, AUC, accuracy by confidence band and at 100, and p
+          er-project accuracy; writes `llmTrainingData/results/algorithmC
+          alibration.jsonl` (one row per option, with its features) and `
+          .report.txt`, and counts answers that differ from the saved alg
+          orithm results. Settings are `LLM_ALGO_*` variables in the head
+          er of `__tests__/calibrateAlgorithm.test.js` (`LLM_ALGO_OPTIONS
+          ` passes algorithm options, e.g. `fuzzyPassBelow`); its helper
+          unit tests run in `npm test`. `__tests__/calibrateAiConfidence.
+          test.js` (with `LLM_ALGO_AI_MODEL`) rescores saved AI answers w
+          ith `scoreSelectionsFromHistory`, which the app does not use (A
+          I confidences stay as the AI gives them).
+      24 -- `npm run add:ol-words` / `npm run measure:ol-history` — Step 
+         -1 of `plans/original-language-history.md` (original-language ke
+         -ys for the history). `add:ol-words` adds `olWords` (the quote's
+         - Greek or Hebrew words with lemma, Strong's number and morpholo
+         -gy, from the newest unfoldingWord `ugnt`/`uhb` in `~/translatio
+         -nCore/resources`) to every case file in `llmTrainingData` and `
+         -llmTrainingData/promptEval`; `buildLlmTrainingData.test.js` wri
+         -tes it too. `measure:ol-history` builds each case's lemma- and 
+         -form-keyed histories from the earlier cases of its group (`buil
+         -dOlHistories` in `__tests__/helpers/olHistoryHelpers.js`) and w
+         -rites `llmTrainingData/results/olHistoryMeasure.txt`/`.json`. T
+         -he lookup helpers are in `src/utils/originalLanguageUtils.js`; 
+         -the app does not use them yet.                                 
+      24 +- `npm run add:ol-words` / `npm run measure:ol-history` — Step 
+         +1 of `plans/original-language-history.md` (original-language ke
+         +ys for the history). `add:ol-words` adds `olWords` (the quote's
+         + Greek or Hebrew words with lemma, Strong's number and morpholo
+         +gy, from the newest unfoldingWord `ugnt`/`uhb` in `~/translatio
+         +nCore/resources`) to every case file in `llmTrainingData` and `
+         +llmTrainingData/promptEval`; `buildLlmTrainingData.test.js` wri
+         +tes it too. `measure:ol-history` builds each case's lemma- and 
+         +form-keyed histories from the earlier cases of its group (`buil
+         +dOlHistories` in `__tests__/helpers/olHistoryHelpers.js`) and w
+         +rites `llmTrainingData/results/olHistoryMeasure.txt`/`.json`. `
+         +npm run measure:ol-cross-book` (Step 4; `LLM_OL_CROSS_ALGO=1` a
+         +lso runs the algorithm) measures OL history from a project's ot
+         +her books, which the GL bible cannot always key (header of `__t
+         +ests__/olCrossBook.test.js`). The lookup helpers are in `src/ut
+         +ils/originalLanguageUtils.js`; the app does not use them yet.  
+      25  - `npm run build:prompt-eval-cases` — builds the seeded evaluat
+          ion sets of `plans/improve-single-prompt.md` in `llmTrainingDat
+          a/promptEval/` (`dev`, `dev-nohist`, `test`, `test-nohist` case
+           files, `meta/manifest.json`): DEV is 1,500 cases the app sends
+           to the AI from projects outside the fine-tune's test files; TE
+          ST is every case of those test files. Run the algorithm on them
+           afterwards (`LLM_TRAINING_DATA_DIR=llmTrainingData/promptEval
+          npm run run:llm-training-data`) for `scripts/compare-prompt-var
+          iants.js`.
+      26  - `npm run build:finetune-data` — builds the fine-tuning data o
+          f `plans/fine-tune-qwen3.md` (Steps 2-3) in `llmTrainingData/fi
+          netune/` (git-ignored): `train.jsonl`, `valid.jsonl` and `test.
+          jsonl` in the `messages` format `mlx_lm.lora` reads, matching `
+          *.meta.jsonl` and `manifest.json` (counts, drops, round-trip fa
+          ilures, cases to hand-check). Each example is the exact prompt
+          the app sends (`buildTranslationOptionsPrompt` + `applyThinking
+          Directive`), split by target project, filtered with the algorit
+          hm results and `findUnhelpfulTrainingCases`; run `npm run run:l
+          lm-training-data` (algorithm) first. Settings are `LLM_FINETUNE
+          _*` variables in the header of `__tests__/buildFineTuneData.tes
+          t.js`, whose parity test (in `npm test`) fails if the app's pro
+          mpt changes without the exporter. `LLM_FINETUNE_NO_HISTORY_SHAR
+          E` (default 0; the current models use 0.1) adds that share of t
+          rain and valid examples again with no history; `LLM_FINETUNE_PR
+          OMPT_VARIANT` builds the examples with a prompt variant of `pro
+          mptVariants.js` (parity-tested for `X4b` and `N34`; neither bea
+          t the app's prompt once trained, `plans/improve-single-prompt.m
+          d` Step 7).
+      27  - `llmTraining/` — the Python side of that fine-tune (Apple MLX
+          , `mlx-lm`; its own `.venv`, git-ignored, as are `outputs/`, `.
+          venv-gguf/` and `.llama.cpp/`). `llmTraining/README.md` has set
+          up, training, fusing and the GGUF conversion for Windows and Li
+          nux. `check_data.py` checks the exported data renders like the
+          app's prompt (run it after `build:finetune-data`); the `*.yaml`
+           files are the training runs of the plans; the current ones are
+           `lora-r16-r0v2.yaml` (Qwen3-1.7B), `lora-r16-r0v2-0.6b.yaml` a
+          nd `lora-r16-r0v2-4b.yaml` (Qwen3-4B-Instruct-2507, which has n
+          o thinking mode, so its trained part has no empty think block),
+           all LoRA r16 on the data built with `LLM_FINETUNE_INCLUDE=noRe
+          latedWordInHistory LLM_FINETUNE_NO_HISTORY_SHARE=0.1 LLM_FINETU
+          NE_OUT_DIR=llmTrainingData/finetune-r0v2` (the first release, `
+          d3`, used `lora-r16-d3*.yaml`); `train_full.py` runs a full fin
+          e-tune in float32; `handcheck.py` makes a local page for hand-c
+          hecking a sample of a case group. On the held-out TEST files (8
+          35 checks; `llmTrainingData/promptEval/test*.json`), with histo
+          ry / with none: 1.7B 72.3% / 65.0%, 0.6B 67.7% / 49.7%, 4B 73.7
+          % / 69.2% at twice the 1.7B's time, against d3 1.7B 67.4% / 54.
+          3% and stock `qwen3-4b-2507` 58.6% / 36.0% (`plans/improve-sing
+          le-prompt.md`, Step 8A). Release builds (`llmTraining/make_rele
+          ase.sh`, which takes the run name from `RUN`, default `r0v2`; c
+          ards in `llmTraining/model-card*/`): 1.7B MLX 5-bit for Mac and
+           GGUF Q5_K_M for Windows and Linux; 0.6B MLX 6-bit and GGUF Q6_
+          K for computers that cannot run the 1.7B; 4B MLX 5-bit and GGUF
+           Q5_K_M as a large option. The 4B files are over GitHub's 2 GiB
+           limit per release file, so the script leaves them out of `gith
+          ub-release/` (publish them on Hugging Face). Large models are s
+          aved in shards by `mlx_lm.fuse`: link every `*.safetensors` whe
+          n staging the GGUF conversion. Score GGUF builds through plain
+          llama.cpp (`llama-server`): LM Studio's llama.cpp engine on the
+           Mac gives lower, different answers for Qwen3-1 … [+333 chars]
+  ⎿  Created __tests__/olCrossBook.test.js +289
+        1 +/* eslint-env jest */                                         
+        2 +/**                                                           
+        3 + * Step 4 of plans/original-language-history.md: original-lang
+          +uage (OL) history from a project's                            
+        4 + * other books.                                               
+        5 + *                                                            
+        6 + * For each case file, the other books of the same target lang
+          +uage and resource id (same testament,                         
+        7 + * as the app's selection history; one case file per book as t
+          +he source of its checks) are re-keyed                         
+        8 + * with the case file's GL bible from `~/translationCore/resou
+          +rces`, as `fetchPreviousSelectionData`                        
+        9 + * re-keys other projects with the current GL. Checks the GL b
+          +ible cannot key (no such book, no                             
+       10 + * aligned text) are the history the app loses today. Writes `
+          +olCrossBookCoverage.txt`: per file, the                       
+       11 + * other-book history kept and lost, and the cases whose answe
+          +r is only in the lost history.                                
+       12 + *                                                            
+       13 + * With LLM_OL_CROSS_ALGO=1 it also runs the algorithm three w
+          +ays on the cases with other-book                              
+       14 + * history and writes `olCrossBookAlgo.txt` (top-1 and exact M
+          +cNemar p, tune and held-out test):                            
+       15 + *   A: GL history (the case's own plus the other books' keyed
+          + checks), as the app has;                                     
+       16 + *   C: A + OL history from the same project (Step 2);        
+       17 + *   B: C + OL history from every other book, keyed or not.   
+       18 + *                                                            
+       19 + *   npm run measure:ol-cross-book                         (LL
+          +M_OL_CROSS=1, coverage only)                                  
+       20 + *   LLM_OL_CROSS_ALGO=1 npm run measure:ol-cross-book     (al
+          +so the algorithm, ~10 minutes)                                
+       21 + *   OUT_DIR=<folder>                                      (de
+          +fault llmTrainingData/results)                                
+       22 + *                                                            
+       23 + * Skipped in `npm test`. Node's `fs` is used because `fs-extr
+          +a` is mocked globally.                                        
+       24 + */                                                           
+       25 +import fs from 'fs';                                          
+       26 +import path from 'path';                                      
+       27 +import os from 'os';                                          
+       28 +import { isNT } from '../src/common/booksOfTheBible';         
+       29 +import { getAlignedTextFromBible } from '../src/helpers/gatewa
+          +yLanguageHelpers';                                            
+       30 +import { getOlKeys } from '../src/utils/originalLanguageUtils'
+          +;                                                             
+       31 +import {                                                      
+       32 +  cleanGlQuote, getBestSelections, getSelectionHistoryKey,    
+       33 +} from '../src/utils/checkingSuggestionsUtils';               
+       34 +import { buildOlHistories, getCaseRendering } from './helpers/
+          +olHistoryHelpers';                                            
+       35 +import {                                                      
+       36 +  normalizePhrase, optionText, testCaseToSelectionOptions,    
+       37 +} from './helpers/suggestionsHelpers';                        
+       38 +import { DEFAULT_CALIBRATION_TEST_PROJECTS, matchesProject } f
+          +rom './helpers/algorithmCalibrationHelpers';                  
+       39 +                                                              
+       40 +const RUN_ALGO = process.env.LLM_OL_CROSS_ALGO === '1';       
+     … +249 lines (ctrl+o to expand)
+  ⎿  Deleted __tests__/olCrossGlTmp.test.js -243
+        1 -/* Throwaway Step 4 coverage count (plans/original-language-hi
+          -story.md). Deleted after use. */                              
+        2 -import fs from 'fs';                                          
+        3 -import path from 'path';                                      
+        4 -import os from 'os';                                          
+        5 -import { isNT } from '../src/common/booksOfTheBible';         
+        6 -import { getAlignedTextFromBible } from '../src/helpers/gatewa
+          -yLanguageHelpers';                                            
+        7 -import { getOlKeys } from '../src/utils/originalLanguageUtils'
+          -;                                                             
+        8 -import { buildOlHistories, getCaseRendering } from './helpers/
+          -olHistoryHelpers';                                            
+        9 -import { cleanGlQuote, getBestSelections, getSelectionHistoryK
+          -ey } from '../src/utils/checkingSuggestionsUtils';            
+       10 -import { normalizePhrase, optionText, testCaseToSelectionOptio
+          -ns } from './helpers/suggestionsHelpers';                     
+       11 -import { DEFAULT_CALIBRATION_TEST_PROJECTS, matchesProject } f
+          -rom './helpers/algorithmCalibrationHelpers';                  
+       12 -                                                              
+       13 -const RUN_ALGO = process.env.LLM_OL_CROSS_ALGO === '1';       
+       14 -const addTo = (tally, key, rendering) => {                    
+       15 -  if (key) {                                                  
+       16 -    tally[key] = tally[key] || {};                            
+       17 -    tally[key][rendering] = (tally[key][rendering] || 0) + 1; 
+       18 -  }                                                           
+       19 -};                                                            
+       20 -const clone = t => JSON.parse(JSON.stringify(t || {}));       
+       21 -const binomP = (w, l) => { // exact two-sided McNemar         
+       22 -  const n = w + l; const k = Math.min(w, l);                  
+       23 -  let p = 0; let c = 1;                                       
+       24 -  for (let i = 0; i <= k; i++) { p += c; c = c * (n - i) / (i 
+          -+ 1); }                                                       
+       25 -  return Math.min(1, 2 * p / 2 ** n);                         
+       26 -};                                                            
+       27 -                                                              
+       28 -const RUN = process.env.LLM_OL_CROSS === '1';                 
+       29 -const DATA = path.join(__dirname, '../llmTrainingData');      
+       30 -const RES = path.join(os.homedir(), 'translationCore/resources
+          -');                                                           
+       31 -                                                              
+       32 -function readBook(folder) {                                   
+       33 -  if (!fs.existsSync(folder)) {                               
+       34 -    return null;                                              
+       35 -  }                                                           
+       36 -                                                              
+       37 -  const book = {};                                            
+       38 -                                                              
+       39 -  for (const f of fs.readdirSync(folder).filter(n => /^\d+\.js
+          -on$/.test(n))) {                                              
+       40 -    book[parseInt(f, 10)] = JSON.parse(fs.readFileSync(path.jo
+          -in(folder, f), 'utf8'));                                      
+     … +203 lines (ctrl+o to expand)
+  ⎿  Updated package.json +1
+      31      "calibrate:algorithm": "cross-env LLM_ALGO_CALIBRATE=1 jest
+           __tests__/calibrateAlgorithm.test.js",
+      32      "add:ol-words": "cross-env LLM_OL_ADD_WORDS=1 jest __tests_
+          _/olHistory.test.js",
+      33      "measure:ol-history": "cross-env LLM_OL_MEASURE=1 jest __te
+          sts__/olHistory.test.js",
+      34 +    "measure:ol-cross-book": "cross-env LLM_OL_CROSS=1 jest __t
+         +ests__/olCrossBook.test.js --testTimeout=3600000",             
+      35      "fix": "eslint ./src --fix",
+      36      "bump:beta": "npm version prerelease --preid=beta --no-git-
+          tag-version",
+      37      "prebuild": "node -e \"require('fs').rmSync('lib', { recurs
+          ive: true, force: true })\"",
+
+⏺ Bash(sed -i '' 's/its checks; a throwaway count, not committed):/its checks;
+      `npm run measure:ol-cross-book`, `__tests__\/olCrossBook.test.js`):/'
+      plans/original-lan…)
+  ⎿  327:its checks; `npm run measure:ol-cross-book`, `__tests__/olCrossBoo
+     k.test.js`):
+     Tests:       38 skipped, 454 passed, 492 total
+     … +6 lines (ctrl+o to expand)
+  ⎿  Updated plans/original-language-history.md +1 -1
+      324 
+      325  How much is lost, under each case's own GL bible (other books
+           of the same target language and
+      326  resource id, same testament, as the selection history; one tra
+           ining file per book as the source of
+      327 -its checks; a throwaway count, not committed):                
+      327 +its checks; `npm run measure:ol-cross-book`, `__tests__/olCros
+          +sBook.test.js`):                                              
+      328 
+      329  | measure | cases |
+      330  |---|---|
+
+⏺ Step 4 is committed as b9c5535, with tests passing and the measurement script
+  now documented as an npm command. Next I'm tracing how Container.js fetches
+  history for Step 3. · summary
+
+  Searched for 2 patterns, ran 4 shell commands (ctrl+o to expand)
+
+⏺ Steps 2 and 4 are committed, and Step 3 is getting its history hook and OL
+  tallies in fetchPreviousSelectionData, with the algorithm reading from
+  selectionsData.olHistory. · summary
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='src/utils/originalLanguageUtils.js'…)
+  ⎿  828: * getSelectionHistoryKey('Bởi đức tin', 'vi'); // 'bởi đức tin'
+     830:export function getSelectionHistoryKey(text, langId) {
+  ⎿  Updated src/utils/originalLanguageUtils.js +109 -3
+      10   *    word joiners (e.g. 'πιστεως'), so different forms of a le
+          mma differ.
+      11   * Strong's numbers are kept with the words, for telling apart 
+          lemmas spelled alike.
+      12   *
+      13 - * Nothing here looks at the target language.                  
+      13 + * Nothing here looks at the target language, except that a his
+         +tory rendering is lowercased as the                            
+      14 + * GL-keyed history's renderings are (`getSelectionHistoryKey`)
+         +.                                                              
+      15 + *                                                             
+      16 + * In the app (Step 3), {@link countOlSelections} tallies the c
+         +hecks of every project the selection                           
+      17 + * history reads, by both keys, through the `onBookChecks` hook
+         + of `fetchPreviousSelectionData`. The                          
+      18 + * tally is counted even for books whose GL bible is missing, w
+         +hich the GL-keyed history must skip                            
+      19 + * (Step 4 of the plan). {@link getOlHistoryForCheck} gives the
+         + algorithm its `olHistory` option.                             
+      20   */
+      21 +import path from 'path-extra';                                 
+      22  import { isNT } from '../common/booksOfTheBible';
+      16 -import { NT_ORIG_LANG, OT_ORIG_LANG } from '../common/constants
+         -';                                                             
+      23 +import {                                                       
+      24 +  NT_ORIG_LANG, NT_ORIG_LANG_BIBLE, OT_ORIG_LANG, OT_ORIG_LANG_
+         +BIBLE,                                                         
+      25 +} from '../common/constants';                                  
+      26 +import { getMostRecentVersionInFolderMajor, readHelpsFolder } f
+         +rom '../helpers/fileHelpers';                                  
+      27  import { getQuoteWords } from './alignmentHistoryUtils';
+      18 -import { normalizeForCompare, toLowerCaseForLang } from './chec
+         -kingSuggestionsUtils';                                         
+      28 +import {                                                       
+      29 +  getSelectionHistoryKey, normalizeForCompare, toLowerCaseForLa
+         +ng,                                                            
+      30 +} from './checkingSuggestionsUtils';                           
+      31 +                                                               
+      32 +/** owner of the OL bibles read for the history */             
+      33 +export const OL_BIBLE_OWNER = 'unfoldingWord';                 
+      34 
+      35  /** U+2060 WORD JOINER, which the Hebrew bible puts between a p
+          refix or suffix and its word */
+      36  const WORD_JOINER = //g;
+     ...
+      162      form: olWords.map(({ word }) => getLooseOlForm(word, origL
+           angId)).join(' '),
+      163    };
+      164  }
+      165 +                                                              
+      166 +/**                                                           
+      167 + * Loads one book of the newest unfoldingWord OL bible (`ugnt`
+          + for the New Testament, `uhb` for the                         
+      168 + * Old) from the resources folder next to the projects folder,
+          + using and filling `olBooksCache`.                            
+      169 + * @param {string} projectsFolder - the translationCore projec
+          +ts folder                                                     
+      170 + * @param {string} bookId - e.g. 'tit'                        
+      171 + * @param {Object<string, object|null>} olBooksCache - books b
+          +y id, changed in place; a missing book                        
+     … +84 lines (ctrl+o to expand)
+
+⏺ Now the hook in fetchPreviousSelectionData and passing olHistory to the
+  algorithm.
+
+⏺ Bash(python3 - <<'EOF'
+      p='src/utils/checkingSuggestionsUtils.js'…)
+  ⎿  4920: * @param {object} job - one `getBestSelections` job
+     5034: *   selectionsData: { selections: { 'church': { 'iglesia': 7, 'l
+     a iglesia': 3 } } },
+     … +2 lines (ctrl+o to expand)
+  ⎿  Updated src/utils/checkingSuggestionsUtils.js +14 -1
+      4623   *   be an object (not null). `bibles` maps book id to a load
+            ed gateway-language book. The cache
+      4624   *   is cleared when `targetLangId`, `resourceId` or `glBible
+            Id` no longer match the current
+      4625   *   project.
+      4626 + * @param {object} [options]                                 
+      4627 + * @param {function(Array<object>, string, string): void} [op
+           +tions.onBookChecks] - called with                            
+      4628 + *   `(checks, bookId, projectsFolder)` for each included pro
+           +ject that has checks for `groupId`,                          
+      4629 + *   whether or not its gateway-language bible was found; the
+           + app counts the original-language                            
+      4630 + *   history with it (`countOlSelections`, plans/original-lan
+           +guage-history.md, Step 3)                                    
+      4631   * @returns {{selectionsForGlQuote: Object<string, Object<str
+            ing, number>>,
+      4632   *   selectionsForQuoteString: Object<string, Object<string,
+            number>>}} previous selections,
+      4633   *   tallied two ways (see {@link getSelectionsForBook}):
+     ...
+      4670    glOwnerStr,
+      4671    data,
+      4672    glBiblesCache,
+      4673 +  { onBookChecks } = {},                                     
+      4674  ) {
+      4675    const {
+      4676      parsed,
+     ...
+      4732      const checks = readJsonFile(selectionsPath);
+      4733      const foundBible = loadGlBookForSuggestions(projectsFolde
+            r, bookId, glBibleId, gatewayLanguageCode, glOwnerStr, glBibl
+            esCache);
+      4734 
+      4735 +    if (onBookChecks && checks?.length) {                    
+      4736 +      onBookChecks(checks, bookId, projectsFolder);          
+      4737 +    }                                                        
+      4738 +                                                             
+      4739      if (foundBible) {
+      4740        getSelectionsForBook(
+      4741          checks,
+     ...
+      4937        alignedGLText,
+      4938        gatewayLanguageCode,
+      4939        selectionsData?.selections,
+      4940 +      // the original-language history the app sends (plans/o
+           +riginal-language-history.md, Step 3);                        
+      4941        // for measuring the confidences: `explain`, and any ot
+            her options of the algorithm
+      4931 -      { ...job.algorithmOptions, explain: !!job.explainAlgori
+           -thm },                                                       
+      4942 +      {                                                      
+      4943 +        olHistory: selectionsData?.olHistory, ...job.algorith
+           +mOptions, explain: !!job.explainAlgorithm,                   
+      4944 +      },                                                     
+      4945      );
+      4946 
+      4947      return {
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ Update(src/utils/checkingSuggestionsUtils.js)
+  ⎿  Added 2 lines
+      4997   * @param {object} options.selectionsData - Historical transl
+            ation data from previous user selections
+      4998   * @param {object} options.selectionsData.selections - Nested
+             mapping of gateway phrases to target renderings with usage c
+            ounts:
+      4999   *   `{glPhrase: {targetRendering: count}}`, or flat format `
+            {targetRendering: count}` if pre-filtered
+      5000 + * @param {object} [options.selectionsData.olHistory] - the c
+           +heck's original-language history, passed to the              
+      5001 + *   algorithm as its `olHistory` option (`getOlHistoryForChe
+           +ck`); the AI prompt does not use it                          
+      5002   * @param {string} [options.model='local-model'] - AI model i
+            dentifier to use (only relevant when `llmQueryUrl` is provide
+            d);
+      5003   *   the actual model used may differ and is reported in the
+            response
+      5004   * @param {number} [options.llmTemperature=0.1] - Sampling te
+            mperature for AI model (0.0-1.0); higher values increase
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='src/Container.js'…)
+  ⎿  40:  fetchPreviousSelectionData,
+     587:    selectionsData.selections = fetchPreviousSelectionData(
+     148: * @param {Array} props.tsvRelation - tHelps manifest relation dat
+     … +5 lines (ctrl+o to expand)
+  ⎿  Updated src/Container.js +81 -36
+      56    getSuggestionHistory,
+      57    updateAlignmentEntrySelection,
+      58  } from './utils/alignmentHistoryUtils';
+      59 +import {                                                       
+      60 +  countOlSelections,                                           
+      61 +  getCheckOlKeys,                                              
+      62 +  getOlHistoryForCheck,                                        
+      63 +  loadOlBookForSuggestions,                                    
+      64 +  newOlSelections,                                             
+      65 +} from './utils/originalLanguageUtils';                        
+      66  import delay from './utils/delay';
+      67  import { getVerseText } from './helpers/verseHelpers';
+      68  import { getQuoteAsString } from './helpers/checkAreaHelpers';
+     ...
+       99    // the `llmUseAlignmentHistory` setting is off
+      100    alignmentEntries: null,
+      101    alignmentGroupId: null,
+      102 +  // the group's history keyed by the original-language quote,
+          + `{ lemma: {}, form: {} }`                                    
+      103 +  // (plans/original-language-history.md, Step 3); not saved, 
+          +and sent to the algorithm only as                             
+      104 +  // each check's `olHistory`                                 
+      105 +  olSelections: null,                                         
+      106  };
+      107 
+      108 +/** books of the original-language bibles read for the history
+          +, by book id */                                               
+      109 +const olBooksCache = {};                                      
+      110 +                                                              
+      111  const glBiblesCache = {
+      112    glBibleId: null,
+      113    targetLangId: null,
+     ...
+      386                    verseText,
+      387                  };
+      388 
+      375 -                const selectionsForWord = fetchPreviousSelecti
+          -onData(                                                       
+      376 -                  projectSaveLocation,                        
+      377 -                  contextId,                                  
+      378 -                  glBibles,                                   
+      379 -                  tsvRelation,                                
+      380 -                  toolName,                                   
+      381 -                  groupId,                                    
+      382 -                  gatewayLanguageCode,                        
+      383 -                  glOwnerStr,                                 
+     … +129 lines (ctrl+o to expand)
+
+⏺ The OL history is now wired into Container.js and passed to getBestSelections.
+  I'm fixing a doc comment next, then linting and adding tests. · summary
+
+⏺ Update(src/Container.js)
+  ⎿  Added 2 lines, removed 2 lines
+      606    }
+      607 
+      608    /**
+      609 -   * The original-language keys of a check of the current proj
+          -ect.                                                          
+      609 +   * The book of the original-language bible a check of the cu
+          +rrent project is in.                                          
+      610     * @param {string} projectSaveLocation - path to the current
+            project folder
+      611     * @param {object} checkContextId - the check
+      612 -   * @returns {{lemma: string, form: string}|null}            
+      612 +   * @returns {object|null} - keyed by chapter then verse; nul
+          +l when not found                                              
+      613     */
+      614    function getOlBookForCheck(projectSaveLocation, checkContext
+           Id) {
+      615      const bookId = checkContextId?.reference?.bookId;
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(npx eslint --fix src/Container.js; npx eslint src/Container.js | grep
+      error; sed -n 620,632p src/Container.js)
+  ⎿  /Users/blm0/Development/Electron/checking-tool-wrapper/src/Container.j
+     s
+       204:3   warning  The 'generateSuggestionsForGroups' function makes t
+     … +23 lines (ctrl+o to expand)
+  ⎿  Updated src/Container.js +4 -2
+      494          generateSuggestionsRestartRef.current = true;
+      495        }
+      496      }
+      497 -  }, [triggerGenerateSuggestionsStart]);                      
+      497 +  }, [generateSuggestionsForGroups, triggerGenerateSuggestions
+          +Start]);                                                      
+      498 
+      499    // Effect hook that clears verse edit mode when the check co
+           ntext changes.
+      500    // Monitors changes to checkId, groupId, chapter, or verse a
+           nd resets
+     ...
+      624     */
+      625    function getSelectionsDataToSave() {
+      626      // eslint-disable-next-line no-unused-vars
+      627 -    const { alignmentEntries, olSelections, ...rest } = select
+          -ionsData;                                                     
+      627 +    const {                                                   
+      628 +      alignmentEntries, olSelections, ...rest                 
+      629 +    } = selectionsData;                                       
+      630      return rest;
+      631    }
+      632 
+
+⏺ Bash(python3 - <<'EOF'
+      p='src/Container.js'…)
+  ⎿  1
+  ⎿  Updated src/Container.js +1 -2
+      623     * @returns {object}
+      624     */
+      625    function getSelectionsDataToSave() {
+      626 -    // eslint-disable-next-line no-unused-vars                
+      626      const {
+      628 -      alignmentEntries, olSelections, ...rest                 
+      627 +      alignmentEntries, olSelections, ...rest // eslint-disabl
+          +e-line no-unused-vars                                         
+      628      } = selectionsData;
+      629      return rest;
+      630    }
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Lint is clean apart from a warning that was already there. Next, the unit
+  tests. First I'm checking how the existing tests mock project files for
+  fetchPreviousSelectionData.
+
+  Searched for 3 patterns, ran 2 shell commands (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='__tests__/checkingSuggestionsUtils.test.js'…)  ⎿    ● Console
+       ● Console
+     Tests:       53 passed, 53 total
+  ⎿  Updated __tests__/checkingSuggestionsUtils.test.js +14
+      441      const results = await getBestTWordSelectionWithConfidenceA
+           lgorithm(words, 'es', 'faith', 'en', {}, { olHistory });
+      442      expect(results[0]).toEqual({ selections: [{ text: 'fe', oc
+           currence: 1 }], confidence: 70 }); // the form weight
+      443    });
+      444 +                                                              
+      445 +  test('getBestSelections passes the request\'s selectionsData
+          +.olHistory to the algorithm', async () => {                   
+      446 +    const job = {                                             
+      447 +      verseText: 'Por la fe Abraham obedeció y creyó',        
+      448 +      targetLanguageDetails: { id: 'es' },                    
+      449 +      alignedGLText: 'faith',                                 
+      450 +      gatewayLanguageCode: 'en',                              
+      451 +      contextId: { occurrence: 1 },                           
+      452 +    };                                                        
+      453 +    const [plain] = await getBestSelections({ ...job, selectio
+          +nsData: { selections: {} } });                                
+      454 +    const [result] = await getBestSelections({ ...job, selecti
+          +onsData: { selections: {}, olHistory } });                    
+      455 +    expect(plain.bestSelections).toEqual([]);                 
+      456 +    expect(result.bestSelections[0]).toEqual({ selections: [{ 
+          +text: 'fe', occurrence: 1 }], confidence: 70 });              
+      457 +  });                                                         
+      458  });
+  ⎿  Created __tests__/originalLanguageHistory.test.js +116
+        1 +/* eslint-env jest */                                         
+        2 +/**                                                           
+        3 + * The original-language history as the app reads it (plans/or
+          +iginal-language-history.md, Step 3):                          
+        4 + * the OL-keyed tally of `countOlSelections`, counted through 
+          +the `onBookChecks` hook of                                    
+        5 + * `fetchPreviousSelectionData`, also for books whose GL bible
+          + is missing. `fs-extra` is mocked.                            
+        6 + */                                                           
+        7 +import fs from 'fs-extra';                                    
+        8 +import { fetchPreviousSelectionData } from '../src/utils/check
+          +ingSuggestionsUtils';                                         
+        9 +import {                                                      
+       10 +  countOlSelections, getCheckOlKeys, getOlHistoryForCheck, loa
+          +dOlBookForSuggestions, newOlSelections,                       
+       11 +} from '../src/utils/originalLanguageUtils';                  
+       12 +                                                              
+       13 +const projectsFolder = '/tc/projects';                        
+       14 +const ugntFolder = '/tc/resources/el-x-koine/bibles/ugnt';    
+       15 +const olWord = (text, lemma, strong) => ({                    
+       16 +  type: 'word', text, lemma, strong, morph: 'Gr,N,,,,,AFS,',  
+       17 +});                                                           
+       18 +const olBooks = {                                             
+       19 +  tit: { 1: { 1: { verseObjects: [olWord('πίστιν', 'πίστις', '
+          +G41020')] }, 2: { verseObjects: [olWord('πίστει', 'πίστις', 'G
+          +41020')] } } },                                               
+       20 +  phm: { 1: { 5: { verseObjects: [olWord('πίστιν', 'πίστις', '
+          +G41020')] } } },                                              
+       21 +};                                                            
+       22 +const check = (bookId, chapter, verse, quote, selections) => (
+          +{                                                             
+       23 +  selections,                                                 
+       24 +  contextId: {                                                
+       25 +    reference: {                                              
+       26 +      bookId, chapter, verse,                                 
+       27 +    },                                                        
+       28 +    tool: 'translationWords', groupId: 'faith', quote, occurre
+          +nce: 1, checkId: `${bookId}${verse}`,                         
+       29 +  },                                                          
+       30 +});                                                           
+       31 +const sel = text => [{                                        
+       32 +  text, occurrence: 1, occurrences: 1,                        
+       33 +}];                                                           
+       34 +                                                              
+       35 +describe('original-language history', () => {                 
+       36 +  test('countOlSelections counts each check by lemma and form,
+          + lowercasing the renderings', () => {                         
+       37 +    const olSelections = newOlSelections();                   
+       38 +    const counted = countOlSelections([                       
+       39 +      check('tit', 1, 1, 'πίστιν', sel('Fe')),                
+       40 +      check('tit', 1, 2, 'πίστει', sel('fe')),                
+     … +76 lines (ctrl+o to expand)
+
+⏺ All 53 tests in the two suites pass, including the Philemon case. Next I'll
+  check whether wrong answers at high confidence increase with OL history from
+  other books, and how long each group takes to load. · summary
+
+  Searched for 1 pattern, ran 1 shell command (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='__tests__/olCrossBook.test.js'…)
+  ⎿  Updated __tests__/olCrossBook.test.js +15 -2
+      240              algorithmOptions: olHistory?.keys ? { olHistory }
+           : undefined,
+      241            });
+      242            const top = r?.bestSelections?.[0];
+      243 -          return !!top && expected.includes(normalizePhrase(op
+          -tionText(top)));                                              
+      243 +          return { right: !!top && expected.includes(normalize
+          +Phrase(optionText(top))), confidence: top?.confidence || 0 }; 
+      244          };
+      245 
+      246          // eslint-disable-next-line no-await-in-loop
+     ...
+      251          const b = await run(cross);
+      252 
+      253          res[split].push({
+      254 -          a, c: cc, b, lost: items.some(i => !i.kept), file: m
+          -.name,                                                        
+      254 +          a: a.right, c: cc.right, b: b.right, conf: {        
+      255 +            a: a.confidence, c: cc.confidence, b: b.confidence
+          +,                                                             
+      256 +          },                                                  
+      257 +          lost: items.some(i => !i.kept), file: m.name,       
+      258          });
+      259        }
+      260      }
+     ...
+      275          lines.push(`${split} ${label}: ${n} cases; top-1 A ${t
+           op('a')}, C ${top('c')}, B ${top('b')}; `
+      276            + `${cmp(rows, 'b', 'c')}; ${cmp(rows, 'c', 'a')}; $
+           {cmp(rows, 'b', 'a')}`);
+      277        }
+      278 +                                                              
+      279 +      // the top answers by confidence: 95 or more skips the A
+          +I, 80 or more is shown as likely                              
+      280 +      for (const k of ['a', 'c', 'b']) {                      
+      281 +        const band = (min, max = 101) => {                    
+      282 +          const inBand = res[split].filter(r => r.conf[k] >= m
+          +in && r.conf[k] < max);                                       
+      283 +          const right = inBand.filter(r => r[k]).length;      
+      284 +          return `${inBand.length} at ${(100 * right / (inBand
+          +.length || 1)).toFixed(1)}% (wrong ${inBand.length - right})`;
+      285 +        };                                                    
+      286 +        lines.push(`  ${split} ${k.toUpperCase()}: top at 100 
+          +${band(100)}; 95-99 ${band(95, 100)}; 80-94 ${band(80, 95)}`);
+      287 +      }                                                       
+      288      }
+      289 
+      290      const byFile = {};
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ While that runs (about 10 minutes), I'll time the group load on your real
+  projects folder, with and without the OL hook.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ The timing check gives only a lower bound, because your local projects are
+  barely checked: god has no saved selections and faith has 5. Loading a group
+  takes about 15 ms longer the first time, while the Greek book is read and
+  cached. After that it adds under 1 ms. A heavily checked project would cost
+  more per check, but the lookups are cheap, so that cost should stay small. I'm
+  still waiting on the calibration run.
+
+✻ Churned for 4m 59s · done 3:16 PM
+
+⏺ Background command "Rerun the algorithm measurement with bands in background"
+  completed (exit code 0)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Calibration is not worse: B has fewer wrong answers at 95+ than A on both
+  splits, and accuracy at 100 holds. Now I'll record Step 3 in the plan and
+  CLAUDE.md.
+
+⏺ Bash(python3 - <<'EOF'
+      p='plans/original-language-history.md'…)
+  ⎿  ✖ 1 problem (0 errors, 1 warning)
+         console.error node_modules/prop-types/factoryWithTypeCheckers.js:2
+     3
+     … +16 lines (ctrl+o to expand)
+  ⎿  Updated CLAUDE.md +2 -2
+      21  - `npm run check:llm-training-data` — finds the cases in `llmTr
+          ainingData/*.json` that may not help train the AI (e.g. no expe
+          cted word in the history, exactly or as another form by `wordSi
+          milarity`, or an answer unusually long for its language: over t
+          hat language's 99th percentile from `getAnswerLengthLimits` and
+           over the longest history rendering + 2 words; languages space
+          words differently, so there is no fixed word limit) and saves t
+          hem, grouped by file, in `llmTrainingData/results/unhelpfulTrai
+          ningCases.json`. The reasons are `UNHELPFUL_REASONS` in `__test
+          s__/helpers/suggestionsHelpers.js`; the unit tests in `__tests_
+          _/findUnhelpfulTrainingCases.test.js` run in `npm test`, the sc
+          an does not.
+      22  - `scripts/rebuild-llm-training-data.sh [-n] [-c] [-a] [-f]` —
+          rebuilds every file in `llmTrainingData` from the translationCo
+          re projects with `__tests__/buildLlmTrainingData.test.js` (`-n`
+           dry run, `-c`/`-a` refresh the unhelpful-case and algorithm re
+          sults). A project's translationWords checks are for the GL last
+           selected in translationCore, so files for another GL are skipp
+          ed unless `-f`; the builder refuses them too unless `LLM_TRAINI
+          NG_ALLOW_GL_MISMATCH=1`. To build a file for another GL, open t
+          he project in translationCore with that GL selected for transla
+          tionWords first. The GL phrases come from the first GL bible (i
+          n `bibleIdSort` order) whose book is aligned, as the app does f
+          or a check's GL phrase; `LLM_TRAINING_GL_BIBLE` names one inste
+          ad. Check new files' GL phrases are in the GL's language: Arabi
+          c `arst` v4.9_BSOJ has English text aligned in most books (Arab
+          ic only in a few, e.g. Titus, 1 Timothy), so the Arabic-GL file
+          s use `avd`. The history in the case files is counted as the ap
+          p counts it: GL phrases and renderings lowercased with `getSele
+          ctionHistoryKey` (the builder passes the target language to `ge
+          tSelectionsForBook`); files built before 2026-11-26 were conver
+          ted in place with `LLM_TRAINING_LOWERCASE_HISTORY=1` (`toAppSel
+          ectionHistory`), which also converts the evaluation sets in `ll
+          mTrainingData/promptEval`. `plans/fine-tune-qwen3.md` holds the
+           fine-tuning plan that uses this data.
+      23  - `npm run calibrate:algorithm` — measures the algorithm's conf
+          idences against the training data (`plans/algorithm-confidence.
+          md`): runs every case in `llmTrainingData/*.json` through `getB
+          estSelections` with `explainAlgorithm`, splits the projects int
+          o tune and held-out test, and prints top-1, calibration error,
+          Brier score, AUC, accuracy by confidence band and at 100, and p
+          er-project accuracy; writes `llmTrainingData/results/algorithmC
+          alibration.jsonl` (one row per option, with its features) and `
+          .report.txt`, and counts answers that differ from the saved alg
+          orithm results. Settings are `LLM_ALGO_*` variables in the head
+          er of `__tests__/calibrateAlgorithm.test.js` (`LLM_ALGO_OPTIONS
+          ` passes algorithm options, e.g. `fuzzyPassBelow`); its helper
+          unit tests run in `npm test`. `__tests__/calibrateAiConfidence.
+          test.js` (with `LLM_ALGO_AI_MODEL`) rescores saved AI answers w
+          ith `scoreSelectionsFromHistory`, which the app does not use (A
+          I confidences stay as the AI gives them).
+      24 -- `npm run add:ol-words` / `npm run measure:ol-history` — Step 
+         -1 of `plans/original-language-history.md` (original-language ke
+         -ys for the history). `add:ol-words` adds `olWords` (the quote's
+         - Greek or Hebrew words with lemma, Strong's number and morpholo
+         -gy, from the newest unfoldingWord `ugnt`/`uhb` in `~/translatio
+         -nCore/resources`) to every case file in `llmTrainingData` and `
+         -llmTrainingData/promptEval`; `buildLlmTrainingData.test.js` wri
+         -tes it too. `measure:ol-history` builds each case's lemma- and 
+         -form-keyed histories from the earlier cases of its group (`buil
+         -dOlHistories` in `__tests__/helpers/olHistoryHelpers.js`) and w
+         -rites `llmTrainingData/results/olHistoryMeasure.txt`/`.json`. `
+         -npm run measure:ol-cross-book` (Step 4; `LLM_OL_CROSS_ALGO=1` a
+         -lso runs the algorithm) measures OL history from a project's ot
+         -her books, which the GL bible cannot always key (header of `__t
+         -ests__/olCrossBook.test.js`). The lookup helpers are in `src/ut
+         -ils/originalLanguageUtils.js`; the app does not use them yet.  
+      24 +- `npm run add:ol-words` / `npm run measure:ol-history` — Step 
+         +1 of `plans/original-language-history.md` (original-language ke
+         +ys for the history). `add:ol-words` adds `olWords` (the quote's
+         + Greek or Hebrew words with lemma, Strong's number and morpholo
+         +gy, from the newest unfoldingWord `ugnt`/`uhb` in `~/translatio
+         +nCore/resources`) to every case file in `llmTrainingData` and `
+         +llmTrainingData/promptEval`; `buildLlmTrainingData.test.js` wri
+         +tes it too. `measure:ol-history` builds each case's lemma- and 
+         +form-keyed histories from the earlier cases of its group (`buil
+         +dOlHistories` in `__tests__/helpers/olHistoryHelpers.js`) and w
+         +rites `llmTrainingData/results/olHistoryMeasure.txt`/`.json`. `
+         +npm run measure:ol-cross-book` (Step 4; `LLM_OL_CROSS_ALGO=1` a
+         +lso runs the algorithm) measures OL history from a project's ot
+         +her books, which the GL bible cannot always key (header of `__t
+         +ests__/olCrossBook.test.js`). The lookup helpers are in `src/ut
+         +ils/originalLanguageUtils.js`.                                 
+      25  - `npm run build:prompt-eval-cases` — builds the seeded evaluat
+          ion sets of `plans/improve-single-prompt.md` in `llmTrainingDat
+          a/promptEval/` (`dev`, `dev-nohist`, `test`, `test-nohist` case
+           files, `meta/manifest.json`): DEV is 1,500 cases the app sends
+           to the AI from projects outside the fine-tune's test files; TE
+          ST is every case of those test files. Run the algorithm on them
+           afterwards (`LLM_TRAINING_DATA_DIR=llmTrainingData/promptEval
+          npm run run:llm-training-data`) for `scripts/compare-prompt-var
+          iants.js`.
+      26  - `npm run build:finetune-data` — builds the fine-tuning data o
+          f `plans/fine-tune-qwen3.md` (Steps 2-3) in `llmTrainingData/fi
+          netune/` (git-ignored): `train.jsonl`, `valid.jsonl` and `test.
+          jsonl` in the `messages` format `mlx_lm.lora` reads, matching `
+          *.meta.jsonl` and `manifest.json` (counts, drops, round-trip fa
+          ilures, cases to hand-check). Each example is the exact prompt
+          the app sends (`buildTranslationOptionsPrompt` + `applyThinking
+          Directive`), split by target project, filtered with the algorit
+          hm results and `findUnhelpfulTrainingCases`; run `npm run run:l
+          lm-training-data` (algorithm) first. Settings are `LLM_FINETUNE
+          _*` variables in the header of `__tests__/buildFineTuneData.tes
+          t.js`, whose parity test (in `npm test`) fails if the app's pro
+          mpt changes without the exporter. `LLM_FINETUNE_NO_HISTORY_SHAR
+          E` (default 0; the current models use 0.1) adds that share of t
+          rain and valid examples again with no history; `LLM_FINETUNE_PR
+          OMPT_VARIANT` builds the examples with a prompt variant of `pro
+          mptVariants.js` (parity-tested for `X4b` and `N34`; neither bea
+          t the app's prompt once trained, `plans/improve-single-prompt.m
+          d` Step 7).
+      27  - `llmTraining/` — the Python side of that fine-tune (Apple MLX
+          , `mlx-lm`; its own `.venv`, git-ignored, as are `outputs/`, `.
+          venv-gguf/` and `.llama.cpp/`). `llmTraining/README.md` has set
+          up, training, fusing and the GGUF conversion for Windows and Li
+          nux. `check_data.py` checks the exported data renders like the
+          app's prompt (run it after `build:finetune-data`); the `*.yaml`
+           files are the training runs of the plans; the current ones are
+           `lora-r16-r0v2.yaml` (Qwen3-1.7B), `lora-r16-r0v2-0.6b.yaml` a
+          nd `lora-r16-r0v2-4b.yaml` (Qwen3-4B-Instruct-2507, which has n
+          o thinking mode, so its trained part has no empty think block),
+           all LoRA r16 on the data built with `LLM_FINETUNE_INCLUDE=noRe
+          latedWordInHistory LLM_FINETUNE_NO_HISTORY_SHARE=0.1 LLM_FINETU
+          NE_OUT_DIR=llmTrainingData/finetune-r0v2` (the first release, `
+          d3`, used `lora-r16-d3*.yaml`); `train_full.py` runs a full fin
+          e-tune in float32; `handcheck.py` makes a local page for hand-c
+          hecking a sample of a case group. On the held-out TEST files (8
+          35 checks; `llmTrainingData/promptEval/test*.json`), with histo
+          ry / with none: 1.7B 72.3% / 65.0%, 0.6B 67.7% / 49.7%, 4B 73.7
+          % / 69.2% at twice the 1.7B's time, against d3 1.7B 67.4% / 54.
+          3% and stock `qwen3-4b-2507` 58.6% / 36.0% (`plans/improve-sing
+          le-prompt.md`, Step 8A). Release builds (`llmTraining/make_rele
+          ase.sh`, which takes the run name from `RUN`, default `r0v2`; c
+          ards in `llmTraining/model-card*/`): 1.7B MLX 5-bit for Mac and
+           GGUF Q5_K_M for Windows and Linux; 0.6B MLX 6-bit and GGUF Q6_
+          K for computers that cannot run the 1.7B; 4B MLX 5-bit and GGUF
+           Q5_K_M as a large option. The 4B files are over GitHub's 2 GiB
+           limit per release file, so the script leaves them out of `gith
+          ub-release/` (publish them on Hugging Face). Large models are s
+          aved in shards by `mlx_lm.fuse`: link every `*.safetensors` whe
+          n staging the GGUF conversion. Score GGUF builds through plain
+          llama.cpp (`llama-server`): LM Studio's llama.cpp engine on the
+           Mac gives lower, different answers for Qwen3-1 … [+333 chars]
+     ...
+      62 
+      63  Both paths return up to 3 `{ selections: [{text, occurrence}],
+          confidence }`, best first, so they are interchangeable. Keep th
+          at contract when changing either one. Both place a rendering at
+           its first match in the verse; `getBestSelections` then moves e
+          ach option to the check's `contextId.occurrence` with `moveSele
+          ctionsToOccurrence` when the words occur that many times as sep
+          arate runs (a heuristic: the nth original word is taken to be r
+          endered by the nth run).
+      64 
+      65 -Previous-selection history comes from `fetchPreviousSelectionDa
+         -ta(...)`. It scans the other projects in the tCore projects fol
+         -der and returns `{ normalizedGlQuote: { selectedTargetText: cou
+         -nt } }`, e.g. `{ 'faith': { 'fe': 12, 'la fe': 3 } }`. Both the
+         - gateway-language phrase keys (with the GL code) and the target
+         --language keys (with the target code) are lowercased with `getS
+         -electionHistoryKey` (`toLowerCaseForLang`) when the history is 
+         -read, when the user saves a selection (`updatedPreviousSelectio
+         -nsData`) and in alignment history entries, so 'Faith' and 'fait
+         -h', or 'Fe' at the start of a verse and 'fe', count as one; mat
+         -ching GL phrases to keys (`rankGlKeys`) and renderings to the v
+         -erse ignores case. The training data builders call `getSelectio
+         -nsForBook` without the target language, so their histories keep
+         - the original case.                                            
+      65 +Previous-selection history comes from `fetchPreviousSelectionDa
+         +ta(...)`. In the same scan `Container.js` (`loadSelectionHistor
+         +y`) also counts it by the check's original-language quote throu
+         +gh the `onBookChecks` hook (`countOlSelections` in `originalLan
+         +guageUtils.js`: lemma and surface-form keys from the newest unf
+         +oldingWord `ugnt`/`uhb`), including books whose GL bible is mis
+         +sing; each request's `selectionsData.olHistory` (`getOlHistoryF
+         +orCheck`) goes to the algorithm as its `olHistory` option (weig
+         +hts `OL_KEY_SCORE`), not to the AI (`plans/original-language-hi
+         +story.md`, Steps 2-4). It scans the other projects in the tCore
+         + projects folder and returns `{ normalizedGlQuote: { selectedTa
+         +rgetText: count } }`, e.g. `{ 'faith': { 'fe': 12, 'la fe': 3 }
+         + }`. Both the gateway-language phrase keys (with the GL code) a
+         +nd the target-language keys (with the target code) are lowercas
+         +ed with `getSelectionHistoryKey` (`toLowerCaseForLang`) when th
+         +e history is read, when the user saves a selection (`updatedPre
+         +viousSelectionsData`) and in alignment history entries, so 'Fai
+         +th' and 'faith', or 'Fe' at the start of a verse and 'fe', coun
+         +t as one; matching GL phrases to keys (`rankGlKeys`) and render
+         +ings to the verse ignores case. The training data builders call
+         + `getSelectionsForBook` without the target language, so their h
+         +istories keep the original case.                               
+      66 
+      67  Word alignments can add to that history (`plans/alignment-histo
+          ry.md`; off unless the `llmUseAlignmentHistory` setting is on:
+          the "Use word alignments" checkbox in tc-ui-toolkit's Configure
+           AI dialog; changing it clears the cached AI suggestions). `src
+          /utils/alignmentHistoryUtils.js` reads a project's alignments (
+          `getVerseAlignments`, `getAlignedTargetWords`, also used by the
+           training data builders). `fetchAlignmentHistoryEntries` gather
+          s the aligned target words of a group's checks from every proje
+          ct with the same target language and resource id (all testament
+          s), and `getSuggestionHistory` adds them to the selection histo
+          ry for one check. It leaves out the check's own verse in the cu
+          rrent project, since that alignment is the answer, and checks w
+          hose saved selection the selection history already counts. `Con
+          tainer.js` reads the entries once per group and sends each requ
+          est its merged history.
+      68 
+  ⎿  Updated plans/original-language-history.md +38 -12
+       4  direction but not significant on the held-out ones, p = 0.08).
+          Step 4 measured 2026-11-26, before
+       5  Step 3: OL history from the project's **other books** is a sign
+          ificant gain on the held-out
+       6  projects too (B vs C 25 won / 7 lost, p = 0.002), mostly where
+          the GL bible lacks those books. The
+       7 -app does not pass OL history yet, so nothing changed for users.
+         - Next: Step 3, if the author agrees.                           
+       7 +Step 3 wired into the app 2026-11-26 (uncommitted): the algorit
+         +hm now gets OL history from every                              
+       8 +project the selection history reads. Calibration with it is no 
+         +worse (fewer wrong answers at 95+).                            
+       9 
+      10  ## Goal
+      11 
+     ...
+      298    `algorithmCalibration.ol.options.report.txt` (chosen setting
+           ), with their `.jsonl` rows. The sweep's
+      299    reports were kept in the session's scratch folder only.
+      300 
+      300 -### Step 3: OL history in the app                             
+      301 -                                                              
+      302 -- `fetchPreviousSelectionData`: return the OL tally alongside 
+          -the GL one, and count it even when                            
+      303 -  the GL bible book is missing (H4). Look up lemmas as in Deci
+          -sion 2, with a cache per project                              
+      304 -  and book, as the GL bibles have (`loadGlBookForSuggestions`)
+          -.                                                             
+      305 -- `fetchAlignmentHistoryEntries` / `getSuggestionHistory` (`al
+          -ignmentHistoryUtils.js`): give                                
+      306 -  each alignment entry its OL key from its `topWords`, so alig
+          -nment history feeds both tallies.                             
+      307 -- `Container.js`: pass the current check's OL key (from the `t
+          -c` OL bible) and the OL tally with                            
+      308 -  each request; `updateSelectionsData` updates the OL tally wh
+          -en the user saves a selection, as                             
+      309 -  it does the GL one.                                         
+      310 -- Check the time it adds per group (lemma lookups for every pr
+          -oject).                                                       
+      301 +### Step 3: OL history in the app — done 2026-11-26 (after Ste
+          +p 4)                                                          
+      302 +                                                              
+      303 +- `fetchPreviousSelectionData` takes an `onBookChecks(checks, 
+          +bookId, projectsFolder)` hook, called for                     
+      304 +  every included project with checks for the group, **whether 
+          +or not its GL bible book was found**                          
+      305 +  (H4). `Container.js` (`loadSelectionHistory`, used by both p
+          +laces that read the history) counts                           
+      306 +  the OL tally with it: `countOlSelections` in `originalLangua
+          +geUtils.js` looks up each check's quote in                    
+      307 +  the newest unfoldingWord `ugnt`/`uhb` of the resources folde
+          +r (`loadOlBookForSuggestions`, cached per                     
+      308 +  book for the session) and counts its rendering under the lem
+          +ma key and the form key. The hook keeps                       
+      309 +  `checkingSuggestionsUtils.js` from importing `originalLangua
+          +geUtils.js`, which imports it.                                
+      310 +- Each request's `selectionsData.olHistory` is `getOlHistoryFo
+          +rCheck` (the tallies and the check's                          
+      311 +  keys); `getBestSelections` passes it to the algorithm as `ol
+          +History`. The AI prompt does not use it.                      
+      312 +  `olSelections` is left out of `translation_data.json` (`getS
+          +electionsDataToSave`).                                        
+      313 +- `updateSelectionsData` updates the OL tally when a selection
+          + is saved, with                                               
+      314 +  `updatedPreviousSelectionsData` on each key.                
+      315 +- No setting: Step 4 showed a held-out gain, and calibration i
+          +s no worse (below).                                           
+      316 +- **Not done:** the alignment history (`llmUseAlignmentHistory
+          +`, off by default) still feeds only the                       
+      317 +  GL tally; its entries would need OL keys, and a project with
+          +out a GL book would need to keep its                          
+     … +22 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 3 is done: the app now gives the algorithm Greek and Hebrew history from
+  every project its selection history reads. That includes books the current GL
+  bible doesn't have, where the GL history comes up empty. Nothing is committed
+  yet, and I haven't tried it in translationCore itself.
+
+  What changed
+  - Reading the history: fetchPreviousSelectionData has a new optional per-book
+    hook. Container.js uses it to count each check's selection under its lemma
+    and its Greek or Hebrew form, in the same scan of the projects folder. The
+    Greek and Hebrew books are read from ~/translationCore/resources and cached
+    for the session.
+  - Sending it: each request carries the check's OL history, and
+    getBestSelections passes it to the algorithm. The AI prompt is unchanged, so
+    the fine-tuned models need no retraining.
+  - Saving a selection updates the OL counts as well as the GL ones.
+  - Not on disk: the OL counts are not written to translation_data.json.
+  - No new setting: it's always on.
+
+  Wrong answers at 95+ don't increase. That matters because answers at 95+ skip
+  the AI.
+
+  ┌─────────────┬──────────────────────────────┬───────────────────────────┐
+  │    split    │ wrong answers at 95+ without │ accuracy at 100 without / │
+  │             │            / with            │            with           │
+  ├─────────────┼──────────────────────────────┼───────────────────────────┤
+  │ tune        │ 367 / 327                    │ 92.3% / 92.4%             │
+  ├─────────────┼──────────────────────────────┼───────────────────────────┤
+  │ held-out    │ 105 / 93                     │ 92.7% / 92.9%             │
+  │ test        │                              │                           │
+  └─────────────┴──────────────────────────────┴───────────────────────────┘
+
+  Top-1 is the same as measured in Step 4: 60.2% → 60.8% on held-out, and 63.0%
+  → 69.2% on cases where the GL history was lost.
+
+  Load time: on your projects folder the first group took about 15 ms longer and
+  later groups under 1 ms longer. Those projects have few saved selections
+  (faith has 5), so this is a lower bound.
+
+  Not done yet
+  - The word-alignment history (the "Use word alignments" setting, off by
+    default) still feeds only the GL counts. Adding it is a separate follow-up.
+  - I haven't run it in translationCore.
+
+  Tests: npm test passes (459 passed, 38 skipped), and lint shows only the
+  warning that was already there. There's a new test file,
+  __tests__/originalLanguageHistory.test.js. It checks that Philemon's checks
+  still count toward the OL history when the GL bible has no Philemon.
+
+  The plan and CLAUDE.md are updated. The changed files are src/Container.js,
+  src/utils/checkingSuggestionsUtils.js, src/utils/originalLanguageUtils.js, the
+  tests, the plan and CLAUDE.md.
+
+  Shall I commit Step 3?
+
+✻ Baked for 46s · done 3:18 PM
+
+❯ what is next step                                                             
+
+⏺ Step 3 is uncommitted, so the next step is for you to choose whether to commit
+  it. Here's what comes after, in the order I'd suggest:
+
+  1. Commit Step 3.
+  2. Try it in translationCore. Only you can do this: I can't run
+     translationCore from here. It needs a build of this package (npm run build)
+     linked into translationCore.
+     - Open a project whose GL bible lacks books that sibling projects cover.
+       For example, a target language with several books checked, opened with
+       es-419 as the GL.
+     - Check that suggestions appear where the GL history is empty, and that
+       loading a group isn't noticeably slower. My timing on your local projects
+       was only a lower bound, because they have few saved selections.
+  3. Word alignments (small follow-up). When the "Use word alignments" setting
+     is on, alignment history still feeds only the GL counts, and alignments in
+     books the GL bible lacks are still dropped. Adding OL keys to those entries
+     would finish what Step 3 started. It's only worth doing if people use that
+     setting.
+  4. Step 5: the AI path (bigger, optional). The OL history could also choose
+     which history lines the AI prompt shows first. The prompt format stays the
+     same, but the fine-tuned models were trained on the current order. It would
+     need measuring with scripts/test-llm.sh and the promptEval sets before
+     shipping. Showing the Greek or Hebrew word in the prompt itself would mean
+     retraining, which belongs in a separate plan.
+
+  I recommend 1 and 2 now. Then do 3 if the alignment setting is in use, and
+  leave 4 until real-app use confirms the gain. Shall I commit?
+
+✻ Brewed for 11s · done 4:29 PM
+
+❯ commit.  it works great in translationCore.  do 3                             
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+⏺ Eslint --fix had added generateSuggestionsForGroups to an effect's
+  dependencies, which would make it restart suggestion generation on every
+  render, so I'm restoring the original dependencies. · summary
+
+⏺ Update(src/Container.js)
+  ⎿  Added 2 lines, removed 1 line
+      494          generateSuggestionsRestartRef.current = true;
+      495        }
+      496      }
+      497 -  }, [generateSuggestionsForGroups, triggerGenerateSuggestions
+          -Start]);                                                      
+      497 +    // eslint-disable-next-line react-hooks/exhaustive-deps   
+      498 +  }, [triggerGenerateSuggestionsStart]);                      
+      499 
+      500    // Effect hook that clears verse edit mode when the check co
+           ntext changes.
+      501    // Monitors changes to checkId, groupId, chapter, or verse a
+           nd resets
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Step 3 is committed as 8423dd1, including your version bump to beta.258. Now
+  item 3: word alignments. I'm reading the alignment history code.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ I've read the alignment history code and will add OL keys to each alignment
+  entry, keep alignments from books the GL bible lacks when they have OL keys,
+  and add a new getSuggestionOlHistory that follows the same skip rules as
+  getSuggestionHistory. · summary
+
+  Ran 3 shell commands · 1 failed (ctrl+o to expand)
+
+⏺ Lint is clean, and the effect fix stays in place. Next, tests in the existing
+  alignment history suite.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+⏺ All 25 alignment tests pass. Now the full suite, then the plan and CLAUDE.md.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Item 3 is done: OL history now also comes from word alignments, and alignments
+  from books the GL bible lacks are no longer dropped. It's not committed.
+
+  What changed
+  - fetchAlignmentHistoryEntries takes a new olKeysForCheck option, which
+    Container.js now passes:
+    - Each alignment entry gets its Greek or Hebrew keys.
+    - Projects whose GL bible lacks the book are now read, and their entries are
+      kept when they have OL keys. The GL history still skips them, since they
+      have no GL phrase.
+  - getSuggestionOlHistory adds those entries to the OL counts for each request,
+    with the same skip rules as the GL version: the check's own verse, and
+    checks whose saved selection is already counted.
+  - When the setting is off, nothing changes.
+
+  Tests: 4 new tests in __tests__/alignmentHistoryUtils.test.js. One checks that
+  a Philemon alignment is kept when the GL bible has no Philemon book. Another
+  checks that, without the new option, entries are exactly as before. npm test
+  passes (463 passed, 38 skipped) and lint is clean.
+
+  Not measured: the training data has no alignment-history cases with OL keys,
+  so the gain from this part is unknown. It uses the same weights as the
+  selection history, which Steps 3-4 did measure. The plan and CLAUDE.md say so.
+
+  Effect dependency restored: before committing Step 3, I put back the original
+  dependencies on the effect that starts suggestion generation (described
+  above). That commit includes the restored version. Your test in
+  translationCore ran with the unintended version, so it's worth a quick look
+  that starting and refreshing suggestions still behaves as before.
+
+  The changed files are src/utils/alignmentHistoryUtils.js, src/Container.js,
+  the alignment tests, the plan and CLAUDE.md. Shall I commit?
+
+✻ Cogitated for 2m 34s · done 4:49 PM
+
+❯ commit this                                                                   
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Committed as 814085f, and nothing tracked is left uncommitted. The only
+  untracked files are ones that were already untracked, such as .mcp.json and
+  the training-data folders.
+
+  That completes Steps 0-4 of the plan and the alignment follow-up. The one item
+  left is Step 5, the AI prompt. I suggest waiting until there's more real-app
+  use of the algorithm changes before starting it.
+✻ Brewed for 9s · done 4:50 PM

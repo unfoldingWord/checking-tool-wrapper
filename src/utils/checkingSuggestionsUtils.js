@@ -882,6 +882,15 @@ export function normalizeForCompare(word, langId = '') {
  * @param {boolean} [options.markOtherKey=false] - **prompt experiments only** (variant C3 of
  *   plans/prompt-span-experiments.md; the app's prompt does not use it): end each line whose GL
  *   key is not the exact phrase (`isExact` false in {@link rankGlKeys}) with ` - for another phrase`
+ * @param {{keys: {lemma: string, form: string}, lemma: object, form: object}|null} [options.olHistory=null] -
+ *   **prompt experiments only** (variants O1 and O2 of plans/original-language-history.md, Step 5;
+ *   the app's prompt does not use it): the check's original-language history (`getOlHistoryForCheck`).
+ *   Renderings counted under the check's OL form key, then under its lemma key, move up: after the
+ *   verse fit, the order is OL form match, exact key, OL lemma match, relatedness, count (the order
+ *   Step 2 of that plan found for the algorithm). The line format does not change
+ * @param {boolean} [options.addOlRenderings=false] - **prompt experiments only** (variant O2): with
+ *   `olHistory`, renderings only the OL history has are added too, shown as chosen for `glPhrase`
+ *   with their OL count (the form key's count, else the lemma key's)
  * @returns {string} - the lines joined by `\n`, or '' when there is no history
  * @example
  * formatPreviousTranslations(
@@ -891,7 +900,9 @@ export function normalizeForCompare(word, langId = '') {
  * // '"các nơi thánh" (chosen 1 time for "of the holy places")\n"Nơi Thánh" (chosen 1 time for "Holy")'
  */
 export function formatPreviousTranslations(previousTranslationData, glPhrase, glLangCode, verseContent, targetLangCode = '', options = {}) {
-  const { markVerseFit = false, markOtherKey = false } = options;
+  const {
+    markVerseFit = false, markOtherKey = false, olHistory = null, addOlRenderings = false,
+  } = options;
   // renderings are split like the verse words (getWordList), which verseContent already holds
   const normalizeWords = text => splitIntoWords(text)
     .map(word => normalizeForCompare(word, targetLangCode));
@@ -930,6 +941,31 @@ export function formatPreviousTranslations(previousTranslationData, glPhrase, gl
     }
   }
 
+  // OL counts by normalized rendering, for the experiments only (`olHistory` option)
+  const olCounts = { form: new Map(), lemma: new Map() };
+
+  for (const { kind, counts } of getOlEntries(olHistory)) {
+    for (const [rendering, count] of Object.entries(counts)) {
+      const normalized = normalizeWords(rendering).join(' ');
+
+      if (normalized && count > 0) {
+        olCounts[kind].set(normalized, (olCounts[kind].get(normalized) || 0) + count);
+
+        if (addOlRenderings && !byRendering.has(normalized)) {
+          byRendering.set(normalized, {
+            rendering, phrase: glPhrase, count: 0, relatedness: 0, isExact: false, olOnly: true,
+          });
+        }
+      }
+    }
+  }
+
+  for (const [normalized, entry] of byRendering) {
+    if (entry.olOnly) {
+      entry.count = olCounts.form.get(normalized) || olCounts.lemma.get(normalized);
+    }
+  }
+
   const entries = [...byRendering.entries()].map(([normalized, entry]) => {
     const words = normalized.split(' ');
     let verseFit = 0;
@@ -939,11 +975,15 @@ export function formatPreviousTranslations(previousTranslationData, glPhrase, gl
     } else if (words.every(word => verseWordSet.has(word) || verseWords.some(verseWord => wordSimilarity(word, verseWord) > 0))) {
       verseFit = 1;
     }
-    return { ...entry, verseFit };
+    return {
+      ...entry, verseFit, olForm: olCounts.form.has(normalized), olLemma: olCounts.lemma.has(normalized),
+    };
   });
 
-  // Array.prototype.sort is stable, so ties keep the order of the history
-  entries.sort((a, b) => (b.verseFit - a.verseFit) || (Number(b.isExact) - Number(a.isExact)) ||
+  // Array.prototype.sort is stable, so ties keep the order of the history; without `olHistory`
+  // olForm and olLemma are false for every entry
+  entries.sort((a, b) => (b.verseFit - a.verseFit) || (Number(b.olForm) - Number(a.olForm)) ||
+    (Number(b.isExact) - Number(a.isExact)) || (Number(b.olLemma) - Number(a.olLemma)) ||
     (b.relatedness - a.relatedness) || (b.count - a.count));
 
   const fitting = entries.filter(entry => entry.verseFit > 0);
@@ -1370,7 +1410,7 @@ function rankGlKeys(previousTranslationData, glPhrase, glLangId = '') {
  * @param {Array<{counts: object, relatedness: number, isExact: boolean}>} rankedKeys - from `rankGlKeys`
  * @returns {Array<{rendering: string, count: number, relatedness: number, isExact: boolean}>} - most used first
  */
-function poolRenderings(rankedKeys) {
+function poolRenderings(rankedKeys, olEntries = []) {
   const pool = new Map();
 
   for (const {
@@ -1392,7 +1432,50 @@ function poolRenderings(rankedKeys) {
     }
   }
 
+  // OL evidence (plans/original-language-history.md): mark the renderings chosen for the check's OL
+  // form or lemma. A rendering only the OL history has joins the pool with no GL relatedness. Both
+  // histories count the same checks, so a rendering's count is the larger of its counts, not their sum.
+  for (const { kind, counts } of olEntries) {
+    for (const [rendering, count] of Object.entries(counts || {})) {
+      const normalizedRendering = splitIntoWords(rendering)
+        .map(word => normalizeForCompare(word)).join(' ');
+
+      if (normalizedRendering && count > 0) {
+        let entry = pool.get(normalizedRendering);
+
+        if (!entry) {
+          entry = {
+            rendering: normalizedRendering, count: 0, relatedness: 0, isExact: false,
+          };
+          pool.set(normalizedRendering, entry);
+        }
+
+        entry.count = Math.max(entry.count, count);
+        entry.olKey = entry.olKey === 'form' ? 'form' : kind;
+      }
+    }
+  }
+
   return [...pool.values()].sort((a, b) => b.count - a.count);
+}
+
+/**
+ * The OL entries for {@link poolRenderings}: the renderings counted under the check's OL form key and
+ * under its lemma key.
+ * @param {{keys: {lemma: string, form: string}, lemma: object, form: object}|null} olHistory - the
+ *   check's OL keys (`getOlKeys` in `originalLanguageUtils.js`) and the history tallied under such keys
+ * @returns {Array<{kind: string, counts: object}>} - form first
+ */
+function getOlEntries(olHistory) {
+  const keys = olHistory?.keys;
+
+  if (!keys) {
+    return [];
+  }
+  return [
+    { kind: 'form', counts: olHistory.form?.[keys.form] },
+    { kind: 'lemma', counts: olHistory.lemma?.[keys.lemma] },
+  ].filter(({ counts }) => counts && Object.keys(counts).length);
 }
 
 /**
@@ -1807,6 +1890,20 @@ const HISTORY_SCORE = {
 };
 
 /**
+ * Key weights from the original-language (OL) history (plans/original-language-history.md, Step 2), used
+ * only when the job has an OL history. A rendering chosen before for the check's OL form gets `form`,
+ * one chosen for its lemma only gets `lemma`; the GL-key weight is used when it is higher. With an OL
+ * history, an exact-GL-key rendering never chosen for the check's OL form is multiplied by
+ * `exactWithoutForm`. Fitted on the training data's tune projects (Step 2 sweep): a form weight of 0.8
+ * or more put form-only matches at 80+ and raised the wrong answers shown there by about half.
+ */
+const OL_KEY_SCORE = {
+  form: 0.7,
+  lemma: 0.5,
+  exactWithoutForm: 0.85,
+};
+
+/**
  * Times a rendering must have been chosen before for a match to be certain (confidence 100), with the
  * other conditions of {@link scoreSuggestionFromHistory}. With 5, certain answers were right 95.0% of
  * the time on the held-out projects and 95.2% on tune (3: 94.2% and 94.2%; 4: 94.5% and 95.0%),
@@ -1836,7 +1933,8 @@ const FUZZY_PASS_BELOW_CONFIDENCE = 50;
  *   key); each gap word multiplies by `gapFactor`.
  *   Word similarity of a fuzzy match is not used: on the training data it did not predict whether the
  *   match was right.
- * - GL-key weight: 1 for the exact GL key, else 0.36-0.6 by relatedness.
+ * - GL-key weight: 1 for the exact GL key, else 0.36-0.6 by relatedness. With an OL history, the
+ *   larger of that and the OL-key weight ({@link OL_KEY_SCORE}).
  * - verse checks: `repeatedInVerse`, `historyNeighbour`, `competingRendering`.
  *
  * How often the rendering was chosen is not a factor: on the training data it did not predict the right
@@ -1847,13 +1945,17 @@ const FUZZY_PASS_BELOW_CONFIDENCE = 50;
  *
  * @param {object} features - how the suggestion was found, as `explain` reports them in
  *   {@link getBestTWordSelectionWithConfidenceAlgorithm}: `path`, `exactKey`, `relatedness`, `count`,
- *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInExactKeyHistory`, `verbatimRenderings`
+ *   `renderingWords`, `matchedWords`, `gap`, `runsInVerse`, `neighbourInExactKeyHistory`, `verbatimRenderings`,
+ *   and with an OL history `olKey` ('form', 'lemma' or '') and `olFormInHistory`
+ * @param {object} [weights] - for measuring: `extraWordFactor`, and `olKeyWeights` overriding
+ *   {@link OL_KEY_SCORE}
  * @returns {number} - 100 when certain, else 1-99
  */
-function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.extraWord } = {}) {
+function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.extraWord, olKeyWeights } = {}) {
   const {
     path, exactKey, relatedness = 0, count = 0, renderingWords = 1, matchedWords = 1, gap = 0,
     runsInVerse = 1, neighbourInExactKeyHistory = 0, verbatimRenderings = 1, extraWords = 0,
+    olKey = '', olFormInHistory = false,
   } = features;
   const repeated = runsInVerse > 1;
   const neighbour = neighbourInExactKeyHistory > 0;
@@ -1874,8 +1976,12 @@ function scoreSuggestionFromHistory(features, { extraWordFactor = HISTORY_SCORE.
     slice: HISTORY_SCORE.partial * coverage,
     fuzzy: (exactKey ? HISTORY_SCORE.fuzzyExactKey : 1) * coverage * gapWeight,
   }[path] ?? HISTORY_SCORE.partial * coverage;
-  const keyWeight = exactKey ? 1 :
+  const glKeyWeight = exactKey ? 1 :
     HISTORY_SCORE.relatedKeyMax * (HISTORY_SCORE.relatedKeyBase + (1 - HISTORY_SCORE.relatedKeyBase) * relatedness);
+  const olWeights = { ...OL_KEY_SCORE, ...olKeyWeights };
+  const olKeyWeight = { form: olWeights.form, lemma: olWeights.lemma }[olKey] || 0;
+  const keyWeight = Math.max(glKeyWeight, olKeyWeight)
+    * (exactKey && olFormInHistory && olKey !== 'form' ? olWeights.exactWithoutForm : 1);
   const verseWeight = (repeated ? HISTORY_SCORE.repeatedInVerse : 1)
     * (neighbour ? HISTORY_SCORE.historyNeighbour : 1)
     * (competing ? HISTORY_SCORE.competingRendering : 1);
@@ -2229,6 +2335,12 @@ function levenshteinDistance(a, b) {
  *   same either way.
  * @param {number} [options.fuzzyPassBelow=FUZZY_PASS_BELOW_CONFIDENCE] - run the fuzzy pass when no
  *   candidate's confidence reaches this; for measuring (plans/algorithm-confidence.md, Step 5)
+ * @param {{keys: {lemma: string, form: string}, lemma: object, form: object}|null} [options.olHistory] -
+ *   the original-language history (plans/original-language-history.md): the check's OL keys and
+ *   `{ key: { rendering: count } }` tallies under lemma keys and form keys. Renderings counted under
+ *   the check's keys join the pool and get an OL-key weight ({@link OL_KEY_SCORE}). Without it the
+ *   results are as before.
+ * @param {object} [options.olKeyWeights] - overrides {@link OL_KEY_SCORE}, for measuring
  * @returns {Promise<Array<{selections: Array<{text: string, occurrence: number}>, confidence: number, features?: object}>>} -
  *   up to 3 options, best first; empty when this phrase has no history or nothing in it fits the verse.
  *   With `explain`, each option's `features` are:
@@ -2272,15 +2384,21 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
   glPhrase,
   glLangCode,
   previousTranslationData,
-  { explain = false, fuzzyPassBelow = FUZZY_PASS_BELOW_CONFIDENCE } = {},
+  {
+    explain = false, fuzzyPassBelow = FUZZY_PASS_BELOW_CONFIDENCE, olHistory = null, olKeyWeights,
+  } = {},
 ) {
   // Initialize wordList, defaulting to empty array if null/undefined
   const words = wordList || [];
+  const olEntries = getOlEntries(olHistory);
+  const olFormInHistory = olEntries.some(({ kind }) => kind === 'form');
+  const scoreWeights = { olKeyWeights };
   // Score every history key against the GL phrase and pool their renderings, most used first, so the
   // strongest evidence claims its words before weaker renderings. Each rendering remembers how closely
   // its GL key matched, which caps its confidence.
   const countEntries = poolRenderings(
-    rankGlKeys(previousTranslationData, glPhrase, glLangCode)
+    rankGlKeys(previousTranslationData, glPhrase, glLangCode),
+    olEntries,
   );
 
   // Early exit if no previous translations exist or verse has no words
@@ -2359,6 +2477,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
         && matchedWords.some(matched => set.has(matched)))).length,
       pointScore: score,
       cap: capForRendering(entry),
+      ...(olEntries.length ? { olKey: entry.olKey || '', olFormInHistory } : {}),
     };
   }
 
@@ -2478,7 +2597,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
 
   const haveConfidentCandidate = [...candidates.values()].some(candidate => scoreSuggestionFromHistory({
     ...candidate.features, verbatimRenderings, candidates: candidates.size,
-  }) >= fuzzyPassBelow);
+  }, scoreWeights) >= fuzzyPassBelow);
 
   if (!haveConfidentCandidate) {
     // Fuzzy pass: match each rendering word to similar verse words (inflected, compound or accent-variant
@@ -2543,7 +2662,7 @@ export async function getBestTWordSelectionWithConfidenceAlgorithm(
       ...candidate,
       confidence: scoreSuggestionFromHistory({
         ...candidate.features, verbatimRenderings, candidates: candidates.size,
-      }),
+      }, scoreWeights),
     }))
     .sort((a, b) => (
       b.confidence - a.confidence
@@ -2967,7 +3086,7 @@ let singlePromptOverrideForEval = null;
  *
  * @param {function(object): {messages: Array<{role: string, content: string}>}|null} builder -
  *   called with the request given to {@link getBestTWordSelectionWithConfidenceFromLlm} (`wordList`,
- *   `targetLangCode`, `glPhrase`, `glLangCode`, `previousTranslationData`, `contextId`,
+ *   `targetLangCode`, `glPhrase`, `glLangCode`, `previousTranslationData`, `contextId`, `olHistory`,
  *   `algorithmBestSelections`, `glVerseText`, `lmOptions`); it returns the messages without `/no_think`, which
  *   `queryAiAPI` adds. `null` goes back to the app's prompt.
  * @returns {void}
@@ -4544,6 +4663,11 @@ export function loadGlBookForSuggestions(projectsFolder, bookId, glBibleId, gate
  *   be an object (not null). `bibles` maps book id to a loaded gateway-language book. The cache
  *   is cleared when `targetLangId`, `resourceId` or `glBibleId` no longer match the current
  *   project.
+ * @param {object} [options]
+ * @param {function(Array<object>, string, string): void} [options.onBookChecks] - called with
+ *   `(checks, bookId, projectsFolder)` for each included project that has checks for `groupId`,
+ *   whether or not its gateway-language bible was found; the app counts the original-language
+ *   history with it (`countOlSelections`, plans/original-language-history.md, Step 3)
  * @returns {{selectionsForGlQuote: Object<string, Object<string, number>>,
  *   selectionsForQuoteString: Object<string, Object<string, number>>}} previous selections,
  *   tallied two ways (see {@link getSelectionsForBook}):
@@ -4586,6 +4710,7 @@ export function fetchPreviousSelectionData(
   glOwnerStr,
   data,
   glBiblesCache,
+  { onBookChecks } = {},
 ) {
   const {
     parsed,
@@ -4646,6 +4771,10 @@ export function fetchPreviousSelectionData(
 
     const checks = readJsonFile(selectionsPath);
     const foundBible = loadGlBookForSuggestions(projectsFolder, bookId, glBibleId, gatewayLanguageCode, glOwnerStr, glBiblesCache);
+
+    if (onBookChecks && checks?.length) {
+      onBookChecks(checks, bookId, projectsFolder);
+    }
 
     if (foundBible) {
       getSelectionsForBook(
@@ -4848,8 +4977,11 @@ async function getAlgorithmResultForJob(job) {
       alignedGLText,
       gatewayLanguageCode,
       selectionsData?.selections,
+      // the original-language history the app sends (plans/original-language-history.md, Step 3);
       // for measuring the confidences: `explain`, and any other options of the algorithm
-      { ...job.algorithmOptions, explain: !!job.explainAlgorithm },
+      {
+        olHistory: selectionsData?.olHistory, ...job.algorithmOptions, explain: !!job.explainAlgorithm,
+      },
     );
 
     return {
@@ -4905,6 +5037,8 @@ async function getAlgorithmResultForJob(job) {
  * @param {object} options.selectionsData - Historical translation data from previous user selections
  * @param {object} options.selectionsData.selections - Nested mapping of gateway phrases to target renderings with usage counts:
  *   `{glPhrase: {targetRendering: count}}`, or flat format `{targetRendering: count}` if pre-filtered
+ * @param {object} [options.selectionsData.olHistory] - the check's original-language history, passed to the
+ *   algorithm as its `olHistory` option (`getOlHistoryForCheck`); the AI prompt does not use it
  * @param {string} [options.model='local-model'] - AI model identifier to use (only relevant when `llmQueryUrl` is provided);
  *   the actual model used may differ and is reported in the response
  * @param {number} [options.llmTemperature=0.1] - Sampling temperature for AI model (0.0-1.0); higher values increase
@@ -5040,6 +5174,7 @@ export async function getBestSelections(options = {}) {
           // not sent to the AI by the app's prompt; for prompt experiments
           // (`setSinglePromptOverrideForEval`)
           contextId,
+          olHistory: selectionsData?.olHistory,
           algorithmBestSelections: algorithmResults[i]?.bestSelections || [],
           // the gateway-language verse, when the job has it (prompt experiments only, for now)
           glVerseText,

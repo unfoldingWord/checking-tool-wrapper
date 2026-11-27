@@ -27,6 +27,7 @@ import {
   normalizeForCompare, wordSimilarity,
 } from '../../src/utils/checkingSuggestionsUtils';
 import { normalizeString } from '../../src/helpers/stringHelpers';
+import { buildRunOlHistories } from './olHistoryHelpers';
 
 // moved to src (plans/alignment-history.md, Step 1); exported here for the builders that use them
 export { getAlignedTargetWords, getQuoteWords } from '../../src/utils/alignmentHistoryUtils';
@@ -104,6 +105,9 @@ export function toAppSelectionHistory(history, glLangCode, targetLangCode) {
  * @param {boolean} [settings.llmEnableThinking] - let the AI think (experiments only)
  * @param {string} [settings.apiToken] - bearer token for the AI server
  * @param {string} [settings.toolName='translationWords'] - used in the cache `key`
+ * @param {Map<string, object>} [settings.olHistories] - original-language history by case id
+ *   (`buildRunOlHistories`); a case's entry becomes `selectionsData.olHistory`, which goes to the
+ *   algorithm and, for prompt experiments, on the AI request
  * @returns {object} - options for `getBestSelections`; pass an array of them for a batched query
  * @example
  * const [result] = await getBestSelections(testCaseToSelectionOptions(trainingCase));
@@ -118,8 +122,10 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
     llmEnableThinking,
     apiToken,
     toolName = 'translationWords',
+    olHistories,
   } = settings;
   const contextId = testCase.contextId || { occurrence: testCase.occurrence || 1 };
+  const olHistory = olHistories?.get(testCase.id);
   const {
     bookId, chapter, verse,
   } = contextId.reference || {};
@@ -134,7 +140,9 @@ export function testCaseToSelectionOptions(testCase, settings = {}) {
     alignedGLText: testCase.glPhrase,
     gatewayLanguageCode: testCase.glLang,
     glVerseText: testCase.glVerse,
-    selectionsData: { selections: testCase.history || {} },
+    selectionsData: olHistory ?
+      { selections: testCase.history || {}, olHistory } :
+      { selections: testCase.history || {} },
     contextId: { ...contextId, occurrence: contextId.occurrence || testCase.occurrence || 1 },
     key,
     llmQueryUrl,
@@ -220,6 +228,11 @@ export async function runTestCases(testCases, settings = {}) {
  *   `llmTrainingData/en_ult_tit_book_ru_gl_ru.json`; a relative path is resolved from the
  *   current folder (the repo folder when run with jest)
  * @param {object} [settings] - suggestion settings, passed to {@link testCaseToSelectionOptions}
+ * @param {string} [settings.olHistoryMode] - 'same' gives each case its same-project
+ *   original-language history (`buildRunOlHistories`, unless `settings.olHistories` is given)
+ * @param {string} [settings.olSourceDir] - folder of the training files that cases with
+ *   `sourceFile` come from (default: the folder of `testDataPath`)
+ * @param {Map} [settings.olHistoryCache] - built histories by source file, shared between files
  * @returns {Promise<Array<{id: string, result: object, options: object, elapsedMs: number}>|null>}
  *   - one element per case, as {@link runTestCases} returns them; `null` when the file does not
  *   exist. Throws if the file is not valid JSON
@@ -229,7 +242,14 @@ export async function runTestCases(testCases, settings = {}) {
 export async function runTestCasesFromJson(testDataPath, settings = {}) {
   if (fs.existsSync(testDataPath)) {
     const testCases = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));
-    const results = await runTestCases(testCases, settings);
+    const runSettings = settings.olHistoryMode === 'same' && !settings.olHistories ?
+      {
+        ...settings,
+        olHistories: buildRunOlHistories(testCases, settings.olSourceDir || path.dirname(testDataPath),
+          settings.olHistoryCache),
+      } :
+      settings;
+    const results = await runTestCases(testCases, runSettings);
     const summary = summarizeTestResults(testCases, results);
     console.log(`runTestCasesFromJson ran test cases from ${testDataPath} and got ${results?.length} results`);
     return { results, summary };
@@ -385,6 +405,17 @@ export function percentile(sorted, fraction) {
 }
 
 /**
+ * The part of a run's file names that says what data it had, for algorithm and AI runs alike:
+ * `_ol-same` when each case had its same-project original-language history
+ * (`settings.olHistoryMode` 'same'), else ''.
+ * @param {object} [settings] - the run's settings
+ * @returns {string}
+ */
+export function getRunDataLabel(settings = {}) {
+  return settings?.olHistoryMode ? `_ol-${settings.olHistoryMode}` : '';
+}
+
+/**
  * Runs test cases from a JSON file, then saves both the raw results and summary beside the source
  * file in a `results` folder.
  *
@@ -396,6 +427,9 @@ export function percentile(sorted, fraction) {
  * @param {object} [settings] - suggestion settings, passed to {@link runTestCasesFromJson}
  * @param {string} [settings.runLabel] - for an AI run, added to the file names after the model
  *   name, e.g. `prompt-X1` gives `<file>_<model>_prompt-X1.results.json`
+ * @param {string} [settings.olHistoryMode] - 'same' gives each case its original-language history
+ *   (see {@link runTestCasesFromJson}); the file names get `_ol-same` after the model name, and an AI
+ *   run is compared with `<file>_Algorithm_ol-same.results.json`
  * @returns {Promise<{results: Array<object>, summary: object}>} the results and summary that were
  *   saved, as {@link runTestCasesFromJson} returns them
  */
@@ -407,12 +441,14 @@ export async function runTestCasesFromJsonAndSaveResults(testDataPath, settings 
   const modelName = settings?.llmQueryUrl ? String(settings.currentModel).replace(/[^\w.-]+/g, '-') : 'Algorithm';
   // e.g. `_prompt-X1` for a prompt variant (plans/improve-single-prompt.md)
   const runLabel = settings?.llmQueryUrl && settings.runLabel ? `_${settings.runLabel}` : '';
-  const baseFileName = `${baseFileName_}_${modelName}${runLabel}`;
+  // the data a run had, for algorithm and AI runs alike, e.g. `_ol-same` with original-language history
+  const dataLabel = getRunDataLabel(settings);
+  const baseFileName = `${baseFileName_}_${modelName}${dataLabel}${runLabel}`;
   const destFolder = path.join(path.dirname(testDataPath), 'results');
   fs.mkdirSync(destFolder, { recursive: true });
 
-  // for an AI run, compare with the algorithm's saved results, band by band of its confidence
-  const algorithmResultsPath = path.join(destFolder, `${baseFileName_}_Algorithm.results.json`);
+  // for an AI run, compare with the algorithm's saved results for the same data, band by band of its confidence
+  const algorithmResultsPath = path.join(destFolder, `${baseFileName_}_Algorithm${dataLabel}.results.json`);
 
   if (settings?.llmQueryUrl && fs.existsSync(algorithmResultsPath)) {
     const testCases = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));

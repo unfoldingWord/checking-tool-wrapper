@@ -4,7 +4,7 @@
  * plans/improve-single-prompt.md (two prompt variants, or two models).
  *
  * Usage:
- *   scripts/compare-prompt-variants.js CASES.json A.results.json B.results.json
+ *   scripts/compare-prompt-variants.js [-a ALGORITHM.results.json] CASES.json A.results.json B.results.json
  * e.g.
  *   scripts/compare-prompt-variants.js llmTrainingData/promptEval/dev.json \
  *     llmTrainingData/promptEval/results/dev_qwen3-1.7b_prompt-baseline.results.json \
@@ -13,7 +13,8 @@
  * The result files are what `npm run run:llm-training-data` saves (`[{id, result, elapsedMs}]`).
  * Answers are scored as the app shows them: when the AI gave no option, the algorithm's answer is
  * used, from `<folder of CASES>/results/<CASES name>_Algorithm.results.json` (run the algorithm on
- * the case file first). Answers are compared as `summarizeTestResults` compares them
+ * the case file first), or from the file given with `-a` (e.g. `<CASES name>_Algorithm_ol-same.results.json`
+ * for runs with `LLM_TRAINING_OL_HISTORY=same`, whose algorithm had the original-language history). Answers are compared as `summarizeTestResults` compares them
  * (`normalizer`, lowercase, an `:n` suffix for an occurrence above 1).
  *
  * Prints, for A and B: cases, top-1, top-3, wrong at confidence >= 80, AI answers with no option,
@@ -282,15 +283,18 @@ function pairedCounts(paired) {
 }
 
 function main() {
-  const [casesFile, fileA, fileB] = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  const algorithmIndex = args.indexOf('-a');
+  const algorithmArg = algorithmIndex >= 0 ? args.splice(algorithmIndex, 2)[1] : null;
+  const [casesFile, fileA, fileB] = args;
 
-  if (!casesFile || !fileA || !fileB || process.argv.includes('-h')) {
-    console.log('usage: scripts/compare-prompt-variants.js CASES.json A.results.json B.results.json');
+  if (!casesFile || !fileA || !fileB || args.includes('-h') || (algorithmIndex >= 0 && !algorithmArg)) {
+    console.log('usage: scripts/compare-prompt-variants.js [-a ALGORITHM.results.json] CASES.json A.results.json B.results.json');
     process.exit(casesFile ? 0 : 2);
   }
 
   const cases = readJson(casesFile);
-  const algorithmFile = path.join(path.dirname(casesFile), 'results',
+  const algorithmFile = algorithmArg || path.join(path.dirname(casesFile), 'results',
     `${path.basename(casesFile, '.json')}_Algorithm.results.json`);
 
   if (!fs.existsSync(algorithmFile)) {

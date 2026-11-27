@@ -40,6 +40,15 @@
       "quoteString": "וַ⁠יְמַ֣ן",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וַ⁠יְמַ֣ן",
+        "occurrence": 1,
+        "lemma": "מָנָה",
+        "strong": "c:H4487",
+        "morph": "He,C:Vpw3ms"
+      }
+    ],
     "tags": [
       "training",
       "appoint"
@@ -91,6 +100,15 @@
       "quoteString": "וַ⁠יְמַ֤ן",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וַ⁠יְמַ֤ן",
+        "occurrence": 1,
+        "lemma": "מָנָה",
+        "strong": "c:H4487",
+        "morph": "He,C:Vpw3ms"
+      }
+    ],
     "tags": [
       "training",
       "appoint"
@@ -142,6 +160,15 @@
       "quoteString": "וַ⁠יְמַ֨ן",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וַ⁠יְמַ֨ן",
+        "occurrence": 1,
+        "lemma": "מָנָה",
+        "strong": "c:H4487",
+        "morph": "He,C:Vpw3ms"
+      }
+    ],
     "tags": [
       "training",
       "appoint"
@@ -185,6 +212,15 @@
       "quoteString": "יָמִֽים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יָמִֽים",
+        "occurrence": 1,
+        "lemma": "יוֹם",
+        "strong": "H3117",
+        "morph": "He,Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "biblicaltimeday"
@@ -233,6 +269,15 @@
       "quoteString": "י֣וֹם",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "י֣וֹם",
+        "occurrence": 1,
+        "lemma": "יוֹם",
+        "strong": "H3117",
+        "morph": "He,Ncmsa"
+      }
+    ],
     "tags": [
       "training",
       "biblicaltimeday"
@@ -279,6 +324,15 @@
       "quoteString": "י֔וֹם",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "י֔וֹם",
+        "occurrence": 1,
+        "lemma": "יוֹם",
+        "strong": "H3117",
+        "morph": "He,Ncmsa"
+      }
+    ],
     "tags": [
       "training",
       "biblicaltimeday"
@@ -322,6 +376,15 @@
       "quoteString": "קָ֠רָאתִי",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "קָ֠רָאתִי",
+        "occurrence": 1,
+        "lemma": "קָרָא",
+        "strong": "H7121",
+        "morph": "He,Vqp1cs"
+      }
+    ],
     "tags": [
       "training",
       "cry"
@@ -383,6 +446,15 @@
       "quoteString": "וְ⁠יִקְרְא֥וּ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וְ⁠יִקְרְא֥וּ",
+        "occurrence": 1,
+        "lemma": "קָרָא",
+        "strong": "c:H7121",
+        "morph": "He,C:Vqi3mp"
+      }
+    ],
     "tags": [
       "training",
       "cry"
@@ -426,6 +498,15 @@
       "quoteString": "הָ⁠רָעָ֥ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠רָעָ֥ה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "d:H7451c",
+        "morph": "He,Td:Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -472,6 +553,15 @@
       "quoteString": "הָ⁠רָעָ֥ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠רָעָ֥ה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "d:H7451c",
+        "morph": "He,Td:Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -518,6 +608,15 @@
       "quoteString": "הָֽ⁠רָעָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָֽ⁠רָעָ֔ה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "d:H7451c",
+        "morph": "He,Td:Aafsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -565,6 +664,15 @@
       "quoteString": "הָ⁠רָעָ֑ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠רָעָ֑ה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "d:H7451c",
+        "morph": "He,Td:Aafsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -613,6 +721,15 @@
       "quoteString": "הָ⁠רָעָ֛ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠רָעָ֛ה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "d:H7451c",
+        "morph": "He,Td:Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -669,6 +786,15 @@
       "quoteString": "רָעָ֣ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "רָעָ֣ה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "H7451c",
+        "morph": "He,Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -728,6 +854,15 @@
       "quoteString": "הָ⁠רָעָֽה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠רָעָֽה",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "d:H7451c",
+        "morph": "He,Td:Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -793,6 +928,15 @@
       "quoteString": "מֵ⁠רָֽעָת֑⁠וֹ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "מֵ⁠רָֽעָת֑⁠וֹ",
+        "occurrence": 1,
+        "lemma": "רַע",
+        "strong": "m:H7451c",
+        "morph": "He,R:Ncfsc:Sp3ms"
+      }
+    ],
     "tags": [
       "training",
       "evil"
@@ -841,6 +985,15 @@
       "quoteString": "יִרְאָ֣ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יִרְאָ֣ה",
+        "occurrence": 1,
+        "lemma": "יָרֵא",
+        "strong": "H3373",
+        "morph": "He,Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "fear"
@@ -892,6 +1045,15 @@
       "quoteString": "יִרְאָ֥ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יִרְאָ֥ה",
+        "occurrence": 1,
+        "lemma": "יָרֵא",
+        "strong": "H3373",
+        "morph": "He,Ncfsa"
+      }
+    ],
     "tags": [
       "training",
       "fear"
@@ -940,6 +1102,15 @@
       "quoteString": "הָ⁠אֱלֹהִ֛ים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠אֱלֹהִ֛ים",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "d:H0430",
+        "morph": "He,Td:Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -991,6 +1162,15 @@
       "quoteString": "אֱלֹהֵ֤י",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֱלֹהֵ֤י",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "H0430",
+        "morph": "He,Ncmpc"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1045,6 +1225,15 @@
       "quoteString": "אֱלֹהָ֑י⁠ו",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֱלֹהָ֑י⁠ו",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "H0430",
+        "morph": "He,Ncmpc:Sp3ms"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1102,6 +1291,15 @@
       "quoteString": "אֱלֹהָֽ⁠י",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֱלֹהָֽ⁠י",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "H0430",
+        "morph": "He,Ncmpc:Sp1cs"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1162,6 +1360,15 @@
       "quoteString": "לֵֽ⁠אלֹהִ֔ים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "לֵֽ⁠אלֹהִ֔ים",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "l:H0430",
+        "morph": "He,R:Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1220,6 +1427,15 @@
       "quoteString": "אֱלֹהִ֖ים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֱלֹהִ֖ים",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "H0430",
+        "morph": "He,Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1286,6 +1502,15 @@
       "quoteString": "הָ⁠אֱלֹהִ֑ים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠אֱלֹהִ֑ים",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "d:H0430",
+        "morph": "He,Td:Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1350,6 +1575,15 @@
       "quoteString": "הָֽ⁠אֱלֹהִים֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָֽ⁠אֱלֹהִים֙",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "d:H0430",
+        "morph": "He,Td:Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1414,6 +1648,15 @@
       "quoteString": "הָ⁠אֱלֹהִ֗ים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָ⁠אֱלֹהִ֗ים",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "d:H0430",
+        "morph": "He,Td:Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1488,6 +1731,15 @@
       "quoteString": "אֵֽל",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֵֽל",
+        "occurrence": 1,
+        "lemma": "אֵל",
+        "strong": "H0410",
+        "morph": "He,Ncmsa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1555,6 +1807,15 @@
       "quoteString": "הָֽ⁠אֱלֹהִים֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הָֽ⁠אֱלֹהִים֙",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "d:H0430",
+        "morph": "He,Td:Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1622,6 +1883,15 @@
       "quoteString": "אֱלֹהִ֜ים",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֱלֹהִ֜ים",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "H0430",
+        "morph": "He,Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1689,6 +1959,15 @@
       "quoteString": "אֱלֹהִים֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אֱלֹהִים֙",
+        "occurrence": 1,
+        "lemma": "אֱלֹהִים",
+        "strong": "H0430",
+        "morph": "He,Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "god"
@@ -1742,6 +2021,15 @@
       "quoteString": "הַ⁠הֵיטֵ֖ב",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הַ⁠הֵיטֵ֖ב",
+        "occurrence": 1,
+        "lemma": "יָטַב",
+        "strong": "d:H3190",
+        "morph": "He,Ti:Vha"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1793,6 +2081,15 @@
       "quoteString": "ט֥וֹב",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "ט֥וֹב",
+        "occurrence": 1,
+        "lemma": "טוֹב",
+        "strong": "H2896a",
+        "morph": "He,Aamsa"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1849,6 +2146,15 @@
       "quoteString": "הַ⁠הֵיטֵ֥ב",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הַ⁠הֵיטֵ֥ב",
+        "occurrence": 1,
+        "lemma": "יָטַב",
+        "strong": "d:H3190",
+        "morph": "He,Ti:Vha"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1901,6 +2207,15 @@
       "quoteString": "הֵיטֵ֥ב",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הֵיטֵ֥ב",
+        "occurrence": 1,
+        "lemma": "יָטַב",
+        "strong": "H3190",
+        "morph": "He,Vha"
+      }
+    ],
     "tags": [
       "training",
       "good"
@@ -1949,6 +2264,15 @@
       "quoteString": "וְ⁠יוֹנָ֗ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וְ⁠יוֹנָ֗ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "c:H3124",
+        "morph": "He,C:Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -1995,6 +2319,15 @@
       "quoteString": "יוֹנָֽה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָֽה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2041,6 +2374,15 @@
       "quoteString": "יוֹנָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָה֙",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2087,6 +2429,15 @@
       "quoteString": "יוֹנָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֔ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2133,6 +2484,15 @@
       "quoteString": "יוֹנָ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֖ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2179,6 +2539,15 @@
       "quoteString": "יוֹנָ֗ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֗ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2225,6 +2594,15 @@
       "quoteString": "יוֹנָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָה֙",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2271,6 +2649,15 @@
       "quoteString": "יוֹנָ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֖ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2317,6 +2704,15 @@
       "quoteString": "יוֹנָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָה֙",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2363,6 +2759,15 @@
       "quoteString": "לְ⁠יוֹנָ֗ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "לְ⁠יוֹנָ֗ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "l:H3124",
+        "morph": "He,R:Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2409,6 +2814,15 @@
       "quoteString": "יוֹנָ֛ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֛ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2460,6 +2874,15 @@
       "quoteString": "יוֹנָ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֖ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2507,6 +2930,15 @@
       "quoteString": "יוֹנָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹנָ֔ה",
+        "occurrence": 1,
+        "lemma": "יוֹנָה",
+        "strong": "H3124",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "jonah"
@@ -2550,6 +2982,15 @@
       "quoteString": "יָדְע֣וּ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יָדְע֣וּ",
+        "occurrence": 1,
+        "lemma": "יָדַע",
+        "strong": "H3045",
+        "morph": "He,Vqp3cp"
+      }
+    ],
     "tags": [
       "training",
       "know"
@@ -2596,6 +3037,15 @@
       "quoteString": "יוֹדֵ֣עַ",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יוֹדֵ֣עַ",
+        "occurrence": 1,
+        "lemma": "יָדַע",
+        "strong": "H3045",
+        "morph": "He,Vqrmsa"
+      }
+    ],
     "tags": [
       "training",
       "know"
@@ -2645,6 +3095,15 @@
       "quoteString": "יָדַע֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יָדַע֙",
+        "occurrence": 1,
+        "lemma": "יָדַע",
+        "strong": "H3045",
+        "morph": "He,Vqp3ms"
+      }
+    ],
     "tags": [
       "training",
       "know"
@@ -2688,6 +3147,15 @@
       "quoteString": "גּֽוֹרָל֔וֹת",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "גּֽוֹרָל֔וֹת",
+        "occurrence": 1,
+        "lemma": "גּוֹרָל",
+        "strong": "H1486",
+        "morph": "He,Ncmpa"
+      }
+    ],
     "tags": [
       "training",
       "lots"
@@ -2736,6 +3204,15 @@
       "quoteString": "הַ⁠גּוֹרָ֖ל",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "הַ⁠גּוֹרָ֖ל",
+        "occurrence": 1,
+        "lemma": "גּוֹרָל",
+        "strong": "d:H1486",
+        "morph": "He,Td:Ncmsa"
+      }
+    ],
     "tags": [
       "training",
       "lots"
@@ -2779,6 +3256,15 @@
       "quoteString": "נִֽינְוֶ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "נִֽינְוֶ֖ה",
+        "occurrence": 1,
+        "lemma": "נִינְוֵה",
+        "strong": "H5210",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "nineveh"
@@ -2827,6 +3313,15 @@
       "quoteString": "וְ⁠נִֽינְוֵ֗ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וְ⁠נִֽינְוֵ֗ה",
+        "occurrence": 1,
+        "lemma": "נִינְוֵה",
+        "strong": "c:H5210",
+        "morph": "He,C:Np"
+      }
+    ],
     "tags": [
       "training",
       "nineveh"
@@ -2878,6 +3373,15 @@
       "quoteString": "וְ⁠נִֽינְוֵ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וְ⁠נִֽינְוֵ֖ה",
+        "occurrence": 1,
+        "lemma": "נִינְוֵה",
+        "strong": "c:H5210",
+        "morph": "He,C:Np"
+      }
+    ],
     "tags": [
       "training",
       "nineveh"
@@ -2932,6 +3436,15 @@
       "quoteString": "נִֽינְוֵ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "נִֽינְוֵ֖ה",
+        "occurrence": 1,
+        "lemma": "נִינְוֵה",
+        "strong": "H5210",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "nineveh"
@@ -2987,6 +3500,15 @@
       "quoteString": "נִֽינְוֵ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "נִֽינְוֵ֔ה",
+        "occurrence": 1,
+        "lemma": "נִינְוֵה",
+        "strong": "H5210",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "nineveh"
@@ -3037,6 +3559,15 @@
       "quoteString": "נִינְוֵ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "נִינְוֵ֖ה",
+        "occurrence": 1,
+        "lemma": "נִינְוֵה",
+        "strong": "H5210",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "nineveh"
@@ -3090,6 +3621,15 @@
       "quoteString": "נֹאבְדָ֗ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "נֹאבְדָ֗ה",
+        "occurrence": 1,
+        "lemma": "אָבַד",
+        "strong": "H0006",
+        "morph": "He,Vqh1cp"
+      }
+    ],
     "tags": [
       "training",
       "perish"
@@ -3136,6 +3676,15 @@
       "quoteString": "נֹאבֵֽד",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "נֹאבֵֽד",
+        "occurrence": 1,
+        "lemma": "אָבַד",
+        "strong": "H0006",
+        "morph": "He,Vqi1cp"
+      }
+    ],
     "tags": [
       "training",
       "perish"
@@ -3185,6 +3734,15 @@
       "quoteString": "אָבָֽד",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "אָבָֽד",
+        "occurrence": 1,
+        "lemma": "אָבַד",
+        "strong": "H0006",
+        "morph": "He,Vqp3ms"
+      }
+    ],
     "tags": [
       "training",
       "perish"
@@ -3228,6 +3786,15 @@
       "quoteString": "יְהוָֽה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָֽה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3276,6 +3843,15 @@
       "quoteString": "וַֽ⁠יהוָ֗ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "וַֽ⁠יהוָ֗ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "c:H3068",
+        "morph": "He,C:Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3322,6 +3898,15 @@
       "quoteString": "יְהוָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָה֙",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3368,6 +3953,15 @@
       "quoteString": "יְהוָ֜ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֜ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3414,6 +4008,15 @@
       "quoteString": "יְהוָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָה֙",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3460,6 +4063,15 @@
       "quoteString": "יְהוָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֔ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3511,6 +4123,15 @@
       "quoteString": "לַֽ⁠יהוָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "לַֽ⁠יהוָ֔ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "l:H3068",
+        "morph": "He,R:Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3560,6 +4181,15 @@
       "quoteString": "יְהוָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָה֙",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3609,6 +4239,15 @@
       "quoteString": "יְהוָ֥ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֥ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3668,6 +4307,15 @@
       "quoteString": "לַ⁠יהוָֽה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "לַ⁠יהוָֽה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "l:H3068",
+        "morph": "He,R:Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3720,6 +4368,15 @@
       "quoteString": "יְהוָ֖ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֖ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3772,6 +4429,15 @@
       "quoteString": "יְהוָ֜ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֜ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3824,6 +4490,15 @@
       "quoteString": "יְהוָה֙",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָה֙",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3876,6 +4551,15 @@
       "quoteString": "יְהוָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֔ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3928,6 +4612,15 @@
       "quoteString": "יְהוָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֔ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
@@ -3980,6 +4673,15 @@
       "quoteString": "יְהוָ֔ה",
       "occurrence": 1
     },
+    "olWords": [
+      {
+        "word": "יְהוָ֔ה",
+        "occurrence": 1,
+        "lemma": "יְהֹוָה",
+        "strong": "H3068",
+        "morph": "He,Np"
+      }
+    ],
     "tags": [
       "training",
       "yahweh"
