@@ -242,6 +242,10 @@ describe('scripts/compare-prompt-variants.js', () => {
     expect(mcnemarP(0, 0)).toBe(1);
     expect(mcnemarP(10, 0)).toBeCloseTo(2 / 1024, 10);
     expect(mcnemarP(3, 3)).toBe(1);
+    // more than 1,023 disagreements: 2^n overflowed a double and the p was NaN
+    expect(mcnemarP(823, 749)).toBeCloseTo(0.0656, 3);
+    expect(mcnemarP(1500, 1500)).toBe(1);
+    expect(mcnemarP(1000, 1200)).toBeLessThan(0.001);
   });
 
   test('scores as the app shows it, falling back to the algorithm when the AI gave nothing', () => {

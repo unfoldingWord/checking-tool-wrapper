@@ -210,14 +210,15 @@ function meanText(values) {
 function mcnemarP(onlyA, onlyB) {
   const n = onlyA + onlyB;
   const k = Math.min(onlyA, onlyB);
+  // each term C(n, i) / 2^n in log space: 2^n and C(n, i) overflow a double above n = 1023
+  let logTerm = -n * Math.LN2;
   let tail = 0;
-  let coefficient = 1;
 
   for (let i = 0; i <= k; i++) {
-    tail += coefficient;
-    coefficient = (coefficient * (n - i)) / (i + 1);
+    tail += Math.exp(logTerm);
+    logTerm += Math.log(n - i) - Math.log(i + 1);
   }
-  return Math.min(1, (2 * tail) / 2 ** n);
+  return Math.min(1, 2 * tail);
 }
 
 /**
