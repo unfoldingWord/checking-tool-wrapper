@@ -1,0 +1,462 @@
+[
+  {
+    "id": "train-tg-3jn-1-5-beloved-y8zm",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Дусти азизам! Ҳар коре, ки ту барои бародарон ва махсусан бародарони ғариб мекунӣ содиқона ва намоён аст.",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "дӯсти азизам": 1
+      }
+    },
+    "expected": [
+      "Дусти азизам"
+    ],
+    "selections": [
+      {
+        "text": "Дусти",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "азизам",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "y8zm",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:5, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-tg-3jn-1-11-beloved-s6zg",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "beloved",
+    "verse": "Дӯсти азизам! Ту бояд на аз бадӣ, балки аз некӣ ибрат гирӣ!  Ҳар касе, ки некӣ мекунад бандаи Худо аст, аммо касе, ки бадӣ мекунад, Худоро намешиносад.",
+    "glPhrase": "Beloved",
+    "history": {
+      "beloved": {
+        "дӯсти азизам": 1,
+        "дусти азизам": 1
+      }
+    },
+    "expected": [
+      "Дӯсти азизам"
+    ],
+    "selections": [
+      {
+        "text": "Дӯсти",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "азизам",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "s6zg",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:11, tW beloved, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-tg-3jn-1-9-church-ftt3",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "church",
+    "verse": "Ман ба ҷамоати имондорон нома навиштам, лекин Диютрифас худашро калон гирифта,  моро рад мекунад.",
+    "glPhrase": "to the church",
+    "history": {
+      "the church": {
+        "ҷамоати имондорон": 1
+      }
+    },
+    "expected": [
+      "ба ҷамоати имондорон"
+    ],
+    "selections": [
+      {
+        "text": "ба",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "ҷамоати",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "имондорон",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 9
+      },
+      "tool": "translationWords",
+      "groupId": "church",
+      "checkId": "ftt3",
+      "quote": [
+        {
+          "word": "τῇ",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐκκλησίᾳ",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῇ ἐκκλησίᾳ",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "τῇ",
+        "occurrence": 1,
+        "lemma": "ὁ",
+        "strong": "G35880",
+        "morph": "Gr,EA,,,,DFS,"
+      },
+      {
+        "word": "ἐκκλησίᾳ",
+        "occurrence": 1,
+        "lemma": "ἐκκλησία",
+        "strong": "G15770",
+        "morph": "Gr,N,,,,,DFS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "church"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:9, tW church, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-tg-3jn-1-10-church-tk66",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "church",
+    "verse": "Бинобар ин, вақти омаданам, корҳои бад ва тӯҳмату ғайбатеро, ки нисбат ба мо мекунад, ба ҳама нақл мекунам. Инчунин вай аз ин кораш қаноатманд нашуда, бародаронро қабул намекунад ва ба онҳое, ки бародаронро қабул кардан мехоҳанд, монеъ мешавад ва аз ҷамоати имондорон пеш мекунад.",
+    "glPhrase": "of the church",
+    "history": {
+      "the church": {
+        "ҷамоати имондорон": 1
+      },
+      "to the church": {
+        "ба ҷамоати имондорон": 1
+      }
+    },
+    "expected": [
+      "ҷамоати имондорон"
+    ],
+    "selections": [
+      {
+        "text": "ҷамоати",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "имондорон",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 10
+      },
+      "tool": "translationWords",
+      "groupId": "church",
+      "checkId": "tk66",
+      "quote": [
+        {
+          "word": "τῆς",
+          "occurrence": 1
+        },
+        {
+          "word": "ἐκκλησίας",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "τῆς ἐκκλησίας",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "τῆς",
+        "occurrence": 1,
+        "lemma": "ὁ",
+        "strong": "G35880",
+        "morph": "Gr,EA,,,,GFS,"
+      },
+      {
+        "word": "ἐκκλησίας",
+        "occurrence": 1,
+        "lemma": "ἐκκλησία",
+        "strong": "G15770",
+        "morph": "Gr,N,,,,,GFS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "church"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:10, tW church, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-tg-3jn-1-12-testimony-chhe",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Дар бораи Димитриюс ҳама имондорон ва худи ҳақиқат ҳам шаҳодат додааст. Ҳамчунин мо ҳам шаҳодат медиҳем ва ту ҳам худат медонӣ, ки шаҳодати мо рост аст.",
+    "glPhrase": "has been attested to",
+    "history": {
+      "have attested": {
+        "шаҳодат медиҳанд": 1
+      }
+    },
+    "expected": [
+      "шаҳодат додааст"
+    ],
+    "selections": [
+      {
+        "text": "шаҳодат",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "додааст",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "chhe",
+      "quote": "μεμαρτύρηται",
+      "quoteString": "μεμαρτύρηται",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "μεμαρτύρηται",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IEP3,,S,"
+      }
+    ],
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-tg-3jn-1-12-testimony-ebes",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Дар бораи Димитриюс ҳама имондорон ва худи ҳақиқат ҳам шаҳодат додааст. Ҳамчунин мо ҳам шаҳодат медиҳем ва ту ҳам худат медонӣ, ки шаҳодати мо рост аст.",
+    "glPhrase": "we attest",
+    "history": {
+      "have attested": {
+        "шаҳодат медиҳанд": 1
+      },
+      "has been attested to": {
+        "шаҳодат додааст": 1
+      }
+    },
+    "expected": [
+      "шаҳодат:2 медиҳем"
+    ],
+    "selections": [
+      {
+        "text": "шаҳодат",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "медиҳем",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "ebes",
+      "quote": "μαρτυροῦμεν",
+      "quoteString": "μαρτυροῦμεν",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "μαρτυροῦμεν",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IPA1,,P,"
+      }
+    ],
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  },
+  {
+    "id": "train-tg-3jn-1-12-testimony-crtt",
+    "targetLang": "tg",
+    "glLang": "en",
+    "glOwner": "unfoldingWord",
+    "groupId": "testimony",
+    "verse": "Дар бораи Димитриюс ҳама имондорон ва худи ҳақиқат ҳам шаҳодат додааст. Ҳамчунин мо ҳам шаҳодат медиҳем ва ту ҳам худат медонӣ, ки шаҳодати мо рост аст.",
+    "glPhrase": "testimony",
+    "history": {
+      "have attested": {
+        "шаҳодат медиҳанд": 1
+      },
+      "has been attested to": {
+        "шаҳодат додааст": 1
+      },
+      "we attest": {
+        "шаҳодат медиҳем": 1
+      }
+    },
+    "expected": [
+      "шаҳодати"
+    ],
+    "selections": [
+      {
+        "text": "шаҳодати",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "crtt",
+      "quote": [
+        {
+          "word": "ἡ",
+          "occurrence": 1
+        },
+        {
+          "word": "μαρτυρία",
+          "occurrence": 1
+        }
+      ],
+      "quoteString": "ἡ μαρτυρία",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "ἡ",
+        "occurrence": 1,
+        "lemma": "ὁ",
+        "strong": "G35880",
+        "morph": "Gr,EA,,,,NFS,"
+      },
+      {
+        "word": "μαρτυρία",
+        "occurrence": 1,
+        "lemma": "μαρτυρία",
+        "strong": "G31410",
+        "morph": "Gr,N,,,,,NFS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:12, tW testimony, GL en ult/v91_unfoldingWord"
+  }
+]
