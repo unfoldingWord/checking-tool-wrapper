@@ -1,0 +1,234 @@
+[
+  {
+    "id": "train-tg-3jn-1-5-beloved-y8zm",
+    "targetLang": "tg",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "beloved",
+    "verse": "Дусти азизам! Ҳар коре, ки ту барои бародарон ва махсусан бародарони ғариб мекунӣ содиқона ва намоён аст.",
+    "glPhrase": "Любимый",
+    "history": {
+      "любимый": {
+        "дӯсти азизам": 1
+      }
+    },
+    "expected": [
+      "Дусти азизам"
+    ],
+    "selections": [
+      {
+        "text": "Дусти",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "азизам",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 5
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "y8zm",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:5, tW beloved, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-tg-3jn-1-11-beloved-s6zg",
+    "targetLang": "tg",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "beloved",
+    "verse": "Дӯсти азизам! Ту бояд на аз бадӣ, балки аз некӣ ибрат гирӣ!  Ҳар касе, ки некӣ мекунад бандаи Худо аст, аммо касе, ки бадӣ мекунад, Худоро намешиносад.",
+    "glPhrase": "Любимый",
+    "history": {
+      "любимый": {
+        "дӯсти азизам": 1,
+        "дусти азизам": 1
+      }
+    },
+    "expected": [
+      "Дӯсти азизам"
+    ],
+    "selections": [
+      {
+        "text": "Дӯсти",
+        "occurrence": 1,
+        "occurrences": 1
+      },
+      {
+        "text": "азизам",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 11
+      },
+      "tool": "translationWords",
+      "groupId": "beloved",
+      "checkId": "s6zg",
+      "quote": "ἀγαπητέ",
+      "quoteString": "ἀγαπητέ",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "ἀγαπητέ",
+        "occurrence": 1,
+        "lemma": "ἀγαπητός",
+        "strong": "G00270",
+        "morph": "Gr,NS,,,,VMS,"
+      }
+    ],
+    "tags": [
+      "training",
+      "beloved"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:11, tW beloved, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-tg-3jn-1-12-testimony-chhe",
+    "targetLang": "tg",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "testimony",
+    "verse": "Дар бораи Димитриюс ҳама имондорон ва худи ҳақиқат ҳам шаҳодат додааст. Ҳамчунин мо ҳам шаҳодат медиҳем ва ту ҳам худат медонӣ, ки шаҳодати мо рост аст.",
+    "glPhrase": "засвидетельствовано",
+    "history": {
+      "засвидетельствовали": {
+        "шаҳодат медиҳанд": 1
+      }
+    },
+    "expected": [
+      "шаҳодат додааст"
+    ],
+    "selections": [
+      {
+        "text": "шаҳодат",
+        "occurrence": 1,
+        "occurrences": 2
+      },
+      {
+        "text": "додааст",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "chhe",
+      "quote": "μεμαρτύρηται",
+      "quoteString": "μεμαρτύρηται",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "μεμαρτύρηται",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IEP3,,S,"
+      }
+    ],
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:12, tW testimony, GL ru rlob/v13.0_ru_gl"
+  },
+  {
+    "id": "train-tg-3jn-1-12-testimony-ebes",
+    "targetLang": "tg",
+    "glLang": "ru",
+    "glOwner": "ru_gl",
+    "groupId": "testimony",
+    "verse": "Дар бораи Димитриюс ҳама имондорон ва худи ҳақиқат ҳам шаҳодат додааст. Ҳамчунин мо ҳам шаҳодат медиҳем ва ту ҳам худат медонӣ, ки шаҳодати мо рост аст.",
+    "glPhrase": "свидетельствуем",
+    "history": {
+      "засвидетельствовали": {
+        "шаҳодат медиҳанд": 1
+      },
+      "засвидетельствовано": {
+        "шаҳодат додааст": 1
+      }
+    },
+    "expected": [
+      "шаҳодат:2 медиҳем"
+    ],
+    "selections": [
+      {
+        "text": "шаҳодат",
+        "occurrence": 2,
+        "occurrences": 2
+      },
+      {
+        "text": "медиҳем",
+        "occurrence": 1,
+        "occurrences": 1
+      }
+    ],
+    "contextId": {
+      "reference": {
+        "bookId": "3jn",
+        "chapter": 1,
+        "verse": 12
+      },
+      "tool": "translationWords",
+      "groupId": "testimony",
+      "checkId": "ebes",
+      "quote": "μαρτυροῦμεν",
+      "quoteString": "μαρτυροῦμεν",
+      "occurrence": 1
+    },
+    "olWords": [
+      {
+        "word": "μαρτυροῦμεν",
+        "occurrence": 1,
+        "lemma": "μαρτυρέω",
+        "strong": "G31400",
+        "morph": "Gr,V,IPA1,,P,"
+      }
+    ],
+    "tags": [
+      "training",
+      "testimony"
+    ],
+    "madeUp": false,
+    "source": "tg_ult_3jn_book 1:12, tW testimony, GL ru rlob/v13.0_ru_gl"
+  }
+]

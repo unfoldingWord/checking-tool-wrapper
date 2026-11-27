@@ -66,6 +66,8 @@ export const DEFAULT_TEST_PROJECTS = [
   'te_glt_1co', 'bn_glt_2co', 'en_ult_gal',
   // rebalanced 2026-11-26: Hindi and Odia (new; their other projects train) and Vietnamese
   'hi_glt_1co', 'or_glt_1co', 'vi_glt_1co',
+  // added 2026-11-27 as test-only languages (in no training project): Tamil (Arabic GL) and Tajik
+  'ta_irv_1co', 'ta_irv_act', 'ta_irv_heb', 'ta_irv_jhn', 'ta_irv_luk', 'tg_ult_3jn',
 ];
 
 /**

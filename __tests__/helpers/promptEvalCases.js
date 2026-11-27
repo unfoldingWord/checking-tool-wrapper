@@ -63,6 +63,13 @@ export const FINETUNE_TEST_FILES = [
   'or_glt_1co_book_ru_gl_ru',
   'vi_glt_1co_book_unfoldingWord_en',
   'vi_glt_1co_book_ru_gl_ru',
+  // added 2026-11-27: Tamil (Arabic GL from avd) and Tajik (Russian GL), languages in no training project
+  'ta_irv_1co_book_BSOJ_ar',
+  'ta_irv_act_book_BSOJ_ar',
+  'ta_irv_heb_book_BSOJ_ar',
+  'ta_irv_jhn_book_BSOJ_ar',
+  'ta_irv_luk_book_BSOJ_ar',
+  'tg_ult_3jn_book_ru_gl_ru',
 ];
 
 /** settings of the sets as built for the plan; change them only on purpose, and say so in the plan */
